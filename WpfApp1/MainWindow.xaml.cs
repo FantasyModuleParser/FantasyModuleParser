@@ -33,6 +33,11 @@ namespace WpfApp1
             ESManageCategories win2 = new ESManageCategories();
             win2.Show();
         }
+        private void ESManageProject_Click(object sender, RoutedEventArgs e)
+        {
+            ESProjectManagement win2 = new ESProjectManagement();
+            win2.Show();
+        }
         private void ESAbout_Click(object sender, RoutedEventArgs e)
         {
             ESAbout win2 = new ESAbout();
