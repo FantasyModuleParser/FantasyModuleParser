@@ -236,7 +236,7 @@
     <Content Include="Resources\Italic.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\NPC Engineer.png" />
+    <Content Include="Resources\NPC Engineer.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Folder.png" />
