@@ -5,16 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Project Management" Height="600" Width="800">
+        Title="Project Management" Height="580" Width="820" ResizeMode="NoResize">
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="800">
             <MenuItem Header="_File">
                 <MenuItem Header="_New Project" />
                 <MenuItem Header="_Load Project" />
                 <MenuItem Header="_Save Project" />
+                <Separator />
+                <MenuItem Header="_Create Project" />
             </MenuItem>
         </Menu>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="325" Margin="5,30,0,0" VerticalAlignment="Top" Width="360"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="480" Margin="370,30,0,0" VerticalAlignment="Top" Width="420"/>
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
                 <Label Content="Module Information" Foreground="Gray" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -79,82 +82,107 @@
                 <Label Content="Image Section" HorizontalAlignment="Left" Margin="40,10,0,0" Padding="0" VerticalAlignment="Top" FontWeight="Bold" />
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Images" Margin="50,3,0,0" Padding="2,0,0,0"/>
-                    <Label Content="module\input\images\" Padding="7,0,0,0" Margin="70,3,0,0"/>
+                    <Label Content="module\input\images\" Padding="0" Margin="127,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Tokens" Margin="50,0,0,0" Padding="2,0,0,0" />
-                    <Label Content="module\input\tokens\" Padding="9,0,0,0" Margin="70,0,0,0"/>
+                    <Label Content="module\input\tokens\" Padding="0" Margin="129,0,0,0"/>
                 </StackPanel>
                 <Label Content="Data Section" HorizontalAlignment="Left" Margin="40,0,0,0" Padding="0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="NPCs/Monsters" Margin="50,3,0,0"/>
-                    <Label Content="module\input\npcs.json" Padding="0" Margin="30,3,0,0"/>
+                    <Label Content="module\input\npcs.json" Padding="0" Margin="81,3,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Races" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\races.json" Padding="2,0,0,0" Margin="80,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\races.json" Padding="0" Margin="133,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Classes" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\classes.json" Padding="4,0,0,0" Margin="70,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\classes.json" Padding="0" Margin="125,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Backgrounds" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\backgrounds.json" Padding="3,0,0,0" Margin="40,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\backgrounds.json" Padding="0" Margin="94,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Feats" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\feats.json" Padding="5,0,0,0" Margin="80,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\feats.json" Padding="0" Margin="136,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Skills" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\skills.json" Padding="6,0,0,0" Margin="80,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\skills.json" Padding="0" Margin="137,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Spells" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\spells.json" Padding="6,0,0,0" Margin="75,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\spells.json" Padding="0" Margin="132,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Equipment" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\equipment.json" Padding="6,0,0,0" Margin="49,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\equipment.json" Padding="0" Margin="106,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Magic Items" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\artifacts.json" Padding="6,0,0,0" Margin="41,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\artifacts.json" Padding="0" Margin="98,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <Label Content="Adventure Sections" HorizontalAlignment="Left" Margin="40,0,0,0" Padding="0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Encounters" Margin="50,3,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\encounters.json" Foreground="Gray" Padding="0" Margin="54,3,0,0"/>
+                    <Label Content="module\input\encounters.json" Foreground="Gray" Padding="0" Margin="104,3,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Random Encounters" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\randomencounters.json" Padding="2,0,0,0" Margin="6,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\randomencounters.json" Padding="0" Margin="57,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Quests" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\quests.json" Padding="2,0,0,0" Margin="77,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\quests.json" Padding="0" Margin="127,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Story Entries" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\story.json" Padding="2,0,0,0" Margin="47,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\story.json" Padding="0" Margin="97,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Story Templates" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\storytemplates.json" Padding="2,0,0,0" Margin="30,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\storytemplates.json" Padding="0" Margin="79,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Treasure Parcels" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\parcels.json" Padding="2,0,0,0" Margin="30,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\parcels.json" Padding="0" Margin="79,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Image Pins" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\imagepins.json" Padding="2,0,0,0" Margin="57,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\imagepins.json" Padding="0" Margin="105,0,0,0" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Image Grids" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
-                    <Label Content="module\input\imagegrids.json" Padding="2,0,0,0" Margin="51,0,0,0" Foreground="Gray"/>
+                    <Label Content="module\input\imagegrids.json" Padding="0" Margin="99,0,0,0" Foreground="Gray"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="Pregenerated Characters" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
+                    <Label Content="module\input\pregens.json" Padding="0" Margin="33,0,0,0" Foreground="Gray"/>
+                </StackPanel>
+                <Label Content="Utility Sections" HorizontalAlignment="Left" Margin="40,0,0,0" Padding="0" VerticalAlignment="Top" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="Reference Manual" Margin="50,3,0,0" IsEnabled="False" Foreground="Gray"/>
+                    <Label Content="module\input\referencemanual.json" Foreground="Gray" Padding="0" Margin="68,3,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="Tables" Margin="50,0,0,0" IsEnabled="False" Foreground="Gray"/>
+                    <Label Content="module\input\tables.json" Foreground="Gray" Padding="0" Margin="131,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="30,355,0,0">
+            <Label Content="Use the options under File to manage your project" Padding="0"/>
+            <Label Content="1. 'New Project' resets all fields" Padding="0,3,0,0" />
+            <Label Content="2. 'Load Project' loads a previously saved .ini file" Padding="0,3,0,0" />
+            <Label Content="3. 'Save Project' stores your information in an .ini file" Padding="0,3,0,0" />
+            <Label Content="4. 'Create Project' creates the directory structure and" Padding="0,3,0,0" Width="300" HorizontalAlignment="Left" />
+            <Label Content="blank text documents for the selected sections" Padding="13,3,0,0" Width="300" HorizontalAlignment="Left" />
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Button Content="Save and Close" Padding="0" Width="100" Margin="45,0,0,0" />
+                <Button Content="Close" Click="ESExit_Click" Padding="0" Width="100" Margin="10,0,0,0"/>
             </StackPanel>
         </StackPanel>
     </Grid>
