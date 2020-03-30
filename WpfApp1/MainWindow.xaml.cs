@@ -55,7 +55,7 @@ namespace WpfApp1
         }
         private void OnImageButtonClick1 (object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
+            ESAbout win2 = new ESAbout();
             win2.Show();
         }
         private void OnImageButtonClick2 (object sender, RoutedEventArgs e)
