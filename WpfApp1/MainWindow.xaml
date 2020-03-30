@@ -1,0 +1,83 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Engineer Suite 2.0" Height="450" Width="600">
+    <Grid Background="#FFE5E5E5">
+        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
+            <MenuItem Header="_Options">
+                <MenuItem Header="_Manage Project" Click="ESManageProject_Click"/>
+                <MenuItem Header="_Create Module" />
+                <Separator />
+                <MenuItem Header="_Manage Categories" Click="ESManageCategories_Click"/>
+                <MenuItem Header="_Settings" />
+                <Separator />
+                <MenuItem Header="_Exit" Click="ESExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Directories">
+                <MenuItem Header="_View Appdata folder" />
+                <MenuItem Header="_View Projects folder" />
+                <Separator />
+                <MenuItem Header="_View Artefacts folder" />
+                <MenuItem Header="_View Equipment folder" />
+                <MenuItem Header="_View NPCs folder" />
+                <MenuItem Header="_View Parcels folder" />
+                <MenuItem Header="_View Spells folder" />
+                <MenuItem Header="_View Tables folder" />
+                <Separator />
+                <MenuItem Header="_View Fantasy Grounds folder" />
+                <MenuItem Header="_View Engineer Suite systems folder" />
+            </MenuItem>
+            <MenuItem Header="_Backup">
+                <MenuItem Header="_Manage Backup Settings" />
+                <MenuItem Header="_Schedule Backups" />
+                <MenuItem Header="_Perform Backup Now" />
+            </MenuItem>
+            <MenuItem Header="_Information">
+                <MenuItem Header="_About Engineer Suite 2.0" Click="ESAbout_Click" />
+                <MenuItem Header="_Engineer Suite Supporters" Click="ESSupporters_Click" />
+                <MenuItem Header="_Quickstart Guide" />
+                <MenuItem Header="_Links in Fantasy Grounds" />
+                <Separator />
+                <MenuItem Header="_Buy me a coffee" />
+            </MenuItem>
+        </Menu>
+        <Button Name="btn_NPCEngineer" Width="100" Height="100" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick" Margin="50,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/NPC Engineer.png"></Image>
+        </Button>
+        <Button Name="btn_SpellEngineer" Width="100" Height="100" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick1" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/Spell Engineer.png"></Image>
+        </Button>
+        <Button Name="btn_ArtefactEngineer" Width="100" Height="100" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick2" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/Artefact Engineer.png"></Image>
+        </Button>
+        <Button Name="btn_TableEngineer" Width="100" Height="100" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick3" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/Table Engineer.png"></Image>
+        </Button>
+        <Button Name="btn_ParcelEngineer" Width="100" Height="100" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick4" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/Parcel Engineer.png"></Image>
+        </Button>
+        <Button Name="btn_EquipmentEngineer" Width="100" Height="100" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick5" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/Equipment Engineer.png"></Image>
+        </Button>
+        <Button Name="btn_RefManEngineer" Width="100" Height="100" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick6" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/RefMan Engineer.png"></Image>
+        </Button>
+        <Label Content="Click here to create a module for" HorizontalAlignment="Left" Margin="300,350,0,0" VerticalAlignment="Top"/>
+        <Label Content="the current project" HorizontalAlignment="Left" Margin="375,370,0,0" VerticalAlignment="Top"/>
+        <Button Name="btn_CreateModule" Width="50" Height="50" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick7" Margin="490,350,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/resources/NPCEs.bmp"></Image>
+        </Button>
+    </Grid>
+</Window>
