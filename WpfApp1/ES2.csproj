@@ -111,6 +111,7 @@
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FolderCreation.cs" />
     <Compile Include="NPCEFGListOptions.xaml.cs">
       <DependentUpon>NPCEFGListOptions.xaml</DependentUpon>
     </Compile>
