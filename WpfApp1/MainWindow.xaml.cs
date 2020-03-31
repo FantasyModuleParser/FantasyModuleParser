@@ -24,6 +24,7 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+        #region MenuOptions
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -48,42 +49,48 @@ namespace WpfApp1
             ESSupporters win2 = new ESSupporters();
             win2.Show();
         }
-        private void OnImageButtonClick (object sender, RoutedEventArgs e)
+        #endregion
+        #region ImageClicks
+        private void NPCEngineer_Click(object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();
         }
-        private void OnImageButtonClick1 (object sender, RoutedEventArgs e)
-        {
-            ESAbout win2 = new ESAbout();
-            win2.Show();
-        }
-        private void OnImageButtonClick2 (object sender, RoutedEventArgs e)
+        private void SpellEngineer_Click(object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();
         }
-        private void OnImageButtonClick3(object sender, RoutedEventArgs e)
+        private void ArtifactEngineer_Click(object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();
         }
-        private void OnImageButtonClick4 (object sender, RoutedEventArgs e)
+        private void TableEngineer_Click(object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();
         }
-        private void OnImageButtonClick5 (object sender, RoutedEventArgs e)
+        #endregion
+
+
+
+        private void EquipmentEngineer_Click (object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();
         }
-        private void OnImageButtonClick6 (object sender, RoutedEventArgs e)
+        private void ParcelEngineer_Click (object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();
         }
-        private void OnImageButtonClick7 (object sender, RoutedEventArgs e)
+        private void RefManEngineer_Click (object sender, RoutedEventArgs e)
+        {
+            NPCEngineer win2 = new NPCEngineer();
+            win2.Show();
+        }
+        private void CreateModule_Click (object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();

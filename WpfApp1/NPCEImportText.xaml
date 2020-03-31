@@ -11,7 +11,7 @@
             <StackPanel Orientation="Vertical">
                 <TextBox Width="500" Height="600" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap"/>
                 <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="350,5,0,0">
-                    <ComboBoxItem>PDF and Web Source</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">PDF and Web Source</ComboBoxItem>
                     <ComboBoxItem>DnD Beyond</ComboBoxItem>
                     <ComboBoxItem>Fantasy Grounds XML</ComboBoxItem>
                     <ComboBoxItem>CritterDB</ComboBoxItem>

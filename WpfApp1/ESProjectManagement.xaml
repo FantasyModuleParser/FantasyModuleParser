@@ -72,7 +72,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Target Parser:" Margin="70,10,0,0"/>
                     <ComboBox Margin="5,16,0,0" Width="100" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <ComboBoxItem>Engineer Suite</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">Engineer Suite</ComboBoxItem>
                         <ComboBoxItem>Par5E</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>

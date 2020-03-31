@@ -36,7 +36,7 @@
                 <MenuItem Header="_Settings" />
             </MenuItem>
             <MenuItem Header="_Engineer Suite">
-                <MenuItem Header="_Manage Project" />
+                <MenuItem Header="_Manage Project" Click="ESManageProject_Click"/>
                 <Separator />
                 <MenuItem Header="_Artefact Engineer" />
                 <MenuItem Header="_Equipment Engineer" />
