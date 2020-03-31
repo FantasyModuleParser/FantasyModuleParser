@@ -47,37 +47,37 @@
         </Menu>
         <Button Name="btn_NPCEngineer" Width="100" Height="100" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick" Margin="50,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/NPC Engineer.png"></Image>
+            <Image Source="/Resources/NPC Engineer.png" />
         </Button>
         <Button Name="btn_SpellEngineer" Width="100" Height="100" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick1" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/Spell Engineer.png"></Image>
+            <Image Source="/Resources/Spell Engineer.png" />
         </Button>
         <Button Name="btn_ArtefactEngineer" Width="100" Height="100" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick2" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/Artefact Engineer.png"></Image>
+            <Image Source="/Resources/Artefact Engineer.png" />
         </Button>
         <Button Name="btn_TableEngineer" Width="100" Height="100" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick3" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/Table Engineer.png"></Image>
+            <Image Source="/Resources/Table Engineer.png" />
         </Button>
         <Button Name="btn_ParcelEngineer" Width="100" Height="100" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick4" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/Parcel Engineer.png"></Image>
+            <Image Source="/Resources/Parcel Engineer.png" />
         </Button>
         <Button Name="btn_EquipmentEngineer" Width="100" Height="100" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick5" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/Equipment Engineer.png"></Image>
+            <Image Source="/Resources/Equipment Engineer.png" />
         </Button>
         <Button Name="btn_RefManEngineer" Width="100" Height="100" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick6" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/RefMan Engineer.png"></Image>
+            <Image Source="/Resources/RefMan Engineer.png" />
         </Button>
         <Label Content="Click here to create a module for" HorizontalAlignment="Left" Margin="300,350,0,0" VerticalAlignment="Top"/>
         <Label Content="the current project" HorizontalAlignment="Left" Margin="375,370,0,0" VerticalAlignment="Top"/>
         <Button Name="btn_CreateModule" Width="50" Height="50" BorderThickness="0"  
     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="OnImageButtonClick7" Margin="490,350,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/resources/NPCEs.bmp"></Image>
+            <Image Source="/Resources/NPCEs.bmp" />
         </Button>
     </Grid>
 </Window>
