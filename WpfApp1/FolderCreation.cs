@@ -55,5 +55,10 @@ namespace WpfApp1
             var path = Path.Combine(BaseDirectory, "RefMan Engineer");
             // Create Folder for Reference Manual Engineer
         }
+        public static void CreateSomeSubfolder9()
+        {
+            var path = Path.Combine(BaseDirectory, "Feats Engineer");
+            // Create Folder for Feats Engineer
+        }
     }
 }
