@@ -29,6 +29,11 @@ namespace WpfApp1
             ESManageCategories win2 = new ESManageCategories();
             win2.Show();
         }
+        private void ESEditDeleteNPC_Click(object sender, RoutedEventArgs e)
+        {
+            ESEditDeleteNPC win2 = new ESEditDeleteNPC();
+            win2.Show();
+        }
         private void ESAbout_Click(object sender, RoutedEventArgs e)
         {
             ESAbout win2 = new ESAbout();

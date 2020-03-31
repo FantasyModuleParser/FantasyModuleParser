@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ESEditDeleteNPC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ESManageCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,6 +105,9 @@
     </Compile>
     <Compile Include="ESAbout.xaml.cs">
       <DependentUpon>ESAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ESEditDeleteNPC.xaml.cs">
+      <DependentUpon>ESEditDeleteNPC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ESManageCategories.xaml.cs">
       <DependentUpon>ESManageCategories.xaml</DependentUpon>
