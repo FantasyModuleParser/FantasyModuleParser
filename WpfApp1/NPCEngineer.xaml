@@ -26,10 +26,10 @@
                 <Separator />
                 <MenuItem Header="_Manage Categories" Click="ESManageCategories_Click"/>
                 <MenuItem Header="_Manage NPC File" Click="ESEditDeleteNPC_Click" />
-                <MenuItem Header="_Manage Weapons List" />
-                <MenuItem Header="_Manage Actions List" />
-                <MenuItem Header="_Manage Traits List" />
-                <MenuItem Header="_Manage Languages" />
+                <MenuItem Header="_Manage Weapons List" Click="ESEditDeleteNPC_Click" />
+                <MenuItem Header="_Manage Actions List" Click="ESEditDeleteNPC_Click" />
+                <MenuItem Header="_Manage Traits List" Click="ESEditDeleteNPC_Click" />
+                <MenuItem Header="_Manage Languages" Click="ESEditDeleteNPC_Click" />
                 <Separator />
                 <MenuItem Header="_Viewport Themes" />
                 <Separator />
@@ -175,8 +175,8 @@
                     <Button Content="Mean" HorizontalAlignment="Left" Margin="185,182,0,0" VerticalAlignment="Top" Width="40"/>
                     <Button Content="Roll" HorizontalAlignment="Left" Margin="230,182,0,0" VerticalAlignment="Top" Width="40"/>
                     <Label Content="Gender:" HorizontalAlignment="Left" Margin="295,29,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="350,30,0,0" Text="neutral" VerticalAlignment="Top" Width="100">
-                        <ComboBoxItem>neutral</ComboBoxItem>
+                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="350,30,0,0" VerticalAlignment="Top" Width="100">
+                        <ComboBoxItem IsSelected="True">neutral</ComboBoxItem>
                         <ComboBoxItem>male</ComboBoxItem>
                         <ComboBoxItem>female</ComboBoxItem>
                     </ComboBox>

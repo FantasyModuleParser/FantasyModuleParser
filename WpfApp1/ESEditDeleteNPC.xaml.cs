@@ -23,5 +23,9 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+        private void ESExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
