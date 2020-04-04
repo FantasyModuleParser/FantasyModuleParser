@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ESSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ESSupporters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +118,9 @@
     </Compile>
     <Compile Include="ESProjectManagement.xaml.cs">
       <DependentUpon>ESProjectManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ESSettings.xaml.cs">
+      <DependentUpon>ESSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>

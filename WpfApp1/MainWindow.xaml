@@ -13,7 +13,7 @@
                 <MenuItem Header="_Create Module" />
                 <Separator />
                 <MenuItem Header="_Manage Categories" Click="ESManageCategories_Click"/>
-                <MenuItem Header="_Settings" />
+                <MenuItem Header="_Settings" Click="ESSettings_Click"/>
                 <Separator />
                 <MenuItem Header="_Exit" Click="ESExit_Click"/>
             </MenuItem>

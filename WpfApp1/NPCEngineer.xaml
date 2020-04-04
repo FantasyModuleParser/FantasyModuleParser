@@ -33,7 +33,7 @@
                 <Separator />
                 <MenuItem Header="_Viewport Themes" />
                 <Separator />
-                <MenuItem Header="_Settings" />
+                <MenuItem Header="_Settings" Click="ESSettings_Click"/>
             </MenuItem>
             <MenuItem Header="_Engineer Suite">
                 <MenuItem Header="_Manage Project" Click="ESManageProject_Click"/>

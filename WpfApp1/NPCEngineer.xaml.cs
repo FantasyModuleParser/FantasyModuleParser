@@ -29,6 +29,11 @@ namespace WpfApp1
             ESManageCategories win2 = new ESManageCategories();
             win2.Show();
         }
+        private void ESSettings_Click(object sender, RoutedEventArgs e)
+        {
+            ESSettings win2 = new ESSettings();
+            win2.Show();
+        }
         private void ESManageProject_Click(object sender, RoutedEventArgs e)
         {
             ESProjectManagement win2 = new ESProjectManagement();
