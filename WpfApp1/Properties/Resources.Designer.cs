@@ -121,6 +121,16 @@ namespace WpfApp1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon es2_icon {
+            get {
+                object obj = ResourceManager.GetObject("es2_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Header {
@@ -157,6 +167,16 @@ namespace WpfApp1.Properties {
             get {
                 object obj = ResourceManager.GetObject("NPC_Engineer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon npce_icon {
+            get {
+                object obj = ResourceManager.GetObject("npce_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

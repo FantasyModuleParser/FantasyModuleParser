@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Engineer Suite 2.0" Height="450" Width="600">
+        Title="Engineer Suite 2.0" Height="450" Width="600" Icon="/Resources/es2_icon.ico">
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
             <MenuItem Header="_Options">
