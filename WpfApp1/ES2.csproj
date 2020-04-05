@@ -191,18 +191,35 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\es2_icon.ico" />
+    <None Include="Resources\artifactengineer_logo.png" />
+    <None Include="Resources\equipmentengineer_logo.png" />
+    <None Include="Resources\artifactengineer_logo.ico" />
+    <None Include="Resources\equipmentengineer_logo.ico" />
+    <Content Include="Resources\es2_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="es2_icon.ico" />
+    <None Include="Resources\es2_logo.png" />
+    <None Include="Resources\es2_logo.ico" />
     <Content Include="Resources\NPCEs.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\npce_icon.ico" />
+    <Content Include="Resources\npce_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\npce_logo.png" />
+    <None Include="Resources\npce_logo.ico" />
     <Content Include="Resources\Parcel Engineer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\projectengineer_logo.png" />
+    <None Include="Resources\parcelengineer_logo.png" />
+    <None Include="Resources\parcelengineer_logo.ico" />
+    <None Include="Resources\projectengineer_logo.ico" />
     <Content Include="Resources\Redo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -213,6 +230,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\refmanengineer_logo.png" />
+    <None Include="Resources\refmanengineer_logo.ico" />
     <Content Include="Resources\Speech Bubble With Dots.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -223,11 +242,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\spellengineer_logo.png" />
+    <None Include="Resources\spellengineer_logo.ico" />
     <Content Include="Resources\Table Engineer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\tableengineer_logo.png" />
+    <None Include="Resources\tableengineer_logo.ico" />
     <Content Include="Resources\Text Color.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

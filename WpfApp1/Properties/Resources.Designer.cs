@@ -63,10 +63,20 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Artefact_Engineer {
+        internal static System.Drawing.Bitmap artifactengineer_logo {
             get {
-                object obj = ResourceManager.GetObject("Artefact_Engineer", resourceCulture);
+                object obj = ResourceManager.GetObject("artifactengineer_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon artifactengineer_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("artifactengineer_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -121,11 +131,41 @@ namespace WpfApp1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap equipmentengineer_logo {
+            get {
+                object obj = ResourceManager.GetObject("equipmentengineer_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon es2_icon {
+        internal static System.Drawing.Icon equipmentengineer_logo1 {
             get {
-                object obj = ResourceManager.GetObject("es2_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("equipmentengineer_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap es2_logo {
+            get {
+                object obj = ResourceManager.GetObject("es2_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon es2_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("es2_logo1", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -163,9 +203,9 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPC_Engineer {
+        internal static System.Drawing.Bitmap npce_logo {
             get {
-                object obj = ResourceManager.GetObject("NPC_Engineer", resourceCulture);
+                object obj = ResourceManager.GetObject("npce_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +213,9 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon npce_icon {
+        internal static System.Drawing.Icon npce_logo1 {
             get {
-                object obj = ResourceManager.GetObject("npce_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("npce_logo1", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -203,6 +243,46 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap parcelengineer_logo {
+            get {
+                object obj = ResourceManager.GetObject("parcelengineer_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon parcelengineer_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("parcelengineer_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap projectengineer_logo {
+            get {
+                object obj = ResourceManager.GetObject("projectengineer_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon projectengineer_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("projectengineer_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Redo {
             get {
                 object obj = ResourceManager.GetObject("Redo", resourceCulture);
@@ -223,6 +303,26 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refmanengineer_logo {
+            get {
+                object obj = ResourceManager.GetObject("refmanengineer_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon refmanengineer_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("refmanengineer_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Speech_Bubble_With_Dots {
             get {
                 object obj = ResourceManager.GetObject("Speech_Bubble_With_Dots", resourceCulture);
@@ -233,20 +333,40 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Spell_Engineer {
+        internal static System.Drawing.Bitmap spellengineer_logo {
             get {
-                object obj = ResourceManager.GetObject("Spell_Engineer", resourceCulture);
+                object obj = ResourceManager.GetObject("spellengineer_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon spellengineer_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("spellengineer_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Table_Engineer {
+        internal static System.Drawing.Bitmap tableengineer_logo {
             get {
-                object obj = ResourceManager.GetObject("Table_Engineer", resourceCulture);
+                object obj = ResourceManager.GetObject("tableengineer_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon tableengineer_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("tableengineer_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

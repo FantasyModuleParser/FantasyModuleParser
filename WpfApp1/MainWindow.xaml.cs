@@ -61,6 +61,11 @@ namespace WpfApp1
             NPCEngineer win2 = new NPCEngineer();
             win2.Show();
         }
+        private void ProjectEngineer_Click(object sender, RoutedEventArgs e)
+        {
+            ESProjectManagement win2 = new ESProjectManagement();
+            win2.Show();
+        }
         private void SpellEngineer_Click(object sender, RoutedEventArgs e)
         {
             NPCEngineer win2 = new NPCEngineer();
