@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="About Engineer Suite 2.0" Height="250" Width="400" ResizeMode="NoResize">
+        Title="About Engineer Suite 2.0" Height="250" Width="400" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Vertical">
             <Label Content="Engineer Suite 2.0" FontSize="24" Foreground="DarkBlue" FontWeight="Bold" Padding="0" Width="390" HorizontalContentAlignment="Center" Margin="0,30,0,0"/>

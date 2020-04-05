@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Lair Actions" Height="410" Width="760" ResizeMode="NoResize">
+        Title="Add or Edit NPC Lair Actions" Height="410" Width="760" ResizeMode="NoResize" Icon="Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="350" Margin="5,5,0,0" VerticalAlignment="Top" Width="425"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="435,5,0,0" VerticalAlignment="Top" Width="300"/>

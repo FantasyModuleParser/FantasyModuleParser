@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="NPC Engineer" Height="760" Width="1075" ResizeMode="NoResize">
+        Title="NPC Engineer" Height="760" Width="1075" ResizeMode="NoResize" Icon="Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="1072">
             <MenuItem Header="_File">

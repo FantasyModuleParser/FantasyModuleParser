@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize">
+        Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize" Icon="Resources/npce_logo.ico">
     <Grid  Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="480" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="112" Margin="610,5,0,0" VerticalAlignment="Top" Width="450"/>

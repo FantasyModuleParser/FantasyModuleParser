@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Add or Delete Categories" Height="360" Width="450" ResizeMode="NoResize">
+        Title="Add or Delete Categories" Height="360" Width="450" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">

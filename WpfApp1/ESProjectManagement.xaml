@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Project Management" Height="580" Width="820" ResizeMode="NoResize">
+        Title="Project Management" Height="580" Width="820" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="800">
             <MenuItem Header="_File">

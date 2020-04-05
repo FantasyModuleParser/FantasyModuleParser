@@ -142,9 +142,6 @@
   <data name="equipmentengineer_logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\equipmentengineer_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Equipment_Engineer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Equipment Engineer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="es2_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\es2_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,9 +157,6 @@
   <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NPCEs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NPCEs.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="npce_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\npce_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -174,9 +168,6 @@
   </data>
   <data name="parcelengineer_logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\parcelengineer_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Parcel_Engineer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Parcel Engineer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="projectengineer_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\projectengineer_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -192,9 +183,6 @@
   </data>
   <data name="refmanengineer_logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refmanengineer_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RefMan_Engineer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RefMan Engineer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Speech_Bubble_With_Dots" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Speech Bubble With Dots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

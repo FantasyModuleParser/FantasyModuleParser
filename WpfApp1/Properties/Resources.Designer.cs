@@ -123,16 +123,6 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Equipment_Engineer {
-            get {
-                object obj = ResourceManager.GetObject("Equipment_Engineer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap equipmentengineer_logo {
             get {
                 object obj = ResourceManager.GetObject("equipmentengineer_logo", resourceCulture);
@@ -223,26 +213,6 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPCEs {
-            get {
-                object obj = ResourceManager.GetObject("NPCEs", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Parcel_Engineer {
-            get {
-                object obj = ResourceManager.GetObject("Parcel_Engineer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap parcelengineer_logo {
             get {
                 object obj = ResourceManager.GetObject("parcelengineer_logo", resourceCulture);
@@ -286,16 +256,6 @@ namespace WpfApp1.Properties {
         internal static System.Drawing.Bitmap Redo {
             get {
                 object obj = ResourceManager.GetObject("Redo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RefMan_Engineer {
-            get {
-                object obj = ResourceManager.GetObject("RefMan_Engineer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Engineer Suite Settings" Height="440" Width="700" ResizeMode="NoResize">
+        Title="Engineer Suite Settings" Height="440" Width="700" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <TabControl Height="350" Width="660" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TabItem Header="Suite">

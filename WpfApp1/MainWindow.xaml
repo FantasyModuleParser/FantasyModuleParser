@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:WpfApp1"
     mc:Ignorable="d"
-    Title="Engineer Suite 2.0" Height="400" Width="600" ResizeMode="NoResize">
+    Title="Engineer Suite 2.0" Height="400" Width="600" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
             <MenuItem Header="_Options">
@@ -58,7 +58,7 @@
             <Image Source="/Resources/artifactengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProjectEngineer_Click" Margin="425,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProjectEngineer_Click" Margin="425,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="/Resources/projectengineer_logo.png" />
         </Button>
         <Button Name="btn_TableEngineer" Width="100" Height="100" BorderThickness="0"  

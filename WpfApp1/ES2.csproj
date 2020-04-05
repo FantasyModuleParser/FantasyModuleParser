@@ -181,6 +181,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -191,66 +192,77 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\artifactengineer_logo.png" />
-    <None Include="Resources\equipmentengineer_logo.png" />
-    <None Include="Resources\artifactengineer_logo.ico" />
-    <None Include="Resources\equipmentengineer_logo.ico" />
-    <Content Include="Resources\es2_icon.ico">
+    <Content Include="Resources\artifactengineer_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\equipmentengineer_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\artifactengineer_logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\equipmentengineer_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="es2_icon.ico" />
-    <None Include="Resources\es2_logo.png" />
-    <None Include="Resources\es2_logo.ico" />
-    <Content Include="Resources\NPCEs.bmp">
+    <Content Include="Resources\es2_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\es2_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\npce_icon.ico">
+    <Content Include="Resources\npce_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\npce_logo.png" />
-    <None Include="Resources\npce_logo.ico" />
-    <Content Include="Resources\Parcel Engineer.png">
+    <Content Include="Resources\npce_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\projectengineer_logo.png" />
-    <None Include="Resources\parcelengineer_logo.png" />
-    <None Include="Resources\parcelengineer_logo.ico" />
-    <None Include="Resources\projectengineer_logo.ico" />
+    <Content Include="Resources\projectengineer_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\parcelengineer_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\parcelengineer_logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\projectengineer_logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Redo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\RefMan Engineer.png">
+    <Content Include="Resources\refmanengineer_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\refmanengineer_logo.png" />
-    <None Include="Resources\refmanengineer_logo.ico" />
+    <Content Include="Resources\refmanengineer_logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Speech Bubble With Dots.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Spell Engineer.png">
+    <Content Include="Resources\spellengineer_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\spellengineer_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\spellengineer_logo.png" />
-    <None Include="Resources\spellengineer_logo.ico" />
-    <Content Include="Resources\Table Engineer.png">
+    <Content Include="Resources\tableengineer_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tableengineer_logo.png" />
-    <None Include="Resources\tableengineer_logo.ico" />
+    <Content Include="Resources\tableengineer_logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Text Color.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -267,11 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\up_arrow.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Artefact Engineer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -296,11 +303,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Equipment Engineer.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\Header.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -312,11 +314,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Italic.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\NPC Engineer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
