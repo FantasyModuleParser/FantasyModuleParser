@@ -163,6 +163,16 @@ namespace EngineeringSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Grim_Press_Banner {
+            get {
+                object obj = ResourceManager.GetObject("Grim_Press_Banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Header {
             get {
                 object obj = ResourceManager.GetObject("Header", resourceCulture);
