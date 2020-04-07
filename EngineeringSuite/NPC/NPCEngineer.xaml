@@ -77,9 +77,17 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="215" Margin="5,5,0,0" VerticalAlignment="Top" Width="580"/>
                     <Label Content="NPC Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="NPC Name:" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPCs Name.
+                                <LineBreak />
+                                This will also set the main image name and token name, and default save name.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Size:" HorizontalAlignment="Left" Margin="47,54,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,55,0,0" Text="" VerticalAlignment="Top" Width="200">
+                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,55,0,0" Text="" VerticalAlignment="Top" Width="200" ToolTip="Select from the standard size categories.">
                         <ComboBoxItem>Tiny</ComboBoxItem>
                         <ComboBoxItem>Small</ComboBoxItem>
                         <ComboBoxItem>Medium</ComboBoxItem>
@@ -88,7 +96,7 @@
                         <ComboBoxItem>Gargantuan</ComboBoxItem>
                     </ComboBox>
                     <Label Content="Type:" HorizontalAlignment="Left" Margin="43,80,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,80,0,0" Text="" VerticalAlignment="Top" Width="200">
+                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,80,0,0" VerticalAlignment="Top" Width="200" ToolTip="Select from the standard creature types.">
                         <ComboBoxItem>abberation</ComboBoxItem>
                         <ComboBoxItem>beast</ComboBoxItem>
                         <ComboBoxItem>celestial</ComboBoxItem>
@@ -114,7 +122,7 @@
                         <ComboBoxItem>vehicle</ComboBoxItem>
                     </ComboBox>
                     <Label Content="Tag:" HorizontalAlignment="Left" Margin="49,104,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,105,0,0" Text="" VerticalAlignment="Top" Width="100">
+                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,105,0,0" Text="" VerticalAlignment="Top" Width="100" ToolTip="Select a specific sub-type of creature. You can leave it blank if desired.">
                         <ComboBoxItem>aarakocra</ComboBoxItem>
                         <ComboBoxItem>any race</ComboBoxItem>
                         <ComboBoxItem>bullywug</ComboBoxItem>
@@ -156,7 +164,7 @@
                         <ComboBoxItem>yugoloth</ComboBoxItem>
                     </ComboBox>
                     <Label Content="Alignment:" HorizontalAlignment="Left" Margin="12,129,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,130,0,0" Text="" VerticalAlignment="Top" Width="100">
+                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,130,0,0" Text="" VerticalAlignment="Top" Width="100" ToolTip="Select from the standard alignments.">
                         <ComboBoxItem>unaligned</ComboBoxItem>
                         <ComboBoxItem>lawful good</ComboBoxItem>
                         <ComboBoxItem>lawful neutral</ComboBoxItem>
@@ -169,74 +177,313 @@
                         <ComboBoxItem>chaotic evil</ComboBoxItem>
                     </ComboBox>
                     <Label Content="Armor Class:" HorizontalAlignment="Left" Margin="5,154,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's armor class.
+                                <LineBreak />
+                                You can also enter the armor type in brackets.
+                                <LineBreak />
+                                <Bold>Example:</Bold> 12 (leather armor)
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Hit Points:" HorizontalAlignment="Left" Margin="17,179,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
-                    <Button Content="Mean" HorizontalAlignment="Left" Margin="185,182,0,0" VerticalAlignment="Top" Width="40"/>
-                    <Button Content="Roll" HorizontalAlignment="Left" Margin="230,182,0,0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's hit points, followed by its hit dice in brackets.
+                                <LineBreak />
+                                <Bold>Example:</Bold> 4 (1d6 + 1)
+                                <LineBreak />
+                                <Italic>Double-click to open a window that will help build a correct expression</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <Button Content="Mean" HorizontalAlignment="Left" Margin="185,182,0,0" VerticalAlignment="Top" Width="40">
+                        <Button.ToolTip>
+                            <TextBlock>
+                                Click on this to apply the average hit points for the range.
+                                <LineBreak />
+                                <Italic>This is the value stated in official products for NPC hit points</Italic>
+                            </TextBlock>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button Content="Roll" HorizontalAlignment="Left" Margin="230,182,0,0" VerticalAlignment="Top" Width="40">
+                        <Button.ToolTip>
+                            <TextBlock>
+                                Click on this button to roll hit points.
+                                <LineBreak />
+                                <Italic>This will give each NPC an individual total</Italic>
+                            </TextBlock>
+                        </Button.ToolTip>
+                    </Button>
                     <Label Content="Gender:" HorizontalAlignment="Left" Margin="295,29,0,0" VerticalAlignment="Top"/>
                     <ComboBox HorizontalAlignment="Left" Height="23" Margin="350,30,0,0" VerticalAlignment="Top" Width="100">
+                        <ComboBox.ToolTip>
+                            <TextBlock>
+                                Select the NPC's gender.
+                                <LineBreak />
+                                <Italic>This will insert gender-specific pronouns in the descriptive text</Italic>
+                            </TextBlock>
+                        </ComboBox.ToolTip>
                         <ComboBoxItem IsSelected="True">neutral</ComboBoxItem>
                         <ComboBoxItem>male</ComboBoxItem>
                         <ComboBoxItem>female</ComboBoxItem>
                     </ComboBox>
                     <CheckBox Margin="460,35,0,0" />
-                    <Label Content="Unique" HorizontalAlignment="Left" Margin="475,29,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Unique" HorizontalAlignment="Left" Margin="475,29,0,0" VerticalAlignment="Top">
+                        <Label.ToolTip>
+                            <TextBlock>
+                                Check if the NPC is unique for any reason.
+                                <LineBreak />
+                                <Italic>This will capitalize its name in the descriptive text.</Italic>
+                            </TextBlock>
+                        </Label.ToolTip>
+                    </Label>
                     <CheckBox Margin="525,35,0,0" />
-                    <Label Content="Name" HorizontalAlignment="Left" Margin="540,29,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="540,29,0,0" VerticalAlignment="Top">
+                        <Label.ToolTip>
+                            <TextBlock>
+                                Check if the name enter is a proper name.
+                                <LineBreak />
+                                <Italic>This will use just the first word of the name in the descriptive text.</Italic>
+                                <LineBreak />
+                                ('Thomas Wolfbane' will be referred to as 'Thomas' throughout; 'Ironbane, Destroyer of Worlds' as 'Ironbane')
+                            </TextBlock>
+                        </Label.ToolTip>
+                    </Label>
                     <Label Content="Speed (ft.)" FontWeight="Bold" HorizontalAlignment="Left" Margin="395,60,0,0" VerticalAlignment="Top"/>
                     <Label Content="Speed" HorizontalAlignment="Left" Margin="385,85,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,87,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,87,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's base movement speed in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Burrow" HorizontalAlignment="Left" Margin="380,110,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,112,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,112,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's burrowing speed in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Climb" HorizontalAlignment="Left" Margin="387,135,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,137,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,137,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's climbing speed in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Fly" HorizontalAlignment="Left" Margin="401,160,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,162,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,162,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's flying speed in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Swim" HorizontalAlignment="Left" Margin="388,185,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,187,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,187,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's swimming speed in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <CheckBox Margin="475,167,0,0" />
-                    <Label Content="Hover" HorizontalAlignment="Left" Margin="490,161,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Hover" HorizontalAlignment="Left" Margin="490,161,0,0" VerticalAlignment="Top">
+                        <Label.ToolTip>
+                            <TextBlock>
+                                Check this box if the NPC hovers instead of flies
+                            </TextBlock>
+                        </Label.ToolTip>
+                    </Label>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="230" Margin="5,230,0,0" VerticalAlignment="Top" Width="280"/>
                     <Label Content="Statistics" Foreground="Gray" HorizontalAlignment="Left" Margin="5,225,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="Ability Scores" HorizontalAlignment="Left" Margin="37,250,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="STR" HorizontalAlignment="Left" Margin="35,270,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,273,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,273,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's Strength ability.
+                                <LineBreak />
+                                <Italic>The range is 0 to 30</Italic>
+                                <LineBreak />
+                                The ability modifier is calculated and shown to the right of this box.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="+0" HorizontalAlignment="Left" Margin="105,270,0,0" VerticalAlignment="Top"/>
                     <Label Content="DEX" HorizontalAlignment="Left" Margin="33,296,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,299,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,299,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's Dexterity ability.
+                                <LineBreak />
+                                <Italic>The range is 0 to 30</Italic>
+                                <LineBreak />
+                                The ability modifier is calculated and shown to the right of this box.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="+0" HorizontalAlignment="Left" Margin="105,296,0,0" VerticalAlignment="Top"/>
                     <Label Content="CON" HorizontalAlignment="Left" Margin="30,322,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,325,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,325,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's Constitution ability.
+                                <LineBreak />
+                                <Italic>The range is 0 to 30</Italic>
+                                <LineBreak />
+                                The ability modifier is calculated and shown to the right of this box.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="+0" HorizontalAlignment="Left" Margin="105,322,0,0" VerticalAlignment="Top"/>
                     <Label Content="INT" HorizontalAlignment="Left" Margin="37,348,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,351,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,351,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's Intelligence ability.
+                                <LineBreak />
+                                <Italic>The range is 0 to 30</Italic>
+                                <LineBreak />
+                                The ability modifier is calculated and shown to the right of this box.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="+0" HorizontalAlignment="Left" Margin="105,348,0,0" VerticalAlignment="Top"/>
                     <Label Content="WIS" HorizontalAlignment="Left" Margin="34,374,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,377,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,377,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's Wisdom ability.
+                                <LineBreak />
+                                <Italic>The range is 0 to 30</Italic>
+                                <LineBreak />
+                                The ability modifier is calculated and shown to the right of this box.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="+0" HorizontalAlignment="Left" Margin="105,374,0,0" VerticalAlignment="Top"/>
                     <Label Content="CHA" HorizontalAlignment="Left" Margin="31,400,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,403,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,403,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's Charisma ability.
+                                <LineBreak />
+                                <Italic>The range is 0 to 30</Italic>
+                                <LineBreak />
+                                The ability modifier is calculated and shown to the right of this box.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="+0" HorizontalAlignment="Left" Margin="105,400,0,0" VerticalAlignment="Top"/>
                     <Label Content="Saving Throws" HorizontalAlignment="Left" Margin="185,250,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="STR" HorizontalAlignment="Left" Margin="185,270,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,273,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="260,276,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,273,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's saving throw bonus for strength saves.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <CheckBox HorizontalAlignment="Left" Margin="260,276,0,0" VerticalAlignment="Top">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+                                Check here if the saving throw should be set to show as '+0' in the statblock.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
                     <Label Content="DEX" HorizontalAlignment="Left" Margin="183,296,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,299,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="260,303,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,299,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's saving throw bonus for dexterity saves.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <CheckBox HorizontalAlignment="Left" Margin="260,303,0,0" VerticalAlignment="Top">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+                                Check here if the saving throw should be set to show as '+0' in the statblock.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
                     <Label Content="CON" HorizontalAlignment="Left" Margin="180,322,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,325,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="260,329,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,325,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's saving throw bonus for constitution saves.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <CheckBox HorizontalAlignment="Left" Margin="260,329,0,0" VerticalAlignment="Top">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+                                Check here if the saving throw should be set to show as '+0' in the statblock.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
                     <Label Content="INT" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,351,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="260,354,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,351,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's saving throw bonus for intelligence saves.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <CheckBox HorizontalAlignment="Left" Margin="260,354,0,0" VerticalAlignment="Top">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+                                Check here if the saving throw should be set to show as '+0' in the statblock.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
                     <Label Content="WIS" HorizontalAlignment="Left" Margin="184,374,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,377,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="260,380,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,377,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's saving throw bonus for wisdom saves.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <CheckBox HorizontalAlignment="Left" Margin="260,380,0,0" VerticalAlignment="Top">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+                                Check here if the saving throw should be set to show as '+0' in the statblock.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
                     <Label Content="CHA" HorizontalAlignment="Left" Margin="181,400,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,403,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
-                    <CheckBox HorizontalAlignment="Left" Margin="260,406,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,403,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's saving throw bonus for charisma saves.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <CheckBox HorizontalAlignment="Left" Margin="260,406,0,0" VerticalAlignment="Top">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+                                Check here if the saving throw should be set to show as '+0' in the statblock.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="230" Margin="300,230,0,0" VerticalAlignment="Top" Width="280"/>
                     <Label Content="Senses" Foreground="Gray" HorizontalAlignment="Left" Margin="305,225,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="Sense Ranges (ft.)" FontWeight="Bold" HorizontalAlignment="Left" Margin="390,250,0,0" VerticalAlignment="Top"/>
