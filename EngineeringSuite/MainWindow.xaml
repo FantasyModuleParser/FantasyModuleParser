@@ -50,11 +50,11 @@
             <Image Source="/Resources/npce_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SpellEngineer_Click" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Spell Engineer (Future Release)">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SpellEngineer_Click" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Spell Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
             <Image Source="/Resources/spellengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ArtifactEngineer_Click" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Artifact Engineer (Future Release)">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ArtifactEngineer_Click" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Artifact Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
             <Image Source="/Resources/artifactengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
@@ -62,19 +62,19 @@
             <Image Source="/Resources/projectengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="TableEngineer_Click" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Table Engineer (Future Release)">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="TableEngineer_Click" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Table Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
             <Image Source="/Resources/tableengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ParcelEngineer_Click" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Parcel Engineer (Future Release)">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ParcelEngineer_Click" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Parcel Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
             <Image Source="/Resources/parcelengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="EquipmentEngineer_Click" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Equipment Engineer (Future Release)">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="EquipmentEngineer_Click" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Equipment Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
             <Image Source="/Resources/equipmentengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="RefManEngineer_Click" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Reference Manual Engineer (Future Release)">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="RefManEngineer_Click" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Reference Manual Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
             <Image Source="/Resources/refmanengineer_logo.png" />
         </Button>
         <Label Content="Click here to create a module for" HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top"/>
