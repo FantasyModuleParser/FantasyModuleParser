@@ -488,24 +488,84 @@
                     <Label Content="Senses" Foreground="Gray" HorizontalAlignment="Left" Margin="305,225,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="Sense Ranges (ft.)" FontWeight="Bold" HorizontalAlignment="Left" Margin="390,250,0,0" VerticalAlignment="Top"/>
                     <Label Content="Blindsight" HorizontalAlignment="Left" Margin="373,270,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,273,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,273,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's maximum blindsight range in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <CheckBox HorizontalAlignment="Left" Content="blind beyond" Margin="480,276,0,0" VerticalAlignment="Top"/>
                     <Label Content="Darkvision" HorizontalAlignment="Left" Margin="370,296,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,299,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,299,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's maximum darkvision range in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Tremorsense" HorizontalAlignment="Left" Margin="358,322,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,325,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,325,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's maximum tremorsense range in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Truesight" HorizontalAlignment="Left" Margin="378,348,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,351,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,351,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's maximum truesight range in feet (ft.)
+                                <LineBreak />
+                                <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Passive Perception" HorizontalAlignment="Left" Margin="328,374,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,377,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="435,377,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the NPC's Passive Perception
+                                <LineBreak />
+                                <Italic>Passive Perception is 10 + Wisdom Modifier</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Challenge" HorizontalAlignment="Left" Margin="5,470,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="68,473,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="68,473,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Enter the appropriate challenge rating for the NPC.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="Experience" HorizontalAlignment="Left" Margin="123,470,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="190,473,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="190,473,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="40">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                This will be calculated automatically based on the challenge rating chosen; this can be overwritten by typing a new XP value
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content="XP" HorizontalAlignment="Left" Margin="230,470,0,0" VerticalAlignment="Top"/>
                     <Label Content="NPC Token" HorizontalAlignment="Left" Margin="400,470,0,0" VerticalAlignment="Top"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="102" Margin="474,472,0,0" VerticalAlignment="Top" Width="102"/>
-                    <Image HorizontalAlignment="Left" Height="100" Margin="475,473,0,0" VerticalAlignment="Top" Width="100"/>
+                    <Image HorizontalAlignment="Left" Height="100" Margin="475,473,0,0" VerticalAlignment="Top" Width="100">
+                        <Image.ToolTip>
+                            <TextBlock>
+                                Select the image you wish to use as your NPC's token in Fantasy Grounds.
+                                <LineBreak />
+                                <Italic>NPC Engineer will copy the token from anywhere on your sysem to your module's /input/token folder</Italic>
+                            </TextBlock>
+                        </Image.ToolTip>
+                    </Image>
                     <Label Content="Use CTRL + Page Up and CTRL + Page Down to cycle through tabs" HorizontalAlignment="Left" Margin="5,540,0,0" VerticalAlignment="Top"/>
                     <Label Content="Press F1 to F9 to select a tab directly" HorizontalAlignment="Left" Margin="5,555,0,0" VerticalAlignment="Top"/>
                 </Grid>

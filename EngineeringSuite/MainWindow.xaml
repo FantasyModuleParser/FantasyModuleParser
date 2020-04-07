@@ -46,41 +46,102 @@
             </MenuItem>
         </Menu>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="NPCEngineer_Click" Margin="50,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="NPC Engineer">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="NPCEngineer_Click" Margin="50,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button.ToolTip>
+                <TextBlock>
+                   NPC Engineer
+                   <LineBreak/>
+                   <Italic>Import, build, and save NPCs and monsters.</Italic>
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/npce_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SpellEngineer_Click" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Spell Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SpellEngineer_Click" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTipService.ShowOnDisabled="True" IsEnabled="False">
+            <Button.ToolTip>
+                <TextBlock>
+                    Spell Engineer
+                    <LineBreak />
+                    <Italic>Will be implemented in a future release</Italic>
+                </TextBlock>
+            </Button.ToolTip>    
             <Image Source="/Resources/spellengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ArtifactEngineer_Click" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Artifact Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ArtifactEngineer_Click" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+            <Button.ToolTip>
+                <TextBlock>
+                    Artifact Engineer
+                    <LineBreak />
+                    <Italic>Will be implemented in a future release</Italic>
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/artifactengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProjectEngineer_Click" Margin="425,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Project Engineer">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProjectEngineer_Click" Margin="425,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button.ToolTip>
+                <TextBlock>
+                    Project Engineer
+                    <LineBreak />
+                    <Italic>Create and manage projects.</Italic>
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/projectengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="TableEngineer_Click" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Table Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="TableEngineer_Click" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+            <Button.ToolTip>
+                <TextBlock>
+                    Table Engineer
+                    <LineBreak />
+                    <Italic>Will be implemented in a future release</Italic>
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/tableengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ParcelEngineer_Click" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Parcel Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ParcelEngineer_Click" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+            <Button.ToolTip>
+                <TextBlock>
+                    Parcel Engineer
+                    <LineBreak />
+                    <Italic>Will be implemented in a future release</Italic>
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/parcelengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="EquipmentEngineer_Click" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Equipment Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="EquipmentEngineer_Click" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+            <Button.ToolTip>
+                <TextBlock>
+                    Equipment Engineer
+                    <LineBreak />
+                    <Italic>Will be implemented in a future release</Italic>
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/equipmentengineer_logo.png" />
         </Button>
         <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="RefManEngineer_Click" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTip="Reference Manual Engineer (Future Release)" ToolTipService.ShowOnDisabled="True">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="RefManEngineer_Click" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+            <Button.ToolTip>
+                <TextBlock>
+                    Reference Manual Engineer
+                    <LineBreak />
+                    <Italic>Will be implemented in a future release</Italic>
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/refmanengineer_logo.png" />
         </Button>
         <Label Content="Click here to create a module for" HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top"/>
         <Label Content="the current project" HorizontalAlignment="Left" Margin="375,315,0,0" VerticalAlignment="Top"/>
         <Button Name="btn_CreateModule" Width="50" Height="50" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="CreateModule_Click" Margin="490,297,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Create Module">
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="CreateModule_Click" Margin="490,297,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button.ToolTip>
+                <TextBlock>
+                    Create a Fantasy Grounds module from the currently selected project
+                </TextBlock>
+            </Button.ToolTip>
             <Image Source="/Resources/projectengineer_logo.png" />
         </Button>    
     </Grid>
