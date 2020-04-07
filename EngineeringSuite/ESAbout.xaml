@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EngineeringSuite"
         mc:Ignorable="d"
-        Title="About Engineer Suite 2.0" Height="250" Width="400" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
+        Title="About Engineer Suite 2.0" Height="330" Width="400" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Vertical">
             <Label Content="Engineer Suite 2.0" FontSize="24" Foreground="DarkBlue" FontWeight="Bold" Padding="0" Width="390" HorizontalContentAlignment="Center" Margin="0,30,0,0"/>
@@ -17,9 +17,11 @@
                     </GeometryGroup>
                 </Path.Data>
             </Path>
-            <Label Content="Written by Theodore Story" Padding="0" HorizontalContentAlignment="Center"/>
-            <Label Content="Version released 1 May 2020" Padding="0" HorizontalContentAlignment="Center" />
-            <Button Content="OK" Padding="0" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,30,0,0" Click="ESExit_Click"/>
+            <Label Content="Written by Theodore Story, Kertic, and LordDusk" Padding="0" HorizontalContentAlignment="Center"/>
+            <Label Content="Version Tenative Release 1 July 2020" Padding="0" HorizontalContentAlignment="Center" />
+            <Label Content="Sponsored by:" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Image Source="/Resources/Grim_Press_Banner.jpg" Width="300" Height="113"/>
+            <Button Content="OK" Padding="0" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,5,0,0" Click="ESExit_Click"/>
         </StackPanel>
     </Grid>
 </Window>
