@@ -1,0 +1,47 @@
+***Part 1***
+Ankou
+medium undead, neutral evil
+Armor Class 14 (natural armor)
+Hit Points 44 (8d8 + 8)
+Speed 15 ft.
+STR DEX CON INT WIS CHA 18 (+4) 8 (-1) 12 (+1) 5 (-3) 10 (+0) 2 (-4)
+Damage Vulnerabilities fire
+Damage Resistances piercing
+Damage Immunities cold, poison
+Condition Immunities charmed, frightened, poisoned, restrained
+Senses darkvision 60 ft., passive Perception 10
+Languages Understands the languages it knew in life but can't speak
+Challenge 2 (450 XP)
+Awareness. The Ankou is never surprised due to its superior senses.
+Detect Invisible. The Ankou detects hidden or invisible creatures within 60' in all light conditions.
+Dogged Pursuit. If an ankou's victim escapes alive, it will follow him at its slow, plodding pace for the rest of the night, until it either catches and dispassionately kills him, or until the first light of dawn intrudes, banishing the ankou until the next dusk.
+ACTIONS
+Scythe. Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 14 (4d4 + 4) slashing damage.
+
+***Part 2***
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2057{\fonttbl{\f0\fnil Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sa80\cf1\f0\fs20 The ankou is an undead creature who was a miserly farmer or peasant in life, a person so debased as to have murdered his own family out of greed or to have allowed his family to perish rather than share his hoard of food with them. When death claims such a person, his soul sometimes returns as an ankou, roaming the countryside in search of other victims to collect.\par
+An ankou appears quite ordinary at a distance, seeming to be a poor farmer on the road late at night, perhaps returning from a market town. It wears typical rural clothing: ragged shoes or boots; worn, patched and dusty work clothes; and sometimes a broad-brimmed work hat set to cover its eyes. Closer inspection reveals it as an emaciated old man, with parched lips and with skin pulled tightly across the face and body.\par
+Three things upset this picture. First, an ankou is armed with a farmer's scythe. Second, as an ankou takes its slow, stiff, and deliberate steps forward, its head never ceases to turn from side to side; its glowing, flame-red eyes scanning the land to either side looking for prey. Third, the ankou is always followed by an apparently sourceless, wooden creaking sound. This is a product of an invisible cart pulled by an equally invisible ox or horse that is even more emaciated than the ankou. The purpose of the cart is to carry away the bodies of the ankou's victims, leaving behind nothing to mark its victims' last struggles. The ankou cannot cross open water or flame, though rough ground slows neither itself nor its beast-drawn cart.\par
+\b\i Silent Crusher. \b0\i0 If unarmed, an ankou attacks by grabbing at its opponent and attempting to wrap its thin arms around the victim's chest to crush him. The ankou needs to make a single to-hit roll; if it succeeds, the ankou has caught the victim in a bear hug of fantastic strength, its fingers locking together with startling power. The victim is grappled and will take (20 - their AC) damage every round until they break free.\par
+\b\i Undead nature. \b0\i0 Being undead, the ankou is unaffected by spells involving sleep, hold, charm, or cold of any sort, and its excellent senses negate the effects of many illusions (giving it a bonus of +3 on saving throws vs. illusions).\par
+\par
+\par
+\par
+\par
+}
+
+***Part 3***
+NPCgender: neutral
+NPCunique: 0
+NPCpropername: 0
+Desc_Add_Text: 1
+Desc_NPC_Title: 1
+Desc_Image_Link: 1
+Desc_Spell_List: 0
+NPCimagePath: C:\Users\Steph\Documents\Programming AHK\NPC Engineer\Sample NPC\ankou.jpg
+NPCTokenPath: C:\Users\Steph\Documents\Programming AHK\NPC Engineer\Sample NPC\token_1 (1).png
+NoLActions: 
+NPCRTF: 1
