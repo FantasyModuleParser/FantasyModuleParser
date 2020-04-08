@@ -9,13 +9,13 @@
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
             <MenuItem Header="_Options">
-                <MenuItem Header="_Manage Project" Click="ESManageProject_Click"/>
+                <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ManageProject"/>
                 <MenuItem Header="_Create Module" />
                 <Separator />
-                <MenuItem Header="_Manage Categories" Click="ESManageCategories_Click"/>
-                <MenuItem Header="_Settings" Click="ESSettings_Click"/>
+                <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories"/>
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings"/>
                 <Separator />
-                <MenuItem Header="_Exit" Click="ESExit_Click"/>
+                <MenuItem Header="_Exit" Click="Menu_Click" Name="Exit" />
             </MenuItem>
             <MenuItem Header="_Directories">
                 <MenuItem Header="_View Appdata folder" />
@@ -37,16 +37,15 @@
                 <MenuItem Header="_Perform Backup Now" />
             </MenuItem>
             <MenuItem Header="_Information">
-                <MenuItem Header="_About Engineer Suite 2.0" Click="ESAbout_Click" />
-                <MenuItem Header="_Engineer Suite Supporters" Click="ESSupporters_Click" />
+                <MenuItem Header="_About Engineer Suite 2.0" Click="Menu_Click" Name="About"/>
+                <MenuItem Header="_Engineer Suite Supporters" Click="Menu_Click" Name="Supporters" />
                 <MenuItem Header="_Quickstart Guide" />
                 <MenuItem Header="_Links in Fantasy Grounds" />
                 <Separator />
                 <MenuItem Header="_Buy me a coffee" />
             </MenuItem>
         </Menu>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="NPCEngineer_Click" Margin="50,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Click="Button_Click" Name="NPCEngineer" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="50,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.ToolTip>
                 <TextBlock>
                    NPC Engineer
@@ -56,8 +55,7 @@
             </Button.ToolTip>
             <Image Source="/Resources/npce_logo.png" />
         </Button>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SpellEngineer_Click" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTipService.ShowOnDisabled="True" IsEnabled="False">
+        <Button Click="Button_Click" Name="SpellEngineer" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="175,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTipService.ShowOnDisabled="True" IsEnabled="False">
             <Button.ToolTip>
                 <TextBlock>
                     Spell Engineer
@@ -67,8 +65,7 @@
             </Button.ToolTip>    
             <Image Source="/Resources/spellengineer_logo.png" />
         </Button>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ArtifactEngineer_Click" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+        <Button Click="Button_Click" Name="ArtifactEngineer" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="300,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
             <Button.ToolTip>
                 <TextBlock>
                     Artifact Engineer
@@ -78,8 +75,7 @@
             </Button.ToolTip>
             <Image Source="/Resources/artifactengineer_logo.png" />
         </Button>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProjectEngineer_Click" Margin="425,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Click="Button_Click" Name="ProjectManagement" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="425,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.ToolTip>
                 <TextBlock>
                     Project Engineer
@@ -89,8 +85,7 @@
             </Button.ToolTip>
             <Image Source="/Resources/projectengineer_logo.png" />
         </Button>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="TableEngineer_Click" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+        <Button Click="Button_Click" Name="TableEngineer" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="50,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
             <Button.ToolTip>
                 <TextBlock>
                     Table Engineer
@@ -100,8 +95,7 @@
             </Button.ToolTip>
             <Image Source="/Resources/tableengineer_logo.png" />
         </Button>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ParcelEngineer_Click" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+        <Button Click="Button_Click" Name="ParcelEngineer" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="175,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
             <Button.ToolTip>
                 <TextBlock>
                     Parcel Engineer
@@ -111,8 +105,7 @@
             </Button.ToolTip>
             <Image Source="/Resources/parcelengineer_logo.png" />
         </Button>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="EquipmentEngineer_Click" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+        <Button Click="Button_Click" Name="EquipmentEngineer" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="300,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
             <Button.ToolTip>
                 <TextBlock>
                     Equipment Engineer
@@ -122,8 +115,7 @@
             </Button.ToolTip>
             <Image Source="/Resources/equipmentengineer_logo.png" />
         </Button>
-        <Button Width="100" Height="100" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="RefManEngineer_Click" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+        <Button Click="Button_Click" Name="RefManEngineer" Width="100" Height="100" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="425,175,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
             <Button.ToolTip>
                 <TextBlock>
                     Reference Manual Engineer
@@ -135,8 +127,7 @@
         </Button>
         <Label Content="Click here to create a module for" HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top"/>
         <Label Content="the current project" HorizontalAlignment="Left" Margin="375,315,0,0" VerticalAlignment="Top"/>
-        <Button Name="btn_CreateModule" Width="50" Height="50" BorderThickness="0"  
-    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="CreateModule_Click" Margin="490,297,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Width="50" Height="50" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="490,297,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.ToolTip>
                 <TextBlock>
                     Create a Fantasy Grounds module from the currently selected project

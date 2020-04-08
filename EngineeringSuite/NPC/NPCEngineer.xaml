@@ -1129,7 +1129,13 @@
                             <Label Content="Skill Bonuses" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Acrobatics" VerticalAlignment="Center" Margin="64,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Acrobatics skill score
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Animal Handling" Margin="25,3,0,3" Padding="0,0,5,5" FontSize="14"/>

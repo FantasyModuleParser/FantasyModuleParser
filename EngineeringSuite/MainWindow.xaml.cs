@@ -20,94 +20,80 @@ namespace EngineeringSuite
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
-        #region MenuOptions
-        private void ESExit_Click(object sender, RoutedEventArgs e)
+        private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            var menuitem = (MenuItem)sender;
+            switch (menuitem.Name)
+            {
+                case "About":
+                    new ESAbout().Show();
+                    break;
+                case "Exit":
+                    this.Close();
+                    break;
+                case "ManageCategories":
+                    new ESManageCategories().Show();
+                    break;
+                case "ManageProject":
+                    new ESProjectManagement().Show();
+                    break;
+                case "ProjectManagement":
+                    new ESProjectManagement().Show();
+                    break;
+                case "Settings":
+                    new ESSettings().Show();
+                    break;
+                case "RefManEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "SpellEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "Supporters":
+                    new ESSupporters().Show();
+                    break;
+                case "TableEngineer":
+                    new NPCEngineer().Show();
+                    break;
+            }
         }
-        private void ESManageCategories_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ESManageCategories win2 = new ESManageCategories();
-            win2.Show();
-        }
-        private void ESSettings_Click(object sender, RoutedEventArgs e)
-        {
-            ESSettings win2 = new ESSettings();
-            win2.Show();
-        }
-        private void ESManageProject_Click(object sender, RoutedEventArgs e)
-        {
-            ESProjectManagement win2 = new ESProjectManagement();
-            win2.Show();
-        }
-        private void ESAbout_Click(object sender, RoutedEventArgs e)
-        {
-            ESAbout win2 = new ESAbout();
-            win2.Show();
-        }
-        private void ESSupporters_Click(object sender, RoutedEventArgs e)
-        {
-            ESSupporters win2 = new ESSupporters();
-            win2.Show();
-        }
-        #endregion
-        #region ImageClicks
-        private void NPCEngineer_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void ProjectEngineer_Click(object sender, RoutedEventArgs e)
-        {
-            ESProjectManagement win2 = new ESProjectManagement();
-            win2.Show();
-        }
-        private void SpellEngineer_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void ArtifactEngineer_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void TableEngineer_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        #endregion
-
-
-
-        private void EquipmentEngineer_Click (object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void ParcelEngineer_Click (object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void RefManEngineer_Click (object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void CreateModule_Click (object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            var button = (Button)sender;
+            switch (button.Name)
+            {
+                case "ArtifactEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "EquipmentEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "NPCEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "ParcelEngineer":
+                    new ESProjectManagement().Show();
+                    break;
+                case "ProjectManagement":
+                    new ESProjectManagement().Show();
+                    break;
+                case "RefManEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "SpellEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "TableEngineer":
+                    new NPCEngineer().Show();
+                    break;
+            }
         }
     }
-
-
 }
