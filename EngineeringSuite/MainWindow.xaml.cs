@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,48 @@ namespace EngineeringSuite
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void openfolder(string strPath, string strFolder)
+        {
+            var fPath = System.IO.Path.Combine(strPath, strFolder);
+            System.IO.Directory.CreateDirectory(fPath);
+            System.Diagnostics.Process.Start(fPath);
+        }
+        private void AppData_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite");
+        }
+        private void Projects_Click(object sender, RoutedEventArgs e)
+        {
+                openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Projects");
+        }
+        private void Artifacts_Click(object sender, RoutedEventArgs e)
+        {
+                openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Artifacts");
+        }
+        private void Equipment_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Equipment");
+        }
+        private void NPC_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/NPC");
+        }
+        private void Parcel_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Parcel");
+        }
+        private void Spell_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Spell");
+        }
+        private void Table_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Table");
+        }
+        private void FG_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds");
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
