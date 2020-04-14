@@ -18,13 +18,13 @@
                 <MenuItem Header="_Save as Fight Club XML" />
                 <MenuItem Header="_Place BBCode on Clipboard" />
                 <Separator />
-                <MenuItem Header="_Exit" Click="ESExit_Click"/>
+                <MenuItem Header="_Exit" Click="Menu_Click" Name="Exit"/>
             </MenuItem>
             <MenuItem Header="_Options">
                 <MenuItem Header="_Import Text" Click="ImportText_Click"/>
                 <MenuItem Header="_Create Module" />
                 <Separator />
-                <MenuItem Header="_Manage Categories" Click="ESManageCategories_Click"/>
+                <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories"/>
                 <MenuItem Header="_Manage NPC File" Click="ESEditDeleteNPC_Click" />
                 <MenuItem Header="_Manage Weapons List" Click="ESEditDeleteNPC_Click" />
                 <MenuItem Header="_Manage Actions List" Click="ESEditDeleteNPC_Click" />
@@ -33,28 +33,28 @@
                 <Separator />
                 <MenuItem Header="_Viewport Themes" />
                 <Separator />
-                <MenuItem Header="_Settings" Click="ESSettings_Click"/>
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings"/>
             </MenuItem>
             <MenuItem Header="_Engineer Suite">
-                <MenuItem Header="_Manage Project" Click="ESManageProject_Click"/>
+                <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ProjectManagement"/>
                 <Separator />
-                <MenuItem Header="_Artefact Engineer" />
-                <MenuItem Header="_Equipment Engineer" />
-                <MenuItem Header="_Spell Engineer" />
-                <MenuItem Header="_Table Engineer" />
+                <MenuItem Header="_Artefact Engineer" IsEnabled="False"/>
+                <MenuItem Header="_Equipment Engineer" IsEnabled="False"/>
+                <MenuItem Header="_Spell Engineer" Click="Menu_Click" Name="SpellEngineer" IsEnabled="False"/>
+                <MenuItem Header="_Table Engineer" Click="Menu_Click" Name="TableEngineer" IsEnabled="False"/>
             </MenuItem>
             <MenuItem Header="_Directories">
-                <MenuItem Header="_View Appdata folder" />
-                <MenuItem Header="_View Projects folder" />
+                <MenuItem Header="_View Appdata folder" Click="AppData_Click" />
+                <MenuItem Header="_View Projects folder" Click="Projects_Click" />
                 <Separator />
-                <MenuItem Header="_View Artefacts folder" />
-                <MenuItem Header="_View Equipment folder" />
-                <MenuItem Header="_View NPCs folder" />
-                <MenuItem Header="_View Parcels folder" />
-                <MenuItem Header="_View Spells folder" />
-                <MenuItem Header="_View Tables folder" />
+                <MenuItem Header="_View Artefacts folder" Click="Artifacts_Click" />
+                <MenuItem Header="_View Equipment folder" Click="Equipment_Click" />
+                <MenuItem Header="_View NPCs folder" Click="NPC_Click" />
+                <MenuItem Header="_View Parcels folder" Click="Parcel_Click" />
+                <MenuItem Header="_View Spells folder" Click="Spell_Click" />
+                <MenuItem Header="_View Tables folder" Click="Table_Click" />
                 <Separator />
-                <MenuItem Header="_View Fantasy Grounds folder" />
+                <MenuItem Header="_View Fantasy Grounds folder" Click="FG_Click"/>
                 <MenuItem Header="_View Engineer Suite systems folder" />
             </MenuItem>
             <MenuItem Header="_Backup">
@@ -63,8 +63,8 @@
                 <MenuItem Header="_Perform Backup Now" />
             </MenuItem>
             <MenuItem Header="_Information">
-                <MenuItem Header="_About NPC Engineer 2.0" Click="ESAbout_Click"/>
-                <MenuItem Header="_Supporters" Click="ESSupporters_Click" />
+                <MenuItem Header="_About NPC Engineer 2.0" Click="Menu_Click" Name="About"/>
+                <MenuItem Header="_Supporters" Click="Menu_Click" Name="Supporters" />
                 <MenuItem Header="_Quickstart Guide" />
                 <MenuItem Header="_Links in Fantasy Grounds" />
                 <Separator />

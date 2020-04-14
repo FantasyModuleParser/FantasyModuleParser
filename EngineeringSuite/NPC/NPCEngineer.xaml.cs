@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 using EngineeringSuite.NPC;
 
 namespace EngineeringSuite.NPC
@@ -12,35 +15,89 @@ namespace EngineeringSuite.NPC
         {
             InitializeComponent();
         }
+        private void openfolder(string strPath, string strFolder)
+        {
+            var fPath = Path.Combine(strPath, strFolder);
+            System.IO.Directory.CreateDirectory(fPath);
+            System.Diagnostics.Process.Start(fPath);
+        }
+        private void AppData_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite");
+        }
+        private void Projects_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Projects");
+        }
+        private void Artifacts_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Artifacts");
+        }
+        private void Equipment_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Equipment");
+        }
+        private void NPC_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/NPC");
+        }
+        private void Parcel_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Parcel");
+        }
+        private void Spell_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Spell");
+        }
+        private void Table_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Table");
+        }
+        private void FG_Click(object sender, RoutedEventArgs e)
+        {
+            openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds");
+        }
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            var menuitem = (MenuItem)sender;
+            switch (menuitem.Name)
+            {
+                case "About":
+                    new ESAbout().Show();
+                    break;
+                case "Exit":
+                    this.Close();
+                    break;
+                case "ManageCategories":
+                    new ESManageCategories().Show();
+                    break;
+                case "ManageProject":
+                    new ESProjectManagement().Show();
+                    break;
+                case "ProjectManagement":
+                    new ESProjectManagement().Show();
+                    break;
+                case "Settings":
+                    new ESSettings().Show();
+                    break;
+                case "RefManEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "SpellEngineer":
+                    new NPCEngineer().Show();
+                    break;
+                case "Supporters":
+                    new ESSupporters().Show();
+                    break;
+                case "TableEngineer":
+                    new NPCEngineer().Show();
+                    break;
+            }
+        }
         #region MenuOptions
-        private void ESManageCategories_Click(object sender, RoutedEventArgs e)
-        {
-            ESManageCategories win2 = new ESManageCategories();
-            win2.Show();
-        }
-        private void ESSettings_Click(object sender, RoutedEventArgs e)
-        {
-            ESSettings win2 = new ESSettings();
-            win2.Show();
-        }
-        private void ESManageProject_Click(object sender, RoutedEventArgs e)
-        {
-            ESProjectManagement win2 = new ESProjectManagement();
-            win2.Show();
-        }
         private void ESEditDeleteNPC_Click(object sender, RoutedEventArgs e)
         {
             ESEditDeleteNPC win2 = new ESEditDeleteNPC();
-            win2.Show();
-        }
-        private void ESAbout_Click(object sender, RoutedEventArgs e)
-        {
-            ESAbout win2 = new ESAbout();
-            win2.Show();
-        }
-        private void ESSupporters_Click(object sender, RoutedEventArgs e)
-        {
-            ESSupporters win2 = new ESSupporters();
             win2.Show();
         }
         #endregion
@@ -276,9 +333,5 @@ namespace EngineeringSuite.NPC
             win2.Show();
         }
         #endregion
-        private void ESExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

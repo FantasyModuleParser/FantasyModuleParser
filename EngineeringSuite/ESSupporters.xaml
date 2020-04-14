@@ -22,11 +22,11 @@
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Label Content="Level 2 Supporters" Foreground="Gray" FontWeight="Bold" FontSize="16" Margin="20,0,0,0" />
+                <Label Content="APimpNamedShane" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="BeeGrinder" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Berwind" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Caliente" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="MythikWolf" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
