@@ -1694,15 +1694,44 @@
                                 <ComboBoxItem>Intelligence</ComboBoxItem>
                                 <ComboBoxItem>Wisdom</ComboBoxItem>
                                 <ComboBoxItem>Charisma</ComboBoxItem>
+                                <ComboBox.ToolTip>
+                                    <TextBlock>
+                                        Select the ability that is your NPC's innate spellcasting ability.
+                                    </TextBlock>
+                                </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,5,0,0"/>
-                            <TextBox Width="75" Height="20" Margin="10,0,0,0"/>
+                            <TextBox Width="75" Height="20" Margin="10,0,0,0">
+                                <TextBox.ToolTip>
+                                    <TextBlock>
+                                        Enter the NPC's spell save difficulty.
+                                        <LineBreak />
+                                        <Italic>The range is 0 to 30.</Italic>
+                                    </TextBlock>
+                                </TextBox.ToolTip>
+                            </TextBox>
                             <Label Content="Spell Hit Bonus" Padding="0" Margin="10,5,0,0"/>
-                            <TextBox Width="75" Height="20" Margin="10,0,0,0"/>
+                            <TextBox Width="75" Height="20" Margin="10,0,0,0">
+                                <TextBox.ToolTip>
+                                    <TextBlock>
+                                        Enter the NPC's spell 'to hit' bonus if appropriate.
+                                        <LineBreak />
+                                        <Italic>The range is 0 to 30.</Italic>
+                                        <LineBreak />
+                                        <Italic>Leave at zero if the NPC should not have a 'to hit' bonus mentioned.</Italic>
+                                    </TextBlock>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Component Text" Padding="0" Margin="28,10,0,0"/>
-                            <TextBox Text="requiring no material components "  Width="450" Height="20" Margin="10,5,0,0"/>
+                            <TextBox Text="requiring no material components "  Width="450" Height="20" Margin="10,5,0,0">
+                                <TextBox.ToolTip>
+                                    <TextBlock>
+                                        Enter information about the components required to cast this spell.
+                                    </TextBlock>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Spell Selection" Foreground="Gray"  HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -1714,27 +1743,97 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="At Will:" Foreground="Black"  HorizontalAlignment="Left" Margin="35,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="24,5,0,0" VerticalAlignment="Top" Width="475" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Margin="24,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Type the name of the spells the NPC can use at will (i.e. as often as required)
+                                            <LineBreak />
+                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                            <LineBreak />
+                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="5/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            <TextBlock>
+                                            Type the name of the spells the NPC can use five times a day.
+                                            <LineBreak />
+                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                            <LineBreak />
+                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                        </TextBlock>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="4/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            <TextBlock>
+                                            Type the name of the spells the NPC can use four times a day.
+                                            <LineBreak />
+                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                            <LineBreak />
+                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                        </TextBlock>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="3/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            <TextBlock>
+                                            Type the name of the spells the NPC can use three times a day.
+                                            <LineBreak />
+                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                            <LineBreak />
+                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                        </TextBlock>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="2/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            <TextBlock>
+                                            Type the name of the spells the NPC can use two times a day.
+                                            <LineBreak />
+                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                            <LineBreak />
+                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                        </TextBlock>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="1/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            <TextBlock>
+                                            Type the name of the spells the NPC can use one times a day.
+                                            <LineBreak />
+                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                            <LineBreak />
+                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                        </TextBlock>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
