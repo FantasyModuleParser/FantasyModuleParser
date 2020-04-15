@@ -1132,78 +1132,180 @@
                                 <TextBox Height="20" Width="30">
                                     <TextBox.ToolTip>
                                         <TextBlock>
-                                            Enter the NPC's Acrobatics skill score
+                                            Enter the NPC's Acrobatics skill modifier.
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Animal Handling" Margin="25,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Animal Handling skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Arcana" Margin="85,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Arcana skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Athletics" Margin="75,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Athletics skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Deception" Margin="65,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Deception skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="History" Margin="84,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's History skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Insight" Margin="86,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Insight skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Intimidation" Margin="53,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Intimidation skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Investigation" Margin="49,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Investigation skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Medicine" Margin="71,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Medicine skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Nature" Margin="86,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Nature skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Perception" Margin="62,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Perception skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Performance" Margin="50,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Performance skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Persuasion" Margin="62,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Persuasion skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Religion" Margin="77,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Religion skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Sleight of Hand" Margin="31,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Sleight of Hand skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Stealth" Margin="85,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Stealth skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Survival" Margin="79,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30"/>
+                                <TextBox Height="20" Width="30">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's Survival skill modifier.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
@@ -1223,6 +1325,13 @@
                                     <ListBoxItem>Halfling</ListBoxItem>
                                     <ListBoxItem>Orc</ListBoxItem>
                                     <ListBoxItem>Thieves' Cant</ListBoxItem>
+                                    <ListBox.ToolTip>
+                                        <TextBlock>
+                                            Select the standard languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>You can select as many as you like.</Italic>
+                                        </TextBlock>
+                                    </ListBox.ToolTip>
                                 </ListBox>
                                 <ListBox Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
                                     <ListBoxItem>Abyssal</ListBoxItem>
@@ -1234,6 +1343,13 @@
                                     <ListBoxItem>Primordial</ListBoxItem>
                                     <ListBoxItem>Sylvan</ListBoxItem>
                                     <ListBoxItem>Undercommon</ListBoxItem>
+                                    <ListBox.ToolTip>
+                                        <TextBlock>
+                                            Select the exotic languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>You can select as many as you like.</Italic>
+                                        </TextBlock>
+                                    </ListBox.ToolTip>
                                 </ListBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -1266,13 +1382,28 @@
                                     <ListBoxItem>Umberhulk</ListBoxItem>
                                     <ListBoxItem>Vegepygmy</ListBoxItem>
                                     <ListBoxItem>Yeti</ListBoxItem>
+                                    <ListBox.ToolTip>
+                                        <TextBlock>
+                                            Select the monstrous languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>You can select as many as you like.</Italic>
+                                        </TextBlock>
+                                    </ListBox.ToolTip>
                                 </ListBox>
-                                <ListBox Margin="10,0,0,0" FontSize="12" Height="185" Width="150" />
+                                <ListBox Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
+                                    <ListBox.ToolTip>
+                                        <TextBlock>
+                                            Select the user-defined languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>To modify this list, select `Options|Manage language list` from the menu.</Italic>
+                                        </TextBlock>
+                                    </ListBox.ToolTip>
+                                </ListBox>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Language Options" Foreground="Black"  HorizontalAlignment="Left" Margin="125,10,0,0" Width="296" VerticalAlignment="Top"/>
                                 <ComboBox Margin="125,0,0,0" HorizontalAlignment="Left" Width="296">
-                                    <ComboBoxItem IsSelected="True">No special restrictions</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True">No special conditions</ComboBoxItem>
                                     <ComboBoxItem>Speaks no languages</ComboBoxItem>
                                     <ComboBoxItem>Speaks all languages</ComboBoxItem>
                                     <ComboBoxItem>Speaks languages it knew in life</ComboBoxItem>
@@ -1280,13 +1411,40 @@
                                     <ComboBoxItem>Can't speak; Knows creator's languages</ComboBoxItem>
                                     <ComboBoxItem>Can't speak; Knows languages known in life</ComboBoxItem>
                                     <ComboBoxItem>Alternative language text (enter below)</ComboBoxItem>
+                                    <ComboBox.ToolTip>
+                                        <TextBlock>
+                                            Select any special options for your NPC's language skills.
+                                            <LineBreak />
+                                            <Italic>Choosing 'No special conditions' uses the languages above.</Italic>
+                                        </TextBlock>
+                                    </ComboBox.ToolTip>
                                 </ComboBox>
-                                <TextBox Margin="125,5,0,0" HorizontalAlignment="Left" Width="296" />
+                                <TextBox Margin="125,5,0,0" HorizontalAlignment="Left" Width="296">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Fill in any text you want to use for the language skill in place of the standard texts above.
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox Content="Telepathy" Margin="125,10,0,0" />
+                                <CheckBox Content="Telepathy" Margin="125,10,0,0">
+                                    <CheckBox.ToolTip>
+                                        <TextBlock>
+                                            Check this box if your NPC has telepathy.
+                                        </TextBlock>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
                                 <Label Content="Range:" Padding="10,10,0,0" />
-                                <TextBox Width="175" Height="20" Margin="5,7,0,0"/>
+                                <TextBox Width="175" Height="20" Margin="5,7,0,0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Fill in the range (and the unit) of your NPC's telepathy.
+                                            <LineBreak />
+                                            <Italic>For example: 150 ft. or 5 miles</Italic>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -1299,174 +1457,204 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Traits" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                                <TextBox Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,10,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's first trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel1_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Down1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down1_Click" Margin="65,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down1_Click" Margin="210,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's second trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit2_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel2_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up2_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up2_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
                                     <Button Name="btn_Down2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down2_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's third trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit3_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel3_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up3_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up3_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
                                     <Button Name="btn_Down3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down3_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's fourth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit4_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
                                     <Button Name="btn_Down4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's fifth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit5_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up5_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's sixth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit6_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up6_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's seventh trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit7_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up7_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's eigth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit8_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel8_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up8_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down8_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's ninth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit9_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel9_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up9_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down9_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's tenth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Edit10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit10_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                                    </Button>
-                                    <Button Name="btn_Cancel10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel10_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/cancel.png" />
-                                    </Button>
-                                    <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up10_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
+                                    </Button>
+                                    <Button Name="btn_Down10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Image Source="/Resources/down_arrow.png" />
+                                    </Button>
+                                </StackPanel>
+                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                    <TextBox.ToolTip>
+                                        The name of your NPC's eleventh trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btn_Up11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Image Source="/Resources/up_arrow.png" />
+                                    </Button>
+                                    <Button Name="btn_Down11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <TextBox Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
+                                <TextBox Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's first trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's second trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's third trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's fourth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's fifth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's sixth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's seventh trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's eigth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's ninth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's tenth trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                    <TextBox.ToolTip>
+                                        The descriptive text of your NPC's eleventh trait.
+                                    </TextBox.ToolTip>
+                                </TextBox>
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Trait name:" Margin="100,25,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                                <ComboBox Margin="5,25,0,0" Height="18" Width="300" Background="White" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Description:" Margin="95,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                                <TextBox Margin="5,5,0,0" Height="36" Width="400" Background="White" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto"/>
-                            </StackPanel>
-                            <Button Content="Add trait" Margin="500,5,0,0" Width="60" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
