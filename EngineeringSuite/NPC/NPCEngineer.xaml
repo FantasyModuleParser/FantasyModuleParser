@@ -1665,8 +1665,22 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="220" Margin="10,125,0,0" VerticalAlignment="Top" Width="580"/>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Include 'Innate Spellcasting' section for NPC" Margin="15,15,0,0"/>
-                            <CheckBox Content="Mark section as 'Psionics'" Margin="50,15,0,0" />
+                            <CheckBox Content="Include 'Innate Spellcasting' section for NPC" Margin="15,15,0,0">
+                                <CheckBox.ToolTip>
+                                    <TextBlock>
+                                        Check this box to include an 'Innate Spellcasting' section in your NPC.
+                                        <LineBreak />
+                                        <Italic>Uncheck it to have no 'Innate Spellcasting' section</Italic>
+                                    </TextBlock>
+                                </CheckBox.ToolTip>
+                            </CheckBox>
+                            <CheckBox Content="Mark section as 'Psionics'" Margin="50,15,0,0">
+                                <CheckBox.ToolTip>
+                                    <TextBlock>
+                                        Check this box to mark this section as 'Innate Spellcasting (Psionics) for your NPC.
+                                    </TextBlock>
+                                </CheckBox.ToolTip>
+                            </CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Caster Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
