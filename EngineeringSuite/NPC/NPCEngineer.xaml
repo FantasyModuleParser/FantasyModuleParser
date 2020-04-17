@@ -75,243 +75,287 @@
             <TabItem Header="Base Stats">
                 <Grid Background="#FFE5E5E5">
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="215" Margin="5,5,0,0" VerticalAlignment="Top" Width="580"/>
-                    <Label Content="NPC Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <Label Content="NPC Name:" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPCs Name.
-                                <LineBreak />
-                                This will also set the main image name and token name, and default save name.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Content="Size:" HorizontalAlignment="Left" Margin="47,54,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,55,0,0" Text="" VerticalAlignment="Top" Width="200" ToolTip="Select from the standard size categories.">
-                        <ComboBoxItem>Tiny</ComboBoxItem>
-                        <ComboBoxItem>Small</ComboBoxItem>
-                        <ComboBoxItem>Medium</ComboBoxItem>
-                        <ComboBoxItem>Large</ComboBoxItem>
-                        <ComboBoxItem>Huge</ComboBoxItem>
-                        <ComboBoxItem>Gargantuan</ComboBoxItem>
-                    </ComboBox>
-                    <Label Content="Type:" HorizontalAlignment="Left" Margin="43,80,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,80,0,0" VerticalAlignment="Top" Width="200" ToolTip="Select from the standard creature types.">
-                        <ComboBoxItem>abberation</ComboBoxItem>
-                        <ComboBoxItem>beast</ComboBoxItem>
-                        <ComboBoxItem>celestial</ComboBoxItem>
-                        <ComboBoxItem>construct</ComboBoxItem>
-                        <ComboBoxItem>dragon</ComboBoxItem>
-                        <ComboBoxItem>elemental</ComboBoxItem>
-                        <ComboBoxItem>fey</ComboBoxItem>
-                        <ComboBoxItem>fiend</ComboBoxItem>
-                        <ComboBoxItem>giant</ComboBoxItem>
-                        <ComboBoxItem>humanoid</ComboBoxItem>
-                        <ComboBoxItem>monstrosity</ComboBoxItem>
-                        <ComboBoxItem>ooze</ComboBoxItem>
-                        <ComboBoxItem>plants</ComboBoxItem>
-                        <ComboBoxItem>undead</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny abberations</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny beasts</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny constructs</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny elementals</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny monstrosities</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny oozes</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny plants</ComboBoxItem>
-                        <ComboBoxItem>trap</ComboBoxItem>
-                        <ComboBoxItem>vehicle</ComboBoxItem>
-                    </ComboBox>
-                    <Label Content="Tag:" HorizontalAlignment="Left" Margin="49,104,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,105,0,0" Text="" VerticalAlignment="Top" Width="100" ToolTip="Select a specific sub-type of creature. You can leave it blank if desired.">
-                        <ComboBoxItem>aarakocra</ComboBoxItem>
-                        <ComboBoxItem>any race</ComboBoxItem>
-                        <ComboBoxItem>bullywug</ComboBoxItem>
-                        <ComboBoxItem>demon</ComboBoxItem>
-                        <ComboBoxItem>derro</ComboBoxItem>
-                        <ComboBoxItem>devil</ComboBoxItem>
-                        <ComboBoxItem>dragonborn</ComboBoxItem>
-                        <ComboBoxItem>dwarf</ComboBoxItem>
-                        <ComboBoxItem>elf</ComboBoxItem>
-                        <ComboBoxItem>firenewt</ComboBoxItem>
-                        <ComboBoxItem>genasi</ComboBoxItem>
-                        <ComboBoxItem>gith</ComboBoxItem>
-                        <ComboBoxItem>gnoll</ComboBoxItem>
-                        <ComboBoxItem>gnome</ComboBoxItem>
-                        <ComboBoxItem>goblinoid</ComboBoxItem>
-                        <ComboBoxItem>grimlock</ComboBoxItem>
-                        <ComboBoxItem>grung</ComboBoxItem>
-                        <ComboBoxItem>half-elf</ComboBoxItem>
-                        <ComboBoxItem>half-orc</ComboBoxItem>
-                        <ComboBoxItem>halfling</ComboBoxItem>
-                        <ComboBoxItem>human</ComboBoxItem>
-                        <ComboBoxItem>kenku</ComboBoxItem>
-                        <ComboBoxItem>kobold</ComboBoxItem>
-                        <ComboBoxItem>kuo-toa</ComboBoxItem>
-                        <ComboBoxItem>lizardfolk</ComboBoxItem>
-                        <ComboBoxItem>merfolk</ComboBoxItem>
-                        <ComboBoxItem>orc</ComboBoxItem>
-                        <ComboBoxItem>quaggoth</ComboBoxItem>
-                        <ComboBoxItem>ratfolk</ComboBoxItem>
-                        <ComboBoxItem>sahuagin</ComboBoxItem>
-                        <ComboBoxItem>shapechanger</ComboBoxItem>
-                        <ComboBoxItem>thri-kreen</ComboBoxItem>
-                        <ComboBoxItem>tiefling</ComboBoxItem>
-                        <ComboBoxItem>titan</ComboBoxItem>
-                        <ComboBoxItem>triton</ComboBoxItem>
-                        <ComboBoxItem>troglodyte</ComboBoxItem>
-                        <ComboBoxItem>xvart</ComboBoxItem>
-                        <ComboBoxItem>yuan-ti</ComboBoxItem>
-                        <ComboBoxItem>yugoloth</ComboBoxItem>
-                    </ComboBox>
-                    <Label Content="Alignment:" HorizontalAlignment="Left" Margin="12,129,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="80,130,0,0" Text="" VerticalAlignment="Top" Width="100" ToolTip="Select from the standard alignments.">
-                        <ComboBoxItem>unaligned</ComboBoxItem>
-                        <ComboBoxItem>lawful good</ComboBoxItem>
-                        <ComboBoxItem>lawful neutral</ComboBoxItem>
-                        <ComboBoxItem>lawful evil</ComboBoxItem>
-                        <ComboBoxItem>neutral good</ComboBoxItem>
-                        <ComboBoxItem>true neutral</ComboBoxItem>
-                        <ComboBoxItem>neutral evil</ComboBoxItem>
-                        <ComboBoxItem>chaotic good</ComboBoxItem>
-                        <ComboBoxItem>chaotic neutral</ComboBoxItem>
-                        <ComboBoxItem>chaotic evil</ComboBoxItem>
-                    </ComboBox>
-                    <Label Content="Armor Class:" HorizontalAlignment="Left" Margin="5,154,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's armor class.
-                                <LineBreak />
-                                You can also enter the armor type in brackets.
-                                <LineBreak />
-                                <Bold>Example:</Bold> 12 (leather armor)
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Content="Hit Points:" HorizontalAlignment="Left" Margin="17,179,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="80,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's hit points, followed by its hit dice in brackets.
-                                <LineBreak />
-                                <Bold>Example:</Bold> 4 (1d6 + 1)
-                                <LineBreak />
-                                <Italic>Double-click to open a window that will help build a correct expression</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Button Content="Mean" HorizontalAlignment="Left" Margin="185,182,0,0" VerticalAlignment="Top" Width="40">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                Click on this to apply the average hit points for the range.
-                                <LineBreak />
-                                <Italic>This is the value stated in official products for NPC hit points</Italic>
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Content="Roll" HorizontalAlignment="Left" Margin="230,182,0,0" VerticalAlignment="Top" Width="40">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                Click on this button to roll hit points.
-                                <LineBreak />
-                                <Italic>This will give each NPC an individual total</Italic>
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                    <Label Content="Gender:" HorizontalAlignment="Left" Margin="295,29,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="350,30,0,0" VerticalAlignment="Top" Width="100">
-                        <ComboBox.ToolTip>
-                            <TextBlock>
-                                Select the NPC's gender.
-                                <LineBreak />
-                                <Italic>This will insert gender-specific pronouns in the descriptive text</Italic>
-                            </TextBlock>
-                        </ComboBox.ToolTip>
-                        <ComboBoxItem IsSelected="True">neutral</ComboBoxItem>
-                        <ComboBoxItem>male</ComboBoxItem>
-                        <ComboBoxItem>female</ComboBoxItem>
-                    </ComboBox>
-                    <CheckBox Margin="460,35,0,0" />
-                    <Label Content="Unique" HorizontalAlignment="Left" Margin="475,29,0,0" VerticalAlignment="Top">
-                        <Label.ToolTip>
-                            <TextBlock>
-                                Check if the NPC is unique for any reason.
-                                <LineBreak />
-                                <Italic>This will capitalize its name in the descriptive text.</Italic>
-                            </TextBlock>
-                        </Label.ToolTip>
-                    </Label>
-                    <CheckBox Margin="525,35,0,0" />
-                    <Label Content="Name" HorizontalAlignment="Left" Margin="540,29,0,0" VerticalAlignment="Top">
-                        <Label.ToolTip>
-                            <TextBlock>
-                                Check if the name enter is a proper name.
-                                <LineBreak />
-                                <Italic>This will use just the first word of the name in the descriptive text.</Italic>
-                                <LineBreak />
-                                ('Thomas Wolfbane' will be referred to as 'Thomas' throughout; 'Ironbane, Destroyer of Worlds' as 'Ironbane')
-                            </TextBlock>
-                        </Label.ToolTip>
-                    </Label>
-                    <Label Content="Speed (ft.)" FontWeight="Bold" HorizontalAlignment="Left" Margin="395,60,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Speed" HorizontalAlignment="Left" Margin="385,85,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,87,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="40">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's base movement speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Content="Burrow" HorizontalAlignment="Left" Margin="380,110,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,112,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's burrowing speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Content="Climb" HorizontalAlignment="Left" Margin="387,135,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,137,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's climbing speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Content="Fly" HorizontalAlignment="Left" Margin="401,160,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,162,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's flying speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Content="Swim" HorizontalAlignment="Left" Margin="388,185,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="430,187,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's swimming speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Margin="475,167,0,0" />
-                    <Label Content="Hover" HorizontalAlignment="Left" Margin="490,161,0,0" VerticalAlignment="Top">
-                        <Label.ToolTip>
-                            <TextBlock>
-                                Check this box if the NPC hovers instead of flies
-                            </TextBlock>
-                        </Label.ToolTip>
-                    </Label>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="NPC Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                                    <Label Content="NPC Name:" Width="65" HorizontalContentAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Top" Padding="0"/>
+                                    <Label Content="Size:" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Padding="0"/>
+                                    <Label Content="Type:" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Padding="0"/>
+                                    <Label Content="Tag:" HorizontalAlignment="Right" Margin="0,9,0,0" VerticalAlignment="Top" Padding="0"/>
+                                    <Label Content="Alignment:" HorizontalAlignment="Right" Margin="0,9,0,0" VerticalAlignment="Top" Padding="0"/>
+                                    <Label Content="Armor Class:" HorizontalAlignment="Right" Margin="0,8,0,0" VerticalAlignment="Top" Padding="0"/>
+                                    <Label Content="Hit Points:" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Padding="0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Height="145" VerticalAlignment="Top">
+                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
+                                        <TextBox.ToolTip>
+                                            <TextBlock>
+                                            Enter the NPCs Name.
+                                            <LineBreak />
+                                            This will also set the main image name and token name, and default save name.
+                                            </TextBlock>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <ComboBox HorizontalAlignment="Left" Height="20" Margin="5,5,0,0" Text="" VerticalAlignment="Top" Width="200">
+                                        <ComboBoxItem>Tiny</ComboBoxItem>
+                                        <ComboBoxItem>Small</ComboBoxItem>
+                                        <ComboBoxItem>Medium</ComboBoxItem>
+                                        <ComboBoxItem>Large</ComboBoxItem>
+                                        <ComboBoxItem>Huge</ComboBoxItem>
+                                        <ComboBoxItem>Gargantuan</ComboBoxItem>
+                                        <ComboBox.ToolTip>
+                                            <TextBlock>
+                                            Select from the standard size categories.
+                                            </TextBlock>
+                                        </ComboBox.ToolTip>
+                                    </ComboBox>
+                                    <ComboBox HorizontalAlignment="Left" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="200">
+                                        <ComboBoxItem>abberation</ComboBoxItem>
+                                        <ComboBoxItem>beast</ComboBoxItem>
+                                        <ComboBoxItem>celestial</ComboBoxItem>
+                                        <ComboBoxItem>construct</ComboBoxItem>
+                                        <ComboBoxItem>dragon</ComboBoxItem>
+                                        <ComboBoxItem>elemental</ComboBoxItem>
+                                        <ComboBoxItem>fey</ComboBoxItem>
+                                        <ComboBoxItem>fiend</ComboBoxItem>
+                                        <ComboBoxItem>giant</ComboBoxItem>
+                                        <ComboBoxItem>humanoid</ComboBoxItem>
+                                        <ComboBoxItem>monstrosity</ComboBoxItem>
+                                        <ComboBoxItem>ooze</ComboBoxItem>
+                                        <ComboBoxItem>plants</ComboBoxItem>
+                                        <ComboBoxItem>undead</ComboBoxItem>
+                                        <ComboBoxItem>swarm of tiny abberations</ComboBoxItem>
+                                        <ComboBoxItem>swarm of tiny beasts</ComboBoxItem>
+                                        <ComboBoxItem>swarm of tiny constructs</ComboBoxItem>
+                                        <ComboBoxItem>swarm of tiny elementals</ComboBoxItem>
+                                        <ComboBoxItem>swarm of tiny monstrosities</ComboBoxItem>
+                                        <ComboBoxItem>swarm of tiny oozes</ComboBoxItem>
+                                        <ComboBoxItem>swarm of tiny plants</ComboBoxItem>
+                                        <ComboBoxItem>trap</ComboBoxItem>
+                                        <ComboBoxItem>vehicle</ComboBoxItem>
+                                        <ComboBox.ToolTip>
+                                            <TextBlock>
+                                            Select from the standard creature types.
+                                            </TextBlock>
+                                        </ComboBox.ToolTip>
+                                    </ComboBox>
+                                    <ComboBox HorizontalAlignment="Left" Height="20" Margin="5,5,0,0" Text="" VerticalAlignment="Top" Width="100">
+                                        <ComboBoxItem>aarakocra</ComboBoxItem>
+                                        <ComboBoxItem>any race</ComboBoxItem>
+                                        <ComboBoxItem>bullywug</ComboBoxItem>
+                                        <ComboBoxItem>demon</ComboBoxItem>
+                                        <ComboBoxItem>derro</ComboBoxItem>
+                                        <ComboBoxItem>devil</ComboBoxItem>
+                                        <ComboBoxItem>dragonborn</ComboBoxItem>
+                                        <ComboBoxItem>dwarf</ComboBoxItem>
+                                        <ComboBoxItem>elf</ComboBoxItem>
+                                        <ComboBoxItem>firenewt</ComboBoxItem>
+                                        <ComboBoxItem>genasi</ComboBoxItem>
+                                        <ComboBoxItem>gith</ComboBoxItem>
+                                        <ComboBoxItem>gnoll</ComboBoxItem>
+                                        <ComboBoxItem>gnome</ComboBoxItem>
+                                        <ComboBoxItem>goblinoid</ComboBoxItem>
+                                        <ComboBoxItem>grimlock</ComboBoxItem>
+                                        <ComboBoxItem>grung</ComboBoxItem>
+                                        <ComboBoxItem>half-elf</ComboBoxItem>
+                                        <ComboBoxItem>half-orc</ComboBoxItem>
+                                        <ComboBoxItem>halfling</ComboBoxItem>
+                                        <ComboBoxItem>human</ComboBoxItem>
+                                        <ComboBoxItem>kenku</ComboBoxItem>
+                                        <ComboBoxItem>kobold</ComboBoxItem>
+                                        <ComboBoxItem>kuo-toa</ComboBoxItem>
+                                        <ComboBoxItem>lizardfolk</ComboBoxItem>
+                                        <ComboBoxItem>merfolk</ComboBoxItem>
+                                        <ComboBoxItem>orc</ComboBoxItem>
+                                        <ComboBoxItem>quaggoth</ComboBoxItem>
+                                        <ComboBoxItem>ratfolk</ComboBoxItem>
+                                        <ComboBoxItem>sahuagin</ComboBoxItem>
+                                        <ComboBoxItem>shapechanger</ComboBoxItem>
+                                        <ComboBoxItem>thri-kreen</ComboBoxItem>
+                                        <ComboBoxItem>tiefling</ComboBoxItem>
+                                        <ComboBoxItem>titan</ComboBoxItem>
+                                        <ComboBoxItem>triton</ComboBoxItem>
+                                        <ComboBoxItem>troglodyte</ComboBoxItem>
+                                        <ComboBoxItem>xvart</ComboBoxItem>
+                                        <ComboBoxItem>yuan-ti</ComboBoxItem>
+                                        <ComboBoxItem>yugoloth</ComboBoxItem>
+                                        <ComboBox.ToolTip>
+                                            <TextBlock>
+                                            Select a specific sub-type of creature
+                                            <LineBreak />
+                                            <Italic>You can leave it blank if desired.</Italic>
+                                            </TextBlock>
+                                        </ComboBox.ToolTip>
+                                    </ComboBox>
+                                    <ComboBox HorizontalAlignment="Left" Height="20" Margin="5,5,0,0" Text="" VerticalAlignment="Top" Width="100">
+                                        <ComboBoxItem>unaligned</ComboBoxItem>
+                                        <ComboBoxItem>lawful good</ComboBoxItem>
+                                        <ComboBoxItem>lawful neutral</ComboBoxItem>
+                                        <ComboBoxItem>lawful evil</ComboBoxItem>
+                                        <ComboBoxItem>neutral good</ComboBoxItem>
+                                        <ComboBoxItem>true neutral</ComboBoxItem>
+                                        <ComboBoxItem>neutral evil</ComboBoxItem>
+                                        <ComboBoxItem>chaotic good</ComboBoxItem>
+                                        <ComboBoxItem>chaotic neutral</ComboBoxItem>
+                                        <ComboBoxItem>chaotic evil</ComboBoxItem>
+                                        <ComboBox.ToolTip>
+                                            <TextBlock>
+                                            Select from the standard alignments.
+                                            </TextBlock>
+                                        </ComboBox.ToolTip>
+                                    </ComboBox>
+                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="5,5,0,0" TextWrapping="Wrap" Text="10 (natural)" VerticalAlignment="Top" Width="100">
+                                        <TextBox.ToolTip>
+                                            <TextBlock>
+                                            Enter the NPC's armor class.
+                                            <LineBreak />
+                                            You can also enter the armor type in brackets.
+                                            <LineBreak />
+                                            <Bold>Example:</Bold> 12 (leather armor)
+                                            </TextBlock>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="-210,145,0,0">
+                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="10,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100">
+                                        <TextBox.ToolTip>
+                                            <TextBlock>
+                                                Enter the NPC's hit points, followed by its hit dice in brackets.
+                                                <LineBreak />
+                                                <Bold>Example:</Bold> 4 (1d6 + 1)
+                                                <LineBreak />
+                                                <Italic>Double-click to open a window that will help build a correct expression</Italic>
+                                            </TextBlock>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <Button Content="Mean" HorizontalAlignment="Left" Margin="5,6,0,0" VerticalAlignment="Top" Width="40">
+                                        <Button.ToolTip>
+                                            <TextBlock>
+                                                Click on this to apply the average hit points for the range.
+                                                <LineBreak />
+                                                <Italic>This is the value stated in official products for NPC hit points</Italic>
+                                            </TextBlock>
+                                        </Button.ToolTip>
+                                    </Button>
+                                    <Button Content="Roll" HorizontalAlignment="Left" Margin="5,6,0,0" VerticalAlignment="Top" Width="40">
+                                        <Button.ToolTip>
+                                            <TextBlock>
+                                                Click on this button to roll hit points.
+                                                <LineBreak />
+                                                <Italic>This will give each NPC an individual total</Italic>
+                                            </TextBlock>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
+                                <ComboBox HorizontalAlignment="Left" Height="20" Margin="10,30,0,0" VerticalAlignment="Center" Width="100">
+                                    <ComboBox.ToolTip>
+                                        <TextBlock><Run Text="Select the NPC's gender."/><LineBreak /><Italic><Run Text="This will insert gender-specific pronouns in the descriptive text"/></Italic></TextBlock>
+                                    </ComboBox.ToolTip>
+                                    <ComboBoxItem IsSelected="True" Content="neutral"/>
+                                    <ComboBoxItem Content="male"/>
+                                    <ComboBoxItem Content="female"/>
+                                </ComboBox>
+                                <CheckBox Margin="10,30,0,0" Padding="0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" />
+                                <Label Content="Unique" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalContentAlignment="Center" Height="20" Padding="0">
+                                    <Label.ToolTip>
+                                        <TextBlock>
+                                            Check if the NPC is unique for any reason.
+                                            <LineBreak />
+                                            <Italic>This will capitalize its name in the descriptive text.</Italic>
+                                        </TextBlock>
+                                    </Label.ToolTip>
+                                </Label>
+                                <CheckBox Margin="10,30,0,0" Padding="0" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                                <Label Content="Name" HorizontalAlignment="Left" Margin="5,30,0,0" Height="20" VerticalContentAlignment="Center" Padding="0">
+                                    <Label.ToolTip>
+                                        <TextBlock>
+                                            Check if the name enter is a proper name.
+                                            <LineBreak />
+                                            <Italic>This will use just the first word of the name in the descriptive text.</Italic>
+                                            <LineBreak />
+                                            ('Thomas Wolfbane' will be referred to as 'Thomas' throughout; 'Ironbane, Destroyer of Worlds' as 'Ironbane')
+                                        </TextBlock>
+                                    </Label.ToolTip>
+                                </Label>
+                            </StackPanel>
+                            <Label Content="Speed (ft.)" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Speed" HorizontalContentAlignment="Left" Margin="110,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
+                                <TextBox HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" Text="30" VerticalAlignment="Top" Width="40" Padding="0">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's base movement speed in feet (ft.)
+                                            <LineBreak />
+                                            <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Burrow" HorizontalContentAlignment="Left" Margin="105,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's burrowing speed in feet (ft.)
+                                            <LineBreak />
+                                            <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Climb" HorizontalContentAlignment="Left" Margin="112,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's climbing speed in feet (ft.)
+                                            <LineBreak />
+                                            <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Fly" HorizontalContentAlignment="Left" Margin="128,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's flying speed in feet (ft.)
+                                            <LineBreak />
+                                            <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                                <CheckBox Margin="5,3,0,0" Padding="0" VerticalContentAlignment="Center" Height="20"/>
+                                <Label Content="Hover" HorizontalAlignment="Left" Margin="5,3,0,0" VerticalContentAlignment="Center" Padding="0" Height="20">
+                                    <Label.ToolTip>
+                                        <TextBlock>
+                                            Check this box if the NPC hovers instead of flies
+                                        </TextBlock>
+                                    </Label.ToolTip>
+                                </Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Swim" HorizontalContentAlignment="Left" Margin="115,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
+                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                    <TextBox.ToolTip>
+                                        <TextBlock>
+                                            Enter the NPC's swimming speed in feet (ft.)
+                                            <LineBreak />
+                                            <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                                        </TextBlock>
+                                    </TextBox.ToolTip>
+                                </TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="230" Margin="5,230,0,0" VerticalAlignment="Top" Width="280"/>
                     <Label Content="Statistics" Foreground="Gray" HorizontalAlignment="Left" Margin="5,225,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="Ability Scores" HorizontalAlignment="Left" Margin="37,250,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -555,17 +599,18 @@
                         </TextBox.ToolTip>
                     </TextBox>
                     <Label Content="XP" HorizontalAlignment="Left" Margin="230,470,0,0" VerticalAlignment="Top"/>
-                    <Label Content="NPC Token" HorizontalAlignment="Left" Margin="400,470,0,0" VerticalAlignment="Top"/>
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="102" Margin="474,472,0,0" VerticalAlignment="Top" Width="102"/>
-                    <Image HorizontalAlignment="Left" Height="100" Margin="475,473,0,0" VerticalAlignment="Top" Width="100">
-                        <Image.ToolTip>
+                    <Label Content="NPC Token:" HorizontalAlignment="Left" Margin="50,500,0,0" VerticalAlignment="Top"/>
+                    <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="20" Margin="123,504,0,0" Padding="0">
+                        <TextBox.ToolTip>
                             <TextBlock>
-                                Select the image you wish to use as your NPC's token in Fantasy Grounds.
-                                <LineBreak />
-                                <Italic>NPC Engineer will copy the token from anywhere on your sysem to your module's /input/token folder</Italic>
+                                File location to the PNG image used for the NPC.
                             </TextBlock>
-                        </Image.ToolTip>
-                    </Image>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <Button Width="15" Height="15" BorderThickness="0"  
+    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="430,506,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0">
+                        <Image Source="/Resources/Folder.png" />
+                    </Button>
                     <Label Content="Use CTRL + Page Up and CTRL + Page Down to cycle through tabs" HorizontalAlignment="Left" Margin="5,540,0,0" VerticalAlignment="Top"/>
                     <Label Content="Press F1 to F9 to select a tab directly" HorizontalAlignment="Left" Margin="5,555,0,0" VerticalAlignment="Top"/>
                 </Grid>
@@ -2782,44 +2827,121 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="270,465,0,0" VerticalAlignment="Top" Width="160"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="440,465,0,0" VerticalAlignment="Top" Width="165"/>
                     <StackPanel Orientation="Vertical">
-                        <RichTextBox Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" />
+                        <RichTextBox Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
+                            <RichTextBox.ToolTip>
+                                <TextBlock>
+                                    This box contains the formatted descriptive text that will be added to your NPC.
+                                </TextBlock>
+                            </RichTextBox.ToolTip>
+                        </RichTextBox>
                         <StackPanel Orientation="Horizontal">
                             <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Bold.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Make the selected text bold.
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/italic.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Make the selected text italicized.
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/underline.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Make the selected text underlined.
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/undo.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Undo action
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/redo.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Redo action
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
-                            <Button Content="Clear Text" Padding="0" Margin="50,5,0,0" Height="20" Width="70" />
-                            <Button Content="Validate XML" Padding="0" Margin="130,5,0,0" Height="20" Width="70" />
+                            <Button Content="Clear Text" Padding="0" Margin="50,5,0,0" Height="20" Width="70">
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Clear all text from the window above.
+                                        <LineBreak />
+                                        <Italic>This is not recoverable; be sure you want to do this!</Italic>
+                                    </TextBlock>
+                                </Button.ToolTip>
+                            </Button>
+                            <Button Content="Validate XML" Padding="0" Margin="130,5,0,0" Height="20" Width="70">
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        This will display the above text in the format that Fantasy Grounds will see.
+                                        <LineBreak />
+                                        <Italic>You can use this to verify your descriptive text will display correctly with Fantasy Grounds.</Italic>
+                                    </TextBlock>
+                                </Button.ToolTip>
+                            </Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Header.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Format the selected text as a header.
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Text Color.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Format the selected text as body text.
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Speech Bubble With Dots.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Format the selected paragraphs as 'Chat Frame Text'. This will indent the paragraph(s) in NPC Engineer as a visual cue that they have been modified.
+                                        <LineBreak />
+                                        <Italic>Note that if two or more paragraphs are selected, Fantasy Grounds will treat it as a continuous single paragraph.</Italic>
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Bulleted List.png" />
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Format the selected paragraphs as a bulleted list.
+                                    </TextBlock>
+                                </Button.ToolTip>
                             </Button>
                             <Button Content="Paste Text" Padding="0" Margin="221,5,0,0" Height="20" Width="70" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                            <TextBox Margin="5,9,0,0" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            <TextBox Margin="5,9,0,0" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <TextBox.ToolTip>
+                                    <TextBlock>
+                                        (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.
+                                        <LineBreak />
+                                        If this is left blank, the NPC's name will always show.
+                                    </TextBlock>
+                                </TextBox.ToolTip>
+                            </TextBox>
                             <StackPanel Orientation="Vertical">
                                 <Label FontWeight="Bold" Foreground="Gray" Content="Elements" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                                 <CheckBox Content="Add Descriptive Text" IsChecked="True" Margin="40,5,0,0"/>
@@ -2839,21 +2961,63 @@
             <TabItem Header="Image">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Click Below to select NPC Image" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Content="NPC Image:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
+                            <TextBox VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,10,0,0" Padding="0">
+                                <TextBox.ToolTip>
+                                    <TextBlock>
+                                        File location to the JPG image used for the NPC.
+                                    </TextBlock>
+                                </TextBox.ToolTip>
+                            </TextBox>
+                            <Button Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="5,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0">
+                                <Image Source="/Resources/Folder.png" />
+                            </Button>
+                        </StackPanel>
                         <Button Name="btn_SelectNPCImage" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="590" Height="420" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit2_Click" Margin="10,10,0,0">
                             <Image />
                         </Button>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Add NPC Link to Description" Padding="0" Margin="15,10,0,0" />
-                            <Button Content="Clear Image" Width="75" Padding="0" Margin="330,10,0,0"/>
+                            <CheckBox Content="Add NPC Link to Description" Padding="5,0,0,0" Margin="15,10,0,0" Height="20" VerticalContentAlignment="Center">
+                                <CheckBox.ToolTip>
+                                    <TextBlock>
+                                        Add the markup and link for an image with the NPC's name.
+                                        <LineBreak />
+                                        <Italic>This is switched on automatically if you load an image, but can be turned off again.</Italic>
+                                    </TextBlock>
+                                </CheckBox.ToolTip>
+                            </CheckBox>
+                            <Button Content="Clear Image" Height="20" Width="75" Padding="0" Margin="330,10,0,0">
+                                <Button.ToolTip>
+                                    <TextBlock>
+                                        Clear the image file.
+                                    </TextBlock>
+                                </Button.ToolTip>
+                            </Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="Artist Name:" Padding="0" Margin="15,10,0,0" />
-                            <TextBox Width="400" Padding="0" Margin="10,7,0,0" Height="20" />
+                            <Label Content="Artist Name:" VerticalContentAlignment="Center" Padding="0" Margin="15,10,0,0" Height="20"/>
+                            <TextBox Width="400" Padding="0" Margin="10,10,0,0" Height="20">
+                                <TextBox.ToolTip>
+                                    <TextBlock>
+                                        Enter the artist's name here.
+                                        <LineBreak />
+                                        <Italic>It will be shown on the Reference Manual page for the NPC.</Italic>
+                                    </TextBlock>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="Artist Link:" Padding="0" Margin="26,5,0,0" />
-                            <TextBox Width="400" Padding="0" Margin="10,2,0,0" Height="20" />
+                            <Label Content="Artist Link:" VerticalContentAlignment="Center" Padding="0" Margin="26,10,0,0" Height="20"/>
+                            <TextBox Width="400" Padding="0" Margin="10,10,0,0" Height="20">
+                                <TextBox.ToolTip>
+                                    <TextBlock>
+                                        Enter the artist's email address or web address here.
+                                        <LineBreak />
+                                        <Italic>It will be shown on the Reference Manual page for the NPC.</Italic>
+                                    </TextBlock>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
