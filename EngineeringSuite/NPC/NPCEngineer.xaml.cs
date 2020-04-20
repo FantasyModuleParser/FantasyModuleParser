@@ -7,7 +7,8 @@ using EngineeringSuite.NPC;
 namespace EngineeringSuite.NPC
 {
     /// <summary>
-    /// Interaction logic for NPCEngineer.xaml
+    /// NPC Engineer back-end C# coding
+    /// Function openfolder controls creating all the required folders if they don't exist already
     /// </summary>
     public partial class NPCEngineer : Window
     {
