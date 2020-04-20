@@ -10,7 +10,7 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New NPC" />
                 <MenuItem Header="_Open NPC" />
-                <MenuItem Header="_Save NPC" />
+                <MenuItem Header="_Save NPC" Click="CreateNPCFile"/>
                 <Separator />
                 <MenuItem Header="_Save as HTML" />
                 <MenuItem Header="_Save as RTF" />
@@ -92,7 +92,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,3,0,0">
                                 <Label Content="Size:" Height="20" VerticalContentAlignment="Center" Margin="0,0,0,0" Padding="0"/>
-                                <ComboBox Height="20" Margin="5,0,0,0" Text="" VerticalAlignment="Top" Width="200">
+                                <ComboBox Name="strSize" Height="20" Margin="5,0,0,0" VerticalAlignment="Top" Width="200">
                                     <ComboBoxItem>Tiny</ComboBoxItem>
                                     <ComboBoxItem>Small</ComboBoxItem>
                                     <ComboBoxItem>Medium</ComboBoxItem>
@@ -108,7 +108,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,3,0,0">
                                 <Label Content="Type:" Height="20" VerticalContentAlignment="Center" Margin="0,0,0,0" Padding="0"/>
-                                <ComboBox Height="20" Margin="5,0,0,0" VerticalAlignment="Top" Width="200">
+                                <ComboBox Name="strType" Height="20" Margin="5,0,0,0" VerticalAlignment="Top" Width="200">
                                     <ComboBoxItem>abberation</ComboBoxItem>
                                     <ComboBoxItem>beast</ComboBoxItem>
                                     <ComboBoxItem>celestial</ComboBoxItem>
@@ -141,7 +141,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Tag:" VerticalAlignment="Top" Margin="59,9,0,0" Padding="0"/>
-                                <ComboBox HorizontalAlignment="Left" Height="20" Margin="5,5,0,0" Text="" VerticalAlignment="Top" Width="100">
+                                <ComboBox Name="strTag" HorizontalAlignment="Left" Height="20" Margin="5,5,0,0" Text="" VerticalAlignment="Top" Width="100">
                                     <ComboBoxItem>aarakocra</ComboBoxItem>
                                     <ComboBoxItem>any race</ComboBoxItem>
                                     <ComboBoxItem>bullywug</ComboBoxItem>
@@ -192,7 +192,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Alignment:" VerticalAlignment="Top" Margin="23,9,0,0" Padding="0"/>
-                                <ComboBox Height="20" Margin="5,5,0,0" Text="" VerticalAlignment="Top" Width="100">
+                                <ComboBox Name="strAlignment" Height="20" Margin="5,5,0,0" Text="" VerticalAlignment="Top" Width="100">
                                     <ComboBoxItem>unaligned</ComboBoxItem>
                                     <ComboBoxItem>lawful good</ComboBoxItem>
                                     <ComboBoxItem>lawful neutral</ComboBoxItem>
@@ -212,7 +212,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Armor Class:" VerticalAlignment="Top" Margin="14,8,0,0" Padding="0"/>
-                                <TextBox Height="20" Margin="5,5,0,0" Text="10 (natural)" VerticalAlignment="Top" Width="100">
+                                <TextBox Name="strAC" Height="20" Margin="5,5,0,0" Text="10 (natural)" VerticalAlignment="Top" Width="100">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's armor class.
@@ -226,7 +226,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Hit Points:" VerticalAlignment="Center" Height="20" Margin="25,0,0,0" Padding="0"/>
-                                <TextBox Height="20" Margin="5,0,0,0" Text="" VerticalAlignment="Center" Width="100">
+                                <TextBox Name="strHP" Height="20" Margin="5,0,0,0" Text="" VerticalAlignment="Center" Width="100">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's hit points, followed by its hit dice in brackets.
@@ -260,7 +260,7 @@
                         <StackPanel Orientation="Vertical" VerticalAlignment="Top" Height="220">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                                 <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <ComboBox HorizontalAlignment="Left" Height="20" Margin="10,30,0,0" VerticalAlignment="Center" Width="100">
+                                <ComboBox Name="strGender" HorizontalAlignment="Left" Height="20" Margin="10,30,0,0" VerticalAlignment="Center" Width="100">
                                     <ComboBox.ToolTip>
                                         <TextBlock><Run Text="Select the NPC's gender."/><LineBreak /><Italic><Run Text="This will insert gender-specific pronouns in the descriptive text"/></Italic></TextBlock>
                                     </ComboBox.ToolTip>
@@ -268,7 +268,7 @@
                                     <ComboBoxItem Content="male"/>
                                     <ComboBoxItem Content="female"/>
                                 </ComboBox>
-                                <CheckBox Margin="10,30,0,0" Padding="0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" />
+                                <CheckBox Name="strUnique" Margin="10,30,0,0" Padding="0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" />
                                 <Label Content="Unique" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalContentAlignment="Center" Height="20" Padding="0">
                                     <Label.ToolTip>
                                         <TextBlock>
@@ -278,7 +278,7 @@
                                         </TextBlock>
                                     </Label.ToolTip>
                                 </Label>
-                                <CheckBox Margin="10,30,0,0" Padding="0" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                                <CheckBox Name="strNamed" Margin="10,30,0,0" Padding="0" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                                 <Label Content="Name" HorizontalAlignment="Left" Margin="5,30,0,0" Height="20" VerticalContentAlignment="Center" Padding="0">
                                     <Label.ToolTip>
                                         <TextBlock>
@@ -296,7 +296,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Speed" HorizontalContentAlignment="Left" Margin="110,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
-                                <TextBox HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" Text="30" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSpeed" HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" Text="30" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's base movement speed in feet (ft.)
@@ -308,7 +308,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Burrow" HorizontalContentAlignment="Left" Margin="105,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="strBurrow" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's burrowing speed in feet (ft.)
@@ -320,7 +320,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Climb" HorizontalContentAlignment="Left" Margin="112,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="strClimb" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's climbing speed in feet (ft.)
@@ -332,7 +332,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Fly" HorizontalContentAlignment="Left" Margin="128,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="strFly" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's flying speed in feet (ft.)
@@ -341,7 +341,7 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox Margin="5,3,0,0" Padding="0" VerticalContentAlignment="Center" Height="20"/>
+                                <CheckBox Name="strHover" Margin="5,3,0,0" Padding="0" VerticalContentAlignment="Center" Height="20"/>
                                 <Label Content="Hover" HorizontalAlignment="Left" Margin="5,3,0,0" VerticalContentAlignment="Center" Padding="0" Height="20">
                                     <Label.ToolTip>
                                         <TextBlock>
@@ -352,7 +352,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Swim" HorizontalContentAlignment="Left" Margin="115,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="strSwim" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's swimming speed in feet (ft.)
@@ -373,7 +373,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="STR" HorizontalAlignment="Center" Margin="35,5,0,0" Height="20" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Strength ability.
@@ -384,11 +384,12 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <Label Content="+0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
+                                <Label Name="strModStr" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
+                                <Label Name="strModStr1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="DEX" HorizontalAlignment="Left" Margin="33,5,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strAttrDex" LostFocus="DexterityScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Dexterity ability.
@@ -399,11 +400,12 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <Label Content="+0" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
+                                <Label Name="strModDex" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
+                                <Label Name="strModDex1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="CON" HorizontalAlignment="Left" Margin="30,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Constitution ability.
@@ -414,11 +416,12 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <Label Content="+0" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
+                                <Label Name="strModCon" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
+                                <Label Name="strModCon1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="INT" HorizontalAlignment="Left" Margin="37,5,0,0" Height="20" Padding="0" VerticalContentAlignment="Center"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                         Enter the NPC's Intelligence ability.
@@ -429,11 +432,12 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <Label Content="+0" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
+                                <Label Name="strModInt" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
+                                <Label Name="strModInt1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="WIS" HorizontalAlignment="Left" Margin="34,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Wisdom ability.
@@ -444,11 +448,12 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <Label Content="+0" HorizontalAlignment="Left" Padding="0" Margin="5,5,0,0" VerticalContentAlignment="Center" />
+                                <Label Name="strModWis" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
+                                <Label Name="strModWis1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="CHA" HorizontalAlignment="Left" Margin="31,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Charisma ability.
@@ -459,7 +464,8 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <Label Content="+0" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
+                                <Label Name="strModCha" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
+                                <Label Name="strModCha1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,255,0,0" Height="205">

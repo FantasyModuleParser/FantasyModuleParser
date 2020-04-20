@@ -334,5 +334,141 @@ namespace EngineeringSuite.NPC
             win2.Show();
         }
         #endregion
+        private void StrengthScore_TextChanged(object sender, RoutedEventArgs e)
+        {
+            int num;
+            if (int.TryParse(strAttrStr.Text, out num))
+            {
+                strModStr1.Content = -5 + (num / 2);
+                if (num < 10)
+                {
+                    strModStr.Content = "";
+                }
+                else
+                {
+                    strModStr.Content = "+";
+                }
+            }    
+        }
+        private void DexterityScore_TextChanged(object sender, RoutedEventArgs e)
+        {
+            int num;
+            if (int.TryParse(strAttrDex.Text, out num))
+            {
+                strModDex1.Content = -5 + (num / 2);
+                if (num < 10)
+                {
+                    strModDex.Content = "";
+                }
+                else
+                {
+                    strModDex.Content = "+";
+                }
+            }
+        }
+        private void ConstitutionScore_TextChanged(object sender, RoutedEventArgs e)
+        {
+            int num;
+            if (int.TryParse(strAttrCon.Text, out num))
+            {
+                strModCon1.Content = -5 + (num / 2);
+                if (num < 10)
+                {
+                    strModCon.Content = "";
+                }
+                else
+                {
+                    strModCon.Content = "+";
+                }
+            }
+        }
+        private void IntelligenceScore_TextChanged(object sender, RoutedEventArgs e)
+        {
+            int num;
+            if (int.TryParse(strAttrInt.Text, out num))
+            {
+                strModInt1.Content = -5 + (num / 2);
+                if (num < 10)
+                {
+                    strModInt.Content = "";
+                }
+                else
+                {
+                    strModInt.Content = "+";
+                }
+            }
+        }
+        private void WisdomScore_TextChanged(object sender, RoutedEventArgs e)
+        {
+            int num;
+            if (int.TryParse(strAttrWis.Text, out num))
+            {
+                strModWis1.Content = -5 + (num / 2);
+                if (num < 10)
+                {
+                    strModWis.Content = "";
+                }
+                else
+                {
+                    strModWis.Content = "+";
+                }
+            }
+        }
+        private void CharismaScore_TextChanged(object sender, RoutedEventArgs e)
+        {
+            int num;
+            if (int.TryParse(strAttrCha.Text, out num))
+            {
+                strModCha1.Content = -5 + (num / 2);
+                if (num < 10)
+                {
+                    strModCha.Content = "";
+                }
+                else
+                {
+                    strModCha.Content = "+";
+                }
+            }
+        }
+        private void CreateNPCFile(object sender, RoutedEventArgs e)
+        {
+            string strPath1 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string strFolder1 = "Engineer Suite/NPC";
+            string fName = NPC_name.Text;
+            string tPath = Path.Combine(strPath1, strFolder1, fName + ".json");
+
+            if (File.Exists(tPath))
+            {
+                File.Delete(tPath);
+            }
+
+            using (StreamWriter fs = new StreamWriter(tPath))
+            {
+                fs.Write("{\n");
+                fs.Write("\"Name \": " + NPC_name.Text + ",\n");
+                fs.Write("\"Size \": " + strSize.Text + ",\n");
+                fs.Write("\"Type \": " + strType.Text + ",\n");
+                fs.Write("\"Tag \": " + strTag.Text + ",\n");
+                fs.Write("\"Alignment \": " + strAlignment.Text + ",\n");
+                fs.Write("\"AC \": " + strAC.Text + ",\n");
+                fs.Write("\"HP \": " + strHP.Text + ",\n");
+                fs.Write("\"Gender \": " + strGender.Text + ",\n");
+                fs.Write("\"Unique \": " + strUnique.IsChecked + ",\n");
+                fs.Write("\"Proper Name \": " + strNamed.IsChecked + ",\n");
+                fs.Write("\"Speed \": " + strSpeed.Text + ",\n");
+                fs.Write("\"Burrow \": " + strBurrow.Text + ",\n");
+                fs.Write("\"Climb \": " + strClimb.Text + ",\n");
+                fs.Write("\"Fly \": " + strFly.Text + ",\n");
+                fs.Write("\"Hover \": " + strHover.IsChecked + ",\n");
+                fs.Write("\"Swim \": " + strSwim.Text + ",\n");
+                fs.Write("\"Strength \": " + strAttrStr.Text + ",\n");
+                fs.Write("\"Dexterity \": " + strAttrDex.Text + ",\n");
+                fs.Write("\"Constitution \": " + strAttrCon.Text + ",\n");
+                fs.Write("\"Intelligence \": " + strAttrInt.Text + ",\n");
+                fs.Write("\"Wisdom \": " + strAttrWis.Text + ",\n");
+                fs.Write("\"Charisma \": " + strAttrCha.Text + ",\n");
+                fs.Write("}");
+            }
+        }
     }
 }
