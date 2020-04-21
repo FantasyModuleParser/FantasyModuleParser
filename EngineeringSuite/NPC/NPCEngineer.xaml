@@ -975,91 +975,91 @@
                             <Label Content="Slashing" FontSize="10" Padding="13,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Margin="33,0,0,10">
+                            <CheckBox Name="chkAcidImmune" Margin="33,0,0,10">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to acid damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkColdImmune" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to cold damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkFireImmune" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to fire damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkForceImmune" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to force damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="33,0,0,0">
+                            <CheckBox Name="chkLightningImmune" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to lightning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="33,0,0,0">
+                            <CheckBox Name="chkNecroticImmune" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to necrotic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkPoisonImmune" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to poison damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="27,0,0,0">
+                            <CheckBox Name="chkPsychicImmune" Margin="27,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to psychic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkRadiantImmune" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to radiant damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkThunderImmune" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to thunder damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkBludgeoningImmune" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to bludgeoning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="38,0,0,0">
+                            <CheckBox Name="chkPiercingImmune" Margin="38,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to piercing damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="34,0,0,0">
+                            <CheckBox Name="chkSlashingImmune" Margin="34,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to slashing damage
@@ -1068,35 +1068,35 @@
                             </CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <RadioButton Content="No special weapon immunities" Margin="50,0,0,0" IsChecked="True">
+                            <RadioButton Name="radioNoSpecImmune" Content="No special weapon immunities" Margin="50,0,0,0" IsChecked="True">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC has no special weapon immunities beyond those noted above
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Immune to nonmagical weapons" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagic" Content="Immune to nonmagical weapons" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to nonmagical weapons
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Immune to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagicSilver" Content="Immune to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to weapons that aren't silvered
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Immune to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagicAdamant" Content="Immune to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to weapons that aren't adamantine
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Immune to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagicColdforged" Content="Immune to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to weapons that aren't made of cold-forged iron
@@ -1107,28 +1107,28 @@
                         <Label Content="Condition Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Content="Blinded" Margin="50,15,0,0">
+                                <CheckBox Name="chkBlinded" Content="Blinded" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be blinded
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Charmed" Margin="50,15,0,0">
+                                <CheckBox Name="chkCharmed" Content="Charmed" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be charmed
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Deafened" Margin="50,15,0,0">
+                                <CheckBox Name="chkDeafened" Content="Deafened" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be deafened
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Exhaustion" Margin="50,15,0,0">
+                                <CheckBox Name="chkExhaustion" Content="Exhaustion" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot sufer from exhausted
@@ -1137,28 +1137,28 @@
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Content="Frightened" Margin="50,15,0,0">
+                                <CheckBox Name="chkFrightened" Content="Frightened" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be frightened
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Grappled" Margin="50,15,0,0">
+                                <CheckBox Name="chkGrappled" Content="Grappled" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be grappled
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Incapacitated" Margin="50,15,0,0">
+                                <CheckBox Name="chkIncapacitated" Content="Incapacitated" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be incapacitated
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Invisible" Margin="50,15,0,0">
+                                <CheckBox Name="chkInvisible" Content="Invisible" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be made invisible
@@ -1167,28 +1167,28 @@
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Content="Paralyzed" Margin="50,15,0,0">
+                                <CheckBox Name="chkParalyzed" Content="Paralyzed" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be paralyzed
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Petrified" Margin="50,15,0,0">
+                                <CheckBox Name="chkPetrified" Content="Petrified" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be petrified
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Poisoned" Margin="50,15,0,0">
+                                <CheckBox Name="chkPoisoned" Content="Poisoned" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be poisoned
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Prone" Margin="50,15,0,0">
+                                <CheckBox Name="chkProne" Content="Prone" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be knocked prone
@@ -1197,21 +1197,21 @@
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Content="Restrained" Margin="50,15,0,0">
+                                <CheckBox Name="chkRestrained" Content="Restrained" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be restrained
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Stunned" Margin="50,15,0,0">
+                                <CheckBox Name="chkStunned" Content="Stunned" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be stunned
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Content="Unconscious" Margin="50,15,0,0">
+                                <CheckBox Name="chkUnconscious" Content="Unconscious" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be rendered unconscious
@@ -1219,14 +1219,14 @@
                                     </CheckBox.ToolTip>
                                 </CheckBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <CheckBox Content="Other" Margin="50,15,0,0">
+                                    <CheckBox Name="chkOther" Content="Other" Margin="50,15,0,0">
                                         <CheckBox.ToolTip>
                                             <TextBlock>
                                             Check here if your NPC is immune to any other condition (type in the box)
                                             </TextBlock>
                                         </CheckBox.ToolTip>
                                     </CheckBox>
-                                    <TextBox Height="15" Width="95" Margin="10,16,0,0">
+                                    <TextBox Name="strOther" Height="15" Width="95" Margin="10,16,0,0">
                                         <TextBox.ToolTip>
                                             <TextBlock>
                                                 Type in the name of any other conidition that your NPC is immune to
