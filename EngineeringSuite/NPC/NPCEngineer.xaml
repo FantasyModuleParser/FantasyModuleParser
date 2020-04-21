@@ -268,7 +268,7 @@
                                     <ComboBoxItem Content="male"/>
                                     <ComboBoxItem Content="female"/>
                                 </ComboBox>
-                                <CheckBox Name="strUnique" Margin="10,30,0,0" Padding="0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" />
+                                <CheckBox Name="chkUnique" Margin="10,30,0,0" Padding="0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" />
                                 <Label Content="Unique" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalContentAlignment="Center" Height="20" Padding="0">
                                     <Label.ToolTip>
                                         <TextBlock>
@@ -278,7 +278,7 @@
                                         </TextBlock>
                                     </Label.ToolTip>
                                 </Label>
-                                <CheckBox Name="strNamed" Margin="10,30,0,0" Padding="0" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                                <CheckBox Name="chkNamed" Margin="10,30,0,0" Padding="0" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                                 <Label Content="Name" HorizontalAlignment="Left" Margin="5,30,0,0" Height="20" VerticalContentAlignment="Center" Padding="0">
                                     <Label.ToolTip>
                                         <TextBlock>
@@ -341,7 +341,7 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox Name="strHover" Margin="5,3,0,0" Padding="0" VerticalContentAlignment="Center" Height="20"/>
+                                <CheckBox Name="chkHover" Margin="5,3,0,0" Padding="0" VerticalContentAlignment="Center" Height="20"/>
                                 <Label Content="Hover" HorizontalAlignment="Left" Margin="5,3,0,0" VerticalContentAlignment="Center" Padding="0" Height="20">
                                     <Label.ToolTip>
                                         <TextBlock>
@@ -474,14 +474,14 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="STR" HorizontalAlignment="Left" Margin="24,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveStr" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for strength saves.
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                                <CheckBox Name="chkSave0Str" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -491,14 +491,14 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="DEX" HorizontalAlignment="Left" Margin="22,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for dexterity saves.
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                                <CheckBox Name="chkSave0Dex" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -508,14 +508,14 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="CON" HorizontalAlignment="Left" Margin="19,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveCon" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for constitution saves.
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                                <CheckBox Name="chkSave0Con" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -525,14 +525,14 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="INT" HorizontalAlignment="Left" Margin="26,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveInt" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for intelligence saves.
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                                <CheckBox Name="chkSave0Int" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -542,14 +542,14 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="WIS" HorizontalAlignment="Left" Margin="23,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveWis" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for wisdom saves.
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                                <CheckBox Name="chkSave0Wis" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -559,14 +559,14 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="CHA" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveCha" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for charisma saves.
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                                <CheckBox Name="chkSave0Cha" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -586,7 +586,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Label Content="Blindsight" HorizontalAlignment="Left" Margin="52,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                            <TextBox Name="strBlindsight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum blindsight range in feet (ft.)
@@ -595,11 +595,11 @@
                                     </TextBlock>
                                 </TextBox.ToolTip>
                             </TextBox>
-                            <CheckBox Content="blind beyond" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="5,5,0,0"/>
+                            <CheckBox Name="chkBlindBeyond" Content="blind beyond" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="5,5,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Darkvision" HorizontalAlignment="Left" Margin="62,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strDarkvision" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum darkvision range in feet (ft.)
@@ -611,7 +611,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Tremorsense" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strTremorsense" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum tremorsense range in feet (ft.)
@@ -623,7 +623,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Truesight" HorizontalAlignment="Left" Margin="69,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strTruesight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum truesight range in feet (ft.)
@@ -635,7 +635,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Passive Perception" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strPassivePerception" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's Passive Perception
@@ -649,7 +649,7 @@
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="420" Margin="0,470,0,0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="5,0,0,0">
                             <Label Content="Challenge" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                            <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="1" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="1" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the appropriate challenge rating for the NPC.
@@ -657,7 +657,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Experience" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                            <TextBox HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="1" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strExperience" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="1" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         This will be calculated automatically based on the challenge rating chosen; this can be overwritten by typing a new XP value
@@ -668,7 +668,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="20" Margin="15,5,0,0">
                             <Label Content="NPC Token:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,0,0,0" Padding="0">
+                            <TextBox Name="strNPCToken" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,0,0,0" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         File location to the PNG image used for the NPC.
@@ -713,91 +713,91 @@
                             <Label Content="Slashing" FontSize="10" Padding="13,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Margin="33,0,0,0">
+                            <CheckBox Name="chkAcidVuln"  Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to acid damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkColdVuln" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to cold damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkFireVuln" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to fire damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="16,0,0,0">
+                            <CheckBox Name="chkForceVuln" Margin="16,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to force damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkLightningVuln" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to lightning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="35,0,0,0">
+                            <CheckBox Name="chkNecroticVuln" Margin="35,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to necrotic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="31,0,0,0">
+                            <CheckBox Name="chkPoisonVuln" Margin="31,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to poison damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="27,0,0,0">
+                            <CheckBox Name="chkPsychicVuln" Margin="27,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to psychic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="30,0,0,0">
+                            <CheckBox Name="chkRadiantVuln" Margin="30,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to radiant damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkThunderVuln" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to thunder damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="36,0,0,0">
+                            <CheckBox Name="chkBludgeoningVuln" Margin="36,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to bludgeoning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="37,0,0,0">
+                            <CheckBox Name="chkPiercingVuln" Margin="37,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to piercing damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkSlashingVuln" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to slashing damage
@@ -822,91 +822,91 @@
                             <Label Content="Slashing" FontSize="10" Padding="13,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Margin="33,0,0,10">
+                            <CheckBox Name="chkAcidResist" Margin="33,0,0,10">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to acid damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkColdResist" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to cold damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkFireResist" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to fire damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="15,0,0,0">
+                            <CheckBox Name="chkForceResist" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to force damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="33,0,0,0">
+                            <CheckBox Name="chkLightningResist" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to lightning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="33,0,0,0">
+                            <CheckBox Name="chkNecroticResist" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to necrotic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkPoisonResist" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to poison damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="27,0,0,0">
+                            <CheckBox Name="chkPsychicResist" Margin="27,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to psychic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkRadiantResist" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to radiant damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkThunderResist" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to thunder damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="32,0,0,0">
+                            <CheckBox Name="chkBludgeoningResist" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to bludgeoning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="38,0,0,0">
+                            <CheckBox Name="chkPiercingResist" Margin="38,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to piercing damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Margin="34,0,0,0">
+                            <CheckBox Name="chkSlashingResist" Margin="34,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to slashing damage
@@ -915,42 +915,42 @@
                             </CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <RadioButton Content="No special weapon resistances" Margin="50,0,0,0" IsChecked="True">
+                            <RadioButton Name="radioNoSpecResist" Content="No special weapon resistances" Margin="50,0,0,0" IsChecked="True">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC has no special weapon resistances beyond those noted above
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Resistant to nonmagical weapons" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagic" Content="Resistant to nonmagical weapons" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to nonmagical weapons
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Resistant to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagicSilver" Content="Resistant to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to weapons that aren't silvered
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Resistant to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagicAdamant" Content="Resistant to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to weapons that aren't adamantine
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Resistant to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagicColdforged" Content="Resistant to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to weapons that aren't made of cold-forged iron
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Content="Resistant to magic weapons" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistMagic" Content="Resistant to magic weapons" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to magical weapons
@@ -1120,7 +1120,7 @@
                                             Check here if your NPC cannot be charmed
                                         </TextBlock>
                                     </CheckBox.ToolTip>
-                                 </CheckBox>
+                                </CheckBox>
                                 <CheckBox Content="Deafened" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
@@ -3023,12 +3023,12 @@
                                 <CheckBox Content="Include Spell List" Margin="40,0,0,0" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                    <Label FontWeight="Bold" Foreground="Gray" Content="Paste Edits" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                    <CheckBox Content="Apply Common Fixes" IsChecked="True" Margin="40,5,0,0"/>
-                                    <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" />
-                                    <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" />
-                                </StackPanel>
+                                <Label FontWeight="Bold" Foreground="Gray" Content="Paste Edits" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                <CheckBox Content="Apply Common Fixes" IsChecked="True" Margin="40,5,0,0"/>
+                                <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" />
+                                <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" />
                             </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </TabItem>
