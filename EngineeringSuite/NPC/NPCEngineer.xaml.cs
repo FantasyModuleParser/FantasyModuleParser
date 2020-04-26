@@ -596,6 +596,64 @@ namespace EngineeringSuite.NPC
                 //Do something if it fails to parse
             }
             npcDataModel.SavingThrowCha0 = chkSave0Cha.IsChecked.Value;
+            if (int.TryParse(strBlindsight.Text, out int integerBlindsight))
+            {
+                npcDataModel.Blindsight = integerBlindsight;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.BlindBeyond = chkBlindBeyond.IsChecked.Value;
+            if (int.TryParse(strDarkvision.Text, out int integerDarkvision))
+            {
+                npcDataModel.Darkvision = integerDarkvision;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strTremorsense.Text, out int integerTremorsense))
+            {
+                npcDataModel.Tremorsense = integerTremorsense;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strTruesight.Text, out int integerTruesight))
+            {
+                npcDataModel.Truesight = integerTruesight;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strPassivePerception.Text, out int integerPassivePerception))
+            {
+                npcDataModel.PassivePerception = integerPassivePerception;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strChallenge.Text, out int integerChallengeRating))
+            {
+                npcDataModel.ChallengeRating = integerChallengeRating;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strExperience.Text, out int integerExperience))
+            {
+                npcDataModel.XP = integerExperience;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.NPCToken = strNPCToken.Text;
 
             var jsonString = JsonSerializer.Serialize<NPCDataModel>(npcDataModel, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(tPath, jsonString);

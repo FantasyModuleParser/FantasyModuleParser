@@ -42,5 +42,14 @@ namespace EngineeringSuite.NPC
         public bool SavingThrowWis0 { get; set; }
         public int SavingThrowCha { get; set; }
         public bool SavingThrowCha0 { get; set; }
+        public int Blindsight { get; set; }
+        public bool BlindBeyond { get; set; }
+        public int Darkvision { get; set; }
+        public int Tremorsense { get; set; }
+        public int Truesight { get; set; }
+        public int PassivePerception { get; set; }
+        public int ChallengeRating { get; set; }
+        public int XP { get; set; }
+        public string NPCToken { get; set; }
     }
 }
