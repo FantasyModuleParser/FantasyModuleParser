@@ -296,7 +296,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Speed" HorizontalContentAlignment="Left" Margin="110,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
-                                <TextBox Name="strSpeed" HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" Text="30" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="intSpeed" HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" Text="30" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's base movement speed in feet (ft.)
@@ -308,7 +308,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Burrow" HorizontalContentAlignment="Left" Margin="105,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="strBurrow" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="intBurrow" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's burrowing speed in feet (ft.)
@@ -320,7 +320,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Climb" HorizontalContentAlignment="Left" Margin="112,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="strClimb" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="intClimb" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's climbing speed in feet (ft.)
@@ -332,7 +332,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Fly" HorizontalContentAlignment="Left" Margin="128,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="strFly" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="intFly" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's flying speed in feet (ft.)
@@ -341,7 +341,7 @@
                                         </TextBlock>
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <CheckBox Name="chkHover" Margin="5,3,0,0" Padding="0" VerticalContentAlignment="Center" Height="20"/>
+                                <CheckBox Name="boolHover" Margin="5,3,0,0" Padding="0" VerticalContentAlignment="Center" Height="20"/>
                                 <Label Content="Hover" HorizontalAlignment="Left" Margin="5,3,0,0" VerticalContentAlignment="Center" Padding="0" Height="20">
                                     <Label.ToolTip>
                                         <TextBlock>
@@ -352,7 +352,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Swim" HorizontalContentAlignment="Left" Margin="115,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="strSwim" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
+                                <TextBox Name="intSwim" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's swimming speed in feet (ft.)
