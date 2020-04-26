@@ -474,7 +474,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="STR" HorizontalAlignment="Left" Margin="24,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveStr" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveStr" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for strength saves.
@@ -491,7 +491,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="DEX" HorizontalAlignment="Left" Margin="22,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for dexterity saves.
@@ -508,7 +508,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="CON" HorizontalAlignment="Left" Margin="19,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveCon" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveCon" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for constitution saves.
@@ -525,7 +525,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="INT" HorizontalAlignment="Left" Margin="26,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveInt" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveInt" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for intelligence saves.
@@ -542,7 +542,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="WIS" HorizontalAlignment="Left" Margin="23,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveWis" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveWis" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for wisdom saves.
@@ -559,7 +559,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="CHA" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveCha" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="+0" VerticalAlignment="Top" Width="40" Padding="0">
+                                <TextBox Name="strSaveCha" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for charisma saves.

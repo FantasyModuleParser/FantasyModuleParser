@@ -18,11 +18,29 @@ namespace EngineeringSuite.NPC
         public string NPCGender { get; set; }
         public bool Unique { get; set; }
         public bool NPCNamed { get; set; }
-        public string Speed { get; set; }
-        public string Burrow { get; set; }
-        public string Climb { get; set; }
-        public string Fly { get; set; }
+        public int Speed { get; set; }
+        public int Burrow { get; set; }
+        public int Climb { get; set; }
+        public int Fly { get; set; }
         public bool Hover { get; set; }
-        public string Swim { get; set; }
+        public int Swim { get; set; }
+        public int AttributeStr { get; set; }
+        public int AttributeDex { get; set; }
+        public int AttributeCon { get; set; }
+        public int AttributeInt { get; set; }
+        public int AttributeWis { get; set; }
+        public int AttributeCha { get; set; }
+        public int SavingThrowStr { get; set; }
+        public bool SavingThrowStr0 { get; set; }
+        public int SavingThrowDex { get; set; }
+        public bool SavingThrowDex0 { get; set; }
+        public int SavingThrowCon { get; set; }
+        public bool SavingThrowCon0 { get; set; }
+        public int SavingThrowInt { get; set; }
+        public bool SavingThrowInt0 { get; set; }
+        public int SavingThrowWis { get; set; }
+        public bool SavingThrowWis0 { get; set; }
+        public int SavingThrowCha { get; set; }
+        public bool SavingThrowCha0 { get; set; }
     }
 }

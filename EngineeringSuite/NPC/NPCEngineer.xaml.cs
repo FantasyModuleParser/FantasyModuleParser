@@ -453,12 +453,149 @@ namespace EngineeringSuite.NPC
             npcDataModel.NPCGender = strGender.Text;
             npcDataModel.Unique = chkUnique.IsChecked.Value;
             npcDataModel.NPCNamed = chkNamed.IsChecked.Value;
-            npcDataModel.Speed = intSpeed.Text;
-            npcDataModel.Burrow = intBurrow.Text;
-            npcDataModel.Climb = intClimb.Text;
-            npcDataModel.Fly = intFly.Text;
+            if (int.TryParse(intSpeed.Text, out int integerSpeed))
+            {
+                npcDataModel.Speed = integerSpeed;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(intBurrow.Text, out int integerBurrow))
+            {
+                npcDataModel.Burrow = integerBurrow;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(intClimb.Text, out int integerClimb))
+            {
+                npcDataModel.Climb = integerClimb;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(intFly.Text, out int integerFly))
+            {
+                npcDataModel.Fly = integerFly;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
             npcDataModel.Hover = boolHover.IsChecked.Value;
-            npcDataModel.Swim = intSwim.Text;
+            if (int.TryParse(intSwim.Text, out int integerSwim))
+            {
+                npcDataModel.Swim = integerSwim;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAttrStr.Text, out int integerAttrStr))
+            {
+                npcDataModel.AttributeStr = integerAttrStr;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAttrDex.Text, out int integerAttrDex))
+            {
+                npcDataModel.AttributeDex = integerAttrDex;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAttrCon.Text, out int integerAttrCon))
+            {
+                npcDataModel.AttributeCon = integerAttrCon;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAttrInt.Text, out int integerAttrInt))
+            {
+                npcDataModel.AttributeInt = integerAttrInt;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAttrWis.Text, out int integerAttrWis))
+            {
+                npcDataModel.AttributeWis = integerAttrWis;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAttrCha.Text, out int integerAttrCha))
+            {
+                npcDataModel.AttributeCha = integerAttrCha;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strSaveStr.Text, out int integerSaveStr))
+            {
+                npcDataModel.SavingThrowStr = integerSaveStr;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.SavingThrowStr0 = chkSave0Str.IsChecked.Value;
+            if (int.TryParse(strSaveDex.Text, out int integerSaveDex))
+            {
+                npcDataModel.SavingThrowDex = integerSaveDex;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.SavingThrowDex0 = chkSave0Dex.IsChecked.Value;
+            if (int.TryParse(strSaveCon.Text, out int integerSaveCon))
+            {
+                npcDataModel.SavingThrowCon = integerSaveCon;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.SavingThrowCon0 = chkSave0Con.IsChecked.Value;
+            if (int.TryParse(strSaveInt.Text, out int integerSaveInt))
+            {
+                npcDataModel.SavingThrowInt = integerSaveInt;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.SavingThrowInt0 = chkSave0Int.IsChecked.Value;
+            if (int.TryParse(strSaveWis.Text, out int integerSaveWis))
+            {
+                npcDataModel.SavingThrowWis = integerSaveWis;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.SavingThrowWis0 = chkSave0Wis.IsChecked.Value;
+            if (int.TryParse(strSaveCha.Text, out int integerSaveCha))
+            {
+                npcDataModel.SavingThrowCha = integerSaveCha;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            npcDataModel.SavingThrowCha0 = chkSave0Cha.IsChecked.Value;
 
             var jsonString = JsonSerializer.Serialize<NPCDataModel>(npcDataModel, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(tPath, jsonString);
