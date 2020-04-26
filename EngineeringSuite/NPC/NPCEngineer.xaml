@@ -1241,14 +1241,14 @@
             </TabItem>
             <TabItem Header="Skills">
                 <Grid Background="#FFE5E5E5">
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="580" Margin="10,15,0,0" VerticalAlignment="Top" Width="170"/>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="500" Margin="10,15,0,0" VerticalAlignment="Top" Width="170"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="580" Margin="260,15,0,0" VerticalAlignment="Top" Width="345"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
-                            <Label Content="Skill Bonuses" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <Label Content="Skill Bonuses" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Acrobatics" VerticalAlignment="Center" Margin="64,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Acrobatics" Height="20" VerticalContentAlignment="Center" Margin="64,5,0,0" Padding="0"/>
+                                <TextBox Name="strAcrobatics" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Acrobatics skill modifier.
@@ -1257,8 +1257,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Animal Handling" Margin="25,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Animal Handling" Height="20" VerticalContentAlignment="Center" Margin="31,5,0,0" Padding="0"/>
+                                <TextBox Name="strAnimalHandling" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Animal Handling skill modifier.
@@ -1267,8 +1267,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Arcana" Margin="85,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Arcana" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                                <TextBox Name="strArcana" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Arcana skill modifier.
@@ -1277,8 +1277,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Athletics" Margin="75,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Athletics" Height="20" VerticalContentAlignment="Center" Margin="74,5,0,0" Padding="0" />
+                                <TextBox Name="strAthletics" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Athletics skill modifier.
@@ -1287,8 +1287,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Deception" Margin="65,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Deception" Height="20" VerticalContentAlignment="Center" Margin="65,5,0,0" Padding="0"/>
+                                <TextBox Name="strDeception" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Deception skill modifier.
@@ -1297,8 +1297,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="History" Margin="84,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="History" Height="20" VerticalContentAlignment="Center" Margin="81,5,0,0" Padding="0"/>
+                                <TextBox Name="strHistory" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's History skill modifier.
@@ -1307,8 +1307,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Insight" Margin="86,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Insight" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                                <TextBox Name="strInsight" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Insight skill modifier.
@@ -1317,8 +1317,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Intimidation" Margin="53,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Intimidation" Height="20" VerticalContentAlignment="Center" Margin="55,5,0,0" Padding="0"/>
+                                <TextBox Name="strIntimidation" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Intimidation skill modifier.
@@ -1327,8 +1327,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Investigation" Margin="49,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Investigation" Height="20" VerticalContentAlignment="Center" Margin="51,5,0,0" Padding="0"/>
+                                <TextBox Name="strInvestigation" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Investigation skill modifier.
@@ -1337,8 +1337,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Medicine" Margin="71,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Medicine" Height="20" VerticalContentAlignment="Center" Margin="70,5,0,0" Padding="0"/>
+                                <TextBox Name="strMedicine" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Medicine skill modifier.
@@ -1347,8 +1347,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Nature" Margin="86,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Nature" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                                <TextBox Name="strNature" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Nature skill modifier.
@@ -1357,8 +1357,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Perception" Margin="62,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Perception" Height="20" VerticalContentAlignment="Center" Margin="63,5,0,0" Padding="0"/>
+                                <TextBox Name="strPerception" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Perception skill modifier.
@@ -1367,8 +1367,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Performance" Margin="50,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Performance" Height="20" VerticalContentAlignment="Center" Margin="52,5,0,0" Padding="0"/>
+                                <TextBox Name="strPerformance" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Performance skill modifier.
@@ -1377,8 +1377,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Persuasion" Margin="62,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Persuasion" Height="20" VerticalContentAlignment="Center" Margin="62,5,0,0" Padding="0"/>
+                                <TextBox Name="strPersuasion" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Persuasion skill modifier.
@@ -1387,8 +1387,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Religion" Margin="77,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Religion" Height="20" VerticalContentAlignment="Center" Margin="76,5,0,0" Padding="0"/>
+                                <TextBox Name="strReligion" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Religion skill modifier.
@@ -1397,8 +1397,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Sleight of Hand" Margin="31,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Sleight of Hand" Height="20" VerticalContentAlignment="Center" Margin="37,5,0,0" Padding="0"/>
+                                <TextBox Name="strSleightofHand" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Sleight of Hand skill modifier.
@@ -1407,8 +1407,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Stealth" Margin="85,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Stealth" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                                <TextBox Name="strStealth" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Stealth skill modifier.
@@ -1417,8 +1417,8 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Survival" Margin="79,3,0,3" Padding="0,0,5,5" FontSize="14"/>
-                                <TextBox Height="20" Width="30">
+                                <Label Content="Survival" Height="20" VerticalContentAlignment="Center" Margin="78,5,0,0" Padding="0"/>
+                                <TextBox Name="strSurvival" Height="20" Width="30" Margin="5,5,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Survival skill modifier.
@@ -1428,22 +1428,22 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <Label Content="Languages Spoken" Foreground="Gray"  HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <Label Content="Languages Spoken" Foreground="Gray"  HorizontalAlignment="Left" Margin="105,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Standard" Foreground="Black"  HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                                <Label Content="Exotic" Foreground="Black"  HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                                <Label Content="Standard" Foreground="Black"  HorizontalAlignment="Left" Margin="170,7,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                                <Label Content="Exotic" Foreground="Black"  HorizontalAlignment="Left" Margin="105,7,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <ListBox Margin="125,0,0,0" FontSize="12" Height="185" Width="150">
-                                    <ListBoxItem>Common</ListBoxItem>
-                                    <ListBoxItem>Dwarvish</ListBoxItem>
-                                    <ListBoxItem>Elvish</ListBoxItem>
-                                    <ListBoxItem>Giant</ListBoxItem>
-                                    <ListBoxItem>Gnomish</ListBoxItem>
-                                    <ListBoxItem>Goblin</ListBoxItem>
-                                    <ListBoxItem>Halfling</ListBoxItem>
-                                    <ListBoxItem>Orc</ListBoxItem>
-                                    <ListBoxItem>Thieves' Cant</ListBoxItem>
+                                <ListBox  Margin="125,0,0,0" FontSize="12" Height="185" Width="150">
+                                    <ListBoxItem Name="chkCommon">Common</ListBoxItem>
+                                    <ListBoxItem Name="chkDwarvish">Dwarvish</ListBoxItem>
+                                    <ListBoxItem Name="chkElvish">Elvish</ListBoxItem>
+                                    <ListBoxItem Name="chkGiant">Giant</ListBoxItem>
+                                    <ListBoxItem Name="chkGnomish">Gnomish</ListBoxItem>
+                                    <ListBoxItem Name="chkGoblin">Goblin</ListBoxItem>
+                                    <ListBoxItem Name="chkHalfling">Halfling</ListBoxItem>
+                                    <ListBoxItem Name="chkOrc">Orc</ListBoxItem>
+                                    <ListBoxItem Name="chkThievesCant">Thieves' Cant</ListBoxItem>
                                     <ListBox.ToolTip>
                                         <TextBlock>
                                             Select the standard languages that your NPC knows.
@@ -1452,7 +1452,7 @@
                                         </TextBlock>
                                     </ListBox.ToolTip>
                                 </ListBox>
-                                <ListBox Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
+                                <ListBox Name="chkExoticLanguage" Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
                                     <ListBoxItem>Abyssal</ListBoxItem>
                                     <ListBoxItem>Celestial</ListBoxItem>
                                     <ListBoxItem>Deep Speech</ListBoxItem>
@@ -1476,7 +1476,7 @@
                                 <Label Content="User" Foreground="Black"  HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <ListBox Margin="125,0,0,0" FontSize="12" Height="185" Width="150">
+                                <ListBox Name="chkMonstrousLanguage" Margin="125,0,0,0" FontSize="12" Height="185" Width="150">
                                     <ListBoxItem>Aarakocra</ListBoxItem>
                                     <ListBoxItem>Aquan</ListBoxItem>
                                     <ListBoxItem>Auran</ListBoxItem>
@@ -1509,7 +1509,7 @@
                                         </TextBlock>
                                     </ListBox.ToolTip>
                                 </ListBox>
-                                <ListBox Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
+                                <ListBox Name="chkUserLanguage" Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
                                     <ListBox.ToolTip>
                                         <TextBlock>
                                             Select the user-defined languages that your NPC knows.
