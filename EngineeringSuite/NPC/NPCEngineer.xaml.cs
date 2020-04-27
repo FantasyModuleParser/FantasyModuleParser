@@ -654,6 +654,209 @@ namespace EngineeringSuite.NPC
                 //Do something if it fails to parse
             }
             npcDataModel.NPCToken = strNPCToken.Text;
+            npcDataModel.VulnerabilityAcid = chkAcidVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityCold = chkColdVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityFire = chkFireVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityForce = chkForceVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityLightning = chkLightningVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityNecrotic = chkNecroticVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityPoison = chkPoisonVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityPsychic = chkPsychicVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityRadiant = chkRadiantVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityThunder = chkThunderVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityBludgeoning = chkBludgeoningVuln.IsChecked.Value;
+            npcDataModel.VulnerabilityPiercing = chkPiercingVuln.IsChecked.Value;
+            npcDataModel.VulnerabilitySlashing = chkSlashingVuln.IsChecked.Value;
+            npcDataModel.ResistanceAcid = chkAcidResist.IsChecked.Value;
+            npcDataModel.ResistanceCold = chkColdResist.IsChecked.Value;
+            npcDataModel.ResistanceFire = chkFireResist.IsChecked.Value;
+            npcDataModel.ResistanceForce = chkForceResist.IsChecked.Value;
+            npcDataModel.ResistanceLightning = chkLightningResist.IsChecked.Value;
+            npcDataModel.ResistanceNecrotic = chkNecroticResist.IsChecked.Value;
+            npcDataModel.ResistancePoison = chkPoisonResist.IsChecked.Value;
+            npcDataModel.ResistancePsychic = chkPsychicResist.IsChecked.Value;
+            npcDataModel.ResistanceRadiant = chkRadiantResist.IsChecked.Value;
+            npcDataModel.ResistanceThunder = chkThunderResist.IsChecked.Value;
+            npcDataModel.ResistanceBludgeoning = chkBludgeoningResist.IsChecked.Value;
+            npcDataModel.ResistancePiercing = chkPiercingResist.IsChecked.Value;
+            npcDataModel.ResistanceSlashing = chkSlashingResist.IsChecked.Value;
+            npcDataModel.ResistanceNoSpecialWeapon = radioNoSpecResist.IsChecked.Value;
+            npcDataModel.ResistanceWeaponNonmagical = radioResistNonmagic.IsChecked.Value;
+            npcDataModel.ResistanceWeaponNonmagicalSilvered = radioResistNonmagicSilver.IsChecked.Value;
+            npcDataModel.ResistanceWeaponNonmagicalAdamantine = radioResistNonmagicAdamant.IsChecked.Value;
+            npcDataModel.ResistanceWeaponNonmagicalColdForgedIron = radioResistNonmagicColdforged.IsChecked.Value;
+            npcDataModel.ResistanceWeaponMagical = radioResistMagic.IsChecked.Value;
+            npcDataModel.ImmunityAcid = chkAcidImmune.IsChecked.Value;
+            npcDataModel.ImmunityCold = chkColdImmune.IsChecked.Value;
+            npcDataModel.ImmunityFire = chkFireImmune.IsChecked.Value;
+            npcDataModel.ImmunityForce = chkForceImmune.IsChecked.Value;
+            npcDataModel.ImmunityLightning = chkLightningImmune.IsChecked.Value;
+            npcDataModel.ImmunityNecrotic = chkNecroticImmune.IsChecked.Value;
+            npcDataModel.ImmunityPoison = chkPoisonImmune.IsChecked.Value;
+            npcDataModel.ImmunityPsychic = chkPsychicImmune.IsChecked.Value;
+            npcDataModel.ImmunityRadiant = chkRadiantImmune.IsChecked.Value;
+            npcDataModel.ImmunityThunder = chkThunderImmune.IsChecked.Value;
+            npcDataModel.ImmunityBludgeoning = chkBludgeoningImmune.IsChecked.Value;
+            npcDataModel.ImmunityPiercing = chkPiercingImmune.IsChecked.Value;
+            npcDataModel.ImmunitySlashing = chkSlashingImmune.IsChecked.Value;
+            npcDataModel.ImmunityNoSpecialWeapon = radioNoSpecImmune.IsChecked.Value;
+            npcDataModel.ImmunityWeaponNonmagical = radioImmuneNonmagic.IsChecked.Value;
+            npcDataModel.ImmunityWeaponNonmagicalSilvered = radioImmuneNonmagicSilver.IsChecked.Value;
+            npcDataModel.ImmunityWeaponNonmagicalAdamantine = radioImmuneNonmagicAdamant.IsChecked.Value;
+            npcDataModel.ImmunityWeaponNonmagicalColdForgedIron = radioImmuneNonmagicColdforged.IsChecked.Value;
+            npcDataModel.ConditionBlinded = chkBlinded.IsChecked.Value;
+            npcDataModel.ConditionCharmed = chkCharmed.IsChecked.Value;
+            npcDataModel.ConditionDeafened = chkDeafened.IsChecked.Value;
+            npcDataModel.ConditionExhaustion = chkExhaustion.IsChecked.Value;
+            npcDataModel.ConditionFrightened = chkFrightened.IsChecked.Value;
+            npcDataModel.ConditionGrappled = chkGrappled.IsChecked.Value;
+            npcDataModel.ConditionIncapacitated = chkIncapacitated.IsChecked.Value;
+            npcDataModel.ConditionInvisible = chkInvisible.IsChecked.Value;
+            npcDataModel.ConditionParalyzed = chkParalyzed.IsChecked.Value;
+            npcDataModel.ConditionPetrified = chkPetrified.IsChecked.Value;
+            npcDataModel.ConditionPoisoned = chkPoisoned.IsChecked.Value;
+            npcDataModel.ConditionProne = chkProne.IsChecked.Value;
+            npcDataModel.ConditionRestrained = chkRestrained.IsChecked.Value;
+            npcDataModel.ConditionStunned = chkStunned.IsChecked.Value;
+            npcDataModel.ConditionUnconscious = chkUnconscious.IsChecked.Value;
+            npcDataModel.ConditionOther = chkUnconscious.IsChecked.Value;
+            npcDataModel.ConditionOtherText = strOther.Text;
+            if (int.TryParse(strAcrobatics.Text, out int integerAcrobatics))
+            {
+                npcDataModel.Acrobatics = integerAcrobatics;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAnimalHandling.Text, out int integerAnimalHandling))
+            {
+                npcDataModel.AnimalHandling = integerAnimalHandling;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strArcana.Text, out int integerArcana))
+            {
+                npcDataModel.Arcana = integerArcana;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strAthletics.Text, out int integerAthletics))
+            {
+                npcDataModel.Athletics = integerAthletics;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strDeception.Text, out int integerDeception))
+            {
+                npcDataModel.Deception = integerDeception;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strHistory.Text, out int integerHistory))
+            {
+                npcDataModel.History = integerHistory;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strInsight.Text, out int integerInsight))
+            {
+                npcDataModel.Insight = integerInsight;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strIntimidation.Text, out int integerIntimidation))
+            {
+                npcDataModel.Intimidation = integerIntimidation;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strInvestigation.Text, out int integerInvestigation))
+            {
+                npcDataModel.Investigation = integerInvestigation;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strMedicine.Text, out int integerMedicine))
+            {
+                npcDataModel.Medicine = integerMedicine;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strNature.Text, out int integerNature))
+            {
+                npcDataModel.Nature = integerNature;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strPerformance.Text, out int integerPerformance))
+            {
+                npcDataModel.Performance = integerPerformance;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strPersuasion.Text, out int integerPersuasion))
+            {
+                npcDataModel.Persuasion = integerPersuasion;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strReligion.Text, out int integerReligion))
+            {
+                npcDataModel.Religion = integerReligion;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strSleightofHand.Text, out int integerSleightOfHand))
+            {
+                npcDataModel.SleightOfHand = integerSleightOfHand;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strStealth.Text, out int integerStealth))
+            {
+                npcDataModel.Stealth = integerStealth;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
+            if (int.TryParse(strSurvival.Text, out int integerSurvival))
+            {
+                npcDataModel.Survival = integerSurvival;
+            }
+            else
+            {
+                //Do something if it fails to parse
+            }
 
             var jsonString = JsonSerializer.Serialize<NPCDataModel>(npcDataModel, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(tPath, jsonString);
