@@ -1453,15 +1453,15 @@
                                     </ListBox.ToolTip>
                                 </ListBox>
                                 <ListBox Name="chkExoticLanguage" Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
-                                    <ListBoxItem>Abyssal</ListBoxItem>
-                                    <ListBoxItem>Celestial</ListBoxItem>
-                                    <ListBoxItem>Deep Speech</ListBoxItem>
-                                    <ListBoxItem>Draconic</ListBoxItem>
-                                    <ListBoxItem>Druidic</ListBoxItem>
-                                    <ListBoxItem>Infernal</ListBoxItem>
-                                    <ListBoxItem>Primordial</ListBoxItem>
-                                    <ListBoxItem>Sylvan</ListBoxItem>
-                                    <ListBoxItem>Undercommon</ListBoxItem>
+                                    <ListBoxItem Name="chkAbyssal">Abyssal</ListBoxItem>
+                                    <ListBoxItem Name="chkCelestial">Celestial</ListBoxItem>
+                                    <ListBoxItem Name="chkDeepSpeech">Deep Speech</ListBoxItem>
+                                    <ListBoxItem Name="chkDraconic">Draconic</ListBoxItem>
+                                    <ListBoxItem Name="chkDruidic">Druidic</ListBoxItem>
+                                    <ListBoxItem Name="chkInfernal">Infernal</ListBoxItem>
+                                    <ListBoxItem Name="chkPrimordial">Primordial</ListBoxItem>
+                                    <ListBoxItem Name="chkSylvan">Sylvan</ListBoxItem>
+                                    <ListBoxItem Name="chkUndercommon">Undercommon</ListBoxItem>
                                     <ListBox.ToolTip>
                                         <TextBlock>
                                             Select the exotic languages that your NPC knows.
@@ -1477,23 +1477,23 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <ListBox Name="chkMonstrousLanguage" Margin="125,0,0,0" FontSize="12" Height="185" Width="150">
-                                    <ListBoxItem>Aarakocra</ListBoxItem>
-                                    <ListBoxItem>Aquan</ListBoxItem>
-                                    <ListBoxItem>Auran</ListBoxItem>
-                                    <ListBoxItem>Bullywug</ListBoxItem>
-                                    <ListBoxItem>Gith</ListBoxItem>
-                                    <ListBoxItem>Gnoll</ListBoxItem>
-                                    <ListBoxItem>Grell</ListBoxItem>
-                                    <ListBoxItem>Grung</ListBoxItem>
-                                    <ListBoxItem>Hook Horror</ListBoxItem>
-                                    <ListBoxItem>Ice Toad</ListBoxItem>
-                                    <ListBoxItem>Ignan</ListBoxItem>
-                                    <ListBoxItem>Ixitxachitl</ListBoxItem>
-                                    <ListBoxItem>Modron</ListBoxItem>
-                                    <ListBoxItem>Otyugh</ListBoxItem>
-                                    <ListBoxItem>Sahuagin</ListBoxItem>
-                                    <ListBoxItem>Slaad</ListBoxItem>
-                                    <ListBoxItem>Sphinx</ListBoxItem>
+                                    <ListBoxItem Name="chkAarakocra">Aarakocra</ListBoxItem>
+                                    <ListBoxItem Name="chkAquan">Aquan</ListBoxItem>
+                                    <ListBoxItem Name="chkAuran">Auran</ListBoxItem>
+                                    <ListBoxItem Name="chkBullywug">Bullywug</ListBoxItem>
+                                    <ListBoxItem Name="chkGith">Gith</ListBoxItem>
+                                    <ListBoxItem Name="chkGnoll">Gnoll</ListBoxItem>
+                                    <ListBoxItem Name="chkGrell">Grell</ListBoxItem>
+                                    <ListBoxItem Name="chkGrung">Grung</ListBoxItem>
+                                    <ListBoxItem Name="chkHookHorror">Hook Horror</ListBoxItem>
+                                    <ListBoxItem Name="chkIceToad">Ice Toad</ListBoxItem>
+                                    <ListBoxItem Name="chkIgnan">Ignan</ListBoxItem>
+                                    <ListBoxItem Name="chkIxitxachitl">Ixitxachitl</ListBoxItem>
+                                    <ListBoxItem Name="chkModron">Modron</ListBoxItem>
+                                    <ListBoxItem Name="chkOtyugh">Otyugh</ListBoxItem>
+                                    <ListBoxItem Name="chkSahuagin">Sahuagin</ListBoxItem>
+                                    <ListBoxItem Name="chkSlaad">Slaad</ListBoxItem>
+                                    <ListBoxItem Name="chkSphinx">Sphinx</ListBoxItem>
                                     <ListBoxItem>Terran</ListBoxItem>
                                     <ListBoxItem>Thri-kreen</ListBoxItem>
                                     <ListBoxItem>Tlincali</ListBoxItem>
