@@ -16,7 +16,7 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
                         <Label Content="Actions" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <TextBox Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
+                        <TextBox Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5" TextChanged="TextBox_TextChanged"/>
                         <StackPanel Orientation="Horizontal">
                             <Button Name="btn_Edit1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
@@ -180,10 +180,10 @@
                 <Label Content="Multiattack" FontWeight="Bold" Foreground="Gray" Padding="0" Margin="20,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Multiattack:" Padding="0" Margin="25,5,0,0"/>
-                    <CheckBox Padding="0" Margin="5,7,0,0" />
-                    <TextBox TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <CheckBox x:Name="multiAttackCB" Padding="0" Margin="5,7,0,0" IsChecked="{Binding IsMultiAttack}"/>
+                    <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding SelectedText}"/>
                 </StackPanel>
-                <Button Content="Update" Width="75" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="285,5,0,0"/>
+                <Button Content="Update" Width="75" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="285,5,0,0" Click="updateMultiAttack"/>
                 <Label Content="Weapon Attack" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
