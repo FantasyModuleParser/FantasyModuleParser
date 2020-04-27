@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using EngineeringSuite;
+using EngineeringSuite.NPC.DTO.NPCAction;
 
 namespace EngineeringSuite.NPC
 {
@@ -20,9 +21,23 @@ namespace EngineeringSuite.NPC
     /// </summary>
     public partial class NPCEActions : Window
     {
+
+        public bool IsMultiAttack { get; set; }
+        public String SelectedText { get; set; }
+        internal ActionDTO ActionDTO { get => actionDTO; set => actionDTO = value; }
+
+        private ActionDTO actionDTO;
+
         public NPCEActions()
         {
             InitializeComponent();
+            multiAttackCB.DataContext = this;
+            multiAttackTextArea.DataContext = this;
+
+            if(actionDTO == null)
+            {
+                actionDTO = new ActionDTO();
+            }
         }
         #region NPCE_Up
         private void Up2_Click(object sender, RoutedEventArgs e)
@@ -225,6 +240,27 @@ namespace EngineeringSuite.NPC
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void updateMultiAttack(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Multiattack Update called :: Checkbox Value = " + IsMultiAttack.ToString());
+            Console.WriteLine("Multiattack Textbox content :: " + multiAttackTextArea.Text);
+
+            if (IsMultiAttack)
+            {
+                actionDTO.multiattack = new Multiattack(multiAttackTextArea.Text);
+            } else
+            {
+                actionDTO.multiattack = null;
+            }
+
+            Console.WriteLine(actionDTO);
         }
     }
 }
