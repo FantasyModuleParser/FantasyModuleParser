@@ -614,7 +614,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Label Content="Blindsight" HorizontalAlignment="Left" Margin="52,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strBlindsight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40">
+                            <TextBox Name="strBlindsight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Blindsight}" VerticalAlignment="Top" Width="40">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum blindsight range in feet (ft.)
@@ -623,11 +623,11 @@
                                     </TextBlock>
                                 </TextBox.ToolTip>
                             </TextBox>
-                            <CheckBox Name="chkBlindBeyond" Content="blind beyond" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="5,5,0,0"/>
+                            <CheckBox Name="chkBlindBeyond" IsChecked="{Binding BlindBeyond}" Content="blind beyond" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="5,5,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Darkvision" HorizontalAlignment="Left" Margin="62,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strDarkvision" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strDarkvision" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Darkvision}" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum darkvision range in feet (ft.)
@@ -639,7 +639,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Tremorsense" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strTremorsense" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strTremorsense" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Tremorsense}" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum tremorsense range in feet (ft.)
@@ -651,7 +651,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Truesight" HorizontalAlignment="Left" Margin="69,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strTruesight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strTruesight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Truesight}" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum truesight range in feet (ft.)
@@ -663,7 +663,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Passive Perception" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strPassivePerception" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strPassivePerception" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding PassivePerception}" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's Passive Perception
@@ -677,7 +677,7 @@
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="420" Margin="0,470,0,0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="5,0,0,0">
                             <Label Content="Challenge" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                            <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="1" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding ChallengeRating}" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the appropriate challenge rating for the NPC.
@@ -685,7 +685,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Experience" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                            <TextBox Name="strExperience" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="1" VerticalAlignment="Top" Width="40" Padding="0">
+                            <TextBox Name="strExperience" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding XP}" VerticalAlignment="Top" Width="40" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         This will be calculated automatically based on the challenge rating chosen; this can be overwritten by typing a new XP value
@@ -696,7 +696,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="20" Margin="15,5,0,0">
                             <Label Content="NPC Token:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                            <TextBox Name="strNPCToken" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,0,0,0" Padding="0">
+                            <TextBox Name="strNPCToken" Text="{Binding NPCToken}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,0,0,0" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         File location to the PNG image used for the NPC.
@@ -719,6 +719,9 @@
             </TabItem>
             <TabItem Header="Resistances">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.DataContext>
+                        <local:NPCDataModel />
+                    </Grid.DataContext>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="55" Margin="10,15,0,0" VerticalAlignment="Top" Width="590"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="155" Margin="10,78,0,0" VerticalAlignment="Top" Width="590"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="140" Margin="10,242,0,0" VerticalAlignment="Top" Width="590"/>
@@ -741,91 +744,91 @@
                             <Label Content="Slashing" FontSize="10" Padding="13,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Name="chkAcidVuln"  Margin="33,0,0,0">
+                            <CheckBox Name="chkAcidVuln" IsChecked="{Binding VulnerabilityAcid}" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to acid damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkColdVuln" Margin="15,0,0,0">
+                            <CheckBox Name="chkColdVuln" IsChecked="{Binding VulnerabilityCold}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to cold damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkFireVuln" Margin="15,0,0,0">
+                            <CheckBox Name="chkFireVuln" IsChecked="{Binding VulnerabilityFire}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to fire damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkForceVuln" Margin="16,0,0,0">
+                            <CheckBox Name="chkForceVuln" IsChecked="{Binding VulnerabilityForce}" Margin="16,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to force damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkLightningVuln" Margin="32,0,0,0">
+                            <CheckBox Name="chkLightningVuln" IsChecked="{Binding VulnerabilityLightning}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to lightning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkNecroticVuln" Margin="35,0,0,0">
+                            <CheckBox Name="chkNecroticVuln" IsChecked="{Binding VulnerabilityNecrotic}" Margin="35,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to necrotic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPoisonVuln" Margin="31,0,0,0">
+                            <CheckBox Name="chkPoisonVuln" IsChecked="{Binding VulnerabilityPoison}" Margin="31,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to poison damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPsychicVuln" Margin="27,0,0,0">
+                            <CheckBox Name="chkPsychicVuln" IsChecked="{Binding VulnerabilityPsychic}" Margin="27,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to psychic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkRadiantVuln" Margin="30,0,0,0">
+                            <CheckBox Name="chkRadiantVuln" IsChecked="{Binding VulnerabilityRadiant}" Margin="30,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to radiant damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkThunderVuln" Margin="32,0,0,0">
+                            <CheckBox Name="chkThunderVuln" IsChecked="{Binding VulnerabilityThunder}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to thunder damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkBludgeoningVuln" Margin="36,0,0,0">
+                            <CheckBox Name="chkBludgeoningVuln" IsChecked="{Binding VulnerabilityBludgeoning}" Margin="36,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to bludgeoning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPiercingVuln" Margin="37,0,0,0">
+                            <CheckBox Name="chkPiercingVuln" IsChecked="{Binding VulnerabilityPiercing}" Margin="37,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to piercing damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkSlashingVuln" Margin="32,0,0,0">
+                            <CheckBox Name="chkSlashingVuln" IsChecked="{Binding VulnerabilitySlashing}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is vulnerable to slashing damage
@@ -850,91 +853,91 @@
                             <Label Content="Slashing" FontSize="10" Padding="13,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Name="chkAcidResist" Margin="33,0,0,10">
+                            <CheckBox Name="chkAcidResist" IsChecked="{Binding ResistanceAcid}" Margin="33,0,0,10">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to acid damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkColdResist" Margin="15,0,0,0">
+                            <CheckBox Name="chkColdResist" IsChecked="{Binding ResistanceCold}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to cold damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkFireResist" Margin="15,0,0,0">
+                            <CheckBox Name="chkFireResist" IsChecked="{Binding ResistanceFire}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to fire damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkForceResist" Margin="15,0,0,0">
+                            <CheckBox Name="chkForceResist" IsChecked="{Binding ResistanceForce}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to force damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkLightningResist" Margin="33,0,0,0">
+                            <CheckBox Name="chkLightningResist" IsChecked="{Binding ResistanceLightning}" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to lightning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkNecroticResist" Margin="33,0,0,0">
+                            <CheckBox Name="chkNecroticResist" IsChecked="{Binding ResistanceNecrotic}" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to necrotic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPoisonResist" Margin="32,0,0,0">
+                            <CheckBox Name="chkPoisonResist" IsChecked="{Binding ResistancePoison}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to poison damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPsychicResist" Margin="27,0,0,0">
+                            <CheckBox Name="chkPsychicResist" IsChecked="{Binding ResistancePsychic}" Margin="27,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to psychic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkRadiantResist" Margin="32,0,0,0">
+                            <CheckBox Name="chkRadiantResist" IsChecked="{Binding ResistanceRadiant}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to radiant damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkThunderResist" Margin="32,0,0,0">
+                            <CheckBox Name="chkThunderResist" IsChecked="{Binding ResistanceThunder}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to thunder damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkBludgeoningResist" Margin="32,0,0,0">
+                            <CheckBox Name="chkBludgeoningResist" IsChecked="{Binding ResistanceBludgeoning}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to bludgeoning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPiercingResist" Margin="38,0,0,0">
+                            <CheckBox Name="chkPiercingResist" IsChecked="{Binding ResistancePiercing}" Margin="38,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to piercing damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkSlashingResist" Margin="34,0,0,0">
+                            <CheckBox Name="chkSlashingResist" IsChecked="{Binding ResistanceSlashing}" Margin="34,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is resistant to slashing damage
@@ -943,42 +946,42 @@
                             </CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <RadioButton Name="radioNoSpecResist" Content="No special weapon resistances" Margin="50,0,0,0" IsChecked="True">
+                            <RadioButton Name="radioNoSpecResist" IsChecked="{Binding ResistanceNoSpecialWeapon}" Content="No special weapon resistances" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC has no special weapon resistances beyond those noted above
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioResistNonmagic" Content="Resistant to nonmagical weapons" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagic" IsChecked="{Binding ResistanceWeaponNonmagical}" Content="Resistant to nonmagical weapons" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to nonmagical weapons
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioResistNonmagicSilver" Content="Resistant to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagicSilver" IsChecked="{Binding ResistanceWeaponNonmagicalSilvered}" Content="Resistant to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to weapons that aren't silvered
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioResistNonmagicAdamant" Content="Resistant to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagicAdamant" IsChecked="{Binding ResistanceWeaponNonmagicalAdamantine}" Content="Resistant to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to weapons that aren't adamantine
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioResistNonmagicColdforged" Content="Resistant to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistNonmagicColdforged" IsChecked="{Binding ResistanceWeaponNonmagicalColdForgedIron}" Content="Resistant to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to weapons that aren't made of cold-forged iron
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioResistMagic" Content="Resistant to magic weapons" Margin="50,0,0,0">
+                            <RadioButton Name="radioResistMagic" IsChecked="{Binding ResistanceWeaponMagical}" Content="Resistant to magic weapons" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is resistant to magical weapons
@@ -1003,91 +1006,91 @@
                             <Label Content="Slashing" FontSize="10" Padding="13,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Name="chkAcidImmune" Margin="33,0,0,10">
+                            <CheckBox Name="chkAcidImmune" IsChecked="{Binding ImmunityAcid}" Margin="33,0,0,10">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to acid damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkColdImmune" Margin="15,0,0,0">
+                            <CheckBox Name="chkColdImmune" IsChecked="{Binding ImmunityCold}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to cold damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkFireImmune" Margin="15,0,0,0">
+                            <CheckBox Name="chkFireImmune" IsChecked="{Binding ImmunityFire}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to fire damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkForceImmune" Margin="15,0,0,0">
+                            <CheckBox Name="chkForceImmune" IsChecked="{Binding ImmunityForce}" Margin="15,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to force damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkLightningImmune" Margin="33,0,0,0">
+                            <CheckBox Name="chkLightningImmune" IsChecked="{Binding ImmunityLightning}" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to lightning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkNecroticImmune" Margin="33,0,0,0">
+                            <CheckBox Name="chkNecroticImmune" IsChecked="{Binding ImmunityNecrotic}" Margin="33,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to necrotic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPoisonImmune" Margin="32,0,0,0">
+                            <CheckBox Name="chkPoisonImmune" IsChecked="{Binding ImmunityPoison}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to poison damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPsychicImmune" Margin="27,0,0,0">
+                            <CheckBox Name="chkPsychicImmune" IsChecked="{Binding ImmunityPsychic}" Margin="27,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to psychic damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkRadiantImmune" Margin="32,0,0,0">
+                            <CheckBox Name="chkRadiantImmune" IsChecked="{Binding ImmunityRadiant}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to radiant damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkThunderImmune" Margin="32,0,0,0">
+                            <CheckBox Name="chkThunderImmune" IsChecked="{Binding ImmunityThunder}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to thunder damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkBludgeoningImmune" Margin="32,0,0,0">
+                            <CheckBox Name="chkBludgeoningImmune" IsChecked="{Binding ImmunityBludgeoning}" Margin="32,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to bludgeoning damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkPiercingImmune" Margin="38,0,0,0">
+                            <CheckBox Name="chkPiercingImmune" IsChecked="{Binding ImmunityPiercing}" Margin="38,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to piercing damage
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Name="chkSlashingImmune" Margin="34,0,0,0">
+                            <CheckBox Name="chkSlashingImmune" IsChecked="{Binding ImmunitySlashing}" Margin="34,0,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check here if your NPC is immune to slashing damage
@@ -1096,35 +1099,35 @@
                             </CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <RadioButton Name="radioNoSpecImmune" Content="No special weapon immunities" Margin="50,0,0,0" IsChecked="True">
+                            <RadioButton Name="radioNoSpecImmune" IsChecked="{Binding ImmunityNoSpecialWeapon}" Content="No special weapon immunities" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC has no special weapon immunities beyond those noted above
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagic" Content="Immune to nonmagical weapons" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagic" IsChecked="{Binding ImmunityWeaponNonmagical}" Content="Immune to nonmagical weapons" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to nonmagical weapons
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagicSilver" Content="Immune to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagicSilver" IsChecked="{Binding ImmunityWeaponNonmagicalSilvered}" Content="Immune to nonmagical weapons that aren't silvered" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to weapons that aren't silvered
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagicAdamant" Content="Immune to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagicAdamant" IsChecked="{Binding ImmunityWeaponNonmagicalAdamantine}" Content="Immune to nonmagical weapons that aren't adamantine" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to weapons that aren't adamantine
                                     </TextBlock>
                                 </RadioButton.ToolTip>
                             </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagicColdforged" Content="Immune to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
+                            <RadioButton Name="radioImmuneNonmagicColdforged" IsChecked="{Binding ImmunityWeaponNonmagicalColdForgedIron}" Content="Immune to nonmagical weapons that aren't cold-forged iron" Margin="50,0,0,0">
                                 <RadioButton.ToolTip>
                                     <TextBlock>
                                         Select this option if your NPC is immune to weapons that aren't made of cold-forged iron
@@ -1135,28 +1138,28 @@
                         <Label Content="Condition Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Name="chkBlinded" Content="Blinded" Margin="50,15,0,0">
+                                <CheckBox Name="chkBlinded" IsChecked="{Binding ConditionBlinded}" Content="Blinded" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be blinded
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkCharmed" Content="Charmed" Margin="50,15,0,0">
+                                <CheckBox Name="chkCharmed" IsChecked="{Binding ConditionCharmed}" Content="Charmed" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be charmed
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkDeafened" Content="Deafened" Margin="50,15,0,0">
+                                <CheckBox Name="chkDeafened" IsChecked="{Binding ConditionDeafened}" Content="Deafened" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be deafened
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkExhaustion" Content="Exhaustion" Margin="50,15,0,0">
+                                <CheckBox Name="chkExhaustion" IsChecked="{Binding ConditionExhaustion}" Content="Exhaustion" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot sufer from exhausted
@@ -1165,28 +1168,28 @@
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Name="chkFrightened" Content="Frightened" Margin="50,15,0,0">
+                                <CheckBox Name="chkFrightened" IsChecked="{Binding ConditionFrightened}" Content="Frightened" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be frightened
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkGrappled" Content="Grappled" Margin="50,15,0,0">
+                                <CheckBox Name="chkGrappled" IsChecked="{Binding ConditionGrappled}" Content="Grappled" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be grappled
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkIncapacitated" Content="Incapacitated" Margin="50,15,0,0">
+                                <CheckBox Name="chkIncapacitated" IsChecked="{Binding ConditionIncapacitated}" Content="Incapacitated" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be incapacitated
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkInvisible" Content="Invisible" Margin="50,15,0,0">
+                                <CheckBox Name="chkInvisible" IsChecked="{Binding ConditionInvisible}" Content="Invisible" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be made invisible
@@ -1195,28 +1198,28 @@
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Name="chkParalyzed" Content="Paralyzed" Margin="50,15,0,0">
+                                <CheckBox Name="chkParalyzed" IsChecked="{Binding ConditionParalyzed}" Content="Paralyzed" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be paralyzed
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkPetrified" Content="Petrified" Margin="50,15,0,0">
+                                <CheckBox Name="chkPetrified" IsChecked="{Binding ConditionPetrified}" Content="Petrified" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be petrified
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkPoisoned" Content="Poisoned" Margin="50,15,0,0">
+                                <CheckBox Name="chkPoisoned" IsChecked="{Binding ConditionPoisoned}" Content="Poisoned" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be poisoned
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkProne" Content="Prone" Margin="50,15,0,0">
+                                <CheckBox Name="chkProne" IsChecked="{Binding ConditionProne}" Content="Prone" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be knocked prone
@@ -1225,21 +1228,21 @@
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Name="chkRestrained" Content="Restrained" Margin="50,15,0,0">
+                                <CheckBox Name="chkRestrained" IsChecked="{Binding ConditionRestrained}" Content="Restrained" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be restrained
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkStunned" Content="Stunned" Margin="50,15,0,0">
+                                <CheckBox Name="chkStunned" IsChecked="{Binding ConditionStunned}" Content="Stunned" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be stunned
                                         </TextBlock>
                                     </CheckBox.ToolTip>
                                 </CheckBox>
-                                <CheckBox Name="chkUnconscious" Content="Unconscious" Margin="50,15,0,0">
+                                <CheckBox Name="chkUnconscious" IsChecked="{Binding ConditionUnconscious}" Content="Unconscious" Margin="50,15,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check here if your NPC cannot be rendered unconscious
@@ -1247,14 +1250,14 @@
                                     </CheckBox.ToolTip>
                                 </CheckBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <CheckBox Name="chkOther" Content="Other" Margin="50,15,0,0">
+                                    <CheckBox Name="chkOther" IsChecked="{Binding ConditionOther}" Content="Other" Margin="50,15,0,0">
                                         <CheckBox.ToolTip>
                                             <TextBlock>
                                             Check here if your NPC is immune to any other condition (type in the box)
                                             </TextBlock>
                                         </CheckBox.ToolTip>
                                     </CheckBox>
-                                    <TextBox Name="strOther" Height="15" Width="95" Margin="10,16,0,0">
+                                    <TextBox Name="strOther" Text="{Binding ConditionOtherText}" Height="15" Width="95" Margin="10,16,0,0">
                                         <TextBox.ToolTip>
                                             <TextBlock>
                                                 Type in the name of any other conidition that your NPC is immune to
