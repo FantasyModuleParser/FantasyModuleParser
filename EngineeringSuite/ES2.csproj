@@ -222,6 +222,11 @@
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\DTO\NPCAction\DamageProperty.cs" />
+    <Compile Include="NPC\DTO\NPCAction\Multiattack.cs" />
+    <Compile Include="NPC\DTO\NPCAction\ActionDTO.cs" />
+    <Compile Include="NPC\DTO\NPCAction\OtherAction.cs" />
+    <Compile Include="NPC\DTO\NPCAction\WeaponAttack.cs" />
     <Compile Include="NPC\NPCDataModel.cs" />
     <Compile Include="NPC\NPCEFGListOptions.xaml.cs">
       <DependentUpon>NPCEFGListOptions.xaml</DependentUpon>
