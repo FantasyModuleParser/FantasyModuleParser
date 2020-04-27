@@ -168,5 +168,13 @@ namespace EngineeringSuite.NPC
         public bool LangOtyugh { get; set; }
         public bool LangSahuagin { get; set; }
         public bool LangSlaad { get; set; }
+        public bool LangSphinx { get; set; }
+        public bool LangTerran { get; set; }
+        public bool LangThrikreen { get; set; }
+        public bool LangTlincali { get; set; }
+        public bool LangTroglodyte { get; set; }
+        public bool LangUmberhulk { get; set; }
+        public bool LangVegepygmy { get; set; }
+        public bool LangYeti { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace EngineeringSuite.NPC
     /// NPC Engineer back-end C# coding
     /// Function openfolder controls creating all the required folders if they don't exist already
     /// </summary>
-    public partial class NPCEngineer : Window
+public partial class NPCEngineer : Window
     {
         public NPCEngineer()
         {
@@ -857,6 +857,15 @@ namespace EngineeringSuite.NPC
             {
                 //Do something if it fails to parse
             }
+            npcDataModel.LangCommon = chkCommon.IsSelected;
+            npcDataModel.LangDwarvish = chkDwarvish.IsSelected;
+            npcDataModel.LangElvish = chkElvish.IsSelected;
+            npcDataModel.LangGiant = chkGiant.IsSelected;
+            npcDataModel.LangGnomish = chkGnomish.IsSelected;
+            npcDataModel.LangGoblin = chkGoblin.IsSelected;
+            npcDataModel.LangHalfling = chkHalfling.IsSelected;
+            npcDataModel.LangOrc = chkOrc.IsSelected;
+            npcDataModel.LangThievesCant = chkThievesCant.IsSelected;
 
             var jsonString = JsonSerializer.Serialize<NPCDataModel>(npcDataModel, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(tPath, jsonString);
