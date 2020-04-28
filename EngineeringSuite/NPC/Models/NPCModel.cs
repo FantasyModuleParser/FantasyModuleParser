@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EngineeringSuite.NPC
 {
-    public class NPCDataModel
+    public class NPCModel
     {
         public string NPCName { get; set; }
         public string Size { get; set; }
@@ -31,17 +31,11 @@ namespace EngineeringSuite.NPC
         public int AttributeWis { get; set; }
         public int AttributeCha { get; set; }
         public int SavingThrowStr { get; set; }
-        public bool SavingThrowStr0 { get; set; }
         public int SavingThrowDex { get; set; }
-        public bool SavingThrowDex0 { get; set; }
         public int SavingThrowCon { get; set; }
-        public bool SavingThrowCon0 { get; set; }
         public int SavingThrowInt { get; set; }
-        public bool SavingThrowInt0 { get; set; }
         public int SavingThrowWis { get; set; }
-        public bool SavingThrowWis0 { get; set; }
         public int SavingThrowCha { get; set; }
-        public bool SavingThrowCha0 { get; set; }
         public int Blindsight { get; set; }
         public bool BlindBeyond { get; set; }
         public int Darkvision { get; set; }
@@ -51,10 +45,10 @@ namespace EngineeringSuite.NPC
         public int ChallengeRating { get; set; }
         public int XP { get; set; }
         public string NPCToken { get; set; }
-        public List<string> DamageResistance { get; } = new List<string>();
-        public List<string> DamageVulnerability { get; } = new List<string>();
-        public List<string> DamageImmunity { get; } = new List<string>();
-        public List<string> ConditionImmunity { get; } = new List<string>();
+        public List<string> DamageResistance { get; set; }
+        public List<string> DamageVulnerability { get; set; }
+        public List<string> DamageImmunity { get; set; }
+        public List<string> ConditionImmunity { get; set; }
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
         public bool ResistanceNoSpecialWeapon { get; set; }
@@ -85,10 +79,10 @@ namespace EngineeringSuite.NPC
         public int SleightOfHand { get; set; }
         public int Stealth { get; set; }
         public int Survival { get; set; }
-        public List<string> StandardLanguages { get; } = new List<string>();
-        public List<string> ExoticLanguages { get; } = new List<string>();
-        public List<string> MonstrousLanguages { get; } = new List<string>();
-        public List<string> UserLanguages { get; } = new List<string>();
+        public List<string> StandardLanguages { get; set; }
+        public List<string> ExoticLanguages { get; set; }
+        public List<string> MonstrousLanguages { get; set; }
+        public List<string> UserLanguages { get; set; }
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }

@@ -110,6 +110,9 @@
     <Reference Include="Microsoft.Data.Edm, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Edm.5.8.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -225,12 +228,13 @@
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\DTO\NPCAction\DamageProperty.cs" />
-    <Compile Include="NPC\DTO\NPCAction\Multiattack.cs" />
-    <Compile Include="NPC\DTO\NPCAction\ActionDTO.cs" />
-    <Compile Include="NPC\DTO\NPCAction\OtherAction.cs" />
-    <Compile Include="NPC\DTO\NPCAction\WeaponAttack.cs" />
-    <Compile Include="NPC\NPCDataModel.cs" />
+    <Compile Include="NPC\Controllers\NPCController.cs" />
+    <Compile Include="NPC\Models\NPCAction\DamageProperty.cs" />
+    <Compile Include="NPC\Models\NPCAction\Multiattack.cs" />
+    <Compile Include="NPC\Models\NPCAction\ActionDTO.cs" />
+    <Compile Include="NPC\Models\NPCAction\OtherAction.cs" />
+    <Compile Include="NPC\Models\NPCAction\WeaponAttack.cs" />
+    <Compile Include="NPC\Models\NPCModel.cs" />
     <Compile Include="NPC\NPCEFGListOptions.xaml.cs">
       <DependentUpon>NPCEFGListOptions.xaml</DependentUpon>
     </Compile>
@@ -454,5 +458,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
