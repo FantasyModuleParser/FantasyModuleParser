@@ -731,7 +731,7 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Damage Vulnerabilities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <ListBox Name="listDmgVulnerabilities" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
+                            <ListBox Name="listDamageVulnerability" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
                                 <ListBoxItem>Acid</ListBoxItem>
                                 <ListBoxItem>Cold</ListBoxItem>
                                 <ListBoxItem>Fire</ListBoxItem>
@@ -756,7 +756,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <Label Content="Damage Resistances" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <ListBox Name="listResistances" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
+                            <ListBox Name="listDamageResistance" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
                                 <ListBoxItem>Acid</ListBoxItem>
                                 <ListBoxItem>Cold</ListBoxItem>
                                 <ListBoxItem>Fire</ListBoxItem>
@@ -781,7 +781,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <Label Content="Damage Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <ListBox Name="listImmunities" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
+                            <ListBox Name="listDamageImmunity" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
                                 <ListBoxItem>Acid</ListBoxItem>
                                 <ListBoxItem>Cold</ListBoxItem>
                                 <ListBoxItem>Fire</ListBoxItem>
@@ -808,7 +808,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0,220,0,0">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Condition Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <ListBox Name="listConditionImmunities" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
+                            <ListBox Name="listConditionImmunity" SelectionMode="Multiple" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
                                 <ListBoxItem>Blinded</ListBoxItem>
                                 <ListBoxItem>Charmed</ListBoxItem>
                                 <ListBoxItem>Deafened</ListBoxItem>
