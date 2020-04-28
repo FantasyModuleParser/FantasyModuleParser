@@ -135,46 +135,9 @@ namespace EngineeringSuite.NPC
         public int SleightOfHand { get; set; }
         public int Stealth { get; set; }
         public int Survival { get; set; }
-        public bool LangCommon { get; set; }
-        public bool LangDwarvish { get; set; }
-        public bool LangElvish { get; set; }
-        public bool LangGiant { get; set; }
-        public bool LangGnomish { get; set; }
-        public bool LangGoblin { get; set; }
-        public bool LangHalfling { get; set; }
-        public bool LangOrc { get; set; }
-        public bool LangThievesCant { get; set; }
-        public bool LangAbyssal { get; set; }
-        public bool LangCelestial { get; set; }
-        public bool LangDeepSpeech { get; set; }
-        public bool LangDraconic { get; set; }
-        public bool LangDruidic { get; set; }
-        public bool LangInfernal { get; set; }
-        public bool LangPrimordial { get; set; }
-        public bool LangSylvan { get; set; }
-        public bool LangUndercommon { get; set; }
-        public bool LangAarakocra { get; set; }
-        public bool LangAquan { get; set; }
-        public bool LangAuran { get; set; }
-        public bool LangBullywug { get; set; }
-        public bool LangGith { get; set; }
-        public bool LangGrell { get; set; }
-        public bool LangGrung { get; set; }
-        public bool LangHookHorror { get; set; }
-        public bool LangIceToad { get; set; }
-        public bool LangIgnan { get; set; }
-        public bool LangIxitxachitl { get; set; }
-        public bool LangModron { get; set; }
-        public bool LangOtyugh { get; set; }
-        public bool LangSahuagin { get; set; }
-        public bool LangSlaad { get; set; }
-        public bool LangSphinx { get; set; }
-        public bool LangTerran { get; set; }
-        public bool LangThrikreen { get; set; }
-        public bool LangTlincali { get; set; }
-        public bool LangTroglodyte { get; set; }
-        public bool LangUmberhulk { get; set; }
-        public bool LangVegepygmy { get; set; }
-        public bool LangYeti { get; set; }
+        public List<string> StandardLanguages { get; } = new List<string>();
+        public List<string> ExoticLanguages { get; } = new List<string>();
+        public List<string> MonstrousLanguages { get; } = new List<string>();
+        public List<string> UserLanguages { get; } = new List<string>();
     }
 }

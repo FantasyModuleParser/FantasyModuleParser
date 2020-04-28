@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -857,15 +859,14 @@ public partial class NPCEngineer : Window
             {
                 //Do something if it fails to parse
             }
-            npcDataModel.LangCommon = chkCommon.IsSelected;
-            npcDataModel.LangDwarvish = chkDwarvish.IsSelected;
-            npcDataModel.LangElvish = chkElvish.IsSelected;
-            npcDataModel.LangGiant = chkGiant.IsSelected;
-            npcDataModel.LangGnomish = chkGnomish.IsSelected;
-            npcDataModel.LangGoblin = chkGoblin.IsSelected;
-            npcDataModel.LangHalfling = chkHalfling.IsSelected;
-            npcDataModel.LangOrc = chkOrc.IsSelected;
-            npcDataModel.LangThievesCant = chkThievesCant.IsSelected;
+            IEnumerable<string> StandardLanguages = listStandard.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
+            IEnumerable<string> ExoticLanguages = listExotic.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
+            IEnumerable<string> MonstrousLanguages = listMonstrous.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
+            IEnumerable<string> UserLanguages = listUser.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
+            npcDataModel.StandardLanguages.AddRange(StandardLanguages);
+            npcDataModel.ExoticLanguages.AddRange(ExoticLanguages);
+            npcDataModel.MonstrousLanguages.AddRange(MonstrousLanguages);
+            npcDataModel.UserLanguages.AddRange(UserLanguages);
 
             var jsonString = JsonSerializer.Serialize<NPCDataModel>(npcDataModel, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(tPath, jsonString);
