@@ -351,6 +351,7 @@ public partial class NPCEngineer : Window
             win2.Show();
         }
         #endregion
+        #region BaseStatChange
         private void StrengthScore_TextChanged(object sender, RoutedEventArgs e)
         {
             int num;
@@ -365,7 +366,7 @@ public partial class NPCEngineer : Window
                 {
                     strModStr.Content = "+";
                 }
-            }    
+            }
         }
         private void DexterityScore_TextChanged(object sender, RoutedEventArgs e)
         {
@@ -447,6 +448,8 @@ public partial class NPCEngineer : Window
                 }
             }
         }
+        #endregion
+
         private void CreateNPCFile(object sender, RoutedEventArgs e)
         {
 	        string npcName = NPC_name.Text;
@@ -494,20 +497,10 @@ public partial class NPCEngineer : Window
                 DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
                 DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
                 ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-                ResistanceNoSpecialWeapon = radioNoSpecResist.IsChecked.Value,
-                ResistanceWeaponNonmagical = radioResistNonmagic.IsChecked.Value,
-                ResistanceWeaponNonmagicalSilvered = radioResistNonmagicSilver.IsChecked.Value,
-                ResistanceWeaponNonmagicalAdamantine = radioResistNonmagicAdamant.IsChecked.Value,
-                ResistanceWeaponNonmagicalColdForgedIron = radioResistNonmagicColdforged.IsChecked.Value,
-                ResistanceWeaponMagical = radioResistMagic.IsChecked.Value,
-                ImmunityNoSpecialWeapon = radioNoSpecImmune.IsChecked.Value,
-                ImmunityWeaponNonmagical = radioImmuneNonmagic.IsChecked.Value,
-                ImmunityWeaponNonmagicalSilvered = radioImmuneNonmagicSilver.IsChecked.Value,
-                ImmunityWeaponNonmagicalAdamantine = radioImmuneNonmagicAdamant.IsChecked.Value,
-                ImmunityWeaponNonmagicalColdForgedIron = radioImmuneNonmagicColdforged.IsChecked.Value,
+                SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
                 ConditionOther = chkOther.IsChecked.Value,
                 ConditionOtherText = strOther.Text,
-
                 Acrobatics = int.Parse(strAcrobatics.Text),
                 AnimalHandling = int.Parse(strAnimalHandling.Text),
                 Arcana = int.Parse(strArcana.Text),
@@ -525,7 +518,6 @@ public partial class NPCEngineer : Window
                 SleightOfHand = int.Parse(strSleightofHand.Text),
                 Stealth = int.Parse(strStealth.Text),
                 Survival = int.Parse(strSurvival.Text),
-
                 StandardLanguages = listStandard.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
                 ExoticLanguages = listExotic.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
                 MonstrousLanguages = listMonstrous.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
@@ -534,15 +526,37 @@ public partial class NPCEngineer : Window
                 LanguageOptionsText = strLanguageOptionsText.Text,
                 Telepathy = chkTelepathy.IsChecked.Value,
                 TelepathyRange = strTelepathyRange.Text,
-			};
+                Traits1 = strTraits1.Text,
+                TraitsDesc1 = strTraitDesc1.Text,
+                Traits2 = strTraits2.Text,
+                TraitsDesc2 = strTraitDesc2.Text,
+                Traits3 = strTraits3.Text,
+                TraitsDesc3 = strTraitDesc3.Text,
+                Traits4 = strTraits4.Text,
+                TraitsDesc4 = strTraitDesc4.Text,
+                Traits5 = strTraits5.Text,
+                TraitsDesc5 = strTraitDesc5.Text,
+                Traits6 = strTraits6.Text,
+                TraitsDesc6 = strTraitDesc6.Text,
+                Traits7 = strTraits7.Text,
+                TraitsDesc7 = strTraitDesc7.Text,
+                Traits8 = strTraits8.Text,
+                TraitsDesc8 = strTraitDesc8.Text,
+                Traits9 = strTraits9.Text,
+                TraitsDesc9 = strTraitDesc9.Text,
+                Traits10 = strTraits10.Text,
+                TraitsDesc10 = strTraitDesc10.Text,
+                Traits11 = strTraits11.Text,
+                TraitsDesc11 = strTraitDesc11.Text
+            };
 
             npcController.Save(savePath, npcModel);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-	        Regex regex = new Regex("[^0-9]+");
-	        e.Handled = regex.IsMatch(e.Text);
+            Regex regex = new Regex(@"[^0-9-]+"); ;
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

@@ -49,19 +49,10 @@ namespace EngineeringSuite.NPC
         public List<string> DamageVulnerability { get; set; }
         public List<string> DamageImmunity { get; set; }
         public List<string> ConditionImmunity { get; set; }
+        public List<string> SpecialWeaponResistance { get; set; }
+        public List<string> SpecialWeaponImmunity { get; set; }
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
-        public bool ResistanceNoSpecialWeapon { get; set; }
-        public bool ResistanceWeaponNonmagical { get; set; }
-        public bool ResistanceWeaponNonmagicalSilvered { get; set; }
-        public bool ResistanceWeaponNonmagicalAdamantine { get; set; }
-        public bool ResistanceWeaponNonmagicalColdForgedIron { get; set; }
-        public bool ResistanceWeaponMagical { get; set; }
-        public bool ImmunityNoSpecialWeapon { get; set; }
-        public bool ImmunityWeaponNonmagical { get; set; }
-        public bool ImmunityWeaponNonmagicalSilvered { get; set; }
-        public bool ImmunityWeaponNonmagicalAdamantine { get; set; }
-        public bool ImmunityWeaponNonmagicalColdForgedIron { get; set; }
         public int Acrobatics { get; set; }
         public int AnimalHandling { get; set; }
         public int Arcana { get; set; }
@@ -87,5 +78,27 @@ namespace EngineeringSuite.NPC
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
         public string TelepathyRange { get; set; }
+        public string Traits1 { get; set; }
+        public string TraitsDesc1 { get; set; }
+        public string Traits2 { get; set; }
+        public string TraitsDesc2 { get; set; }
+        public string Traits3 { get; set; }
+        public string TraitsDesc3 { get; set; }
+        public string Traits4 { get; set; }
+        public string TraitsDesc4 { get; set; }
+        public string Traits5 { get; set; }
+        public string TraitsDesc5 { get; set; }
+        public string Traits6 { get; set; }
+        public string TraitsDesc6 { get; set; }
+        public string Traits7 { get; set; }
+        public string TraitsDesc7 { get; set; }
+        public string Traits8 { get; set; }
+        public string TraitsDesc8 { get; set; }
+        public string Traits9 { get; set; }
+        public string TraitsDesc9 { get; set; }
+        public string Traits10 { get; set; }
+        public string TraitsDesc10 { get; set; }
+        public string Traits11 { get; set; }
+        public string TraitsDesc11 { get; set; }
     }
 }

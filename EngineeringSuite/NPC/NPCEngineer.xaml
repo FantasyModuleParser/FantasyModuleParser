@@ -722,8 +722,8 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="212" Margin="206,15,0,0" VerticalAlignment="Top" Width="189"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="212" Margin="400,15,0,0" VerticalAlignment="Top" Width="189"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="260" Margin="10,230,0,0" VerticalAlignment="Top" Width="189"/>
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="128" Margin="203,230,0,0" VerticalAlignment="Top" Width="360"/>
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="126" Margin="203,363,0,0" VerticalAlignment="Top" Width="360"/>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="160" Margin="203,230,0,0" VerticalAlignment="Top" Width="360"/>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="140" Margin="203,393,0,0" VerticalAlignment="Top" Width="360"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Damage Vulnerabilities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -831,84 +831,32 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <Label Content="Special Weapon Resistances" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <RadioButton Name="radioNoSpecResist" IsChecked="{Binding ResistanceNoSpecialWeapon}" Content="No special weapon resistances" Margin="10,5,0,0">
-                                <RadioButton.ToolTip>
+                            <ListBox Name="listWeaponResistances" SelectionMode="Single" HorizontalAlignment="Left" Margin="20,0,0,0" FontSize="12" Height="130" Width="340">
+                                <ListBoxItem>No Special Weapon Resistance</ListBoxItem>
+                                <ListBoxItem>Resistant to nonmagical Weapons</ListBoxItem>
+                                <ListBoxItem>Resistant to nonmagical weapons that aren't silvered</ListBoxItem>
+                                <ListBoxItem>Resistant to nonmagical weapons that aren't adamantine</ListBoxItem>
+                                <ListBoxItem>Resistant to nonmagical weapons that aren't cold-forged iron</ListBoxItem>
+                                <ListBoxItem>Resistant to magic weapons</ListBoxItem>
+                                <ListBox.ToolTip>
                                     <TextBlock>
-                                        Select this option if your NPC has no special weapon resistances beyond those noted above
+                                        Select the option that matches the weapon resistance your NPC has.
                                     </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioResistNonmagic" IsChecked="{Binding ResistanceWeaponNonmagical}" Content="Resistant to nonmagical weapons" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
+                                </ListBox.ToolTip>
+                            </ListBox>
+                            <Label Content="Special Weapon Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <ListBox Name="listWeaponImmunity" SelectionMode="Single" HorizontalAlignment="Left" Margin="20,0,0,0" FontSize="12" Height="110" Width="340">
+                                <ListBoxItem>No Special Weapon Immunity</ListBoxItem>
+                                <ListBoxItem>Immune to nonmagical Weapons</ListBoxItem>
+                                <ListBoxItem>Immune to nonmagical weapons that aren't silvered</ListBoxItem>
+                                <ListBoxItem>Immune to nonmagical weapons that aren't adamantine</ListBoxItem>
+                                <ListBoxItem>Immune to nonmagical weapons that aren't cold-forged iron</ListBoxItem>
+                                <ListBox.ToolTip>
                                     <TextBlock>
-                                        Select this option if your NPC is resistant to nonmagical weapons
+                                        Select the option that matches the weapon resistance your NPC has.
                                     </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioResistNonmagicSilver" IsChecked="{Binding ResistanceWeaponNonmagicalSilvered}" Content="Resistant to nonmagical weapons that aren't silvered" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is resistant to weapons that aren't silvered
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioResistNonmagicAdamant" IsChecked="{Binding ResistanceWeaponNonmagicalAdamantine}" Content="Resistant to nonmagical weapons that aren't adamantine" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is resistant to weapons that aren't adamantine
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioResistNonmagicColdforged" IsChecked="{Binding ResistanceWeaponNonmagicalColdForgedIron}" Content="Resistant to nonmagical weapons that aren't cold-forged iron" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is resistant to weapons that aren't made of cold-forged iron
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioResistMagic" IsChecked="{Binding ResistanceWeaponMagical}" Content="Resistant to magic weapons" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is resistant to magical weapons
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <Label Content="Special Weapon Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <RadioButton Name="radioNoSpecImmune" IsChecked="{Binding ImmunityNoSpecialWeapon}" Content="No special weapon immunities" Margin="10,5,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC has no special weapon immunities beyond those noted above
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagic" IsChecked="{Binding ImmunityWeaponNonmagical}" Content="Immune to nonmagical weapons" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is immune to nonmagical weapons
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagicSilver" IsChecked="{Binding ImmunityWeaponNonmagicalSilvered}" Content="Immune to nonmagical weapons that aren't silvered" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is immune to weapons that aren't silvered
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagicAdamant" IsChecked="{Binding ImmunityWeaponNonmagicalAdamantine}" Content="Immune to nonmagical weapons that aren't adamantine" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is immune to weapons that aren't adamantine
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
-                            <RadioButton Name="radioImmuneNonmagicColdforged" IsChecked="{Binding ImmunityWeaponNonmagicalColdForgedIron}" Content="Immune to nonmagical weapons that aren't cold-forged iron" Margin="10,0,0,0">
-                                <RadioButton.ToolTip>
-                                    <TextBlock>
-                                        Select this option if your NPC is immune to weapons that aren't made of cold-forged iron
-                                    </TextBlock>
-                                </RadioButton.ToolTip>
-                            </RadioButton>
+                                </ListBox.ToolTip>
+                            </ListBox>                            
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,450,0,0">
@@ -941,7 +889,7 @@
                             <Label Content="Skill Bonuses" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Acrobatics" Height="20" VerticalContentAlignment="Center" Margin="64,5,0,0" Padding="0"/>
-								<TextBox Name="strAcrobatics" Text="0&#xD;&#xA;" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+								<TextBox Name="strAcrobatics" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Acrobatics skill modifier.
@@ -1269,7 +1217,7 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Traits" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                                <TextBox Margin="30,10,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits1" Text="{Binding Traits1}" Margin="30,10,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's first trait.
                                     </TextBox.ToolTip>
@@ -1279,7 +1227,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits2" Text="{Binding Traits2}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's second trait.
                                     </TextBox.ToolTip>
@@ -1292,7 +1240,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits3" Text="{Binding Traits3}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's third trait.
                                     </TextBox.ToolTip>
@@ -1305,7 +1253,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits4" Text="{Binding Traits4}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's fourth trait.
                                     </TextBox.ToolTip>
@@ -1318,7 +1266,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits5" Text="{Binding Traits5}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's fifth trait.
                                     </TextBox.ToolTip>
@@ -1331,7 +1279,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits6" Text="{Binding Traits6}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's sixth trait.
                                     </TextBox.ToolTip>
@@ -1344,7 +1292,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits7" Text="{Binding Traits7}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's seventh trait.
                                     </TextBox.ToolTip>
@@ -1357,7 +1305,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits8" Text="{Binding Traits8}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's eigth trait.
                                     </TextBox.ToolTip>
@@ -1370,7 +1318,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits9" Text="{Binding Traits9}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's ninth trait.
                                     </TextBox.ToolTip>
@@ -1383,7 +1331,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits10" Text="{Binding Traits10}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's tenth trait.
                                     </TextBox.ToolTip>
@@ -1396,7 +1344,7 @@
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
+                                <TextBox Name="strTraits11" Text="{Binding Traits11}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
                                     <TextBox.ToolTip>
                                         The name of your NPC's eleventh trait.
                                     </TextBox.ToolTip>
@@ -1411,57 +1359,57 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <TextBox Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc1" Text="{Binding TraitsDesc1}" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's first trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc2" Text="{Binding TraitsDesc2}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's second trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc3" Text="{Binding TraitsDesc3}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's third trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc4" Text="{Binding TraitsDesc4}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's fourth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc5" Text="{Binding TraitsDesc5}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's fifth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc6" Text="{Binding TraitsDesc6}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's sixth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc7" Text="{Binding TraitsDesc7}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's seventh trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc8" Text="{Binding TraitsDesc8}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's eigth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc9" Text="{Binding TraitsDesc9}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's ninth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc10" Text="{Binding TraitsDesc10}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's tenth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc11" Text="{Binding TraitsDesc11}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's eleventh trait.
                                     </TextBox.ToolTip>
