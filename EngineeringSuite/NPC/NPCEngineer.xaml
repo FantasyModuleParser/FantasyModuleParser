@@ -1220,7 +1220,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Language Options" Foreground="Black"  HorizontalAlignment="Left" Margin="125,10,0,0" Width="296" VerticalAlignment="Top"/>
-                                <ComboBox Margin="125,0,0,0" HorizontalAlignment="Left" Width="296">
+                                <ComboBox Name="strLanguageOptions" IsSelected="{Binding LanguageOptions}"  Margin="125,0,0,0" HorizontalAlignment="Left" Width="296">
                                     <ComboBoxItem IsSelected="True">No special conditions</ComboBoxItem>
                                     <ComboBoxItem>Speaks no languages</ComboBoxItem>
                                     <ComboBoxItem>Speaks all languages</ComboBoxItem>
@@ -1237,7 +1237,7 @@
                                         </TextBlock>
                                     </ComboBox.ToolTip>
                                 </ComboBox>
-                                <TextBox Margin="125,5,0,0" HorizontalAlignment="Left" Width="296">
+                                <TextBox Name="strLanguageOptionsText" Text="{Binding LanguageOptionsText}" Margin="125,5,0,0" HorizontalAlignment="Left" Width="296">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Fill in any text you want to use for the language skill in place of the standard texts above.
@@ -1246,7 +1246,7 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox Content="Telepathy" Margin="125,10,0,0">
+                                <CheckBox Name="chkTelepathy" IsChecked="{Binding Telepathy}" Content="Telepathy" Margin="125,10,0,0">
                                     <CheckBox.ToolTip>
                                         <TextBlock>
                                             Check this box if your NPC has telepathy.
@@ -1254,7 +1254,7 @@
                                     </CheckBox.ToolTip>
                                 </CheckBox>
                                 <Label Content="Range:" Padding="10,10,0,0" />
-                                <TextBox Width="175" Height="20" Margin="5,7,0,0">
+                                <TextBox Name="strTelepathyRange" Text="{Binding TelepathyRange}" Width="175" Height="20" Margin="5,7,0,0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Fill in the range (and the unit) of your NPC's telepathy.

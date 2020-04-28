@@ -55,6 +55,8 @@ namespace EngineeringSuite.NPC
         public List<string> DamageVulnerability { get; } = new List<string>();
         public List<string> DamageImmunity { get; } = new List<string>();
         public List<string> ConditionImmunity { get; } = new List<string>();
+        public bool ConditionOther { get; set; }
+        public string ConditionOtherText { get; set; }
         public bool ResistanceNoSpecialWeapon { get; set; }
         public bool ResistanceWeaponNonmagical { get; set; }
         public bool ResistanceWeaponNonmagicalSilvered { get; set; }
@@ -87,5 +89,9 @@ namespace EngineeringSuite.NPC
         public List<string> ExoticLanguages { get; } = new List<string>();
         public List<string> MonstrousLanguages { get; } = new List<string>();
         public List<string> UserLanguages { get; } = new List<string>();
+        public string LanguageOptions { get; set; }
+        public string LanguageOptionsText { get; set; }
+        public bool Telepathy { get; set; }
+        public string TelepathyRange { get; set; }
     }
 }

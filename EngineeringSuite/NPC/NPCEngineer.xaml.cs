@@ -671,6 +671,7 @@ public partial class NPCEngineer : Window
             npcDataModel.ImmunityWeaponNonmagicalSilvered = radioImmuneNonmagicSilver.IsChecked.Value;
             npcDataModel.ImmunityWeaponNonmagicalAdamantine = radioImmuneNonmagicAdamant.IsChecked.Value;
             npcDataModel.ImmunityWeaponNonmagicalColdForgedIron = radioImmuneNonmagicColdforged.IsChecked.Value;
+            npcDataModel.ConditionOther = chkOther.IsChecked.Value;
             npcDataModel.ConditionOtherText = strOther.Text;
             if (int.TryParse(strAcrobatics.Text, out int integerAcrobatics))
             {
@@ -816,6 +817,10 @@ public partial class NPCEngineer : Window
             npcDataModel.ExoticLanguages.AddRange(ExoticLanguages);
             npcDataModel.MonstrousLanguages.AddRange(MonstrousLanguages);
             npcDataModel.UserLanguages.AddRange(UserLanguages);
+            npcDataModel.LanguageOptions = strLanguageOptions.Text;
+            npcDataModel.LanguageOptionsText = strLanguageOptionsText.Text;
+            npcDataModel.Telepathy = chkTelepathy.IsChecked.Value;
+            npcDataModel.TelepathyRange = strTelepathyRange.Text;
 
             var jsonString = JsonSerializer.Serialize<NPCDataModel>(npcDataModel, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(tPath, jsonString);
