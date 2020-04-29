@@ -27,7 +27,15 @@ public partial class NPCEngineer : Window
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         string installFolder = "Engineer Suite/NPC";
         #endregion
-
+        
+        #region Methods
+        private void SwapTextBoxes(TextBox input, TextBox output)
+        {
+            string onHold = input.Text;
+            input.Text = output.Text;
+            output.Text = onHold;
+        }
+        #endregion
         public NPCEngineer()
         {
             InitializeComponent();
@@ -156,48 +164,83 @@ public partial class NPCEngineer : Window
         #region NPCE_Up
         private void Up2_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits2.Text))
+            {
+                SwapTextBoxes(strTraits1, strTraits2);
+                SwapTextBoxes(strTraitDesc1, strTraitDesc2);
+            }
         }
         private void Up3_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits3.Text))
+            {
+                SwapTextBoxes(strTraits2, strTraits3);
+                SwapTextBoxes(strTraitDesc2, strTraitDesc3);
+            }
         }
         private void Up4_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits4.Text))
+            {
+                SwapTextBoxes(strTraits3, strTraits4);
+                SwapTextBoxes(strTraitDesc3, strTraitDesc4);
+            }
         }
         private void Up5_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits5.Text))
+            {
+                SwapTextBoxes(strTraits4, strTraits5);
+                SwapTextBoxes(strTraitDesc4, strTraitDesc5);
+            }
         }
         private void Up6_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits6.Text))
+            {
+                SwapTextBoxes(strTraits5, strTraits6);
+                SwapTextBoxes(strTraitDesc5, strTraitDesc6);
+            }
         }
         private void Up7_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits7.Text))
+            {
+                SwapTextBoxes(strTraits6, strTraits7);
+                SwapTextBoxes(strTraitDesc6, strTraitDesc7);
+            }
         }
         private void Up8_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits8.Text))
+            {
+                SwapTextBoxes(strTraits7, strTraits8);
+                SwapTextBoxes(strTraitDesc7, strTraitDesc8);
+            }
         }
         private void Up9_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits9.Text))
+            {
+                SwapTextBoxes(strTraits8, strTraits9);
+                SwapTextBoxes(strTraitDesc8, strTraitDesc9);
+            }
         }
         private void Up10_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits10.Text))
+            {
+                SwapTextBoxes(strTraits9, strTraits10);
+                SwapTextBoxes(strTraitDesc9, strTraitDesc10);
+            }
+        }
+        private void Up11_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(strTraits11.Text))
+            {
+                SwapTextBoxes(strTraits10, strTraits11);
+                SwapTextBoxes(strTraitDesc10, strTraitDesc11);
+            }
         }
         #endregion
         #region NPCE_Down
@@ -205,180 +248,80 @@ public partial class NPCEngineer : Window
         {
             if (!String.IsNullOrEmpty(strTraits1.Text))
             {
-                string strCopyTraits1 = strTraits1.Text;
-                string strCopyTraits2 = strTraits2.Text;
-                string strCopyTraitDesc1 = strTraitDesc1.Text;
-                string strCopyTraitDesc2 = strTraitDesc2.Text;
-                strTraits1.Text = strCopyTraits2;
-                strTraits2.Text = strCopyTraits1;
-                strTraitDesc1.Text = strCopyTraitDesc2;
-                strTraitDesc2.Text = strCopyTraitDesc1;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits1, strTraits2);
+                SwapTextBoxes(strTraitDesc1, strTraitDesc2);
             }
         }
         private void Down2_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits2.Text))
             {
-                string strCopyTraits2 = strTraits2.Text;
-                string strCopyTraits3 = strTraits3.Text;
-                string strCopyTraitDesc2 = strTraitDesc2.Text;
-                string strCopyTraitDesc3 = strTraitDesc3.Text;
-                strTraits2.Text = strCopyTraits3;
-                strTraits3.Text = strCopyTraits2;
-                strTraitDesc2.Text = strCopyTraitDesc3;
-                strTraitDesc3.Text = strCopyTraitDesc2;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits2, strTraits3);
+                SwapTextBoxes(strTraitDesc2, strTraitDesc3);
             }
         }
         private void Down3_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits3.Text))
             {
-                string strCopyTraits3 = strTraits3.Text;
-                string strCopyTraits4 = strTraits4.Text;
-                string strCopyTraitDesc3 = strTraitDesc3.Text;
-                string strCopyTraitDesc4 = strTraitDesc4.Text;
-                strTraits3.Text = strCopyTraits4;
-                strTraits4.Text = strCopyTraits3;
-                strTraitDesc3.Text = strCopyTraitDesc4;
-                strTraitDesc4.Text = strCopyTraitDesc3;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits3, strTraits4);
+                SwapTextBoxes(strTraitDesc3, strTraitDesc4);
             }
         }
         private void Down4_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits4.Text))
             {
-                string strCopyTraits4 = strTraits4.Text;
-                string strCopyTraits5 = strTraits5.Text;
-                string strCopyTraitDesc4 = strTraitDesc4.Text;
-                string strCopyTraitDesc5 = strTraitDesc5.Text;
-                strTraits4.Text = strCopyTraits5;
-                strTraits5.Text = strCopyTraits4;
-                strTraitDesc4.Text = strCopyTraitDesc5;
-                strTraitDesc5.Text = strCopyTraitDesc4;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits4, strTraits5);
+                SwapTextBoxes(strTraitDesc4, strTraitDesc5);
             }
         }
         private void Down5_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits5.Text))
             {
-                string strCopyTraits5 = strTraits5.Text;
-                string strCopyTraits6 = strTraits6.Text;
-                string strCopyTraitDesc5 = strTraitDesc5.Text;
-                string strCopyTraitDesc6 = strTraitDesc6.Text;
-                strTraits5.Text = strCopyTraits6;
-                strTraits6.Text = strCopyTraits5;
-                strTraitDesc5.Text = strCopyTraitDesc6;
-                strTraitDesc6.Text = strCopyTraitDesc5;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits5, strTraits6);
+                SwapTextBoxes(strTraitDesc5, strTraitDesc6);
             }
         }
         private void Down6_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits6.Text))
             {
-                string strCopyTraits6 = strTraits6.Text;
-                string strCopyTraits7 = strTraits7.Text;
-                string strCopyTraitDesc6 = strTraitDesc6.Text;
-                string strCopyTraitDesc7 = strTraitDesc7.Text;
-                strTraits6.Text = strCopyTraits7;
-                strTraits7.Text = strCopyTraits6;
-                strTraitDesc6.Text = strCopyTraitDesc7;
-                strTraitDesc7.Text = strCopyTraitDesc6;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits6, strTraits7);
+                SwapTextBoxes(strTraitDesc6, strTraitDesc7);
             }
         }
         private void Down7_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits7.Text))
             {
-                string strCopyTraits7 = strTraits7.Text;
-                string strCopyTraits8 = strTraits8.Text;
-                string strCopyTraitDesc7 = strTraitDesc7.Text;
-                string strCopyTraitDesc8 = strTraitDesc8.Text;
-                strTraits7.Text = strCopyTraits8;
-                strTraits8.Text = strCopyTraits7;
-                strTraitDesc7.Text = strCopyTraitDesc8;
-                strTraitDesc8.Text = strCopyTraitDesc7;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits7, strTraits8);
+                SwapTextBoxes(strTraitDesc7, strTraitDesc8);
             }
         }
         private void Down8_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits8.Text))
             {
-                string strCopyTraits8 = strTraits8.Text;
-                string strCopyTraits9 = strTraits9.Text;
-                string strCopyTraitDesc8 = strTraitDesc8.Text;
-                string strCopyTraitDesc9 = strTraitDesc9.Text;
-                strTraits8.Text = strCopyTraits9;
-                strTraits9.Text = strCopyTraits8;
-                strTraitDesc8.Text = strCopyTraitDesc9;
-                strTraitDesc9.Text = strCopyTraitDesc8;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits8, strTraits9);
+                SwapTextBoxes(strTraitDesc8, strTraitDesc9);
             }
         }
         private void Down9_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits9.Text))
             {
-                string strCopyTraits9 = strTraits9.Text;
-                string strCopyTraits10 = strTraits10.Text;
-                string strCopyTraitDesc9 = strTraitDesc9.Text;
-                string strCopyTraitDesc10 = strTraitDesc10.Text;
-                strTraits9.Text = strCopyTraits10;
-                strTraits10.Text = strCopyTraits9;
-                strTraitDesc9.Text = strCopyTraitDesc10;
-                strTraitDesc10.Text = strCopyTraitDesc9;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits9, strTraits10);
+                SwapTextBoxes(strTraitDesc9, strTraitDesc10);
             }
         }
         private void Down10_Click(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(strTraits10.Text))
             {
-                string strCopyTraits10 = strTraits10.Text;
-                string strCopyTraits11 = strTraits11.Text;
-                string strCopyTraitDesc10 = strTraitDesc10.Text;
-                string strCopyTraitDesc11 = strTraitDesc11.Text;
-                strTraits10.Text = strCopyTraits11;
-                strTraits11.Text = strCopyTraits10;
-                strTraitDesc10.Text = strCopyTraitDesc11;
-                strTraitDesc11.Text = strCopyTraitDesc10;
-            }
-            else
-            {
-                // Do nothing
+                SwapTextBoxes(strTraits10, strTraits11);
+                SwapTextBoxes(strTraitDesc10, strTraitDesc11);
             }
         }
         #endregion
