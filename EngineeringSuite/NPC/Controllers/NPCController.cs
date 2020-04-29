@@ -18,5 +18,19 @@ namespace EngineeringSuite.NPC.Controller
 				serializer.Serialize(file, npcModel);
 			}
 		}
+
+		public NPCModel LoadTemporaryGoblin()
+		{
+			NPCModel tempGoblin = new NPCModel();
+
+			tempGoblin.AC = "11";
+			tempGoblin.AttributeStr = 8;
+			tempGoblin.AttributeDex = 10;
+
+			tempGoblin.npcActions = new Models.NPCAction.ActionDataModel();
+			tempGoblin.npcActions.MultiAttack = new Models.NPCAction.Multiattack("This is a multiattack test");
+
+			return tempGoblin;
+		}
 	}
 }

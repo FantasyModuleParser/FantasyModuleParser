@@ -17,7 +17,7 @@ namespace EngineeringSuite.NPC
         public NPCEActions()
         {
             InitializeComponent();
-
+            DataContext = this;
         }
 
         private void OnInit(object sender, RoutedEventArgs e)
@@ -33,8 +33,8 @@ namespace EngineeringSuite.NPC
 
             if(actionDataModelObj.MultiAttack != null)
             {
+                multiAttackCB.IsChecked = true;
                 multiAttackTextArea.Text = actionDataModelObj.MultiAttack.description;
-                SelectedText = actionDataModelObj.MultiAttack.description;
             }
 
             //DataContext = actionDataModelObj;
@@ -251,7 +251,7 @@ namespace EngineeringSuite.NPC
 
         private void updateMultiAttack(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Multiattack Selected: " + IsMultiAttack);
+            Console.WriteLine("Multiattack Selected: " + multiAttackCB.IsChecked);
             //if (IsMultiAttack)
             {
                 ((ActionDataModel)((App)Application.Current).NpcModelObject.npcActions).MultiAttack = new Multiattack(multiAttackTextArea.Text);
