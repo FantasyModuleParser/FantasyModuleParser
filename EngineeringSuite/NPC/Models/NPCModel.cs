@@ -102,9 +102,9 @@ namespace EngineeringSuite.NPC
         public string TraitsDesc11 { get; set; }
         public bool InnateSpellcastingSection { get; set; }
         public bool Psionics { get; set; }
-        public string SpellcastingAbility { get; set; }
-        public int SpellSaveDC { get; set; }
-        public int SpellHitBonus { get; set; }
+        public string InnateSpellcastingAbility { get; set; }
+        public int InnateSpellSaveDC { get; set; }
+        public int InnateSpellHitBonus { get; set; }
         public string ComponentText { get; set; }
         public string InnateAtWill { get; set; }
         public string FivePerDay { get; set; }
@@ -112,5 +112,32 @@ namespace EngineeringSuite.NPC
         public string ThreePerDay { get; set; }
         public string TwoPerDay { get; set; }
         public string OnePerDay { get; set; }
+        public string SpellcastingCasterLevel { get; set; }
+        public string SCSpellcastingAbility { get; set; }
+        public int SpellcastingSpellSaveDC { get; set; }
+        public int SpellcastingSpellHitBonus { get; set; }
+        public string SpellcastingSpellClass { get; set; }
+        public string FlavorText { get; set; }
+        public string CantripSpells { get; set; }
+        public string CantripSpellList { get; set; }
+        public string FirstLevelSpells { get; set; }
+        public string FirstLevelSpellList { get; set; }
+        public string SecondLevelSpells { get; set; }
+        public string SecondLevelSpellList { get; set; }
+        public string ThirdLevelSpells { get; set; }
+        public string ThirdLevelSpellList { get; set; }
+        public string FourthLevelSpells { get; set; }
+        public string FourthLevelSpellList { get; set; }
+        public string FifthLevelSpells { get; set; }
+        public string FifthLevelSpellList { get; set; }
+        public string SixthLevelSpells { get; set; }
+        public string SixthLevelSpellList { get; set; }
+        public string SeventhLevelSpells { get; set; }
+        public string SeventhLevelSpellList { get; set; }
+        public string EighthLevelSpells { get; set; }
+        public string EighthLevelSpellList { get; set; }
+        public string NinthLevelSpells { get; set; }
+        public string NinthLevelSpellList { get; set; }
+        public string MarkedSpells { get; set; }
     }
 }

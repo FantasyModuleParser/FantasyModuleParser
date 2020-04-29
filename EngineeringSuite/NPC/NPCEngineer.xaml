@@ -1444,7 +1444,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Spellcasting Ability" HorizontalAlignment="Left" Margin="15,5,0,0" Padding="0" VerticalAlignment="Top" />
-                            <ComboBox Name="strSpellcastingAbility" Text="{Binding SpellcastingAbility}" Width="100" Height="20" Margin="10,3,0,0">
+                            <ComboBox Name="strInnateSpellcastingAbility" Text="{Binding SpellcastingAbility}" Width="100" Height="20" Margin="10,3,0,0">
                                 <ComboBoxItem>Strength</ComboBoxItem>
                                 <ComboBoxItem>Dexterity</ComboBoxItem>
                                 <ComboBoxItem>Constitution</ComboBoxItem>
@@ -1458,7 +1458,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,5,0,0"/>
-                            <TextBox Name="intSpellSaveDC" Text="{Binding SpellSaveDC}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="intInnateSpellSaveDC" Text="{Binding SpellSaveDC}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell save difficulty.
@@ -1468,7 +1468,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Spell Hit Bonus" Padding="0" Margin="10,5,0,0"/>
-                            <TextBox Name="intSpellHitBonus" Text="{Binding SpellHitBonus}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="intInnateSpellHitBonus" Text="{Binding SpellHitBonus}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell 'to hit' bonus if appropriate.
@@ -1592,7 +1592,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="320" Margin="10,140,0,0" VerticalAlignment="Top" Width="580"/>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Include 'Spellcasting' section for NPC" Margin="15,15,0,0">
+                            <CheckBox Name="chkSpellcasting" IsChecked="{Binding Spellcasting}" Content="Include 'Spellcasting' section for NPC" Margin="15,15,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check this box to include an 'Spellcasting' section in your NPC.
@@ -1607,7 +1607,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Caster Level" Margin="32,0,0,0" Padding="0,2,0,0" />
-                            <ComboBox Width="75" Margin="10,0,0,0" Padding="0,1,0,0" Height="20">
+                            <ComboBox Name="strCasterLevel" Text="{Binding SpellcastingCasterLevel}" Width="75" Margin="10,0,0,0" Padding="0,1,0,0" Height="20">
                                 <ComboBoxItem>1st</ComboBoxItem>
                                 <ComboBoxItem>2nd</ComboBoxItem>
                                 <ComboBoxItem>3rd</ComboBoxItem>
@@ -1645,7 +1645,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spellcasting Ability" Padding="0,2,0,0" Margin="10,0,0,0"/>
-                            <ComboBox Width="100" Height="20" Margin="10,1,0,0">
+                            <ComboBox Name="strSCSpellcastingAbility" Text="{Binding SCSpellcastingAbility}" Width="100" Height="20" Margin="10,1,0,0">
                                 <ComboBoxItem>Strength</ComboBoxItem>
                                 <ComboBoxItem>Dexterity</ComboBoxItem>
                                 <ComboBoxItem>Constitution</ComboBoxItem>
@@ -1659,7 +1659,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,3,0,0"/>
-                            <TextBox Width="50" Margin="10,0,0,0" Padding="0" Height="20">
+                            <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding SpellcastingSpellSaveDC}" Width="50" Margin="10,0,0,0" Padding="0" Height="20">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell save difficulty check score.
@@ -1671,7 +1671,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Spell Hit Bonus" Margin="15,3,0,0" Padding="0"/>
-                            <TextBox Width="75" Height="20" Margin="10,2,0,0">
+                            <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding SpellcastingSpellHitBonus}" Width="75" Height="20" Margin="10,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell 'to hit' bonus if appropriate.
@@ -1681,7 +1681,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Spell Class" Padding="45,2,0,0" Margin="10,0,0,0"/>
-                            <ComboBox Width="100" Height="20" Margin="10,1,0,0">
+                            <ComboBox Name="strSpellcastingSpellClass" Text="{Binding SpellcastingSpellClass}" Width="100" Height="20" Margin="10,1,0,0">
                                 <ComboBoxItem>Bard</ComboBoxItem>
                                 <ComboBoxItem>Cleric</ComboBoxItem>
                                 <ComboBoxItem>Druid</ComboBoxItem>
@@ -1699,7 +1699,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Flavor Text:" Padding="0,3,0,0" Margin="35,2,0,0"/>
-                            <TextBox Width="450" Height="20" Padding="0,3,0,0" Margin="10,3,0,0">
+                            <TextBox Name="strFlavorText" Text="{Binding FlavorText}" Width="450" Height="20" Padding="0,3,0,0" Margin="10,3,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter any flavor text about your NPC's casting. This is not essential and can be left blank.
@@ -1717,7 +1717,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Cantrips" Padding="0" Margin="15,7,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="30,5,0,0" HorizontalContentAlignment="Center">
+                            <ComboBox Name="strCantripSpells" Text="{Binding CantripSpells}" Height="20" Width="60" Padding="0" Margin="30,5,0,0" HorizontalContentAlignment="Center">
                                 <ComboBoxItem IsSelected="True">At will</ComboBoxItem>
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
@@ -1734,7 +1734,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,5,0,0">
+                            <TextBox Name="strCantripSpellList" Text="{Binding CantripSpellList}" Height="20" Width="400" Padding="0" Margin="15,5,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at will (i.e. as often as required)
@@ -1748,7 +1748,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="1st Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="28,2,0,0">
+                            <ComboBox Name="strFirstLevelSpells" Text="{Binding FirstLevelSpells}" Height="20" Width="60" Padding="0" Margin="28,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1764,7 +1764,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strFirstLevelSpellList" Text="{Binding FirstLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 1st level.
@@ -1778,7 +1778,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="2nd Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="24,2,0,0">
+                            <ComboBox Name="strSecondLevelSpells" Text="{Binding SecondLevelSpells}"  Height="20" Width="60" Padding="0" Margin="24,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1794,7 +1794,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strSecondLevelSpellList" Text="{Binding SecondLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 2nd level.
@@ -1808,7 +1808,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="3rd Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="26,2,0,0">
+                            <ComboBox Name="strThirdLevelSpells" Text="{Binding ThirdLevelSpells}" Height="20" Width="60" Padding="0" Margin="26,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1824,7 +1824,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strThirdLevelSpellList" Text="{Binding ThirdLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 3rd level.
@@ -1838,7 +1838,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="4th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strFourthLevelSpells" Text="{Binding FourthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1854,7 +1854,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strFourthLevelSpellList" Text="{Binding FourthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 4th level.
@@ -1868,7 +1868,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="5th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strfifthLevelSpells" Text="{Binding FifthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1884,7 +1884,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strFifthLevelSpellList" Text="{Binding FifthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 5th level.
@@ -1898,7 +1898,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="6th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strSixthLevelSpells" Text="{Binding SixthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1914,7 +1914,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strSixthLevelSpellList" Text="{Binding SixthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 6th level.
@@ -1928,7 +1928,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="7th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strSeventhLevelSpells" Text="{Binding SeventhLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1944,7 +1944,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strSeventhLevelSpellList" Text="{Binding SeventhLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 7th level.
@@ -1958,7 +1958,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="8th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strEigthLevelSpells" Text="{Binding EighthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1974,7 +1974,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strEigthLevelSpellList" Text="{Binding EigthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 8th level.
@@ -1988,7 +1988,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="9th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strNinthLevelSpells" Text="{Binding NinthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -2004,7 +2004,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strNinthLevelSpellList" Text="{Binding NinthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 9th level.
@@ -2018,7 +2018,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Marked Spells" Padding="0" Margin="15,20,0,0"/>
-                            <TextBox Width="460" Height="20" Padding="0" Margin="10,18,0,0">
+                            <TextBox Name="strMarkedSpells" Text="{Binding MarkedSpells}" Width="460" Height="20" Padding="0" Margin="10,18,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         If you have any spells marked with an asterisk (*), the footnote goes here.
