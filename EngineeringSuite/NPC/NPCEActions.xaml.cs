@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using EngineeringSuite.NPC.DTO.NPCAction;
+using EngineeringSuite.NPC.Models.NPCAction;
 
 namespace EngineeringSuite.NPC
 {
@@ -17,14 +17,15 @@ namespace EngineeringSuite.NPC
 
         //private ActionDataModel actionDTO;
 
-        public NPCEActions()
+        public NPCEActions(Window window)
         {
             InitializeComponent();
+            this.DataContext = ((NPCModel)window.DataContext).npcActions;
         }
 
         private void OnInit(object sender, RoutedEventArgs e)
         {
-            DataContext = new ActionDataModel();
+            //DataContext = new ActionDataModel();
         }
 
 
@@ -238,9 +239,6 @@ namespace EngineeringSuite.NPC
 
         private void updateMultiAttack(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Multiattack Update called :: Checkbox Value = " + IsMultiAttack);
-            Console.WriteLine("Multiattack Textbox content :: " + multiAttackTextArea.Text);
-
             if (IsMultiAttack)
             {
                 ActionDataModel actionData = (ActionDataModel)DataContext;

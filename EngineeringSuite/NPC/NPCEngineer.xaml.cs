@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using EngineeringSuite.NPC.Controller;
+using EngineeringSuite.NPC.ViewModel;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace EngineeringSuite.NPC
@@ -26,12 +27,21 @@ public partial class NPCEngineer : Window
         #region Variables
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         string installFolder = "Engineer Suite/NPC";
+
+
         #endregion
 
         public NPCEngineer()
         {
             InitializeComponent();
             npcController = new NPCController();
+
+            var npcViewModel = new NPCViewModel();
+
+            DataContext = npcViewModel;
+
+            npcViewModel.npcModel = new NPCModel();
+
         }
         private void openfolder(string strPath, string strFolder)
         {
@@ -127,7 +137,7 @@ public partial class NPCEngineer : Window
         }
         private void NPCEActions_Click(object sender, RoutedEventArgs e)
         {
-            NPCEActions win3 = new NPCEActions();
+            NPCEActions win3 = new NPCEActions(this);
             win3.Show();
         }
         private void NPCEReactions_Click(object sender, RoutedEventArgs e)
@@ -455,7 +465,7 @@ public partial class NPCEngineer : Window
 	        string npcName = NPC_name.Text;
             string savePath = Path.Combine(installPath, installFolder, npcName + ".json");
 
-            NPCModel npcModel = new NPCModel
+            ((NPCViewModel)DataContext).npcModel = new NPCModel
             {
 	            NPCName = NPC_name.Text,
 	            Size = strSize.Text,
@@ -550,7 +560,7 @@ public partial class NPCEngineer : Window
                 TraitsDesc11 = strTraitDesc11.Text
             };
 
-            npcController.Save(savePath, npcModel);
+            npcController.Save(savePath, ((NPCViewModel)DataContext).npcModel);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EngineeringSuite.NPC.DTO.NPCAction
+namespace EngineeringSuite.NPC.Models.NPCAction
 {
     public class DamageProperty
     {

@@ -100,5 +100,7 @@ namespace EngineeringSuite.NPC
         public string TraitsDesc10 { get; set; }
         public string Traits11 { get; set; }
         public string TraitsDesc11 { get; set; }
+
+        public NPCEActions npcActions { get; set; }
     }
 }
