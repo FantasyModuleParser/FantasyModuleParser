@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EngineeringSuite.NPC.DTO.NPCAction
 {
-    class OtherAction
+    public class OtherAction
     {
     }
 }

@@ -16,7 +16,7 @@ namespace EngineeringSuite.NPC.DTO.NPCAction
         MRSA    // Melee or Range Spell Attack
     };
 
-    class WeaponAttack
+    public class WeaponAttack
     {
         String weaponName { get; set; }
         WeaponType weaponType { get; set; }
@@ -40,5 +40,20 @@ namespace EngineeringSuite.NPC.DTO.NPCAction
         
         // TODO: Other Text
         String otherText;
+
+
+
+        #region Equals and HashCode
+        public override bool Equals(object obj)
+        {
+            return obj is WeaponAttack attack &&
+                   weaponName == attack.weaponName;
+        }
+
+        public override int GetHashCode()
+        {
+            return 39142378 + EqualityComparer<string>.Default.GetHashCode(weaponName);
+        }
+        #endregion
     }
 }

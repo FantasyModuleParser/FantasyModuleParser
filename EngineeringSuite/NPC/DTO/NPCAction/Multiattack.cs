@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EngineeringSuite.NPC.DTO.NPCAction
 {
-    class Multiattack
+    public class Multiattack
     {
         public Multiattack()
         {

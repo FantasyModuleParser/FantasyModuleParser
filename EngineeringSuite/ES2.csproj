@@ -227,7 +227,7 @@
     </Compile>
     <Compile Include="NPC\DTO\NPCAction\DamageProperty.cs" />
     <Compile Include="NPC\DTO\NPCAction\Multiattack.cs" />
-    <Compile Include="NPC\DTO\NPCAction\ActionDTO.cs" />
+    <Compile Include="NPC\DTO\NPCAction\ActionDataModel.cs" />
     <Compile Include="NPC\DTO\NPCAction\OtherAction.cs" />
     <Compile Include="NPC\DTO\NPCAction\WeaponAttack.cs" />
     <Compile Include="NPC\NPCDataModel.cs" />

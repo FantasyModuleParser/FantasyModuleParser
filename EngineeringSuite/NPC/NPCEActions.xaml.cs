@@ -13,21 +13,21 @@ namespace EngineeringSuite.NPC
 
         public bool IsMultiAttack { get; set; }
         public String SelectedText { get; set; }
-        internal ActionDTO ActionDTO { get => actionDTO; set => actionDTO = value; }
+        //internal ActionDataModel ActionDTO { get => actionDTO; set => actionDTO = value; }
 
-        private ActionDTO actionDTO;
+        //private ActionDataModel actionDTO;
 
         public NPCEActions()
         {
             InitializeComponent();
-            multiAttackCB.DataContext = this;
-            multiAttackTextArea.DataContext = this;
-
-            if(actionDTO == null)
-            {
-                actionDTO = new ActionDTO();
-            }
         }
+
+        private void OnInit(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ActionDataModel();
+        }
+
+
         #region NPCE_Up
         private void Up2_Click(object sender, RoutedEventArgs e)
         {
@@ -238,18 +238,18 @@ namespace EngineeringSuite.NPC
 
         private void updateMultiAttack(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Multiattack Update called :: Checkbox Value = " + IsMultiAttack.ToString());
+            Console.WriteLine("Multiattack Update called :: Checkbox Value = " + IsMultiAttack);
             Console.WriteLine("Multiattack Textbox content :: " + multiAttackTextArea.Text);
 
             if (IsMultiAttack)
             {
-                actionDTO.multiattack = new Multiattack(multiAttackTextArea.Text);
-            } else
-            {
-                actionDTO.multiattack = null;
+                ActionDataModel actionData = (ActionDataModel)DataContext;
+                actionData.MultiAttack = new Multiattack(multiAttackTextArea.Text);
+
+                //TODO:  This is really roughing it, as the action tabs on the left should be subscribed
+                // to a Observable object!!!
             }
 
-            Console.WriteLine(actionDTO);
         }
     }
 }

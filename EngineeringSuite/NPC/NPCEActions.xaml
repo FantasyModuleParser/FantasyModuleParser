@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
+        Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico" Loaded="OnInit">
     <Grid  Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="480" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="112" Margin="610,5,0,0" VerticalAlignment="Top" Width="450"/>
@@ -15,7 +15,7 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
                         <Label Content="Actions" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <TextBox Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5" TextChanged="TextBox_TextChanged"/>
+                        <TextBox x:Name="actionName_0" Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5" TextChanged="TextBox_TextChanged"/>
                         <StackPanel Orientation="Horizontal">
                             <Button Name="btn_Edit1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
@@ -161,7 +161,7 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <TextBox Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
+                        <TextBox x:Name="actionDescription_0" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
