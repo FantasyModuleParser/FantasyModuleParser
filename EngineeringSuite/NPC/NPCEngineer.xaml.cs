@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using EngineeringSuite.NPC.Controller;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace EngineeringSuite.NPC
 {
@@ -14,9 +18,20 @@ namespace EngineeringSuite.NPC
     /// </summary>
 public partial class NPCEngineer : Window
     {
+
+		#region Controllers
+        public NPCController npcController { get; set; }
+        #endregion
+
+        #region Variables
+        string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        string installFolder = "Engineer Suite/NPC";
+        #endregion
+
         public NPCEngineer()
         {
             InitializeComponent();
+            npcController = new NPCController();
         }
         private void openfolder(string strPath, string strFolder)
         {
@@ -336,6 +351,7 @@ public partial class NPCEngineer : Window
             win2.Show();
         }
         #endregion
+        #region BaseStatChange
         private void StrengthScore_TextChanged(object sender, RoutedEventArgs e)
         {
             int num;
@@ -350,7 +366,7 @@ public partial class NPCEngineer : Window
                 {
                     strModStr.Content = "+";
                 }
-            }    
+            }
         }
         private void DexterityScore_TextChanged(object sender, RoutedEventArgs e)
         {
@@ -432,398 +448,115 @@ public partial class NPCEngineer : Window
                 }
             }
         }
+        #endregion
+
         private void CreateNPCFile(object sender, RoutedEventArgs e)
         {
-            string strPath1 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string strFolder1 = "Engineer Suite/NPC";
-            string fName = NPC_name.Text;
-            string tPath = Path.Combine(strPath1, strFolder1, fName + ".json");
+	        string npcName = NPC_name.Text;
+            string savePath = Path.Combine(installPath, installFolder, npcName + ".json");
 
-            if (File.Exists(tPath))
+            NPCModel npcModel = new NPCModel
             {
-                File.Delete(tPath);
-            }
+	            NPCName = NPC_name.Text,
+	            Size = strSize.Text,
+	            NPCType = strType.Text,
+	            Tag = strTag.Text,
+	            Alignment = strAlignment.Text,
+	            AC = strAC.Text,
+	            HP = strHP.Text,
+                NPCGender = strGender.Text,
+                Unique = chkUnique.IsChecked.Value,
+                NPCNamed = chkNamed.IsChecked.Value,
+                Speed = int.Parse(intSpeed.Text),
+                Burrow = int.Parse(intBurrow.Text),
+                Climb = int.Parse(intClimb.Text),
+                Fly = int.Parse(intFly.Text),
+                Swim = int.Parse(intSwim.Text),
+                AttributeStr = int.Parse(strAttrStr.Text),
+                AttributeDex = int.Parse(strAttrDex.Text),
+                AttributeCon = int.Parse(strAttrCon.Text),
+                AttributeInt = int.Parse(strAttrInt.Text),
+                AttributeWis = int.Parse(strAttrWis.Text),
+                AttributeCha = int.Parse(strAttrCha.Text),
+                SavingThrowStr = int.Parse(strSaveStr.Text),
+                SavingThrowDex = int.Parse(strSaveDex.Text),
+                SavingThrowCon = int.Parse(strSaveCon.Text),
+                SavingThrowInt = int.Parse(strSaveInt.Text),
+                SavingThrowWis = int.Parse(strSaveWis.Text),
+                SavingThrowCha = int.Parse(strSaveCha.Text),
+                Blindsight = int.Parse(strBlindsight.Text),
+                BlindBeyond = chkBlindBeyond.IsChecked.Value,
+				Darkvision = int.Parse(strDarkvision.Text),
+                Tremorsense = int.Parse(strTremorsense.Text),
+                Truesight = int.Parse(strTruesight.Text),
+                PassivePerception = int.Parse(strPassivePerception.Text),
+                ChallengeRating = int.Parse(strChallenge.Text),
+                XP = int.Parse(strExperience.Text),
+                NPCToken = strNPCToken.Text,
+                DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                ConditionOther = chkOther.IsChecked.Value,
+                ConditionOtherText = strOther.Text,
+                Acrobatics = int.Parse(strAcrobatics.Text),
+                AnimalHandling = int.Parse(strAnimalHandling.Text),
+                Arcana = int.Parse(strArcana.Text),
+                Athletics = int.Parse(strAthletics.Text),
+                Deception = int.Parse(strDeception.Text),
+                History = int.Parse(strHistory.Text),
+                Insight = int.Parse(strInsight.Text),
+                Intimidation = int.Parse(strIntimidation.Text),
+                Investigation = int.Parse(strInvestigation.Text),
+                Medicine = int.Parse(strMedicine.Text),
+                Nature = int.Parse(strNature.Text),
+                Performance = int.Parse(strPerformance.Text),
+                Persuasion = int.Parse(strPersuasion.Text),
+                Religion = int.Parse(strReligion.Text),
+                SleightOfHand = int.Parse(strSleightofHand.Text),
+                Stealth = int.Parse(strStealth.Text),
+                Survival = int.Parse(strSurvival.Text),
+                StandardLanguages = listStandard.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                ExoticLanguages = listExotic.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                MonstrousLanguages = listMonstrous.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                UserLanguages = listUser.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+                LanguageOptions = strLanguageOptions.Text,
+                LanguageOptionsText = strLanguageOptionsText.Text,
+                Telepathy = chkTelepathy.IsChecked.Value,
+                TelepathyRange = strTelepathyRange.Text,
+                Traits1 = strTraits1.Text,
+                TraitsDesc1 = strTraitDesc1.Text,
+                Traits2 = strTraits2.Text,
+                TraitsDesc2 = strTraitDesc2.Text,
+                Traits3 = strTraits3.Text,
+                TraitsDesc3 = strTraitDesc3.Text,
+                Traits4 = strTraits4.Text,
+                TraitsDesc4 = strTraitDesc4.Text,
+                Traits5 = strTraits5.Text,
+                TraitsDesc5 = strTraitDesc5.Text,
+                Traits6 = strTraits6.Text,
+                TraitsDesc6 = strTraitDesc6.Text,
+                Traits7 = strTraits7.Text,
+                TraitsDesc7 = strTraitDesc7.Text,
+                Traits8 = strTraits8.Text,
+                TraitsDesc8 = strTraitDesc8.Text,
+                Traits9 = strTraits9.Text,
+                TraitsDesc9 = strTraitDesc9.Text,
+                Traits10 = strTraits10.Text,
+                TraitsDesc10 = strTraitDesc10.Text,
+                Traits11 = strTraits11.Text,
+                TraitsDesc11 = strTraitDesc11.Text
+            };
 
-            var npcDataModel = new NPCDataModel();
-            npcDataModel.NPCName = NPC_name.Text;
-            npcDataModel.Size = strSize.Text;
-            npcDataModel.NPCType = strType.Text;
-            npcDataModel.Tag = strTag.Text;
-            npcDataModel.Alignment = strAlignment.Text;
-            npcDataModel.AC = strAC.Text;
-            npcDataModel.HP = strHP.Text;
-            npcDataModel.NPCGender = strGender.Text;
-            npcDataModel.Unique = chkUnique.IsChecked.Value;
-            npcDataModel.NPCNamed = chkNamed.IsChecked.Value;
-            if (int.TryParse(intSpeed.Text, out int integerSpeed))
-            {
-                npcDataModel.Speed = integerSpeed;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(intBurrow.Text, out int integerBurrow))
-            {
-                npcDataModel.Burrow = integerBurrow;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(intClimb.Text, out int integerClimb))
-            {
-                npcDataModel.Climb = integerClimb;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(intFly.Text, out int integerFly))
-            {
-                npcDataModel.Fly = integerFly;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.Hover = boolHover.IsChecked.Value;
-            if (int.TryParse(intSwim.Text, out int integerSwim))
-            {
-                npcDataModel.Swim = integerSwim;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAttrStr.Text, out int integerAttrStr))
-            {
-                npcDataModel.AttributeStr = integerAttrStr;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAttrDex.Text, out int integerAttrDex))
-            {
-                npcDataModel.AttributeDex = integerAttrDex;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAttrCon.Text, out int integerAttrCon))
-            {
-                npcDataModel.AttributeCon = integerAttrCon;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAttrInt.Text, out int integerAttrInt))
-            {
-                npcDataModel.AttributeInt = integerAttrInt;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAttrWis.Text, out int integerAttrWis))
-            {
-                npcDataModel.AttributeWis = integerAttrWis;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAttrCha.Text, out int integerAttrCha))
-            {
-                npcDataModel.AttributeCha = integerAttrCha;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strSaveStr.Text, out int integerSaveStr))
-            {
-                npcDataModel.SavingThrowStr = integerSaveStr;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.SavingThrowStr0 = chkSave0Str.IsChecked.Value;
-            if (int.TryParse(strSaveDex.Text, out int integerSaveDex))
-            {
-                npcDataModel.SavingThrowDex = integerSaveDex;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.SavingThrowDex0 = chkSave0Dex.IsChecked.Value;
-            if (int.TryParse(strSaveCon.Text, out int integerSaveCon))
-            {
-                npcDataModel.SavingThrowCon = integerSaveCon;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.SavingThrowCon0 = chkSave0Con.IsChecked.Value;
-            if (int.TryParse(strSaveInt.Text, out int integerSaveInt))
-            {
-                npcDataModel.SavingThrowInt = integerSaveInt;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.SavingThrowInt0 = chkSave0Int.IsChecked.Value;
-            if (int.TryParse(strSaveWis.Text, out int integerSaveWis))
-            {
-                npcDataModel.SavingThrowWis = integerSaveWis;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.SavingThrowWis0 = chkSave0Wis.IsChecked.Value;
-            if (int.TryParse(strSaveCha.Text, out int integerSaveCha))
-            {
-                npcDataModel.SavingThrowCha = integerSaveCha;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.SavingThrowCha0 = chkSave0Cha.IsChecked.Value;
-            if (int.TryParse(strBlindsight.Text, out int integerBlindsight))
-            {
-                npcDataModel.Blindsight = integerBlindsight;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.BlindBeyond = chkBlindBeyond.IsChecked.Value;
-            if (int.TryParse(strDarkvision.Text, out int integerDarkvision))
-            {
-                npcDataModel.Darkvision = integerDarkvision;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strTremorsense.Text, out int integerTremorsense))
-            {
-                npcDataModel.Tremorsense = integerTremorsense;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strTruesight.Text, out int integerTruesight))
-            {
-                npcDataModel.Truesight = integerTruesight;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strPassivePerception.Text, out int integerPassivePerception))
-            {
-                npcDataModel.PassivePerception = integerPassivePerception;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strChallenge.Text, out int integerChallengeRating))
-            {
-                npcDataModel.ChallengeRating = integerChallengeRating;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strExperience.Text, out int integerExperience))
-            {
-                npcDataModel.XP = integerExperience;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            npcDataModel.NPCToken = strNPCToken.Text;
-            IEnumerable<string> DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            IEnumerable<string> DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            IEnumerable<string> DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            IEnumerable<string> ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            npcDataModel.ResistanceNoSpecialWeapon = radioNoSpecResist.IsChecked.Value;
-            npcDataModel.ResistanceWeaponNonmagical = radioResistNonmagic.IsChecked.Value;
-            npcDataModel.ResistanceWeaponNonmagicalSilvered = radioResistNonmagicSilver.IsChecked.Value;
-            npcDataModel.ResistanceWeaponNonmagicalAdamantine = radioResistNonmagicAdamant.IsChecked.Value;
-            npcDataModel.ResistanceWeaponNonmagicalColdForgedIron = radioResistNonmagicColdforged.IsChecked.Value;
-            npcDataModel.ResistanceWeaponMagical = radioResistMagic.IsChecked.Value;
-            npcDataModel.ImmunityNoSpecialWeapon = radioNoSpecImmune.IsChecked.Value;
-            npcDataModel.ImmunityWeaponNonmagical = radioImmuneNonmagic.IsChecked.Value;
-            npcDataModel.ImmunityWeaponNonmagicalSilvered = radioImmuneNonmagicSilver.IsChecked.Value;
-            npcDataModel.ImmunityWeaponNonmagicalAdamantine = radioImmuneNonmagicAdamant.IsChecked.Value;
-            npcDataModel.ImmunityWeaponNonmagicalColdForgedIron = radioImmuneNonmagicColdforged.IsChecked.Value;
-            npcDataModel.ConditionOther = chkOther.IsChecked.Value;
-            npcDataModel.ConditionOtherText = strOther.Text;
-            if (int.TryParse(strAcrobatics.Text, out int integerAcrobatics))
-            {
-                npcDataModel.Acrobatics = integerAcrobatics;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAnimalHandling.Text, out int integerAnimalHandling))
-            {
-                npcDataModel.AnimalHandling = integerAnimalHandling;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strArcana.Text, out int integerArcana))
-            {
-                npcDataModel.Arcana = integerArcana;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strAthletics.Text, out int integerAthletics))
-            {
-                npcDataModel.Athletics = integerAthletics;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strDeception.Text, out int integerDeception))
-            {
-                npcDataModel.Deception = integerDeception;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strHistory.Text, out int integerHistory))
-            {
-                npcDataModel.History = integerHistory;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strInsight.Text, out int integerInsight))
-            {
-                npcDataModel.Insight = integerInsight;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strIntimidation.Text, out int integerIntimidation))
-            {
-                npcDataModel.Intimidation = integerIntimidation;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strInvestigation.Text, out int integerInvestigation))
-            {
-                npcDataModel.Investigation = integerInvestigation;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strMedicine.Text, out int integerMedicine))
-            {
-                npcDataModel.Medicine = integerMedicine;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strNature.Text, out int integerNature))
-            {
-                npcDataModel.Nature = integerNature;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strPerformance.Text, out int integerPerformance))
-            {
-                npcDataModel.Performance = integerPerformance;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strPersuasion.Text, out int integerPersuasion))
-            {
-                npcDataModel.Persuasion = integerPersuasion;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strReligion.Text, out int integerReligion))
-            {
-                npcDataModel.Religion = integerReligion;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strSleightofHand.Text, out int integerSleightOfHand))
-            {
-                npcDataModel.SleightOfHand = integerSleightOfHand;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strStealth.Text, out int integerStealth))
-            {
-                npcDataModel.Stealth = integerStealth;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            if (int.TryParse(strSurvival.Text, out int integerSurvival))
-            {
-                npcDataModel.Survival = integerSurvival;
-            }
-            else
-            {
-                //Do something if it fails to parse
-            }
-            IEnumerable<string> StandardLanguages = listStandard.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            IEnumerable<string> ExoticLanguages = listExotic.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            IEnumerable<string> MonstrousLanguages = listMonstrous.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            IEnumerable<string> UserLanguages = listUser.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content);
-            npcDataModel.StandardLanguages.AddRange(StandardLanguages);
-            npcDataModel.ExoticLanguages.AddRange(ExoticLanguages);
-            npcDataModel.MonstrousLanguages.AddRange(MonstrousLanguages);
-            npcDataModel.UserLanguages.AddRange(UserLanguages);
-            npcDataModel.LanguageOptions = strLanguageOptions.Text;
-            npcDataModel.LanguageOptionsText = strLanguageOptionsText.Text;
-            npcDataModel.Telepathy = chkTelepathy.IsChecked.Value;
-            npcDataModel.TelepathyRange = strTelepathyRange.Text;
+            npcController.Save(savePath, npcModel);
+        }
 
-            var jsonString = JsonSerializer.Serialize<NPCDataModel>(npcDataModel, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(tPath, jsonString);
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"[^0-9-]+"); ;
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
