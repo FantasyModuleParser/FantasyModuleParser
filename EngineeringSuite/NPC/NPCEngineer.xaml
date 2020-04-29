@@ -1659,7 +1659,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,3,0,0"/>
-                            <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding SpellcastingSpellSaveDC}" Width="50" Margin="10,0,0,0" Padding="0" Height="20">
+                            <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding SpellcastingSpellSaveDC}" Width="50" Margin="10,0,0,0" Padding="0" Height="20" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell save difficulty check score.
@@ -1671,7 +1671,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Spell Hit Bonus" Margin="15,3,0,0" Padding="0"/>
-                            <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding SpellcastingSpellHitBonus}" Width="75" Height="20" Margin="10,2,0,0">
+                            <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding SpellcastingSpellHitBonus}" Width="75" Height="20" Margin="10,2,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell 'to hit' bonus if appropriate.
