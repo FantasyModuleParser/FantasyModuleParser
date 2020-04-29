@@ -11,21 +11,33 @@ namespace EngineeringSuite.NPC
     public partial class NPCEActions : Window
     {
 
-        public bool IsMultiAttack { get; set; }
-        public String SelectedText { get; set; }
-        //internal ActionDataModel ActionDTO { get => actionDTO; set => actionDTO = value; }
+        public bool IsMultiAttack { get; set;}
+        public string SelectedText{ get; set; }
 
-        //private ActionDataModel actionDTO;
-
-        public NPCEActions(Window window)
+        public NPCEActions()
         {
             InitializeComponent();
-            this.DataContext = ((NPCModel)window.DataContext).npcActions;
+
         }
 
         private void OnInit(object sender, RoutedEventArgs e)
         {
             //DataContext = new ActionDataModel();
+            ActionDataModel actionDataModelObj = (ActionDataModel)((App)Application.Current).NpcModelObject.npcActions;
+            if (actionDataModelObj == null)
+            {
+                actionDataModelObj = new ActionDataModel();
+                ((NPCModel)((App)Application.Current).NpcModelObject).npcActions = actionDataModelObj;
+                
+            }
+
+            if(actionDataModelObj.MultiAttack != null)
+            {
+                multiAttackTextArea.Text = actionDataModelObj.MultiAttack.description;
+                SelectedText = actionDataModelObj.MultiAttack.description;
+            }
+
+            //DataContext = actionDataModelObj;
         }
 
 
@@ -239,13 +251,11 @@ namespace EngineeringSuite.NPC
 
         private void updateMultiAttack(object sender, RoutedEventArgs e)
         {
-            if (IsMultiAttack)
+            Console.WriteLine("Multiattack Selected: " + IsMultiAttack);
+            //if (IsMultiAttack)
             {
-                ActionDataModel actionData = (ActionDataModel)DataContext;
-                actionData.MultiAttack = new Multiattack(multiAttackTextArea.Text);
-
-                //TODO:  This is really roughing it, as the action tabs on the left should be subscribed
-                // to a Observable object!!!
+                ((ActionDataModel)((App)Application.Current).NpcModelObject.npcActions).MultiAttack = new Multiattack(multiAttackTextArea.Text);
+                Console.WriteLine("Multiattack Text: " + multiAttackTextArea.Text);
             }
 
         }

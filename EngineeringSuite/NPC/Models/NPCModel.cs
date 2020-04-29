@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EngineeringSuite.NPC.Models.NPCAction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -101,6 +102,6 @@ namespace EngineeringSuite.NPC
         public string Traits11 { get; set; }
         public string TraitsDesc11 { get; set; }
 
-        public NPCEActions npcActions { get; set; }
+        public ActionDataModel npcActions { get; set; }
     }
 }

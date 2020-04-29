@@ -36,12 +36,9 @@ public partial class NPCEngineer : Window
             InitializeComponent();
             npcController = new NPCController();
 
-            var npcViewModel = new NPCViewModel();
+            //var npcModel = ((App)Application.Current).NpcModelObject;
 
-            DataContext = npcViewModel;
-
-            npcViewModel.npcModel = new NPCModel();
-
+            //DataContext = npcModel;
         }
         private void openfolder(string strPath, string strFolder)
         {
@@ -137,7 +134,7 @@ public partial class NPCEngineer : Window
         }
         private void NPCEActions_Click(object sender, RoutedEventArgs e)
         {
-            NPCEActions win3 = new NPCEActions(this);
+            NPCEActions win3 = new NPCEActions();
             win3.Show();
         }
         private void NPCEReactions_Click(object sender, RoutedEventArgs e)
@@ -465,7 +462,7 @@ public partial class NPCEngineer : Window
 	        string npcName = NPC_name.Text;
             string savePath = Path.Combine(installPath, installFolder, npcName + ".json");
 
-            ((NPCViewModel)DataContext).npcModel = new NPCModel
+            NPCModel npcModel = new NPCModel
             {
 	            NPCName = NPC_name.Text,
 	            Size = strSize.Text,
@@ -560,7 +557,7 @@ public partial class NPCEngineer : Window
                 TraitsDesc11 = strTraitDesc11.Text
             };
 
-            npcController.Save(savePath, ((NPCViewModel)DataContext).npcModel);
+            npcController.Save(savePath, npcModel);
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

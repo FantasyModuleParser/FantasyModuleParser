@@ -179,8 +179,8 @@
                 <Label Content="Multiattack" FontWeight="Bold" Foreground="Gray" Padding="0" Margin="20,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Multiattack:" Padding="0" Margin="25,5,0,0"/>
-                    <CheckBox x:Name="multiAttackCB" Padding="0" Margin="5,7,0,0" IsChecked="{Binding IsMultiAttack}"/>
-                    <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding SelectedText}"/>
+                    <CheckBox x:Name="multiAttackCB" Padding="0" Margin="5,7,0,0" IsChecked="{Binding IsMultiAttack}" />
+                    <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding SelectedText}" />
                 </StackPanel>
                 <Button Content="Update" Width="75" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="285,5,0,0" Click="updateMultiAttack"/>
                 <Label Content="Weapon Attack" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
