@@ -616,6 +616,9 @@ public partial class NPCEngineer : Window
                 NinthLevelSpells = strNinthLevelSpells.Text,
                 NinthLevelSpellList = strNinthLevelSpellList.Text,
                 MarkedSpells = strMarkedSpells.Text,
+                Description = strDescription.Text,
+                NonID = strNonID.Text,
+                NPCImage = strNPCImage.text,
             };
 
             npcController.Save(savePath, npcModel);

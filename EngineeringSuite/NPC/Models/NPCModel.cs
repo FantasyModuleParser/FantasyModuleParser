@@ -10,7 +10,7 @@ namespace EngineeringSuite.NPC
     {
         public string NPCName { get; set; }
         public string Size { get; set; }
-        public string NPCType { get; set; } 
+        public string NPCType { get; set; }
         public string Tag { get; set; }
         public string Alignment { get; set; }
         public string AC { get; set; }
@@ -139,5 +139,8 @@ namespace EngineeringSuite.NPC
         public string NinthLevelSpells { get; set; }
         public string NinthLevelSpellList { get; set; }
         public string MarkedSpells { get; set; }
+        public string Description { get; set; }
+        public string NonID { get; set; }
+        public string NPCImage { get; set; }
     }
 }
