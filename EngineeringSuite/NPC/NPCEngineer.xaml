@@ -1422,7 +1422,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="220" Margin="10,125,0,0" VerticalAlignment="Top" Width="580"/>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Include 'Innate Spellcasting' section for NPC" Margin="15,15,0,0">
+                            <CheckBox Name="chkInnateSpellcastingSection" Checked="InnateSpellcasting_Click" Content="Include 'Innate Spellcasting' section for NPC" IsChecked="{Binding InnateSpellcastingSection}" Margin="15,15,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check this box to include an 'Innate Spellcasting' section in your NPC.
@@ -1431,7 +1431,7 @@
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Content="Mark section as 'Psionics'" Margin="50,15,0,0">
+                            <CheckBox Name="chkPsionics" Content="Mark section as 'Psionics'" IsChecked="{Binding Psionics}" Margin="50,15,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check this box to mark this section as 'Innate Spellcasting (Psionics) for your NPC.
@@ -1444,7 +1444,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Spellcasting Ability" HorizontalAlignment="Left" Margin="15,5,0,0" Padding="0" VerticalAlignment="Top" />
-                            <ComboBox Width="100" Height="20" Margin="10,3,0,0">
+                            <ComboBox Name="strSpellcastingAbility" Text="{Binding SpellcastingAbility}" Width="100" Height="20" Margin="10,3,0,0">
                                 <ComboBoxItem>Strength</ComboBoxItem>
                                 <ComboBoxItem>Dexterity</ComboBoxItem>
                                 <ComboBoxItem>Constitution</ComboBoxItem>
@@ -1458,7 +1458,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,5,0,0"/>
-                            <TextBox Width="75" Height="20" Margin="10,0,0,0">
+                            <TextBox Name="intSpellSaveDC" Text="{Binding SpellSaveDC}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell save difficulty.
@@ -1468,7 +1468,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Spell Hit Bonus" Padding="0" Margin="10,5,0,0"/>
-                            <TextBox Width="75" Height="20" Margin="10,0,0,0">
+                            <TextBox Name="intSpellHitBonus" Text="{Binding SpellHitBonus}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell 'to hit' bonus if appropriate.
@@ -1482,7 +1482,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Component Text" Padding="0" Margin="28,10,0,0"/>
-                            <TextBox Text="requiring no material components "  Width="450" Height="20" Margin="10,5,0,0">
+                            <TextBox Name="strComponentText" Text="{Binding ComponentText}"  Width="450" Height="20" Margin="10,5,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter information about the components required to cast this spell.
@@ -1500,7 +1500,7 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="At Will:" Foreground="Black"  HorizontalAlignment="Left" Margin="35,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="24,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strInnatAtWill" Text="{Binding InnateAtWill}" HorizontalAlignment="Left" Margin="24,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use at will (i.e. as often as required)
@@ -1514,7 +1514,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="5/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strFivePerDay" Text="{Binding FivePerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use five times a day.
@@ -1528,7 +1528,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="4/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strFourPerDay" Text="{Binding FourPerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use four times a day.
@@ -1542,7 +1542,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="3/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strThreePerDay" Text="{Binding ThreePerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use three times a day.
@@ -1556,7 +1556,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="2/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strTwoPerDay" Text="{Binding TwoPerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use two times a day.
@@ -1570,7 +1570,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="1/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strOnePerDay" Text="{Binding OnePerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use one times a day.
@@ -2547,7 +2547,7 @@
                             </RichTextBox.ToolTip>
                         </RichTextBox>
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Bold.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2555,7 +2555,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/italic.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2563,7 +2563,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/underline.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2571,7 +2571,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/undo.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2579,7 +2579,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/redo.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2607,7 +2607,7 @@
                             </Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Header.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2615,7 +2615,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Text Color.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2623,7 +2623,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Speech Bubble With Dots.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2633,7 +2633,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Bulleted List.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2686,7 +2686,7 @@
                                 <Image Source="/Resources/Folder.png" />
                             </Button>
                         </StackPanel>
-                        <Button Name="btn_SelectNPCImage" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="590" Height="420" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit2_Click" Margin="10,10,0,0">
+                        <Button Name="btn_SelectNPCImage" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="590" Height="420" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,10,0,0">
                             <Image />
                         </Button>
                         <StackPanel Orientation="Horizontal">
@@ -2783,10 +2783,10 @@
                 </TextBlock>
             </Button.ToolTip>
         </Button>
-        <Button Content="Save NPC" HorizontalAlignment="Left" Margin="850,670,0,0" VerticalAlignment="Top" Width="90">
+        <Button Content="Save NPC" Click="CreateNPCFile" HorizontalAlignment="Left" Margin="850,670,0,0" VerticalAlignment="Top" Width="90">
             <Button.ToolTip>
                 <TextBlock>
-                    Save your NPC to your drive as a *.NPC file
+                    Save your NPC to your drive as a *.JSON file
                     <LineBreak />
                     <Italic>This can be reloaded for further editing</Italic>
                 </TextBlock>

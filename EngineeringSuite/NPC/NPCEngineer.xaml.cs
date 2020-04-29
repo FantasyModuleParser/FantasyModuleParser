@@ -35,6 +35,10 @@ public partial class NPCEngineer : Window
             input.Text = output.Text;
             output.Text = onHold;
         }
+        private void InnateSpellcasting_Click(object sender, RoutedEventArgs e)
+        {
+            strComponentText.Text = "requiring no material components";
+        }
         #endregion
         public NPCEngineer()
         {
@@ -325,58 +329,6 @@ public partial class NPCEngineer : Window
             }
         }
         #endregion
-        #region NPCE_Edit
-        private void Edit1_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit2_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit3_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit4_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit5_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit6_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit7_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit8_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit9_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit10_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        #endregion
         #region NPCE_Cancel
         private void Cancel1_Click(object sender, RoutedEventArgs e)
         {
@@ -535,13 +487,13 @@ public partial class NPCEngineer : Window
 
             NPCModel npcModel = new NPCModel
             {
-	            NPCName = NPC_name.Text,
-	            Size = strSize.Text,
-	            NPCType = strType.Text,
-	            Tag = strTag.Text,
-	            Alignment = strAlignment.Text,
-	            AC = strAC.Text,
-	            HP = strHP.Text,
+                NPCName = NPC_name.Text,
+                Size = strSize.Text,
+                NPCType = strType.Text,
+                Tag = strTag.Text,
+                Alignment = strAlignment.Text,
+                AC = strAC.Text,
+                HP = strHP.Text,
                 NPCGender = strGender.Text,
                 Unique = chkUnique.IsChecked.Value,
                 NPCNamed = chkNamed.IsChecked.Value,
@@ -564,7 +516,7 @@ public partial class NPCEngineer : Window
                 SavingThrowCha = int.Parse(strSaveCha.Text),
                 Blindsight = int.Parse(strBlindsight.Text),
                 BlindBeyond = chkBlindBeyond.IsChecked.Value,
-				Darkvision = int.Parse(strDarkvision.Text),
+                Darkvision = int.Parse(strDarkvision.Text),
                 Tremorsense = int.Parse(strTremorsense.Text),
                 Truesight = int.Parse(strTruesight.Text),
                 PassivePerception = int.Parse(strPassivePerception.Text),
@@ -625,7 +577,18 @@ public partial class NPCEngineer : Window
                 Traits10 = strTraits10.Text,
                 TraitsDesc10 = strTraitDesc10.Text,
                 Traits11 = strTraits11.Text,
-                TraitsDesc11 = strTraitDesc11.Text
+                TraitsDesc11 = strTraitDesc11.Text,
+                InnateSpellcastingSection = chkInnateSpellcastingSection.IsChecked.Value,
+                Psionics = chkPsionics.IsChecked.Value,
+                SpellcastingAbility = strSpellcastingAbility.Text,
+                SpellSaveDC = int.Parse(intSpellSaveDC.Text),
+                SpellHitBonus = int.Parse(intSpellHitBonus.Text),
+                InnateAtWill = strInnatAtWill.Text,
+                FivePerDay = strFivePerDay.Text,
+                FourPerDay = strFourPerDay.Text,
+                ThreePerDay = strThreePerDay.Text,
+                TwoPerDay = strTwoPerDay.Text,
+                OnePerDay = strOnePerDay.Text,
             };
 
             npcController.Save(savePath, npcModel);

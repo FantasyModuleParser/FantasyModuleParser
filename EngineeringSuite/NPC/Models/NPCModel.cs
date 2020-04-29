@@ -100,5 +100,17 @@ namespace EngineeringSuite.NPC
         public string TraitsDesc10 { get; set; }
         public string Traits11 { get; set; }
         public string TraitsDesc11 { get; set; }
+        public bool InnateSpellcastingSection { get; set; }
+        public bool Psionics { get; set; }
+        public string SpellcastingAbility { get; set; }
+        public int SpellSaveDC { get; set; }
+        public int SpellHitBonus { get; set; }
+        public string ComponentText { get; set; }
+        public string InnateAtWill { get; set; }
+        public string FivePerDay { get; set; }
+        public string FourPerDay { get; set; }
+        public string ThreePerDay { get; set; }
+        public string TwoPerDay { get; set; }
+        public string OnePerDay { get; set; }
     }
 }
