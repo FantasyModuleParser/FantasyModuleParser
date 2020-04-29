@@ -1272,10 +1272,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up5_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1285,10 +1285,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up6_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1298,10 +1298,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up7_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1311,10 +1311,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up8_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down8_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1324,10 +1324,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up9_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down9_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1337,10 +1337,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up10_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down10_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1350,66 +1350,63 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up11_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
-                                    </Button>
-                                    <Button Name="btn_Down11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <TextBox Name="strTraitDesc1" Text="{Binding TraitsDesc1}" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc1" Text="{Binding TraitsDesc1}" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's first trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc2" Text="{Binding TraitsDesc2}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc2" Text="{Binding TraitsDesc2}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's second trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc3" Text="{Binding TraitsDesc3}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc3" Text="{Binding TraitsDesc3}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's third trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc4" Text="{Binding TraitsDesc4}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc4" Text="{Binding TraitsDesc4}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's fourth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc5" Text="{Binding TraitsDesc5}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc5" Text="{Binding TraitsDesc5}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's fifth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc6" Text="{Binding TraitsDesc6}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc6" Text="{Binding TraitsDesc6}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's sixth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc7" Text="{Binding TraitsDesc7}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc7" Text="{Binding TraitsDesc7}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's seventh trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc8" Text="{Binding TraitsDesc8}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc8" Text="{Binding TraitsDesc8}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's eigth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc9" Text="{Binding TraitsDesc9}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc9" Text="{Binding TraitsDesc9}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's ninth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc10" Text="{Binding TraitsDesc10}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc10" Text="{Binding TraitsDesc10}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's tenth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc11" Text="{Binding TraitsDesc11}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc11" Text="{Binding TraitsDesc11}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's eleventh trait.
                                     </TextBox.ToolTip>

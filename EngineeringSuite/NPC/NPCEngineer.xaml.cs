@@ -203,48 +203,183 @@ public partial class NPCEngineer : Window
         #region NPCE_Down
         private void Down1_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits1.Text))
+            {
+                string strCopyTraits1 = strTraits1.Text;
+                string strCopyTraits2 = strTraits2.Text;
+                string strCopyTraitDesc1 = strTraitDesc1.Text;
+                string strCopyTraitDesc2 = strTraitDesc2.Text;
+                strTraits1.Text = strCopyTraits2;
+                strTraits2.Text = strCopyTraits1;
+                strTraitDesc1.Text = strCopyTraitDesc2;
+                strTraitDesc2.Text = strCopyTraitDesc1;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down2_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits2.Text))
+            {
+                string strCopyTraits2 = strTraits2.Text;
+                string strCopyTraits3 = strTraits3.Text;
+                string strCopyTraitDesc2 = strTraitDesc2.Text;
+                string strCopyTraitDesc3 = strTraitDesc3.Text;
+                strTraits2.Text = strCopyTraits3;
+                strTraits3.Text = strCopyTraits2;
+                strTraitDesc2.Text = strCopyTraitDesc3;
+                strTraitDesc3.Text = strCopyTraitDesc2;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down3_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits3.Text))
+            {
+                string strCopyTraits3 = strTraits3.Text;
+                string strCopyTraits4 = strTraits4.Text;
+                string strCopyTraitDesc3 = strTraitDesc3.Text;
+                string strCopyTraitDesc4 = strTraitDesc4.Text;
+                strTraits3.Text = strCopyTraits4;
+                strTraits4.Text = strCopyTraits3;
+                strTraitDesc3.Text = strCopyTraitDesc4;
+                strTraitDesc4.Text = strCopyTraitDesc3;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down4_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits4.Text))
+            {
+                string strCopyTraits4 = strTraits4.Text;
+                string strCopyTraits5 = strTraits5.Text;
+                string strCopyTraitDesc4 = strTraitDesc4.Text;
+                string strCopyTraitDesc5 = strTraitDesc5.Text;
+                strTraits4.Text = strCopyTraits5;
+                strTraits5.Text = strCopyTraits4;
+                strTraitDesc4.Text = strCopyTraitDesc5;
+                strTraitDesc5.Text = strCopyTraitDesc4;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down5_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits5.Text))
+            {
+                string strCopyTraits5 = strTraits5.Text;
+                string strCopyTraits6 = strTraits6.Text;
+                string strCopyTraitDesc5 = strTraitDesc5.Text;
+                string strCopyTraitDesc6 = strTraitDesc6.Text;
+                strTraits5.Text = strCopyTraits6;
+                strTraits6.Text = strCopyTraits5;
+                strTraitDesc5.Text = strCopyTraitDesc6;
+                strTraitDesc6.Text = strCopyTraitDesc5;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down6_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits6.Text))
+            {
+                string strCopyTraits6 = strTraits6.Text;
+                string strCopyTraits7 = strTraits7.Text;
+                string strCopyTraitDesc6 = strTraitDesc6.Text;
+                string strCopyTraitDesc7 = strTraitDesc7.Text;
+                strTraits6.Text = strCopyTraits7;
+                strTraits7.Text = strCopyTraits6;
+                strTraitDesc6.Text = strCopyTraitDesc7;
+                strTraitDesc7.Text = strCopyTraitDesc6;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down7_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits7.Text))
+            {
+                string strCopyTraits7 = strTraits7.Text;
+                string strCopyTraits8 = strTraits8.Text;
+                string strCopyTraitDesc7 = strTraitDesc7.Text;
+                string strCopyTraitDesc8 = strTraitDesc8.Text;
+                strTraits7.Text = strCopyTraits8;
+                strTraits8.Text = strCopyTraits7;
+                strTraitDesc7.Text = strCopyTraitDesc8;
+                strTraitDesc8.Text = strCopyTraitDesc7;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down8_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits8.Text))
+            {
+                string strCopyTraits8 = strTraits8.Text;
+                string strCopyTraits9 = strTraits9.Text;
+                string strCopyTraitDesc8 = strTraitDesc8.Text;
+                string strCopyTraitDesc9 = strTraitDesc9.Text;
+                strTraits8.Text = strCopyTraits9;
+                strTraits9.Text = strCopyTraits8;
+                strTraitDesc8.Text = strCopyTraitDesc9;
+                strTraitDesc9.Text = strCopyTraitDesc8;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         private void Down9_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits9.Text))
+            {
+                string strCopyTraits9 = strTraits9.Text;
+                string strCopyTraits10 = strTraits10.Text;
+                string strCopyTraitDesc9 = strTraitDesc9.Text;
+                string strCopyTraitDesc10 = strTraitDesc10.Text;
+                strTraits9.Text = strCopyTraits10;
+                strTraits10.Text = strCopyTraits9;
+                strTraitDesc9.Text = strCopyTraitDesc10;
+                strTraitDesc10.Text = strCopyTraitDesc9;
+            }
+            else
+            {
+                // Do nothing
+            }
+        }
+        private void Down10_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(strTraits10.Text))
+            {
+                string strCopyTraits10 = strTraits10.Text;
+                string strCopyTraits11 = strTraits11.Text;
+                string strCopyTraitDesc10 = strTraitDesc10.Text;
+                string strCopyTraitDesc11 = strTraitDesc11.Text;
+                strTraits10.Text = strCopyTraits11;
+                strTraits11.Text = strCopyTraits10;
+                strTraitDesc10.Text = strCopyTraitDesc11;
+                strTraitDesc11.Text = strCopyTraitDesc10;
+            }
+            else
+            {
+                // Do nothing
+            }
         }
         #endregion
         #region NPCE_Edit
