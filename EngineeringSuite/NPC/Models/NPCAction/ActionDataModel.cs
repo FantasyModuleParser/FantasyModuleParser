@@ -39,12 +39,11 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 
             if (_weaponAttackList.Contains(weaponAttack))
             {
-                //Basically, if a WeaponAttack object of the same WeaponName exists in the list,
-                // remove it from the list & replace it with the updated Version
-
-                // This should work because the Equals & HashCode for WeaponAttack is based
-                // soley off of the weaponName attribute (matches functionality of current NPC Engineer app)
-                _weaponAttackList.Remove(weaponAttack);
+                var obj = _weaponAttackList.FirstOrDefault(x => x == weaponAttack);
+                if (obj != null) obj = weaponAttack;
+            } 
+            else
+            {
                 _weaponAttackList.Add(weaponAttack);
             }
 
@@ -56,15 +55,13 @@ namespace EngineeringSuite.NPC.Models.NPCAction
             {
                 _otherActionList = new List<OtherAction>();
             }
-
             if (_otherActionList.Contains(otherAction))
             {
-                //Basically, if a WeaponAttack object of the same WeaponName exists in the list,
-                // remove it from the list & replace it with the updated Version
-
-                // This should work because the Equals & HashCode for WeaponAttack is based
-                // soley off of the weaponName attribute (matches functionality of current NPC Engineer app)
-                _otherActionList.Remove(otherAction);
+                var obj = _otherActionList.FirstOrDefault(x => x == otherAction);
+                if (obj != null) obj = otherAction;
+            }
+            else
+            {
                 _otherActionList.Add(otherAction);
             }
         }
