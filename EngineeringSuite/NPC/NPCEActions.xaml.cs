@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using EngineeringSuite.NPC.Controller;
 using EngineeringSuite.NPC.Models.NPCAction;
 
 namespace EngineeringSuite.NPC
@@ -10,6 +11,9 @@ namespace EngineeringSuite.NPC
     /// </summary>
     public partial class NPCEActions : Window
     {
+
+        private NPCModel _npcModel;
+        private NPCController _npcController;
 
         public bool IsMultiAttack { get; set;}
         public string SelectedText{ get; set; }
@@ -23,12 +27,16 @@ namespace EngineeringSuite.NPC
         private void OnInit(object sender, RoutedEventArgs e)
         {
             //DataContext = new ActionDataModel();
-            ActionDataModel actionDataModelObj = (ActionDataModel)((App)Application.Current).NpcModelObject.npcActions;
+            _npcController = new NPCController();
+            _npcModel = _npcController.GetNPCModel();
+            ActionDataModel actionDataModelObj = _npcModel.npcActions;
             if (actionDataModelObj == null)
             {
                 actionDataModelObj = new ActionDataModel();
-                ((NPCModel)((App)Application.Current).NpcModelObject).npcActions = actionDataModelObj;
+                //((NPCModel)((App)Application.Current).NpcModelObject).npcActions = actionDataModelObj;
                 
+                //I'm hoping this is the same as Pass By Reference...
+                _npcModel.npcActions = actionDataModelObj;
             }
 
             if(actionDataModelObj.MultiAttack != null)
@@ -252,9 +260,9 @@ namespace EngineeringSuite.NPC
         private void updateMultiAttack(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Multiattack Selected: " + multiAttackCB.IsChecked);
-            //if (IsMultiAttack)
+            if ((bool)multiAttackCB.IsChecked)
             {
-                ((ActionDataModel)((App)Application.Current).NpcModelObject.npcActions).MultiAttack = new Multiattack(multiAttackTextArea.Text);
+                _npcModel.npcActions.MultiAttack = new Multiattack(multiAttackTextArea.Text);
                 Console.WriteLine("Multiattack Text: " + multiAttackTextArea.Text);
             }
 

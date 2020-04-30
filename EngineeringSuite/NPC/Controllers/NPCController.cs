@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using EngineeringSuite.NPC.Models.NPCAction;
 using Newtonsoft.Json;
 
@@ -37,6 +38,11 @@ namespace EngineeringSuite.NPC.Controller
 			// Double Dagger attack Action!!
 			tempGoblin.npcActions.updateWeaponAttack(weaponAttack);
 			return tempGoblin;
+		}
+
+		public NPCModel GetNPCModel()
+		{
+			return (NPCModel)((App)Application.Current).NpcModelObject;
 		}
 	}
 }
