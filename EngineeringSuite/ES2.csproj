@@ -186,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControl\ActionOverviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\NPCEFGListOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,6 +231,9 @@
     </Compile>
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControl\ActionOverviewControl.xaml.cs">
+      <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Controllers\NPCController.cs" />
     <Compile Include="NPC\Models\NPCAction\ActionDataModel.cs" />
