@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EngineeringSuite.NPC.DTO.NPCAction
+namespace EngineeringSuite.NPC.Models.NPCAction
 {
     enum WeaponType
     {
@@ -16,9 +16,9 @@ namespace EngineeringSuite.NPC.DTO.NPCAction
         MRSA    // Melee or Range Spell Attack
     };
 
-    class WeaponAttack
+    public class WeaponAttack
     {
-        String weaponName { get; set; }
+        public string WeaponName { get; set; }
         WeaponType weaponType { get; set; }
 
         // Weapon Unique Properties
@@ -40,5 +40,24 @@ namespace EngineeringSuite.NPC.DTO.NPCAction
         
         // TODO: Other Text
         String otherText;
+
+        public String GenerateWeaponAttackDescription()
+        {
+            return "Weapon Attack Description Goes Here.";
+        }
+
+
+        #region Equals and HashCode
+        public override bool Equals(object obj)
+        {
+            return obj is WeaponAttack attack &&
+                   WeaponName == attack.WeaponName;
+        }
+
+        public override int GetHashCode()
+        {
+            return 39142378 + EqualityComparer<string>.Default.GetHashCode(WeaponName);
+        }
+        #endregion
     }
 }

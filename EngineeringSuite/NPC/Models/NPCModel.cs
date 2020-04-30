@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EngineeringSuite.NPC.Models.NPCAction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -142,5 +143,7 @@ namespace EngineeringSuite.NPC
         public string Description { get; set; }
         public string NonID { get; set; }
         public string NPCImage { get; set; }
+
+        public ActionDataModel npcActions { get; set; }
     }
 }

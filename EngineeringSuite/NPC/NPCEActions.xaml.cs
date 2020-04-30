@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using EngineeringSuite.NPC.DTO.NPCAction;
+using EngineeringSuite.NPC.Models.NPCAction;
 
 namespace EngineeringSuite.NPC
 {
@@ -11,23 +11,36 @@ namespace EngineeringSuite.NPC
     public partial class NPCEActions : Window
     {
 
-        public bool IsMultiAttack { get; set; }
-        public String SelectedText { get; set; }
-        internal ActionDTO ActionDTO { get => actionDTO; set => actionDTO = value; }
-
-        private ActionDTO actionDTO;
+        public bool IsMultiAttack { get; set;}
+        public string SelectedText{ get; set; }
 
         public NPCEActions()
         {
             InitializeComponent();
-            multiAttackCB.DataContext = this;
-            multiAttackTextArea.DataContext = this;
-
-            if(actionDTO == null)
-            {
-                actionDTO = new ActionDTO();
-            }
+            DataContext = this;
         }
+
+        private void OnInit(object sender, RoutedEventArgs e)
+        {
+            //DataContext = new ActionDataModel();
+            ActionDataModel actionDataModelObj = (ActionDataModel)((App)Application.Current).NpcModelObject.npcActions;
+            if (actionDataModelObj == null)
+            {
+                actionDataModelObj = new ActionDataModel();
+                ((NPCModel)((App)Application.Current).NpcModelObject).npcActions = actionDataModelObj;
+                
+            }
+
+            if(actionDataModelObj.MultiAttack != null)
+            {
+                multiAttackCB.IsChecked = true;
+                multiAttackTextArea.Text = actionDataModelObj.MultiAttack.description;
+            }
+
+            //DataContext = actionDataModelObj;
+        }
+
+
         #region NPCE_Up
         private void Up2_Click(object sender, RoutedEventArgs e)
         {
@@ -238,18 +251,18 @@ namespace EngineeringSuite.NPC
 
         private void updateMultiAttack(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Multiattack Update called :: Checkbox Value = " + IsMultiAttack.ToString());
-            Console.WriteLine("Multiattack Textbox content :: " + multiAttackTextArea.Text);
-
-            if (IsMultiAttack)
+            Console.WriteLine("Multiattack Selected: " + multiAttackCB.IsChecked);
+            //if (IsMultiAttack)
             {
-                actionDTO.multiattack = new Multiattack(multiAttackTextArea.Text);
-            } else
-            {
-                actionDTO.multiattack = null;
+                ((ActionDataModel)((App)Application.Current).NpcModelObject.npcActions).MultiAttack = new Multiattack(multiAttackTextArea.Text);
+                Console.WriteLine("Multiattack Text: " + multiAttackTextArea.Text);
             }
 
-            Console.WriteLine(actionDTO);
+        }
+
+        private void WA_Update_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:EngineeringSuite.NPC.UserController"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
-    <Grid  Background="#FFE5E5E5">
+        Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico" Loaded="OnInit">
+    <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="480" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="112" Margin="610,5,0,0" VerticalAlignment="Top" Width="450"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="325" Margin="610,119,0,0" VerticalAlignment="Top" Width="450"/>
@@ -13,9 +14,18 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Width="600">
                         <Label Content="Actions" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <TextBox Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5" TextChanged="TextBox_TextChanged"/>
+                        <uc:ActionOverviewControl AOCId="AOC_0" Id="0"></uc:ActionOverviewControl>
+                        <uc:ActionOverviewControl AOCId="AOC_1" Id="1"></uc:ActionOverviewControl>
+                        <uc:ActionOverviewControl AOCId="AOC_2" Id="2"></uc:ActionOverviewControl>
+                        <uc:ActionOverviewControl AOCId="AOC_3" Id="3"></uc:ActionOverviewControl>
+                        <uc:ActionOverviewControl AOCId="AOC_4" Id="4"></uc:ActionOverviewControl>
+                        <uc:ActionOverviewControl AOCId="AOC_5" Id="5"></uc:ActionOverviewControl>
+                        <uc:ActionOverviewControl AOCId="AOC_6" Id="6"></uc:ActionOverviewControl>
+                        <uc:ActionOverviewControl AOCId="AOC_7" Id="7"></uc:ActionOverviewControl>
+                        <!--
+                        <TextBox x:Name="actionName_0" Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5" TextChanged="TextBox_TextChanged"/>
                         <StackPanel Orientation="Horizontal">
                             <Button Name="btn_Edit1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
@@ -159,9 +169,11 @@
                                 <Image Source="/Resources/up_arrow.png" />
                             </Button>
                         </StackPanel>
+                        -->
                     </StackPanel>
+                    <!--
                     <StackPanel Orientation="Vertical">
-                        <TextBox Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
+                        <TextBox x:Name="actionDescription_0" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
@@ -172,6 +184,7 @@
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                         <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
                     </StackPanel>
+                    -->
                 </StackPanel>
                 <Button Content="Close" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,30,0,0" Click="ESExit_Click"/>
             </StackPanel>
@@ -179,8 +192,8 @@
                 <Label Content="Multiattack" FontWeight="Bold" Foreground="Gray" Padding="0" Margin="20,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Multiattack:" Padding="0" Margin="25,5,0,0"/>
-                    <CheckBox x:Name="multiAttackCB" Padding="0" Margin="5,7,0,0" IsChecked="{Binding IsMultiAttack}"/>
-                    <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding SelectedText}"/>
+                    <CheckBox x:Name="multiAttackCB" Padding="0" Margin="5,7,0,0" IsChecked="{Binding IsMultiAttack}" />
+                    <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding SelectedText}" />
                 </StackPanel>
                 <Button Content="Update" Width="75" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="285,5,0,0" Click="updateMultiAttack"/>
                 <Label Content="Weapon Attack" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -188,11 +201,11 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Weapon:" Padding="0" Margin="25,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                            <ComboBox Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                            <TextBox x:Name="WA_WeaponName" Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Type:" Padding="0" Margin="45,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                            <ComboBox Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <ComboBox x:Name="WA_WeaponType" Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <ComboBoxItem>Melee Weapon Attack</ComboBoxItem>
                                 <ComboBoxItem>Ranged Weapon Attack</ComboBoxItem>
                                 <ComboBoxItem>Melee or Ranged Weapon Attack</ComboBoxItem>
@@ -204,15 +217,15 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Magic" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left"/>
-                            <CheckBox Content="Adamantine" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left"/>
+                            <CheckBox x:Name="WA_IsMagic" Content="Magic" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left"/>
+                            <CheckBox x:Name="WA_IsAdamantine" Content="Adamantine" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Silver" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
-                            <CheckBox Content="Cold-Forged Iron" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
+                            <CheckBox x:Name="WA_IsSilver" Content="Silver" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
+                            <CheckBox x:Name="WA_IsCFI" Content="Cold-Forged Iron" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Versatile" Padding="0" Margin="64,3,0,0" HorizontalAlignment="Left"/>
+                            <CheckBox x:Name="WA_IsVersatile" Content="Versatile" Padding="0" Margin="64,3,0,0" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -225,11 +238,11 @@
                     <Label Content="Target Type" Padding="0" Margin="40,3,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center"/>
-                    <TextBox Width="40" Text="5" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
-                    <TextBox Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
-                    <TextBox Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
-                    <ComboBox Width="100" Padding="0" Margin="20,3,0,0">
+                    <TextBox x:Name="WA_ToHit" Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="WA_Reach" Width="40" Text="5" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="WA_RangeNormal" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="WA_RangeLong" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
+                    <ComboBox x:Name="WA_TargetType" Width="100" Padding="0" Margin="20,3,0,0">
                         <ComboBoxItem>one target</ComboBoxItem>
                         <ComboBoxItem>one creature</ComboBoxItem>
                     </ComboBox>
@@ -242,9 +255,9 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Damage" Padding="0" Margin="92,3,0,0"/>
-                    <TextBox Width="40" Height="20" Padding="0" Margin="10,3,0,0" />
+                    <TextBox x:Name="WA_D0_NumOfDie" Width="40" Height="20" Padding="0" Margin="10,3,0,0" />
                     <Label Content="d" Padding="0" Margin="3,3,0,0"/>
-                    <ComboBox Width="40" Height="20" Padding="0" Margin="3,3,0,0">
+                    <ComboBox x:Name="WA_D0_DieSize" Width="40" Height="20" Padding="0" Margin="3,3,0,0">
                         <ComboBoxItem>4</ComboBoxItem>
                         <ComboBoxItem>6</ComboBoxItem>
                         <ComboBoxItem>8</ComboBoxItem>
@@ -253,8 +266,8 @@
                         <ComboBoxItem>20</ComboBoxItem>
                     </ComboBox>
                     <Label Content="+" Padding="0" Margin="3,3,0,0"/>
-                    <TextBox Width="40" Height="20" Padding="0" Margin="3,3,0,0" />
-                    <ComboBox Width="100" Padding="0" Margin="10,3,0,0" Height="20">
+                    <TextBox x:Name="WA_D0_Bonus" Width="40" Height="20" Padding="0" Margin="3,3,0,0" />
+                    <ComboBox x:Name="WA_D0_DamageType" Width="100" Padding="0" Margin="10,3,0,0" Height="20">
                         <ComboBoxItem>bludgeoning</ComboBoxItem>
                         <ComboBoxItem>piercing</ComboBoxItem>
                         <ComboBoxItem>slashing</ComboBoxItem>
@@ -305,8 +318,8 @@
                     <TextBox Width="300" Height="80" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="10,3,0,0" IsReadOnly="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="300" Text=". Melee Weapon Attack: +0 to hit, reach 5 ft., one target. Hit: 3 (1d6)  damage." Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="20,3,0,0" IsReadOnly="True"/>
-                    <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,20,0,0"/>
+                    <TextBox x:Name="WA_Description" Width="300" Text=". Melee Weapon Attack: +0 to hit, reach 5 ft., one target. Hit: 3 (1d6)  damage." Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="20,3,0,0" IsReadOnly="True"/>
+                    <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,20,0,0" Click="WA_Update_Click"/>
                 </StackPanel>
                 <Label Content="Other Action" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal">

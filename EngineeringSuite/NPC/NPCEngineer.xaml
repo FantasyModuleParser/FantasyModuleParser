@@ -10,7 +10,7 @@
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="1072">
             <MenuItem Header="_File">
                 <MenuItem Header="_New NPC" />
-                <MenuItem Header="_Open NPC" />
+                <MenuItem Header="_Open NPC" Click="LoadNPCFile"/>
                 <MenuItem Header="_Save NPC" Click="CreateNPCFile"/>
                 <Separator />
                 <MenuItem Header="_Save as HTML" />

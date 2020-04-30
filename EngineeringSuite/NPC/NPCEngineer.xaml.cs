@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using EngineeringSuite.NPC.Controller;
+using EngineeringSuite.NPC.ViewModel;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace EngineeringSuite.NPC
@@ -26,6 +27,8 @@ public partial class NPCEngineer : Window
         #region Variables
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         string installFolder = "Engineer Suite/NPC";
+
+
         #endregion
         
         #region Methods
@@ -44,6 +47,10 @@ public partial class NPCEngineer : Window
         {
             InitializeComponent();
             npcController = new NPCController();
+
+            //var npcModel = ((App)Application.Current).NpcModelObject;
+
+            //DataContext = npcModel;
         }
         private void openfolder(string strPath, string strFolder)
         {
@@ -618,12 +625,17 @@ public partial class NPCEngineer : Window
                 MarkedSpells = strMarkedSpells.Text,
                 Description = strDescription.Text,
                 NonID = strNonID.Text,
-                NPCImage = strNPCImage.text,
+                NPCImage = strNPCImage.Text,
             };
 
             npcController.Save(savePath, npcModel);
         }
 
+
+        private void LoadNPCFile(object sender, RoutedEventArgs e)
+        {
+            ((App)Application.Current).NpcModelObject = npcController.LoadTemporaryGoblin();
+        }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"[^0-9-]+"); ;
