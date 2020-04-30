@@ -259,5 +259,10 @@ namespace EngineeringSuite.NPC
             }
 
         }
+
+        private void WA_Update_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

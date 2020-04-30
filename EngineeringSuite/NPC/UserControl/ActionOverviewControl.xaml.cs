@@ -1,4 +1,5 @@
-﻿using EngineeringSuite.NPC.Models.NPCAction;
+﻿using EngineeringSuite.NPC.Controllers;
+using EngineeringSuite.NPC.Models.NPCAction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace EngineeringSuite.NPC.UserController
 
         private void btn_Up_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Up Button Pressed for Action Overview Control :: ID = " + AOCId);
+            Console.WriteLine("Up Button Pressed for Action Overview Control :: ID = " + AOCId + " --- " + Id);
         }
 
         private void btn_Down_Click(object sender, RoutedEventArgs e)
@@ -51,6 +52,19 @@ namespace EngineeringSuite.NPC.UserController
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Cancel Button Pressed for Action Overview Control :: ID = " + AOCId);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            NPCActionController actionController = new NPCActionController();
+            ActionOverviewModel actionOverviewModel = 
+                actionController.GetActionOverviewModel((ActionDataModel)((App)Application.Current).NpcModelObject.npcActions, Id);
+
+            if (actionOverviewModel != null)
+            {
+                actionName.Text = actionOverviewModel.ActionName;
+                actionDescription.Text = actionOverviewModel.ActionDescription;
+            }
         }
     }
 }

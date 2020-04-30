@@ -232,6 +232,8 @@
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\Controllers\NPCActionController.cs" />
+    <Compile Include="NPC\Models\NPCAction\ActionOverviewModel.cs" />
     <Compile Include="NPC\UserControl\ActionOverviewControl.xaml.cs">
       <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
     </Compile>

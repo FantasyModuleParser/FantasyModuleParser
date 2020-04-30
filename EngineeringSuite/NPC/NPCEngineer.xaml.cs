@@ -625,12 +625,17 @@ public partial class NPCEngineer : Window
                 MarkedSpells = strMarkedSpells.Text,
                 Description = strDescription.Text,
                 NonID = strNonID.Text,
-                NPCImage = strNPCImage.text,
+                NPCImage = strNPCImage.Text,
             };
 
             npcController.Save(savePath, npcModel);
         }
 
+
+        private void LoadNPCFile(object sender, RoutedEventArgs e)
+        {
+            ((App)Application.Current).NpcModelObject = npcController.LoadTemporaryGoblin();
+        }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"[^0-9-]+"); ;

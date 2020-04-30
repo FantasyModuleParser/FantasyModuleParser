@@ -18,7 +18,7 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 
     public class WeaponAttack
     {
-        String weaponName { get; set; }
+        public string WeaponName { get; set; }
         WeaponType weaponType { get; set; }
 
         // Weapon Unique Properties
@@ -41,18 +41,22 @@ namespace EngineeringSuite.NPC.Models.NPCAction
         // TODO: Other Text
         String otherText;
 
+        public String GenerateWeaponAttackDescription()
+        {
+            return "Weapon Attack Description Goes Here.";
+        }
 
 
         #region Equals and HashCode
         public override bool Equals(object obj)
         {
             return obj is WeaponAttack attack &&
-                   weaponName == attack.weaponName;
+                   WeaponName == attack.WeaponName;
         }
 
         public override int GetHashCode()
         {
-            return 39142378 + EqualityComparer<string>.Default.GetHashCode(weaponName);
+            return 39142378 + EqualityComparer<string>.Default.GetHashCode(WeaponName);
         }
         #endregion
     }

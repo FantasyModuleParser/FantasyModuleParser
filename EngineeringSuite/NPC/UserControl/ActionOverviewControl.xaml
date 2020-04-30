@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EngineeringSuite.NPC.UserController"
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="600">
+             d:DesignHeight="60" d:DesignWidth="600" Loaded="UserControl_Loaded">
     <Grid>
         <TextBox x:Name="actionName" Margin="10,5,365,35" IsReadOnly="True" Background="#FFE5E5E5" Text="Test Action"/>
         <StackPanel Orientation="Horizontal" Margin="0,0,480,-15" Height="20" HorizontalAlignment="Center" >
