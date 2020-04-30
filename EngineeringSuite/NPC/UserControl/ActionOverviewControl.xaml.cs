@@ -1,4 +1,5 @@
-﻿using EngineeringSuite.NPC.Controllers;
+﻿using EngineeringSuite.NPC.Controller;
+using EngineeringSuite.NPC.Controllers;
 using EngineeringSuite.NPC.Models.NPCAction;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,12 @@ namespace EngineeringSuite.NPC.UserController
     public partial class ActionOverviewControl : UserControl
     {
 
+        private NPCController _npcController;
+
         public ActionOverviewControl()
         {
             InitializeComponent();
+            _npcController = new NPCController();
             this.DataContext = this;
         }
 
@@ -58,13 +62,18 @@ namespace EngineeringSuite.NPC.UserController
         {
             NPCActionController actionController = new NPCActionController();
             ActionOverviewModel actionOverviewModel = 
-                actionController.GetActionOverviewModel((ActionDataModel)((App)Application.Current).NpcModelObject.npcActions, Id);
+                actionController.GetActionOverviewModel(_npcController.GetNPCModel().npcActions, Id);
 
             if (actionOverviewModel != null)
             {
                 actionName.Text = actionOverviewModel.ActionName;
                 actionDescription.Text = actionOverviewModel.ActionDescription;
             }
+        }
+
+        public void Refresh()
+        {
+
         }
     }
 }
