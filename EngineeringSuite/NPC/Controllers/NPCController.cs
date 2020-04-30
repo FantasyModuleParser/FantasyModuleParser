@@ -15,6 +15,7 @@ namespace EngineeringSuite.NPC.Controller
 			using (StreamWriter file = File.CreateText(@path))
 			{ 
 				JsonSerializer serializer = new JsonSerializer();
+				serializer.Formatting = Formatting.Indented;
 				serializer.Serialize(file, npcModel);
 			}
 		}

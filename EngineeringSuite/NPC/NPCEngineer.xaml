@@ -1272,10 +1272,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up5_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1285,10 +1285,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up6_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1298,10 +1298,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up7_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1311,10 +1311,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up8_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down8_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1324,10 +1324,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up9_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down9_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1337,10 +1337,10 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up10_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
                                     </Button>
-                                    <Button Name="btn_Down10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Down10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down10_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
@@ -1350,66 +1350,63 @@
                                     </TextBox.ToolTip>
                                 </TextBox>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Name="btn_Up11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button Name="btn_Up11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up11_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Image Source="/Resources/up_arrow.png" />
-                                    </Button>
-                                    <Button Name="btn_Down11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Image Source="/Resources/down_arrow.png" />
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <TextBox Name="strTraitDesc1" Text="{Binding TraitsDesc1}" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc1" Text="{Binding TraitsDesc1}" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's first trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc2" Text="{Binding TraitsDesc2}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc2" Text="{Binding TraitsDesc2}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's second trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc3" Text="{Binding TraitsDesc3}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc3" Text="{Binding TraitsDesc3}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's third trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc4" Text="{Binding TraitsDesc4}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc4" Text="{Binding TraitsDesc4}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's fourth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc5" Text="{Binding TraitsDesc5}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc5" Text="{Binding TraitsDesc5}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's fifth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc6" Text="{Binding TraitsDesc6}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc6" Text="{Binding TraitsDesc6}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's sixth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc7" Text="{Binding TraitsDesc7}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc7" Text="{Binding TraitsDesc7}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's seventh trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc8" Text="{Binding TraitsDesc8}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc8" Text="{Binding TraitsDesc8}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's eigth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc9" Text="{Binding TraitsDesc9}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc9" Text="{Binding TraitsDesc9}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's ninth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc10" Text="{Binding TraitsDesc10}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc10" Text="{Binding TraitsDesc10}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's tenth trait.
                                     </TextBox.ToolTip>
                                 </TextBox>
-                                <TextBox Name="strTraitDesc11" Text="{Binding TraitsDesc11}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="strTraitDesc11" Text="{Binding TraitsDesc11}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                                     <TextBox.ToolTip>
                                         The descriptive text of your NPC's eleventh trait.
                                     </TextBox.ToolTip>
@@ -1425,7 +1422,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="220" Margin="10,125,0,0" VerticalAlignment="Top" Width="580"/>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Include 'Innate Spellcasting' section for NPC" Margin="15,15,0,0">
+                            <CheckBox Name="chkInnateSpellcastingSection" Checked="InnateSpellcasting_Click" Content="Include 'Innate Spellcasting' section for NPC" IsChecked="{Binding InnateSpellcastingSection}" Margin="15,15,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check this box to include an 'Innate Spellcasting' section in your NPC.
@@ -1434,7 +1431,7 @@
                                     </TextBlock>
                                 </CheckBox.ToolTip>
                             </CheckBox>
-                            <CheckBox Content="Mark section as 'Psionics'" Margin="50,15,0,0">
+                            <CheckBox Name="chkPsionics" Content="Mark section as 'Psionics'" IsChecked="{Binding Psionics}" Margin="50,15,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check this box to mark this section as 'Innate Spellcasting (Psionics) for your NPC.
@@ -1447,7 +1444,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Spellcasting Ability" HorizontalAlignment="Left" Margin="15,5,0,0" Padding="0" VerticalAlignment="Top" />
-                            <ComboBox Width="100" Height="20" Margin="10,3,0,0">
+                            <ComboBox Name="strInnateSpellcastingAbility" Text="{Binding SpellcastingAbility}" Width="100" Height="20" Margin="10,3,0,0">
                                 <ComboBoxItem>Strength</ComboBoxItem>
                                 <ComboBoxItem>Dexterity</ComboBoxItem>
                                 <ComboBoxItem>Constitution</ComboBoxItem>
@@ -1461,7 +1458,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,5,0,0"/>
-                            <TextBox Width="75" Height="20" Margin="10,0,0,0">
+                            <TextBox Name="intInnateSpellSaveDC" Text="{Binding SpellSaveDC}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell save difficulty.
@@ -1471,7 +1468,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Spell Hit Bonus" Padding="0" Margin="10,5,0,0"/>
-                            <TextBox Width="75" Height="20" Margin="10,0,0,0">
+                            <TextBox Name="intInnateSpellHitBonus" Text="{Binding SpellHitBonus}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell 'to hit' bonus if appropriate.
@@ -1485,7 +1482,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Component Text" Padding="0" Margin="28,10,0,0"/>
-                            <TextBox Text="requiring no material components "  Width="450" Height="20" Margin="10,5,0,0">
+                            <TextBox Name="strComponentText" Text="{Binding ComponentText}"  Width="450" Height="20" Margin="10,5,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter information about the components required to cast this spell.
@@ -1503,7 +1500,7 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="At Will:" Foreground="Black"  HorizontalAlignment="Left" Margin="35,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="24,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strInnatAtWill" Text="{Binding InnateAtWill}" HorizontalAlignment="Left" Margin="24,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use at will (i.e. as often as required)
@@ -1517,7 +1514,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="5/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strFivePerDay" Text="{Binding FivePerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use five times a day.
@@ -1531,7 +1528,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="4/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strFourPerDay" Text="{Binding FourPerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use four times a day.
@@ -1545,7 +1542,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="3/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strThreePerDay" Text="{Binding ThreePerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use three times a day.
@@ -1559,7 +1556,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="2/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strTwoPerDay" Text="{Binding TwoPerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use two times a day.
@@ -1573,7 +1570,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="1/Day each:" Foreground="Black"  HorizontalAlignment="Left" Margin="25,5,0,0" VerticalAlignment="Top" Padding="0"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
+                                <TextBox Name="strOnePerDay" Text="{Binding OnePerDay}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Type the name of the spells the NPC can use one times a day.
@@ -1595,7 +1592,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="320" Margin="10,140,0,0" VerticalAlignment="Top" Width="580"/>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Include 'Spellcasting' section for NPC" Margin="15,15,0,0">
+                            <CheckBox Name="chkSpellcasting" IsChecked="{Binding Spellcasting}" Content="Include 'Spellcasting' section for NPC" Margin="15,15,0,0">
                                 <CheckBox.ToolTip>
                                     <TextBlock>
                                         Check this box to include an 'Spellcasting' section in your NPC.
@@ -1610,7 +1607,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Caster Level" Margin="32,0,0,0" Padding="0,2,0,0" />
-                            <ComboBox Width="75" Margin="10,0,0,0" Padding="0,1,0,0" Height="20">
+                            <ComboBox Name="strCasterLevel" Text="{Binding SpellcastingCasterLevel}" Width="75" Margin="10,0,0,0" Padding="0,1,0,0" Height="20">
                                 <ComboBoxItem>1st</ComboBoxItem>
                                 <ComboBoxItem>2nd</ComboBoxItem>
                                 <ComboBoxItem>3rd</ComboBoxItem>
@@ -1648,7 +1645,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spellcasting Ability" Padding="0,2,0,0" Margin="10,0,0,0"/>
-                            <ComboBox Width="100" Height="20" Margin="10,1,0,0">
+                            <ComboBox Name="strSCSpellcastingAbility" Text="{Binding SCSpellcastingAbility}" Width="100" Height="20" Margin="10,1,0,0">
                                 <ComboBoxItem>Strength</ComboBoxItem>
                                 <ComboBoxItem>Dexterity</ComboBoxItem>
                                 <ComboBoxItem>Constitution</ComboBoxItem>
@@ -1662,7 +1659,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,3,0,0"/>
-                            <TextBox Width="50" Margin="10,0,0,0" Padding="0" Height="20">
+                            <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding SpellcastingSpellSaveDC}" Width="50" Margin="10,0,0,0" Padding="0" Height="20" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell save difficulty check score.
@@ -1674,7 +1671,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Spell Hit Bonus" Margin="15,3,0,0" Padding="0"/>
-                            <TextBox Width="75" Height="20" Margin="10,2,0,0">
+                            <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding SpellcastingSpellHitBonus}" Width="75" Height="20" Margin="10,2,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell 'to hit' bonus if appropriate.
@@ -1684,7 +1681,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Spell Class" Padding="45,2,0,0" Margin="10,0,0,0"/>
-                            <ComboBox Width="100" Height="20" Margin="10,1,0,0">
+                            <ComboBox Name="strSpellcastingSpellClass" Text="{Binding SpellcastingSpellClass}" Width="100" Height="20" Margin="10,1,0,0">
                                 <ComboBoxItem>Bard</ComboBoxItem>
                                 <ComboBoxItem>Cleric</ComboBoxItem>
                                 <ComboBoxItem>Druid</ComboBoxItem>
@@ -1702,7 +1699,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Flavor Text:" Padding="0,3,0,0" Margin="35,2,0,0"/>
-                            <TextBox Width="450" Height="20" Padding="0,3,0,0" Margin="10,3,0,0">
+                            <TextBox Name="strFlavorText" Text="{Binding FlavorText}" Width="450" Height="20" Padding="0,3,0,0" Margin="10,3,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter any flavor text about your NPC's casting. This is not essential and can be left blank.
@@ -1720,7 +1717,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Cantrips" Padding="0" Margin="15,7,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="30,5,0,0" HorizontalContentAlignment="Center">
+                            <ComboBox Name="strCantripSpells" Text="{Binding CantripSpells}" Height="20" Width="60" Padding="0" Margin="30,5,0,0" HorizontalContentAlignment="Center">
                                 <ComboBoxItem IsSelected="True">At will</ComboBoxItem>
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
@@ -1737,7 +1734,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,5,0,0">
+                            <TextBox Name="strCantripSpellList" Text="{Binding CantripSpellList}" Height="20" Width="400" Padding="0" Margin="15,5,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at will (i.e. as often as required)
@@ -1751,7 +1748,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="1st Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="28,2,0,0">
+                            <ComboBox Name="strFirstLevelSpells" Text="{Binding FirstLevelSpells}" Height="20" Width="60" Padding="0" Margin="28,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1767,7 +1764,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strFirstLevelSpellList" Text="{Binding FirstLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 1st level.
@@ -1781,7 +1778,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="2nd Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="24,2,0,0">
+                            <ComboBox Name="strSecondLevelSpells" Text="{Binding SecondLevelSpells}"  Height="20" Width="60" Padding="0" Margin="24,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1797,7 +1794,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strSecondLevelSpellList" Text="{Binding SecondLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 2nd level.
@@ -1811,7 +1808,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="3rd Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="26,2,0,0">
+                            <ComboBox Name="strThirdLevelSpells" Text="{Binding ThirdLevelSpells}" Height="20" Width="60" Padding="0" Margin="26,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1827,7 +1824,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strThirdLevelSpellList" Text="{Binding ThirdLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 3rd level.
@@ -1841,7 +1838,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="4th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strFourthLevelSpells" Text="{Binding FourthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1857,7 +1854,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strFourthLevelSpellList" Text="{Binding FourthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 4th level.
@@ -1871,7 +1868,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="5th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strfifthLevelSpells" Text="{Binding FifthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1887,7 +1884,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strFifthLevelSpellList" Text="{Binding FifthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 5th level.
@@ -1901,7 +1898,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="6th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strSixthLevelSpells" Text="{Binding SixthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1917,7 +1914,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strSixthLevelSpellList" Text="{Binding SixthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 6th level.
@@ -1931,7 +1928,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="7th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strSeventhLevelSpells" Text="{Binding SeventhLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1947,7 +1944,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strSeventhLevelSpellList" Text="{Binding SeventhLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 7th level.
@@ -1961,7 +1958,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="8th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strEigthLevelSpells" Text="{Binding EighthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -1977,7 +1974,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strEigthLevelSpellList" Text="{Binding EigthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 8th level.
@@ -1991,7 +1988,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="9th Level" Padding="0" Margin="15,4,0,0" />
-                            <ComboBox Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                            <ComboBox Name="strNinthLevelSpells" Text="{Binding NinthLevelSpells}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
                                 <ComboBoxItem>1 slot</ComboBoxItem>
                                 <ComboBoxItem>2 slots</ComboBoxItem>
                                 <ComboBoxItem>3 slots</ComboBoxItem>
@@ -2007,7 +2004,7 @@
                                     </TextBlock>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <TextBox Height="20" Width="400" Padding="0" Margin="15,2,0,0">
+                            <TextBox Name="strNinthLevelSpellList" Text="{Binding NinthLevelSpellList}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Type the name of the spells the NPC can use at the 9th level.
@@ -2021,7 +2018,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Marked Spells" Padding="0" Margin="15,20,0,0"/>
-                            <TextBox Width="460" Height="20" Padding="0" Margin="10,18,0,0">
+                            <TextBox Name="strMarkedSpells" Text="{Binding MarkedSpells}" Width="460" Height="20" Padding="0" Margin="10,18,0,0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         If you have any spells marked with an asterisk (*), the footnote goes here.
@@ -2542,15 +2539,15 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="270,465,0,0" VerticalAlignment="Top" Width="160"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="440,465,0,0" VerticalAlignment="Top" Width="165"/>
                     <StackPanel Orientation="Vertical">
-                        <RichTextBox Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
-                            <RichTextBox.ToolTip>
+                        <TextBox Name="strDescription" Text="{Binding Description}" Width="590" Height="400" Margin="10,10,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
+                            <TextBox.ToolTip>
                                 <TextBlock>
                                     This box contains the formatted descriptive text that will be added to your NPC.
                                 </TextBlock>
-                            </RichTextBox.ToolTip>
-                        </RichTextBox>
+                            </TextBox.ToolTip>
+                        </TextBox>
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Bold.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2558,7 +2555,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/italic.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2566,7 +2563,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/underline.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2574,7 +2571,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/undo.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2582,7 +2579,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/redo.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2610,7 +2607,7 @@
                             </Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Header.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2618,7 +2615,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Text Color.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2626,7 +2623,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Speech Bubble With Dots.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2636,7 +2633,7 @@
                                     </TextBlock>
                                 </Button.ToolTip>
                             </Button>
-                            <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Image Source="/Resources/Bulleted List.png" />
                                 <Button.ToolTip>
                                     <TextBlock>
@@ -2648,7 +2645,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                            <TextBox Margin="5,9,0,0" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <TextBox Name="strNonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.
@@ -2678,7 +2675,7 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Label Content="NPC Image:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                            <TextBox VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,10,0,0" Padding="0">
+                            <TextBox Name="strNPCImage" Text="{Binding NPCImage}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,10,0,0" Padding="0">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         File location to the JPG image used for the NPC.
@@ -2689,7 +2686,7 @@
                                 <Image Source="/Resources/Folder.png" />
                             </Button>
                         </StackPanel>
-                        <Button Name="btn_SelectNPCImage" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="590" Height="420" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit2_Click" Margin="10,10,0,0">
+                        <Button Name="btn_SelectNPCImage" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="590" Height="420" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,10,0,0">
                             <Image />
                         </Button>
                         <StackPanel Orientation="Horizontal">
@@ -2786,10 +2783,10 @@
                 </TextBlock>
             </Button.ToolTip>
         </Button>
-        <Button Content="Save NPC" HorizontalAlignment="Left" Margin="850,670,0,0" VerticalAlignment="Top" Width="90">
+        <Button Content="Save NPC" Click="CreateNPCFile" HorizontalAlignment="Left" Margin="850,670,0,0" VerticalAlignment="Top" Width="90">
             <Button.ToolTip>
                 <TextBlock>
-                    Save your NPC to your drive as a *.NPC file
+                    Save your NPC to your drive as a *.JSON file
                     <LineBreak />
                     <Italic>This can be reloaded for further editing</Italic>
                 </TextBlock>

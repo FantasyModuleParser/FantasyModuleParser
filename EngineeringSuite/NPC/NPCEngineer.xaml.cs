@@ -30,7 +30,19 @@ public partial class NPCEngineer : Window
 
 
         #endregion
-
+        
+        #region Methods
+        private void SwapTextBoxes(TextBox input, TextBox output)
+        {
+            string onHold = input.Text;
+            input.Text = output.Text;
+            output.Text = onHold;
+        }
+        private void InnateSpellcasting_Click(object sender, RoutedEventArgs e)
+        {
+            strComponentText.Text = "requiring no material components";
+        }
+        #endregion
         public NPCEngineer()
         {
             InitializeComponent();
@@ -163,147 +175,165 @@ public partial class NPCEngineer : Window
         #region NPCE_Up
         private void Up2_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits2.Text))
+            {
+                SwapTextBoxes(strTraits1, strTraits2);
+                SwapTextBoxes(strTraitDesc1, strTraitDesc2);
+            }
         }
         private void Up3_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits3.Text))
+            {
+                SwapTextBoxes(strTraits2, strTraits3);
+                SwapTextBoxes(strTraitDesc2, strTraitDesc3);
+            }
         }
         private void Up4_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits4.Text))
+            {
+                SwapTextBoxes(strTraits3, strTraits4);
+                SwapTextBoxes(strTraitDesc3, strTraitDesc4);
+            }
         }
         private void Up5_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits5.Text))
+            {
+                SwapTextBoxes(strTraits4, strTraits5);
+                SwapTextBoxes(strTraitDesc4, strTraitDesc5);
+            }
         }
         private void Up6_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits6.Text))
+            {
+                SwapTextBoxes(strTraits5, strTraits6);
+                SwapTextBoxes(strTraitDesc5, strTraitDesc6);
+            }
         }
         private void Up7_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits7.Text))
+            {
+                SwapTextBoxes(strTraits6, strTraits7);
+                SwapTextBoxes(strTraitDesc6, strTraitDesc7);
+            }
         }
         private void Up8_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits8.Text))
+            {
+                SwapTextBoxes(strTraits7, strTraits8);
+                SwapTextBoxes(strTraitDesc7, strTraitDesc8);
+            }
         }
         private void Up9_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits9.Text))
+            {
+                SwapTextBoxes(strTraits8, strTraits9);
+                SwapTextBoxes(strTraitDesc8, strTraitDesc9);
+            }
         }
         private void Up10_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits10.Text))
+            {
+                SwapTextBoxes(strTraits9, strTraits10);
+                SwapTextBoxes(strTraitDesc9, strTraitDesc10);
+            }
+        }
+        private void Up11_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(strTraits11.Text))
+            {
+                SwapTextBoxes(strTraits10, strTraits11);
+                SwapTextBoxes(strTraitDesc10, strTraitDesc11);
+            }
         }
         #endregion
         #region NPCE_Down
         private void Down1_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits1.Text))
+            {
+                SwapTextBoxes(strTraits1, strTraits2);
+                SwapTextBoxes(strTraitDesc1, strTraitDesc2);
+            }
         }
         private void Down2_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits2.Text))
+            {
+                SwapTextBoxes(strTraits2, strTraits3);
+                SwapTextBoxes(strTraitDesc2, strTraitDesc3);
+            }
         }
         private void Down3_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits3.Text))
+            {
+                SwapTextBoxes(strTraits3, strTraits4);
+                SwapTextBoxes(strTraitDesc3, strTraitDesc4);
+            }
         }
         private void Down4_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits4.Text))
+            {
+                SwapTextBoxes(strTraits4, strTraits5);
+                SwapTextBoxes(strTraitDesc4, strTraitDesc5);
+            }
         }
         private void Down5_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits5.Text))
+            {
+                SwapTextBoxes(strTraits5, strTraits6);
+                SwapTextBoxes(strTraitDesc5, strTraitDesc6);
+            }
         }
         private void Down6_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits6.Text))
+            {
+                SwapTextBoxes(strTraits6, strTraits7);
+                SwapTextBoxes(strTraitDesc6, strTraitDesc7);
+            }
         }
         private void Down7_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits7.Text))
+            {
+                SwapTextBoxes(strTraits7, strTraits8);
+                SwapTextBoxes(strTraitDesc7, strTraitDesc8);
+            }
         }
         private void Down8_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits8.Text))
+            {
+                SwapTextBoxes(strTraits8, strTraits9);
+                SwapTextBoxes(strTraitDesc8, strTraitDesc9);
+            }
         }
         private void Down9_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits9.Text))
+            {
+                SwapTextBoxes(strTraits9, strTraits10);
+                SwapTextBoxes(strTraitDesc9, strTraitDesc10);
+            }
         }
-        #endregion
-        #region NPCE_Edit
-        private void Edit1_Click(object sender, RoutedEventArgs e)
+        private void Down10_Click(object sender, RoutedEventArgs e)
         {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit2_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit3_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit4_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit5_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit6_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit7_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit8_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit9_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
-        }
-        private void Edit10_Click(object sender, RoutedEventArgs e)
-        {
-            NPCEngineer win2 = new NPCEngineer();
-            win2.Show();
+            if (!String.IsNullOrEmpty(strTraits10.Text))
+            {
+                SwapTextBoxes(strTraits10, strTraits11);
+                SwapTextBoxes(strTraitDesc10, strTraitDesc11);
+            }
         }
         #endregion
         #region NPCE_Cancel
@@ -464,13 +494,13 @@ public partial class NPCEngineer : Window
 
             NPCModel npcModel = new NPCModel
             {
-	            NPCName = NPC_name.Text,
-	            Size = strSize.Text,
-	            NPCType = strType.Text,
-	            Tag = strTag.Text,
-	            Alignment = strAlignment.Text,
-	            AC = strAC.Text,
-	            HP = strHP.Text,
+                NPCName = NPC_name.Text,
+                Size = strSize.Text,
+                NPCType = strType.Text,
+                Tag = strTag.Text,
+                Alignment = strAlignment.Text,
+                AC = strAC.Text,
+                HP = strHP.Text,
                 NPCGender = strGender.Text,
                 Unique = chkUnique.IsChecked.Value,
                 NPCNamed = chkNamed.IsChecked.Value,
@@ -493,7 +523,7 @@ public partial class NPCEngineer : Window
                 SavingThrowCha = int.Parse(strSaveCha.Text),
                 Blindsight = int.Parse(strBlindsight.Text),
                 BlindBeyond = chkBlindBeyond.IsChecked.Value,
-				Darkvision = int.Parse(strDarkvision.Text),
+                Darkvision = int.Parse(strDarkvision.Text),
                 Tremorsense = int.Parse(strTremorsense.Text),
                 Truesight = int.Parse(strTruesight.Text),
                 PassivePerception = int.Parse(strPassivePerception.Text),
@@ -554,7 +584,48 @@ public partial class NPCEngineer : Window
                 Traits10 = strTraits10.Text,
                 TraitsDesc10 = strTraitDesc10.Text,
                 Traits11 = strTraits11.Text,
-                TraitsDesc11 = strTraitDesc11.Text
+                TraitsDesc11 = strTraitDesc11.Text,
+                InnateSpellcastingSection = chkInnateSpellcastingSection.IsChecked.Value,
+                Psionics = chkPsionics.IsChecked.Value,
+                InnateSpellcastingAbility = strInnateSpellcastingAbility.Text,
+                InnateSpellSaveDC = int.Parse(intInnateSpellSaveDC.Text),
+                InnateSpellHitBonus = int.Parse(intInnateSpellHitBonus.Text),
+                InnateAtWill = strInnatAtWill.Text,
+                FivePerDay = strFivePerDay.Text,
+                FourPerDay = strFourPerDay.Text,
+                ThreePerDay = strThreePerDay.Text,
+                TwoPerDay = strTwoPerDay.Text,
+                OnePerDay = strOnePerDay.Text,
+                SpellcastingCasterLevel = strCasterLevel.Text,
+                SCSpellcastingAbility = strSCSpellcastingAbility.Text,
+                SpellcastingSpellSaveDC = int.Parse(intSpellcastingSpellSaveDC.Text),
+                SpellcastingSpellHitBonus = int.Parse(intSpellcastingSpellHitBonus.Text),
+                SpellcastingSpellClass = strSpellcastingSpellClass.Text,
+                FlavorText = strFlavorText.Text,
+                CantripSpells = strCantripSpells.Text,
+                CantripSpellList = strCantripSpellList.Text,
+                FirstLevelSpells = strFirstLevelSpells.Text,
+                FirstLevelSpellList = strFirstLevelSpellList.Text,
+                SecondLevelSpells = strSecondLevelSpells.Text,
+                SecondLevelSpellList = strSeventhLevelSpellList.Text,
+                ThirdLevelSpells = strThirdLevelSpells.Text,
+                ThirdLevelSpellList = strThirdLevelSpellList.Text,
+                FourthLevelSpells = strFourthLevelSpells.Text,
+                FourthLevelSpellList = strFourthLevelSpellList.Text,
+                FifthLevelSpells = strfifthLevelSpells.Text,
+                FifthLevelSpellList = strFifthLevelSpellList.Text,
+                SixthLevelSpells = strSixthLevelSpells.Text,
+                SixthLevelSpellList = strSixthLevelSpellList.Text,
+                SeventhLevelSpells = strSeventhLevelSpells.Text,
+                SeventhLevelSpellList = strSeventhLevelSpellList.Text,
+                EighthLevelSpells = strEigthLevelSpells.Text,
+                EighthLevelSpellList = strEigthLevelSpellList.Text,
+                NinthLevelSpells = strNinthLevelSpells.Text,
+                NinthLevelSpellList = strNinthLevelSpellList.Text,
+                MarkedSpells = strMarkedSpells.Text,
+                Description = strDescription.Text,
+                NonID = strNonID.Text,
+                NPCImage = strNPCImage.text,
             };
 
             npcController.Save(savePath, npcModel);
