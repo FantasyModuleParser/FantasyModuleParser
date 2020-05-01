@@ -30,19 +30,21 @@ namespace EngineeringSuite.NPC.Controller
 			tempGoblin.AttributeStr = 8;
 			tempGoblin.AttributeDex = 10;
 
-			tempGoblin.npcActions = new Models.NPCAction.ActionDataModel();
-			tempGoblin.npcActions.MultiAttack = new Models.NPCAction.Multiattack("This is a MultiAttack test");
 			WeaponAttack weaponAttack = new WeaponAttack();
 			weaponAttack.WeaponName = "Dagger";
-			tempGoblin.npcActions.updateWeaponAttack(weaponAttack);
-			// Double Dagger attack Action!!
-			tempGoblin.npcActions.updateWeaponAttack(weaponAttack);
+			tempGoblin.NPCActions.Add(new Models.NPCAction.Multiattack("This is a MultiAttack test"));
+			tempGoblin.NPCActions.Add(weaponAttack);
 			return tempGoblin;
 		}
 
 		public NPCModel GetNPCModel()
 		{
-			return (NPCModel)((App)Application.Current).NpcModelObject;
+			var _application = Application.Current;
+			if(_application is App){
+				App _app = (App)_application;
+				return (NPCModel)_app.NpcModelObject;
+			}
+			return null;
 		}
 	}
 }

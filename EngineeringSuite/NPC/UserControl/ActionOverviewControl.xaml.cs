@@ -1,5 +1,4 @@
 ﻿using EngineeringSuite.NPC.Controller;
-using EngineeringSuite.NPC.Controllers;
 using EngineeringSuite.NPC.Models.NPCAction;
 using System;
 using System.Collections.Generic;
@@ -30,50 +29,46 @@ namespace EngineeringSuite.NPC.UserController
         {
             InitializeComponent();
             _npcController = new NPCController();
-            this.DataContext = this;
         }
-
-        public string AOCId { get; set; }
-
-        public int Id { get; set; }
-
 
         private void btn_Up_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Up Button Pressed for Action Overview Control :: ID = " + AOCId + " --- " + Id);
+            Console.WriteLine("Up Button Pressed for Action Overview Control");
         }
 
         private void btn_Down_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Down Button Pressed for Action Overview Control :: ID = " + AOCId);
+            Console.WriteLine("Down Button Pressed for Action Overview Control ");
         }
 
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Edit Button Pressed for Action Overview Control :: ID = " + AOCId);
+            Console.WriteLine("Edit Button Pressed for Action Overview Control ");
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Cancel Button Pressed for Action Overview Control :: ID = " + AOCId);
+            Console.WriteLine("Cancel Button Pressed for Action Overview Control ");
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            NPCActionController actionController = new NPCActionController();
-            ActionOverviewModel actionOverviewModel = 
-                actionController.GetActionOverviewModel(_npcController.GetNPCModel().npcActions, Id);
+            //NPCActionController actionController = new NPCActionController();
+            
+            //// Having to refactor this so that the built-in previewer doesn't throw 
+            //// a hissy-fit 
 
-            if (actionOverviewModel != null)
-            {
-                actionName.Text = actionOverviewModel.ActionName;
-                actionDescription.Text = actionOverviewModel.ActionDescription;
-            }
-        }
-
-        public void Refresh()
-        {
-
+            //ActionModelBase actionOverviewModel = null;
+            //NPCModel _npcModel = _npcController.GetNPCModel();
+            //if(_npcModel != null)
+            //{
+            //    actionOverviewModel = actionController.GetActionOverviewModel(_npcController.GetNPCModel().npcActions, Id);
+            //    if (actionOverviewModel != null)
+            //    {
+            //        actionName.Text = actionOverviewModel.ActionName;
+            //        actionDescription.Text = actionOverviewModel.ActionDescription;
+            //    }
+            //}
         }
     }
 }

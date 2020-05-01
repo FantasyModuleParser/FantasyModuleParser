@@ -21,5 +21,11 @@ namespace EngineeringSuite.NPC.ViewModel
             }
             return false;
         }
+
+        protected void RaisePropertyChanged(string propertyName = "")
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
