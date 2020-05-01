@@ -1,6 +1,6 @@
 ﻿using EngineeringSuite.NPC.Controller;
-using EngineeringSuite.NPC.Controllers;
 using EngineeringSuite.NPC.Models.NPCAction;
+using EngineeringSuite.NPC.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,56 +24,57 @@ namespace EngineeringSuite.NPC.UserController
     public partial class ActionOverviewControl : UserControl
     {
 
-        private NPCController _npcController;
+        public ActionViewModel actionViewModel { get; set; }
 
         public ActionOverviewControl()
         {
             InitializeComponent();
-            _npcController = new NPCController();
-            this.DataContext = this;
         }
-
-        public string AOCId { get; set; }
-
-        public int Id { get; set; }
-
 
         private void btn_Up_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Up Button Pressed for Action Overview Control :: ID = " + AOCId + " --- " + Id);
+            Console.WriteLine("Up Button Pressed for Action Overview Control");
         }
 
         private void btn_Down_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Down Button Pressed for Action Overview Control :: ID = " + AOCId);
+            Console.WriteLine("Down Button Pressed for Action Overview Control ");
         }
 
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Edit Button Pressed for Action Overview Control :: ID = " + AOCId);
+            Console.WriteLine("Edit Button Pressed for Action Overview Control ");
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Cancel Button Pressed for Action Overview Control :: ID = " + AOCId);
+            Console.WriteLine("Cancel Button Pressed for Action Overview Control ");
+            OnRemoveAction();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private ActionViewModel GetParentActionViewModel()
         {
-            NPCActionController actionController = new NPCActionController();
-            ActionOverviewModel actionOverviewModel = 
-                actionController.GetActionOverviewModel(_npcController.GetNPCModel().npcActions, Id);
-
-            if (actionOverviewModel != null)
+            if (Parent is NPCEActions)
             {
-                actionName.Text = actionOverviewModel.ActionName;
-                actionDescription.Text = actionOverviewModel.ActionDescription;
+                var _parentDataContext = ((NPCEActions)Parent).DataContext;
+
+                // Validate and make sure the parent DataContext is ActionViewModel
+                if (_parentDataContext is ActionViewModel)
+                {
+                    ActionViewModel _actionViewModel = (ActionViewModel)_parentDataContext;
+                    return _actionViewModel;
+                }
             }
+            return null;
         }
 
-        public void Refresh()
+        #region Button Events
+        public event EventHandler RemoveAction;
+
+        protected virtual void OnRemoveAction()
         {
-
+            if (RemoveAction != null) RemoveAction(this, EventArgs.Empty);
         }
+        #endregion
     }
 }

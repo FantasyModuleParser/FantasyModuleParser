@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EngineeringSuite.NPC.UserController"
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="600" Loaded="UserControl_Loaded">
+             d:DesignHeight="60" d:DesignWidth="600">
     <Grid>
-        <TextBox x:Name="actionName" Margin="10,5,365,35" IsReadOnly="True" Background="#FFE5E5E5" Text="Test Action"/>
+        <TextBox x:Name="actionName" Margin="10,5,365,35" IsReadOnly="True" Background="#FFE5E5E5" Text="{Binding ActionName}"/>
         <StackPanel Orientation="Horizontal" Margin="0,0,480,-15" Height="20" HorizontalAlignment="Center" >
             <Button x:Name="btn_Edit" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Edit_Click" >
                 <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
@@ -24,6 +24,6 @@
                 <Image Source="/Resources/down_arrow.png" />
             </Button>
         </StackPanel>
-        <TextBox x:Name="actionDescription" Width="350" IsReadOnly="True" HorizontalAlignment="Right" Text="This is a description of the Test Action" Margin="0,5,10,10"/>
+        <TextBox x:Name="actionDescription" Width="350" IsReadOnly="True" HorizontalAlignment="Right" Text="{Binding ActionDescription}" Margin="0,5,10,10"/>
     </Grid>
 </UserControl>

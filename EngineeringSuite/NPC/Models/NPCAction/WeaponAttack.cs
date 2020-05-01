@@ -16,9 +16,9 @@ namespace EngineeringSuite.NPC.Models.NPCAction
         MRSA    // Melee or Range Spell Attack
     };
 
-    public class WeaponAttack
+    public class WeaponAttack : ActionModelBase
     {
-        public string WeaponName { get; set; }
+        public string WeaponName { get { return ActionName; } set { ActionName = value; } }
         WeaponType weaponType { get; set; }
 
         // Weapon Unique Properties
@@ -41,9 +41,12 @@ namespace EngineeringSuite.NPC.Models.NPCAction
         // TODO: Other Text
         String otherText;
 
+
+
         public String GenerateWeaponAttackDescription()
         {
-            return "Weapon Attack Description Goes Here.";
+            ActionDescription = "Weapon Attack Description Goes Here.";
+            return ActionDescription;
         }
 
 

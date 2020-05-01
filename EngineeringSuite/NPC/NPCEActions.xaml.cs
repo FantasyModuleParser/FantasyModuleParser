@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using EngineeringSuite.NPC.Controller;
 using EngineeringSuite.NPC.Models.NPCAction;
+using EngineeringSuite.NPC.UserController;
+using EngineeringSuite.NPC.ViewModel;
 
 namespace EngineeringSuite.NPC
 {
@@ -15,37 +18,26 @@ namespace EngineeringSuite.NPC
         private NPCModel _npcModel;
         private NPCController _npcController;
 
-        public bool IsMultiAttack { get; set;}
-        public string SelectedText{ get; set; }
-
         public NPCEActions()
         {
             InitializeComponent();
-            DataContext = this;
+            DataContext = new ActionViewModel();
+
+            _npcController = new NPCController();
+            _npcModel = _npcController.GetNPCModel();
         }
 
         private void OnInit(object sender, RoutedEventArgs e)
         {
-            //DataContext = new ActionDataModel();
             _npcController = new NPCController();
             _npcModel = _npcController.GetNPCModel();
-            ActionDataModel actionDataModelObj = _npcModel.npcActions;
-            if (actionDataModelObj == null)
+
+            foreach(ActionModelBase item in _npcModel.NPCActions)
             {
-                actionDataModelObj = new ActionDataModel();
-                //((NPCModel)((App)Application.Current).NpcModelObject).npcActions = actionDataModelObj;
-                
-                //I'm hoping this is the same as Pass By Reference...
-                _npcModel.npcActions = actionDataModelObj;
+                ((ActionViewModel)DataContext).NPCActions.Add(item);
             }
 
-            if(actionDataModelObj.MultiAttack != null)
-            {
-                multiAttackCB.IsChecked = true;
-                multiAttackTextArea.Text = actionDataModelObj.MultiAttack.description;
-            }
-
-            //DataContext = actionDataModelObj;
+            //NpcActionList.ItemsSource = _npcModel.NPCActions;
         }
 
 
@@ -249,6 +241,8 @@ namespace EngineeringSuite.NPC
         #endregion
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
+            _npcModel.NPCActions.Clear();
+            _npcModel.NPCActions.AddRange(((ActionViewModel)DataContext).NPCActions);
             this.Close();
         }
 
@@ -259,11 +253,13 @@ namespace EngineeringSuite.NPC
 
         private void updateMultiAttack(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Multiattack Selected: " + multiAttackCB.IsChecked);
             if ((bool)multiAttackCB.IsChecked)
             {
-                _npcModel.npcActions.MultiAttack = new Multiattack(multiAttackTextArea.Text);
-                Console.WriteLine("Multiattack Text: " + multiAttackTextArea.Text);
+                //_npcModel.npcActions.MultiAttack = new Multiattack(multiAttackTextArea.Text);
+                ((ActionViewModel)DataContext).updateMultiAttack(new Multiattack(multiAttackTextArea.Text));
+            } else
+            {
+                ((ActionViewModel)DataContext).removeMultiAttack();
             }
 
         }
@@ -271,6 +267,16 @@ namespace EngineeringSuite.NPC
         private void WA_Update_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ActionOverviewControl_RemoveAction(object sender, EventArgs e)
+        {
+            if(sender is ActionOverviewControl)
+            {
+                var userControl_ActionOverviewControl = (ActionOverviewControl)sender;
+                if(userControl_ActionOverviewControl.DataContext is Multiattack)
+                    ((ActionViewModel)DataContext).removeMultiAttack();
+            }
         }
     }
 }

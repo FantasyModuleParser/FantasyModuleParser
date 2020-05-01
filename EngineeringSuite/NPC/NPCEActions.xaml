@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:EngineeringSuite.NPC.UserController"
+        xmlns:vm="clr-namespace:EngineeringSuite.NPC.ViewModel"
         mc:Ignorable="d"
         Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico" Loaded="OnInit">
     <Grid Background="#FFE5E5E5">
@@ -16,6 +17,15 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical" Width="600">
                         <Label Content="Actions" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <uc:ActionOverviewControl RemoveAction="ActionOverviewControl_RemoveAction"></uc:ActionOverviewControl>    
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        
+                        <!-- 
                         <uc:ActionOverviewControl AOCId="AOC_0" Id="0"></uc:ActionOverviewControl>
                         <uc:ActionOverviewControl AOCId="AOC_1" Id="1"></uc:ActionOverviewControl>
                         <uc:ActionOverviewControl AOCId="AOC_2" Id="2"></uc:ActionOverviewControl>
@@ -24,6 +34,7 @@
                         <uc:ActionOverviewControl AOCId="AOC_5" Id="5"></uc:ActionOverviewControl>
                         <uc:ActionOverviewControl AOCId="AOC_6" Id="6"></uc:ActionOverviewControl>
                         <uc:ActionOverviewControl AOCId="AOC_7" Id="7"></uc:ActionOverviewControl>
+                        -->
                         <!--
                         <TextBox x:Name="actionName_0" Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5" TextChanged="TextBox_TextChanged"/>
                         <StackPanel Orientation="Horizontal">
@@ -186,14 +197,14 @@
                     </StackPanel>
                     -->
                 </StackPanel>
-                <Button Content="Close" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,30,0,0" Click="ESExit_Click"/>
+                <Button Content="Close" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="250,30,0,0" Click="ESExit_Click"/>
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Label Content="Multiattack" FontWeight="Bold" Foreground="Gray" Padding="0" Margin="20,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Multiattack:" Padding="0" Margin="25,5,0,0"/>
-                    <CheckBox x:Name="multiAttackCB" Padding="0" Margin="5,7,0,0" IsChecked="{Binding IsMultiAttack}" />
-                    <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding SelectedText}" />
+                    <CheckBox x:Name="multiAttackCB" Padding="0" Margin="5,7,0,0" />
+                    <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" />
                 </StackPanel>
                 <Button Content="Update" Width="75" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="285,5,0,0" Click="updateMultiAttack"/>
                 <Label Content="Weapon Attack" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

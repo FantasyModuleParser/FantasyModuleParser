@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace EngineeringSuite.NPC.Models.NPCAction
 {
-    public class Multiattack
+    public class Multiattack : ActionModelBase
     {
         public Multiattack()
         {
+            this.ActionName = "MultiAttack";
         }
 
         public Multiattack(string description)
         {
-            this.description = description;
+            this.ActionName = "MultiAttack";
+            this.ActionDescription = description;
         }
-
-        public String description { get; set; }
 
         public override string ToString()
         {
-            return " -- MultiAttack [" + this.description + "] -- ";
+            return " -- MultiAttack [" + this.ActionDescription + "] -- ";
         }
     }
 }

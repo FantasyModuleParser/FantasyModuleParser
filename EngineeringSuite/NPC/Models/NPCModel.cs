@@ -144,6 +144,6 @@ namespace EngineeringSuite.NPC
         public string NonID { get; set; }
         public string NPCImage { get; set; }
 
-        public ActionDataModel npcActions { get; set; }
+        public List<ActionModelBase> NPCActions { get; } = new List<ActionModelBase>();
     }
 }

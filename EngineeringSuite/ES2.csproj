@@ -232,13 +232,11 @@
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\Controllers\NPCActionController.cs" />
-    <Compile Include="NPC\Models\NPCAction\ActionOverviewModel.cs" />
+    <Compile Include="NPC\Models\NPCAction\ActionModelBase.cs" />
     <Compile Include="NPC\UserControl\ActionOverviewControl.xaml.cs">
       <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Controllers\NPCController.cs" />
-    <Compile Include="NPC\Models\NPCAction\ActionDataModel.cs" />
     <Compile Include="NPC\Models\NPCAction\DamageProperty.cs" />
     <Compile Include="NPC\Models\NPCAction\Multiattack.cs" />
     <Compile Include="NPC\Models\NPCAction\OtherAction.cs" />
@@ -283,6 +281,7 @@
     <Compile Include="NPC\NPCEReactions.xaml.cs">
       <DependentUpon>NPCEReactions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\ViewModel\ActionViewModel.cs" />
     <Compile Include="NPC\ViewModel\ViewModelBase.cs" />
     <Compile Include="NPC\ViewModel\NPCViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

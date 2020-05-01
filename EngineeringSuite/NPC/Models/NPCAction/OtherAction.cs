@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace EngineeringSuite.NPC.Models.NPCAction
 {
-    public class OtherAction
+    public class OtherAction : ActionModelBase
     {
-        public string ActionName { get; set; }
-        public string ActionDescription { get; set; }
     }
 }
