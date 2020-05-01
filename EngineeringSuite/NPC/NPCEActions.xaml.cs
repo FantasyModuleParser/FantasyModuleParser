@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using EngineeringSuite.NPC.Controller;
 using EngineeringSuite.NPC.Models.NPCAction;
+using EngineeringSuite.NPC.UserController;
 using EngineeringSuite.NPC.ViewModel;
 
 namespace EngineeringSuite.NPC
@@ -266,6 +267,16 @@ namespace EngineeringSuite.NPC
         private void WA_Update_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ActionOverviewControl_RemoveAction(object sender, EventArgs e)
+        {
+            if(sender is ActionOverviewControl)
+            {
+                var userControl_ActionOverviewControl = (ActionOverviewControl)sender;
+                if(userControl_ActionOverviewControl.DataContext is Multiattack)
+                    ((ActionViewModel)DataContext).removeMultiAttack();
+            }
         }
     }
 }

@@ -20,7 +20,7 @@
                         <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <uc:ActionOverviewControl></uc:ActionOverviewControl>    
+                                    <uc:ActionOverviewControl RemoveAction="ActionOverviewControl_RemoveAction"></uc:ActionOverviewControl>    
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
