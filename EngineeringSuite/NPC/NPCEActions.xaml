@@ -20,7 +20,10 @@
                         <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <uc:ActionOverviewControl ></uc:ActionOverviewControl>
+                                    <uc:ActionOverviewControl RemoveAction="ActionOverviewControl_RemoveAction"
+                                                              EditAction="ActionOverviewControl_EditAction"
+                                                              RaiseActionInList="ActionOverviewControl_RaiseActionInList"
+                                                              LowerActionInList="ActionOverviewControl_LowerActionInList"></uc:ActionOverviewControl>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -36,7 +39,7 @@
                     <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" />
                 </StackPanel>
                 <Button Content="Update" Width="75" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="285,5,0,0" Click="updateMultiAttack"/>
-                <uc:ActionWeaponAttackControl UpdateWeaponAttackAction="WeaponAttack_Awesome_UpdateWeaponAttackAction"></uc:ActionWeaponAttackControl>
+                <uc:ActionWeaponAttackControl DataContext="{Binding Path=weaponAttack}" UpdateWeaponAttackAction="WeaponAttack_Awesome_UpdateWeaponAttackAction"></uc:ActionWeaponAttackControl>
                 
                 <Label Content="Other Action" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal">

@@ -18,17 +18,18 @@ namespace EngineeringSuite.NPC.ViewModel
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
 
         private Multiattack _multiattack;
-        Multiattack Multiattack { get => _multiattack; set => SetProperty(ref _multiattack, value); }
+        Multiattack multiattack { get => _multiattack; set => SetProperty(ref _multiattack, value); }
 
         private WeaponAttack _weaponAttack;
-        WeaponAttack WeaponAttack { get => _weaponAttack; set => SetProperty(ref _weaponAttack, value); }
+        public WeaponAttack weaponAttack { get => _weaponAttack; set => SetProperty(ref _weaponAttack, value); }
 
         private OtherAction _otherAction;
-        OtherAction OtherAction { get => _otherAction; set => SetProperty(ref _otherAction, value); }
+        OtherAction otherAction { get => _otherAction; set => SetProperty(ref _otherAction, value); }
 
         public ActionViewModel()
         {
             Initialize();
+            weaponAttack = new WeaponAttack();
         }
 
         public ActionViewModel(ObservableCollection<ActionModelBase> nPCActions)
@@ -107,14 +108,13 @@ namespace EngineeringSuite.NPC.ViewModel
             }
         }
 
-        private void removeNPCAction(ActionModelBase action)
+        public void removeNPCAction(ActionModelBase action)
         {
             NPCActions.Remove(action);
         }
 
         private void NPCActions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Console.WriteLine("NPC Actions Collection has changed!");
             if (e.NewItems != null)
                 foreach (ActionModelBase item in e.NewItems)
                     item.PropertyChanged += ItemPropertyChanged;
@@ -142,11 +142,11 @@ namespace EngineeringSuite.NPC.ViewModel
             get
             {
                 if (_otherAction == null) _otherAction = new OtherAction();
-                return OtherAction.ActionName;
+                return otherAction.ActionName;
             }
             set
             {
-                OtherAction.ActionName = value;
+                otherAction.ActionName = value;
             }
         }
 
@@ -155,11 +155,11 @@ namespace EngineeringSuite.NPC.ViewModel
             get
             {
                 if (_otherAction == null) _otherAction = new OtherAction();
-                return OtherAction.ActionDescription;
+                return otherAction.ActionDescription;
             }
             set
             {
-                OtherAction.ActionDescription = value;
+                otherAction.ActionDescription = value;
             }
         }
         #endregion

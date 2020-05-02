@@ -48,9 +48,11 @@ namespace EngineeringSuite.NPC.UserControls
             if (UpdateWeaponAttackAction != null) UpdateWeaponAttackAction(this, EventArgs.Empty);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            OnUpdateWeaponAttackAction();
+            WeaponAttack thisWeaponAttack = (WeaponAttack)((Button)sender).DataContext;
+            if(thisWeaponAttack.ActionName != null && thisWeaponAttack.ActionName.Length > 0)
+                OnUpdateWeaponAttackAction();
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

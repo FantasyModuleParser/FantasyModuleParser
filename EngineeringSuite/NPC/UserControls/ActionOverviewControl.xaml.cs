@@ -33,22 +33,21 @@ namespace EngineeringSuite.NPC.UserControls
 
         private void btn_Up_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Up Button Pressed for Action Overview Control");
+            OnRaiseActionInList();
         }
 
         private void btn_Down_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Down Button Pressed for Action Overview Control ");
+            OnLowerActionInList();
         }
 
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Edit Button Pressed for Action Overview Control ");
+            OnEditAction();
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Cancel Button Pressed for Action Overview Control ");
             OnRemoveAction();
         }
 
@@ -73,6 +72,23 @@ namespace EngineeringSuite.NPC.UserControls
         protected virtual void OnRemoveAction()
         {
             if (RemoveAction != null) RemoveAction(this, EventArgs.Empty);
+        }
+
+        public event EventHandler EditAction;
+        protected virtual void OnEditAction()
+        {
+            if (EditAction != null) EditAction(this, EventArgs.Empty);
+        }
+
+        public event EventHandler RaiseActionInList;
+        protected virtual void OnRaiseActionInList()
+        {
+            if (RaiseActionInList != null) RaiseActionInList(this, EventArgs.Empty);
+        }
+        public event EventHandler LowerActionInList;
+        protected virtual void OnLowerActionInList()
+        {
+            if (LowerActionInList != null) LowerActionInList(this, EventArgs.Empty);
         }
         #endregion
     }

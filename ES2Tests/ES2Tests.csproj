@@ -69,6 +69,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="NPC\Models\NPCAction\WeaponAttackTests.cs" />
     <Compile Include="NPC\ViewModel\ActionViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -13,9 +13,16 @@ namespace EngineeringSuite.NPC.Models.NPCAction
         {
             _primaryDamage = new DamageProperty();
             _secondaryDamage = new DamageProperty();
+            _weaponType = WeaponTypeList[0]; // Default to the first entry
+            _primaryDamage.NumOfDice = 1;
+            _primaryDamage.DieType = 6;
+            _primaryDamage.Bonus = 0;
+            _reach = 5;
+            _weaponRangeShort = 30;
+            _weaponRangeLong = 60;
         }
 
-        public string WeaponName { get { return ActionName; } set { ActionName = value; } }
+        public string WeaponName { get { return ActionName; } set { ActionName = value; GenerateWeaponAttackDescription(); } }
 
         private List<string> _weaponTypeList;
         public List<string> WeaponTypeList
@@ -140,6 +147,22 @@ namespace EngineeringSuite.NPC.Models.NPCAction
                 GenerateWeaponAttackDescription();
             }
         }
+
+        private List<string> _targetTypeList;
+        public List<string> TargetTypeList
+        {
+            get
+            {
+                if(_targetTypeList == null)
+                {
+                    _targetTypeList = new List<string>();
+                    _targetTypeList.Add("one target");
+                    _targetTypeList.Add("one creature");
+                }
+                return _targetTypeList;
+            }
+        }
+
         private string _targetType;
         public String TargetType
         {

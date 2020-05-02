@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EngineeringSuite.NPC.UserControls"
+             xmlns:Model="clr-namespace:EngineeringSuite.NPC.Models.NPCAction"
              mc:Ignorable="d" 
              d:DesignHeight="325" d:DesignWidth="450">
     <Grid>
@@ -48,9 +49,7 @@
                 <TextBox x:Name="WA_Reach" Width="40" Text="5" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="WA_RangeNormal" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="WA_RangeLong" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
-                <ComboBox x:Name="WA_TargetType" Width="100" Padding="0" Margin="20,3,0,0">
-                    <ComboBoxItem>one target</ComboBoxItem>
-                    <ComboBoxItem>one creature</ComboBoxItem>
+                <ComboBox ItemsSource="{Binding WeaponTypeList}" SelectedItem="{Binding Path=WeaponType}" Width="100" Padding="0" Margin="20,3,0,0">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -88,7 +87,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="WA_Description" Width="300" Text="{Binding Path=ActionDescription}" Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="20,3,0,0" IsReadOnly="True"/>
-                <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,20,0,0" Click="Button_Click"/>
+                <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,20,0,0" Click="UpdateButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -32,6 +32,10 @@ namespace EngineeringSuite.NPC.Controller
 
 			WeaponAttack weaponAttack = new WeaponAttack();
 			weaponAttack.WeaponName = "Dagger";
+			weaponAttack.PrimaryDmgDieCount = 1;
+			weaponAttack.PrimaryDieType = 6;
+			weaponAttack.PrimaryBonus = 2;
+			weaponAttack.PrimaryDamageType = weaponAttack.DamageTypeList[0];
 			tempGoblin.NPCActions.Add(new Models.NPCAction.Multiattack("This is a MultiAttack test"));
 			tempGoblin.NPCActions.Add(weaponAttack);
 			return tempGoblin;
