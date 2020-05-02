@@ -186,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\UserControl\ActionOverviewControl.xaml">
+    <Page Include="NPC\UserControls\ActionOverviewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,8 +232,9 @@
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\CommonMethod.cs" />
     <Compile Include="NPC\Models\NPCAction\ActionModelBase.cs" />
-    <Compile Include="NPC\UserControl\ActionOverviewControl.xaml.cs">
+    <Compile Include="NPC\UserControls\ActionOverviewControl.xaml.cs">
       <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Controllers\NPCController.cs" />
@@ -270,6 +271,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\ActionWeaponAttackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NPC\NPCEActions.xaml.cs">
@@ -280,6 +285,9 @@
     </Compile>
     <Compile Include="NPC\NPCEReactions.xaml.cs">
       <DependentUpon>NPCEReactions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\ActionWeaponAttackControl.xaml.cs">
+      <DependentUpon>ActionWeaponAttackControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\ViewModel\ActionViewModel.cs" />
     <Compile Include="NPC\ViewModel\ViewModelBase.cs" />
@@ -468,6 +476,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Test\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

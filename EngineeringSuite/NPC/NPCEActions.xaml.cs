@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using EngineeringSuite.NPC.Controller;
 using EngineeringSuite.NPC.Models.NPCAction;
-using EngineeringSuite.NPC.UserController;
+using EngineeringSuite.NPC.UserControls;
 using EngineeringSuite.NPC.ViewModel;
 
 namespace EngineeringSuite.NPC
@@ -22,6 +23,7 @@ namespace EngineeringSuite.NPC
         {
             InitializeComponent();
             DataContext = new ActionViewModel();
+
 
             _npcController = new NPCController();
             _npcModel = _npcController.GetNPCModel();
@@ -264,18 +266,78 @@ namespace EngineeringSuite.NPC
 
         }
 
-        private void WA_Update_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ActionOverviewControl_RemoveAction(object sender, EventArgs e)
         {
             if(sender is ActionOverviewControl)
             {
                 var userControl_ActionOverviewControl = (ActionOverviewControl)sender;
-                if(userControl_ActionOverviewControl.DataContext is Multiattack)
-                    ((ActionViewModel)DataContext).removeMultiAttack();
+                if (userControl_ActionOverviewControl.DataContext is ActionModelBase)
+                    ((ActionViewModel)DataContext).removeNPCAction((ActionModelBase)userControl_ActionOverviewControl.DataContext);
+            }
+        }
+
+        private void Update_OtherAction(object sender, RoutedEventArgs e)
+        {
+            if(((ActionViewModel)DataContext).OtherActionName != null 
+                && ((ActionViewModel)DataContext).OtherActionName.Length > 0)
+                ((ActionViewModel)DataContext).updateOtherAction();
+        }
+
+        private void WeaponAttack_Awesome_UpdateWeaponAttackAction(object sender, EventArgs e)
+        {
+            if(sender is ActionWeaponAttackControl)
+            {
+                ActionWeaponAttackControl _actionWeaponAttackControl = (ActionWeaponAttackControl)sender;
+                if(_actionWeaponAttackControl.DataContext is WeaponAttack)
+                {
+                    ((ActionViewModel)DataContext).updateWeaponAttack((WeaponAttack)_actionWeaponAttackControl.DataContext);
+                } 
+            }
+        }
+
+        private void ActionOverviewControl_EditAction(object sender, EventArgs e)
+        {
+            ActionOverviewControl _actionWeaponAttackControl = (ActionOverviewControl)sender;
+            if (_actionWeaponAttackControl.DataContext is Multiattack)
+            {
+                //((ActionViewModel)DataContext).updateWeaponAttack((WeaponAttack)_actionWeaponAttackControl.DataContext);
+                Console.WriteLine("Starting Edit of a Multiattack");
+            }
+            if (_actionWeaponAttackControl.DataContext is WeaponAttack)
+            {
+                //((ActionViewModel)DataContext).updateWeaponAttack((WeaponAttack)_actionWeaponAttackControl.DataContext);
+                Console.WriteLine("Starting Edit of a WeaponAttack");
+                ((ActionViewModel)DataContext).weaponAttack = (WeaponAttack)_actionWeaponAttackControl.DataContext;
+            }
+            if (_actionWeaponAttackControl.DataContext is OtherAction)
+            {
+                //((ActionViewModel)DataContext).updateWeaponAttack((WeaponAttack)_actionWeaponAttackControl.DataContext);
+                Console.WriteLine("Starting Edit of a OtherAction");
+            }
+        }
+
+        private void ActionOverviewControl_RaiseActionInList(object sender, EventArgs e)
+        {
+            ActionOverviewControl _actionWeaponAttackControl = (ActionOverviewControl)sender;
+            if (_actionWeaponAttackControl.DataContext is ActionModelBase)
+            {
+                ObservableCollection<ActionModelBase> npcActions = ((ActionViewModel)DataContext).NPCActions;
+                int oldIndex = npcActions.IndexOf((ActionModelBase)_actionWeaponAttackControl.DataContext);
+                if (oldIndex != 0)
+                    npcActions.Move(oldIndex, oldIndex - 1);
+            }
+
+        }
+
+        private void ActionOverviewControl_LowerActionInList(object sender, EventArgs e)
+        {
+            ActionOverviewControl _actionWeaponAttackControl = (ActionOverviewControl)sender;
+            if (_actionWeaponAttackControl.DataContext is ActionModelBase)
+            {
+                ObservableCollection<ActionModelBase> npcActions = ((ActionViewModel)DataContext).NPCActions;
+                int oldIndex = npcActions.IndexOf((ActionModelBase)_actionWeaponAttackControl.DataContext);
+                if (oldIndex != npcActions.Count - 1)
+                    npcActions.Move(oldIndex, oldIndex + 1);
             }
         }
     }

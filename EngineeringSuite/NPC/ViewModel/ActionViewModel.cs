@@ -1,4 +1,5 @@
 ﻿using EngineeringSuite.NPC.Models.NPCAction;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,17 +18,18 @@ namespace EngineeringSuite.NPC.ViewModel
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
 
         private Multiattack _multiattack;
-        Multiattack Multiattack { get => _multiattack; set => SetProperty(ref _multiattack, value); }
+        Multiattack multiattack { get => _multiattack; set => SetProperty(ref _multiattack, value); }
 
         private WeaponAttack _weaponAttack;
-        WeaponAttack WeaponAttack { get => _weaponAttack; set => SetProperty(ref _weaponAttack, value); }
+        public WeaponAttack weaponAttack { get => _weaponAttack; set => SetProperty(ref _weaponAttack, value); }
 
         private OtherAction _otherAction;
-        OtherAction OtherAction { get => _otherAction; set => SetProperty(ref _otherAction, value); }
+        OtherAction otherAction { get => _otherAction; set => SetProperty(ref _otherAction, value); }
 
         public ActionViewModel()
         {
             Initialize();
+            weaponAttack = new WeaponAttack();
         }
 
         public ActionViewModel(ObservableCollection<ActionModelBase> nPCActions)
@@ -57,13 +59,33 @@ namespace EngineeringSuite.NPC.ViewModel
 
         public void updateWeaponAttack(WeaponAttack weaponAttack)
         {
-            updateNPCActions(weaponAttack);
-            //TODO: Force a sorting of the collection to put WeaponAttacks in the middle
+            WeaponAttack clone = CommonMethod.CloneJson(weaponAttack);
+            updateNPCActions(clone);
         }
 
         public void updateOtherAction(OtherAction otherAction)
         {
-            updateNPCActions(otherAction);
+            if (NPCActions.Contains(otherAction))
+            {
+                var obj = NPCActions.FirstOrDefault(x => x.ActionName == otherAction.ActionName);
+                if (obj != null)
+                {
+                    otherAction.ActionID = obj.ActionID;
+                    NPCActions.Remove(obj);
+                    NPCActions.Add(otherAction.Clone());
+                }
+            }
+            else
+            {
+                otherAction.ActionID = NPCActions.Count;
+                NPCActions.Add(otherAction.Clone());
+            }
+            //TODO: Force a sorting of the collection to put Other Actions at the bottom!
+        }
+
+        public void updateOtherAction()
+        {
+            updateOtherAction(_otherAction);
             //TODO: Force a sorting of the collection to put Other Actions at the bottom!
         }
 
@@ -71,23 +93,28 @@ namespace EngineeringSuite.NPC.ViewModel
         {
             if (NPCActions.Contains(action))
             {
-                var obj = NPCActions.FirstOrDefault(x => x == action);
-                if (obj != null) obj = action;
+                var obj = NPCActions.FirstOrDefault(x => x.ActionName == action.ActionName);
+                if (obj != null)
+                {
+                    action.ActionID = obj.ActionID;
+                    NPCActions.Remove(obj);
+                    NPCActions.Add(CommonMethod.CloneJson(action));
+                }
             }
             else
             {
-                NPCActions.Add(action);
+                action.ActionID = NPCActions.Count;
+                NPCActions.Add(CommonMethod.CloneJson(action));
             }
         }
 
-        private void removeNPCAction(ActionModelBase action)
+        public void removeNPCAction(ActionModelBase action)
         {
             NPCActions.Remove(action);
         }
 
         private void NPCActions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Console.WriteLine("NPC Actions Collection has changed!");
             if (e.NewItems != null)
                 foreach (ActionModelBase item in e.NewItems)
                     item.PropertyChanged += ItemPropertyChanged;
@@ -101,6 +128,43 @@ namespace EngineeringSuite.NPC.ViewModel
         {
             RaisePropertyChanged("NpcActionList");
         }
+
+
+        #region Bindings for NPCEActions xaml
+
+        #region Weapon Attack Bindings
+        
+        #endregion
+
+        #region Other Action Bindings
+        public string OtherActionName
+        {
+            get
+            {
+                if (_otherAction == null) _otherAction = new OtherAction();
+                return otherAction.ActionName;
+            }
+            set
+            {
+                otherAction.ActionName = value;
+            }
+        }
+
+        public String OtherActionDescription
+        {
+            get
+            {
+                if (_otherAction == null) _otherAction = new OtherAction();
+                return otherAction.ActionDescription;
+            }
+            set
+            {
+                otherAction.ActionDescription = value;
+            }
+        }
+        #endregion
+
+        #endregion
 
     }
 }
