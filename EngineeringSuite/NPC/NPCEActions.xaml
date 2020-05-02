@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:uc="clr-namespace:EngineeringSuite.NPC.UserController"
+        xmlns:uc="clr-namespace:EngineeringSuite.NPC.UserControls"
         xmlns:vm="clr-namespace:EngineeringSuite.NPC.ViewModel"
         mc:Ignorable="d"
         Title="Add or Edit NPC Actions" Height="600" Width="1080" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico" Loaded="OnInit">
@@ -20,182 +20,11 @@
                         <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <uc:ActionOverviewControl RemoveAction="ActionOverviewControl_RemoveAction"></uc:ActionOverviewControl>    
+                                    <uc:ActionOverviewControl ></uc:ActionOverviewControl>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        
-                        <!-- 
-                        <uc:ActionOverviewControl AOCId="AOC_0" Id="0"></uc:ActionOverviewControl>
-                        <uc:ActionOverviewControl AOCId="AOC_1" Id="1"></uc:ActionOverviewControl>
-                        <uc:ActionOverviewControl AOCId="AOC_2" Id="2"></uc:ActionOverviewControl>
-                        <uc:ActionOverviewControl AOCId="AOC_3" Id="3"></uc:ActionOverviewControl>
-                        <uc:ActionOverviewControl AOCId="AOC_4" Id="4"></uc:ActionOverviewControl>
-                        <uc:ActionOverviewControl AOCId="AOC_5" Id="5"></uc:ActionOverviewControl>
-                        <uc:ActionOverviewControl AOCId="AOC_6" Id="6"></uc:ActionOverviewControl>
-                        <uc:ActionOverviewControl AOCId="AOC_7" Id="7"></uc:ActionOverviewControl>
-                        -->
-                        <!--
-                        <TextBox x:Name="actionName_0" Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5" TextChanged="TextBox_TextChanged"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel1_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Down1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down1_Click" Margin="65,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit2_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel2_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up2_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down2_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit3_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel3_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up3_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down3_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit4_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit5_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up5_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit6_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up6_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit7_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up7_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit8_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel8_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up8_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down8_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit9_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel9_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up9_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                            <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down9_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/down_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        <TextBox Margin="30,5,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_Edit10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit10_Click" Margin="100,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                            </Button>
-                            <Button Name="btn_Cancel10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel10_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/cancel.png" />
-                            </Button>
-                            <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up10_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/up_arrow.png" />
-                            </Button>
-                        </StackPanel>
-                        -->
                     </StackPanel>
-                    <!--
-                    <StackPanel Orientation="Vertical">
-                        <TextBox x:Name="actionDescription_0" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                        <TextBox Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                    </StackPanel>
-                    -->
                 </StackPanel>
                 <Button Content="Close" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="250,30,0,0" Click="ESExit_Click"/>
             </StackPanel>
@@ -207,140 +36,17 @@
                     <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,5,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" />
                 </StackPanel>
                 <Button Content="Update" Width="75" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="285,5,0,0" Click="updateMultiAttack"/>
-                <Label Content="Weapon Attack" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Weapon:" Padding="0" Margin="25,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                            <TextBox x:Name="WA_WeaponName" Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Type:" Padding="0" Margin="45,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                            <ComboBox x:Name="WA_WeaponType" Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <ComboBoxItem>Melee Weapon Attack</ComboBoxItem>
-                                <ComboBoxItem>Ranged Weapon Attack</ComboBoxItem>
-                                <ComboBoxItem>Melee or Ranged Weapon Attack</ComboBoxItem>
-                                <ComboBoxItem>Melee Spell Attack</ComboBoxItem>
-                                <ComboBoxItem>Ranged Spell Attack</ComboBoxItem>
-                                <ComboBoxItem>Melee or Ranged Spell Attack</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox x:Name="WA_IsMagic" Content="Magic" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left"/>
-                            <CheckBox x:Name="WA_IsAdamantine" Content="Adamantine" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox x:Name="WA_IsSilver" Content="Silver" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
-                            <CheckBox x:Name="WA_IsCFI" Content="Cold-Forged Iron" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox x:Name="WA_IsVersatile" Content="Versatile" Padding="0" Margin="64,3,0,0" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-                <Label Content="Weapon Range" Padding="0" Margin="185,0,0,0"/>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="To Hit" Padding="0" Margin="30,3,0,0"/>
-                    <Label Content="Reach (ft.)" Padding="0" Margin="31,3,0,0"/>
-                    <Label Content="Normal" Padding="0" Margin="30,3,0,0"/>
-                    <Label Content="Long" Padding="0" Margin="35,3,0,0"/>
-                    <Label Content="Target Type" Padding="0" Margin="40,3,0,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="WA_ToHit" Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center"/>
-                    <TextBox x:Name="WA_Reach" Width="40" Text="5" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
-                    <TextBox x:Name="WA_RangeNormal" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
-                    <TextBox x:Name="WA_RangeLong" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
-                    <ComboBox x:Name="WA_TargetType" Width="100" Padding="0" Margin="20,3,0,0">
-                        <ComboBoxItem>one target</ComboBoxItem>
-                        <ComboBoxItem>one creature</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Number" Padding="0" Margin="145,3,0,0"/>
-                    <Label Content="Die" Padding="0" Margin="21,3,0,0"/>
-                    <Label Content="Bonus" Padding="0" Margin="28,3,0,0"/>
-                    <Label Content="Damage Type" Padding="0" Margin="26,3,0,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Damage" Padding="0" Margin="92,3,0,0"/>
-                    <TextBox x:Name="WA_D0_NumOfDie" Width="40" Height="20" Padding="0" Margin="10,3,0,0" />
-                    <Label Content="d" Padding="0" Margin="3,3,0,0"/>
-                    <ComboBox x:Name="WA_D0_DieSize" Width="40" Height="20" Padding="0" Margin="3,3,0,0">
-                        <ComboBoxItem>4</ComboBoxItem>
-                        <ComboBoxItem>6</ComboBoxItem>
-                        <ComboBoxItem>8</ComboBoxItem>
-                        <ComboBoxItem>10</ComboBoxItem>
-                        <ComboBoxItem>12</ComboBoxItem>
-                        <ComboBoxItem>20</ComboBoxItem>
-                    </ComboBox>
-                    <Label Content="+" Padding="0" Margin="3,3,0,0"/>
-                    <TextBox x:Name="WA_D0_Bonus" Width="40" Height="20" Padding="0" Margin="3,3,0,0" />
-                    <ComboBox x:Name="WA_D0_DamageType" Width="100" Padding="0" Margin="10,3,0,0" Height="20">
-                        <ComboBoxItem>bludgeoning</ComboBoxItem>
-                        <ComboBoxItem>piercing</ComboBoxItem>
-                        <ComboBoxItem>slashing</ComboBoxItem>
-                        <ComboBoxItem>acid</ComboBoxItem>
-                        <ComboBoxItem>cold</ComboBoxItem>
-                        <ComboBoxItem>fire</ComboBoxItem>
-                        <ComboBoxItem>force</ComboBoxItem>
-                        <ComboBoxItem>lightning</ComboBoxItem>
-                        <ComboBoxItem>necrotic</ComboBoxItem>
-                        <ComboBoxItem>poison</ComboBoxItem>
-                        <ComboBoxItem>psychic</ComboBoxItem>
-                        <ComboBoxItem>radiant</ComboBoxItem>
-                        <ComboBoxItem>thunder</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Content="Add Bonus Dmg" Padding="0" Margin="33,3,0,0" />
-                    <TextBox Width="40" Height="20" Padding="0" Margin="10,3,0,0" IsReadOnly="True"/>
-                    <Label Content="d" Padding="0" Margin="3,3,0,0"/>
-                    <ComboBox Width="40" Height="20" Padding="0" Margin="3,3,0,0" IsReadOnly="True">
-                        <ComboBoxItem>4</ComboBoxItem>
-                        <ComboBoxItem>6</ComboBoxItem>
-                        <ComboBoxItem>8</ComboBoxItem>
-                        <ComboBoxItem>10</ComboBoxItem>
-                        <ComboBoxItem>12</ComboBoxItem>
-                        <ComboBoxItem>20</ComboBoxItem>
-                    </ComboBox>
-                    <Label Content="+" Padding="0" Margin="3,3,0,0"/>
-                    <TextBox Width="40" Height="20" Padding="0" Margin="3,3,0,0" IsReadOnly="True"/>
-                    <ComboBox Width="100" Padding="0" Margin="10,3,0,0" Height="20" IsReadOnly="True">
-                        <ComboBoxItem>bludgeoning</ComboBoxItem>
-                        <ComboBoxItem>piercing</ComboBoxItem>
-                        <ComboBoxItem>slashing</ComboBoxItem>
-                        <ComboBoxItem>acid</ComboBoxItem>
-                        <ComboBoxItem>cold</ComboBoxItem>
-                        <ComboBoxItem>fire</ComboBoxItem>
-                        <ComboBoxItem>force</ComboBoxItem>
-                        <ComboBoxItem>lightning</ComboBoxItem>
-                        <ComboBoxItem>necrotic</ComboBoxItem>
-                        <ComboBoxItem>poison</ComboBoxItem>
-                        <ComboBoxItem>psychic</ComboBoxItem>
-                        <ComboBoxItem>radiant</ComboBoxItem>
-                        <ComboBoxItem>thunder</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Content="Other Text" Padding="0" Margin="66,3,0,0" />
-                    <TextBox Width="300" Height="80" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="10,3,0,0" IsReadOnly="True"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="WA_Description" Width="300" Text=". Melee Weapon Attack: +0 to hit, reach 5 ft., one target. Hit: 3 (1d6)  damage." Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="20,3,0,0" IsReadOnly="True"/>
-                    <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,20,0,0" Click="WA_Update_Click"/>
-                </StackPanel>
+                <uc:ActionWeaponAttackControl UpdateWeaponAttackAction="WeaponAttack_Awesome_UpdateWeaponAttackAction"></uc:ActionWeaponAttackControl>
+                
                 <Label Content="Other Action" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Action" Padding="0" Margin="51,3,0,0"/>
-                    <ComboBox Width="300" Padding="0" Margin="5,3,0,0" Height="20" />
+                    <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="20"  Text="{Binding Path=OtherActionName}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Description" Padding="0" Margin="25,3,0,0"/>
-                    <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="60" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" />
-                    <Button Content="Update" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,40,0,0"/>
+                    <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="60" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Path=OtherActionDescription}" />
+                    <Button Content="Update" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,40,0,0" Click="Update_OtherAction"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EngineeringSuite.NPC.UserController
+namespace EngineeringSuite.NPC.UserControls
 {
     /// <summary>
     /// Interaction logic for ActionOverviewControl.xaml
@@ -70,7 +70,6 @@ namespace EngineeringSuite.NPC.UserController
 
         #region Button Events
         public event EventHandler RemoveAction;
-
         protected virtual void OnRemoveAction()
         {
             if (RemoveAction != null) RemoveAction(this, EventArgs.Empty);

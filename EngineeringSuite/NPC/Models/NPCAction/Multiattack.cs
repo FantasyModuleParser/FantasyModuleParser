@@ -10,18 +10,18 @@ namespace EngineeringSuite.NPC.Models.NPCAction
     {
         public Multiattack()
         {
-            this.ActionName = "MultiAttack";
+            this.ActionName = "Multiattack";
         }
 
         public Multiattack(string description)
         {
-            this.ActionName = "MultiAttack";
+            this.ActionName = "Multiattack";
             this.ActionDescription = description;
         }
 
         public override string ToString()
         {
-            return " -- MultiAttack [" + this.ActionDescription + "] -- ";
+            return " -- Multiattack [" + this.ActionDescription + "] -- ";
         }
     }
 }

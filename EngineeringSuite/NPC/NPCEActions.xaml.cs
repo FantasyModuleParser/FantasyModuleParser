@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using EngineeringSuite.NPC.Controller;
 using EngineeringSuite.NPC.Models.NPCAction;
-using EngineeringSuite.NPC.UserController;
+using EngineeringSuite.NPC.UserControls;
 using EngineeringSuite.NPC.ViewModel;
 
 namespace EngineeringSuite.NPC
@@ -276,6 +276,23 @@ namespace EngineeringSuite.NPC
                 var userControl_ActionOverviewControl = (ActionOverviewControl)sender;
                 if(userControl_ActionOverviewControl.DataContext is Multiattack)
                     ((ActionViewModel)DataContext).removeMultiAttack();
+            }
+        }
+
+        private void Update_OtherAction(object sender, RoutedEventArgs e)
+        {
+            ((ActionViewModel)DataContext).updateOtherAction();
+        }
+
+        private void WeaponAttack_Awesome_UpdateWeaponAttackAction(object sender, EventArgs e)
+        {
+            if(sender is ActionWeaponAttackControl)
+            {
+                ActionWeaponAttackControl _actionWeaponAttackControl = (ActionWeaponAttackControl)sender;
+                if(_actionWeaponAttackControl.DataContext is WeaponAttack)
+                {
+                    ((ActionViewModel)DataContext).updateWeaponAttack((WeaponAttack)_actionWeaponAttackControl.DataContext);
+                } 
             }
         }
     }
