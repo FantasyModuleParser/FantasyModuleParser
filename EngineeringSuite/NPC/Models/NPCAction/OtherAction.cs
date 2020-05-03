@@ -17,18 +17,5 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 
             return clone;
         }
-
-        #region Equals and Hashcode
-        public override bool Equals(object obj)
-        {
-            return obj is OtherAction @base &&
-                   ActionName == @base.ActionName;
-        }
-
-        public override int GetHashCode()
-        {
-            return 736796887 + EqualityComparer<string>.Default.GetHashCode(ActionName);
-        }
-        #endregion
     }
 }

@@ -8,10 +8,6 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 {
     public class Multiattack : ActionModelBase
     {
-        public Multiattack()
-        {
-            this.ActionName = "Multiattack";
-        }
 
         public Multiattack(string description)
         {
@@ -19,9 +15,5 @@ namespace EngineeringSuite.NPC.Models.NPCAction
             this.ActionDescription = description;
         }
 
-        public override string ToString()
-        {
-            return " -- Multiattack [" + this.ActionDescription + "] -- ";
-        }
     }
 }

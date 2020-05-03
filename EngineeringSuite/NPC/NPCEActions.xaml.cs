@@ -32,7 +32,7 @@ namespace EngineeringSuite.NPC
         private void OnInit(object sender, RoutedEventArgs e)
         {
             _npcController = new NPCController();
-            _npcModel = _npcController.GetNPCModel();
+            _npcModel = Models.GetNPCModel();
 
             foreach(ActionModelBase item in _npcModel.NPCActions)
             {

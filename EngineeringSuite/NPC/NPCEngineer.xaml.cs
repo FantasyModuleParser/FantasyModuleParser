@@ -634,11 +634,6 @@ public partial class NPCEngineer : Window
             npcController.Save(savePath, npcModel);
         }
 
-
-        private void LoadNPCFile(object sender, RoutedEventArgs e)
-        {
-            ((App)Application.Current).NpcModelObject = npcController.LoadTemporaryGoblin();
-        }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"[^0-9-]+"); ;
