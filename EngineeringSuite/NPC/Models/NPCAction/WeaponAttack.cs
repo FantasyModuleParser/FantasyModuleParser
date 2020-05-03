@@ -299,10 +299,13 @@ namespace EngineeringSuite.NPC.Models.NPCAction
             StringBuilder sb = new StringBuilder();
             sb.Append(ActionName);
             sb.Append(": ");
-            if (_isMagic)
+            if(_toHit > -1)
             {
-                sb.Append("Magic,");
+                sb.Append("+");
             }
+            sb.Append(ToHit);
+            sb.Append(" to hit, ");
+            
             ActionDescription = sb.ToString();
         }
 
