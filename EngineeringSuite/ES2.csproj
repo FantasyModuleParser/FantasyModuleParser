@@ -186,6 +186,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\new_NPCEActions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\NPCEActionsUserControls\ActionMutiattackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\NPCEActionsUserControls\ActionOtherActionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\NPCEActionsUserControls\ActionOverviewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\NPCEActionsUserControls\ActionWeaponAttackControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="NPC\UserControls\ActionOverviewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,8 +257,23 @@
     <Compile Include="NPC\Models\NPCAction\ActionModelBase.cs" />
     <Compile Include="NPC\Models\NPCAction\Enums\DamageType.cs" />
     <Compile Include="NPC\Models\NPCAction\Enums\DieType.cs" />
+    <Compile Include="NPC\new_NPCEActions.xaml.cs">
+      <DependentUpon>new_NPCEActions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\Models\NPCAction\Enums\TargetType.cs" />
     <Compile Include="NPC\Models\NPCAction\Enums\WeaponType.cs" />
+    <Compile Include="NPC\NPCEActionsUserControls\ActionMutiattackControl.xaml.cs">
+      <DependentUpon>ActionMutiattackControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\NPCEActionsUserControls\ActionOtherActionControl.xaml.cs">
+      <DependentUpon>ActionOtherActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\NPCEActionsUserControls\ActionOverviewControl.xaml.cs">
+      <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\NPCEActionsUserControls\ActionWeaponAttackControl.xaml.cs">
+      <DependentUpon>ActionWeaponAttackControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\UserControls\ActionOverviewControl.xaml.cs">
       <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
     </Compile>

@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="EngineeringSuite.NPC.NPCEActionsUserControls.ActionMutiattackControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:EngineeringSuite.NPC.UserControls"
+        mc:Ignorable="d" 
+        d:DesignHeight="170" d:DesignWidth="400">
+    <Grid>
+        <Label Content="Multiattack" FontWeight="Bold" Foreground="Gray" Padding="0" Margin="20,10,0,0"/>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Multiattack:" Padding="0" Margin="30,30,0,0"/>
+            <CheckBox x:Name="multiAttackCB" Padding="0" Margin="10,32,0,0" />
+            <TextBox x:Name="multiAttackTextArea"  TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,30,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,80,0,0">
+            <Button Content="Add" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="UpdateButton_Click"/>
+            <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="210,20,0,0" Click="UpdateButton_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

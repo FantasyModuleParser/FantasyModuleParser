@@ -4,11 +4,11 @@ namespace EngineeringSuite.NPC.Models.NPCAction.Enums
 {
 	public enum DieType
 	{
-		D4 = 4,
-		D6 = 6,
-		D8 = 8,
-		D10 = 10,
-		D12 = 12,
-		D20 = 20,
+		d4 = 4,
+		d6 = 6,
+		d8 = 8,
+		d10 = 10,
+		d12 = 12,
+		d20 = 20,
 	}
 }

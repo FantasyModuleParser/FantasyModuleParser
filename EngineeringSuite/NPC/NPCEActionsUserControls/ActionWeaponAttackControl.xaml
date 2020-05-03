@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="EngineeringSuite.NPC.UserControls.ActionWeaponAttackControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EngineeringSuite.NPC.UserControls"
+             xmlns:Model="clr-namespace:EngineeringSuite.NPC.Models.NPCAction"
+             xmlns:my="clr-namespace:EngineeringSuite.Extensions"
+             xmlns:enums="clr-namespace:EngineeringSuite.NPC.Models.NPCAction.Enums"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="415">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label Content="Weapon Attack" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Weapon:" Padding="0" Margin="5,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                        <TextBox x:Name="WA_WeaponName" Text="{Binding Path=WeaponName}" Width="170" Height="20" Margin="5,13,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Type:" Padding="0" Margin="25,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+						<ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type enums:WeaponType}}}" SelectedValue="{Binding CurrentStatus}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=WeaponType}" Width="170" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="WA_IsMagic" IsChecked="{Binding Path=IsMagic}" Content="Magic" Padding="0" Margin="10,15,0,0" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="WA_IsAdamantine" IsChecked="{Binding Path=IsAdamantine}" Content="Adamantine" Padding="0" Margin="5,15,0,0" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="WA_IsSilver" IsChecked="{Binding Path=IsSilver}" Content="Silver" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="WA_IsCFI" IsChecked="{Binding Path=IsColdForgedIron}" Content="Cold-Forged Iron" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="WA_IsVersatile" IsChecked="{Binding Path=IsVersatile}" Content="Versatile" Padding="0" Margin="64,3,0,0" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <Label Content="Weapon Range" Padding="0" Margin="185,0,0,0"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="To Hit" Padding="0" Margin="30,3,0,0"/>
+                <Label Content="Reach (ft.)" Padding="0" Margin="31,3,0,0"/>
+                <Label Content="Normal" Padding="0" Margin="30,3,0,0"/>
+                <Label Content="Long" Padding="0" Margin="35,3,0,0"/>
+                <Label Content="Target Type" Padding="0" Margin="40,3,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="WA_ToHit" Text="{Binding Path=ToHit}" Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="WA_Reach" Text="{Binding Path=Reach}" Width="40" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="WA_RangeNormal" Text="{Binding Path=WeaponRangeShort}" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="WA_RangeLong" Text="{Binding Path=WeaponRangeLong}" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
+				<ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type enums:TargetType}}}" SelectedValue="{Binding TargetType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=TargetType}" Width="100" Padding="0" Margin="20,3,0,0">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Number" Padding="0" Margin="145,3,0,0"/>
+                <Label Content="Die" Padding="0" Margin="21,3,0,0"/>
+                <Label Content="Bonus" Padding="0" Margin="28,3,0,0"/>
+                <Label Content="Damage Type" Padding="0" Margin="26,3,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Damage" Padding="0" Margin="92,3,0,0"/>
+                <TextBox x:Name="WA_D0_NumOfDie" Text="{Binding Path=PrimaryDmgDieCount}" Width="40" Height="20" Padding="0" Margin="10,3,0,0" PreviewTextInput="NumberValidationTextBox"/>
+                <Label Content="d" Padding="0" Margin="3,3,0,0"/>
+				<ComboBox x:Name="WA_D0_DieSize" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DieType}}}" SelectedValue="{Binding CurrentStatus}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=PrimaryDieType}" Width="40" Height="20" Padding="0" Margin="3,3,0,0">
+
+                </ComboBox>
+                <Label Content="+" Padding="0" Margin="3,3,0,0"/>
+                <TextBox x:Name="WA_D0_Bonus" Text="{Binding Path=PrimaryBonus}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" PreviewTextInput="NumberValidationTextBox"/>
+				<ComboBox x:Name="WA_D0_DamageType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding CurrentStatus}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=PrimaryDamageType}" Width="100" Padding="0" Margin="10,3,0,0" Height="20">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="AddBonusCB" Content="Add Bonus Dmg" Padding="0" Margin="33,3,0,0" Checked="CheckBox_Checked" />
+                <TextBox Text="{Binding Path=SecondaryDmgDieCount}" Width="40" Height="20" Padding="0" Margin="10,3,0,0" IsReadOnly="False" PreviewTextInput="NumberValidationTextBox"/>
+                <Label Content="d" Padding="0" Margin="3,3,0,0"/>
+				<ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DieType}}}" SelectedValue="{Binding CurrentStatus}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=SecondaryDieType}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" IsReadOnly="False">
+                </ComboBox>
+                <Label Content="+" Padding="0" Margin="3,3,0,0"/>
+                <TextBox Text="{Binding Path=SecondaryBonus}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" IsReadOnly="False" PreviewTextInput="NumberValidationTextBox"/>
+				<ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding CurrentStatus}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=SecondaryDamageType}" Width="100" Padding="0" Margin="10,3,0,0" Height="20" IsReadOnly="False">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Content="Other Text" Padding="0" Margin="66,3,0,0" />
+                <TextBox Width="255" Height="80" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="10,3,0,0" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="WA_Description" Width="400" Text="{Binding Path=ActionDescription}" Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="8,8,0,0" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Add" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="UpdateButton_Click"/>
+                <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="210,20,0,0" Click="UpdateButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,35 @@
+﻿<Window x:Class="EngineeringSuite.NPC.Models.NPCAction.Enums.new_NPCActions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EngineeringSuite.NPC.Models.NPCAction.Enums"
+        mc:Ignorable="d"
+        Title="Add or Edit NPC Actions" Height="600" Width="1000" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
+    <Grid Background="#FFE5E5E5">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="550" Margin="5,5,0,0" />
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="425" Margin="560,50,0,0"/>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="570,25,0,0">
+                <RadioButton Content="Multiattack" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,0,0,0">
+
+                </RadioButton>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <RadioButton Content="Weapon Attack" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0">
+
+                </RadioButton>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <RadioButton Content="Other Attack" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0">
+
+                </RadioButton>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,500,0,0">
+            <Button Content="Close" Width="100">
+                
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
