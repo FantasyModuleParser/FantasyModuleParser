@@ -297,15 +297,15 @@ namespace EngineeringSuite.NPC.Models.NPCAction
         public void GenerateWeaponAttackDescription()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(ActionName);
-            sb.Append(": ");
+            sb.Append(WeaponType + ": ");
             if(_toHit > -1)
             {
                 sb.Append("+");
             }
-            sb.Append(ToHit);
-            sb.Append(" to hit, ");
-            
+            sb.Append(ToHit + " to hit, reach " + Reach + " ft., " + TargetType + ". Hit: ");
+            int PrimaryDamageTotal = PrimaryDieType * PrimaryDmgDieCount / 2 + PrimaryBonus;
+            sb.Append(PrimaryDamageTotal + " (" + PrimaryDmgDieCount + "d" + PrimaryDieType + " + " + PrimaryBonus + ") " + PrimaryDamageType + " damage.");
+
             ActionDescription = sb.ToString();
         }
 

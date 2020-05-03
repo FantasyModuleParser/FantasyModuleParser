@@ -24,6 +24,6 @@
                 <Image Source="/Resources/down_arrow.png" />
             </Button>
         </StackPanel>
-        <TextBox x:Name="actionDescription" Width="350" IsReadOnly="True" HorizontalAlignment="Right" Text="{Binding ActionDescription}" Margin="0,5,10,10"/>
+        <TextBox x:Name="actionDescription" Width="350" IsReadOnly="True" HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Text="{Binding ActionDescription}" Margin="0,5,10,10"/>
     </Grid>
 </UserControl>

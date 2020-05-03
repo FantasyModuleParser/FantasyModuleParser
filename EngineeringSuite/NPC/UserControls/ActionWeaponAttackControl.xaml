@@ -45,10 +45,10 @@
                 <Label Content="Target Type" Padding="0" Margin="40,3,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="WA_ToHit" Text="{Binding Path=ToHit}" Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="WA_Reach" Text="{Binding Path=Reach}" Width="40" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="WA_RangeNormal" Text="{Binding Path=WeaponRangeShort}" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="WA_RangeLong" Text="{Binding Path=WeaponRangeLong}" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="WA_ToHit" Text="{Binding Path=ToHit}" Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="WA_Reach" Text="{Binding Path=Reach}" Width="40" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="WA_RangeNormal" Text="{Binding Path=WeaponRangeShort}" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox x:Name="WA_RangeLong" Text="{Binding Path=WeaponRangeLong}" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
                 <ComboBox ItemsSource="{Binding TargetTypeList}" SelectedItem="{Binding Path=TargetType}" Width="100" Padding="0" Margin="20,3,0,0">
                 </ComboBox>
             </StackPanel>
@@ -60,24 +60,24 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Damage" Padding="0" Margin="92,3,0,0"/>
-                <TextBox x:Name="WA_D0_NumOfDie" Text="{Binding Path=PrimaryDmgDieCount}" Width="40" Height="20" Padding="0" Margin="10,3,0,0" />
+                <TextBox x:Name="WA_D0_NumOfDie" Text="{Binding Path=PrimaryDmgDieCount}" Width="40" Height="20" Padding="0" Margin="10,3,0,0" PreviewTextInput="NumberValidationTextBox"/>
                 <Label Content="d" Padding="0" Margin="3,3,0,0"/>
                 <ComboBox x:Name="WA_D0_DieSize" ItemsSource="{Binding Path=DieTypeList}" SelectedItem="{Binding Path=PrimaryDieType}" Width="40" Height="20" Padding="0" Margin="3,3,0,0">
 
                 </ComboBox>
                 <Label Content="+" Padding="0" Margin="3,3,0,0"/>
-                <TextBox x:Name="WA_D0_Bonus" Text="{Binding Path=PrimaryBonus}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" />
+                <TextBox x:Name="WA_D0_Bonus" Text="{Binding Path=PrimaryBonus}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" PreviewTextInput="NumberValidationTextBox"/>
                 <ComboBox x:Name="WA_D0_DamageType" ItemsSource="{Binding Path=DamageTypeList}" SelectedItem="{Binding Path=PrimaryDamageType}" Width="100" Padding="0" Margin="10,3,0,0" Height="20">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <CheckBox x:Name="AddBonusCB" Content="Add Bonus Dmg" Padding="0" Margin="33,3,0,0" Checked="CheckBox_Checked" />
-                <TextBox Text="{Binding Path=SecondaryDmgDieCount}" Width="40" Height="20" Padding="0" Margin="10,3,0,0" IsReadOnly="False"/>
+                <TextBox Text="{Binding Path=SecondaryDmgDieCount}" Width="40" Height="20" Padding="0" Margin="10,3,0,0" IsReadOnly="False" PreviewTextInput="NumberValidationTextBox"/>
                 <Label Content="d" Padding="0" Margin="3,3,0,0"/>
                 <ComboBox ItemsSource="{Binding Path=DieTypeList}" SelectedItem="{Binding Path=SecondaryDieType}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" IsReadOnly="False">
                 </ComboBox>
                 <Label Content="+" Padding="0" Margin="3,3,0,0"/>
-                <TextBox Text="{Binding Path=SecondaryBonus}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" IsReadOnly="False"/>
+                <TextBox Text="{Binding Path=SecondaryBonus}" Width="40" Height="20" Padding="0" Margin="3,3,0,0" IsReadOnly="False" PreviewTextInput="NumberValidationTextBox"/>
                 <ComboBox ItemsSource="{Binding Path=DamageTypeList}" SelectedItem="{Binding Path=SecondaryDamageType}" Width="100" Padding="0" Margin="10,3,0,0" Height="20" IsReadOnly="False">
                 </ComboBox>
             </StackPanel>
