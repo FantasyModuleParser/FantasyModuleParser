@@ -49,7 +49,7 @@
                 <TextBox x:Name="WA_Reach" Width="40" Text="5" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="WA_RangeNormal" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="WA_RangeLong" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
-                <ComboBox ItemsSource="{Binding WeaponTypeList}" SelectedItem="{Binding Path=WeaponType}" Width="100" Padding="0" Margin="20,3,0,0">
+                <ComboBox ItemsSource="{Binding TargetTypeList}" SelectedItem="{Binding Path=TargetType}" Width="100" Padding="0" Margin="20,3,0,0">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
