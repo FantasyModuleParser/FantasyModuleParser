@@ -98,13 +98,13 @@ namespace EngineeringSuite.NPC.ViewModel
                 {
                     action.ActionID = obj.ActionID;
                     NPCActions.Remove(obj);
-                    NPCActions.Add(CommonMethod.CloneJson(action));
+                    NPCActions.Add(action);
                 }
             }
             else
             {
                 action.ActionID = NPCActions.Count;
-                NPCActions.Add(CommonMethod.CloneJson(action));
+                NPCActions.Add(action);
             }
         }
 
