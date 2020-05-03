@@ -232,6 +232,7 @@
     <Compile Include="ESSupporters.xaml.cs">
       <DependentUpon>ESSupporters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="NPC\CommonMethod.cs" />
     <Compile Include="NPC\Models\NPCAction\ActionModelBase.cs" />
     <Compile Include="NPC\Models\NPCAction\Enums\DamageType.cs" />

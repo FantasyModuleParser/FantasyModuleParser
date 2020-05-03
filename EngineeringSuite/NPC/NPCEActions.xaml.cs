@@ -15,26 +15,24 @@ namespace EngineeringSuite.NPC
     /// </summary>
     public partial class NPCEActions : Window
     {
-
-        private NPCModel _npcModel;
-        private NPCController _npcController;
+	    private NPCModel NpcModel;
+	    private NPCController NpcController;
 
         public NPCEActions()
         {
             InitializeComponent();
             DataContext = new ActionViewModel();
 
-
-            _npcController = new NPCController();
-            _npcModel = _npcController.GetNPCModel();
+            NpcController = new NPCController();
+            NpcModel = NpcController.GetNPCModel() ?? new NPCModel();
         }
 
         private void OnInit(object sender, RoutedEventArgs e)
         {
-            _npcController = new NPCController();
-            _npcModel = Models.GetNPCModel();
+	        NpcController = new NPCController();
+	        NpcModel = NpcController.GetNPCModel() ?? new NPCModel();
 
-            foreach(ActionModelBase item in _npcModel.NPCActions)
+	        foreach(ActionModelBase item in NpcModel.NPCActions)
             {
                 ((ActionViewModel)DataContext).NPCActions.Add(item);
             }
@@ -243,8 +241,8 @@ namespace EngineeringSuite.NPC
         #endregion
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
-            _npcModel.NPCActions.Clear();
-            _npcModel.NPCActions.AddRange(((ActionViewModel)DataContext).NPCActions);
+	        NpcModel.NPCActions.Clear();
+	        NpcModel.NPCActions.AddRange(((ActionViewModel)DataContext).NPCActions);
             this.Close();
         }
 

@@ -492,7 +492,7 @@ public partial class NPCEngineer : Window
 	        string npcName = NPC_name.Text;
             string savePath = Path.Combine(installPath, installFolder, npcName + ".json");
 
-            NPCModel npcModel = ((App)Application.Current).NpcModelObject;
+            NPCModel npcModel = ((App)Application.Current).NpcModel;
 
             if (npcModel == null)
                 npcModel = new NPCModel
@@ -630,6 +630,8 @@ public partial class NPCEngineer : Window
                 NonID = strNonID.Text,
                 NPCImage = strNPCImage.Text,
             };
+
+            ((App) Application.Current).NpcModel = npcModel;
 
             npcController.Save(savePath, npcModel);
         }

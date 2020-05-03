@@ -21,14 +21,14 @@ namespace EngineeringSuite.NPC.Controller
 				serializer.Serialize(file, npcModel);
 			}
 		}
+
 		public NPCModel GetNPCModel()
 		{
-			var _application = Application.Current;
-			if (_application is App)
-			{
-				App _app = (App)_application;
-				return (NPCModel)_app.NpcModelObject;
-			}
+			var application = Application.Current;
+
+			if (application is App app)
+				return (NPCModel)app.NpcModel;
+
 			return null;
 		}
 	}

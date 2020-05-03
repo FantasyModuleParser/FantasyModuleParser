@@ -27,15 +27,14 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 
 		public string OtherText { get; set; }
 
-		public List<DamageProperty> DamageProperties { get; set; }
-		public DamageProperty PrimaryDamage;
-		public DamageProperty SecondaryDamage;
+		private DamageProperty PrimaryDamage;
+		private DamageProperty SecondaryDamage;
 
 		public WeaponAttack()
 		{
 			PrimaryDamage = new DamageProperty();
 			SecondaryDamage = new DamageProperty();
-			WeaponType = WeaponType.MWA; // Default to the first entry
+			WeaponType = WeaponType.MWA;
 			PrimaryDamage.NumOfDice = 1;
 			PrimaryDamage.DieType = DieType.D6;
 			PrimaryDamage.Bonus = 0;

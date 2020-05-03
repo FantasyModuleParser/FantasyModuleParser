@@ -14,22 +14,6 @@ namespace EngineeringSuite
     /// </summary>
     public partial class App : Application
     {
-        // NPCModel object intended to be shared across all windows
-        private NPCModel _npcModel;
-        public NPCModel NpcModelObject 
-        {
-            get
-            {
-                if (_npcModel == null)
-                {
-                    _npcModel = new NPCModel();
-                } return _npcModel;
-            }
-            set
-            {
-                // Because this is initialized from the beginning, 'set' may not be needed.
-                _npcModel = value;
-            }
-        }
+        public NPCModel NpcModel { get; set; }
     }
 }
