@@ -146,7 +146,7 @@ public partial class NPCEngineer : Window
         }
         private void NPCEActions_Click(object sender, RoutedEventArgs e)
         {
-            NPCEActions win3 = new NPCEActions();
+            newNPCEActions win3 = new newNPCEActions();
             win3.Show();
         }
         private void NPCEReactions_Click(object sender, RoutedEventArgs e)
