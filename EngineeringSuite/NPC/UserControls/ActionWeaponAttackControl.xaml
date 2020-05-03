@@ -28,11 +28,11 @@
                         <CheckBox x:Name="WA_IsAdamantine" IsChecked="{Binding Path=IsAdamantine}" Content="Adamantine" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="WA_IsSilver" Content="Silver" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
-                        <CheckBox x:Name="WA_IsCFI" Content="Cold-Forged Iron" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="WA_IsSilver" IsChecked="{Binding Path=IsSilver}" Content="Silver" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="WA_IsCFI" IsChecked="{Binding Path=IsColdForgedIron}" Content="Cold-Forged Iron" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="WA_IsVersatile" Content="Versatile" Padding="0" Margin="64,3,0,0" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="WA_IsVersatile" IsChecked="{Binding Path=IsVersatile}" Content="Versatile" Padding="0" Margin="64,3,0,0" HorizontalAlignment="Left"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -45,11 +45,11 @@
                 <Label Content="Target Type" Padding="0" Margin="40,3,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="WA_ToHit" Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="WA_Reach" Width="40" Text="5" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="WA_RangeNormal" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="WA_RangeLong" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
-                <ComboBox ItemsSource="{Binding WeaponTypeList}" SelectedItem="{Binding Path=WeaponType}" Width="100" Padding="0" Margin="20,3,0,0">
+                <TextBox x:Name="WA_ToHit" Text="{Binding Path=ToHit}" Width="40" Padding="0" Margin="27,3,0,0" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="WA_Reach" Text="{Binding Path=Reach}" Width="40" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="WA_RangeNormal" Text="{Binding Path=WeaponRangeShort}" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="WA_RangeLong" Text="{Binding Path=WeaponRangeLong}" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding TargetTypeList}" SelectedItem="{Binding Path=TargetType}" Width="100" Padding="0" Margin="20,3,0,0">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
