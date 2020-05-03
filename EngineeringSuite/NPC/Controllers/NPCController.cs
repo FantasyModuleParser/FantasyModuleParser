@@ -26,6 +26,8 @@ namespace EngineeringSuite.NPC.Controller
 		{
 			NPCModel tempGoblin = new NPCModel();
 
+			tempGoblin.NPCName = "Goblin";
+
 			tempGoblin.AC = "11";
 			tempGoblin.AttributeStr = 8;
 			tempGoblin.AttributeDex = 10;
