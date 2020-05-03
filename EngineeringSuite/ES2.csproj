@@ -234,6 +234,10 @@
     </Compile>
     <Compile Include="NPC\CommonMethod.cs" />
     <Compile Include="NPC\Models\NPCAction\ActionModelBase.cs" />
+    <Compile Include="NPC\Models\NPCAction\Enums\DamageType.cs" />
+    <Compile Include="NPC\Models\NPCAction\Enums\DieType.cs" />
+    <Compile Include="NPC\Models\NPCAction\Enums\TargetType.cs" />
+    <Compile Include="NPC\Models\NPCAction\Enums\WeaponType.cs" />
     <Compile Include="NPC\UserControls\ActionOverviewControl.xaml.cs">
       <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
     </Compile>

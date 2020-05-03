@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EngineeringSuite.NPC.Models.NPCAction.Enums;
 
 namespace EngineeringSuite.NPC.Models.NPCAction
 {
 
 	public class WeaponAttack : ActionModelBase
 	{
-		public List<string> WeaponTypeList = new List<string> { "Melee Weapon Attack", "Ranged Weapon Attack", "Melee or Ranged Weapon Attack", "Melee Spell Attack", "Ranged Spell Attack", "Melee or Ranged Spell Attack" };
-		public List<string> TargetTypeList = new List<string> { "one target", "one creature" };
-
-
 		public string WeaponName { get; set; }
-		public string WeaponType { get; set; }
+		public WeaponType WeaponType { get; set; }
 
 		public bool IsMagic { get; set; }
 		public bool IsSilver { get; set; }
@@ -26,21 +23,21 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 		public int Reach { get; set; }
 		public int WeaponRangeShort { get; set; }
 		public int WeaponRangeLong { get; set; }
-		public string TargetType { get; set; }
+		public TargetType TargetType { get; set; }
 
 		public string OtherText { get; set; }
 
 		public List<DamageProperty> DamageProperties { get; set; }
-		private DamageProperty PrimaryDamage;
-		private DamageProperty SecondaryDamage;
+		public DamageProperty PrimaryDamage;
+		public DamageProperty SecondaryDamage;
 
 		public WeaponAttack()
 		{
 			PrimaryDamage = new DamageProperty();
 			SecondaryDamage = new DamageProperty();
-			WeaponType = WeaponTypeList[0]; // Default to the first entry
+			WeaponType = WeaponType.MWA; // Default to the first entry
 			PrimaryDamage.NumOfDice = 1;
-			PrimaryDamage.DieType = 6;
+			PrimaryDamage.DieType = DieType.D6;
 			PrimaryDamage.Bonus = 0;
 			Reach = 5;
 			WeaponRangeShort = 30;
@@ -56,7 +53,7 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 				sb.Append("+");
 			}
 			sb.Append(ToHit + " to hit, reach " + Reach + " ft., " + TargetType + ". Hit: ");
-			int PrimaryDamageTotal = PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
+			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
 			sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + "d" + PrimaryDamage.DieType + " + " + PrimaryDamage.Bonus + ") " + PrimaryDamage.DamageType + " damage.");
 
 			return sb.ToString();
