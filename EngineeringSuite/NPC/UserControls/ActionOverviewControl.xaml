@@ -5,22 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EngineeringSuite.NPC.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="600">
+             d:DesignHeight="60" d:DesignWidth="525">
     <Grid>
         <TextBox x:Name="actionName" Margin="10,5,365,35" IsReadOnly="True" Background="#FFE5E5E5" Text="{Binding ActionName}"/>
-        <StackPanel Orientation="Horizontal" Margin="0,0,480,-15" Height="20" HorizontalAlignment="Center" >
-            <Button x:Name="btn_Edit" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Edit_Click" >
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0" Height="20" HorizontalAlignment="Left" >
+            <Button x:Name="btn_Edit" Width="20" Height="20" BorderThickness="0" Margin="15,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Edit_Click" >
                 <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
             </Button>
-            <Button x:Name="btn_Cancel" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Cancel_Click">
+            <Button x:Name="btn_Cancel" Width="20" Height="20" BorderThickness="0" Margin="5,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Cancel_Click">
                 <Image Source="/Resources/cancel.png" />
             </Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,0,200,-15" Height="20" HorizontalAlignment="Center" >
-            <Button x:Name="btn_Up" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Up_Click">
+            <Button x:Name="btn_Up" Width="20" Height="20" BorderThickness="0" Margin="45,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Up_Click">
                 <Image Source="/Resources/up_arrow.png" />
             </Button>
-            <Button x:Name="btn_Down" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" Click="btn_Down_Click">
+            <Button x:Name="btn_Down" Width="20" Height="20" BorderThickness="0" Margin="5,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" Click="btn_Down_Click">
                 <Image Source="/Resources/down_arrow.png" />
             </Button>
         </StackPanel>

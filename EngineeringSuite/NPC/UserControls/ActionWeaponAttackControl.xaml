@@ -8,26 +8,26 @@
              xmlns:my="clr-namespace:EngineeringSuite.Extensions"
              xmlns:enums="clr-namespace:EngineeringSuite.NPC.Models.NPCAction.Enums"
              mc:Ignorable="d" 
-             d:DesignHeight="325" d:DesignWidth="450">
-	<Grid>
+             d:DesignHeight="400" d:DesignWidth="415">
+    <Grid>
         <StackPanel Orientation="Vertical">
             <Label Content="Weapon Attack" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Weapon:" Padding="0" Margin="25,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                        <TextBox x:Name="WA_WeaponName" Text="{Binding Path=WeaponName}" Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                        <Label Content="Weapon:" Padding="0" Margin="5,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                        <TextBox x:Name="WA_WeaponName" Text="{Binding Path=WeaponName}" Width="170" Height="20" Margin="5,13,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Type:" Padding="0" Margin="45,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-						<ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type enums:WeaponType}}}" SelectedValue="{Binding CurrentStatus}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=WeaponType}" Width="200" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <Label Content="Type:" Padding="0" Margin="25,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+						<ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type enums:WeaponType}}}" SelectedValue="{Binding CurrentStatus}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedItem="{Binding Path=WeaponType}" Width="170" Height="20" Margin="5,3,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="WA_IsMagic" IsChecked="{Binding Path=IsMagic}" Content="Magic" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left"/>
-                        <CheckBox x:Name="WA_IsAdamantine" IsChecked="{Binding Path=IsAdamantine}" Content="Adamantine" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="WA_IsMagic" IsChecked="{Binding Path=IsMagic}" Content="Magic" Padding="0" Margin="10,15,0,0" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="WA_IsAdamantine" IsChecked="{Binding Path=IsAdamantine}" Content="Adamantine" Padding="0" Margin="5,15,0,0" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <CheckBox x:Name="WA_IsSilver" IsChecked="{Binding Path=IsSilver}" Content="Silver" Padding="0" Margin="10,3,0,0" HorizontalAlignment="Left"/>
@@ -85,11 +85,14 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <CheckBox Content="Other Text" Padding="0" Margin="66,3,0,0" />
-                <TextBox Width="300" Height="80" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="10,3,0,0" IsReadOnly="True"/>
+                <TextBox Width="255" Height="80" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="10,3,0,0" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="WA_Description" Width="300" Text="{Binding Path=ActionDescription}" Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="20,3,0,0" IsReadOnly="True"/>
-                <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,20,0,0" Click="UpdateButton_Click"/>
+                <TextBox x:Name="WA_Description" Width="400" Text="{Binding Path=ActionDescription}" Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="8,8,0,0" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Add" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="UpdateButton_Click"/>
+                <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="210,20,0,0" Click="UpdateButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
