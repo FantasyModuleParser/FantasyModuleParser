@@ -147,7 +147,7 @@ namespace EngineeringSuite.NPC
 		}
 		private void NPCEActions_Click(object sender, RoutedEventArgs e)
 		{
-			newNPCEActions win3 = new newNPCEActions();
+			Actions win3 = new Actions();
 			win3.Show();
 		}
 		private void NPCEReactions_Click(object sender, RoutedEventArgs e)

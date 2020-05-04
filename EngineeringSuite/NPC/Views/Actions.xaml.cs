@@ -16,9 +16,9 @@ namespace EngineeringSuite.NPC
     /// <summary>
     /// Interaction logic for new_NPCActions.xaml
     /// </summary>
-    public partial class newNPCEActions : Window
+    public partial class Actions : Window
     {
-        public newNPCEActions()
+        public Actions()
         {
             InitializeComponent();
         }
@@ -27,7 +27,21 @@ namespace EngineeringSuite.NPC
         {
             if (multiAttack.IsChecked == true)
             {
-
+                stackMulti.Visibility = Visibility.Visible;
+                stackOther.Visibility = Visibility.Hidden;
+                stackWeapon.Visibility = Visibility.Hidden;
+            }
+            if (weaponAttack.IsChecked == true)
+            {
+                stackMulti.Visibility = Visibility.Hidden;
+                stackOther.Visibility = Visibility.Hidden;
+                stackWeapon.Visibility = Visibility.Visible;
+            }
+            if (otherAttack.IsChecked == true)
+            {
+                stackMulti.Visibility = Visibility.Hidden;
+                stackOther.Visibility = Visibility.Visible;
+                stackWeapon.Visibility = Visibility.Hidden;
             }
         }
     }
