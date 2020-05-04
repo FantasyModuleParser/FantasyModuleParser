@@ -21,7 +21,7 @@
                 <MenuItem Header="_View AppData folder" Click="AppData_Click" />
                 <MenuItem Header="_View Projects folder" Click="Projects_Click" />
                 <Separator />
-                <MenuItem Header="_View Artefacts folder" Click="Artifacts_Click" />
+                <MenuItem Header="_View Artifacts folder" Click="Artifacts_Click" />
                 <MenuItem Header="_View Equipment folder" Click="Equipment_Click" />
                 <MenuItem Header="_View NPCs folder" Click="NPC_Click" />
                 <MenuItem Header="_View Parcels folder" Click="Parcel_Click" />

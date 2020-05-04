@@ -162,63 +162,63 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ESAbout.xaml">
+    <Page Include="Main\Views\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ESEditDeleteNPC.xaml">
+    <Page Include="Main\Views\EditDeleteNPC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ESManageCategories.xaml">
+    <Page Include="Main\Views\ManageCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ESProjectManagement.xaml">
+    <Page Include="Main\Views\ProjectManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ESSettings.xaml">
+    <Page Include="Main\Views\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ESSupporters.xaml">
+    <Page Include="Main\Views\Supporters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\newNPCEActions.xaml">
+    <Page Include="NPC\Views\newNPCEActions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\UserControls\ActionMutiattackControl.xaml">
+    <Page Include="NPC\UserControls\Action\MultiAttackControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\UserControls\ActionOtherActionControl.xaml">
+    <Page Include="NPC\UserControls\Action\OtherActionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\UserControls\ActionOverviewControl.xaml">
+    <Page Include="NPC\UserControls\Action\OverviewControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="NPC\UserControls\ActionWeaponAttackControl.xaml">
+    <Page Include="NPC\UserControls\Action\WeaponAttackControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="NPC\NPCEFGListOptions.xaml">
+    <Page Include="NPC\Views\FGListOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\NPCEImportText.xaml">
+    <Page Include="NPC\Views\ImportText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\NPCELairActions.xaml">
+    <Page Include="NPC\Views\LairActions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\NPCELegActions.xaml">
+    <Page Include="NPC\Views\LegendaryActions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,90 +230,90 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ESAbout.xaml.cs">
-      <DependentUpon>ESAbout.xaml</DependentUpon>
+    <Compile Include="Main\Views\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ESEditDeleteNPC.xaml.cs">
-      <DependentUpon>ESEditDeleteNPC.xaml</DependentUpon>
+    <Compile Include="Main\Views\EditDeleteNPC.xaml.cs">
+      <DependentUpon>EditDeleteNPC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ESManageCategories.xaml.cs">
-      <DependentUpon>ESManageCategories.xaml</DependentUpon>
+    <Compile Include="Main\Views\ManageCategories.xaml.cs">
+      <DependentUpon>ManageCategories.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ESProjectManagement.xaml.cs">
-      <DependentUpon>ESProjectManagement.xaml</DependentUpon>
+    <Compile Include="Main\Views\ProjectManagement.xaml.cs">
+      <DependentUpon>ProjectManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ESSettings.xaml.cs">
-      <DependentUpon>ESSettings.xaml</DependentUpon>
+    <Compile Include="Main\Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ESSupporters.xaml.cs">
-      <DependentUpon>ESSupporters.xaml</DependentUpon>
+    <Compile Include="Main\Views\Supporters.xaml.cs">
+      <DependentUpon>Supporters.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\EnumerationExtension.cs" />
-    <Compile Include="NPC\CommonMethod.cs" />
-    <Compile Include="NPC\Models\NPCAction\ActionModelBase.cs" />
-    <Compile Include="NPC\Models\NPCAction\Enums\DamageType.cs" />
-    <Compile Include="NPC\Models\NPCAction\Enums\DieType.cs" />
-    <Compile Include="NPC\newNPCEActions.xaml.cs">
+    <Compile Include="Utils\CommonMethod.cs" />
+    <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
+    <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
+    <Compile Include="NPC\Models\Action\Enums\DieType.cs" />
+    <Compile Include="NPC\Views\newNPCEActions.xaml.cs">
       <DependentUpon>newNPCEActions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\Models\NPCAction\Enums\TargetType.cs" />
-    <Compile Include="NPC\Models\NPCAction\Enums\WeaponType.cs" />
-    <Compile Include="NPC\UserControls\ActionMutiattackControl.xaml.cs">
-      <DependentUpon>ActionMutiattackControl.xaml</DependentUpon>
+    <Compile Include="NPC\Models\Action\Enums\TargetType.cs" />
+    <Compile Include="NPC\Models\Action\Enums\WeaponType.cs" />
+    <Compile Include="NPC\UserControls\Action\MultiAttackControl.xaml.cs">
+      <DependentUpon>MultiAttackControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\UserControls\ActionOtherActionControl.xaml.cs">
-      <DependentUpon>ActionOtherActionControl.xaml</DependentUpon>
+    <Compile Include="NPC\UserControls\Action\OtherActionControl.xaml.cs">
+      <DependentUpon>OtherActionControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\UserControls\ActionOverviewControl.xaml.cs">
-      <DependentUpon>ActionOverviewControl.xaml</DependentUpon>
+    <Compile Include="NPC\UserControls\Action\OverviewControl.xaml.cs">
+      <DependentUpon>OverviewControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\UserControls\ActionWeaponAttackControl.xaml.cs">
-      <DependentUpon>ActionWeaponAttackControl.xaml</DependentUpon>
+    <Compile Include="NPC\UserControls\Action\WeaponAttackControl.xaml.cs">
+      <DependentUpon>WeaponAttackControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Controllers\NPCController.cs" />
-    <Compile Include="NPC\Models\NPCAction\DamageProperty.cs" />
-    <Compile Include="NPC\Models\NPCAction\Multiattack.cs" />
-    <Compile Include="NPC\Models\NPCAction\OtherAction.cs" />
-    <Compile Include="NPC\Models\NPCAction\WeaponAttack.cs" />
+    <Compile Include="NPC\Models\Action\DamageProperty.cs" />
+    <Compile Include="NPC\Models\Action\Multiattack.cs" />
+    <Compile Include="NPC\Models\Action\OtherAction.cs" />
+    <Compile Include="NPC\Models\Action\WeaponAttack.cs" />
     <Compile Include="NPC\Models\NPCModel.cs" />
-    <Compile Include="NPC\NPCEFGListOptions.xaml.cs">
-      <DependentUpon>NPCEFGListOptions.xaml</DependentUpon>
+    <Compile Include="NPC\Views\FGListOptions.xaml.cs">
+      <DependentUpon>FGListOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\NPCEImportText.xaml.cs">
-      <DependentUpon>NPCEImportText.xaml</DependentUpon>
+    <Compile Include="NPC\Views\ImportText.xaml.cs">
+      <DependentUpon>ImportText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\NPCELairActions.xaml.cs">
-      <DependentUpon>NPCELairActions.xaml</DependentUpon>
+    <Compile Include="NPC\Views\LairActions.xaml.cs">
+      <DependentUpon>LairActions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\NPCELegActions.xaml.cs">
-      <DependentUpon>NPCELegActions.xaml</DependentUpon>
+    <Compile Include="NPC\Views\LegendaryActions.xaml.cs">
+      <DependentUpon>LegendaryActions.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NPC\NPCEActions.xaml">
+    <Page Include="NPC\Views\Actions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\NPCEngineer.xaml">
+    <Page Include="NPC\Views\Engineer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\NPCEReactions.xaml">
+    <Page Include="NPC\Views\Reactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NPC\NPCEActions.xaml.cs">
-      <DependentUpon>NPCEActions.xaml</DependentUpon>
+    <Compile Include="NPC\Views\Actions.xaml.cs">
+      <DependentUpon>Actions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\NPCEngineer.xaml.cs">
-      <DependentUpon>NPCEngineer.xaml</DependentUpon>
+    <Compile Include="NPC\Views\Engineer.xaml.cs">
+      <DependentUpon>Engineer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\NPCEReactions.xaml.cs">
-      <DependentUpon>NPCEReactions.xaml</DependentUpon>
+    <Compile Include="NPC\Views\Reactions.xaml.cs">
+      <DependentUpon>Reactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\ViewModels\ActionViewModel.cs" />
     <Compile Include="NPC\ViewModels\ViewModelBase.cs" />

@@ -130,7 +130,7 @@ namespace EngineeringSuite.NPC.ViewModel
         }
 
 
-        #region Bindings for NPCEActions xaml
+        #region Bindings for Actions xaml
 
         #region Weapon Attack Bindings
         

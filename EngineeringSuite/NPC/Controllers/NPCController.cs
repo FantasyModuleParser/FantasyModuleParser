@@ -8,7 +8,7 @@ using System.Windows;
 using EngineeringSuite.NPC.Models.NPCAction;
 using Newtonsoft.Json;
 
-namespace EngineeringSuite.NPC.Controller
+namespace EngineeringSuite.NPC.Controllers
 {
 	public class NPCController
 	{
