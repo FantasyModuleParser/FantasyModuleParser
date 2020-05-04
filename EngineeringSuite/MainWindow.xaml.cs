@@ -120,7 +120,7 @@ namespace EngineeringSuite
                 case "EquipmentEngineer":
                     new Engineer().Show();
                     break;
-                case "Engineer":
+                case "NPCEngineer":
                     new Engineer().Show();
                     break;
                 case "ParcelEngineer":
