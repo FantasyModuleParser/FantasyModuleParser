@@ -22,4 +22,6 @@ namespace EngineeringSuite.NPC
         {
             InitializeComponent();
         }
+    }
+   
 }

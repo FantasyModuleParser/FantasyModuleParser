@@ -11,18 +11,36 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="425" Margin="560,50,0,0"/>
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="570,25,0,0">
-                <RadioButton Content="Multiattack" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,0,0,0">
-
+                <RadioButton HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,0,0,0" Content="Multiattack" Name="multiAttack" Checked="action_Checked">
+                    <RadioButton.ToolTip>
+                        <TextBlock>
+                            Select this option if your NPC has the Multiattack Option
+                            <LineBreak />
+                            <Italic>This will open a User Control to enter the Multiattack data</Italic>
+                        </TextBlock>
+                    </RadioButton.ToolTip>
                 </RadioButton>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <RadioButton Content="Weapon Attack" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0">
-
+                <RadioButton HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0" Content="Weapon Attack" Name="weaponAttack" Checked="action_Checked">
+                    <RadioButton.ToolTip>
+                        <TextBlock>
+                            Select this option to enter Weapon Attacks.
+                            <LineBreak />
+                            <Italic>Selecting this will open a User Control for Weapon Attacks.</Italic>
+                        </TextBlock>
+                    </RadioButton.ToolTip>
                 </RadioButton>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <RadioButton Content="Other Attack" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0">
-
+                <RadioButton HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0" Content="Other Attack" Name="otherAttack" Checked="action_Checked">
+                    <RadioButton.ToolTip>
+                        <TextBlock>
+                            Select this option to add actions that are not covered by Weapon Attacks
+                            <LineBreak />
+                            <Italic>Selecting this will open a User Control for Other Actions.</Italic>
+                        </TextBlock>
+                    </RadioButton.ToolTip>
                 </RadioButton>
             </StackPanel>
         </StackPanel>
