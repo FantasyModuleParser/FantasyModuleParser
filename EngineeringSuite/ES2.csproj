@@ -186,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\Views\newNPCEActions.xaml">
+    <Page Include="NPC\Views\Actions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,8 +253,8 @@
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
     <Compile Include="NPC\Models\Action\Enums\DieType.cs" />
-    <Compile Include="NPC\Views\newNPCEActions.xaml.cs">
-      <DependentUpon>newNPCEActions.xaml</DependentUpon>
+    <Compile Include="NPC\Views\Actions.xaml.cs">
+      <DependentUpon>Actions.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Models\Action\Enums\TargetType.cs" />
     <Compile Include="NPC\Models\Action\Enums\WeaponType.cs" />
@@ -292,10 +292,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NPC\Views\Actions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="NPC\Views\Engineer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,9 +302,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NPC\Views\Actions.xaml.cs">
-      <DependentUpon>Actions.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NPC\Views\Engineer.xaml.cs">
       <DependentUpon>Engineer.xaml</DependentUpon>
     </Compile>
