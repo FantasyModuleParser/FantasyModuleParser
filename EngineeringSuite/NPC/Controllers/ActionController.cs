@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace EngineeringSuite.NPC.Controllers
 {
-    public void GenerateWeaponDescription(WeaponAttack weaponAttack)
+    public class ActionController
     {
-        weaponAttack.GenerateAttackDescription();  // TODO:  This method call may not exist currently in the WeaponAttack class!
+        public void GenerateWeaponDescription(WeaponAttack weaponAttack)
+        {
+            weaponAttack.GenerateAttackDescription();  // TODO:  This method call may not exist currently in the WeaponAttack class!
+        }
     }
+}

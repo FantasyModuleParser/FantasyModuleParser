@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EngineeringSuite.NPC.Models.Action;
 using EngineeringSuite.NPC.Models.Action.Enums;
 
 namespace EngineeringSuite.NPC.Models.Action
