@@ -230,6 +230,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

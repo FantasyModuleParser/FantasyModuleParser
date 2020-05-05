@@ -1,4 +1,5 @@
 ﻿using EngineeringSuite.NPC.Models.Action;
+using EngineeringSuite.NPC.Models.Action.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
