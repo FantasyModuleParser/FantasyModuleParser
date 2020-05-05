@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EngineeringSuite.NPC.Models.NPCAction.Enums;
+using EngineeringSuite.NPC.Models.Action.Enums;
 
-namespace EngineeringSuite.NPC.Models.NPCAction
+namespace EngineeringSuite.NPC.Models.Action
 {
     public class DamageProperty
     {

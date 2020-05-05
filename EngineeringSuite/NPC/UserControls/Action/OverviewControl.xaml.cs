@@ -1,5 +1,5 @@
 ﻿using EngineeringSuite.NPC.Controllers;
-using EngineeringSuite.NPC.Models.NPCAction;
+using EngineeringSuite.NPC.Models.Action;
 using EngineeringSuite.NPC.ViewModel;
 using System;
 using System.Collections.Generic;

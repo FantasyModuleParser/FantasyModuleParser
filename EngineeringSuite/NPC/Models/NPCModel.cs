@@ -1,4 +1,4 @@
-﻿using EngineeringSuite.NPC.Models.NPCAction;
+﻿using EngineeringSuite.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
 using System.Linq;

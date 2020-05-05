@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EngineeringSuite.NPC.Models.NPCAction.Enums;
+using EngineeringSuite.NPC.Models.Action.Enums;
 
-namespace EngineeringSuite.NPC.Models.NPCAction
+namespace EngineeringSuite.NPC.Models.Action
 {
 
 	public class WeaponAttack : ActionModelBase
 	{
-		public string WeaponName { get; set; }
 		public WeaponType WeaponType { get; set; }
 
 		public bool IsMagic { get; set; }
@@ -27,8 +26,8 @@ namespace EngineeringSuite.NPC.Models.NPCAction
 
 		public string OtherText { get; set; }
 
-		private DamageProperty PrimaryDamage;
-		private DamageProperty SecondaryDamage;
+		public DamageProperty PrimaryDamage { get; set; }
+		public DamageProperty SecondaryDamage { get; set; }
 
 		public WeaponAttack()
 		{

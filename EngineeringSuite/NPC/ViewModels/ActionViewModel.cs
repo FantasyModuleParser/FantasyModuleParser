@@ -1,4 +1,4 @@
-﻿using EngineeringSuite.NPC.Models.NPCAction;
+﻿using EngineeringSuite.NPC.Models.Action;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using EngineeringSuite.NPC.Models.NPCAction;
+using EngineeringSuite.NPC.Models.Action;
 using Newtonsoft.Json;
 
 namespace EngineeringSuite.NPC.Controllers

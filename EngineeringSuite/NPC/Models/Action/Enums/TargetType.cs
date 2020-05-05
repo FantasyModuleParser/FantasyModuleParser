@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace EngineeringSuite.NPC.Models.NPCAction.Enums
+namespace EngineeringSuite.NPC.Models.Action.Enums
 {
 	public enum TargetType
 	{
