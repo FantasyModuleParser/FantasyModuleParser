@@ -59,7 +59,12 @@ namespace EngineeringSuite.NPC.UserControls.Action
         }
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            ActionController actionController = new ActionController();
+            var thisDataContext = ((UserControl)sender).DataContext;
+            if (thisDataContext is WeaponAttack)
+            {
+                actionController.GenerateWeaponDescription((WeaponAttack)thisDataContext);
+            }
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
