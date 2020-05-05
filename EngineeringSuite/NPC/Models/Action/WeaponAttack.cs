@@ -52,7 +52,7 @@ namespace EngineeringSuite.NPC.Models.Action
 			}
 			sb.Append(ToHit + " to hit, reach " + Reach + " ft., " + TargetType + ". Hit: ");
 			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
-			sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + "d" + PrimaryDamage.DieType + " + " + PrimaryDamage.Bonus + ") " + PrimaryDamage.DamageType + " damage.");
+			sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType + " + " + PrimaryDamage.Bonus + ") " + PrimaryDamage.DamageType + " damage.");
 
 			return sb.ToString();
 		}

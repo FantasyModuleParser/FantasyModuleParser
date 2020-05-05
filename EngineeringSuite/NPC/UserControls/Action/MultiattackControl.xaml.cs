@@ -23,12 +23,6 @@ namespace EngineeringSuite.NPC.UserControls.Action
         {
             InitializeComponent();
         }
-
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 	        throw new NotImplementedException();

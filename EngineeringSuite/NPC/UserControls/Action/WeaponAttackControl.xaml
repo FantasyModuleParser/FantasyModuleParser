@@ -50,7 +50,7 @@
                 <TextBox x:Name="WA_Reach" Text="{Binding Path=Reach}" Width="40" Padding="0" Margin="30,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
                 <TextBox x:Name="WA_RangeNormal" Text="{Binding Path=WeaponRangeShort}" Width="40" Padding="0" Margin="37,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
                 <TextBox x:Name="WA_RangeLong" Text="{Binding Path=WeaponRangeLong}" Width="40" Padding="0" Margin="29,3,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"/>
-                <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type enums:TargetType}}}" SelectedValue="{Binding Path=TargetType}" SelectedValuePath="Value" DisplayMemberPath="Description" Width="100" Padding="0" Margin="20,3,0,0">
+                <ComboBox Name="TargetType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:TargetType}}}" SelectedValue="{Binding Path=TargetType}" SelectedValuePath="Value" DisplayMemberPath="Description" Width="100" Padding="0" Margin="20,3,0,0">
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -87,11 +87,11 @@
                 <TextBox Width="255" Height="80" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="10,3,0,0" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="WA_Description" Width="400" Text="{Binding Path=ActionDescription}" Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="8,8,0,0" IsReadOnly="True"/>
+                <TextBox Name="WA_Description" Width="400" Text="{Binding Path=ActionDescription}" Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="8,8,0,0" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Add" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="UpdateButton_Click"/>
-                <Button Content="Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="210,20,0,0" Click="UpdateButton_Click"/>
+                <Button Content="Add/Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="UpdateButton_Click"/>
+                <Button Content="Preview" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="210,20,0,0" Click="PreviewButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

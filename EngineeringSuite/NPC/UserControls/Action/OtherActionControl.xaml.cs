@@ -29,10 +29,5 @@ namespace EngineeringSuite.NPC.UserControls.Action
         {
 	        throw new NotImplementedException();
         }
-
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-	        throw new NotImplementedException();
-        }
     }
 }

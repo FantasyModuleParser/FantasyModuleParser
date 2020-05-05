@@ -1,4 +1,5 @@
-﻿using EngineeringSuite.NPC.Models.Action;
+﻿using EngineeringSuite.NPC.Controllers;
+using EngineeringSuite.NPC.Models.Action;
 using EngineeringSuite.NPC.Models.Action.Enums;
 using System;
 using System.Collections.Generic;
@@ -49,14 +50,17 @@ namespace EngineeringSuite.NPC.UserControls.Action
         {
             if (UpdateWeaponAttackAction != null) UpdateWeaponAttackAction(this, EventArgs.Empty);
         }
-
+        
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             WeaponAttack thisWeaponAttack = (WeaponAttack)((Button)sender).DataContext;
             if(thisWeaponAttack.ActionName != null && thisWeaponAttack.ActionName.Length > 0)
                 OnUpdateWeaponAttackAction();
         }
-
+        private void PreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
 

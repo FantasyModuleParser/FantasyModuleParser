@@ -4,10 +4,10 @@ namespace EngineeringSuite.NPC.Models.Action.Enums
 {
 	public enum TargetType
 	{
-		[Description("One Target")]
-		Target = 0,
+		[Description("one target")]
+		target = 0,
 
-		[Description("One Creature")]
-		Creature = 1,
+		[Description("one creature")]
+		creature = 1,
 	}
 }
