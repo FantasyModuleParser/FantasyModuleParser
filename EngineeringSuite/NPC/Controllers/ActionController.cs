@@ -30,6 +30,12 @@ namespace EngineeringSuite.NPC.Controllers
             updateNPCActions(clone);
         }
 
+        public void UpdateOtherAction(OtherAction otherAction)
+        {
+            OtherAction clone = CommonMethod.CloneJson(otherAction);
+            updateNPCActions(clone);
+        }
+
         private void updateNPCActions(ActionModelBase action)
         {
             NPCModel npcModel = GetNPCModel();

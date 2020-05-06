@@ -10,11 +10,11 @@
         <Label Content="Other Action" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0">
             <Label Content="Action" Padding="0" Margin="51,3,0,0"/>
-            <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="20"  Text="{Binding Path=OtherActionName}" />
+            <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="20"  Text="{Binding Path=ActionName}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,55,0,0">
             <Label Content="Description" Padding="0" Margin="25,3,0,0"/>
-            <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="60" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Path=OtherActionDescription}" />
+            <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="60" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Path=ActionDescription}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,110,0,0">
             <Button Content="Add" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="AddButton_Click"/>
