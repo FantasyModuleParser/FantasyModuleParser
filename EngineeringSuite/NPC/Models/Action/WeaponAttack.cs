@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EngineeringSuite.Extensions;
 using EngineeringSuite.NPC.Models.Action;
 using EngineeringSuite.NPC.Models.Action.Enums;
 
@@ -36,7 +37,7 @@ namespace EngineeringSuite.NPC.Models.Action
 			SecondaryDamage = new DamageProperty();
 			WeaponType = WeaponType.MWA;
 			PrimaryDamage.NumOfDice = 1;
-			PrimaryDamage.DieType = DieType.d6;
+			PrimaryDamage.DieType = DieType.D6;
 			PrimaryDamage.Bonus = 0;
 			Reach = 5;
 			WeaponRangeShort = 30;
@@ -46,7 +47,7 @@ namespace EngineeringSuite.NPC.Models.Action
 		public string GenerateWeaponAttackDescription()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(WeaponType + ": ");
+			sb.Append(WeaponType.GetDescription() + ": ");
 			if (ToHit > -1)
 			{
 				sb.Append("+");

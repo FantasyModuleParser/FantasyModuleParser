@@ -230,7 +230,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Extensions\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Extensions\EnumDescription.cs" />
+    <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -249,7 +250,6 @@
     <Compile Include="Main\Views\Supporters.xaml.cs">
       <DependentUpon>Supporters.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\ControllerBase.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
