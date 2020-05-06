@@ -32,7 +32,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="560,0,0,0">
-            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="570,25,0,0">
+            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,25,0,0">
                 <RadioButton HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,0,0,0" Content="Multiattack" Name="multiAttack" Checked="action_Checked" GroupName="actionSelection">
                     <RadioButton.ToolTip>
                         <TextBlock>

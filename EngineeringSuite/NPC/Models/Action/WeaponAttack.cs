@@ -49,6 +49,8 @@ namespace EngineeringSuite.NPC.Models.Action
 		public string GenerateWeaponAttackDescription()
 		{
 			StringBuilder sb = new StringBuilder();
+			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
+			int SecondaryDamageTotal = (int)SecondaryDamage.DieType * SecondaryDamage.NumOfDice / 2 + SecondaryDamage.Bonus;
 			sb.Append(WeaponType.GetDescription() + ": ");
 			if (ToHit > -1)
 			{
