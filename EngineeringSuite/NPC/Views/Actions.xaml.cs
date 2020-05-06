@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using EngineeringSuite.NPC.Controllers;
+using EngineeringSuite.NPC.Models.Action;
 using EngineeringSuite.NPC.ViewModel;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
@@ -18,9 +20,16 @@ namespace EngineeringSuite.NPC
     /// </summary>
     public partial class Actions : Window
     {
+        private ActionController actionController;
+        //TODO: Because I'm not sure of a better way to bind this..
+        public ObservableCollection<ActionModelBase> NPCActions { get; set; }
+
+
         public Actions()
         {
             InitializeComponent();
+            actionController = new ActionController();
+            NPCActions = actionController.GetNPCModel().NPCActions;
         }
 
         private void action_Checked(object sender, RoutedEventArgs e)
@@ -43,6 +52,31 @@ namespace EngineeringSuite.NPC
                 stackOther.Visibility = Visibility.Visible;
                 stackWeapon.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void OverviewControl_RemoveAction(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OverviewControl_EditAction(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OverviewControl_RaiseActionInList(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OverviewControl_LowerActionInList(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
    

@@ -14,6 +14,6 @@ namespace EngineeringSuite
     /// </summary>
     public partial class App : Application
     {
-        public NPCModel NpcModel { get; set; }
+        public NPCModel NpcModel { get; set; } = new NPCModel();
     }
 }

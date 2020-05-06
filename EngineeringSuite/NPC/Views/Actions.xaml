@@ -6,13 +6,30 @@
         xmlns:multiAttackUserControl="clr-namespace:EngineeringSuite.NPC.UserControls.Action"
         xmlns:weaponAttackUserControl="clr-namespace:EngineeringSuite.NPC.UserControls.Action"
         xmlns:otherAttackUserControl="clr-namespace:EngineeringSuite.NPC.UserControls.Action"
+        xmlns:overviewUserControl="clr-namespace:EngineeringSuite.NPC.UserControls.Action"
         mc:Ignorable="d"
         Title="Add or Edit NPC Actions" Height="600" Width="1010" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="550" Margin="5,5,0,0" />
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="425" Margin="560,50,0,0"/>
         <StackPanel Orientation="Vertical" RenderTransformOrigin="0.135,0.519" Margin="10,10,450,86">
-            
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Width="600">
+                        <Label Content="Actions" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <overviewUserControl:OverviewControl RemoveAction="OverviewControl_RemoveAction"
+                                                              EditAction="OverviewControl_EditAction"
+                                                              RaiseActionInList="OverviewControl_RaiseActionInList"
+                                                              LowerActionInList="OverviewControl_LowerActionInList"></overviewUserControl:OverviewControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="560,0,0,0">
             <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="570,25,0,0">
@@ -50,7 +67,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,500,0,0">
-            <Button Content="Close" Width="100" />
+            <Button Content="Close" Width="100" Click="CloseButton_Click" />
         </StackPanel>
         <StackPanel Name="stackMulti" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Hidden">
             <multiAttackUserControl:MultiAttackControl></multiAttackUserControl:MultiAttackControl>

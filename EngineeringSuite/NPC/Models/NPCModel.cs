@@ -1,6 +1,7 @@
 ﻿using EngineeringSuite.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -144,6 +145,6 @@ namespace EngineeringSuite.NPC
         public string NonID { get; set; }
         public string NPCImage { get; set; }
 
-        public List<ActionModelBase> NPCActions { get; } = new List<ActionModelBase>();
+        public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace EngineeringSuite.NPC.Controllers
 {
-	public class NPCController
+	public class NPCController : ControllerBase
 	{
 		public void Save(string path, NPCModel npcModel)
 		{
@@ -28,14 +29,6 @@ namespace EngineeringSuite.NPC.Controllers
 			JsonSerializer serializer = new JsonSerializer();
 		}
 
-		public NPCModel GetNPCModel()
-		{
-			var application = Application.Current;
 
-			if (application is App app)
-				return (NPCModel)app.NpcModel;
-
-			return null;
-		}
 	}
 }

@@ -44,18 +44,15 @@ namespace EngineeringSuite.NPC.UserControls.Action
             InitializeComponent();
             DataContext = WeaponAttack;
         }
-
-        public event EventHandler UpdateWeaponAttackAction;
-        protected virtual void OnUpdateWeaponAttackAction()
-        {
-            if (UpdateWeaponAttackAction != null) UpdateWeaponAttackAction(this, EventArgs.Empty);
-        }
         
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            WeaponAttack thisWeaponAttack = (WeaponAttack)((Button)sender).DataContext;
-            if(thisWeaponAttack.ActionName != null && thisWeaponAttack.ActionName.Length > 0)
-                OnUpdateWeaponAttackAction();
+            ActionController actionController = new ActionController();
+            var thisDataContext = (sender as Button).DataContext;
+            if (thisDataContext is WeaponAttack)
+            {
+                actionController.UpdateWeaponAttackAction((WeaponAttack)thisDataContext);
+            }
         }
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
