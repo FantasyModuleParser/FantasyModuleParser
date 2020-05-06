@@ -86,7 +86,7 @@
                 <TextBox Name="WA_Description" Width="400" Text="{Binding Path=ActionDescription}" Height="40" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="8,8,0,0" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Add/Update" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="UpdateButton_Click"/>
+                <Button Content="Add/Update" Height="20" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="UpdateButton_Click"/>
                 <Button Content="Preview" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="210,20,0,0" Click="PreviewButton_Click"/>
             </StackPanel>
         </StackPanel>
