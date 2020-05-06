@@ -18,7 +18,9 @@ namespace EngineeringSuite.NPC.Models.Action
 		public bool IsSilver { get; set; }
 		public bool IsAdamantine { get; set; }
 		public bool IsColdForgedIron { get; set; }
-		public bool IsVersatile { get; set; }
+		public bool IsVersatile { get; set; }    
+		public bool AddSecondDamage { get; set; }
+		public bool OtherTextCheck { get; set; }
 
 		public int ToHit { get; set; }
 		public int Reach { get; set; }
@@ -52,10 +54,37 @@ namespace EngineeringSuite.NPC.Models.Action
 			{
 				sb.Append("+");
 			}
-			sb.Append(ToHit + " to hit, reach " + Reach + " ft., " + TargetType + ". Hit: ");
-			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
-			sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType + " + " + PrimaryDamage.Bonus + ") " + PrimaryDamage.DamageType + " damage.");
 
+			sb.Append(ToHit + " to hit, ");
+			if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.MSA)
+			{
+				sb.Append("reach " + Reach);
+			}
+			if (WeaponType == WeaponType.RWA || WeaponType == WeaponType.RSA)
+			{
+				sb.Append("range " + WeaponRangeShort + "/" + WeaponRangeLong);
+			}
+			sb.Append(" ft., " + TargetType + ". Hit: ");
+			sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
+			if (PrimaryDamage.Bonus != 0)
+			{
+				sb.Append(" + " + PrimaryDamage.Bonus);
+			}
+			sb.Append(") " + PrimaryDamage.DamageType + " damage");
+			if (AddSecondDamage == true)
+			{
+				sb.Append(" plus " + SecondaryDamageTotal + " (" + SecondaryDamage.NumOfDice + SecondaryDamage.DieType.GetDescription());
+				if (SecondaryDamage.Bonus != 0)
+				{
+					sb.Append(" + " + SecondaryDamage.Bonus);
+				}
+				sb.Append(") " + SecondaryDamage.DamageType + " damage");
+			}
+			if (OtherTextCheck == true)
+			{
+				sb.Append(" " + OtherText);
+			}
+			sb.Append(".");
 			//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
 			this.ActionDescription = sb.ToString();
 			return this.ActionDescription;

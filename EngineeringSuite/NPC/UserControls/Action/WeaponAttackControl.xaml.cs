@@ -64,14 +64,21 @@ namespace EngineeringSuite.NPC.UserControls.Action
                 actionController.GenerateWeaponDescription((WeaponAttack)thisDataContext);
             }
         }
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void AddBonusDmg_Checked(object sender, RoutedEventArgs e)
         {
-
+            SecondaryDamageNumOfDice.IsReadOnly = false;
+            SecondaryDamageDieType.IsEnabled = true;
+            SecondaryDamageBonus.IsReadOnly = false;
+            SecondaryDamageType.IsEnabled = true;
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"[^0-9-]+"); ;
             e.Handled = regex.IsMatch(e.Text);
+        }
+        private void OtherText_Checked(object sender, RoutedEventArgs e)
+        {
+            OtherText_Text.IsReadOnly = false;
         }
     }
 }
