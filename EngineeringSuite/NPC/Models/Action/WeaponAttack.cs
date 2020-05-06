@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using EngineeringSuite.Extensions;
 using EngineeringSuite.NPC.Models.Action;
 using EngineeringSuite.NPC.Models.Action.Enums;
-using EngineeringSuite.NPC.UserControls.Action;
 
 namespace EngineeringSuite.NPC.Models.Action
 {
@@ -14,19 +13,23 @@ namespace EngineeringSuite.NPC.Models.Action
 	public class WeaponAttack : ActionModelBase
 	{
 		public WeaponType WeaponType { get; set; }
+
 		public bool IsMagic { get; set; }
 		public bool IsSilver { get; set; }
 		public bool IsAdamantine { get; set; }
 		public bool IsColdForgedIron { get; set; }
-		public bool IsVersatile { get; set; }
+		public bool IsVersatile { get; set; }    
 		public bool AddSecondDamage { get; set; }
 		public bool OtherTextCheck { get; set; }
+
 		public int ToHit { get; set; }
 		public int Reach { get; set; }
 		public int WeaponRangeShort { get; set; }
 		public int WeaponRangeLong { get; set; }
 		public TargetType TargetType { get; set; }
+
 		public string OtherText { get; set; }
+
 		public DamageProperty PrimaryDamage { get; set; }
 		public DamageProperty SecondaryDamage { get; set; }
 
@@ -42,17 +45,16 @@ namespace EngineeringSuite.NPC.Models.Action
 			WeaponRangeShort = 30;
 			WeaponRangeLong = 60;
 		}
-		
+
 		public string GenerateWeaponAttackDescription()
 		{
 			StringBuilder sb = new StringBuilder();
-			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
-			int SecondaryDamageTotal = (int)SecondaryDamage.DieType * SecondaryDamage.NumOfDice / 2 + SecondaryDamage.Bonus;
 			sb.Append(WeaponType.GetDescription() + ": ");
 			if (ToHit > -1)
 			{
 				sb.Append("+");
 			}
+
 			sb.Append(ToHit + " to hit, ");
 			if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.MSA)
 			{
@@ -84,8 +86,8 @@ namespace EngineeringSuite.NPC.Models.Action
 			}
 			sb.Append(".");
 			//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
-			ActionDescription = sb.ToString();
-			return ActionDescription;
+			this.ActionDescription = sb.ToString();
+			return this.ActionDescription;
 		}
 	}
 }
