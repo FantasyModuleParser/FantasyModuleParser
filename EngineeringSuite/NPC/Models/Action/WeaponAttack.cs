@@ -20,6 +20,7 @@ namespace EngineeringSuite.NPC.Models.Action
 		public bool IsColdForgedIron { get; set; }
 		public bool IsVersatile { get; set; }
 		public bool AddSecondDamage { get; set; }
+		public bool OtherTextCheck { get; set; }
 		public int ToHit { get; set; }
 		public int Reach { get; set; }
 		public int WeaponRangeShort { get; set; }
@@ -76,6 +77,10 @@ namespace EngineeringSuite.NPC.Models.Action
 					sb.Append(" + " + SecondaryDamage.Bonus);
 				}
 				sb.Append(") " + SecondaryDamage.DamageType + " damage");
+			}
+			if (OtherTextCheck == true)
+			{
+				sb.Append(" " + OtherText);
 			}
 			sb.Append(".");
 			//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
