@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EngineeringSuite.NPC.Controllers;
+using EngineeringSuite.NPC.Models.Action;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +22,36 @@ namespace EngineeringSuite.NPC.UserControls.Action
     /// </summary>
     public partial class OtherActionControl : UserControl
     {
+        private OtherAction _otherAction;
+
+        public OtherAction OtherAction
+        {
+            get
+            {
+                if (_otherAction == null)
+                    _otherAction = new OtherAction();
+                return _otherAction;
+            }
+            set
+            {
+                _otherAction = value;
+            }
+        }
+
         public OtherActionControl()
         {
             InitializeComponent();
+            DataContext = OtherAction;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-	        throw new NotImplementedException();
+            ActionController actionController = new ActionController();
+            var thisDataContext = (sender as Button).DataContext;
+            if (thisDataContext is OtherAction)
+            {
+                actionController.UpdateOtherAction((OtherAction)thisDataContext);
+            }
         }
     }
 }
