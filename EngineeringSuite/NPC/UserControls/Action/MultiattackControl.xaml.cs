@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EngineeringSuite.NPC.Controllers;
+using EngineeringSuite.NPC.Models.Action;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +25,10 @@ namespace EngineeringSuite.NPC.UserControls.Action
         {
             InitializeComponent();
         }
+        
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

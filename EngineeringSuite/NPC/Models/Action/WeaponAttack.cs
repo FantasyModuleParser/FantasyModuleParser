@@ -88,8 +88,8 @@ namespace EngineeringSuite.NPC.Models.Action
 			}
 			sb.Append(".");
 			//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
-			this.ActionDescription = sb.ToString();
-			return this.ActionDescription;
+			ActionDescription = sb.ToString();
+			return ActionDescription;
 		}
 	}
 }

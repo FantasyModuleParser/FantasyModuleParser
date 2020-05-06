@@ -24,6 +24,11 @@ namespace EngineeringSuite.NPC.Controllers
             WeaponAttack clone = CommonMethod.CloneJson(weaponAttack);
             updateNPCActions(clone);
         }
+        public void UpdateMultiAttackAction(Multiattack multiattack)
+        {
+            Multiattack clone = CommonMethod.CloneJson(multiattack);
+            updateNPCActions(clone);
+        }
 
         private void updateNPCActions(ActionModelBase action)
         {
