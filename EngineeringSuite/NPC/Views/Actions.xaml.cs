@@ -30,6 +30,7 @@ namespace EngineeringSuite.NPC
             InitializeComponent();
             actionController = new ActionController();
             NPCActions = actionController.GetNPCModel().NPCActions;
+            DataContext = this;
         }
 
         private void action_Checked(object sender, RoutedEventArgs e)
