@@ -22,6 +22,12 @@ namespace EngineeringSuite.NPC.Controllers
 			}
 		}
 
+		public void Load(string path)
+		{
+			string jsonData = File.ReadAllText(path);
+			JsonSerializer serializer = new JsonSerializer();
+		}
+
 		public NPCModel GetNPCModel()
 		{
 			var application = Application.Current;

@@ -43,7 +43,7 @@ namespace EngineeringSuite.NPC.Models.Action
 			WeaponRangeLong = 60;
 		}
 
-		private string GenerateWeaponAttackDescription()
+		public string GenerateWeaponAttackDescription()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append(WeaponType + ": ");
@@ -55,7 +55,9 @@ namespace EngineeringSuite.NPC.Models.Action
 			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
 			sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType + " + " + PrimaryDamage.Bonus + ") " + PrimaryDamage.DamageType + " damage.");
 
-			return sb.ToString();
+			//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
+			this.ActionDescription = sb.ToString();
+			return this.ActionDescription;
 		}
 	}
 }

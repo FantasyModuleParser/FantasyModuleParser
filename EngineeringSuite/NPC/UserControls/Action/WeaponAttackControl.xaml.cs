@@ -60,7 +60,8 @@ namespace EngineeringSuite.NPC.UserControls.Action
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
             ActionController actionController = new ActionController();
-            var thisDataContext = ((UserControl)sender).DataContext;
+
+            var thisDataContext = (sender as Button).DataContext;
             if (thisDataContext is WeaponAttack)
             {
                 actionController.GenerateWeaponDescription((WeaponAttack)thisDataContext);
