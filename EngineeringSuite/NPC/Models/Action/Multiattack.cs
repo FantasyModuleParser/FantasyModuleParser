@@ -8,15 +8,16 @@ namespace EngineeringSuite.NPC.Models.Action
 {
     public class Multiattack : ActionModelBase
     {
-        public const string ActionName = "Multiattack";
-        
+        private const string actionName = "Multiattack";
+
         public Multiattack()
         {
-            //No-op
+            this.ActionName = actionName;
         }
-        
+
         public Multiattack(string description)
         {
+            this.ActionName = actionName;
             this.ActionDescription = description;
         }
 
