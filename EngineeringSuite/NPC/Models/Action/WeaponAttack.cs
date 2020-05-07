@@ -18,7 +18,7 @@ namespace EngineeringSuite.NPC.Models.Action
 		public bool IsSilver { get; set; }
 		public bool IsAdamantine { get; set; }
 		public bool IsColdForgedIron { get; set; }
-		public bool IsVersatile { get; set; }    
+		public bool IsVersatile { get; set; }
 		public bool AddSecondDamage { get; set; }
 		public bool OtherTextCheck { get; set; }
 
@@ -51,6 +51,9 @@ namespace EngineeringSuite.NPC.Models.Action
 			StringBuilder sb = new StringBuilder();
 			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
 			int SecondaryDamageTotal = (int)SecondaryDamage.DieType * SecondaryDamage.NumOfDice / 2 + SecondaryDamage.Bonus;
+			// Or Ranged Weapon Attack: +0 to hit, range 30/60 ft., one target. Hit: 3 (1d6)  damage plus 3 (1d6 + 0)  damage.
+
+			// WeaponType Check
 			if (WeaponType == WeaponType.WA)
 			{
 				sb.Append("Melee Weapon Attack: ");
@@ -59,99 +62,151 @@ namespace EngineeringSuite.NPC.Models.Action
 			{
 				sb.Append(WeaponType.GetDescription() + ": ");
 			}
+
+			// ToHit Check
 			if (ToHit > -1)
 			{
-				sb.Append("+");
+				sb.Append("+" + ToHit + " to hit, ");
 			}
-			sb.Append(ToHit + " to hit, ");
-			if (WeaponType != WeaponType.SA || WeaponType != WeaponType.WA)
+			else
 			{
-				if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.MSA)
-				{
-					sb.Append("reach " + Reach);
-				}
+				sb.Append(ToHit + " to hit, ");
+			}
+
+			// Reach/Range Check
+			if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.WA || WeaponType == WeaponType.MSA || WeaponType == WeaponType.SA)
+			{
+				sb.Append("reach " + Reach);
+			}
+			else
+			{
 				if (WeaponType == WeaponType.RWA)
 				{
 					sb.Append("range " + WeaponRangeShort + "/" + WeaponRangeLong);
 				}
-				sb.Append(" ft., " + TargetType + ". Hit: ");
-				sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
-				if (PrimaryDamage.Bonus != 0)
+				else
 				{
-					sb.Append(" + " + PrimaryDamage.Bonus);
+					sb.Append("range " + WeaponRangeShort);
 				}
-				sb.Append(") " + PrimaryDamage.DamageType + " damage");
-				if (AddSecondDamage == true)
-				{
-					sb.Append(" plus " + SecondaryDamageTotal + " (" + SecondaryDamage.NumOfDice + SecondaryDamage.DieType.GetDescription());
-					if (SecondaryDamage.Bonus != 0)
-					{
-						sb.Append(" + " + SecondaryDamage.Bonus);
-					}
-					sb.Append(") " + SecondaryDamage.DamageType + " damage");
-				}
-				if (OtherTextCheck == true)
-				{
-					sb.Append(" " + OtherText);
-				}
-				sb.Append(".");
-				//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
-				ActionDescription = sb.ToString();
-				return ActionDescription;
 			}
-			else if (WeaponType == WeaponType.SA)
+			if (WeaponType == WeaponType.SA)
 			{
-				sb.Append("reach " + Reach + " ft. or range " + WeaponRangeShort + " ft., " + TargetType + ". Hit: ");
-				sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
-				if (PrimaryDamage.Bonus != 0)
-				{
-					sb.Append(" + " + PrimaryDamage.Bonus);
-				}
-				sb.Append(") " + PrimaryDamage.DamageType + " damage");
-				if (AddSecondDamage == true)
-				{
-					sb.Append(" plus " + SecondaryDamageTotal + " (" + SecondaryDamage.NumOfDice + SecondaryDamage.DieType.GetDescription());
-					if (SecondaryDamage.Bonus != 0)
-					{
-						sb.Append(" + " + SecondaryDamage.Bonus);
-					}
-					sb.Append(") " + SecondaryDamage.DamageType + " damage");
-				}
-				if (OtherTextCheck == true)
-				{
-					sb.Append(" " + OtherText);
-				}
-				sb.Append(".");
-				//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
-				ActionDescription = sb.ToString();
-				return ActionDescription;
+				sb.Append(" ft. or range " + WeaponRangeShort + " ft., " + TargetType.GetDescription() + ". Hit: " + PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
 			}
 			else
 			{
-				sb.Append("reach " + Reach + " ft., " + TargetType + ". Hit: ");
-				sb.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
+				sb.Append(" ft., " + TargetType.GetDescription() + ". Hit: " + PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
+			}
+			if (PrimaryDamage.Bonus != 0)
+			{
+				if (PrimaryDamage.Bonus > 0)
+				{
+					sb.Append(" + " + PrimaryDamage.Bonus + ") " + PrimaryDamage.DamageType + " damage");
+				}
+				else
+				{
+					sb.Append(PrimaryDamage.Bonus + ") " + PrimaryDamage.DamageType + " damage");
+				}
+			}
+			else
+			{
+				sb.Append(") " + PrimaryDamage.DamageType + " damage");
+			}
+			if (AddSecondDamage == true)
+			{
+				sb.Append(" plus " + SecondaryDamageTotal + " (" + SecondaryDamage.NumOfDice + SecondaryDamage.DieType.GetDescription());
+				if (SecondaryDamage.Bonus != 0)
+				{
+					if (SecondaryDamage.Bonus > 0)
+					{
+						sb.Append(" + " + SecondaryDamage.Bonus);
+					}
+					else
+					{
+						sb.Append(SecondaryDamage.Bonus);
+					}
+				}
+				else
+				{
+					sb.Append(") " + SecondaryDamage.DamageType + " damage");
+				}
+			}
+			else
+			{
+				sb.Append(".");
+			}
+			if (WeaponType == WeaponType.WA)
+			{
+				sb.Append(" Or Ranged Weapon Attack: ");
+				if (ToHit > -1)
+				{
+					sb.Append("+" + ToHit + " to hit, range " + WeaponRangeShort + "/" + WeaponRangeLong + " ft., " + TargetType.GetDescription() + ". Hit: " + PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
+				}
+				else
+				{
+					sb.Append(ToHit + " to hit, range " + WeaponRangeShort + "/" + WeaponRangeLong + " ft., " + TargetType.GetDescription() + ". Hit: " + PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
+				}
+
 				if (PrimaryDamage.Bonus != 0)
 				{
-					sb.Append(" + " + PrimaryDamage.Bonus);
+					if (PrimaryDamage.Bonus > 0)
+					{
+						sb.Append(" + " + PrimaryDamage.Bonus);
+					}
+					else
+					{
+						sb.Append(PrimaryDamage.Bonus);
+					}
 				}
-				sb.Append(") " + PrimaryDamage.DamageType + " damage");
+				else
+				{
+					sb.Append(") " + PrimaryDamage.DamageType + " damage");
+				}
 				if (AddSecondDamage == true)
 				{
 					sb.Append(" plus " + SecondaryDamageTotal + " (" + SecondaryDamage.NumOfDice + SecondaryDamage.DieType.GetDescription());
 					if (SecondaryDamage.Bonus != 0)
 					{
-						sb.Append(" + " + SecondaryDamage.Bonus);
+						if (SecondaryDamage.Bonus > 0)
+						{
+							sb.Append(" + " + SecondaryDamage.Bonus);
+						}
+						else
+						{
+							sb.Append(SecondaryDamage.Bonus);
+						}
 					}
-					sb.Append(") " + SecondaryDamage.DamageType + " damage");
+					else
+					{
+						sb.Append(") " + SecondaryDamage.DamageType + " damage.");
+					}
+
 				}
 				if (OtherTextCheck == true)
 				{
 					sb.Append(" " + OtherText);
+					ActionDescription = sb.ToString();
+					return ActionDescription;
 				}
-				sb.Append(".");
-				//TODO:  This is a double take, but saving the result to ActionDescription & returning the value
-				ActionDescription = sb.ToString();
-				return ActionDescription;
+				else
+				{
+					ActionDescription = sb.ToString();
+					return ActionDescription;
+				}
+			}
+			else
+			{
+				if (OtherTextCheck == true)
+				{
+					sb.Append(" " + OtherText);
+					ActionDescription = sb.ToString();
+					return ActionDescription;
+				}
+				else
+				{
+					ActionDescription = sb.ToString();
+					return ActionDescription;
+				}
 			}
 		}
 	}
