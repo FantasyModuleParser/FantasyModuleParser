@@ -12,7 +12,7 @@
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="550" Margin="5,5,0,0" />
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="425" Margin="560,50,0,0"/>
-        <StackPanel Orientation="Vertical" RenderTransformOrigin="0.135,0.519" Margin="10,10,450,86">
+        <StackPanel Orientation="Vertical" Margin="10,10,450,86">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical" Width="600">

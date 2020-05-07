@@ -10,27 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EngineeringSuite;
 
-namespace EngineeringSuite.NPC
+namespace EngineeringSuite.NPC.UserControls.LairActions
 {
     /// <summary>
-    /// Interaction logic for LairActions.xaml
+    /// Interaction logic for Options.xaml
     /// </summary>
-    public partial class LairActions : Window
+    public partial class OptionsControl : UserControl
     {
-        public LairActions()
+        public OptionsControl()
         {
             InitializeComponent();
         }
-        private void action_Checked(object sender, RoutedEventArgs e)
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
-        }
-        private void ESExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

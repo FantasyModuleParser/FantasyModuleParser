@@ -10,10 +10,10 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
                 <Label Content="Level 1 Supporters" Foreground="Gray" FontWeight="Bold" FontSize="16" Margin="20,0,0,0" />
+                <Label Content="BubbaGrim" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="epithet" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="PerryChalmers" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="ShadowLinks" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
