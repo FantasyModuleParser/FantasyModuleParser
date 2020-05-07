@@ -24,9 +24,19 @@ namespace EngineeringSuite.NPC.Controllers
             WeaponAttack clone = CommonMethod.CloneJson(weaponAttack);
             updateNPCActions(clone);
         }
-        public void UpdateMultiAttackAction(Multiattack multiattack)
+        public void UpdateMultiAttack(Multiattack multiAttack)
         {
-            Multiattack clone = CommonMethod.CloneJson(multiattack);
+            // Now, we're in the UpdateMultiAttack method
+
+            // The reason for this deep clone is because C# is pass-by-reference
+            // For multiattack, this doesn't matter much... but if you were to make a 
+            // WeaponAttack object, update the NPCActions with the WA object, things are fine...
+            // However, if you then make changes to that WA object.. they get persisted instead of creating
+            // a new list object.
+
+            // Cloning prevents this, because we make a stand-alone copy of our object, and persist
+            // that to our NPCActions collection.
+            Multiattack clone = CommonMethod.CloneJson(multiAttack);
             updateNPCActions(clone);
         }
 
