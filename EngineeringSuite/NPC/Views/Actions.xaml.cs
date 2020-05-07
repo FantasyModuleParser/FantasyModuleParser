@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using EngineeringSuite.NPC.Controllers;
 using EngineeringSuite.NPC.Models.Action;
+using EngineeringSuite.NPC.UserControls.Action;
 using EngineeringSuite.NPC.ViewModel;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
@@ -23,7 +24,6 @@ namespace EngineeringSuite.NPC
         private ActionController actionController;
         //TODO: Because I'm not sure of a better way to bind this..
         public ObservableCollection<ActionModelBase> NPCActions { get; set; }
-
 
         public Actions()
         {
@@ -57,22 +57,66 @@ namespace EngineeringSuite.NPC
 
         private void OverviewControl_RemoveAction(object sender, EventArgs e)
         {
-
+            if(sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if(action is ActionModelBase)
+                {
+                    actionController.RemoveActionFromNPC(action as ActionModelBase);
+                }
+            }
         }
 
         private void OverviewControl_EditAction(object sender, EventArgs e)
         {
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    // The curse of the Pass-by-reference strikes again.. hence need for deep clone :(
+                    if (action is Multiattack)
+                    {
+                        multiAttack.IsChecked = true;
+                        multiAttackControl.DataContext = CommonMethod.CloneJson(action as Multiattack);
+                    }
+                    if (action is WeaponAttack)
+                    {
+                        weaponAttack.IsChecked = true;
+                        weaponAttackControl.DataContext = CommonMethod.CloneJson(action as WeaponAttack);
+                    }
+                    if (action is OtherAction)
+                    {
+                        otherAttack.IsChecked = true;
+                        otherActionControl.DataContext = CommonMethod.CloneJson(action as OtherAction);
+                    }
+                }
+            }
 
         }
 
         private void OverviewControl_RaiseActionInList(object sender, EventArgs e)
         {
-
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    actionController.RaiseActionInNPCActionList(action as ActionModelBase);
+                }
+            }
         }
 
         private void OverviewControl_LowerActionInList(object sender, EventArgs e)
         {
-
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    actionController.LowerActionInNPCActionsList(action as ActionModelBase);
+                }
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

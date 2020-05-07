@@ -70,13 +70,13 @@
             <Button Content="Close" Width="100" Click="CloseButton_Click" />
         </StackPanel>
         <StackPanel Name="stackMulti" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Hidden">
-            <multiAttackUserControl:MultiAttackControl></multiAttackUserControl:MultiAttackControl>
+            <multiAttackUserControl:MultiAttackControl x:Name="multiAttackControl"></multiAttackUserControl:MultiAttackControl>
         </StackPanel>
         <StackPanel Name="stackWeapon" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Visible">
-            <weaponAttackUserControl:WeaponAttackControl></weaponAttackUserControl:WeaponAttackControl>
+            <weaponAttackUserControl:WeaponAttackControl x:Name="weaponAttackControl"></weaponAttackUserControl:WeaponAttackControl>
         </StackPanel>
         <StackPanel Name="stackOther" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Hidden">
-            <otherAttackUserControl:OtherActionControl></otherAttackUserControl:OtherActionControl>
+            <otherAttackUserControl:OtherActionControl x:Name="otherActionControl"></otherAttackUserControl:OtherActionControl>
         </StackPanel>
     </Grid>
 </Window>
