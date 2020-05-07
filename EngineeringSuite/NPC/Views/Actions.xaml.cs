@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using EngineeringSuite.NPC.Controllers;
 using EngineeringSuite.NPC.Models.Action;
+using EngineeringSuite.NPC.UserControls.Action;
 using EngineeringSuite.NPC.ViewModel;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
@@ -57,7 +58,14 @@ namespace EngineeringSuite.NPC
 
         private void OverviewControl_RemoveAction(object sender, EventArgs e)
         {
-
+            if(sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if(action is ActionModelBase)
+                {
+                    actionController.RemoveActionFromNPC(action as ActionModelBase);
+                }
+            }
         }
 
         private void OverviewControl_EditAction(object sender, EventArgs e)
@@ -67,12 +75,26 @@ namespace EngineeringSuite.NPC
 
         private void OverviewControl_RaiseActionInList(object sender, EventArgs e)
         {
-
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    actionController.RaiseActionInNPCActionList(action as ActionModelBase);
+                }
+            }
         }
 
         private void OverviewControl_LowerActionInList(object sender, EventArgs e)
         {
-
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    actionController.LowerActionInNPCActionsList(action as ActionModelBase);
+                }
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
