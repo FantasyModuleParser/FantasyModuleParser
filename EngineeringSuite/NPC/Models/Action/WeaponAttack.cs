@@ -51,9 +51,7 @@ namespace EngineeringSuite.NPC.Models.Action
 			StringBuilder sb = new StringBuilder();
 			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
 			int SecondaryDamageTotal = (int)SecondaryDamage.DieType * SecondaryDamage.NumOfDice / 2 + SecondaryDamage.Bonus;
-			// Or Ranged Weapon Attack: +0 to hit, range 30/60 ft., one target. Hit: 3 (1d6)  damage plus 3 (1d6 + 0)  damage.
-
-			// WeaponType Check
+			
 			if (WeaponType == WeaponType.WA)
 			{
 				sb.Append("Melee Weapon Attack: ");
@@ -62,8 +60,6 @@ namespace EngineeringSuite.NPC.Models.Action
 			{
 				sb.Append(WeaponType.GetDescription() + ": ");
 			}
-
-			// ToHit Check
 			if (ToHit > -1)
 			{
 				sb.Append("+" + ToHit + " to hit, ");
@@ -72,8 +68,6 @@ namespace EngineeringSuite.NPC.Models.Action
 			{
 				sb.Append(ToHit + " to hit, ");
 			}
-
-			// Reach/Range Check
 			if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.WA || WeaponType == WeaponType.MSA || WeaponType == WeaponType.SA)
 			{
 				sb.Append("reach " + Reach);
