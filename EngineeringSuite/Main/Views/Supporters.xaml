@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EngineeringSuite"
         mc:Ignorable="d"
-        Title="Engineer Suite Supporters" Height="280" Width="360" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
+        Title="Engineer Suite Supporters" Height="280" Width="360" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
@@ -26,8 +26,8 @@
                 <Label Content="BeeGrinder" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Berwind" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Caliente" Margin="40,0,0,0" Padding="0"/>
+                <Label Content="keriks" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="MythikWolf" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
