@@ -25,7 +25,6 @@ namespace EngineeringSuite.NPC
         //TODO: Because I'm not sure of a better way to bind this..
         public ObservableCollection<ActionModelBase> NPCActions { get; set; }
 
-
         public Actions()
         {
             InitializeComponent();
@@ -70,6 +69,29 @@ namespace EngineeringSuite.NPC
 
         private void OverviewControl_EditAction(object sender, EventArgs e)
         {
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    // The curse of the Pass-by-reference strikes again.. hence need for deep clone :(
+                    if (action is Multiattack)
+                    {
+                        multiAttack.IsChecked = true;
+                        multiAttackControl.DataContext = CommonMethod.CloneJson(action as Multiattack);
+                    }
+                    if (action is WeaponAttack)
+                    {
+                        weaponAttack.IsChecked = true;
+                        weaponAttackControl.DataContext = CommonMethod.CloneJson(action as WeaponAttack);
+                    }
+                    if (action is OtherAction)
+                    {
+                        otherAttack.IsChecked = true;
+                        otherActionControl.DataContext = CommonMethod.CloneJson(action as OtherAction);
+                    }
+                }
+            }
 
         }
 
