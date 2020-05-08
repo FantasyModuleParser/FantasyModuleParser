@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EngineeringSuite"
         mc:Ignorable="d"
-        Title="Project Management" Height="580" Width="820" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
+        Title="Project Management" Height="580" Width="820" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="800">
             <MenuItem Header="_File">
@@ -71,8 +71,8 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Target Parser:" Margin="70,10,0,0"/>
-                    <ComboBox Margin="5,16,0,0" Width="100" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <ComboBoxItem IsSelected="True">Engineer Suite</ComboBoxItem>
+                    <ComboBox Margin="5,16,0,0" Width="150" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <ComboBoxItem IsSelected="True">Fantasy Module Parser</ComboBoxItem>
                         <ComboBoxItem>Par5E</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>

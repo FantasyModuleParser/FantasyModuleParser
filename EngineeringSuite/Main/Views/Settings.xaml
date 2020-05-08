@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EngineeringSuite"
         mc:Ignorable="d"
-        Title="Engineer Suite Settings" Height="440" Width="700" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
+        Title="Fantasy Module Parser Settings" Height="440" Width="700" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <TabControl Height="350" Width="660" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TabItem Header="Suite">
@@ -113,13 +113,14 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                            <Label Content="Engineer Suite Settings" Foreground="Gray" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <Label Content="Fantasy Module Paraser Settings" Foreground="Gray" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <CheckBox Content="Reload last project on startup" Margin="0,5,0,0" />
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox Content="Select default GUI on startup" Margin="0,8,0,0"/>
                                 <ComboBox IsEnabled="False" Margin="3,5,0,0">
-                                    <ComboBoxItem IsSelected="True">NPC Engineer</ComboBoxItem>
-                                    <ComboBoxItem>Table Engineer</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True">NPC Options</ComboBoxItem>
+                                    <ComboBoxItem>Story Options</ComboBoxItem>
+                                    <ComboBoxItem>Table Options</ComboBoxItem>
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -148,7 +149,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="230" Margin="5,20,0,0" VerticalAlignment="Top" Width="345"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
-                            <Label Content="NPC Engineer Settings" Foreground="Gray" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <Label Content="NPC Options Settings" Foreground="Gray" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <CheckBox Content="Rename image and token files and copy to NPC folder" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="3,-1,0,0" Margin="10,0,0,0"/>
                             <CheckBox Content="Save NPCs in a Project subfolder" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="3,-1,0,0" Margin="10,0,0,0"/>
                             <CheckBox Content="Reload last edited item on NPC Engineer launch" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="3,-1,0,0" Margin="10,0,0,0"/>

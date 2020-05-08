@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EngineeringSuite"
         mc:Ignorable="d"
-        Title="About Engineer Suite 2.0" Height="330" Width="400" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
+        Title="About Fantasy Module Parser" Height="330" Width="400" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Vertical">
-            <Label Content="Engineer Suite 2.0" FontSize="24" Foreground="DarkBlue" FontWeight="Bold" Padding="0" Width="390" HorizontalContentAlignment="Center" Margin="0,30,0,0"/>
+            <Label Content="Fantasy Module Parser" FontSize="24" Foreground="DarkBlue" FontWeight="Bold" Padding="0" Width="390" HorizontalContentAlignment="Center" Margin="0,30,0,0"/>
             <Label Content="v0.1.0" FontSize="12" Padding="0" Margin="290,0,0,0" />
             <Path Fill="Black" Stroke="Black" StrokeThickness="2">
                 <Path.Data>
@@ -17,7 +17,7 @@
                     </GeometryGroup>
                 </Path.Data>
             </Path>
-            <Label Content="Written by Theodore Story, Kertic, and LordDusk" Padding="0" HorizontalContentAlignment="Center"/>
+            <Label Content="Written by Theodore Story, Darkpool, and Dusk" Padding="0" HorizontalContentAlignment="Center"/>
             <Label Content="Version Tenative Release 1 July 2020" Padding="0" HorizontalContentAlignment="Center" />
             <Label Content="Sponsored by:" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <Image Source="/Resources/Grim_Press_Banner.jpg" Width="300" Height="113"/>
