@@ -109,36 +109,10 @@ namespace EngineeringSuite
                     break;
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void NPCOption_Selected(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            switch (button.Name)
-            {
-                case "ArtifactEngineer":
-                    new Engineer().Show();
-                    break;
-                case "EquipmentEngineer":
-                    new Engineer().Show();
-                    break;
-                case "NPCEngineer":
-                    new Engineer().Show();
-                    break;
-                case "ParcelEngineer":
-                    new ProjectManagement().Show();
-                    break;
-                case "ProjectManagement":
-                    new ProjectManagement().Show();
-                    break;
-                case "RefManEngineer":
-                    new Engineer().Show();
-                    break;
-                case "SpellEngineer":
-                    new Engineer().Show();
-                    break;
-                case "TableEngineer":
-                    new Engineer().Show();
-                    break;
-            }
+            new Engineer().Show();
         }
     }
 }
