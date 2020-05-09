@@ -114,5 +114,55 @@ namespace EngineeringSuite.NPC.Controllers
             //Otherwise, move it!
             npcActions.Move(actionIndex, actionIndex + 1);
         }
+
+        public void RaiseActionInLairActionList(LairAction action)
+        {
+            ObservableCollection<LairAction> lairActions = GetNPCModel().LairActions;
+
+            int actionIndex = lairActions.IndexOf(action);
+            if (actionIndex == 0)
+            {
+                //Do nothing!  Already at the top of the list
+            }
+            if (actionIndex > 0)
+            {
+                lairActions.Move(actionIndex, actionIndex - 1);
+            }
+        }
+
+        public void LowerActionInLairActionsList(LairAction action)
+        {
+            ObservableCollection<LairAction> lairActions = GetNPCModel().LairActions;
+
+            int actionIndex = lairActions.IndexOf(action);
+
+            //If the action is at the bottom of the list, do nothing
+            if ((actionIndex + 1) == lairActions.Count)
+            {
+                return; //no-op
+            }
+
+            //Otherwise, move it!
+            lairActions.Move(actionIndex, actionIndex + 1);
+        }
+
+
+        public void UpdateLairAction(LairAction lairAction)
+        {
+            NPCModel npcModel = GetNPCModel();
+            ObservableCollection<LairAction> LairActions = npcModel.LairActions;
+            var obj = LairActions.FirstOrDefault(x => x.ActionName == lairAction.ActionName);
+            if (obj != null)
+            {
+                lairAction.ActionID = obj.ActionID;
+                LairActions.Remove(obj);
+                LairActions.Add(lairAction);
+            }
+            else
+            {
+                lairAction.ActionID = LairActions.Count;
+                LairActions.Add(lairAction);
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace EngineeringSuite.NPC.UserControls.LairActions
     public partial class OverviewControl : UserControl
     {
 
-        public ActionViewModel actionViewModel { get; set; }
+        //public ActionViewModel actionViewModel { get; set; }
 
         public OverviewControl()
         {
@@ -67,7 +67,6 @@ namespace EngineeringSuite.NPC.UserControls.LairActions
             return null;
         }
 
-        #region Button Events
         public event EventHandler RemoveAction;
         protected virtual void OnRemoveAction()
         {
@@ -90,6 +89,5 @@ namespace EngineeringSuite.NPC.UserControls.LairActions
         {
             if (LowerActionInList != null) LowerActionInList(this, EventArgs.Empty);
         }
-        #endregion
     }
 }

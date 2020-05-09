@@ -11,11 +11,11 @@
             <Label Content="New Lair Action" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Action:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="46,0,0,0" />
-                <ComboBox Width="200" Padding="0" Margin="10,0,0,0" Height="20" />
+                <TextBox Text="{Binding Path=ActionName}" Width="200" Padding="0" Margin="10,0,0,0" Height="20"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="20,5,0,0" />
-                <TextBox Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
+                <TextBox Text="{Binding Path=ActionDescription}" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Add/Update" Width="100" Padding="0" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="AddButton_Click"/>

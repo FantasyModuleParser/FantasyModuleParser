@@ -16,6 +16,14 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Height="310" Width="550">
                     <Label Content="Lair Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NpcLairActions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <overviewUserControl:OverviewControl RaiseActionInList="OverviewControl_RaiseActionInList"
+                                                                     LowerActionInList="OverviewControl_LowerActionInList"></overviewUserControl:OverviewControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -44,7 +52,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel>
-            <Button Content="Close" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,330,0,0"></Button>
+            <Button Content="Close" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,330,0,0" Click="ESExit_Click"></Button>
         </StackPanel>
         <StackPanel Name="stackOptions" Height="290" Width="400" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,60,0,0" Visibility="Visible">
             <lairOptionsUserControl:OptionsControl x:Name="lairOptionsControl"></lairOptionsUserControl:OptionsControl>

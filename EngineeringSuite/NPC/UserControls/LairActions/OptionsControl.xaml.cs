@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EngineeringSuite.NPC.Controllers;
+using EngineeringSuite.NPC.Models.Action;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +22,25 @@ namespace EngineeringSuite.NPC.UserControls.LairActions
     /// </summary>
     public partial class OptionsControl : UserControl
     {
+        public LairAction LairAction { get; set; } = new LairAction();
+
+        public const string ActionName = "Options";
+
         public OptionsControl()
         {
             InitializeComponent();
+            LairAction.ActionName = ActionName;
+            DataContext = LairAction;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            ActionController actionController = new ActionController();
+            var thisDataContext = (sender as Button).DataContext;
+            if (thisDataContext is LairAction)
+            {
+                actionController.UpdateLairAction((LairAction)thisDataContext);
+            }
         }
     }
 }
