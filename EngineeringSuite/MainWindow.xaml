@@ -4,8 +4,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:EngineeringSuite"
+    xmlns:npcOptionUserControl="clr-namespace:EngineeringSuite.NPC.UserControls.Options"
     mc:Ignorable="d"
-    Title="Fantasy Module Parser" Height="400" Width="600" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
+    Title="Fantasy Module Parser" Height="760" Width="850" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
             <MenuItem Header="_Options">
@@ -45,13 +46,34 @@
                 <MenuItem Header="_Buy me a coffee" />
             </MenuItem>
         </Menu>
-        <StackPanel Orientation="Vertical" Width="200" Height="500" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0">
+        <StackPanel Orientation="Vertical" Width="200" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0">
+            <Label Content="Options" FontSize="16" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Center"></Label>
             <ListBox>
-                <ListBoxItem Selected="NPCOption_Selected">Option to Add NPCs</ListBoxItem>
-                <ListBoxItem>Option to Add Stories</ListBoxItem>
-                <ListBoxItem>Option to Add Spells</ListBoxItem>
-                <ListBoxItem>Option to Add Parcels</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Backgrounds</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Classes</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Encounters</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Encounters (Random)</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Equipment</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Feats</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Images</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Image Grids</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Image Pins</ListBoxItem>
+                <ListBoxItem Name="optionNPC" Selected="listBoxItem_Selected">Add NPCs / Monsters</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Parcels</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Pregenerated Characters</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Quests</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Reference Manual</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Skills</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Stories</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Spells</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
+        <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Hidden">
+            <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700"></npcOptionUserControl:NPCOptionControl>
+        </StackPanel>
+        <StackPanel Name="stackMain" Margin="160,50,0,0">
+            <Image Source="/Resources/es2_logo.png" Width="400" Height="400"/>
+        </StackPanel> 
     </Grid>
 </Window>

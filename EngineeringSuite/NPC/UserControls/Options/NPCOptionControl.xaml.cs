@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EngineeringSuite.Main;
+using EngineeringSuite.NPC.Controllers;
+using EngineeringSuite.NPC.Models.Action;
+using EngineeringSuite.NPC.Views;
+using System;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using EngineeringSuite.Main;
-using EngineeringSuite.NPC.Controllers;
-using EngineeringSuite.NPC.ViewModel;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
-namespace EngineeringSuite.NPC
+namespace EngineeringSuite.NPC.UserControls.Options
 {
-	/// <summary>
-	/// NPC Engineer back-end C# coding
-	/// Function openfolder controls creating all the required folders if they don't exist already
-	/// </summary>
-	public partial class Engineer : Window
-	{
-
+    /// <summary>
+    /// Interaction logic for NPCOptionControl.xaml
+    /// </summary>
+    public partial class NPCOptionControl : UserControl
+    {
 		#region Controllers
 		public NPCController npcController { get; set; }
 		#endregion
 
 		#region Variables
 		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-		string installFolder = "Engineer Suite/NPC";
-
-
+		string installFolder = "FMP/NPC";
 		#endregion
 
 		#region Methods
@@ -44,7 +38,7 @@ namespace EngineeringSuite.NPC
 			strComponentText.Text = "requiring no material components";
 		}
 		#endregion
-		public Engineer()
+		public NPCOptionControl()
 		{
 			InitializeComponent();
 			npcController = new NPCController();
@@ -56,40 +50,40 @@ namespace EngineeringSuite.NPC
 		private void openfolder(string strPath, string strFolder)
 		{
 			var fPath = Path.Combine(strPath, strFolder);
-			System.IO.Directory.CreateDirectory(fPath);
+			Directory.CreateDirectory(fPath);
 			System.Diagnostics.Process.Start(fPath);
 		}
 		private void AppData_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
 		}
 		private void Projects_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Projects");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
 		}
 		private void Artifacts_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Artifacts");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Artifacts");
 		}
 		private void Equipment_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Equipment");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Equipment");
 		}
 		private void NPC_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/NPC");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/NPC");
 		}
 		private void Parcel_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Parcel");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Parcel");
 		}
 		private void Spell_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Spell");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Spell");
 		}
 		private void Table_Click(object sender, RoutedEventArgs e)
 		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Engineer Suite/Table");
+			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Table");
 		}
 		private void FG_Click(object sender, RoutedEventArgs e)
 		{
@@ -103,9 +97,6 @@ namespace EngineeringSuite.NPC
 				case "About":
 					new About().Show();
 					break;
-				case "Exit":
-					this.Close();
-					break;
 				case "ManageCategories":
 					new ManageCategories().Show();
 					break;
@@ -118,59 +109,44 @@ namespace EngineeringSuite.NPC
 				case "Settings":
 					new Settings().Show();
 					break;
-				case "RefManEngineer":
-					new Engineer().Show();
-					break;
-				case "SpellEngineer":
-					new Engineer().Show();
-					break;
 				case "Supporters":
 					new Supporters().Show();
-					break;
-				case "TableEngineer":
-					new Engineer().Show();
 					break;
 			}
 		}
 		#region MenuOptions
-		private void ESEditDeleteNPC_Click(object sender, RoutedEventArgs e)
+		private void EditDeleteNPC_Click(object sender, RoutedEventArgs e)
 		{
 			EditDeleteNPC win2 = new EditDeleteNPC();
 			win2.Show();
 		}
 		#endregion
 		#region ActionTabs
-		private void NPCELairActions_Click(object sender, RoutedEventArgs e)
+		private void LairActions_Click(object sender, RoutedEventArgs e)
 		{
-			LairActions win2 = new LairActions();
-			win2.Show();
+			new ViewLairActions().Show();
 		}
-		private void NPCEActions_Click(object sender, RoutedEventArgs e)
+		private void Actions_Click(object sender, RoutedEventArgs e)
 		{
-			Actions win3 = new Actions();
-			win3.Show();
+			new Actions().Show();
 		}
-		private void NPCEReactions_Click(object sender, RoutedEventArgs e)
+		private void Reactions_Click(object sender, RoutedEventArgs e)
 		{
-			Reactions win3 = new Reactions();
-			win3.Show();
+			new Reactions().Show();
 		}
-		private void NPCELegAction_Click(object sender, RoutedEventArgs e)
+		private void LegAction_Click(object sender, RoutedEventArgs e)
 		{
-			LegendaryActions win4 = new LegendaryActions();
-			win4.Show();
+			new LegendaryActions().Show();
 		}
 		#endregion
-		#region NPCE_Actions
+		#region Actions
 		private void ImportText_Click(object sender, RoutedEventArgs e)
 		{
-			ImportText win2 = new ImportText();
-			win2.Show();
+			new ImportText().Show();
 		}
-		private void NPCEFGListOptions_Click(object sender, RoutedEventArgs e)
+		private void FGListOptions_Click(object sender, RoutedEventArgs e)
 		{
-			FGListOptions win2 = new FGListOptions();
-			win2.Show();
+			new FGListOptions().Show();
 		}
 		#endregion
 		#region NPCE_Up
@@ -340,53 +316,43 @@ namespace EngineeringSuite.NPC
 		#region NPCE_Cancel
 		private void Cancel1_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel2_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel3_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel4_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel5_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel6_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel7_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel8_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel9_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		private void Cancel10_Click(object sender, RoutedEventArgs e)
 		{
-			Engineer win2 = new Engineer();
-			win2.Show();
+			throw new NotImplementedException();
 		}
 		#endregion
 		#region BaseStatChange
@@ -656,6 +622,11 @@ namespace EngineeringSuite.NPC
 			{
 				npcController.Load(openFileDlg.FileName);
 			}
+		}
+
+		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
+		{
+			new PreviewNPC().Show();
 		}
 	}
 }

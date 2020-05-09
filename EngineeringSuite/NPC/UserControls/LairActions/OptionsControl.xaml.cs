@@ -22,7 +22,7 @@ namespace EngineeringSuite.NPC.UserControls.LairActions
     /// </summary>
     public partial class OptionsControl : UserControl
     {
-        public LairAction LairAction { get; set; } = new LairAction();
+        public Models.Action.LairActions LairAction { get; set; } = new Models.Action.LairActions();
 
         public const string ActionName = "Options";
 
@@ -37,9 +37,9 @@ namespace EngineeringSuite.NPC.UserControls.LairActions
         {
             ActionController actionController = new ActionController();
             var thisDataContext = (sender as Button).DataContext;
-            if (thisDataContext is LairAction)
+            if (thisDataContext is Models.Action.LairActions)
             {
-                actionController.UpdateLairAction((LairAction)thisDataContext);
+                actionController.UpdateLairAction((Models.Action.LairActions)thisDataContext);
             }
         }
     }

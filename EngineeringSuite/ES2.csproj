@@ -198,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="NPC\UserControls\Options\NPCOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\Views\Actions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,7 +230,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\Views\LairActions.xaml">
+    <Page Include="NPC\Views\PreviewNPC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\Views\ViewLairActions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,6 +282,12 @@
     <Compile Include="NPC\UserControls\LairActions\OverviewControl.xaml.cs">
       <DependentUpon>OverviewControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
+      <DependentUpon>NPCOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
+      <DependentUpon>PreviewNPC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
@@ -307,8 +321,8 @@
     <Compile Include="NPC\Views\ImportText.xaml.cs">
       <DependentUpon>ImportText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\Views\LairActions.xaml.cs">
-      <DependentUpon>LairActions.xaml</DependentUpon>
+    <Compile Include="NPC\Views\ViewLairActions.xaml.cs">
+      <DependentUpon>ViewLairActions.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Views\LegendaryActions.xaml.cs">
       <DependentUpon>LegendaryActions.xaml</DependentUpon>
@@ -317,19 +331,12 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NPC\Views\Engineer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="NPC\Views\Reactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NPC\Views\Engineer.xaml.cs">
-      <DependentUpon>Engineer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NPC\Views\Reactions.xaml.cs">
       <DependentUpon>Reactions.xaml</DependentUpon>
     </Compile>

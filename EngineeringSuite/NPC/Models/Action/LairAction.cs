@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EngineeringSuite.NPC.Models.Action
 {
-    public class LairAction : ActionModelBase
+    public class LairActions : ActionModelBase
     {
     }
 }

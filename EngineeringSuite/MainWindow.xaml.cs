@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using EngineeringSuite;
 using EngineeringSuite.Main;
 using EngineeringSuite.NPC;
+using EngineeringSuite.NPC.UserControls.Options;
 
 namespace EngineeringSuite
 {
@@ -80,9 +81,6 @@ namespace EngineeringSuite
                 case "About":
                     new About().Show();
                     break;
-                case "Exit":
-                    this.Close();
-                    break;
                 case "ManageCategories":
                     new ManageCategories().Show();
                     break;
@@ -95,24 +93,19 @@ namespace EngineeringSuite
                 case "Settings":
                     new Settings().Show();
                     break;
-                case "RefManEngineer":
-                    new Engineer().Show();
-                    break;
-                case "SpellEngineer":
-                    new Engineer().Show();
-                    break;
                 case "Supporters":
                     new Supporters().Show();
-                    break;
-                case "TableEngineer":
-                    new Engineer().Show();
                     break;
             }
         }
 
-        private void NPCOption_Selected(object sender, RoutedEventArgs e)
+        private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-            new Engineer().Show();
+            if (optionNPC.IsSelected == true)
+            {
+                stackNPC.Visibility = Visibility.Visible;
+                stackMain.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

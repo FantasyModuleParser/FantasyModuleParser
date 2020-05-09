@@ -115,9 +115,9 @@ namespace EngineeringSuite.NPC.Controllers
             npcActions.Move(actionIndex, actionIndex + 1);
         }
 
-        public void RaiseActionInLairActionList(LairAction action)
+        public void RaiseActionInLairActionList(Models.Action.LairActions action)
         {
-            ObservableCollection<LairAction> lairActions = GetNPCModel().LairActions;
+            ObservableCollection<Models.Action.LairActions> lairActions = GetNPCModel().LairActions;
 
             int actionIndex = lairActions.IndexOf(action);
             if (actionIndex == 0)
@@ -130,9 +130,9 @@ namespace EngineeringSuite.NPC.Controllers
             }
         }
 
-        public void LowerActionInLairActionsList(LairAction action)
+        public void LowerActionInLairActionsList(Models.Action.LairActions action)
         {
-            ObservableCollection<LairAction> lairActions = GetNPCModel().LairActions;
+            ObservableCollection<Models.Action.LairActions> lairActions = GetNPCModel().LairActions;
 
             int actionIndex = lairActions.IndexOf(action);
 
@@ -147,10 +147,10 @@ namespace EngineeringSuite.NPC.Controllers
         }
 
 
-        public void UpdateLairAction(LairAction lairAction)
+        public void UpdateLairAction(Models.Action.LairActions lairAction)
         {
             NPCModel npcModel = GetNPCModel();
-            ObservableCollection<LairAction> LairActions = npcModel.LairActions;
+            ObservableCollection<LairActions> LairActions = npcModel.LairActions;
             var obj = LairActions.FirstOrDefault(x => x.ActionName == lairAction.ActionName);
             if (obj != null)
             {
@@ -165,7 +165,7 @@ namespace EngineeringSuite.NPC.Controllers
             }
         }
 
-        public void RemoveLairAction(LairAction lairAction)
+        public void RemoveLairAction(Models.Action.LairActions lairAction)
         {
             GetNPCModel().LairActions.Remove(lairAction);
         }

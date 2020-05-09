@@ -22,11 +22,11 @@ namespace EngineeringSuite.NPC
     /// <summary>
     /// Interaction logic for LairActions.xaml
     /// </summary>
-    public partial class LairActions : Window
+    public partial class ViewLairActions : Window
     {
         private ActionController actionController;
-        public ObservableCollection<LairAction> NpcLairActions { get; set; }
-        public LairActions()
+        public ObservableCollection<Models.Action.LairActions> NpcLairActions { get; set; }
+        public ViewLairActions()
         {
             InitializeComponent();
             actionController = new ActionController();
@@ -59,9 +59,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is LairAction)
+                if (action is Models.Action.LairActions)
                 {
-                    actionController.RaiseActionInLairActionList(action as LairAction);
+                    actionController.RaiseActionInLairActionList(action as Models.Action.LairActions);
                 }
             }
         }
@@ -71,9 +71,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is LairAction)
+                if (action is Models.Action.LairActions)
                 {
-                    actionController.LowerActionInLairActionsList(action as LairAction);
+                    actionController.LowerActionInLairActionsList(action as Models.Action.LairActions);
                 }
             }
         }
@@ -83,9 +83,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is LairAction)
+                if (action is Models.Action.LairActions)
                 {
-                    actionController.RemoveLairAction(action as LairAction);
+                    actionController.RemoveLairAction(action as Models.Action.LairActions);
                 }
             }
         }
@@ -95,9 +95,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is LairAction)
+                if (action is Models.Action.LairActions)
                 {
-                    var lairAction = (action as LairAction);
+                    var lairAction = (action as Models.Action.LairActions);
                     if (lairAction.ActionName.Equals(OptionsControl.ActionName))
                     {
                         lairOptions.IsChecked = true;
