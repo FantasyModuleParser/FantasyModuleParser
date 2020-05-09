@@ -252,6 +252,7 @@
     </Compile>
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\ControllerBase.cs" />
+    <Compile Include="NPC\Models\Action\LairAction.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
