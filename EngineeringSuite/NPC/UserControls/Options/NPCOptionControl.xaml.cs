@@ -1,6 +1,5 @@
 ﻿using EngineeringSuite.Main;
 using EngineeringSuite.NPC.Controllers;
-using EngineeringSuite.NPC.Models.Action;
 using EngineeringSuite.NPC.Views;
 using System;
 using System.IO;
