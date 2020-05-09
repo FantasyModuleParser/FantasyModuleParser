@@ -20,7 +20,9 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <overviewUserControl:OverviewControl RaiseActionInList="OverviewControl_RaiseActionInList"
-                                                                     LowerActionInList="OverviewControl_LowerActionInList"></overviewUserControl:OverviewControl>
+                                                                     LowerActionInList="OverviewControl_LowerActionInList"
+                                                                     RemoveAction="OverviewControl_RemoveAction"
+                                                                     EditAction="OverviewControl_EditAction"></overviewUserControl:OverviewControl>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

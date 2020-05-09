@@ -164,5 +164,10 @@ namespace EngineeringSuite.NPC.Controllers
                 LairActions.Add(lairAction);
             }
         }
+
+        public void RemoveLairAction(LairAction lairAction)
+        {
+            GetNPCModel().LairActions.Remove(lairAction);
+        }
     }
 }

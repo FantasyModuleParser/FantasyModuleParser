@@ -77,5 +77,42 @@ namespace EngineeringSuite.NPC
                 }
             }
         }
+
+        private void OverviewControl_RemoveAction(object sender, EventArgs e)
+        {
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is LairAction)
+                {
+                    actionController.RemoveLairAction(action as LairAction);
+                }
+            }
+        }
+
+        private void OverviewControl_EditAction(object sender, EventArgs e)
+        {
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is LairAction)
+                {
+                    var lairAction = (action as LairAction);
+                    if (lairAction.ActionName.Equals(OptionsControl.ActionName))
+                    {
+                        lairOptions.IsChecked = true;
+                        stackOptions.Visibility = Visibility.Visible;
+                        stackActions.Visibility = Visibility.Hidden;
+                        lairOptionsControl.DataContext = lairAction;
+                    } else
+                    {
+                        lairActions.IsChecked = true;
+                        stackOptions.Visibility = Visibility.Hidden;
+                        stackActions.Visibility = Visibility.Visible;
+                        lairActionControl.DataContext = lairAction;
+                    }
+                }
+            }
+        }
     }
 }
