@@ -714,17 +714,17 @@
                 <Grid Background="#FFE5E5E5">
                     <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
                         <ListBox>
-                            <ListBoxItem>Damage Vulnerability</ListBoxItem>
-                            <ListBoxItem>Damage Resistance</ListBoxItem>
-                            <ListBoxItem>Damage Immunity</ListBoxItem>
-                            <ListBoxItem>Condition Immunity</ListBoxItem>
-                            <ListBoxItem>Special Weapon Resistance</ListBoxItem>
-                            <ListBoxItem>Special Weapon Immunity</ListBoxItem>
+                            <ListBoxItem Name="DamageVulnerability" Selected="ResVulnImm_Click">Damage Vulnerability</ListBoxItem>
+                            <ListBoxItem Name="DamageResistance" Selected="ResVulnImm_Click">Damage Resistance</ListBoxItem>
+                            <ListBoxItem Name="DamageImmunity" Selected="ResVulnImm_Click">Damage Immunity</ListBoxItem>
+                            <ListBoxItem Name="ConditionImmunity" Selected="ResVulnImm_Click">Condition Immunity</ListBoxItem>
+                            <ListBoxItem Name="SpecialWeaponResistance" Selected="ResVulnImm_Click">Special Weapon Resistance</ListBoxItem>
+                            <ListBoxItem Name="SpecialWeaponImmunity" Selected="ResVulnImm_Click">Special Weapon Immunity</ListBoxItem>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="250,0,0,0" Visibility="Visible" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <StackPanel Name="stackDmgVulnerability" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Label Content="Damage Vulnerabilities" Foreground="Gray" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <ListBox Name="listDamageVulnerability" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="300" Width="170">
+                        <ListBox Name="listDamageVulnerability" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
                             <ListBox.ToolTip>
                                 <TextBlock>
                                             Select the damage vulnerabilities that your NPC has.
@@ -734,9 +734,9 @@
                             </ListBox.ToolTip>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel  Orientation="Vertical" Margin="250,0,0,0" Visibility="Visible" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <StackPanel Name="stackDmgImmunity" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Label Content="Damage Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <ListBox Name="listDamageImmunity" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="185" Width="170">
+                        <ListBox Name="listDamageImmunity" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
                             <ListBox.ToolTip>
                                 <TextBlock>
                                     Select the damage immunities that your NPC has.
@@ -746,9 +746,9 @@
                             </ListBox.ToolTip>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="250,0,0,0" Visibility="Visible" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <StackPanel Name="stackDmgResistance" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Label Content="Damage Resistances" Foreground="Gray" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <ListBox Name="listDamageResistance" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="300" Width="170">
+                        <ListBox Name="listDamageResistance" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
                             <ListBox.ToolTip>
                                 <TextBlock>
                                     Select the damage resistances that your NPC has.
@@ -758,66 +758,51 @@
                             </ListBox.ToolTip>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="250,0,0,0" Visibility="Visible" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="Condition Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <ListBox Name="listConditionImmunity" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:ConditionType}}}" SelectedValue="{Binding Path=ConditionType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="300" Width="170">
-                                <ListBox.ToolTip>
-                                    <TextBlock>
-                                        Select the damage vulnerabilities that your NPC has.
-                                        <LineBreak />
-                                        <Italic>You can select as many as you like.</Italic>
-                                    </TextBlock>
-                                </ListBox.ToolTip>
-                            </ListBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="Special Weapon Resistances" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <ListBox Name="listWeaponResistances" SelectionMode="Single" HorizontalAlignment="Left" Margin="20,0,0,0" FontSize="12" Height="130" Width="340">
-                                <ListBoxItem>No Special Weapon Resistance</ListBoxItem>
-                                <ListBoxItem>Resistant to nonmagical Weapons</ListBoxItem>
-                                <ListBoxItem>Resistant to nonmagical weapons that aren't silvered</ListBoxItem>
-                                <ListBoxItem>Resistant to nonmagical weapons that aren't adamantine</ListBoxItem>
-                                <ListBoxItem>Resistant to nonmagical weapons that aren't cold-forged iron</ListBoxItem>
-                                <ListBoxItem>Resistant to magic weapons</ListBoxItem>
-                                <ListBox.ToolTip>
-                                    <TextBlock>
-                                        Select the option that matches the weapon resistance your NPC has.
-                                    </TextBlock>
-                                </ListBox.ToolTip>
-                            </ListBox>
-                            <Label Content="Special Weapon Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <ListBox Name="listWeaponImmunity" SelectionMode="Single" HorizontalAlignment="Left" Margin="20,0,0,0" FontSize="12" Height="110" Width="340">
-                                <ListBoxItem>No Special Weapon Immunity</ListBoxItem>
-                                <ListBoxItem>Immune to nonmagical Weapons</ListBoxItem>
-                                <ListBoxItem>Immune to nonmagical weapons that aren't silvered</ListBoxItem>
-                                <ListBoxItem>Immune to nonmagical weapons that aren't adamantine</ListBoxItem>
-                                <ListBoxItem>Immune to nonmagical weapons that aren't cold-forged iron</ListBoxItem>
-                                <ListBox.ToolTip>
-                                    <TextBlock>
-                                        Select the option that matches the weapon resistance your NPC has.
-                                    </TextBlock>
-                                </ListBox.ToolTip>
-                            </ListBox>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="20,450,0,0">
-                        <StackPanel Orientation="Vertical">
-                            <CheckBox Name="chkOther" IsChecked="{Binding ConditionOther}" Content="Other" Margin="0,0,0,0">
-                                <CheckBox.ToolTip>
-                                    <TextBlock>
+                    <StackPanel Name="stackConImmunity" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label Content="Condition Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ListBox Name="listConditionImmunity" SelectionMode="Multiple" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:ConditionType}}}" SelectedValue="{Binding Path=ConditionType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="310" Width="170">
+                            <ListBox.ToolTip>
+                                <TextBlock>
+                                    Select the damage vulnerabilities that your NPC has.
+                                    <LineBreak />
+                                    <Italic>You can select as many as you like.</Italic>
+                                </TextBlock>
+                            </ListBox.ToolTip>
+                        </ListBox>
+                        <CheckBox Name="chkOther" IsChecked="{Binding ConditionOther}" Content="Other" Margin="30,5,0,0">
+                            <CheckBox.ToolTip>
+                                <TextBlock>
                                     Check here if your NPC is immune to any other condition (type in the box)
-                                    </TextBlock>
-                                </CheckBox.ToolTip>
-                            </CheckBox>
-                            <TextBox Name="strOther" Text="{Binding ConditionOtherText}" Height="15" Width="175" Margin="0,5,0,0">
-                                <TextBox.ToolTip>
-                                    <TextBlock>
-                                        Type in the name of any other condition that your NPC is immune to
-                                    </TextBlock>
-                                </TextBox.ToolTip>
-                            </TextBox>
-                        </StackPanel>
+                                </TextBlock>
+                            </CheckBox.ToolTip>
+                        </CheckBox>
+                        <TextBox Name="strOther" Text="{Binding ConditionOtherText}" Height="15" Width="160" Margin="30,5,0,0">
+                            <TextBox.ToolTip>
+                                <TextBlock>
+                                    Type in the name of any other condition that your NPC is immune to
+                                </TextBlock>
+                            </TextBox.ToolTip>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Name="stackSpecialResistance" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label Content="Special Weapon Resistances" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ListBox Name="listWeaponResistances" SelectionMode="Single" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:WeaponResistance}}}" SelectedValue="{Binding Path=WeaponResistance}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,0,0,0" Height="130" Width="350">
+                            <ListBox.ToolTip>
+                                <TextBlock>
+                                        Select the option that matches the weapon resistance your NPC has.
+                                </TextBlock>
+                            </ListBox.ToolTip>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel Name="stackSpecialImmunity" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label Content="Special Weapon Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ListBox Name="listWeaponImmunity" SelectionMode="Single" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:WeaponImmunity}}}" SelectedValue="{Binding Path=WeaponImmunity}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,0,0,0" Height="110" Width="350">
+                            <ListBox.ToolTip>
+                                <TextBlock>
+                                        Select the option that matches the weapon resistance your NPC has.
+                                </TextBlock>
+                            </ListBox.ToolTip>
+                        </ListBox>
                     </StackPanel>
                 </Grid>
             </TabItem>

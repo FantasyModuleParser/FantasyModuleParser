@@ -273,6 +273,8 @@
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\ControllerBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\ConditionType.cs" />
+    <Compile Include="NPC\Models\Action\Enums\WeaponImmunity.cs" />
+    <Compile Include="NPC\Models\Action\Enums\WeaponResistance.cs" />
     <Compile Include="NPC\Models\Action\LairAction.cs" />
     <Compile Include="NPC\UserControls\LairActions\LairActionControl.xaml.cs">
       <DependentUpon>LairActionControl.xaml</DependentUpon>
