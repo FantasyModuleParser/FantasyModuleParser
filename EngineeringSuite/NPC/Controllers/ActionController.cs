@@ -82,7 +82,7 @@ namespace EngineeringSuite.NPC.Controllers
             if(actionIndex == 1)
             {
                 // Check to see if Multiattack exists;  If it does, leave it at the 'top'
-                if (!npcActions[0].ActionName.Equals(Multiattack.ActionName))
+                if (!npcActions[0].ActionName.Equals(Multiattack.LocalActionName))
                 {
                     npcActions.Move(actionIndex, actionIndex - 1);
                 }
@@ -98,7 +98,7 @@ namespace EngineeringSuite.NPC.Controllers
             ObservableCollection<ActionModelBase> npcActions = GetNPCModel().NPCActions;
 
             //Ignore trying to move a Multiattack
-            if (action.ActionName.Equals(Multiattack.ActionName))
+            if (action.ActionName.Equals(Multiattack.LocalActionName))
             {
                 return; //no-op
             }

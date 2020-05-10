@@ -39,7 +39,7 @@ namespace EngineeringSuite.NPC.UserControls.LairActions
             var thisDataContext = (sender as Button).DataContext;
             if (thisDataContext is LairAction)
             {
-                actionController.UpdateLairAction(thisDataContext as LairAction);
+                actionController.UpdateLairAction(CommonMethod.CloneJson((Models.Action.LairActions)thisDataContext));
             }
         }
     }
