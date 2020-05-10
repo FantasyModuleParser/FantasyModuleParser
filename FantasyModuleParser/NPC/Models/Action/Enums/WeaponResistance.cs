@@ -4,10 +4,10 @@ namespace FantasyModuleParser.NPC.Models.Action.Enums
 {
     public enum WeaponResistance
     {
-		[Description("No Special Weapon Resistance")]
+		[Description("No special weapon resistance")]
 		NoSpecial = 0,
 		
-		[Description("Resistant to nonmagical Weapons")]
+		[Description("Resistant to nonmagical weapons")]
 		Nonmagical = 1,
 		
 		[Description("Resistant to nonmagical weapons that aren't silvered")]
