@@ -25,7 +25,7 @@ namespace EngineeringSuite.NPC
     public partial class ViewLairActions : Window
     {
         private ActionController actionController;
-        public ObservableCollection<Models.Action.LairActions> NpcLairActions { get; set; }
+        public ObservableCollection<LairAction> NpcLairActions { get; set; }
         public ViewLairActions()
         {
             InitializeComponent();
@@ -59,9 +59,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is Models.Action.LairActions)
+                if (action is LairAction)
                 {
-                    actionController.RaiseActionInLairActionList(action as Models.Action.LairActions);
+                    actionController.RaiseActionInLairActionList(action as LairAction);
                 }
             }
         }
@@ -71,9 +71,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is Models.Action.LairActions)
+                if (action is LairAction)
                 {
-                    actionController.LowerActionInLairActionsList(action as Models.Action.LairActions);
+                    actionController.LowerActionInLairActionsList(action as LairAction);
                 }
             }
         }
@@ -83,9 +83,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is Models.Action.LairActions)
+                if (action is LairAction)
                 {
-                    actionController.RemoveLairAction(action as Models.Action.LairActions);
+                    actionController.RemoveLairAction(action as LairAction);
                 }
             }
         }
@@ -95,9 +95,9 @@ namespace EngineeringSuite.NPC
             if (sender is OverviewControl)
             {
                 var action = (sender as OverviewControl).DataContext;
-                if (action is Models.Action.LairActions)
+                if (action is LairAction)
                 {
-                    var lairAction = (action as Models.Action.LairActions);
+                    var lairAction = (action as LairAction);
                     if (lairAction.ActionName.Equals(OptionsControl.ActionName))
                     {
                         lairOptions.IsChecked = true;

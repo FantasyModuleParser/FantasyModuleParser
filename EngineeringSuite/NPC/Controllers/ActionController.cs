@@ -115,9 +115,9 @@ namespace EngineeringSuite.NPC.Controllers
             npcActions.Move(actionIndex, actionIndex + 1);
         }
 
-        public void RaiseActionInLairActionList(Models.Action.LairActions action)
+        public void RaiseActionInLairActionList(LairAction action)
         {
-            ObservableCollection<Models.Action.LairActions> lairActions = GetNPCModel().LairActions;
+            ObservableCollection<LairAction> lairActions = GetNPCModel().LairActions;
 
             int actionIndex = lairActions.IndexOf(action);
             if (actionIndex == 0)
@@ -130,9 +130,9 @@ namespace EngineeringSuite.NPC.Controllers
             }
         }
 
-        public void LowerActionInLairActionsList(Models.Action.LairActions action)
+        public void LowerActionInLairActionsList(LairAction action)
         {
-            ObservableCollection<Models.Action.LairActions> lairActions = GetNPCModel().LairActions;
+            ObservableCollection<LairAction> lairActions = GetNPCModel().LairActions;
 
             int actionIndex = lairActions.IndexOf(action);
 
@@ -147,25 +147,27 @@ namespace EngineeringSuite.NPC.Controllers
         }
 
 
-        public void UpdateLairAction(Models.Action.LairActions lairAction)
+        public void UpdateLairAction(LairAction lairAction)
         {
             NPCModel npcModel = GetNPCModel();
-            ObservableCollection<LairActions> LairActions = npcModel.LairActions;
-            var obj = LairActions.FirstOrDefault(x => x.ActionName == lairAction.ActionName);
+
+            LairAction cloneLairAction = CommonMethod.CloneJson(lairAction);
+            ObservableCollection<LairAction> LairActions = npcModel.LairActions;
+            var obj = LairActions.FirstOrDefault(x => x.ActionName == cloneLairAction.ActionName);
             if (obj != null)
             {
-                lairAction.ActionID = obj.ActionID;
+                cloneLairAction.ActionID = obj.ActionID;
                 LairActions.Remove(obj);
-                LairActions.Add(lairAction);
+                LairActions.Add(cloneLairAction);
             }
             else
             {
-                lairAction.ActionID = LairActions.Count;
-                LairActions.Add(lairAction);
+                cloneLairAction.ActionID = LairActions.Count;
+                LairActions.Add(cloneLairAction);
             }
         }
 
-        public void RemoveLairAction(Models.Action.LairActions lairAction)
+        public void RemoveLairAction(LairAction lairAction)
         {
             GetNPCModel().LairActions.Remove(lairAction);
         }

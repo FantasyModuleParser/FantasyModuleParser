@@ -129,7 +129,7 @@ namespace EngineeringSuite.NPC.Models.Action
 				sb.Append(PrimaryDamage.Bonus);
 			}
 
-			sb.Append(") " + PrimaryDamage.DamageType + " damage");
+			sb.Append(") " + PrimaryDamage.DamageType.GetDescription().ToLower() + " damage");
 		}
 
 		private void ToHitStringBuilder(StringBuilder sb)
@@ -151,7 +151,7 @@ namespace EngineeringSuite.NPC.Models.Action
 			{
 				sb.Append(SecondaryDamage.Bonus);
 			}
-			sb.Append(") " + SecondaryDamage.DamageType + " damage");
+			sb.Append(") " + SecondaryDamage.DamageType.GetDescription().ToLower() + " damage");
 		}
 	}
 }
