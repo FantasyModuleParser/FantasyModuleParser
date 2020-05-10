@@ -455,61 +455,19 @@ namespace EngineeringSuite.NPC.UserControls.Options
 		#endregion
 		private void ResVulnImm_Click(object sender, RoutedEventArgs e)
 		{
-			if (DamageVulnerability.IsSelected == true)
-			{
-				stackDmgVulnerability.Visibility = Visibility.Visible;
-				stackDmgImmunity.Visibility = Visibility.Hidden;
-				stackDmgResistance.Visibility = Visibility.Hidden;
-				stackConImmunity.Visibility = Visibility.Hidden;
-				stackSpecialResistance.Visibility = Visibility.Hidden;
-				stackSpecialImmunity.Visibility = Visibility.Hidden;
-			}
-			if (DamageResistance.IsSelected == true)
-			{
-				stackDmgVulnerability.Visibility = Visibility.Hidden;
-				stackDmgImmunity.Visibility = Visibility.Hidden;
-				stackDmgResistance.Visibility = Visibility.Visible;
-				stackConImmunity.Visibility = Visibility.Hidden;
-				stackSpecialResistance.Visibility = Visibility.Hidden;
-				stackSpecialImmunity.Visibility = Visibility.Hidden;
-			}
-			if (DamageImmunity.IsSelected == true)
-			{
-				stackDmgVulnerability.Visibility = Visibility.Hidden;
-				stackDmgImmunity.Visibility = Visibility.Visible;
-				stackDmgResistance.Visibility = Visibility.Hidden;
-				stackConImmunity.Visibility = Visibility.Hidden;
-				stackSpecialResistance.Visibility = Visibility.Hidden;
-				stackSpecialImmunity.Visibility = Visibility.Hidden;
-			}
-			if (ConditionImmunity.IsSelected == true)
-			{
-				stackDmgVulnerability.Visibility = Visibility.Hidden;
-				stackDmgImmunity.Visibility = Visibility.Hidden;
-				stackDmgResistance.Visibility = Visibility.Hidden;
-				stackConImmunity.Visibility = Visibility.Visible;
-				stackSpecialResistance.Visibility = Visibility.Hidden;
-				stackSpecialImmunity.Visibility = Visibility.Hidden;
-			}
-			if (SpecialWeaponResistance.IsSelected == true)
-			{
-				stackDmgVulnerability.Visibility = Visibility.Hidden;
-				stackDmgImmunity.Visibility = Visibility.Hidden;
-				stackDmgResistance.Visibility = Visibility.Hidden;
-				stackConImmunity.Visibility = Visibility.Hidden;
-				stackSpecialResistance.Visibility = Visibility.Visible;
-				stackSpecialImmunity.Visibility = Visibility.Hidden;
-			}
-			if (SpecialWeaponImmunity.IsSelected == true)
-			{
-				stackDmgVulnerability.Visibility = Visibility.Hidden;
-				stackDmgImmunity.Visibility = Visibility.Hidden;
-				stackDmgResistance.Visibility = Visibility.Hidden;
-				stackConImmunity.Visibility = Visibility.Hidden;
-				stackSpecialResistance.Visibility = Visibility.Hidden;
-				stackSpecialImmunity.Visibility = Visibility.Visible;
-			}
+			stackDmgVulnerability.Visibility = BoolToVis(DamageVulnerability.IsSelected);
+			stackDmgImmunity.Visibility = BoolToVis(DamageImmunity.IsSelected);
+			stackDmgResistance.Visibility = BoolToVis(DamageResistance.IsSelected);
+			stackConImmunity.Visibility = BoolToVis(ConditionImmunity.IsSelected);
+			stackSpecialResistance.Visibility = BoolToVis(SpecialWeaponResistance.IsSelected);
+			stackSpecialImmunity.Visibility = BoolToVis(SpecialWeaponImmunity.IsSelected);
 		}
+
+		private Visibility BoolToVis(bool isSelected)
+		{
+			return isSelected ? Visibility.Visible : Visibility.Hidden;
+		}
+
 		private void CreateNPCFile(object sender, RoutedEventArgs e)
 		{
 			string npcName = NPC_name.Text;

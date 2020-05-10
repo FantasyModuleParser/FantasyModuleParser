@@ -713,13 +713,13 @@
             <TabItem Header="Resistances">
                 <Grid Background="#FFE5E5E5">
                     <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
-                        <ListBox>
-                            <ListBoxItem Name="DamageVulnerability" Selected="ResVulnImm_Click">Damage Vulnerability</ListBoxItem>
-                            <ListBoxItem Name="DamageResistance" Selected="ResVulnImm_Click">Damage Resistance</ListBoxItem>
-                            <ListBoxItem Name="DamageImmunity" Selected="ResVulnImm_Click">Damage Immunity</ListBoxItem>
-                            <ListBoxItem Name="ConditionImmunity" Selected="ResVulnImm_Click">Condition Immunity</ListBoxItem>
-                            <ListBoxItem Name="SpecialWeaponResistance" Selected="ResVulnImm_Click">Special Weapon Resistance</ListBoxItem>
-                            <ListBoxItem Name="SpecialWeaponImmunity" Selected="ResVulnImm_Click">Special Weapon Immunity</ListBoxItem>
+                        <ListBox SelectionChanged="ResVulnImm_Click">
+                            <ListBoxItem Name="DamageVulnerability" >Damage Vulnerability</ListBoxItem>
+                            <ListBoxItem Name="DamageResistance" >Damage Resistance</ListBoxItem>
+                            <ListBoxItem Name="DamageImmunity" >Damage Immunity</ListBoxItem>
+                            <ListBoxItem Name="ConditionImmunity" >Condition Immunity</ListBoxItem>
+                            <ListBoxItem Name="SpecialWeaponResistance" >Special Weapon Resistance</ListBoxItem>
+                            <ListBoxItem Name="SpecialWeaponImmunity" >Special Weapon Immunity</ListBoxItem>
                         </ListBox>
                     </StackPanel>
                     <StackPanel Name="stackDmgVulnerability" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
