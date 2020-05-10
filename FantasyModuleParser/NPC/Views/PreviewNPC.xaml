@@ -1,0 +1,310 @@
+﻿<Window x:Class="FantasyModuleParser.NPC.Views.PreviewNPC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FantasyModuleParser.NPC.Views"
+        mc:Ignorable="d"
+        Title="NPC / Monster Preview" Height="700" Width="430">
+    <Grid Background="#FFE5E5E5">
+        <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Height="625" Width="420" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical">
+                <Label Content="New Creature" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
+                <Label Content="Size/Type (tag)" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="2">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,0" EndPoint="300,0" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Armor Class" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                    <Label Content="30 ft." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                </StackPanel>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="2">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,5" EndPoint="300,5" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="STR" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" Padding="5,5,0,0"/>
+                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="DEX" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
+                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="CON" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
+                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="INT" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
+                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="WIS" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
+                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="CHA" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
+                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,5"/>
+                    </StackPanel>
+                </StackPanel>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="2">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,5" EndPoint="300,5" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Skills" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Damage Vulnerabilities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Damage Resistances" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Damage Immunities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Condition Immunities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Senses" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="passive Perception 10" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Languages" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Challenge" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                    <Label Content="1 ( XP)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                </StackPanel>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="2">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,5" EndPoint="300,5" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Innate Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                </WrapPanel>
+                <Label Content="Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="1">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,5" EndPoint="300,5" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
+                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
+                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
+                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
+                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
+                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
+                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
+                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
+                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
+                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
+                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
+                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
+                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
+                </WrapPanel>
+                <Label Content="Reactions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,5,0,0" Padding="5,0,0,0"/>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="1">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,5" EndPoint="300,5" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <Label Content="Legendary Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,5,0,0" Padding="5,0,0,0"/>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="1">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,5" EndPoint="300,5" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <Label Content="Lair Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,5,0,0" Padding="5,0,0,0"/>
+                <Path Fill="Black" Stroke="Black" StrokeThickness="1">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="5,5" EndPoint="300,5" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                </WrapPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="10">
+            <Button Content="Close" Click="Window_Close"/>
+        </StackPanel>
+    </Grid>
+</Window>
