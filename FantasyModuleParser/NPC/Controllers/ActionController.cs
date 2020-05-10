@@ -120,10 +120,7 @@ namespace FantasyModuleParser.NPC.Controllers
             ObservableCollection<LairAction> lairActions = GetNPCModel().LairActions;
 
             int actionIndex = lairActions.IndexOf(action);
-            if (actionIndex == 0)
-            {
-                //Do nothing!  Already at the top of the list
-            }
+            
             if (actionIndex > 0)
             {
                 lairActions.Move(actionIndex, actionIndex - 1);

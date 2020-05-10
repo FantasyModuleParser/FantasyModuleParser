@@ -113,7 +113,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                            <Label Content="Fantasy Module Paraser Settings" Foreground="Gray" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <Label Content="Fantasy Module Parser Settings" Foreground="Gray" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <CheckBox Content="Reload last project on startup" Margin="0,5,0,0" />
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox Content="Select default GUI on startup" Margin="0,8,0,0"/>
