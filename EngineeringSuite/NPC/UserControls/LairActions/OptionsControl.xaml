@@ -11,7 +11,7 @@
             <Label Content="Options" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Options:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="35,5,0,0" />
-                <TextBox Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
+                <TextBox Text="{Binding ActionDescription}" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="20,20,0,0">
                 <Button Content="Add/Update" Height="20" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="0,0,0,0" Click="AddButton_Click"/>

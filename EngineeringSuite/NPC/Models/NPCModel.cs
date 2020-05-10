@@ -147,6 +147,6 @@ namespace EngineeringSuite.NPC
 
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
 
-        public ObservableCollection<Models.Action.LairActions> LairActions { get; } = new ObservableCollection<Models.Action.LairActions>();
+        public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
     }
 }
