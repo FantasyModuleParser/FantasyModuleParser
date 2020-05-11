@@ -1,0 +1,79 @@
+﻿<Window x:Class="FantasyModuleParser.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:FantasyModuleParser"
+    xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
+    mc:Ignorable="d"
+    Title="Fantasy Module Parser" Height="760" Width="850" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
+    <Grid Background="#FFE5E5E5">
+        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
+            <MenuItem Header="_Options">
+                <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ManageProject" />
+                <MenuItem Header="_Create Module" />
+                <Separator />
+                <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" />
+                <Separator />
+                <MenuItem Header="_Exit" Click="Menu_Click" Name="Exit" />
+            </MenuItem>
+            <MenuItem Header="_Directories">
+                <MenuItem Header="_View AppData folder" Click="AppData_Click" />
+                <MenuItem Header="_View Projects folder" Click="Projects_Click" />
+                <Separator />
+                <MenuItem Header="_View Artifacts folder" Click="Artifacts_Click" />
+                <MenuItem Header="_View Equipment folder" Click="Equipment_Click" />
+                <MenuItem Header="_View NPCs folder" Click="NPC_Click" />
+                <MenuItem Header="_View Parcels folder" Click="Parcel_Click" />
+                <MenuItem Header="_View Spells folder" Click="Spell_Click" />
+                <MenuItem Header="_View Tables folder" Click="Table_Click" />
+                <Separator />
+                <MenuItem Header="_View Fantasy Grounds folder" Click="FG_Click" />
+                <MenuItem Header="_View Engineer Suite systems folder" />
+            </MenuItem>
+            <MenuItem Header="_Backup">
+                <MenuItem Header="_Manage Backup Settings" />
+                <MenuItem Header="_Schedule Backups" />
+                <MenuItem Header="_Perform Backup Now" />
+            </MenuItem>
+            <MenuItem Header="_Information">
+                <MenuItem Header="_About Fantasy Module Parser" Click="Menu_Click" Name="About"/>
+                <MenuItem Header="_Fantasy Module Parser Supporters" Click="Menu_Click" Name="Supporters" />
+                <MenuItem Header="_Quickstart Guide" />
+                <MenuItem Header="_Links in Fantasy Grounds" />
+                <Separator />
+                <MenuItem Header="_Buy me a coffee" />
+            </MenuItem>
+        </Menu>
+        <StackPanel Orientation="Vertical" Width="200" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0">
+            <Label Content="Options" FontSize="16" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Center"></Label>
+            <ListBox>
+                <ListBoxItem IsEnabled="False">Add Backgrounds</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Classes</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Encounters</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Encounters (Random)</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Equipment</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Feats</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Images</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Image Grids</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Image Pins</ListBoxItem>
+                <ListBoxItem Name="optionNPC" Selected="listBoxItem_Selected">Add NPCs / Monsters</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Parcels</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Pregenerated Characters</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Quests</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Reference Manual</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Skills</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Stories</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Spells</ListBoxItem>
+                <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Hidden">
+            <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700"></npcOptionUserControl:NPCOptionControl>
+        </StackPanel>
+        <StackPanel Name="stackMain" Margin="160,50,0,0">
+            <Image Source="/Resources/es2_logo.png" Width="400" Height="400"/>
+        </StackPanel> 
+    </Grid>
+</Window>
