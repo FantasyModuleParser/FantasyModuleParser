@@ -136,7 +136,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 		private void LegAction_Click(object sender, RoutedEventArgs e)
 		{
-			new LegendaryActions().Show();
+			new ViewLegendaryAction().Show();
 		}
 		#endregion
 		#region Actions
