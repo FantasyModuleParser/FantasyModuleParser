@@ -33,6 +33,7 @@ namespace FantasyModuleParser.NPC
             NpcLairActions = actionController.GetNPCModel().LairActions;
 
             DataContext = this;
+            lairOptions.IsChecked = true;
         }
         private void action_Checked(object sender, RoutedEventArgs e)
         {

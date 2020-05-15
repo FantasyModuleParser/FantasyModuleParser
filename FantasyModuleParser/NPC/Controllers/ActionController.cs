@@ -168,5 +168,59 @@ namespace FantasyModuleParser.NPC.Controllers
         {
             GetNPCModel().LairActions.Remove(lairAction);
         }
+
+        #region Legendary Action methods
+        public void RaiseLegendaryActionInList(LegendaryActionModel action)
+        {
+            ObservableCollection<LegendaryActionModel> actionList = GetNPCModel().LegendaryActions;
+
+            int actionIndex = actionList.IndexOf(action);
+
+            if (actionIndex > 0)
+            {
+                actionList.Move(actionIndex, actionIndex - 1);
+            }
+        }
+
+        public void LowerLegendaryActionInList(LegendaryActionModel action)
+        {
+            ObservableCollection<LegendaryActionModel> actionList = GetNPCModel().LegendaryActions;
+
+            int actionIndex = actionList.IndexOf(action);
+
+            //If the action is at the bottom of the list, do nothing
+            if ((actionIndex + 1) < actionList.Count)
+            {
+                actionList.Move(actionIndex, actionIndex + 1);
+            }
+            
+        }
+
+        public void UpdateLegendaryAction(LegendaryActionModel action)
+        {
+            NPCModel npcModel = GetNPCModel();
+
+            LegendaryActionModel cloneAction = CommonMethod.CloneJson(action);
+            ObservableCollection<LegendaryActionModel> actionList = npcModel.LegendaryActions;
+            var obj = actionList.FirstOrDefault(x => x.ActionName == cloneAction.ActionName);
+            if (obj != null)
+            {
+                cloneAction.ActionID = obj.ActionID;
+                actionList.Remove(obj);
+                actionList.Add(cloneAction);
+            }
+            else
+            {
+                cloneAction.ActionID = actionList.Count;
+                actionList.Add(cloneAction);
+            }
+        }
+
+        public void RemoveLegendaryAction(LegendaryActionModel action)
+        {
+            GetNPCModel().LegendaryActions.Remove(action);
+        }
+        #endregion
+
     }
 }

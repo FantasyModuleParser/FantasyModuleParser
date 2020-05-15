@@ -120,7 +120,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -217,6 +217,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\UserControls\Options\NPCOptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -295,6 +307,7 @@
     <Compile Include="NPC\Models\Action\Enums\WeaponImmunity.cs" />
     <Compile Include="NPC\Models\Action\Enums\WeaponResistance.cs" />
     <Compile Include="NPC\Models\Action\LairAction.cs" />
+    <Compile Include="NPC\Models\Action\LegendaryActionModel.cs" />
     <Compile Include="NPC\UserControls\LairActions\LairActionControl.xaml.cs">
       <DependentUpon>LairActionControl.xaml</DependentUpon>
     </Compile>
@@ -304,11 +317,23 @@
     <Compile Include="NPC\UserControls\LairActions\OverviewControl.xaml.cs">
       <DependentUpon>OverviewControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml.cs">
+      <DependentUpon>LegendaryActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml.cs">
+      <DependentUpon>LegendaryActionOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml.cs">
+      <DependentUpon>LegendaryActionOverviewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
       <DependentUpon>PreviewNPC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\Views\ViewLegendaryAction.xaml.cs">
+      <DependentUpon>ViewLegendaryAction.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
@@ -354,6 +379,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NPC\Views\Reactions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\Views\ViewLegendaryAction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
