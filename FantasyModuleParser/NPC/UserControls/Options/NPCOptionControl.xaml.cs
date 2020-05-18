@@ -1,5 +1,7 @@
-﻿using FantasyModuleParser.Main;
+﻿using EnvDTE;
+using FantasyModuleParser.Main;
 using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Views;
 using System;
 using System.Collections;
@@ -9,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static FantasyModuleParser.Extensions.EnumerationExtension;
 
 namespace FantasyModuleParser.NPC.UserControls.Options
 {
@@ -514,12 +517,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					ChallengeRating = int.Parse(strChallenge.Text),
 					XP = int.Parse(strExperience.Text),
 					NPCToken = strNPCToken.Text,
-					DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+					DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (DamageType)a.Content).ToList(),
+					DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (DamageType)a.Content).ToList(),
+					DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (DamageType)a.Content).ToList(),
+					ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (ConditionType)a.Content).ToList(),
+					SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (WeaponResistance)a.Content).ToList(),
+					SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (WeaponImmunity)a.Content).ToList(),
 					ConditionOther = chkOther.IsChecked.Value,
 					ConditionOtherText = strOther.Text,
 					Acrobatics = int.Parse(strAcrobatics.Text),
@@ -641,6 +644,90 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
 			new PreviewNPC().Show();
+		}
+
+		private void listDamageVulnerability_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			NPCModel npcModel = npcController.GetNPCModel();
+
+			// Clear out the existing DamageVulnerability list
+			npcModel.DamageVulnerability.Clear();
+
+			var DamageList = listDamageVulnerability.SelectedItems;
+			foreach (EnumerationMember enumerationMember in DamageList)
+			{
+				npcModel.DamageVulnerability.Add((DamageType)Enum.Parse(typeof(DamageType), enumerationMember.Value.ToString()));
+			}
+		}
+
+		private void listDamageImmunity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			NPCModel npcModel = npcController.GetNPCModel();
+
+			// Clear out the existing DamageImmunity list
+			npcModel.DamageImmunity.Clear();
+
+			var DamageList = listDamageImmunity.SelectedItems;
+			foreach (EnumerationMember enumerationMember in DamageList)
+			{
+				npcModel.DamageImmunity.Add((DamageType)Enum.Parse(typeof(DamageType), enumerationMember.Value.ToString()));
+			}
+		}
+
+		private void listDamageResistance_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			NPCModel npcModel = npcController.GetNPCModel();
+
+			// Clear out the existing DamageResistance list
+			npcModel.DamageResistance.Clear();
+
+			var DamageList = listDamageResistance.SelectedItems;
+			foreach (EnumerationMember enumerationMember in DamageList)
+			{
+				npcModel.DamageResistance.Add((DamageType)Enum.Parse(typeof(DamageType), enumerationMember.Value.ToString()));
+			}
+		}
+
+		private void listConditionImmunity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			NPCModel npcModel = npcController.GetNPCModel();
+
+			// Clear out the existing ConditionImmunity list
+			npcModel.ConditionImmunity.Clear();
+
+			var ConditionList = listConditionImmunity.SelectedItems;
+			foreach (EnumerationMember enumerationMember in ConditionList)
+			{
+				npcModel.ConditionImmunity.Add((ConditionType)Enum.Parse(typeof(ConditionType), enumerationMember.Value.ToString()));
+			}
+		}
+
+		private void listWeaponResistances_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			NPCModel npcModel = npcController.GetNPCModel();
+
+			// Clear out the existing ConditionImmunity list
+			npcModel.SpecialWeaponResistance.Clear();
+
+			var ResistanceList = listWeaponResistances.SelectedItems;
+			foreach (EnumerationMember enumerationMember in ResistanceList)
+			{
+				npcModel.SpecialWeaponResistance.Add((WeaponResistance)Enum.Parse(typeof(WeaponResistance), enumerationMember.Value.ToString()));
+			}
+		}
+
+		private void listWeaponImmunity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			NPCModel npcModel = npcController.GetNPCModel();
+
+			// Clear out the existing ConditionImmunity list
+			npcModel.SpecialWeaponImmunity.Clear();
+
+			var ImmunityList = listWeaponImmunity.SelectedItems;
+			foreach (EnumerationMember enumerationMember in ImmunityList)
+			{
+				npcModel.SpecialWeaponImmunity.Add((WeaponImmunity)Enum.Parse(typeof(WeaponImmunity), enumerationMember.Value.ToString()));
+			}
 		}
 	}
 }

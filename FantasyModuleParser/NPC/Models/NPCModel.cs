@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -47,12 +48,12 @@ namespace FantasyModuleParser.NPC
         public int ChallengeRating { get; set; }
         public int XP { get; set; }
         public string NPCToken { get; set; }
-        public List<string> DamageResistance { get; set; }
-        public List<string> DamageVulnerability { get; set; }
-        public List<string> DamageImmunity { get; set; }
-        public List<string> ConditionImmunity { get; set; }
-        public List<string> SpecialWeaponResistance { get; set; }
-        public List<string> SpecialWeaponImmunity { get; set; }
+        public List<DamageType> DamageResistance { get; set; } = new List<DamageType>();
+        public List<DamageType> DamageVulnerability { get; set; } = new List<DamageType>();
+        public List<DamageType> DamageImmunity { get; set; } = new List<DamageType>();
+        public List<ConditionType> ConditionImmunity { get; set; } = new List<ConditionType>();
+        public List<WeaponResistance> SpecialWeaponResistance { get; set; } = new List<WeaponResistance>();
+        public List<WeaponImmunity> SpecialWeaponImmunity { get; set; } = new List<WeaponImmunity>();
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
         public int Acrobatics { get; set; }
