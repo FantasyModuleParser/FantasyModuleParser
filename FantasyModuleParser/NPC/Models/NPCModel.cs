@@ -67,6 +67,7 @@ namespace FantasyModuleParser.NPC
         public int Investigation { get; set; }
         public int Medicine { get; set; }
         public int Nature { get; set; }
+        public int Perception { get; set; }
         public int Performance { get; set; }
         public int Persuasion { get; set; }
         public int Religion { get; set; }

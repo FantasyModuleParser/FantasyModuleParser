@@ -292,7 +292,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Speed" HorizontalContentAlignment="Left" Margin="110,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
-                                <TextBox Text="30" Name="intSpeed" HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Text="{Binding Speed}" Name="intSpeed" HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's base movement speed in feet (ft.)
@@ -304,7 +304,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Burrow" HorizontalContentAlignment="Left" Margin="105,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="intBurrow" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="intBurrow" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Burrow}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's burrowing speed in feet (ft.)
@@ -316,7 +316,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Climb" HorizontalContentAlignment="Left" Margin="112,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="intClimb" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="intClimb" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Climb}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's climbing speed in feet (ft.)
@@ -328,7 +328,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Fly" HorizontalContentAlignment="Left" Margin="128,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="intFly" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="intFly" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Fly}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's flying speed in feet (ft.)
@@ -348,7 +348,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Swim" HorizontalContentAlignment="Left" Margin="115,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="intSwim" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="0" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="intSwim" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Swim}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's swimming speed in feet (ft.)
@@ -369,7 +369,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="STR" HorizontalAlignment="Center" Margin="35,5,0,0" Height="20" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0"  PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding AttributeStr}" VerticalAlignment="Top" Width="40" Padding="0"  PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Strength ability.
@@ -385,7 +385,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="DEX" HorizontalAlignment="Left" Margin="33,5,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                                <TextBox Name="strAttrDex" Text="10" LostFocus="DexterityScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0"  PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAttrDex" Text="{Binding AttributeDex}" LostFocus="DexterityScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0"  PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Dexterity ability.
