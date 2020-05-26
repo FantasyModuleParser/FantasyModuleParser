@@ -147,7 +147,6 @@ namespace FantasyModuleParser.NPC
         public string NPCImage { get; set; }
 
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
-
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
         public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
     }

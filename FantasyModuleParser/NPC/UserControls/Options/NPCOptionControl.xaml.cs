@@ -45,10 +45,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 			InitializeComponent();
 			npcController = new NPCController();
-
 			//var npcModel = ((App)Application.Current).NpcModelObject;
-
-			//DataContext = npcModel;
+			DataContext = npcController.GetNPCModel();
 		}
 		private void openfolder(string strPath, string strFolder)
 		{
@@ -536,6 +534,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					Investigation = int.Parse(strInvestigation.Text),
 					Medicine = int.Parse(strMedicine.Text),
 					Nature = int.Parse(strNature.Text),
+					Perception = int.Parse(strPerception.Text),
 					Performance = int.Parse(strPerformance.Text),
 					Persuasion = int.Parse(strPersuasion.Text),
 					Religion = int.Parse(strReligion.Text),

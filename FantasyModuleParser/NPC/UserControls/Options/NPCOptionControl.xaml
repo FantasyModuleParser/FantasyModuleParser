@@ -723,7 +723,7 @@
                     </StackPanel>
                     <StackPanel Name="stackDmgVulnerability" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Label Content="Damage Vulnerabilities" Foreground="Gray" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <ListBox Name="listDamageVulnerability" SelectionMode="Multiple" SelectionChanged="listDamageVulnerability_SelectionChanged"  ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
+                        <ListBox Name="listDamageVulnerability" SelectionMode="Multiple" SelectionChanged="listDamageVulnerability_SelectionChanged" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
                             <ListBox.ToolTip>
                                 <TextBlock>
                                     Select the damage vulnerabilities that your NPC has.
@@ -807,7 +807,6 @@
             </TabItem>
             <TabItem Header="Skills">
                 <Grid Background="#FFE5E5E5">
-
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="500" Margin="10,15,0,0" VerticalAlignment="Top" Width="170"/>
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="555" Margin="200,15,0,0" VerticalAlignment="Top" Width="345"/>
                     <StackPanel Orientation="Horizontal">
@@ -815,7 +814,7 @@
                             <Label Content="Skill Bonuses" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Acrobatics" Height="20" VerticalContentAlignment="Center" Margin="64,5,0,0" Padding="0"/>
-                                <TextBox Name="strAcrobatics" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAcrobatics" Text="{Binding Acrobatics}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Acrobatics skill modifier.
@@ -825,7 +824,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Animal Handling" Height="20" VerticalContentAlignment="Center" Margin="31,5,0,0" Padding="0"/>
-                                <TextBox Name="strAnimalHandling" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAnimalHandling" Text="{Binding AnimalHandling}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Animal Handling skill modifier.
@@ -835,7 +834,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Arcana" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
-                                <TextBox Name="strArcana" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strArcana" Text="{Binding Arcana}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Arcana skill modifier.
@@ -845,7 +844,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Athletics" Height="20" VerticalContentAlignment="Center" Margin="74,5,0,0" Padding="0" />
-                                <TextBox Name="strAthletics" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAthletics" Text="{Binding Athletics}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Athletics skill modifier.
@@ -855,7 +854,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Deception" Height="20" VerticalContentAlignment="Center" Margin="65,5,0,0" Padding="0"/>
-                                <TextBox Name="strDeception" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strDeception" Text="{Binding Deception}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Deception skill modifier.
@@ -865,7 +864,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="History" Height="20" VerticalContentAlignment="Center" Margin="81,5,0,0" Padding="0"/>
-                                <TextBox Name="strHistory" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strHistory" Text="{Binding History}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's History skill modifier.
@@ -875,7 +874,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Insight" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
-                                <TextBox Name="strInsight" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strInsight" Text="{Binding Insight}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Insight skill modifier.
@@ -885,7 +884,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Intimidation" Height="20" VerticalContentAlignment="Center" Margin="55,5,0,0" Padding="0"/>
-                                <TextBox Name="strIntimidation" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strIntimidation" Text="{Binding Intimidation}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Intimidation skill modifier.
@@ -895,7 +894,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Investigation" Height="20" VerticalContentAlignment="Center" Margin="51,5,0,0" Padding="0"/>
-                                <TextBox Name="strInvestigation" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strInvestigation" Text="{Binding Investigation}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Investigation skill modifier.
@@ -905,7 +904,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Medicine" Height="20" VerticalContentAlignment="Center" Margin="70,5,0,0" Padding="0"/>
-                                <TextBox Name="strMedicine" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strMedicine" Text="{Binding Medicine}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Medicine skill modifier.
@@ -915,7 +914,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Nature" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
-                                <TextBox Name="strNature" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strNature" Text="{Binding Nature}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Nature skill modifier.
@@ -925,7 +924,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Perception" Height="20" VerticalContentAlignment="Center" Margin="63,5,0,0" Padding="0"/>
-                                <TextBox Name="strPerception" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strPerception" Text="{Binding Perception}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Perception skill modifier.
@@ -935,7 +934,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Performance" Height="20" VerticalContentAlignment="Center" Margin="52,5,0,0" Padding="0"/>
-                                <TextBox Name="strPerformance" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strPerformance" Text="{Binding Performance}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Performance skill modifier.
@@ -945,7 +944,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Persuasion" Height="20" VerticalContentAlignment="Center" Margin="62,5,0,0" Padding="0"/>
-                                <TextBox Name="strPersuasion" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strPersuasion" Text="{Binding Persuasion}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Persuasion skill modifier.
@@ -955,7 +954,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Religion" Height="20" VerticalContentAlignment="Center" Margin="76,5,0,0" Padding="0"/>
-                                <TextBox Name="strReligion" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strReligion" Text="{Binding Religion}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Religion skill modifier.
@@ -965,7 +964,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Sleight of Hand" Height="20" VerticalContentAlignment="Center" Margin="37,5,0,0" Padding="0"/>
-                                <TextBox Name="strSleightofHand" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSleightofHand" Text="{Binding SleightOfHand}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Sleight of Hand skill modifier.
@@ -975,7 +974,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Stealth" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
-                                <TextBox Name="strStealth" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strStealth" Text="{Binding Stealth}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Stealth skill modifier.
@@ -985,7 +984,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Survival" Height="20" VerticalContentAlignment="Center" Margin="78,5,0,0" Padding="0"/>
-                                <TextBox Name="strSurvival" Text="0" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSurvival" Text="{Binding Survival}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Survival skill modifier.
