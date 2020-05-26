@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FantasyModuleParser.NPC
 {
@@ -47,12 +48,12 @@ namespace FantasyModuleParser.NPC
         public int ChallengeRating { get; set; }
         public int XP { get; set; }
         public string NPCToken { get; set; }
-        public List<string> DamageResistance { get; set; }
-        public List<string> DamageVulnerability { get; set; }
-        public List<string> DamageImmunity { get; set; }
-        public List<string> ConditionImmunity { get; set; }
-        public List<string> SpecialWeaponResistance { get; set; }
-        public List<string> SpecialWeaponImmunity { get; set; }
+        public List<SelectableActionModel> DamageResistanceModelList { get; set; }
+        public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
+        public List<SelectableActionModel> DamageImmunityModelList { get; set; }
+        public List<SelectableActionModel> ConditionImmunityModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponResistanceModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
         public int Acrobatics { get; set; }
@@ -148,5 +149,9 @@ namespace FantasyModuleParser.NPC
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
 
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
+
+        public NPCModel()
+        {
+        }
     }
 }
