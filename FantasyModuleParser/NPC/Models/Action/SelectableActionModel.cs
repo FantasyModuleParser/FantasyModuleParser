@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FantasyModuleParser.NPC.Models.Action
+{
+    public class SelectableActionModel : ActionModelBase
+    {
+        public bool Selected { get; set; }
+
+        public SelectableActionModel()
+        {
+            Selected = false;
+        }
+
+        public SelectableActionModel(bool selected)
+        {
+            Selected = selected;
+        }
+
+        public SelectableActionModel(int actionId, string actionName, string actionDescription, bool selected) : base(actionId, actionName, actionDescription)
+        {
+            Selected = selected;
+        }
+
+        public override string ToString()
+        {
+            return ActionDescription;
+        }
+    }
+}

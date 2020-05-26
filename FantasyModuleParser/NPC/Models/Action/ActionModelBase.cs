@@ -48,5 +48,15 @@ namespace FantasyModuleParser.NPC.Models.Action
             }
         }
 
+        public ActionModelBase()
+        {
+        }
+
+        public ActionModelBase(int actionId, string actionName, string actionDescription)
+        {
+            _actionId = actionId;
+            _actionName = actionName;
+            _actionDescription = actionDescription;
+        }
     }
 }

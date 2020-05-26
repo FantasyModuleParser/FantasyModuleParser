@@ -46,6 +46,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			InitializeComponent();
 			npcController = new NPCController();
 			//var npcModel = ((App)Application.Current).NpcModelObject;
+
 			DataContext = npcController.GetNPCModel();
 		}
 		private void openfolder(string strPath, string strFolder)
@@ -515,12 +516,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					ChallengeRating = int.Parse(strChallenge.Text),
 					XP = int.Parse(strExperience.Text),
 					NPCToken = strNPCToken.Text,
-					DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (DamageType)a.Content).ToList(),
-					DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (DamageType)a.Content).ToList(),
-					DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (DamageType)a.Content).ToList(),
-					ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (ConditionType)a.Content).ToList(),
-					SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (WeaponResistance)a.Content).ToList(),
-					SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (WeaponImmunity)a.Content).ToList(),
+					//DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+					//DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+					//DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+					//ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+					//SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
+					//SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
 					ConditionOther = chkOther.IsChecked.Value,
 					ConditionOtherText = strOther.Text,
 					Acrobatics = int.Parse(strAcrobatics.Text),
@@ -615,7 +616,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				};
 
 			((App)Application.Current).NpcModel = npcModel;
-
+			
 			npcController.Save(savePath, npcModel);
 		}
 
@@ -637,6 +638,10 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			if (result == true)
 			{
 				npcController.Load(openFileDlg.FileName);
+				NPCModel npcModel = npcController.GetNPCModel();
+
+				//Refresh all the data on the UI
+				DataContext = npcModel;
 			}
 		}
 

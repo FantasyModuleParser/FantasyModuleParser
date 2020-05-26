@@ -1,11 +1,11 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.Models.Action.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FantasyModuleParser.NPC
 {
@@ -48,12 +48,12 @@ namespace FantasyModuleParser.NPC
         public int ChallengeRating { get; set; }
         public int XP { get; set; }
         public string NPCToken { get; set; }
-        public List<DamageType> DamageResistance { get; set; } = new List<DamageType>();
-        public List<DamageType> DamageVulnerability { get; set; } = new List<DamageType>();
-        public List<DamageType> DamageImmunity { get; set; } = new List<DamageType>();
-        public List<ConditionType> ConditionImmunity { get; set; } = new List<ConditionType>();
-        public List<WeaponResistance> SpecialWeaponResistance { get; set; } = new List<WeaponResistance>();
-        public List<WeaponImmunity> SpecialWeaponImmunity { get; set; } = new List<WeaponImmunity>();
+        public List<SelectableActionModel> DamageResistanceModelList { get; set; }
+        public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
+        public List<SelectableActionModel> DamageImmunityModelList { get; set; }
+        public List<SelectableActionModel> ConditionImmunityModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponResistanceModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
         public int Acrobatics { get; set; }
@@ -147,7 +147,11 @@ namespace FantasyModuleParser.NPC
         public string NPCImage { get; set; }
 
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
+
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
-        public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
+
+        public NPCModel()
+        {
+        }
     }
 }

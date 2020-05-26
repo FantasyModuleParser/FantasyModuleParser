@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Controllers;
 using System.Windows;
 
 namespace FantasyModuleParser
@@ -8,6 +9,12 @@ namespace FantasyModuleParser
     /// </summary>
     public partial class App : Application
     {
-        public NPCModel NpcModel { get; set; } = new NPCModel();
+        public NPCModel NpcModel { get; set; }
+
+        public App()
+        {
+            NPCController npcController = new NPCController();
+            NpcModel = npcController.InitializeNPCModel();
+        }
     }
 }
