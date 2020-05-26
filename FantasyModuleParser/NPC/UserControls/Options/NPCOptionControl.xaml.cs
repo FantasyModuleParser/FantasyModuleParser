@@ -534,7 +534,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					Investigation = int.Parse(strInvestigation.Text),
 					Medicine = int.Parse(strMedicine.Text),
 					Nature = int.Parse(strNature.Text),
-					//Perception = int.Parse(strPerception.Text),
+					Perception = int.Parse(strPerception.Text),
 					Performance = int.Parse(strPerformance.Text),
 					Persuasion = int.Parse(strPersuasion.Text),
 					Religion = int.Parse(strReligion.Text),

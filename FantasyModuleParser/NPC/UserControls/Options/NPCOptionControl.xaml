@@ -401,7 +401,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="CON" HorizontalAlignment="Left" Margin="30,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
-                                <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding AttributeCon}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Constitution ability.
@@ -417,7 +417,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="INT" HorizontalAlignment="Left" Margin="37,5,0,0" Height="20" Padding="0" VerticalContentAlignment="Center"/>
-                                <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding AttributeInt}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                         Enter the NPC's Intelligence ability.
@@ -433,7 +433,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="WIS" HorizontalAlignment="Left" Margin="34,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding AttributeWis}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Wisdom ability.
@@ -449,7 +449,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="CHA" HorizontalAlignment="Left" Margin="31,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                                <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="10" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding AttributeCha}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's Charisma ability.
@@ -470,7 +470,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="STR" HorizontalAlignment="Left" Margin="24,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveStr" Text="0" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSaveStr" Text="{Binding SavingThrowStr}" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for strength saves.
@@ -491,7 +491,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="DEX" HorizontalAlignment="Left" Margin="22,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding SavingThrowDex}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for dexterity saves.
@@ -512,7 +512,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="CON" HorizontalAlignment="Left" Margin="19,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveCon" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSaveCon" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding SavingThrowCon}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for constitution saves.
@@ -533,7 +533,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="INT" HorizontalAlignment="Left" Margin="26,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveInt" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSaveInt" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding SavingThrowInt}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for intelligence saves.
@@ -554,7 +554,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="WIS" HorizontalAlignment="Left" Margin="23,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveWis" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSaveWis" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding SavingThrowWis}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for wisdom saves.
@@ -575,7 +575,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Height="25" Width="130">
                                 <Label Content="CHA" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                                <TextBox Name="strSaveCha" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                                <TextBox Name="strSaveCha" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding SavingThrowCha}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                     <TextBox.ToolTip>
                                         <TextBlock>
                                             Enter the NPC's saving throw bonus for charisma saves.
@@ -606,7 +606,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Label Content="Blindsight" HorizontalAlignment="Left" Margin="52,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strBlindsight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="strBlindsight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Blindsight}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum blindsight range in feet (ft.)
@@ -619,7 +619,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Darkvision" HorizontalAlignment="Left" Margin="62,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strDarkvision" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="strDarkvision" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Darkvision}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum darkvision range in feet (ft.)
@@ -631,7 +631,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Tremorsense" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strTremorsense" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="strTremorsense" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Tremorsense}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum tremorsense range in feet (ft.)
@@ -643,7 +643,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Truesight" HorizontalAlignment="Left" Margin="69,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strTruesight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="strTruesight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Truesight}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's maximum truesight range in feet (ft.)
@@ -655,7 +655,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label Content="Passive Perception" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                            <TextBox Name="strPassivePerception" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="8" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="strPassivePerception" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding PassivePerception}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's Passive Perception
@@ -669,7 +669,7 @@
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="420" Margin="0,470,0,0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="5,0,0,0">
                             <Label Content="Challenge" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                            <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding ChallengeRating}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the appropriate challenge rating for the NPC.
@@ -677,7 +677,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Experience" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                            <TextBox Name="strExperience" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="strExperience" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding XP}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         This will be calculated automatically based on the challenge rating chosen; this can be overwritten by typing a new XP value
@@ -1428,7 +1428,7 @@
                                 </ComboBox.ToolTip>
                             </ComboBox>
                             <Label Content="Spell Save DC" Padding="0" Margin="20,5,0,0"/>
-                            <TextBox Name="intInnateSpellSaveDC" Text="{Binding SpellSaveDC}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="intInnateSpellSaveDC" Text="{Binding InnateSpellSaveDC}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell save difficulty.
@@ -1438,7 +1438,7 @@
                                 </TextBox.ToolTip>
                             </TextBox>
                             <Label Content="Spell Hit Bonus" Padding="0" Margin="10,5,0,0"/>
-                            <TextBox Name="intInnateSpellHitBonus" Text="{Binding SpellHitBonus}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox Name="intInnateSpellHitBonus" Text="{Binding InnateSpellHitBonus}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                                 <TextBox.ToolTip>
                                     <TextBlock>
                                         Enter the NPC's spell 'to hit' bonus if appropriate.
