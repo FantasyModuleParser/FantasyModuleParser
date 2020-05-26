@@ -1,5 +1,4 @@
-﻿using EnvDTE;
-using FantasyModuleParser.Main;
+﻿using FantasyModuleParser.Main;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Views;
@@ -138,7 +137,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 		private void LegAction_Click(object sender, RoutedEventArgs e)
 		{
-			new ViewLegendaryAction().Show();
+			new LegendaryActions().Show();
 		}
 		#endregion
 		#region Actions
@@ -535,7 +534,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					Investigation = int.Parse(strInvestigation.Text),
 					Medicine = int.Parse(strMedicine.Text),
 					Nature = int.Parse(strNature.Text),
-					Perception = int.Parse(strPerception.Text),
+					//Perception = int.Parse(strPerception.Text),
 					Performance = int.Parse(strPerformance.Text),
 					Persuasion = int.Parse(strPersuasion.Text),
 					Religion = int.Parse(strReligion.Text),
@@ -648,90 +647,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
 			new PreviewNPC().Show();
-		}
-
-		private void listDamageVulnerability_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			NPCModel npcModel = npcController.GetNPCModel();
-
-			// Clear out the existing DamageVulnerability list
-			npcModel.DamageVulnerability.Clear();
-
-			var DamageList = listDamageVulnerability.SelectedItems;
-			foreach (EnumerationMember enumerationMember in DamageList)
-			{
-				npcModel.DamageVulnerability.Add((DamageType)Enum.Parse(typeof(DamageType), enumerationMember.Value.ToString()));
-			}
-		}
-
-		private void listDamageImmunity_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			NPCModel npcModel = npcController.GetNPCModel();
-
-			// Clear out the existing DamageImmunity list
-			npcModel.DamageImmunity.Clear();
-
-			var DamageList = listDamageImmunity.SelectedItems;
-			foreach (EnumerationMember enumerationMember in DamageList)
-			{
-				npcModel.DamageImmunity.Add((DamageType)Enum.Parse(typeof(DamageType), enumerationMember.Value.ToString()));
-			}
-		}
-
-		private void listDamageResistance_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			NPCModel npcModel = npcController.GetNPCModel();
-
-			// Clear out the existing DamageResistance list
-			npcModel.DamageResistance.Clear();
-
-			var DamageList = listDamageResistance.SelectedItems;
-			foreach (EnumerationMember enumerationMember in DamageList)
-			{
-				npcModel.DamageResistance.Add((DamageType)Enum.Parse(typeof(DamageType), enumerationMember.Value.ToString()));
-			}
-		}
-
-		private void listConditionImmunity_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			NPCModel npcModel = npcController.GetNPCModel();
-
-			// Clear out the existing ConditionImmunity list
-			npcModel.ConditionImmunity.Clear();
-
-			var ConditionList = listConditionImmunity.SelectedItems;
-			foreach (EnumerationMember enumerationMember in ConditionList)
-			{
-				npcModel.ConditionImmunity.Add((ConditionType)Enum.Parse(typeof(ConditionType), enumerationMember.Value.ToString()));
-			}
-		}
-
-		private void listWeaponResistances_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			NPCModel npcModel = npcController.GetNPCModel();
-
-			// Clear out the existing ConditionImmunity list
-			npcModel.SpecialWeaponResistance.Clear();
-
-			var ResistanceList = listWeaponResistances.SelectedItems;
-			foreach (EnumerationMember enumerationMember in ResistanceList)
-			{
-				npcModel.SpecialWeaponResistance.Add((WeaponResistance)Enum.Parse(typeof(WeaponResistance), enumerationMember.Value.ToString()));
-			}
-		}
-
-		private void listWeaponImmunity_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			NPCModel npcModel = npcController.GetNPCModel();
-
-			// Clear out the existing ConditionImmunity list
-			npcModel.SpecialWeaponImmunity.Clear();
-
-			var ImmunityList = listWeaponImmunity.SelectedItems;
-			foreach (EnumerationMember enumerationMember in ImmunityList)
-			{
-				npcModel.SpecialWeaponImmunity.Add((WeaponImmunity)Enum.Parse(typeof(WeaponImmunity), enumerationMember.Value.ToString()));
-			}
 		}
 	}
 }

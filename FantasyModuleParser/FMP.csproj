@@ -297,6 +297,7 @@
     <Compile Include="NPC\Models\Action\Enums\WeaponImmunity.cs" />
     <Compile Include="NPC\Models\Action\Enums\WeaponResistance.cs" />
     <Compile Include="NPC\Models\Action\LairAction.cs" />
+    <Compile Include="NPC\Models\Action\LegendaryActionModel.cs" />
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
