@@ -2005,8 +2005,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Actions">
-                <ActionUserControl:ActionOverviewUC 
-                    DataContext="{Binding DataContext}"></ActionUserControl:ActionOverviewUC>
+                <ActionUserControl:ActionOverviewUC></ActionUserControl:ActionOverviewUC>
             </TabItem>
             <TabItem Header="Description">
                 <Grid Background="#FFE5E5E5">
