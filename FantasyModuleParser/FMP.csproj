@@ -205,6 +205,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\Action\ActionOverviewUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\UserControls\LairActions\LairActionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +305,9 @@
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
+    <Compile Include="NPC\UserControls\Action\ActionOverviewUC.xaml.cs">
+      <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\UserControls\LairActions\LairActionControl.xaml.cs">
       <DependentUpon>LairActionControl.xaml</DependentUpon>
     </Compile>
