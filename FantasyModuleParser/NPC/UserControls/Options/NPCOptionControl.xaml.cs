@@ -122,24 +122,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			win2.Show();
 		}
 		#endregion
-		#region ActionTabs
-		private void LairActions_Click(object sender, RoutedEventArgs e)
-		{
-			new ViewLairActions().Show();
-		}
-		private void Actions_Click(object sender, RoutedEventArgs e)
-		{
-			new Actions().Show();
-		}
-		private void Reactions_Click(object sender, RoutedEventArgs e)
-		{
-			new Reactions().Show();
-		}
-		private void LegAction_Click(object sender, RoutedEventArgs e)
-		{
-			new LegendaryActions().Show();
-		}
-		#endregion
 		#region Actions
 		private void ImportText_Click(object sender, RoutedEventArgs e)
 		{
