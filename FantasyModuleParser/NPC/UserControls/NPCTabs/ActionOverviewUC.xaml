@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="FantasyModuleParser.NPC.UserControls.Action.ActionOverviewUC"
+﻿<UserControl x:Class="FantasyModuleParser.NPC.UserControls.NPCTabs.ActionOverviewUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
+             xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
              mc:Ignorable="d" d:DesignWidth="620" Height="585">
     <Grid Background="#FFE5E5E5">

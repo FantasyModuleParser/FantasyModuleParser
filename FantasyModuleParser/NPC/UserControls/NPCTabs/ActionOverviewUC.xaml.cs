@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FantasyModuleParser.NPC.UserControls.Action
+namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
     /// <summary>
     /// Interaction logic for ActionOverviewUC.xaml

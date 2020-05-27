@@ -205,7 +205,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\UserControls\Action\ActionOverviewUC.xaml">
+    <Page Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +220,10 @@
     <Page Include="NPC\UserControls\LairActions\OverviewControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NPC\UserControls\Options\NPCOptionControl.xaml">
       <SubType>Designer</SubType>
@@ -305,7 +309,7 @@
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
-    <Compile Include="NPC\UserControls\Action\ActionOverviewUC.xaml.cs">
+    <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\LairActions\LairActionControl.xaml.cs">
@@ -316,6 +320,9 @@
     </Compile>
     <Compile Include="NPC\UserControls\LairActions\OverviewControl.xaml.cs">
       <DependentUpon>OverviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml.cs">
+      <DependentUpon>BaseStatsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
