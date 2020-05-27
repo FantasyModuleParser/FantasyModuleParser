@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
+             xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
              mc:Ignorable="d" d:DesignWidth="620" Height="585">
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="290" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
@@ -12,7 +13,17 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="402,315,0,0" VerticalAlignment="Top" Width="190"/>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Height="255">
+                    <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <overviewUserControl:OverviewControl></overviewUserControl:OverviewControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+                
+                <!-- <StackPanel Orientation="Vertical">
                     <Label Content="Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <TextBox Margin="30,10,0,0" Width="200" IsReadOnly="True" Background="#FFE5E5E5">
                         <TextBox.ToolTip>
@@ -163,8 +174,8 @@
                             </Button.ToolTip>
                         </Button>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
+                </StackPanel> -->
+                <!-- <StackPanel Orientation="Vertical">
                     <TextBox Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
                         <TextBox.ToolTip>
                             <TextBlock>
@@ -200,7 +211,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                </StackPanel>
+                </StackPanel> -->
             </StackPanel>
             <Button Content="Add/Edit Actions" Click="Actions_Click" Padding="0" Margin="465,10,0,0" Width="125" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Button.ToolTip>
