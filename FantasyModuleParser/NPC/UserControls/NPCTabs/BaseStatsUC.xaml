@@ -536,7 +536,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="230" Margin="300,230,0,0" VerticalAlignment="Top" Width="280"/>
         <StackPanel Orientation="Vertical" Width="270" VerticalAlignment="Top" Height="200" Margin="270,235,0,0">
             <StackPanel Orientation="Horizontal">
-                <Label Content="Senses" Foreground="Gray" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold" Padding="0"/>
+                <Label Content="Senses" Foreground="Gray" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" FontWeight="Bold" Padding="0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Sense Ranges (ft.)" Padding="0" Margin="0,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -636,12 +636,8 @@
                     <Image Source="/Resources/Folder.png" />
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                <TextBlock Height="50" Margin="0,10,0,0" Foreground="Black">
-                    Use CTRL + Page Up and CTRL + Page Down to cycle through tabs
-                    <LineBreak />
-                    Press F1 to F9 to select a tab directly
-                </TextBlock>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button Name="SaveBaseStats" Content="Save Base Stats" Width="100" Click="StoreData" />
             </StackPanel>
         </StackPanel>
     </Grid>
