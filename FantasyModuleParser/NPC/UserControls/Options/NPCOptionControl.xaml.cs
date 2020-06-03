@@ -24,11 +24,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		public NPCController npcController { get; set; }
 		#endregion
 
-		#region Variables
-		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-		string installFolder = "FMP/NPC";
-		#endregion
-
 		#region Methods
 		private void SwapTextBoxes(TextBox input, TextBox output)
 		{
@@ -356,50 +351,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		private void CreateNPCFile(object sender, RoutedEventArgs e)
 		{
-			// string npcName = NPC_name.Text;
-			// string savePath = Path.Combine(installPath, installFolder, npcName + ".json");
 
 			NPCModel npcModel = ((App)Application.Current).NpcModel;
 
 			if (npcModel == null)
 				npcModel = new NPCModel
 				{
-					// NPCName = NPC_name.Text,
-					// Size = strSize.Text,
-					// NPCType = strType.Text,
-					// Tag = strTag.Text,
-					// Alignment = strAlignment.Text,
-					// AC = strAC.Text,
-					// HP = strHP.Text,
-					// NPCGender = strGender.Text,
-					// Unique = chkUnique.IsChecked.Value,
-					// NPCNamed = chkNamed.IsChecked.Value,
-					// Speed = int.Parse(intSpeed.Text),
-					// Burrow = int.Parse(intBurrow.Text),
-					// Climb = int.Parse(intClimb.Text),
-					// Fly = int.Parse(intFly.Text),
-					// Swim = int.Parse(intSwim.Text),
-					// AttributeStr = int.Parse(strAttrStr.Text),
-					// AttributeDex = int.Parse(strAttrDex.Text),
-					// AttributeCon = int.Parse(strAttrCon.Text),
-					// AttributeInt = int.Parse(strAttrInt.Text),
-					// AttributeWis = int.Parse(strAttrWis.Text),
-					// AttributeCha = int.Parse(strAttrCha.Text),
-					// SavingThrowStr = int.Parse(strSaveStr.Text),
-					// SavingThrowDex = int.Parse(strSaveDex.Text),
-					// SavingThrowCon = int.Parse(strSaveCon.Text),
-					// SavingThrowInt = int.Parse(strSaveInt.Text),
-					// SavingThrowWis = int.Parse(strSaveWis.Text),
-					// SavingThrowCha = int.Parse(strSaveCha.Text),
-					// Blindsight = int.Parse(strBlindsight.Text),
-					// BlindBeyond = chkBlindBeyond.IsChecked.Value,
-					// Darkvision = int.Parse(strDarkvision.Text),
-					// Tremorsense = int.Parse(strTremorsense.Text),
-					// Truesight = int.Parse(strTruesight.Text),
-					// PassivePerception = int.Parse(strPassivePerception.Text),
-					// ChallengeRating = int.Parse(strChallenge.Text),
-					// XP = int.Parse(strExperience.Text),
-					// NPCToken = strNPCToken.Text,
 					//DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
 					//DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
 					//DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
@@ -501,7 +458,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 			((App)Application.Current).NpcModel = npcModel;
 			
-			// npcController.Save(savePath, npcModel);
 		}
 
 		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

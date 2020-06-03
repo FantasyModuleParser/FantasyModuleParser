@@ -22,21 +22,68 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     {
         #region Controllers
         public NPCController npcController { get; set; }
-        #endregion
+		#endregion
 
-        #region Methods
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+		#region Variables
+		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+		string installFolder = "FMP/NPC";
+		#endregion
+
+		#region Methods
+		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"[^0-9-]+"); ;
             e.Handled = regex.IsMatch(e.Text);
         }
+
+		private void StoreData(object sender, RoutedEventArgs e)
+		{
+			string npcName = NPC_name.Text;
+			string savePath = Path.Combine(installPath, installFolder, npcName + ".json");
+			string NPCName = NPC_name.Text;
+			string Size = strSize.Text;
+			string NPCType = strType.Text;
+			string Tag = strTag.Text;
+			string Alignment = strAlignment.Text;
+			string AC = strAC.Text;
+			string HP = strHP.Text;
+			string NPCGender = strGender.Text;
+			bool Unique = chkUnique.IsChecked.Value;
+			bool NPCNamed = chkNamed.IsChecked.Value;
+			int Speed = int.Parse(intSpeed.Text);
+			int Burrow = int.Parse(intBurrow.Text);
+			int Climb = int.Parse(intClimb.Text);
+			int Fly = int.Parse(intFly.Text);
+			int Swim = int.Parse(intSwim.Text);
+			int AttributeStr = int.Parse(strAttrStr.Text);
+			int AttributeDex = int.Parse(strAttrDex.Text);
+			int AttributeCon = int.Parse(strAttrCon.Text);
+			int AttributeInt = int.Parse(strAttrInt.Text);
+			int AttributeWis = int.Parse(strAttrWis.Text);
+			int AttributeCha = int.Parse(strAttrCha.Text);
+			int SavingThrowStr = int.Parse(strSaveStr.Text);
+			int SavingThrowDex = int.Parse(strSaveDex.Text);
+			int SavingThrowCon = int.Parse(strSaveCon.Text);
+			int SavingThrowInt = int.Parse(strSaveInt.Text);
+			int SavingThrowWis = int.Parse(strSaveWis.Text);
+			int SavingThrowCha = int.Parse(strSaveCha.Text);
+			int Blindsight = int.Parse(strBlindsight.Text);
+			bool BlindBeyond = chkBlindBeyond.IsChecked.Value;
+			int Darkvision = int.Parse(strDarkvision.Text);
+			int Tremorsense = int.Parse(strTremorsense.Text);
+			int Truesight = int.Parse(strTruesight.Text);
+			int PassivePerception = int.Parse(strPassivePerception.Text);
+			int ChallengeRating = int.Parse(strChallenge.Text);
+			int XP = int.Parse(strExperience.Text);
+			string NPCToken = strNPCToken.Text;
+		}
         #endregion
         public BaseStatsUC()
         {
             InitializeComponent();
             npcController = new NPCController();
-            //var npcModel = ((App)Application.Current).NpcModelObject;
-            DataContext = npcController.GetNPCModel();
+			// NPCModel npcModel = ((App)Application.Current).NpcModel;
+			DataContext = npcController.GetNPCModel();
         }
 
 		#region BaseStatChange

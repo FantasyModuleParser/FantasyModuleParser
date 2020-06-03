@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
