@@ -360,6 +360,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			// string savePath = Path.Combine(installPath, installFolder, npcName + ".json");
 
 			NPCModel npcModel = ((App)Application.Current).NpcModel;
+			Console.WriteLine("NPC Name by default :: " + npcModel.NPCName);
 
 			if (npcModel == null)
 				npcModel = new NPCModel
