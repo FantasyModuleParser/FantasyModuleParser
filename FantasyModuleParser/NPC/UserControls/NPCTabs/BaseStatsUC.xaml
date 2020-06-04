@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
+             d:DesignHeight="600" d:DesignWidth="600" >
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="215" Margin="5,5,0,0" VerticalAlignment="Top" Width="580"/>
         <StackPanel Orientation="Horizontal">
@@ -13,7 +13,7 @@
                 <Label Content="NPC Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <Label Content="NPC Name:" VerticalContentAlignment="Center" Width="65" Margin="0,0,0,0" Height="20" Padding="0"/>
-                    <TextBox Name="NPC_name" Text="{Binding Path=NPCName}" VerticalAlignment="Center" Height="20" Width="200" Margin="5,0,0,0" Padding="0">
+                    <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Height="20" Width="200" Margin="5,0,0,0" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
                                             Enter the NPCs Name.

@@ -38,6 +38,7 @@ namespace FantasyModuleParser.NPC.Controllers
 				app.NpcModel = npcModel;
 
 			if (LoadNpcModelAction != null) LoadNpcModelAction(this, EventArgs.Empty);
+
 		}
 
 		public NPCModel InitializeNPCModel()
