@@ -36,6 +36,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			strComponentText.Text = "requiring no material components";
 		}
 		#endregion
+
+		#region Variables
+		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+		string installFolder = "FMP/NPC";
+		#endregion
 		public NPCOptionControl()
 		{
 			InitializeComponent();
@@ -349,10 +354,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			return isSelected ? Visibility.Visible : Visibility.Hidden;
 		}
 
-		private void CreateNPCFile(object sender, RoutedEventArgs e)
+		private void SaveNPCToFile(object sender, RoutedEventArgs e)
 		{
-
+		
 			NPCModel npcModel = ((App)Application.Current).NpcModel;
+			string savePath = Path.Combine(installPath, installFolder, npcModel.NPCName + ".json");
 
 			if (npcModel == null)
 				npcModel = new NPCModel
@@ -457,7 +463,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				};
 
 			((App)Application.Current).NpcModel = npcModel;
-			
+			npcController.Save(savePath, npcModel);
+
 		}
 
 		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

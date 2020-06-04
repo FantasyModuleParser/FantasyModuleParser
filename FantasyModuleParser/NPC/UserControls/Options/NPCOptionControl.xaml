@@ -15,7 +15,7 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New NPC" />
                 <MenuItem Header="_Open NPC" Click="LoadNPCOption_Click"/>
-                <MenuItem Header="_Save NPC" Click="CreateNPCFile"/>
+                <MenuItem Header="_Save NPC" Click="SaveNPCToFile"/>
                 <Separator />
                 <MenuItem Header="_Save as HTML" />
                 <MenuItem Header="_Save as RTF" />
@@ -1606,7 +1606,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Save NPC" Click="CreateNPCFile" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Save NPC" Click="SaveNPCToFile" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
                     Save your NPC to your drive as a *.JSON file
