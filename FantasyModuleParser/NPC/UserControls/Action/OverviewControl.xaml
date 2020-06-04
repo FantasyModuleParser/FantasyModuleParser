@@ -4,12 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
-             mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="400">
-    <Grid>
-        <TextBox x:Name="actionName" Margin="10,5,450,35" IsReadOnly="True" Background="#FFE5E5E5" Text="{Binding ActionName}"/>
+             mc:Ignorable="d">
+    <Grid Width="530" Height="60">
+        <TextBox x:Name="actionName" Margin="10,5,380,35" IsReadOnly="True" Background="#FFE5E5E5" Text="{Binding ActionName}"/>
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0" Height="20" HorizontalAlignment="Left" >
-            <Button x:Name="btn_Edit" Width="20" Height="20" BorderThickness="0" Margin="15,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Edit_Click" >
+            <Button x:Name="btn_Edit" Width="20" Height="20" BorderThickness="0" Margin="15,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Edit_Click" Visibility="{Binding ShowEditButton}" >
                 <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
             </Button>
             <Button x:Name="btn_Cancel" Width="20" Height="20" BorderThickness="0" Margin="5,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Cancel_Click">
@@ -22,6 +21,6 @@
                 <Image Source="/Resources/down_arrow.png" />
             </Button>
         </StackPanel>
-        <TextBox x:Name="actionDescription" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text="{Binding ActionDescription}" Margin="155,5,80,10"/>
+        <TextBox x:Name="actionDescription" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text="{Binding ActionDescription}" Margin="155,5,10,10"/>
     </Grid>
 </UserControl>
