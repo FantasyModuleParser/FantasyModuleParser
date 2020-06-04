@@ -483,6 +483,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 				//Refresh all the data on the UI
 				DataContext = npcModel;
+
+				// TODO:  Get the active tab the user is on
+				// As the assumption here is the User is on the Base Stats tab while loading
+				// a NPC File
+				BaseStatsUserControl.Refresh();
 			}
 		}
 

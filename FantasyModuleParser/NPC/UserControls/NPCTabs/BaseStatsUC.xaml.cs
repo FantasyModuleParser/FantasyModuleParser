@@ -84,7 +84,18 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             npcController = new NPCController();
 			// NPCModel npcModel = ((App)Application.Current).NpcModel;
 			DataContext = npcController.GetNPCModel();
+			npcController.LoadNpcModelAction += NpcController_LoadNpcModelAction;
         }
+
+		private void NpcController_LoadNpcModelAction(object sender, EventArgs e)
+		{
+		}
+
+		public void Refresh()
+		{
+			DataContext = npcController.GetNPCModel();
+		}
+
 
 		#region BaseStatChange
 		private void StrengthScore_TextChanged(object sender, RoutedEventArgs e)
