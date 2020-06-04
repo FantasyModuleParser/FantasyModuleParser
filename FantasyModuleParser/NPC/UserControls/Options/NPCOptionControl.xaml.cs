@@ -353,6 +353,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 
 			NPCModel npcModel = ((App)Application.Current).NpcModel;
+			Console.WriteLine("NPC Name by default :: " + npcModel.NPCName);
 
 			if (npcModel == null)
 				npcModel = new NPCModel

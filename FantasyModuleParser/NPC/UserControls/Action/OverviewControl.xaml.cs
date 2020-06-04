@@ -26,9 +26,12 @@ namespace FantasyModuleParser.NPC.UserControls.Action
 
         public ActionViewModel actionViewModel { get; set; }
 
+        public Visibility ShowEditButton { get; set; }
+
         public OverviewControl()
         {
             InitializeComponent();
+            ShowEditButton = Visibility.Visible;
         }
 
         private void btn_Up_Click(object sender, RoutedEventArgs e)

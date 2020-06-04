@@ -30,6 +30,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             InitializeComponent();
 			actionController = new ActionController();
 			NPCActions = actionController.GetNPCModel().NPCActions;
+			Console.WriteLine("NPC Actions Size : " + NPCActions.Count());
         }
 
 		private void LairActions_Click(object sender, RoutedEventArgs e)
