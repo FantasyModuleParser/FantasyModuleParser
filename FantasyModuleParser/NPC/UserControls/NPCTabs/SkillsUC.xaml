@@ -1,0 +1,337 @@
+﻿<UserControl x:Class="FantasyModuleParser.NPC.UserControls.NPCTabs.SkillsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="500" Margin="10,15,0,0" VerticalAlignment="Top" Width="170"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="555" Margin="200,15,0,0" VerticalAlignment="Top" Width="345"/>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Skill Bonuses" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Acrobatics" Height="20" VerticalContentAlignment="Center" Margin="64,5,0,0" Padding="0"/>
+                    <TextBox Name="strAcrobatics" Text="{Binding Path=Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Acrobatics skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Animal Handling" Height="20" VerticalContentAlignment="Center" Margin="31,5,0,0" Padding="0"/>
+                    <TextBox Name="strAnimalHandling" Text="{Binding Path=AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Animal Handling skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Arcana" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                    <TextBox Name="strArcana" Text="{Binding Path=Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Arcana skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Athletics" Height="20" VerticalContentAlignment="Center" Margin="74,5,0,0" Padding="0" />
+                    <TextBox Name="strAthletics" Text="{Binding Path=Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Athletics skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Deception" Height="20" VerticalContentAlignment="Center" Margin="65,5,0,0" Padding="0"/>
+                    <TextBox Name="strDeception" Text="{Binding Path=Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Deception skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="History" Height="20" VerticalContentAlignment="Center" Margin="81,5,0,0" Padding="0"/>
+                    <TextBox Name="strHistory" Text="{Binding History}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's History skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Insight" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                    <TextBox Name="strInsight" Text="{Binding Path=Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Insight skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Intimidation" Height="20" VerticalContentAlignment="Center" Margin="55,5,0,0" Padding="0"/>
+                    <TextBox Name="strIntimidation" Text="{Binding Path=Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Intimidation skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Investigation" Height="20" VerticalContentAlignment="Center" Margin="51,5,0,0" Padding="0"/>
+                    <TextBox Name="strInvestigation" Text="{Binding Path=Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Investigation skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Medicine" Height="20" VerticalContentAlignment="Center" Margin="70,5,0,0" Padding="0"/>
+                    <TextBox Name="strMedicine" Text="{Binding Path=Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Medicine skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Nature" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                    <TextBox Name="strNature" Text="{Binding Path=Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Nature skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Perception" Height="20" VerticalContentAlignment="Center" Margin="63,5,0,0" Padding="0"/>
+                    <TextBox Name="strPerception" Text="{Binding Path=Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Perception skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Performance" Height="20" VerticalContentAlignment="Center" Margin="52,5,0,0" Padding="0"/>
+                    <TextBox Name="strPerformance" Text="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Performance skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Persuasion" Height="20" VerticalContentAlignment="Center" Margin="62,5,0,0" Padding="0"/>
+                    <TextBox Name="strPersuasion" Text="{Binding Path=Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Persuasion skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Religion" Height="20" VerticalContentAlignment="Center" Margin="76,5,0,0" Padding="0"/>
+                    <TextBox Name="strReligion" Text="{Binding Path=Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Religion skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Sleight of Hand" Height="20" VerticalContentAlignment="Center" Margin="37,5,0,0" Padding="0"/>
+                    <TextBox Name="strSleightofHand" Text="{Binding Path=SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Sleight of Hand skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Stealth" Height="20" VerticalContentAlignment="Center" Margin="83,5,0,0" Padding="0"/>
+                    <TextBox Name="strStealth" Text="{Binding Path=Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Stealth skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Survival" Height="20" VerticalContentAlignment="Center" Margin="78,5,0,0" Padding="0"/>
+                    <TextBox Name="strSurvival" Text="{Binding Path=Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Enter the NPC's Survival skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Content="Languages Spoken" Foreground="Gray"  HorizontalAlignment="Left" Margin="50,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Margin="100,0,0,0">
+                    <Label Content="Standard" Foreground="Black" Padding="0"  HorizontalAlignment="Left" Margin="20,7,0,3" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label Content="Exotic" Foreground="Black" Padding="0" HorizontalAlignment="Left" Margin="115,7,0,3" VerticalAlignment="Top" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="65,0,0,0">
+                    <ListBox Name="listStandard" IsSelected="{Binding Path=StandardLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Multiple" Margin="0,0,0,0" FontSize="12" Height="185" Width="150">
+                        <ListBoxItem>Common</ListBoxItem>
+                        <ListBoxItem>Dwarvish</ListBoxItem>
+                        <ListBoxItem>Elvish</ListBoxItem>
+                        <ListBoxItem>Giant</ListBoxItem>
+                        <ListBoxItem>Gnomish</ListBoxItem>
+                        <ListBoxItem>Goblin</ListBoxItem>
+                        <ListBoxItem>Halfling</ListBoxItem>
+                        <ListBoxItem>Orc</ListBoxItem>
+                        <ListBoxItem>Thieves' Cant</ListBoxItem>
+                        <ListBox.ToolTip>
+                            <TextBlock>
+                                            Select the standard languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>You can select as many as you like.</Italic>
+                            </TextBlock>
+                        </ListBox.ToolTip>
+                    </ListBox>
+                    <ListBox Name="listExotic" SelectionMode="Multiple" Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
+                        <ListBoxItem Name="chkAbyssal">Abyssal</ListBoxItem>
+                        <ListBoxItem Name="chkCelestial">Celestial</ListBoxItem>
+                        <ListBoxItem Name="chkDeepSpeech">Deep Speech</ListBoxItem>
+                        <ListBoxItem Name="chkDraconic">Draconic</ListBoxItem>
+                        <ListBoxItem Name="chkDruidic">Druidic</ListBoxItem>
+                        <ListBoxItem Name="chkInfernal">Infernal</ListBoxItem>
+                        <ListBoxItem Name="chkPrimordial">Primordial</ListBoxItem>
+                        <ListBoxItem Name="chkSylvan">Sylvan</ListBoxItem>
+                        <ListBoxItem Name="chkUndercommon">Undercommon</ListBoxItem>
+                        <ListBox.ToolTip>
+                            <TextBlock>
+                                            Select the exotic languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>You can select as many as you like.</Italic>
+                            </TextBlock>
+                        </ListBox.ToolTip>
+                    </ListBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="50,0,0,0">
+                    <Label Content="Monstrous" Foreground="Black" Padding="0" HorizontalAlignment="Left" Margin="50,7,0,3" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label Content="User" Foreground="Black" Padding="0" HorizontalAlignment="Left" Margin="115,7,0,3" VerticalAlignment="Top" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="65,0,0,0">
+                    <ListBox Name="listMonstrous" SelectionMode="Multiple" Margin="0,0,0,0" FontSize="12" Height="185" Width="150">
+                        <ListBoxItem Name="chkAarakocra">Aarakocra</ListBoxItem>
+                        <ListBoxItem Name="chkAquan">Aquan</ListBoxItem>
+                        <ListBoxItem Name="chkAuran">Auran</ListBoxItem>
+                        <ListBoxItem Name="chkBullywug">Bullywug</ListBoxItem>
+                        <ListBoxItem Name="chkGith">Gith</ListBoxItem>
+                        <ListBoxItem Name="chkGnoll">Gnoll</ListBoxItem>
+                        <ListBoxItem Name="chkGrell">Grell</ListBoxItem>
+                        <ListBoxItem Name="chkGrung">Grung</ListBoxItem>
+                        <ListBoxItem Name="chkHookHorror">Hook Horror</ListBoxItem>
+                        <ListBoxItem Name="chkIceToad">Ice Toad</ListBoxItem>
+                        <ListBoxItem Name="chkIgnan">Ignan</ListBoxItem>
+                        <ListBoxItem Name="chkIxitxachitl">Ixitxachitl</ListBoxItem>
+                        <ListBoxItem Name="chkModron">Modron</ListBoxItem>
+                        <ListBoxItem Name="chkOtyugh">Otyugh</ListBoxItem>
+                        <ListBoxItem Name="chkSahuagin">Sahuagin</ListBoxItem>
+                        <ListBoxItem Name="chkSlaad">Slaad</ListBoxItem>
+                        <ListBoxItem Name="chkSphinx">Sphinx</ListBoxItem>
+                        <ListBoxItem Name="chkTerran">Terran</ListBoxItem>
+                        <ListBoxItem Name="chkThrikreen">Thri-kreen</ListBoxItem>
+                        <ListBoxItem Name="chkTlincali">Tlincali</ListBoxItem>
+                        <ListBoxItem Name="chkTroglodyte">Troglodyte</ListBoxItem>
+                        <ListBoxItem Name="chkUmberhulk">Umberhulk</ListBoxItem>
+                        <ListBoxItem Name="chkVegepygmy">Vegepygmy</ListBoxItem>
+                        <ListBoxItem Name="chkYeti">Yeti</ListBoxItem>
+                        <ListBox.ToolTip>
+                            <TextBlock>
+                                            Select the monstrous languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>You can select as many as you like.</Italic>
+                            </TextBlock>
+                        </ListBox.ToolTip>
+                    </ListBox>
+                    <ListBox Name="listUser" SelectionMode="Multiple" Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
+                        <ListBox.ToolTip>
+                            <TextBlock>
+                                            Select the user-defined languages that your NPC knows.
+                                            <LineBreak />
+                                            <Italic>To modify this list, select `Options|Manage language list` from the menu.</Italic>
+                            </TextBlock>
+                        </ListBox.ToolTip>
+                    </ListBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="50,0,0,0">
+                    <Label Content="Language Options" Foreground="Black" Padding="0" HorizontalAlignment="Left" Margin="15,10,0,0" Width="296" VerticalAlignment="Top"/>
+                    <ComboBox Name="strLanguageOptions" IsSelected="{Binding Path=LanguageOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="15,0,0,0" HorizontalAlignment="Left" Width="296">
+                        <ComboBoxItem IsSelected="True">No special conditions</ComboBoxItem>
+                        <ComboBoxItem>Speaks no languages</ComboBoxItem>
+                        <ComboBoxItem>Speaks all languages</ComboBoxItem>
+                        <ComboBoxItem>Speaks languages it knew in life</ComboBoxItem>
+                        <ComboBoxItem>Can't speak; Knows selected languages</ComboBoxItem>
+                        <ComboBoxItem>Can't speak; Knows creator's languages</ComboBoxItem>
+                        <ComboBoxItem>Can't speak; Knows languages known in life</ComboBoxItem>
+                        <ComboBoxItem>Alternative language text (enter below)</ComboBoxItem>
+                        <ComboBox.ToolTip>
+                            <TextBlock>
+                                            Select any special options for your NPC's language skills.
+                                            <LineBreak />
+                                            <Italic>Choosing 'No special conditions' uses the languages above.</Italic>
+                            </TextBlock>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
+                    <TextBox Name="strLanguageOptionsText" Text="{Binding Path=LanguageOptionsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" HorizontalAlignment="Left" Width="296">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Fill in any text you want to use for the language skill in place of the standard texts above.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="50,0,0,0">
+                    <CheckBox Name="chkTelepathy" IsChecked="{Binding Path=Telepathy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Telepathy" Margin="15,10,0,0">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+                                            Check this box if your NPC has telepathy.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
+                    <Label Content="Range:" Padding="10,10,0,0" />
+                    <TextBox Name="strTelepathyRange" Text="{Binding Path=TelepathyRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="175" Height="20" Margin="5,7,0,0">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                            Fill in the range (and the unit) of your NPC's telepathy.
+                                            <LineBreak />
+                                            <Italic>For example: 150 ft. or 5 miles</Italic>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

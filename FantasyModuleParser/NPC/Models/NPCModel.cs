@@ -46,7 +46,7 @@ namespace FantasyModuleParser.NPC
         public int Tremorsense { get; set; }
         public int Truesight { get; set; }
         public int PassivePerception { get; set; }
-        public int ChallengeRating { get; set; }
+        public string ChallengeRating { get; set; }
         public int XP { get; set; }
         public string NPCToken { get; set; }
         public List<SelectableActionModel> DamageResistanceModelList { get; set; }
