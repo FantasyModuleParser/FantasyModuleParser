@@ -447,6 +447,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// As the assumption here is the User is on the Base Stats tab while loading
 				// a NPC File
 				BaseStatsUserControl.Refresh();
+				SkillsUserControl.Refresh();
 			}
 		}
 

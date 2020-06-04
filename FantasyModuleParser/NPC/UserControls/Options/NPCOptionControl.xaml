@@ -84,7 +84,7 @@
             </TabItem>
             <TabItem Header="Skills">
                 <Grid Background="#FFE5E5E5">
-                    <SkillsUserControl:SkillsUC></SkillsUserControl:SkillsUC>
+                    <SkillsUserControl:SkillsUC x:Name="SkillsUserControl"></SkillsUserControl:SkillsUC>
                 </Grid>
             </TabItem>
             <TabItem Header="Traits">
