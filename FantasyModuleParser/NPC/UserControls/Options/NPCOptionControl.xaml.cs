@@ -339,20 +339,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 		#endregion
 		
-		private void ResVulnImm_Click(object sender, RoutedEventArgs e)
-		{
-			stackDmgVulnerability.Visibility = BoolToVis(DamageVulnerability.IsSelected);
-			stackDmgImmunity.Visibility = BoolToVis(DamageImmunity.IsSelected);
-			stackDmgResistance.Visibility = BoolToVis(DamageResistance.IsSelected);
-			stackConImmunity.Visibility = BoolToVis(ConditionImmunity.IsSelected);
-			stackSpecialResistance.Visibility = BoolToVis(SpecialWeaponResistance.IsSelected);
-			stackSpecialImmunity.Visibility = BoolToVis(SpecialWeaponImmunity.IsSelected);
-		}
-
-		private Visibility BoolToVis(bool isSelected)
-		{
-			return isSelected ? Visibility.Visible : Visibility.Hidden;
-		}
+		
 
 		private void SaveNPCToFile(object sender, RoutedEventArgs e)
 		{
@@ -363,14 +350,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			if (npcModel == null)
 				npcModel = new NPCModel
 				{
-					//DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					ConditionOther = chkOther.IsChecked.Value,
-					ConditionOtherText = strOther.Text,
 					Acrobatics = int.Parse(strAcrobatics.Text),
 					AnimalHandling = int.Parse(strAnimalHandling.Text),
 					Arcana = int.Parse(strArcana.Text),

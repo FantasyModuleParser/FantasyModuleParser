@@ -606,7 +606,7 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="420" Height="100" Margin="0,450,0,0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="5,0,0,0">
                 <Label Content="Challenge" HorizontalAlignment="Left" Margin="17,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding Path=ChallengeRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
+                <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding Path=ChallengeRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0">
                     <TextBox.ToolTip>
                         <TextBlock>
                             Enter the appropriate challenge rating for the NPC.
