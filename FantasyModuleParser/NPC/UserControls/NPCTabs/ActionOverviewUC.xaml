@@ -6,6 +6,16 @@
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
              mc:Ignorable="d" d:DesignWidth="620" Height="585">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ActionSubPanelDT">
+            <Border BorderThickness="1" BorderBrush="Black" Margin="25,10,0,0">
+                <TextBlock Text="{Binding ActionName}" 
+                           Width="120" Padding="0" 
+                           HorizontalAlignment="Left" Margin="5">
+                </TextBlock>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="290" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="5,315,0,0" VerticalAlignment="Top" Width="195"/>
@@ -36,100 +46,24 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
+            <Grid>
+                
+            </Grid>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Reactions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Width="150" Margin="25,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's first reaction, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_ReactionCancel1" Margin="5,12,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this reaction from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's second reaction, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_ReactionCancel2" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this reaction from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's third reaction, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_ReactionCancel3" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this reaction from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's fourth reaction, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_ReactionCancel4" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this reaction from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's fifth reaction, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_ReactionCancel5" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this reaction from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <Button Content="Reactions"  Click="Reactions_Click" Margin="123,5,0,0" Width="70" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="125">
+                        <StackPanel Orientation="Horizontal">
+                            <ItemsControl ItemsSource="{Binding Path=Reactions}" 
+                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Content="Reactions" Click="LegAction_Click" Margin="103,5,0,0" Width="90" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <Button.ToolTip>
                             <TextBlock>
-                                            Click here to see a full list of reactions, edit them, and add new ones.
+                                            Click here to see a full list of lair actions, edit them, and add new ones.
                             </TextBlock>
                         </Button.ToolTip>
                     </Button>
@@ -138,95 +72,16 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Legendary Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's first legendary action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LegActCancel1" Margin="5,12,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this legendary action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's second legendary action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LegActCancel2" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this legendary action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's third legendary action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LegActCancel3" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this legendary action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's fourth legendary action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LegActCancel4" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this legendary action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's fifth legendary action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LegActCancel5" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this legendary action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <Button Content="Legendary Actions" Click="LegAction_Click" Margin="73,5,0,0" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="125">
+                        <StackPanel Orientation="Horizontal">
+                            <ItemsControl ItemsSource="{Binding Path=LegendaryActions}"
+                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Content="Legendary Actions" Click="LegAction_Click" Margin="83,5,0,0" Width="110" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <Button.ToolTip>
                             <TextBlock>
-                                            Click here to see a full list of legendary actions, edit them, and add new ones.
+                                            Click here to see a full list of lair actions, edit them, and add new ones.
                             </TextBlock>
                         </Button.ToolTip>
                     </Button>
@@ -235,91 +90,12 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Lair Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's first lair action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LairActCancel1" Margin="5,12,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this lair action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's second lair action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LairActCancel2" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this lair action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's third lair action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LairActCancel3" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this lair action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's fourth lair action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LairActCancel4" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this lair action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox  Width="150" Margin="25,5,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" IsReadOnly="True">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                            The name of the NPC's fifth lair action, if it has any. This is not editable here, although you can delete it.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <Button Name="btn_LairActCancel5" Margin="5,7,0,0" Padding="0" Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                            <Button.ToolTip>
-                                <TextBlock>
-                                                Delete this lair action from the list.
-                                </TextBlock>
-                            </Button.ToolTip>
-                        </Button>
-                    </StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="125">
+                        <StackPanel Orientation="Horizontal">
+                            <ItemsControl ItemsSource="{Binding Path=LairActions}"
+                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                        </StackPanel>
+                    </ScrollViewer>
                     <Button Content="Lair Actions" Click="LairActions_Click" Margin="103,5,0,0" Width="90" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <Button.ToolTip>
                             <TextBlock>
