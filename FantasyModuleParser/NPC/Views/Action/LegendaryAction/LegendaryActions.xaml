@@ -4,148 +4,63 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC"
+        xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.LairActions"
         mc:Ignorable="d"
         Title="Add or Edit NPC Legendary Actions" Height="410" Width="760" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="350" Margin="5,5,0,0" VerticalAlignment="Top" Width="425"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="435,5,0,0" VerticalAlignment="Top" Width="300"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="140" Margin="435,115,0,0" VerticalAlignment="Top" Width="300"/>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Legendary Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <TextBox Margin="30,10,0,0" Width="150" IsReadOnly="True" Background="#FFE5E5E5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Edit1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit1_Click" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                        </Button>
-                        <Button Name="btn_Cancel1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel1_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                        </Button>
-                        <Button Name="btn_Down1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down1_Click" Margin="65,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Margin="30,5,0,0" Width="150" IsReadOnly="True" Background="#FFE5E5E5" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Edit2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit2_Click" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                        </Button>
-                        <Button Name="btn_Cancel2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel2_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                        </Button>
-                        <Button Name="btn_Up2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up2_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down2_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Margin="30,5,0,0" Width="150" IsReadOnly="True" Background="#FFE5E5E5" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Edit3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit3_Click" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                        </Button>
-                        <Button Name="btn_Cancel3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel3_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                        </Button>
-                        <Button Name="btn_Up3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up3_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down3_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Margin="30,5,0,0" Width="150" IsReadOnly="True" Background="#FFE5E5E5" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Edit4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit4_Click" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                        </Button>
-                        <Button Name="btn_Cancel4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                        </Button>
-                        <Button Name="btn_Up4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Margin="30,5,0,0" Width="150" IsReadOnly="True" Background="#FFE5E5E5" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Edit5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit5_Click" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                        </Button>
-                        <Button Name="btn_Cancel5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                        </Button>
-                        <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up5_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Margin="30,5,0,0" Width="150" IsReadOnly="True" Background="#FFE5E5E5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Edit6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit6_Click" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                        </Button>
-                        <Button Name="btn_Cancel6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                        </Button>
-                        <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up6_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Margin="30,5,0,0" Width="150" IsReadOnly="True" Background="#FFE5E5E5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Edit7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Edit7_Click" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
-                        </Button>
-                        <Button Name="btn_Cancel7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Cancel7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/cancel.png" />
-                        </Button>
-                        <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up7_Click" Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <TextBox Width="240" Height="38" Margin="5,45,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                    <TextBox Width="240" Height="36" Margin="5,7,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                    <TextBox Width="240" Height="36" Margin="5,7,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                    <TextBox Width="240" Height="36" Margin="5,7,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                    <TextBox Width="240" Height="38" Margin="5,7,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                    <TextBox Width="240" Height="36" Margin="5,7,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                    <TextBox Width="240" Height="36" Margin="5,7,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" IsReadOnly="True" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Options" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Options:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="35,5,0,0" />
-                        <TextBox Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
-                    </StackPanel>
-                    <Label Content="New Legendary Action" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Action:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="46,0,0,0" />
-                        <ComboBox Width="200" Padding="0" Margin="10,0,0,0" Height="20" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="20,5,0,0" />
-                        <TextBox Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Update" Width="100" Padding="0" Margin="190,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Accept and Close" Width="100" Padding="0" Margin="125,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ESExit_Click"/>
-                    </StackPanel>
-                </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="430"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="360"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="1" Grid.Row="2" BorderBrush="Black"  BorderThickness="2">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Legendary Actions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
+
             </StackPanel>
-        </StackPanel>
+        </Border>
+        <Grid Grid.Column="3" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="Blue" BorderThickness="2">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Options:" />
+                    <TextBox Width="280" HorizontalAlignment="Left" Height="60" Margin="5,0,0,0"
+                                 TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="2" BorderBrush="Red" BorderThickness="2">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="New Legendary Action" Foreground="Gray"  HorizontalAlignment="Left" FontWeight="Bold"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Action Template (WIP):" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5"/>
+                        <ComboBox />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                        <Label Content="Action Name:" Width="90"/>
+                        <TextBox Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                        <Label Content="Description:" Width="90"/>
+                        <TextBox Width="200" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,2,0,2">
+                        <Button Content="Update" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Button Grid.Row="5" Content="Accept and Close" Width="100" HorizontalAlignment="Right" Height="20" Margin="7"/>
+        </Grid>
     </Grid>
 </Window>
