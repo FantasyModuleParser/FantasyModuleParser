@@ -5,28 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
-             mc:Ignorable="d" d:DesignWidth="620" Height="585">
+             xmlns:Model="clr-namespace:FantasyModuleParser.NPC.Models.Action"
+             mc:Ignorable="d" d:DesignWidth="610" Height="585">
     <UserControl.Resources>
+        <!-- This DataTemplate is used by the sub panels Reactions, Legendary Actions & Lair Actions -->
+        <!-- The purpose is to provide uniformity and a common way to update the same visual presentation
+                inside the ItemControl -->
         <DataTemplate x:Key="ActionSubPanelDT">
-            <Border BorderThickness="1" BorderBrush="Black" Margin="25,10,0,0">
+            <Border BorderThickness="1" BorderBrush="Black" Margin="5,2,0,0">
                 <TextBlock Text="{Binding ActionName}" 
-                           Width="120" Padding="0" 
-                           HorizontalAlignment="Left" Margin="5">
+                           Width="150" Padding="2" 
+                           HorizontalAlignment="Left" >
                 </TextBlock>
             </Border>
         </DataTemplate>
+        <!-- This static resource array is used to display data as it would be presented to the user.  
+                Otherwise, I need to start the program, open an NPC, navigate to the tab and see the results. -->
+        <!-- To utilize this snippet, change this line:  
+                    <<<<<< ItemsSource="{Binding Path=LairActions}" 
+                to this:
+                    >>>>>> ItemsSource="{StaticResource LairActionList}" 
+        -->
+        <x:Array x:Key="LairActionList" Type="Model:ActionModelBase">
+            <Model:ActionModelBase ActionID="0" ActionName="Action 1" ActionDescription="Action 1 Desc"/>
+            <Model:ActionModelBase ActionID="1" ActionName="Action 2" ActionDescription="Action 2 Desc"/>
+            <Model:ActionModelBase ActionID="2" ActionName="Action 3" ActionDescription="Action 1 Desc"/>
+            <Model:ActionModelBase ActionID="3" ActionName="Some Insanely Long Action Name" ActionDescription="Action 2 Desc"/>
+            <Model:ActionModelBase ActionID="4" ActionName="Action 5" ActionDescription="Action 1 Desc"/>
+            <Model:ActionModelBase ActionID="5" ActionName="Action 6" ActionDescription="Action 2 Desc"/>
+            <Model:ActionModelBase ActionID="6" ActionName="Action 7" ActionDescription="Action 2 Desc"/>
+        </x:Array>
     </UserControl.Resources>
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="290" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="5,315,0,0" VerticalAlignment="Top" Width="195"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="205,315,0,0" VerticalAlignment="Top" Width="190"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="402,315,0,0" VerticalAlignment="Top" Width="190"/>
+
         <StackPanel Orientation="Vertical">
-            
-            <StackPanel Orientation="Horizontal" Width="590" HorizontalAlignment="Left">
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="295">
                 <ScrollViewer VerticalScrollBarVisibility="Visible"  Height="255" Width="590" Margin="10,10,0,0">
-                <StackPanel Orientation="Vertical">
-                    
+                    <StackPanel Orientation="Vertical">
                         <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -34,77 +51,80 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                    
-                </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
+                <Button Content="Add/Edit Actions" Click="Actions_Click" Width="125" HorizontalAlignment="Right" Margin="0,0,5,0">
+                    <Button.ToolTip>
+                        <TextBlock><Run Text="Click here to see a full list of actions, edit them, and add new ones."/></TextBlock>
+                    </Button.ToolTip>
+                </Button>
             </StackPanel>
-            
-            <Button Content="Add/Edit Actions" Click="Actions_Click" Padding="0" Margin="465,0,0,0" Width="125" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <Button.ToolTip>
-                    <TextBlock>
-                                    Click here to see a full list of actions, edit them, and add new ones.
-                    </TextBlock>
-                </Button.ToolTip>
-            </Button>
-            <Grid>
-                
+            <StackPanel Height="20">
+
+            </StackPanel>
+
+            <Grid Height="180">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="195"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="195"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="195"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Reactions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="130">
+                            <StackPanel Orientation="Horizontal">
+                                <ItemsControl ItemsSource="{Binding Path=Reactions}" 
+                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Button Content="Reactions" Click="Reactions_Click" Padding="5,0,5,2" HorizontalAlignment="Right" Margin="0,0,2,0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Click here to see a add / edit / remove reactions."/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Legendary Actions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="130">
+                            <StackPanel Orientation="Horizontal">
+                                <ItemsControl ItemsSource="{Binding Path=LegendaryActions}" 
+                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Button Content="Legendary Actions" Click="LegAction_Click" Padding="5,0,5,2" HorizontalAlignment="Right" Margin="0,0,2,0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Click here to see a add / edit / Legendary Actions."/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Lair Actions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="130">
+                            <StackPanel Orientation="Horizontal">
+                                <ItemsControl ItemsSource="{Binding Path=LairActions}" 
+                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Button Content="Lair Actions" Click="LairActions_Click" Padding="5,0,5,2" HorizontalAlignment="Right" Margin="0,0,2,0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Click here to see a add / edit / Lair Actions."/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
+                </Border>
             </Grid>
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Reactions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    </StackPanel>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="125">
-                        <StackPanel Orientation="Horizontal">
-                            <ItemsControl ItemsSource="{Binding Path=Reactions}" 
-                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Button Content="Reactions" Click="LegAction_Click" Margin="103,5,0,0" Width="90" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                            Click here to see a full list of lair actions, edit them, and add new ones.
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Legendary Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    </StackPanel>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="125">
-                        <StackPanel Orientation="Horizontal">
-                            <ItemsControl ItemsSource="{Binding Path=LegendaryActions}"
-                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Button Content="Legendary Actions" Click="LegAction_Click" Margin="83,5,0,0" Width="110" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                            Click here to see a full list of lair actions, edit them, and add new ones.
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Lair Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    </StackPanel>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="125">
-                        <StackPanel Orientation="Horizontal">
-                            <ItemsControl ItemsSource="{Binding Path=LairActions}"
-                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Button Content="Lair Actions" Click="LairActions_Click" Margin="103,5,0,0" Width="90" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                            Click here to see a full list of lair actions, edit them, and add new ones.
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
