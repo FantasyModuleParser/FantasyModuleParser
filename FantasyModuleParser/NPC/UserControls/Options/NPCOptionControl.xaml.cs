@@ -36,6 +36,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			strComponentText.Text = "requiring no material components";
 		}
 		#endregion
+
+		#region Variables
+		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+		string installFolder = "FMP/NPC";
+		#endregion
 		public NPCOptionControl()
 		{
 			InitializeComponent();
@@ -334,64 +339,17 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 		#endregion
 		
-		private void ResVulnImm_Click(object sender, RoutedEventArgs e)
-		{
-			stackDmgVulnerability.Visibility = BoolToVis(DamageVulnerability.IsSelected);
-			stackDmgImmunity.Visibility = BoolToVis(DamageImmunity.IsSelected);
-			stackDmgResistance.Visibility = BoolToVis(DamageResistance.IsSelected);
-			stackConImmunity.Visibility = BoolToVis(ConditionImmunity.IsSelected);
-			stackSpecialResistance.Visibility = BoolToVis(SpecialWeaponResistance.IsSelected);
-			stackSpecialImmunity.Visibility = BoolToVis(SpecialWeaponImmunity.IsSelected);
-		}
+		
 
-		private Visibility BoolToVis(bool isSelected)
+		private void SaveNPCToFile(object sender, RoutedEventArgs e)
 		{
-			return isSelected ? Visibility.Visible : Visibility.Hidden;
-		}
-
-		private void CreateNPCFile(object sender, RoutedEventArgs e)
-		{
-
+		
 			NPCModel npcModel = ((App)Application.Current).NpcModel;
-			Console.WriteLine("NPC Name by default :: " + npcModel.NPCName);
+			string savePath = Path.Combine(installPath, installFolder, npcModel.NPCName + ".json");
 
 			if (npcModel == null)
 				npcModel = new NPCModel
 				{
-					//DamageResistance = listDamageResistance.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//DamageVulnerability = listDamageVulnerability.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//DamageImmunity = listDamageImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//ConditionImmunity = listConditionImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//SpecialWeaponResistance = listWeaponResistances.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					//SpecialWeaponImmunity = listWeaponImmunity.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					ConditionOther = chkOther.IsChecked.Value,
-					ConditionOtherText = strOther.Text,
-					Acrobatics = int.Parse(strAcrobatics.Text),
-					AnimalHandling = int.Parse(strAnimalHandling.Text),
-					Arcana = int.Parse(strArcana.Text),
-					Athletics = int.Parse(strAthletics.Text),
-					Deception = int.Parse(strDeception.Text),
-					History = int.Parse(strHistory.Text),
-					Insight = int.Parse(strInsight.Text),
-					Intimidation = int.Parse(strIntimidation.Text),
-					Investigation = int.Parse(strInvestigation.Text),
-					Medicine = int.Parse(strMedicine.Text),
-					Nature = int.Parse(strNature.Text),
-					Perception = int.Parse(strPerception.Text),
-					Performance = int.Parse(strPerformance.Text),
-					Persuasion = int.Parse(strPersuasion.Text),
-					Religion = int.Parse(strReligion.Text),
-					SleightOfHand = int.Parse(strSleightofHand.Text),
-					Stealth = int.Parse(strStealth.Text),
-					Survival = int.Parse(strSurvival.Text),
-					StandardLanguages = listStandard.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					ExoticLanguages = listExotic.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					MonstrousLanguages = listMonstrous.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					UserLanguages = listUser.SelectedItems.Cast<ListBoxItem>().Where(a => a.IsSelected).Select(a => (string)a.Content).ToList(),
-					LanguageOptions = strLanguageOptions.Text,
-					LanguageOptionsText = strLanguageOptionsText.Text,
-					Telepathy = chkTelepathy.IsChecked.Value,
-					TelepathyRange = strTelepathyRange.Text,
 					Traits1 = strTraits1.Text,
 					TraitsDesc1 = strTraitDesc1.Text,
 					Traits2 = strTraits2.Text,
@@ -458,7 +416,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				};
 
 			((App)Application.Current).NpcModel = npcModel;
-			
+			npcController.Save(savePath, npcModel);
+
 		}
 
 		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -483,6 +442,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 				//Refresh all the data on the UI
 				DataContext = npcModel;
+
+				// TODO:  Get the active tab the user is on
+				// As the assumption here is the User is on the Base Stats tab while loading
+				// a NPC File
+				BaseStatsUserControl.Refresh();
+				SkillsUserControl.Refresh();
 			}
 		}
 

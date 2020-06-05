@@ -225,6 +225,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\SkillsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\UserControls\Options\NPCOptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -299,6 +307,7 @@
     </Compile>
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\ControllerBase.cs" />
+    <Compile Include="NPC\Controllers\LanguageController.cs" />
     <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
     <Compile Include="NPC\Models\Action\DamageTypeModel.cs" />
     <Compile Include="NPC\Models\Action\Enums\ConditionType.cs" />
@@ -309,6 +318,7 @@
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
+    <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
     </Compile>
@@ -323,6 +333,12 @@
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml.cs">
       <DependentUpon>BaseStatsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml.cs">
+      <DependentUpon>ResistancesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\SkillsUC.xaml.cs">
+      <DependentUpon>SkillsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
