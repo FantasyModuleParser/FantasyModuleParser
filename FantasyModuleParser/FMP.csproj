@@ -225,6 +225,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,6 +341,9 @@
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml.cs">
       <DependentUpon>BaseStatsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml.cs">
+      <DependentUpon>InnateCastingUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml.cs">
       <DependentUpon>ResistancesUC.xaml</DependentUpon>

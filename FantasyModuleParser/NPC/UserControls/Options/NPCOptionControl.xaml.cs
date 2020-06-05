@@ -24,12 +24,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		public NPCController npcController { get; set; }
 		#endregion
 
-		#region Methods
-		private void InnateSpellcasting_Click(object sender, RoutedEventArgs e)
-		{
-			strComponentText.Text = "requiring no material components";
-		}
-		#endregion
+		
 
 		#region Variables
 		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -136,17 +131,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			if (npcModel == null)
 				npcModel = new NPCModel
 				{
-					InnateSpellcastingSection = chkInnateSpellcastingSection.IsChecked.Value,
-					Psionics = chkPsionics.IsChecked.Value,
-					InnateSpellcastingAbility = strInnateSpellcastingAbility.Text,
-					InnateSpellSaveDC = int.Parse(intInnateSpellSaveDC.Text),
-					InnateSpellHitBonus = int.Parse(intInnateSpellHitBonus.Text),
-					InnateAtWill = strInnatAtWill.Text,
-					FivePerDay = strFivePerDay.Text,
-					FourPerDay = strFourPerDay.Text,
-					ThreePerDay = strThreePerDay.Text,
-					TwoPerDay = strTwoPerDay.Text,
-					OnePerDay = strOnePerDay.Text,
 					SpellcastingCasterLevel = strCasterLevel.Text,
 					SCSpellcastingAbility = strSCSpellcastingAbility.Text,
 					SpellcastingSpellSaveDC = int.Parse(intSpellcastingSpellSaveDC.Text),
