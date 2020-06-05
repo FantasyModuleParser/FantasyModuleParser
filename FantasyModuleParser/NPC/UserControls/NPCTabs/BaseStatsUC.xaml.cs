@@ -35,19 +35,8 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         {
             InitializeComponent();
             npcController = new NPCController();
-			npcController.LoadNpcModelAction += NpcController_LoadNpcModelAction;
 			DataContext = npcController.GetNPCModel();
         }
-
-		private void NpcController_LoadNpcModelAction(object sender, EventArgs e)
-		{
-			DataContext = npcController.GetNPCModel();
-			npcController.LoadNpcModelAction += NpcController_LoadNpcModelAction;
-        }
-
-		private void NpcController_LoadNpcModelAction(object sender, EventArgs e)
-		{
-		}
 
 		public void Refresh()
 		{
