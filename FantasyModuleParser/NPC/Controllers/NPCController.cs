@@ -27,6 +27,16 @@ namespace FantasyModuleParser.NPC.Controllers
 		}
 
 		public event EventHandler LoadNpcModelAction;
+
+		protected virtual void OnLoadNpcModelEvent(EventArgs e)
+		{
+			EventHandler handler = LoadNpcModelAction;
+			if(handler != null)
+			{
+				Console.WriteLine("Load NPC Action executed");
+				handler(this, e);
+			}
+		}
 		public void Load(string path)
 		{
 			string jsonData = File.ReadAllText(path);
@@ -37,7 +47,7 @@ namespace FantasyModuleParser.NPC.Controllers
 			if (application is App app)
 				app.NpcModel = npcModel;
 
-			if (LoadNpcModelAction != null) LoadNpcModelAction(this, EventArgs.Empty);
+			OnLoadNpcModelEvent(EventArgs.Empty);
 		}
 
 		public NPCModel InitializeNPCModel()

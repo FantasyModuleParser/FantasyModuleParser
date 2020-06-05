@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using System;
 using System.Collections.Generic;
@@ -75,10 +76,10 @@ namespace FantasyModuleParser.NPC
         public int SleightOfHand { get; set; }
         public int Stealth { get; set; }
         public int Survival { get; set; }
-        public List<string> StandardLanguages { get; set; }
-        public List<string> ExoticLanguages { get; set; }
-        public List<string> MonstrousLanguages { get; set; }
-        public List<string> UserLanguages { get; set; }
+        public ObservableCollection<LanguageModel> StandardLanguages { get; set; }
+        public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
+        public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
+        public ObservableCollection<LanguageModel> UserLanguages { get; set; }
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }

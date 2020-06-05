@@ -307,6 +307,7 @@
     </Compile>
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\ControllerBase.cs" />
+    <Compile Include="NPC\Controllers\LanguageController.cs" />
     <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
     <Compile Include="NPC\Models\Action\DamageTypeModel.cs" />
     <Compile Include="NPC\Models\Action\Enums\ConditionType.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
+    <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
     </Compile>

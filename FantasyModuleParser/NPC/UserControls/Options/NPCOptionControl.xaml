@@ -74,7 +74,7 @@
         <TabControl HorizontalAlignment="Left" Height="605" Margin="0,22,0,0" VerticalAlignment="Top" Width="617">
             <TabItem Header="Base Stats">
                 <Grid Background="#FFE5E5E5">
-                    <BaseStatsUserControl:BaseStatsUC></BaseStatsUserControl:BaseStatsUC>
+                    <BaseStatsUserControl:BaseStatsUC x:Name="BaseStatsUserControl"></BaseStatsUserControl:BaseStatsUC>
                 </Grid>
             </TabItem>
             <TabItem Header="Resistances">
@@ -84,7 +84,7 @@
             </TabItem>
             <TabItem Header="Skills">
                 <Grid Background="#FFE5E5E5">
-                    <SkillsUserControl:SkillsUC></SkillsUserControl:SkillsUC>
+                    <SkillsUserControl:SkillsUC x:Name="SkillsUserControl"></SkillsUserControl:SkillsUC>
                 </Grid>
             </TabItem>
             <TabItem Header="Traits">
