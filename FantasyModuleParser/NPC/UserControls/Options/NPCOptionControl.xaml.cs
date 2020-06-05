@@ -24,8 +24,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		public NPCController npcController { get; set; }
 		#endregion
 
-		
-
 		#region Variables
 		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 		string installFolder = "FMP/NPC";
@@ -131,33 +129,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			if (npcModel == null)
 				npcModel = new NPCModel
 				{
-					SpellcastingCasterLevel = strCasterLevel.Text,
-					SCSpellcastingAbility = strSCSpellcastingAbility.Text,
-					SpellcastingSpellSaveDC = int.Parse(intSpellcastingSpellSaveDC.Text),
-					SpellcastingSpellHitBonus = int.Parse(intSpellcastingSpellHitBonus.Text),
-					SpellcastingSpellClass = strSpellcastingSpellClass.Text,
-					FlavorText = strFlavorText.Text,
-					CantripSpells = strCantripSpells.Text,
-					CantripSpellList = strCantripSpellList.Text,
-					FirstLevelSpells = strFirstLevelSpells.Text,
-					FirstLevelSpellList = strFirstLevelSpellList.Text,
-					SecondLevelSpells = strSecondLevelSpells.Text,
-					SecondLevelSpellList = strSeventhLevelSpellList.Text,
-					ThirdLevelSpells = strThirdLevelSpells.Text,
-					ThirdLevelSpellList = strThirdLevelSpellList.Text,
-					FourthLevelSpells = strFourthLevelSpells.Text,
-					FourthLevelSpellList = strFourthLevelSpellList.Text,
-					FifthLevelSpells = strfifthLevelSpells.Text,
-					FifthLevelSpellList = strFifthLevelSpellList.Text,
-					SixthLevelSpells = strSixthLevelSpells.Text,
-					SixthLevelSpellList = strSixthLevelSpellList.Text,
-					SeventhLevelSpells = strSeventhLevelSpells.Text,
-					SeventhLevelSpellList = strSeventhLevelSpellList.Text,
-					EighthLevelSpells = strEigthLevelSpells.Text,
-					EighthLevelSpellList = strEigthLevelSpellList.Text,
-					NinthLevelSpells = strNinthLevelSpells.Text,
-					NinthLevelSpellList = strNinthLevelSpellList.Text,
-					MarkedSpells = strMarkedSpells.Text,
 					Description = strDescription.Text,
 					NonID = strNonID.Text,
 					NPCImage = strNPCImage.Text,
@@ -166,12 +137,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			((App)Application.Current).NpcModel = npcModel;
 			npcController.Save(savePath, npcModel);
 
-		}
-
-		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-		{
-			Regex regex = new Regex(@"[^0-9-]+"); ;
-			e.Handled = regex.IsMatch(e.Text);
 		}
 
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)

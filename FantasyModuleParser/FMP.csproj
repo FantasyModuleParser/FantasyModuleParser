@@ -237,6 +237,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\NPCTabs\SpellcastingUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\UserControls\NPCTabs\TraitsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -350,6 +354,9 @@
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\SkillsUC.xaml.cs">
       <DependentUpon>SkillsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\SpellcastingUC.xaml.cs">
+      <DependentUpon>SpellcastingUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\TraitsUC.xaml.cs">
       <DependentUpon>TraitsUC.xaml</DependentUpon>
