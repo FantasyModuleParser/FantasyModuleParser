@@ -4,13 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC"
-        xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.LairActions"
+        xmlns:model="clr-namespace:FantasyModuleParser.NPC.Models.Action"
+        xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Legendary Actions" Height="410" Width="760" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
+        Title="Add or Edit NPC Legendary Actions" Height="410" Width="760" Icon="/Resources/npce_logo.ico">
+    <Window.Resources>
+        <!-- To use this static array, swap the <ItemControl line with this:
+            
+                        <ItemsControl Name="NpcActionList" ItemsSource="{StaticResource StaticLegActionList}">
+        -->
+        <x:Array x:Key="StaticLegActionList" Type="model:LegendaryActionModel">
+            <model:LegendaryActionModel ActionID="0" ActionName="Options" ActionDescription="This is the options description"/>
+            <model:LegendaryActionModel ActionID="1" ActionName="Slam" ActionDescription="Makes a slam attack"/>
+            <model:LegendaryActionModel ActionID="2" ActionName="Teleport" ActionDescription="(Costs 2) Teleports upto 120 feet away it can see"/>
+        </x:Array>
+    </Window.Resources>
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="430"/>
+            <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
@@ -19,28 +31,42 @@
             <RowDefinition Height="360"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="1" Grid.Row="2" BorderBrush="Black"  BorderThickness="2">
+        <Border Grid.Column="1" Grid.Row="2" BorderBrush="Black"  BorderThickness="1">
             <StackPanel Orientation="Vertical">
                 <Label Content="Legendary Actions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
-
+                <ScrollViewer Height="300">
+                    <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NpcLegendaryActions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <overviewUserControl:OverviewControl RemoveAction="OverviewControl_RemoveAction"
+                                                                     EditAction="OverviewControl_EditAction"
+                                                                     RaiseActionInList="OverviewControl_RaiseActionInList"
+                                                                     LowerActionInList="OverviewControl_LowerActionInList"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </StackPanel>
         </Border>
         <Grid Grid.Column="3" Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="115"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <Border Grid.Row="0" BorderBrush="Blue" BorderThickness="2">
+            <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Options:" />
-                    <TextBox Width="280" HorizontalAlignment="Left" Height="60" Margin="5,0,0,0"
+                    <TextBox Name="OptionDescriptionTB" Width="280" HorizontalAlignment="Left" Height="60" Margin="5,0,0,0"
                                  TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,2,0,2">
+                        <Button Content="Update" Margin="0,0,5,0" Click="UpdateOption_Click"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="2" BorderBrush="Red" BorderThickness="2">
+            <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical">
                     <Label Content="New Legendary Action" Foreground="Gray"  HorizontalAlignment="Left" FontWeight="Bold"/>
                     <StackPanel Orientation="Horizontal">
@@ -49,14 +75,14 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
                         <Label Content="Action Name:" Width="90"/>
-                        <TextBox Width="200"/>
+                        <TextBox Name="ActionNameTB" Width="200"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
                         <Label Content="Description:" Width="90"/>
-                        <TextBox Width="200" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
+                        <TextBox Name="ActionDescTB" Width="200" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,2,0,2">
-                        <Button Content="Update" Margin="0,0,5,0"/>
+                        <Button Content="Update" Margin="0,0,5,0" Click="UpdateAction_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
