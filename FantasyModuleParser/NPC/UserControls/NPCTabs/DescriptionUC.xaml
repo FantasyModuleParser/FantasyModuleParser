@@ -12,7 +12,7 @@
         <StackPanel Orientation="Vertical">
             <RichTextBox Name="strDescription" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
                 <FlowDocument>
-                    <Paragraph >
+                    <Paragraph>
                         <Run Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </Paragraph>
                 </FlowDocument>
