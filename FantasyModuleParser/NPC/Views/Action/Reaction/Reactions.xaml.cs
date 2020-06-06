@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FantasyModuleParser;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.UserControls.Action;
 
 namespace FantasyModuleParser.NPC
 {
@@ -20,77 +24,53 @@ namespace FantasyModuleParser.NPC
     /// </summary>
     public partial class Reactions : Window
     {
+        private ActionController actionController;
+        private NPCController npcController;
+        public ObservableCollection<ActionModelBase> NpcReactions{ get; set; }
         public Reactions()
         {
             InitializeComponent();
+            actionController = new ActionController();
+            npcController = new NPCController();
+
+            NpcReactions = npcController.GetNPCModel().Reactions;
+
+            DataContext = this;
         }
-        #region NPCE_Up
-        private void Up2_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Up3_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Up4_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-        #region NPCE_Down
-        private void Down1_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Down2_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Down3_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-        #region NPCE_Edit
-        private void Edit1_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Edit2_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Edit3_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Edit4_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-        #region NPCE_Cancel
-        private void Cancel1_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Cancel2_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Cancel3_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private void Cancel4_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void UpdateReaction_Click(object sender, RoutedEventArgs e)
+        {
+            ActionModelBase lam = new ActionModelBase();
+            lam.ActionName = ReactionNameTB.Text;
+            lam.ActionDescription = ReactionDescTB.Text;
+            actionController.UpdateReaction(CommonMethod.CloneJson(lam));
+        }
+
+        private void OverviewControl_RemoveAction(object sender, EventArgs e)
+        {
+            actionController.RemoveReaction((sender as OverviewControl).DataContext as ActionModelBase);
+        }
+
+        private void OverviewControl_EditAction(object sender, EventArgs e)
+        {
+            ActionModelBase temp = (sender as OverviewControl).DataContext as ActionModelBase;
+            ReactionNameTB.Text = temp.ActionName;
+            ReactionDescTB.Text = temp.ActionDescription;
+        }
+
+        private void OverviewControl_RaiseActionInList(object sender, EventArgs e)
+        {
+            actionController.RaiseReactionInList((sender as OverviewControl).DataContext as ActionModelBase);
+        }
+
+        private void OverviewControl_LowerActionInList(object sender, EventArgs e)
+        {
+            actionController.LowerReactionInList((sender as OverviewControl).DataContext as ActionModelBase);
         }
     }
 }

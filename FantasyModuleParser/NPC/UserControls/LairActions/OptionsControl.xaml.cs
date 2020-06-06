@@ -24,12 +24,10 @@ namespace FantasyModuleParser.NPC.UserControls.LairActions
     {
         public LairAction LairAction { get; set; } = new LairAction();
 
-        public const string ActionName = "Options";
-
         public OptionsControl()
         {
             InitializeComponent();
-            LairAction.ActionName = ActionName;
+            LairAction.ActionName = ActionModelBase.OptionsNameID;
             DataContext = LairAction;
         }
 

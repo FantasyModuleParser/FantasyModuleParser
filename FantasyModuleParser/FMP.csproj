@@ -217,10 +217,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\UserControls\LairActions\OverviewControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -339,9 +335,6 @@
     </Compile>
     <Compile Include="NPC\UserControls\LairActions\OptionsControl.xaml.cs">
       <DependentUpon>OptionsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\LairActions\OverviewControl.xaml.cs">
-      <DependentUpon>OverviewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml.cs">
       <DependentUpon>BaseStatsUC.xaml</DependentUpon>
@@ -608,10 +601,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NPC\UserControls\Action\EditAction\" />
-    <Folder Include="NPC\UserControls\Action\LairAction\" />
-    <Folder Include="NPC\UserControls\Action\LegendaryAction\" />
-    <Folder Include="NPC\UserControls\Action\Reaction\" />
+    <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

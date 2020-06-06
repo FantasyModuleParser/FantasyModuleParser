@@ -15,11 +15,11 @@
     <Grid>
         <Border Height="215" Width="580" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1" />
         <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" Height="220" Width="280" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Label Content="NPC Information" Margin="5,5,0,0" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <StackPanel Orientation="Horizontal" Width="280" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Label Content="NPC Name:" Height="20" Width="65" Margin="15,0,0,0" Padding="0" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
-                    <TextBox Name="NPC_name" Height="20" Width="200" Margin="2,0,0,0" Padding="0" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="285" Height="220">
+                <Label Content="NPC Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Label Content="NPC Name:" VerticalContentAlignment="Center" Width="65" Margin="0,0,0,0" Height="20" Padding="0"/>
+                    <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Height="20" Width="200" Margin="5,0,0,0" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
                                 Enter the NPCs Name.
@@ -30,9 +30,7 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Right">
-                    <!-- <Label Content="" Height="" Width="" Margin="" Padding="" Foreground="" FontWeight="" HorizontalContentAlignment="" VerticalContentAlignment="" /> -->
-                    <Label Content="Size:" Height="20" Width="26" Margin="52,0,4,0" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-                    <!-- <ComboBox Name="" Height="" Width="" Margin="" Padding="" Text="" HorizontalAlignment="" VerticalAlignment=""> -->
+                  <Label Content="Size:" Height="20" Width="26" Margin="52,0,4,0" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                     <ComboBox Name="strSize" Height="20" Width="200" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
                         <ComboBoxItem>Tiny</ComboBoxItem>
                         <ComboBoxItem>Small</ComboBoxItem>
@@ -47,11 +45,7 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
                 </StackPanel>
-                <!-- <StackPanel Orientation="" Height="" Width="" Margin="" HorizontalAlignment="" VerticalAlignment=""> -->
-                <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Left">
-                    <!-- <Label Content="" Height="" Width="" Margin="" Padding="" Foreground="" FontWeight="" HorizontalContentAlignment="" VerticalContentAlignment="" /> -->
-                    <Label Content="Type:" Height="20" Margin="49,0,1,0" Padding="0" VerticalContentAlignment="Center"/>
-                    <!-- <ComboBox Name="" Height="" Width="" Margin="" Padding="" Text="" HorizontalAlignment="" VerticalAlignment=""> -->
+                <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Left"><Label Content="Type:" Height="20" Margin="49,0,1,0" Padding="0" VerticalContentAlignment="Center"/>
                     <ComboBox Name="strType" Height="20" Width="200" Margin="5,0,0,0" Padding="0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <ComboBoxItem>abberation</ComboBoxItem>
                         <ComboBoxItem>beast</ComboBoxItem>
@@ -85,7 +79,6 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
                     <Label Content="Tag:" VerticalContentAlignment="Center" Margin="55,0,6,0" Padding="0"/>
-                    <!-- <ComboBox Name="" Height="" Width="" Margin="" Padding="" Text="" HorizontalAlignment="" VerticalAlignment=""> -->
                     <ComboBox Name="strTag" Height="20" Width="100" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" >
                         <ComboBoxItem>aarakocra</ComboBoxItem>
                         <ComboBoxItem>any race</ComboBoxItem>
@@ -137,7 +130,6 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
                     <Label Content="Alignment:" Margin="18,0,7,0" Padding="0" VerticalAlignment="Center"/>
-                    <!-- <ComboBox Name="" Height="" Width="" Margin="" Padding="" Text="" HorizontalAlignment="" VerticalAlignment=""> -->
                     <ComboBox Name="strAlignment" Height="20" Width="100" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
                         <ComboBoxItem>unaligned</ComboBoxItem>
                         <ComboBoxItem>lawful good</ComboBoxItem>
@@ -205,7 +197,6 @@
             </StackPanel>
             <StackPanel Orientation="Vertical" VerticalAlignment="Top" Height="220">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                    <!-- <Label Content="" Height="" Width="" Margin="" Padding="" Foreground="" FontWeight="" HorizontalAlignment="" VerticalAlignment="" /> -->
                     <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
                     <ComboBox Name="strGender" Text="{Binding Path=NPCGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="10,30,0,0" VerticalAlignment="Center" Width="100">
                         <ComboBox.ToolTip>

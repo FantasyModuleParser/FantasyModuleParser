@@ -222,5 +222,55 @@ namespace FantasyModuleParser.NPC.Controllers
         }
         #endregion
 
+        public void RemoveReaction(ActionModelBase action)
+        {
+            GetNPCModel().Reactions.Remove(action);
+        }
+
+        public void RaiseReactionInList(ActionModelBase action)
+        {
+            ObservableCollection<ActionModelBase> actionList = GetNPCModel().Reactions;
+
+            int actionIndex = actionList.IndexOf(action);
+
+            if (actionIndex > 0)
+            {
+                actionList.Move(actionIndex, actionIndex - 1);
+            }
+        }
+
+        public void LowerReactionInList(ActionModelBase action)
+        {
+            ObservableCollection<ActionModelBase> actionList = GetNPCModel().Reactions;
+
+            int actionIndex = actionList.IndexOf(action);
+
+            //If the action is at the bottom of the list, do nothing
+            if ((actionIndex + 1) < actionList.Count)
+            {
+                actionList.Move(actionIndex, actionIndex + 1);
+            }
+        }
+
+        public void UpdateReaction(ActionModelBase action)
+        {
+            NPCModel npcModel = GetNPCModel();
+
+            ActionModelBase cloneAction = CommonMethod.CloneJson(action);
+            ObservableCollection<ActionModelBase> actionList = npcModel.Reactions;
+            var obj = actionList.FirstOrDefault(x => x.ActionName == cloneAction.ActionName);
+            if (obj != null)
+            {
+                cloneAction.ActionID = obj.ActionID;
+                actionList.Remove(obj);
+                actionList.Add(cloneAction);
+            }
+            else
+            {
+                cloneAction.ActionID = actionList.Count;
+                actionList.Add(cloneAction);
+            }
+        }
+
     }
 }

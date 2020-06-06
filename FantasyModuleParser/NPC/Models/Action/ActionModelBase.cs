@@ -9,6 +9,9 @@ namespace FantasyModuleParser.NPC.Models.Action
 {
     public class ActionModelBase : INotifyPropertyChanged
     {
+
+        public const string OptionsNameID = "Options";
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void RaisePropertyChanged(string propertyName = "")
