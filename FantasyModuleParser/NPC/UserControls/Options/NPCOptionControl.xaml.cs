@@ -129,8 +129,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			if (npcModel == null)
 				npcModel = new NPCModel
 				{
-					Description = strDescription.Text,
-					NonID = strNonID.Text,
 					NPCImage = strNPCImage.Text,
 				};
 

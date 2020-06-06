@@ -13,6 +13,7 @@
              xmlns:TraitsUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:InnateCastingUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:SpellcastingUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
+             xmlns:DescriptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="620">
     <Grid>
@@ -106,142 +107,13 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Actions">
-                <ActionUserControl:ActionOverviewUC></ActionUserControl:ActionOverviewUC>
+                <Grid Background="#FFE5E5E5">
+                    <ActionUserControl:ActionOverviewUC></ActionUserControl:ActionOverviewUC>
+                </Grid>
             </TabItem>
             <TabItem Header="Description">
                 <Grid Background="#FFE5E5E5">
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="270,465,0,0" VerticalAlignment="Top" Width="160"/>
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="440,465,0,0" VerticalAlignment="Top" Width="165"/>
-                    <StackPanel Orientation="Vertical">
-                        <TextBox Name="strDescription" Text="{Binding Description}" Width="590" Height="400" Margin="10,10,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
-                            <TextBox.ToolTip>
-                                <TextBlock>
-                                    This box contains the formatted descriptive text that will be added to your NPC.
-                                </TextBlock>
-                            </TextBox.ToolTip>
-                        </TextBox>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/Bold.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Make the selected text bold.
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/italic.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Make the selected text italicized.
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/underline.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Make the selected text underlined.
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/undo.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Undo action
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/redo.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Redo action
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Content="Clear Text" Padding="0" Margin="50,5,0,0" Height="20" Width="70">
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Clear all text from the window above.
-                                        <LineBreak />
-                                        <Italic>This is not recoverable; be sure you want to do this!</Italic>
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Content="Validate XML" Padding="0" Margin="130,5,0,0" Height="20" Width="70">
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        This will display the above text in the format that Fantasy Grounds will see.
-                                        <LineBreak />
-                                        <Italic>You can use this to verify your descriptive text will display correctly with Fantasy Grounds.</Italic>
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/Header.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Format the selected text as a header.
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/Text Color.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Format the selected text as body text.
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/Speech Bubble With Dots.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Format the selected paragraphs as 'Chat Frame Text'. This will indent the paragraph(s) in NPC Engineer as a visual cue that they have been modified.
-                                        <LineBreak />
-                                        <Italic>Note that if two or more paragraphs are selected, Fantasy Grounds will treat it as a continuous single paragraph.</Italic>
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Image Source="/Resources/Bulleted List.png" />
-                                <Button.ToolTip>
-                                    <TextBlock>
-                                        Format the selected paragraphs as a bulleted list.
-                                    </TextBlock>
-                                </Button.ToolTip>
-                            </Button>
-                            <Button Content="Paste Text" Padding="0" Margin="221,5,0,0" Height="20" Width="70" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                            <TextBox Name="strNonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBox.ToolTip>
-                                    <TextBlock>
-                                        (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.
-                                        <LineBreak />
-                                        If this is left blank, the NPC's name will always show.
-                                    </TextBlock>
-                                </TextBox.ToolTip>
-                            </TextBox>
-                            <StackPanel Orientation="Vertical">
-                                <Label FontWeight="Bold" Foreground="Gray" Content="Elements" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                <CheckBox Content="Add Descriptive Text" IsChecked="True" Margin="40,5,0,0"/>
-                                <CheckBox Content="Add Title" IsChecked="True" Margin="40,0,0,0" />
-                                <CheckBox Content="Include Spell List" Margin="40,0,0,0" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <Label FontWeight="Bold" Foreground="Gray" Content="Paste Edits" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                <CheckBox Content="Apply Common Fixes" IsChecked="True" Margin="40,5,0,0"/>
-                                <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" />
-                                <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" />
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
+                    <DescriptionUserControl:DescriptionUC></DescriptionUserControl:DescriptionUC>
                 </Grid>
             </TabItem>
             <TabItem Header="Image">
