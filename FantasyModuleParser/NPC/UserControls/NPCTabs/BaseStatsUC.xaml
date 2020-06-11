@@ -30,7 +30,7 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Right">
-                  <Label Content="Size:" Height="20" Width="26" Margin="52,0,4,0" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                  <Label Content="Size:" Height="20" Width="26" Margin="50,0,4,0" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
                     <ComboBox Name="strSize" Height="20" Width="200" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
                         <ComboBoxItem>Tiny</ComboBoxItem>
                         <ComboBoxItem>Small</ComboBoxItem>
@@ -40,7 +40,7 @@
                         <ComboBoxItem>Gargantuan</ComboBoxItem>
                         <ComboBox.ToolTip>
                             <TextBlock>
-                                            Select from the standard size categories.
+                                Select from the standard size categories.
                             </TextBlock>
                         </ComboBox.ToolTip>
                     </ComboBox>
@@ -79,46 +79,46 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
                     <Label Content="Tag:" VerticalContentAlignment="Center" Margin="55,0,6,0" Padding="0"/>
-                    <ComboBox Name="strTag" Height="20" Width="100" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                        <ComboBoxItem>aarakocra</ComboBoxItem>
-                        <ComboBoxItem>any race</ComboBoxItem>
-                        <ComboBoxItem>bullywug</ComboBoxItem>
-                        <ComboBoxItem>demon</ComboBoxItem>
-                        <ComboBoxItem>derro</ComboBoxItem>
-                        <ComboBoxItem>devil</ComboBoxItem>
-                        <ComboBoxItem>dragonborn</ComboBoxItem>
-                        <ComboBoxItem>dwarf</ComboBoxItem>
-                        <ComboBoxItem>elf</ComboBoxItem>
-                        <ComboBoxItem>firenewt</ComboBoxItem>
-                        <ComboBoxItem>genasi</ComboBoxItem>
-                        <ComboBoxItem>gith</ComboBoxItem>
-                        <ComboBoxItem>gnoll</ComboBoxItem>
-                        <ComboBoxItem>gnome</ComboBoxItem>
-                        <ComboBoxItem>goblinoid</ComboBoxItem>
-                        <ComboBoxItem>grimlock</ComboBoxItem>
-                        <ComboBoxItem>grung</ComboBoxItem>
-                        <ComboBoxItem>half-elf</ComboBoxItem>
-                        <ComboBoxItem>half-orc</ComboBoxItem>
-                        <ComboBoxItem>halfling</ComboBoxItem>
-                        <ComboBoxItem>human</ComboBoxItem>
-                        <ComboBoxItem>kenku</ComboBoxItem>
-                        <ComboBoxItem>kobold</ComboBoxItem>
-                        <ComboBoxItem>kuo-toa</ComboBoxItem>
-                        <ComboBoxItem>lizardfolk</ComboBoxItem>
-                        <ComboBoxItem>merfolk</ComboBoxItem>
-                        <ComboBoxItem>orc</ComboBoxItem>
-                        <ComboBoxItem>quaggoth</ComboBoxItem>
-                        <ComboBoxItem>ratfolk</ComboBoxItem>
-                        <ComboBoxItem>sahuagin</ComboBoxItem>
-                        <ComboBoxItem>shapechanger</ComboBoxItem>
-                        <ComboBoxItem>thri-kreen</ComboBoxItem>
-                        <ComboBoxItem>tiefling</ComboBoxItem>
-                        <ComboBoxItem>titan</ComboBoxItem>
-                        <ComboBoxItem>triton</ComboBoxItem>
-                        <ComboBoxItem>troglodyte</ComboBoxItem>
-                        <ComboBoxItem>xvart</ComboBoxItem>
-                        <ComboBoxItem>yuan-ti</ComboBoxItem>
-                        <ComboBoxItem>yugoloth</ComboBoxItem>
+                    <ComboBox Name="strTag" Height="20" Width="109" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                        <ComboBoxItem>(aarakocra)</ComboBoxItem>
+                        <ComboBoxItem>(any race)</ComboBoxItem>
+                        <ComboBoxItem>(bullywug)</ComboBoxItem>
+                        <ComboBoxItem>(demon)</ComboBoxItem>
+                        <ComboBoxItem>(derro)</ComboBoxItem>
+                        <ComboBoxItem>(devil)</ComboBoxItem>
+                        <ComboBoxItem>(dragonborn)</ComboBoxItem>
+                        <ComboBoxItem>(dwarf)</ComboBoxItem>
+                        <ComboBoxItem>(elf)</ComboBoxItem>
+                        <ComboBoxItem>(firenewt)</ComboBoxItem>
+                        <ComboBoxItem>(genasi)</ComboBoxItem>
+                        <ComboBoxItem>(gith)</ComboBoxItem>
+                        <ComboBoxItem>(gnoll)</ComboBoxItem>
+                        <ComboBoxItem>(gnome)</ComboBoxItem>
+                        <ComboBoxItem>(goblinoid)</ComboBoxItem>
+                        <ComboBoxItem>(grimlock)</ComboBoxItem>
+                        <ComboBoxItem>(grung)</ComboBoxItem>
+                        <ComboBoxItem>(half-elf)</ComboBoxItem>
+                        <ComboBoxItem>(half-orc)</ComboBoxItem>
+                        <ComboBoxItem>(halfling)</ComboBoxItem>
+                        <ComboBoxItem>(human)</ComboBoxItem>
+                        <ComboBoxItem>(kenku)</ComboBoxItem>
+                        <ComboBoxItem>(kobold)</ComboBoxItem>
+                        <ComboBoxItem>(kuo-toa)</ComboBoxItem>
+                        <ComboBoxItem>(lizardfolk)</ComboBoxItem>
+                        <ComboBoxItem>(merfolk)</ComboBoxItem>
+                        <ComboBoxItem>(orc)</ComboBoxItem>
+                        <ComboBoxItem>(quaggoth)</ComboBoxItem>
+                        <ComboBoxItem>(ratfolk)</ComboBoxItem>
+                        <ComboBoxItem>(sahuagin)</ComboBoxItem>
+                        <ComboBoxItem>(shapechanger)</ComboBoxItem>
+                        <ComboBoxItem>(thri-kreen)</ComboBoxItem>
+                        <ComboBoxItem>(tiefling)</ComboBoxItem>
+                        <ComboBoxItem>(titan)</ComboBoxItem>
+                        <ComboBoxItem>(triton)</ComboBoxItem>
+                        <ComboBoxItem>(troglodyte)</ComboBoxItem>
+                        <ComboBoxItem>(xvart)</ComboBoxItem>
+                        <ComboBoxItem>(yuan-ti)</ComboBoxItem>
+                        <ComboBoxItem>(yugoloth)</ComboBoxItem>
                         <ComboBox.ToolTip>
                             <TextBlock>
                                             Select a specific sub-type of creature

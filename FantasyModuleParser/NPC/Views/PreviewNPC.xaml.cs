@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FantasyModuleParser.NPC.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +20,16 @@ namespace FantasyModuleParser.NPC.Views
     /// </summary>
     public partial class PreviewNPC : Window
     {
+        #region Controllers
+        public NPCController npcController { get; set; }
+        #endregion
         public PreviewNPC()
         {
             InitializeComponent();
+            npcController = new NPCController();
+            DataContext = npcController.GetNPCModel();
         }
-
-        public void Window_Close(object sender, RoutedEventArgs e)
+        public void WindowClose(object sender, RoutedEventArgs e)
         {
             Close();
         }

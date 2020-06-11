@@ -19,7 +19,7 @@
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="620">
             <MenuItem Header="_File">
-                <MenuItem Header="_New NPC" />
+                <MenuItem Header="_New NPC" Click="NewNPC_Click"/>
                 <MenuItem Header="_Open NPC" Click="LoadNPCOption_Click"/>
                 <MenuItem Header="_Save NPC" Click="SaveNPCToFile"/>
                 <Separator />

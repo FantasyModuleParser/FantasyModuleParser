@@ -42,6 +42,12 @@ namespace FantasyModuleParser.NPC
         public int SavingThrowInt { get; set; }
         public int SavingThrowWis { get; set; }
         public int SavingThrowCha { get; set; }
+        public bool SavingThrowStr0 { get; set; }
+        public bool SavingThrowDex0 { get; set; }
+        public bool SavingThrowCon0 { get; set; }
+        public bool SavingThrowInt0 { get; set; }
+        public bool SavingThrowWis0 { get; set; }
+        public bool SavingThrowCha0 { get; set; }
         public int Blindsight { get; set; }
         public bool BlindBeyond { get; set; }
         public int Darkvision { get; set; }
@@ -119,6 +125,7 @@ namespace FantasyModuleParser.NPC
         public string ThreePerDay { get; set; }
         public string TwoPerDay { get; set; }
         public string OnePerDay { get; set; }
+        public bool Spellcasting { get; set; }
         public string SpellcastingCasterLevel { get; set; }
         public string SCSpellcastingAbility { get; set; }
         public int SpellcastingSpellSaveDC { get; set; }

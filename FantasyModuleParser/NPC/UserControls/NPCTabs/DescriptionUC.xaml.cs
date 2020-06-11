@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,26 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             npcController = new NPCController();
             //var npcModel = ((App)Application.Current).NpcModelObject;
             DataContext = npcController.GetNPCModel();
+        }
+
+        private void ValidateXML(object sender, RoutedEventArgs e)
+        {
+            TextRange range;
+
+            range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
+
+            var finalString = "";
+
+            using (var rtfMemoryStream = new MemoryStream())
+            {
+                range.Save(rtfMemoryStream, DataFormats.Xaml);
+                rtfMemoryStream.Seek(0, SeekOrigin.Begin);
+                using (var rtfStreamReader = new StreamReader(rtfMemoryStream))
+                {
+                    finalString = rtfStreamReader.ReadToEnd();
+                    Console.WriteLine(finalString);
+                }
+            }
         }
     }
 }

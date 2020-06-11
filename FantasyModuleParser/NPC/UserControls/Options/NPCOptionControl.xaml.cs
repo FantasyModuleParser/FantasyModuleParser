@@ -136,7 +136,13 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			npcController.Save(savePath, npcModel);
 
 		}
-
+		private void NewNPC_Click(object sender, RoutedEventArgs e)
+		{
+			NPCModel npcModel = npcController.GetNPCModel();
+			DataContext = npcModel;
+			BaseStatsUserControl.Refresh();
+			SkillsUserControl.Refresh();
+		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
 			// Create OpenFileDialog

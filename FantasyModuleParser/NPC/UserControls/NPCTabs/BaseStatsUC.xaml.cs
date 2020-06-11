@@ -37,12 +37,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             npcController = new NPCController();
 			DataContext = npcController.GetNPCModel();
         }
-
 		public void Refresh()
 		{
 			DataContext = npcController.GetNPCModel();
 		}
-
 
 		#region BaseStatChange
 		private void StrengthScore_TextChanged(object sender, RoutedEventArgs e)
