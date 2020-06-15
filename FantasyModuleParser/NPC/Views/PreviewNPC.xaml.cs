@@ -1,4 +1,4 @@
-﻿using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,6 +32,12 @@ namespace FantasyModuleParser.NPC.Views
             //DataContext = npcController.GetNPCModel();
             viewModel = new PreviewNPCViewModel();
             DataContext = viewModel;
+        }
+
+        public void UpdateMovementDescriptionInPreview(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(npcModel.Speed);
+            Console.WriteLine(npcModel.Burrow);
         }
         public void WindowClose(object sender, RoutedEventArgs e)
         {
