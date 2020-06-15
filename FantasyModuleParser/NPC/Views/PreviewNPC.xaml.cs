@@ -1,6 +1,5 @@
-﻿using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.UserControls.NPCTabs;
+using FantasyModuleParser.NPC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,15 +23,15 @@ namespace FantasyModuleParser.NPC.Views
     {
         #region Controllers
         public NPCController npcController { get; set; }
-        public BaseStatsUC baseStatsUC { get; set; }
-        public NPCModel npcModel { get; set; }
+        private PreviewNPCViewModel viewModel;
         #endregion
         public PreviewNPC()
         {
             InitializeComponent();
-            npcController = new NPCController();
-            npcModel = new NPCModel();
-            DataContext = npcController.GetNPCModel();
+            //npcController = new NPCController();
+            //DataContext = npcController.GetNPCModel();
+            viewModel = new PreviewNPCViewModel();
+            DataContext = viewModel;
         }
 
         public void UpdateMovementDescriptionInPreview(object sender, RoutedEventArgs e)
