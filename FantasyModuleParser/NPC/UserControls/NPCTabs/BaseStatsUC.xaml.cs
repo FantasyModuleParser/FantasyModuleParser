@@ -22,10 +22,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     {
         #region Controllers
         public NPCController npcController { get; set; }
-		#endregion
+        #endregion
 
-		#region Methods
-		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        #region Methods
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"[^0-9-]+"); ;
             e.Handled = regex.IsMatch(e.Text);
