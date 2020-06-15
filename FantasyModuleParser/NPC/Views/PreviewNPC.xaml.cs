@@ -33,12 +33,6 @@ namespace FantasyModuleParser.NPC.Views
             viewModel = new PreviewNPCViewModel();
             DataContext = viewModel;
         }
-
-        public void UpdateMovementDescriptionInPreview(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine(npcModel.Speed);
-            Console.WriteLine(npcModel.Burrow);
-        }
         public void WindowClose(object sender, RoutedEventArgs e)
         {
             Close();

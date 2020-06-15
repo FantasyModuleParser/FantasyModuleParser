@@ -35,8 +35,6 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,5"/>
                     <Label Content="{Binding Path=SpeedDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
-                    <Label Content="ft." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
-                    <Label Name="Comma1" Content="," HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="0,0,0,5" />
                 </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
                     <Path.Data>
@@ -312,7 +310,7 @@
             </StackPanel>
         </ScrollViewer>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="205" Margin="10">
-            <Button Content="Update Window" Width="100" Margin="0,0,5,0" Click="UpdateMovementDescriptionInPreview" />
+            <Button Content="Update Window" Width="100" Margin="0,0,5,0" />
             <Button Content="Close" Width="100" Click="WindowClose"/>
         </StackPanel>
     </Grid>

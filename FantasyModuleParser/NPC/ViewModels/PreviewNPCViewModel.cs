@@ -25,7 +25,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public string UpdateSpeedDescription()
         {
-            return "Speed: " + NPCModel.Speed + ", Fly: " + NPCModel.Fly + ", Burrow: " + NPCModel.Burrow;
+            return NPCModel.Speed + " ft., climb " + NPCModel.Climb + " ft., fly " + NPCModel.Fly + " ft., burrow " + NPCModel.Burrow + " ft., swim " + NPCModel.Swim + " ft.";
         }
     }
 }
