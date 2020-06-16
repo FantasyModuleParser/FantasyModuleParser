@@ -422,7 +422,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Str" IsChecked="{Binding Path=SavingThrowStr0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Str" IsChecked="{Binding Path=SavingThrowStrBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -443,7 +443,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Dex" IsChecked="{Binding Path=SavingThrowDex0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Dex" IsChecked="{Binding Path=SavingThrowDexBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -464,7 +464,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Con" IsChecked="{Binding Path=SavingThrowCon0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Con" IsChecked="{Binding Path=SavingThrowConBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -485,7 +485,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Int" IsChecked="{Binding Path=SavingThrowInt0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Int" IsChecked="{Binding Path=SavingThrowIntBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -506,7 +506,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Wis" IsChecked="{Binding Path=SavingThrowWis0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Wis" IsChecked="{Binding Path=SavingThrowWisBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -527,7 +527,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Cha" IsChecked="{Binding Path=SavingThrowCha0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Cha" IsChecked="{Binding Path=SavingThrowChaBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
