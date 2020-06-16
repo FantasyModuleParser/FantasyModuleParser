@@ -9,8 +9,14 @@
     <Grid Background="#FFE5E5E5">
         <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Height="625" Width="420" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical">
-                <Label Content="New Creature" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
-                <Label Content="Size/Type (tag)" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                <Label Content="{Binding Path=NPCModel.NPCName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding Path=NPCModel.Size, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0" Padding="5,0,0,5"/>
+                    <Label Content="{Binding Path=NPCModel.NPCType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
+                    <Label Content="{Binding Path=NPCModel.Tag, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
+                    <Label Content="," Padding="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
+                    <Label Content="{Binding Path=NPCModel.Alignment, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
+                </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
                     <Path.Data>
                         <GeometryGroup>
@@ -20,15 +26,15 @@
                 </Path>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Armor Class" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="{Binding Path=NPCModel.AC, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="{Binding Path=NPCModel.HP, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,5"/>
-                    <Label Content="30 ft." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                    <Label Content="{Binding Path=SpeedDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
                 </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
                     <Path.Data>
@@ -72,7 +78,10 @@
                 </Path>
                 <WrapPanel Orientation="Horizontal">
                     <Label Content="Skills" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <TextBlock Text="{Binding Path=SkillsDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left" VerticalAlignment="Top" 
+                             Margin="0,0,0,0" Padding="5,5,0,0"
+                             TextWrapping="Wrap"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal">
                     <Label Content="Damage Vulnerabilities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
@@ -303,8 +312,9 @@
                 </WrapPanel>
             </StackPanel>
         </ScrollViewer>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="10">
-            <Button Content="Close" Click="Window_Close"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="205" Margin="10">
+            <Button Content="Update Window" Width="100" Margin="0,0,5,0" />
+            <Button Content="Close" Width="100" Click="WindowClose"/>
         </StackPanel>
     </Grid>
 </Window>

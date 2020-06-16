@@ -9,6 +9,9 @@ namespace FantasyModuleParser.NPC.Models.Action
 {
     public class ActionModelBase : INotifyPropertyChanged
     {
+
+        public const string OptionsNameID = "Options";
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void RaisePropertyChanged(string propertyName = "")
@@ -48,5 +51,15 @@ namespace FantasyModuleParser.NPC.Models.Action
             }
         }
 
+        public ActionModelBase()
+        {
+        }
+
+        public ActionModelBase(int actionId, string actionName, string actionDescription)
+        {
+            _actionId = actionId;
+            _actionName = actionName;
+            _actionDescription = actionDescription;
+        }
     }
 }

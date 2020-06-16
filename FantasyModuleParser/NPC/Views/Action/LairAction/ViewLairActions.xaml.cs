@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FantasyModuleParser;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.UserControls.Action;
 using FantasyModuleParser.NPC.UserControls.LairActions;
 
 namespace FantasyModuleParser.NPC
@@ -33,6 +34,7 @@ namespace FantasyModuleParser.NPC
             NpcLairActions = actionController.GetNPCModel().LairActions;
 
             DataContext = this;
+            lairOptions.IsChecked = true;
         }
         private void action_Checked(object sender, RoutedEventArgs e)
         {
@@ -98,7 +100,7 @@ namespace FantasyModuleParser.NPC
                 if (action is LairAction)
                 {
                     var lairAction = (action as LairAction);
-                    if (lairAction.ActionName.Equals(OptionsControl.ActionName))
+                    if (lairAction.ActionName.Equals(ActionModelBase.OptionsNameID))
                     {
                         lairOptions.IsChecked = true;
                         stackOptions.Visibility = Visibility.Visible;

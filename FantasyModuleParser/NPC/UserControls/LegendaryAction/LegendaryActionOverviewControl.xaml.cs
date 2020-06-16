@@ -1,6 +1,4 @@
-﻿using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.ViewModel;
+﻿using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,19 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FantasyModuleParser.NPC.UserControls.LairActions
+namespace FantasyModuleParser.NPC.UserControls.LegendaryAction
 {
     /// <summary>
-    /// Interaction logic for OverviewControl.xaml
+    /// Interaction logic for LegendaryActionOverviewControl.xaml
     /// </summary>
-    public partial class OverviewControl : UserControl
+    public partial class LegendaryActionOverviewControl : UserControl
     {
-
-        //public ActionViewModel actionViewModel { get; set; }
-
-        public OverviewControl()
+        public LegendaryActionModel LegendaryActionModel { get; set; } = new LegendaryActionModel();
+        public LegendaryActionOverviewControl()
         {
             InitializeComponent();
+            //DataContext = LegendaryActionModel;
         }
 
         private void btn_Up_Click(object sender, RoutedEventArgs e)
@@ -49,22 +46,6 @@ namespace FantasyModuleParser.NPC.UserControls.LairActions
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
             OnRemoveAction();
-        }
-
-        private ActionViewModel GetParentActionViewModel()
-        {
-            if (Parent is Actions)
-            {
-                var _parentDataContext = ((Actions)Parent).DataContext;
-
-                // Validate and make sure the parent DataContext is ActionViewModel
-                if (_parentDataContext is ActionViewModel)
-                {
-                    ActionViewModel _actionViewModel = (ActionViewModel)_parentDataContext;
-                    return _actionViewModel;
-                }
-            }
-            return null;
         }
 
         public event EventHandler RemoveAction;

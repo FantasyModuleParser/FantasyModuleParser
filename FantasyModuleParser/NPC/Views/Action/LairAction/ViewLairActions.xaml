@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:lairActionsUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.LairActions"
         xmlns:lairOptionsUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.LairActions"
-        xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.LairActions"
+        xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC"
         mc:Ignorable="d"
         Title="Add or Edit NPC Lair Actions" Height="400" Width="1010" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
@@ -16,16 +16,18 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Height="310" Width="550">
                     <Label Content="Lair Actions" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NpcLairActions}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <overviewUserControl:OverviewControl RaiseActionInList="OverviewControl_RaiseActionInList"
-                                                                     LowerActionInList="OverviewControl_LowerActionInList"
-                                                                     RemoveAction="OverviewControl_RemoveAction"
-                                                                     EditAction="OverviewControl_EditAction"></overviewUserControl:OverviewControl>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer Height="274" Margin="10,0,0,0">
+                        <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NpcLairActions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <overviewUserControl:OverviewControl RaiseActionInList="OverviewControl_RaiseActionInList"
+                                                                         LowerActionInList="OverviewControl_LowerActionInList"
+                                                                         RemoveAction="OverviewControl_RemoveAction"
+                                                                         EditAction="OverviewControl_EditAction"></overviewUserControl:OverviewControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

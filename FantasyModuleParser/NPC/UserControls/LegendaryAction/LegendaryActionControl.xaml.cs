@@ -15,29 +15,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FantasyModuleParser.NPC.UserControls.LairActions
+namespace FantasyModuleParser.NPC.UserControls.LegendaryAction
 {
     /// <summary>
-    /// Interaction logic for Options.xaml
+    /// Interaction logic for LegendaryActionControl.xaml
     /// </summary>
-    public partial class OptionsControl : UserControl
+    public partial class LegendaryActionControl : UserControl
     {
-        public LairAction LairAction { get; set; } = new LairAction();
-
-        public OptionsControl()
+        public LegendaryActionModel LegendaryActionModel { get; set; } = new LegendaryActionModel();
+        public LegendaryActionControl()
         {
             InitializeComponent();
-            LairAction.ActionName = ActionModelBase.OptionsNameID;
-            DataContext = LairAction;
+            DataContext = LegendaryActionModel;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             ActionController actionController = new ActionController();
             var thisDataContext = (sender as Button).DataContext;
-            if (thisDataContext is LairAction)
+            if (thisDataContext is LegendaryActionModel)
             {
-                actionController.UpdateLairAction(CommonMethod.CloneJson(thisDataContext as LairAction));
+                actionController.UpdateLegendaryAction(CommonMethod.CloneJson(thisDataContext as LegendaryActionModel));
             }
         }
     }

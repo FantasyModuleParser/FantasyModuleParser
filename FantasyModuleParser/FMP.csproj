@@ -120,7 +120,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -205,6 +205,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\UserControls\LairActions\LairActionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,15 +217,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\UserControls\LairActions\OverviewControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\DescriptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\SkillsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\SpellcastingUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\TraitsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NPC\UserControls\Options\NPCOptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\Views\Actions.xaml">
+    <Page Include="NPC\Views\Action\EditAction\Actions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,11 +281,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\Views\ViewLairActions.xaml">
+    <Page Include="NPC\Views\Action\LairAction\ViewLairActions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NPC\Views\LegendaryActions.xaml">
+    <Page Include="NPC\Views\Action\LegendaryAction\LegendaryActions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -291,22 +319,52 @@
     </Compile>
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\ControllerBase.cs" />
+    <Compile Include="NPC\Controllers\LanguageController.cs" />
+    <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
+    <Compile Include="NPC\Models\Action\DamageTypeModel.cs" />
     <Compile Include="NPC\Models\Action\Enums\ConditionType.cs" />
     <Compile Include="NPC\Models\Action\Enums\WeaponImmunity.cs" />
     <Compile Include="NPC\Models\Action\Enums\WeaponResistance.cs" />
     <Compile Include="NPC\Models\Action\LairAction.cs" />
+    <Compile Include="NPC\Models\Action\LegendaryActionModel.cs" />
+    <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
+    <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
+    <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
+    <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
+    <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
+      <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\UserControls\LairActions\LairActionControl.xaml.cs">
       <DependentUpon>LairActionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\LairActions\OptionsControl.xaml.cs">
       <DependentUpon>OptionsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\UserControls\LairActions\OverviewControl.xaml.cs">
-      <DependentUpon>OverviewControl.xaml</DependentUpon>
+    <Compile Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml.cs">
+      <DependentUpon>BaseStatsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\DescriptionUC.xaml.cs">
+      <DependentUpon>DescriptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml.cs">
+      <DependentUpon>InnateCastingUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml.cs">
+      <DependentUpon>ResistancesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\SkillsUC.xaml.cs">
+      <DependentUpon>SkillsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\SpellcastingUC.xaml.cs">
+      <DependentUpon>SpellcastingUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\TraitsUC.xaml.cs">
+      <DependentUpon>TraitsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
     <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
       <DependentUpon>PreviewNPC.xaml</DependentUpon>
     </Compile>
@@ -314,7 +372,7 @@
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
     <Compile Include="NPC\Models\Action\Enums\DieType.cs" />
-    <Compile Include="NPC\Views\Actions.xaml.cs">
+    <Compile Include="NPC\Views\Action\EditAction\Actions.xaml.cs">
       <DependentUpon>Actions.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Models\Action\Enums\TargetType.cs" />
@@ -343,23 +401,23 @@
     <Compile Include="NPC\Views\ImportText.xaml.cs">
       <DependentUpon>ImportText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\Views\ViewLairActions.xaml.cs">
+    <Compile Include="NPC\Views\Action\LairAction\ViewLairActions.xaml.cs">
       <DependentUpon>ViewLairActions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\Views\LegendaryActions.xaml.cs">
+    <Compile Include="NPC\Views\Action\LegendaryAction\LegendaryActions.xaml.cs">
       <DependentUpon>LegendaryActions.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NPC\Views\Reactions.xaml">
+    <Page Include="NPC\Views\Action\Reaction\Reactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NPC\Views\Reactions.xaml.cs">
+    <Compile Include="NPC\Views\Action\Reaction\Reactions.xaml.cs">
       <DependentUpon>Reactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\ViewModels\ActionViewModel.cs" />
@@ -551,6 +609,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

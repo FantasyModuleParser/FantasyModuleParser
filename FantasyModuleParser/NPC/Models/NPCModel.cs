@@ -1,10 +1,14 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Skills;
+using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FantasyModuleParser.NPC
 {
@@ -38,21 +42,27 @@ namespace FantasyModuleParser.NPC
         public int SavingThrowInt { get; set; }
         public int SavingThrowWis { get; set; }
         public int SavingThrowCha { get; set; }
+        public bool SavingThrowStrBool { get; set; }
+        public bool SavingThrowDexBool { get; set; }
+        public bool SavingThrowConBool { get; set; }
+        public bool SavingThrowIntBool { get; set; }
+        public bool SavingThrowWisBool { get; set; }
+        public bool SavingThrowChaBool { get; set; }
         public int Blindsight { get; set; }
         public bool BlindBeyond { get; set; }
         public int Darkvision { get; set; }
         public int Tremorsense { get; set; }
         public int Truesight { get; set; }
         public int PassivePerception { get; set; }
-        public int ChallengeRating { get; set; }
+        public string ChallengeRating { get; set; }
         public int XP { get; set; }
         public string NPCToken { get; set; }
-        public List<string> DamageResistance { get; set; }
-        public List<string> DamageVulnerability { get; set; }
-        public List<string> DamageImmunity { get; set; }
-        public List<string> ConditionImmunity { get; set; }
-        public List<string> SpecialWeaponResistance { get; set; }
-        public List<string> SpecialWeaponImmunity { get; set; }
+        public List<SelectableActionModel> DamageResistanceModelList { get; set; }
+        public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
+        public List<SelectableActionModel> DamageImmunityModelList { get; set; }
+        public List<SelectableActionModel> ConditionImmunityModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponResistanceModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
         public int Acrobatics { get; set; }
@@ -66,16 +76,17 @@ namespace FantasyModuleParser.NPC
         public int Investigation { get; set; }
         public int Medicine { get; set; }
         public int Nature { get; set; }
+        public int Perception { get; set; }
         public int Performance { get; set; }
         public int Persuasion { get; set; }
         public int Religion { get; set; }
         public int SleightOfHand { get; set; }
         public int Stealth { get; set; }
         public int Survival { get; set; }
-        public List<string> StandardLanguages { get; set; }
-        public List<string> ExoticLanguages { get; set; }
-        public List<string> MonstrousLanguages { get; set; }
-        public List<string> UserLanguages { get; set; }
+        public ObservableCollection<LanguageModel> StandardLanguages { get; set; }
+        public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
+        public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
+        public ObservableCollection<LanguageModel> UserLanguages { get; set; }
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
@@ -114,6 +125,7 @@ namespace FantasyModuleParser.NPC
         public string ThreePerDay { get; set; }
         public string TwoPerDay { get; set; }
         public string OnePerDay { get; set; }
+        public bool Spellcasting { get; set; }
         public string SpellcastingCasterLevel { get; set; }
         public string SCSpellcastingAbility { get; set; }
         public int SpellcastingSpellSaveDC { get; set; }
@@ -144,9 +156,22 @@ namespace FantasyModuleParser.NPC
         public string Description { get; set; }
         public string NonID { get; set; }
         public string NPCImage { get; set; }
-
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
-
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
+        public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
+        public ObservableCollection<ActionModelBase> Reactions { get; } = new ObservableCollection<ActionModelBase>();
+
+        public NPCModel()
+        {
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
