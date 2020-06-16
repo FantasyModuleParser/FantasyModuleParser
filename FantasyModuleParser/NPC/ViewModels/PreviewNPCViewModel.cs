@@ -25,140 +25,37 @@ namespace FantasyModuleParser.NPC.ViewModels
             SkillsDescription = _updateSkillsDescription();
         }
 
+        public PreviewNPCViewModel(NPCModel nPCModel)
+        {
+            NPCModel = nPCModel;
+            SpeedDescription = UpdateSpeedDescription();
+            SkillsDescription = _updateSkillsDescription();
+        }
+
         public string UpdateSpeedDescription()
         {
             StringBuilder sl = new StringBuilder();
-            if (NPCModel.Speed != 0)
-            {
-                sl.Append(NPCModel.Speed + " ft.");
-                if (NPCModel.Climb != 0)
-                {
-                    sl.Append(", climb " + NPCModel.Climb + " ft.");
-                    if (NPCModel.Fly != 0)
-                    {
-                        sl.Append(", fly " + NPCModel.Fly + " ft.");
-                        if (NPCModel.Burrow != 0)
-                        {
-                            sl.Append(", burrow " + NPCModel.Burrow + " ft.");
-                            if (NPCModel.Swim != 0)
-                            {
-                                sl.Append(", swim " + NPCModel.Swim + " ft.");
-                            }
-                        }
-                        else if (NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-                        {
-                            sl.Append(", swim " + NPCModel.Swim + " ft.");
-                        }
-                    }
-                    else if (NPCModel.Fly == 0 && NPCModel.Burrow != 0)
-                    {
-                        sl.Append(", burrow " + NPCModel.Burrow + " ft.");
-                        if (NPCModel.Swim != 0)
-                        {
-                            sl.Append(", swim " + NPCModel.Swim + " ft.");
-                        }
-                    }
-                    else if (NPCModel.Fly == 0 && NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-                    {
-                        sl.Append(", swim " + NPCModel.Swim + " ft.");
-                    }
-                }
-                else if (NPCModel.Climb == 0 && NPCModel.Fly != 0)
-                {
-                    sl.Append(", fly " + NPCModel.Fly + " ft.");
-                    if (NPCModel.Burrow != 0)
-                    {
-                        sl.Append(", burrow " + NPCModel.Burrow + " ft.");
-                        if (NPCModel.Swim != 0)
-                        {
-                            sl.Append(", swim " + NPCModel.Swim + " ft.");
-                        }
-                    }
-                    else if (NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-                    {
-                        sl.Append(", swim " + NPCModel.Swim + " ft.");
-                    }
-                }
-                else if (NPCModel.Climb == 0 && NPCModel.Fly == 0 && NPCModel.Burrow != 0)
-                {
-                    sl.Append(", burrow " + NPCModel.Burrow + " ft.");
-                    if (NPCModel.Swim != 0)
-                    {
-                        sl.Append(", swim " + NPCModel.Swim + " ft.");
-                    }
-                }
-                else if (NPCModel.Climb == 0 && NPCModel.Fly == 0 && NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-                {
-                    sl.Append(", swim " + NPCModel.Swim + " ft.");
-                }
-            }
-            else if (NPCModel.Speed == 0 && NPCModel.Climb != 0)
-            {
-                sl.Append("climb " + NPCModel.Climb + " ft.");
-                if (NPCModel.Fly != 0)
-                {
-                    sl.Append(", fly " + NPCModel.Fly + " ft.");
-                    if (NPCModel.Burrow != 0)
-                    {
-                        sl.Append(", burrow " + NPCModel.Burrow + " ft.");
-                        if (NPCModel.Swim != 0)
-                        {
-                            sl.Append(", swim " + NPCModel.Swim + " ft.");
-                        }
-                    }
-                    else if (NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-                    {
-                        sl.Append(", swim " + NPCModel.Swim + " ft.");
-                    }
-                }
-                else if (NPCModel.Fly == 0 && NPCModel.Burrow != 0)
-                {
-                    sl.Append(", burrow " + NPCModel.Burrow + " ft.");
-                    if (NPCModel.Swim != 0)
-                    {
-                        sl.Append(", swim " + NPCModel.Swim + " ft.");
-                    }
-                }
-                else if (NPCModel.Fly == 0 && NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-                {
-                    sl.Append(", swim " + NPCModel.Swim + " ft.");
-                }
-            }
-            else if (NPCModel.Speed == 0 && NPCModel.Climb == 0 && NPCModel.Fly != 0)
-            {
-                sl.Append("fly " + NPCModel.Fly + " ft.");
-                if (NPCModel.Burrow != 0)
-                {
-                    sl.Append(", burrow " + NPCModel.Burrow + " ft.");
-                    if (NPCModel.Swim != 0)
-                    {
-                        sl.Append(", swim " + NPCModel.Swim + " ft.");
-                    }
-                }
-                else if (NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-                {
-                    sl.Append(", swim " + NPCModel.Swim + " ft.");
-                }
-            }
-            else if (NPCModel.Speed == 0 && NPCModel.Climb == 0 && NPCModel.Fly == 0 && NPCModel.Burrow != 0)
-            {
-                sl.Append("burrow " + NPCModel.Burrow + " ft.");
-                if (NPCModel.Swim != 0)
-                {
-                    sl.Append(", swim " + NPCModel.Swim + " ft.");
-                }
-            }
-            else if (NPCModel.Speed == 0 && NPCModel.Climb == 0 && NPCModel.Fly == 0 && NPCModel.Burrow == 0 && NPCModel.Swim != 0)
-            {
-                sl.Append("swim " + NPCModel.Swim + " ft.");
-            }
-            else
-            {
-                sl.Append("0 ft.");
-            }
 
-            return sl.ToString();
+            if(NPCModel.Speed == 0)
+                sl.Append("0 ft., ");
+            else 
+                sl.Append(_appendSpeedAttribute("", NPCModel.Speed, false));
+            sl.Append(_appendSpeedAttribute("climb", NPCModel.Climb, false));
+            sl.Append(_appendSpeedAttribute("fly", NPCModel.Fly, NPCModel.Hover));
+            sl.Append(_appendSpeedAttribute("burrow", NPCModel.Burrow, false));
+            sl.Append(_appendSpeedAttribute("swim", NPCModel.Swim, false));
+
+            sl.Remove(sl.Length - 2, 2);
+            return sl.ToString().Trim();
         }
+
+        private string _appendSpeedAttribute(string name, int value, bool hover)
+        {
+            if (value != 0)
+                return name + " " + value + " ft." + (hover ? " (hover), ": ", ");
+            return "";
+        }
+
         private string _updateSkillsDescription()
         {
             StringBuilder sb = new StringBuilder();
