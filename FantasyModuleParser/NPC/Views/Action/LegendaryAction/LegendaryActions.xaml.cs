@@ -42,18 +42,18 @@ namespace FantasyModuleParser.NPC
 
         private void UpdateOption_Click(object sender, RoutedEventArgs e)
         {
-            LegendaryActionModel lam = new LegendaryActionModel();
-            lam.ActionName = ActionModelBase.OptionsNameID;
-            lam.ActionDescription = OptionDescriptionTB.Text;
-            actionController.UpdateLegendaryAction(CommonMethod.CloneJson(lam));
+            LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
+            legendaryActionModel.ActionName = ActionModelBase.OptionsNameID;
+            legendaryActionModel.ActionDescription = OptionDescriptionTB.Text;
+            actionController.UpdateLegendaryAction(CommonMethod.CloneJson(legendaryActionModel));
         }
 
         private void UpdateAction_Click(object sender, RoutedEventArgs e)
         {
-            LegendaryActionModel lam = new LegendaryActionModel();
-            lam.ActionName = ActionNameTB.Text;
-            lam.ActionDescription = ActionDescTB.Text;
-            actionController.UpdateLegendaryAction(CommonMethod.CloneJson(lam));
+            LegendaryActionModel updateAction = new LegendaryActionModel();
+            updateAction.ActionName = ActionNameTB.Text;
+            updateAction.ActionDescription = ActionDescTB.Text;
+            actionController.UpdateLegendaryAction(CommonMethod.CloneJson(updateAction));
         }
 
         private void OverviewControl_RemoveAction(object sender, EventArgs e)
@@ -63,15 +63,15 @@ namespace FantasyModuleParser.NPC
 
         private void OverviewControl_EditAction(object sender, EventArgs e)
         {
-            LegendaryActionModel temp = (sender as OverviewControl).DataContext as LegendaryActionModel;
-            if (temp.ActionName.Equals(ActionModelBase.OptionsNameID))
+            LegendaryActionModel editAction = (sender as OverviewControl).DataContext as LegendaryActionModel;
+            if (editAction.ActionName.Equals(ActionModelBase.OptionsNameID))
             {
-                OptionDescriptionTB.Text = temp.ActionDescription;
+                OptionDescriptionTB.Text = editAction.ActionDescription;
             }
             else
             {
-                ActionNameTB.Text = temp.ActionName;
-                ActionDescTB.Text = temp.ActionDescription;
+                ActionNameTB.Text = editAction.ActionName;
+                ActionDescTB.Text = editAction.ActionDescription;
             }
         }
 
