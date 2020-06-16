@@ -45,10 +45,10 @@ namespace FantasyModuleParser.NPC
 
         private void UpdateReaction_Click(object sender, RoutedEventArgs e)
         {
-            ActionModelBase lam = new ActionModelBase();
-            lam.ActionName = ReactionNameTB.Text;
-            lam.ActionDescription = ReactionDescTB.Text;
-            actionController.UpdateReaction(CommonMethod.CloneJson(lam));
+            ActionModelBase actionModelBase = new ActionModelBase();
+            actionModelBase.ActionName = ReactionNameTB.Text;
+            actionModelBase.ActionDescription = ReactionDescTB.Text;
+            actionController.UpdateReaction(CommonMethod.CloneJson(actionModelBase));
         }
 
         private void OverviewControl_RemoveAction(object sender, EventArgs e)
@@ -58,9 +58,9 @@ namespace FantasyModuleParser.NPC
 
         private void OverviewControl_EditAction(object sender, EventArgs e)
         {
-            ActionModelBase temp = (sender as OverviewControl).DataContext as ActionModelBase;
-            ReactionNameTB.Text = temp.ActionName;
-            ReactionDescTB.Text = temp.ActionDescription;
+            ActionModelBase editAction = (sender as OverviewControl).DataContext as ActionModelBase;
+            ReactionNameTB.Text = editAction.ActionName;
+            ReactionDescTB.Text = editAction.ActionDescription;
         }
 
         private void OverviewControl_RaiseActionInList(object sender, EventArgs e)
