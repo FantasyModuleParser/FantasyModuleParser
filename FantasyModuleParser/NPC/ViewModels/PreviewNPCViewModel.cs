@@ -25,6 +25,13 @@ namespace FantasyModuleParser.NPC.ViewModels
             SkillsDescription = _updateSkillsDescription();
         }
 
+        public PreviewNPCViewModel(NPCModel nPCModel)
+        {
+            NPCModel = nPCModel;
+            SpeedDescription = UpdateSpeedDescription();
+            SkillsDescription = _updateSkillsDescription();
+        }
+
         public string UpdateSpeedDescription()
         {
             StringBuilder sl = new StringBuilder();
