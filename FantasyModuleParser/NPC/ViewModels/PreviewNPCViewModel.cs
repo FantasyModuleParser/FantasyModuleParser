@@ -34,8 +34,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public string UpdateSpeedDescription()
         {
-            StringBuilder stringBuilder
-                = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
             if(NPCModel.Speed == 0)
                 stringBuilder.Append("0 ft., ");
