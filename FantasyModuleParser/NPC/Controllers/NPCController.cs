@@ -39,7 +39,7 @@ namespace FantasyModuleParser.NPC.Controllers
 		}
 		public void Load(string path)
 		{
-			string jsonData = File.ReadAllText(path);
+			string jsonData = File.ReadAllText(@path);
 			NPCModel npcModel = JsonConvert.DeserializeObject<NPCModel>(jsonData);
 
 			var application = Application.Current;

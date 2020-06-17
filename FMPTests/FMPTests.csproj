@@ -56,20 +56,13 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Importer\NPC\ImportEngineerSuiteNPCTests.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\V1_npc_actions.npc" />
-    <None Include="Resources\V1_npc_basestats.npc" />
-    <None Include="Resources\V1_npc_casting.npc" />
-    <None Include="Resources\V1_npc_description.npc" />
-    <None Include="Resources\V1_npc_image.npc" />
-    <None Include="Resources\V1_npc_innate.npc" />
-    <None Include="Resources\V1_npc_resists.npc" />
-    <None Include="Resources\V1_npc_skills.npc" />
-    <None Include="Resources\V1_npc_traits.npc" />
+    <None Include="Resources\V1_npc_all.npc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FantasyModuleParser\FMP.csproj">
@@ -77,9 +70,7 @@
       <Name>FMP</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
