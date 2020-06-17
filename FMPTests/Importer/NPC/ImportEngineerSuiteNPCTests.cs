@@ -9,6 +9,9 @@ using System.Runtime.Versioning;
 using System.Reflection;
 using System.IO;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 
 namespace FantasyModuleParser.Importer.NPC.Tests
 {
@@ -172,11 +175,68 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         #region Resistances
 
-        private NPCModel LoadV1NPCResistanceNPCModel()
+        // Used to validate all Lists generated & presented in the Resistance tab
+        private void AssertSelectableActionModelList(List<SelectableActionModel> expected, List<SelectableActionModel> actual)
         {
-            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.V1_npc_resists.npc");
+            Assert.AreEqual(expected.Count, actual.Count);
 
-            return _importEngineerSuiteNPC.ParseEngineerSuiteNPCContent(fileContent);
+            // Sort both lists by ActionName so that the following loop will guarantee to work
+            expected.Sort((x, y) => x.ActionName.CompareTo(y.ActionName));
+            actual.Sort((x, y) => x.ActionName.CompareTo(y.ActionName));
+            for (int idx = 0; idx < expected.Count; idx++)
+            {
+                Assert.AreEqual(expected[idx].ActionName, actual[idx].ActionName);
+                Assert.AreEqual(expected[idx].Selected, actual[idx].Selected);
+            }
+        }
+        [TestMethod()]
+        public void BaseStats_DamageVulnerabilities()
+        {
+            NPCController controller = new NPCController();
+            List<SelectableActionModel> expectedDamageVulnerabilites = controller.GetSelectableActionModelList(typeof(DamageType));
+
+            // For the unit test, the following are set to true based on the file v1_npc_all.npc
+            // Acid, Fire, Lighting, Poison, Radiant, Bludgeoning, Slashing
+            foreach(SelectableActionModel selectableActionModel in expectedDamageVulnerabilites)
+            {
+                switch (selectableActionModel.ActionName)
+                {
+                    case "Acid":
+                    case "Fire":
+                    case "Lighting":
+                    case "Poison":
+                    case "Radiant":
+                    case "Bludgeoning":
+                    case "Slashing":
+                        selectableActionModel.Selected = true;
+                        break;
+                }
+            }
+
+            Assert.AreEqual(expectedDamageVulnerabilites, LoadEngineerSuiteTestNPCFile().DamageVulnerabilityModelList);
+        }
+
+        [TestMethod()]
+        public void BaseStats_DamageResistances()
+        {
+            NPCController controller = new NPCController();
+            List<SelectableActionModel> expectedDamageResistances = controller.GetSelectableActionModelList(typeof(DamageType));
+
+            foreach (SelectableActionModel selectableActionModel in expectedDamageResistances)
+            {
+                switch (selectableActionModel.ActionName)
+                {
+                    case "Cold":
+                    case "Force":
+                    case "Necrotic":
+                    case "Psychic":
+                    case "Thunder":
+                        selectableActionModel.Selected = true;
+                        break;
+                }
+            }
+
+            Assert.AreEqual(expectedDamageResistances, LoadEngineerSuiteTestNPCFile().DamageResistanceModelList);
         }
 
         #endregion

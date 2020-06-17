@@ -77,7 +77,7 @@ namespace FantasyModuleParser.NPC.Controllers
 				: enumValue.ToString();
 		}
 
-		private List<SelectableActionModel> GetSelectableActionModelList(Type EnumType)
+		public List<SelectableActionModel> GetSelectableActionModelList(Type EnumType)
 		{
 			List<SelectableActionModel> resultList = new List<SelectableActionModel>();
 			int id = 0;
