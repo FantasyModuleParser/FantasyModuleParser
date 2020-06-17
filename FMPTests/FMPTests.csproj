@@ -61,12 +61,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\V1_npc_actions.npc" />
+    <None Include="Resources\V1_npc_basestats.npc" />
+    <None Include="Resources\V1_npc_casting.npc" />
+    <None Include="Resources\V1_npc_description.npc" />
+    <None Include="Resources\V1_npc_image.npc" />
+    <None Include="Resources\V1_npc_innate.npc" />
+    <None Include="Resources\V1_npc_resists.npc" />
+    <None Include="Resources\V1_npc_skills.npc" />
+    <None Include="Resources\V1_npc_traits.npc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FantasyModuleParser\FMP.csproj">
       <Project>{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}</Project>
       <Name>FMP</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

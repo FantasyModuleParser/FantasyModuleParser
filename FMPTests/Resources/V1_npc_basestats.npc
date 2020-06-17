@@ -1,0 +1,43 @@
+***Part 1***
+V1_npc_basestats
+Tiny beast (devil), lawful neutral
+Armor Class 16
+Hit Points 90 (10d8 + 44)
+Speed 10 ft., burrow 20 ft., climb 30 ft., fly 40 ft. (hover), swim 50 ft.
+STR DEX CON INT WIS CHA 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)
+Saving Throws Str +1, Dex +2, Con +3, Int +0, Wis +5, Cha +6
+Senses blindsight 60 ft. (blind beyond this radius), darkvision 70 ft., tremorsense 80 ft., truesight 90 ft., passive Perception 40
+Languages --
+Challenge 8 (3,900 XP)
+
+***Part 2***
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa80\cf1\fs20\par
+}
+
+***Part 3***
+NPCgender: male
+NPCunique: 1
+NPCpropername: 1
+Desc_Add_Text: 1
+Desc_NPC_Title: 1
+Desc_Image_Link: 1
+Desc_Spell_List: 0
+NPCimagePath: 
+NPCTokenPath: /path/to/file.jpg
+NPCImArt: 
+NPCImLink: 
+NPCNoID: 
+NPC_FS_STR: 0
+NPC_FS_DEX: 0
+NPC_FS_CON: 0
+NPC_FS_INT: 1
+NPC_FS_WIS: 0
+NPC_FS_CHA: 0
+NoLActions: 
+NPCRTF: 1
+Terrain: 
+Lore: 
+FGcat: 
