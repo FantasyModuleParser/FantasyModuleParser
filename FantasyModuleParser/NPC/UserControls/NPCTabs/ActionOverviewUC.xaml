@@ -13,9 +13,7 @@
                 inside the ItemControl -->
         <DataTemplate x:Key="ActionSubPanelDT">
             <Border BorderThickness="1" BorderBrush="Black" Margin="5,2,0,0">
-                <TextBlock Text="{Binding ActionName}" 
-                           Width="150" Padding="2" 
-                           HorizontalAlignment="Left" >
+                <TextBlock Text="{Binding ActionName}" Width="150" Padding="2" HorizontalAlignment="Left" >
                 </TextBlock>
             </Border>
         </DataTemplate>
@@ -38,9 +36,7 @@
     </UserControl.Resources>
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="290" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
-
         <StackPanel Orientation="Vertical">
-
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="295">
                 <ScrollViewer VerticalScrollBarVisibility="Visible"  Height="255" Width="590" Margin="10,10,0,0">
                     <StackPanel Orientation="Vertical">
@@ -60,9 +56,7 @@
                 </Button>
             </StackPanel>
             <StackPanel Height="20">
-
             </StackPanel>
-
             <Grid Height="180">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5"/>
@@ -81,8 +75,7 @@
                         <Label Content="Reactions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="130">
                             <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding Path=Reactions}" 
-                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                                <ItemsControl ItemsSource="{Binding Path=Reactions}" ItemTemplate="{StaticResource ActionSubPanelDT}"/>
                             </StackPanel>
                         </ScrollViewer>
                         <Button Content="Reactions" Click="Reactions_Click" Padding="5,0,5,2" HorizontalAlignment="Right" Margin="0,0,2,0">
@@ -97,8 +90,7 @@
                         <Label Content="Legendary Actions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="130">
                             <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding Path=LegendaryActions}" 
-                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                                <ItemsControl ItemsSource="{Binding Path=LegendaryActions}" ItemTemplate="{StaticResource ActionSubPanelDT}"/>
                             </StackPanel>
                         </ScrollViewer>
                         <Button Content="Legendary Actions" Click="LegAction_Click" Padding="5,0,5,2" HorizontalAlignment="Right" Margin="0,0,2,0">
@@ -113,8 +105,7 @@
                         <Label Content="Lair Actions" Foreground="Gray"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="130">
                             <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding Path=LairActions}" 
-                                          ItemTemplate="{StaticResource ActionSubPanelDT}"/>
+                                <ItemsControl ItemsSource="{Binding Path=LairActions}" ItemTemplate="{StaticResource ActionSubPanelDT}"/>
                             </StackPanel>
                         </ScrollViewer>
                         <Button Content="Lair Actions" Click="LairActions_Click" Padding="5,0,5,2" HorizontalAlignment="Right" Margin="0,0,2,0">

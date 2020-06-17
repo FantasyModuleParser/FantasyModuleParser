@@ -14,16 +14,16 @@
                 <CheckBox Name="chkInnateSpellcastingSection" Checked="InnateSpellcasting_Click" Content="Include 'Innate Spellcasting' section for NPC" IsChecked="{Binding Path=InnateSpellcastingSection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,15,0,0">
                     <CheckBox.ToolTip>
                         <TextBlock>
-                                        Check this box to include an 'Innate Spellcasting' section in your NPC.
-                                        <LineBreak />
-                                        <Italic>Uncheck it to have no 'Innate Spellcasting' section</Italic>
+                            Check this box to include an 'Innate Spellcasting' section in your NPC.
+                            <LineBreak />
+                            <Italic>Uncheck it to have no 'Innate Spellcasting' section</Italic>
                         </TextBlock>
                     </CheckBox.ToolTip>
                 </CheckBox>
                 <CheckBox Name="chkPsionics" Content="Mark section as 'Psionics'" IsChecked="{Binding Path=Psionics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="50,15,0,0">
                     <CheckBox.ToolTip>
                         <TextBlock>
-                                        Check this box to mark this section as 'Innate Spellcasting (Psionics) for your NPC.
+                            Check this box to mark this section as 'Innate Spellcasting (Psionics) for your NPC.
                         </TextBlock>
                     </CheckBox.ToolTip>
                 </CheckBox>
@@ -42,7 +42,7 @@
                     <ComboBoxItem>Charisma</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Select the ability that is your NPC's innate spellcasting ability.
+                            Select the ability that is your NPC's innate spellcasting ability.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
@@ -50,9 +50,9 @@
                 <TextBox Name="intInnateSpellSaveDC" Text="{Binding Path=InnateSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Enter the NPC's spell save difficulty.
-                                        <LineBreak />
-                                        <Italic>The range is 0 to 30.</Italic>
+                            Enter the NPC's spell save difficulty.
+                            <LineBreak />
+                            <Italic>The range is 0 to 30.</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -60,11 +60,11 @@
                 <TextBox Name="intInnateSpellHitBonus" Text="{Binding Path=InnateSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="75" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Enter the NPC's spell 'to hit' bonus if appropriate.
-                                        <LineBreak />
-                                        <Italic>The range is 0 to 30.</Italic>
-                                        <LineBreak />
-                                        <Italic>Leave at zero if the NPC should not have a 'to hit' bonus mentioned.</Italic>
+                            Enter the NPC's spell 'to hit' bonus if appropriate.
+                            <LineBreak />
+                            <Italic>The range is 0 to 30.</Italic>
+                            <LineBreak />
+                            <Italic>Leave at zero if the NPC should not have a 'to hit' bonus mentioned.</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -74,7 +74,7 @@
                 <TextBox Name="strComponentText" Text="{Binding Path=ComponentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="450" Height="20" Margin="10,5,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Enter information about the components required to cast this spell.
+                            Enter information about the components required to cast this spell.
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -92,11 +92,11 @@
                     <TextBox Name="strInnatAtWill" Text="{Binding Path=InnateAtWill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="24,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Type the name of the spells the NPC can use at will (i.e. as often as required)
-                                            <LineBreak />
-                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                            <LineBreak />
-                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                Type the name of the spells the NPC can use at will (i.e. as often as required)
+                                <LineBreak />
+                                <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                <LineBreak />
+                                <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -106,11 +106,11 @@
                     <TextBox Name="strFivePerDay" Text="{Binding Path=FivePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Type the name of the spells the NPC can use five times a day.
-                                            <LineBreak />
-                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                            <LineBreak />
-                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                Type the name of the spells the NPC can use five times a day.
+                                <LineBreak />
+                                <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                <LineBreak />
+                                <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -120,11 +120,11 @@
                     <TextBox Name="strFourPerDay" Text="{Binding Path=FourPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Type the name of the spells the NPC can use four times a day.
-                                            <LineBreak />
-                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                            <LineBreak />
-                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                Type the name of the spells the NPC can use five times a day.
+                                <LineBreak />
+                                <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                <LineBreak />
+                                <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -134,11 +134,11 @@
                     <TextBox Name="strThreePerDay" Text="{Binding Path=ThreePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Type the name of the spells the NPC can use three times a day.
-                                            <LineBreak />
-                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                            <LineBreak />
-                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                Type the name of the spells the NPC can use five times a day.
+                                <LineBreak />
+                                <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                <LineBreak />
+                                <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -148,11 +148,11 @@
                     <TextBox Name="strTwoPerDay" Text="{Binding Path=TwoPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Type the name of the spells the NPC can use two times a day.
-                                            <LineBreak />
-                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                            <LineBreak />
-                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                Type the name of the spells the NPC can use five times a day.
+                                <LineBreak />
+                                <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                <LineBreak />
+                                <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -162,11 +162,11 @@
                     <TextBox Name="strOnePerDay" Text="{Binding Path=OnePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="475" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Type the name of the spells the NPC can use one times a day.
-                                            <LineBreak />
-                                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                            <LineBreak />
-                                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                                Type the name of the spells the NPC can use five times a day.
+                                <LineBreak />
+                                <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                                <LineBreak />
+                                <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
