@@ -24,6 +24,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string WisdomAttribute { get; set; }
         public string CharismaAttribute { get; set; }
         public string SavingThrows { get; set; }
+        public string Senses { get; set; }
 
         public PreviewNPCViewModel()
         {
@@ -31,13 +32,13 @@ namespace FantasyModuleParser.NPC.ViewModels
             NPCModel = npcController.GetNPCModel();
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = _updateSkillsDescription();
-            StrengthAttribute = UpdateStrengthAttribute();
             DexterityAttribute = UpdateDexterityAttribute();
             ConstitutionAttribute = UpdateConstitutionAttribute();
             IntelligenceAttribute = UpdateIntelligenceAttribute();
             WisdomAttribute = UpdateWisdomAttribute();
             CharismaAttribute = UpdateCharismaAttribute();
             SavingThrows = _updateSavingThrows();
+            Senses = UpdateSenses();
         }
 
         public PreviewNPCViewModel(NPCModel nPCModel)
@@ -45,6 +46,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             NPCModel = nPCModel;
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = _updateSkillsDescription();
+            StrengthAttribute = UpdateStrengthAttribute();
         }
         #region UpdateAbilityScores
         public string UpdateStrengthAttribute()
@@ -210,6 +212,28 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             if(skillValue != 0)
                 return skillName + ((skillValue < 0) ? " " : " +") + skillValue;
+            return "";
+        }
+        #endregion
+        #region UpdateSenses
+        private string UpdateSenses()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string delimiter = ", ";
+            stringBuilder.Append(appendSenses("darkvision ", NPCModel.Darkvision, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("blindsight ", NPCModel.Blindsight, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("tremorsense ", NPCModel.Tremorsense, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("truesight ", NPCModel.Truesight, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("passive perception ", NPCModel.PassivePerception, " ft.")).Append(delimiter);
+
+            // Remove the last comma
+            stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString();
+        }
+        private string appendSenses(string senseName, int senseValue, string senseRange)
+        {
+            if (senseValue != 0)
+                return senseName + senseValue + senseRange;
             return "";
         }
         #endregion

@@ -102,7 +102,7 @@
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal">
                     <Label Content="Senses" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="passive Perception 10" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="{Binding Path=Senses, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal">
                     <Label Content="Languages" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
