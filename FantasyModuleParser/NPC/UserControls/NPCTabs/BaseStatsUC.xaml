@@ -121,9 +121,9 @@
                         <ComboBoxItem>(yugoloth)</ComboBoxItem>
                         <ComboBox.ToolTip>
                             <TextBlock>
-                                            Select a specific sub-type of creature
-                                            <LineBreak />
-                                            <Italic>You can leave it blank if desired.</Italic>
+                                Select a specific sub-type of creature
+                                <LineBreak />
+                                <Italic>You can leave it blank if desired.</Italic>
                             </TextBlock>
                         </ComboBox.ToolTip>
                     </ComboBox>
@@ -153,11 +153,11 @@
                     <TextBox Name="strAC" Height="20" Width="100" Margin="0,0,0,0" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's armor class.
-                                            <LineBreak />
-                                            You can also enter the armor type in brackets.
-                                            <LineBreak />
-                                            <Bold>Example:</Bold> 12 (leather armor)
+                                Enter the NPC's armor class.
+                                <LineBreak />
+                                You can also enter the armor type in brackets.
+                                <LineBreak />
+                                <Bold>Example:</Bold> 12 (leather armor)
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -422,7 +422,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Str" IsChecked="{Binding Path=SavingThrowStr0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Str" IsChecked="{Binding Path=SavingThrowStrBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -443,7 +443,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Dex" IsChecked="{Binding Path=SavingThrowDex0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Dex" IsChecked="{Binding Path=SavingThrowDexBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -459,12 +459,12 @@
                                 Enter the NPC's saving throw bonus for constitution saves.
                                 <LineBreak />
                                 <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                <LineBreak />s
+                                <LineBreak />
                                 <Italic>E.g. +2 is entered as 2.</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Con" IsChecked="{Binding Path=SavingThrowCon0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Con" IsChecked="{Binding Path=SavingThrowConBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -485,7 +485,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Int" IsChecked="{Binding Path=SavingThrowInt0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Int" IsChecked="{Binding Path=SavingThrowIntBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -501,12 +501,12 @@
                                 Enter the NPC's saving throw bonus for wisdom saves.
                                 <LineBreak />
                                 <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                 <LineBreak />s
-                                 <Italic>E.g. +2 is entered as 2.</Italic>
+                                <LineBreak />
+                                <Italic>E.g. +2 is entered as 2.</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Wis" IsChecked="{Binding Path=SavingThrowWis0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Wis" IsChecked="{Binding Path=SavingThrowWisBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.
@@ -527,7 +527,7 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <CheckBox Name="chkSave0Cha" IsChecked="{Binding Path=SavingThrowCha0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
+                    <CheckBox Name="chkSave0Cha" IsChecked="{Binding Path=SavingThrowChaBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
                         <CheckBox.ToolTip>
                             <TextBlock>
                                 Check here if the saving throw should be set to show as '+0' in the statblock.

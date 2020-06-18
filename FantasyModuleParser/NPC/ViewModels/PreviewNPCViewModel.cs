@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FantasyModuleParser.NPC.ViewModels
 {
@@ -16,6 +17,14 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public string SpeedDescription { get; set; }
         public string SkillsDescription { get; set; }
+        public string StrengthAttribute { get; set; }
+        public string DexterityAttribute { get; set; }
+        public string ConstitutionAttribute { get; set; }
+        public string IntelligenceAttribute { get; set; }
+        public string WisdomAttribute { get; set; }
+        public string CharismaAttribute { get; set; }
+        public string SavingThrows { get; set; }
+        public string Senses { get; set; }
 
         public PreviewNPCViewModel()
         {
@@ -23,21 +32,114 @@ namespace FantasyModuleParser.NPC.ViewModels
             NPCModel = npcController.GetNPCModel();
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = _updateSkillsDescription();
+            StrengthAttribute = UpdateStrengthAttribute();
+            DexterityAttribute = UpdateDexterityAttribute();
+            ConstitutionAttribute = UpdateConstitutionAttribute();
+            IntelligenceAttribute = UpdateIntelligenceAttribute();
+            WisdomAttribute = UpdateWisdomAttribute();
+            CharismaAttribute = UpdateCharismaAttribute();
+            SavingThrows = _updateSavingThrows();
+            Senses = UpdateSenses();
         }
 
         public PreviewNPCViewModel(NPCModel nPCModel)
         {
             NPCModel = nPCModel;
             SpeedDescription = UpdateSpeedDescription();
-            SkillsDescription = _updateSkillsDescription();
+            SkillsDescription = _updateSkillsDescription();    
         }
+        #region UpdateAbilityScores
+        public string UpdateStrengthAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
 
+            num = -5 + (NPCModel.AttributeStr / 2);
+
+            if (NPCModel.AttributeStr >= 10)
+                stringBuilder.Append(NPCModel.AttributeStr + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeStr + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateDexterityAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeDex / 2);
+
+            if (NPCModel.AttributeDex >= 10)
+                stringBuilder.Append(NPCModel.AttributeDex + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeDex + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateConstitutionAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeCon / 2);
+
+            if (NPCModel.AttributeCon >= 10)
+                stringBuilder.Append(NPCModel.AttributeCon + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeCon + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateIntelligenceAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeInt / 2);
+
+            if (NPCModel.AttributeInt >= 10)
+                stringBuilder.Append(NPCModel.AttributeInt + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeInt + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateWisdomAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeWis / 2);
+
+            if (NPCModel.AttributeWis >= 10)
+                stringBuilder.Append(NPCModel.AttributeWis + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeWis + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateCharismaAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeCha / 2);
+
+            if (NPCModel.AttributeCha >= 10)
+                stringBuilder.Append(NPCModel.AttributeCha + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeCha + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        #endregion
+        #region UpdateSpeed
         public string UpdateSpeedDescription()
         {
-            StringBuilder stringBuilder
-                = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            if(NPCModel.Speed == 0)
+            if (NPCModel.Speed == 0)
                 stringBuilder.Append("0 ft., ");
             else 
                 stringBuilder.Append(_appendSpeedAttribute("", NPCModel.Speed, false));
@@ -56,7 +158,8 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return name + " " + value + " ft." + (hover ? " (hover), ": ", ");
             return "";
         }
-
+        #endregion
+        #region UpdateSkills
         private string _updateSkillsDescription()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -78,12 +181,8 @@ namespace FantasyModuleParser.NPC.ViewModels
             stringBuilder.Append(appendSkill("Sleight of Hand", NPCModel.SleightOfHand));
             stringBuilder.Append(appendSkill("Stealth", NPCModel.Stealth));
             stringBuilder.Append(appendSkill("Survival", NPCModel.Survival));
-
-            // Remove the last comma
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            return stringBuilder.ToString();
         }
-
+            
         private string appendSkill(string skillName, int skillValue)
         {
             string delimiter = ", ";
@@ -91,5 +190,50 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return skillName + ((skillValue < 0) ? " -" : " +") + skillValue + delimiter;
             return "";
         }
+        #endregion
+        #region UpdateSavingThrows
+        private string _updateSavingThrows()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string delimiter = ", ";
+            stringBuilder.Append(appendSavingThrow("Str", NPCModel.SavingThrowStr)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Dex", NPCModel.SavingThrowDex)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Con", NPCModel.SavingThrowCon)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Int", NPCModel.SavingThrowInt)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Wis", NPCModel.SavingThrowWis)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Cha", NPCModel.SavingThrowCha)).Append(delimiter);
+            stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString();
+        }
+        private string appendSavingThrow(string savingThrowName, int savingThrowValue)
+        {
+            if (savingThrowValue != 0)
+                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue;
+            return "";
+        }
+        #endregion
+
+        #region UpdateSenses
+        private string UpdateSenses()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string delimiter = ", ";
+            stringBuilder.Append(appendSenses("darkvision ", NPCModel.Darkvision, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("blindsight ", NPCModel.Blindsight, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("tremorsense ", NPCModel.Tremorsense, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("truesight ", NPCModel.Truesight, " ft.")).Append(delimiter);
+            stringBuilder.Append(appendSenses("passive perception ", NPCModel.PassivePerception, " ft.")).Append(delimiter);
+
+            // Remove the last comma
+            stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString();
+        }
+        private string appendSenses(string senseName, int senseValue, string senseRange)
+        {
+            if (senseValue != 0)
+                return senseName + senseValue + senseRange;
+            return "";
+        }
+        #endregion
     }
 }

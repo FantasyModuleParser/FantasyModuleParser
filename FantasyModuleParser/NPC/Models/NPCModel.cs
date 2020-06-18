@@ -42,12 +42,12 @@ namespace FantasyModuleParser.NPC
         public int SavingThrowInt { get; set; }
         public int SavingThrowWis { get; set; }
         public int SavingThrowCha { get; set; }
-        public bool SavingThrowStr0 { get; set; }
-        public bool SavingThrowDex0 { get; set; }
-        public bool SavingThrowCon0 { get; set; }
-        public bool SavingThrowInt0 { get; set; }
-        public bool SavingThrowWis0 { get; set; }
-        public bool SavingThrowCha0 { get; set; }
+        public bool SavingThrowStrBool { get; set; }
+        public bool SavingThrowDexBool { get; set; }
+        public bool SavingThrowConBool { get; set; }
+        public bool SavingThrowIntBool { get; set; }
+        public bool SavingThrowWisBool { get; set; }
+        public bool SavingThrowChaBool { get; set; }
         public int Blindsight { get; set; }
         public bool BlindBeyond { get; set; }
         public int Darkvision { get; set; }

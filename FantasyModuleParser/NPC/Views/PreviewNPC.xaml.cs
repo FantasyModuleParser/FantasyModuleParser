@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +23,19 @@ namespace FantasyModuleParser.NPC.Views
     {
         #region Controllers
         public NPCController npcController { get; set; }
+        private PreviewNPCViewModel viewModel;
         #endregion
         public PreviewNPC()
         {
             InitializeComponent();
-            npcController = new NPCController();
-            DataContext = npcController.GetNPCModel();
+            //npcController = new NPCController();
+            //DataContext = npcController.GetNPCModel();
+            viewModel = new PreviewNPCViewModel();
+            DataContext = viewModel;
         }
         public void WindowClose(object sender, RoutedEventArgs e)
         {
             Close();
         }
-    }
+	}
 }
