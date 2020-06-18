@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FantasyModuleParser.NPC.ViewModels
 {
@@ -22,6 +23,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string IntelligenceAttribute { get; set; }
         public string WisdomAttribute { get; set; }
         public string CharismaAttribute { get; set; }
+        public string SavingThrows { get; set; }
 
         public PreviewNPCViewModel()
         {
@@ -35,6 +37,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             IntelligenceAttribute = UpdateIntelligenceAttribute();
             WisdomAttribute = UpdateWisdomAttribute();
             CharismaAttribute = UpdateCharismaAttribute();
+            SavingThrows = _updateSavingThrows();
         }
 
         public PreviewNPCViewModel(NPCModel nPCModel)
@@ -43,7 +46,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = _updateSkillsDescription();
         }
-
+        #region UpdateAbilityScores
         public string UpdateStrengthAttribute()
         {
             int num;
@@ -128,6 +131,8 @@ namespace FantasyModuleParser.NPC.ViewModels
 
             return stringBuilder.ToString();
         }
+        #endregion
+        #region UpdateSpeed
         public string UpdateSpeedDescription()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -151,7 +156,29 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return name + " " + value + " ft." + (hover ? " (hover), ": ", ");
             return "";
         }
-
+        #endregion
+        #region UpdateSavingThrows
+        private string _updateSavingThrows()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string delimiter = ", ";
+            stringBuilder.Append(appendSavingThrow("Str", NPCModel.SavingThrowStr)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Dex", NPCModel.SavingThrowDex)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Con", NPCModel.SavingThrowCon)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Int", NPCModel.SavingThrowInt)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Wis", NPCModel.SavingThrowWis)).Append(delimiter);
+            stringBuilder.Append(appendSavingThrow("Cha", NPCModel.SavingThrowCha)).Append(delimiter);
+            stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString();
+        }
+        private string appendSavingThrow(string savingThrowName, int savingThrowValue)
+        {
+            if (savingThrowValue != 0)
+                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue;
+            return "";
+        }
+        #endregion
+        #region UpdateSkills
         private string _updateSkillsDescription()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -179,12 +206,12 @@ namespace FantasyModuleParser.NPC.ViewModels
             stringBuilder.Remove(stringBuilder.Length - 2, 2);
             return stringBuilder.ToString();
         }
-
         private string appendSkill(string skillName, int skillValue)
         {
             if(skillValue != 0)
                 return skillName + ((skillValue < 0) ? " " : " +") + skillValue;
             return "";
         }
+        #endregion
     }
 }
