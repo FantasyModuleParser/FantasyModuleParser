@@ -31,7 +31,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
         {
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FMPTests.Resources.V1_npc_basestats.npc"))
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(@embeddedResourcePath))
             using (StreamReader reader = new StreamReader(stream))
             {
                 return reader.ReadToEnd();
@@ -452,6 +452,50 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(true, actualNPCModel.Telepathy);
             Assert.AreEqual(90, actualNPCModel.TelepathyRange);
         }
+
+        #endregion
+
+        #region Casting
+
+        [TestMethod()]
+        public void Casting_CasterInformation()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+
+            Assert.AreEqual("18th", actualNPCModel.SpellcastingCasterLevel);
+            Assert.AreEqual("Constitution", actualNPCModel.SCSpellcastingAbility);
+            Assert.AreEqual(8, actualNPCModel.SpellcastingSpellSaveDC);
+            Assert.AreEqual(12, actualNPCModel.SpellcastingSpellHitBonus);
+            Assert.AreEqual("Sorcerer", actualNPCModel.SpellcastingSpellClass);
+            Assert.AreEqual("", actualNPCModel.FlavorText);
+        }
+
+        [TestMethod()]
+        [DataRow("At will", "Cantrips1")]
+        [DataRow("9 slots", "Spell 1st")]
+        [DataRow("8 slots", "Spell 2nd")]
+        [DataRow("7 slots", "Spell 3rd")]
+        [DataRow("6 slots", "Spell 4th")]
+        [DataRow("5 slots", "Spell 5th")]
+        [DataRow("4 slots", "Spell 6th")]
+        [DataRow("3 slots", "Spell 7th")]
+        [DataRow("2 slots", "Spell 8th")]
+        [DataRow("1 slots", "Spell 9th")]
+        public void Casting_SpellSelection(string numOfCasts, string spellList)
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+
+            Assert.AreEqual(numOfCasts, actualNPCModel.CantripSpells);
+            Assert.AreEqual(spellList, actualNPCModel.CantripSpellList);
+        }
+        [TestMethod()]
+        public void Casting_MarkedSpells()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+
+            Assert.AreEqual("*Spell 2nd", actualNPCModel.MarkedSpells);
+        }
+
 
         #endregion
 
