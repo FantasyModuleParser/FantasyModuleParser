@@ -16,6 +16,12 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public string SpeedDescription { get; set; }
         public string SkillsDescription { get; set; }
+        public string StrengthAttribute { get; set; }
+        public string DexterityAttribute { get; set; }
+        public string ConstitutionAttribute { get; set; }
+        public string IntelligenceAttribute { get; set; }
+        public string WisdomAttribute { get; set; }
+        public string CharismaAttribute { get; set; }
 
         public PreviewNPCViewModel()
         {
@@ -23,6 +29,12 @@ namespace FantasyModuleParser.NPC.ViewModels
             NPCModel = npcController.GetNPCModel();
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = _updateSkillsDescription();
+            StrengthAttribute = UpdateStrengthAttribute();
+            DexterityAttribute = UpdateDexterityAttribute();
+            ConstitutionAttribute = UpdateConstitutionAttribute();
+            IntelligenceAttribute = UpdateIntelligenceAttribute();
+            WisdomAttribute = UpdateWisdomAttribute();
+            CharismaAttribute = UpdateCharismaAttribute();
         }
 
         public PreviewNPCViewModel(NPCModel nPCModel)
@@ -32,11 +44,95 @@ namespace FantasyModuleParser.NPC.ViewModels
             SkillsDescription = _updateSkillsDescription();
         }
 
+        public string UpdateStrengthAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeStr / 2);
+
+            if (NPCModel.AttributeStr >= 10)
+                stringBuilder.Append(NPCModel.AttributeStr + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeStr + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateDexterityAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeDex / 2);
+
+            if (NPCModel.AttributeDex >= 10)
+                stringBuilder.Append(NPCModel.AttributeDex + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeDex + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateConstitutionAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeCon / 2);
+
+            if (NPCModel.AttributeCon >= 10)
+                stringBuilder.Append(NPCModel.AttributeCon + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeCon + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateIntelligenceAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeInt / 2);
+
+            if (NPCModel.AttributeInt >= 10)
+                stringBuilder.Append(NPCModel.AttributeInt + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeInt + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateWisdomAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeWis / 2);
+
+            if (NPCModel.AttributeWis >= 10)
+                stringBuilder.Append(NPCModel.AttributeWis + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeWis + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
+        public string UpdateCharismaAttribute()
+        {
+            int num;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            num = -5 + (NPCModel.AttributeCha / 2);
+
+            if (NPCModel.AttributeCha >= 10)
+                stringBuilder.Append(NPCModel.AttributeCha + " (+" + num + ")");
+            else
+                stringBuilder.Append(NPCModel.AttributeCha + " (" + num + ")");
+
+            return stringBuilder.ToString();
+        }
         public string UpdateSpeedDescription()
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            if(NPCModel.Speed == 0)
+            if (NPCModel.Speed == 0)
                 stringBuilder.Append("0 ft., ");
             else 
                 stringBuilder.Append(_appendSpeedAttribute("", NPCModel.Speed, false));
@@ -87,7 +183,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string appendSkill(string skillName, int skillValue)
         {
             if(skillValue != 0)
-                return skillName + ((skillValue < 0) ? " -" : " +") + skillValue;
+                return skillName + ((skillValue < 0) ? " " : " +") + skillValue;
             return "";
         }
     }

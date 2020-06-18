@@ -46,27 +46,27 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
                         <Label Content="STR" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" Padding="5,5,0,0"/>
-                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                        <Label Content="{Binding Path=StrengthAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="DEX" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="{Binding Path=DexterityAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="CON" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="{Binding Path=ConstitutionAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="INT" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="{Binding Path=IntelligenceAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="WIS" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="{Binding Path=WisdomAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Content="CHA" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="10 (+0)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,5"/>
+                        <Label Content="{Binding Path=CharismaAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,5"/>
                     </StackPanel>
                 </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
