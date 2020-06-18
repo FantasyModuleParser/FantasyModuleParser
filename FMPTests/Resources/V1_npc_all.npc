@@ -19,9 +19,9 @@ Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability 
 
 ACTIONS
 Multiattack. .This creature makes 3 attacks.
-All Specialstat Dagger. Melee Weapon Attack: +0 to hit, reach 5 ft., one target. Hit: 3 (1d6), silver, adamantine, cold-forged iron, magic damage or 4 (1d8), silver, adamantine, cold-forged iron, magic damage if used with two hands.
-Longbow. Ranged Weapon Attack: +0 to hit, range 0/0 ft., .Ranged Weapon Attack: +0 to hit, range 30/60 ft., one target. Hit: 3 (1d6) damage.
-No Idea Spell Attack. Melee or Ranged Spell Attack: +5 to hit, reach 10 ft. or range 50 ft., one target. Hit: 32 (5d10 + 5) piercing damage.
+All Specialstat Dagger. Melee Weapon Attack: +0 to hit, reach 5 ft., one target. Hit: 3 (1d6) lightning, silver, adamantine, cold-forged iron, magic damage or 4 (1d8) lightning, silver, adamantine, cold-forged iron, magic damage if used with two hands.
+Longbow. Ranged Weapon Attack: +6 to hit, range 120/600 ft., one target. Hit: 12 (2d8 + 3) slashing damage.
+No Idea Spell Attack. Melee or Ranged Spell Attack: +5 to hit, reach 10 ft. or range 50 ft., one creature. Hit: 11 (2d8 + 2) fire damage.
 Bonus Damage Dagger. Melee Spell Attack: +5 to hit, reach 10 ft., one target. Hit: 3 (1d6) piercing damage plus 29 (6d10 - 4) acid damage.
 Some Other Action. Some Other Action Flavor Text Here.
 REACTIONS

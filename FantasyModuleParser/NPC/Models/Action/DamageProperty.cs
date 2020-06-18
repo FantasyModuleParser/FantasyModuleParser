@@ -16,5 +16,17 @@ namespace FantasyModuleParser.NPC.Models.Action
         public int Bonus { get; set; }
 
         public DamageType DamageType { get; set; }
+
+        public DamageProperty()
+        {
+        }
+
+        public DamageProperty(int numOfDice, DieType dieType, int bonus, DamageType damageType)
+        {
+            NumOfDice = numOfDice;
+            DieType = dieType;
+            Bonus = bonus;
+            DamageType = damageType;
+        }
     }
 }

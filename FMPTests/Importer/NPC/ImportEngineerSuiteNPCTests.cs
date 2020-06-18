@@ -22,11 +22,13 @@ namespace FantasyModuleParser.Importer.NPC.Tests
     public class ImportEngineerSuiteNPCTests
     {
         private ImportEngineerSuiteNPC _importEngineerSuiteNPC;
+        NPCModel actualNPCModel = null;
 
         [TestInitialize]
         public void Initialize()
         {
             _importEngineerSuiteNPC = new ImportEngineerSuiteNPC();
+            actualNPCModel = LoadEngineerSuiteTestNPCFile();
         }
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
@@ -496,6 +498,228 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("*Spell 2nd", actualNPCModel.MarkedSpells);
         }
 
+
+        #endregion
+
+        #region Actions
+
+        #region Standard Actions
+        [TestMethod()]
+        public void Actions_Validate_StandardActionCount()
+        {
+            Assert.AreEqual(6, actualNPCModel.NPCActions.Count);
+        }
+        [TestMethod]
+        public void Actions_Validate_FirstStandardAction()
+        {
+            Assert.IsInstanceOfType(actualNPCModel.NPCActions[0], typeof(Multiattack));
+
+            Multiattack actualMultiattack = (Multiattack)actualNPCModel.NPCActions[0];
+
+            Assert.AreEqual(".This creature makes 3 attacks.", actualMultiattack.ActionDescription);
+        }
+
+        private void AssertValidWeaponAttack(WeaponAttack expected, WeaponAttack actual)
+        {
+            Assert.AreEqual(expected.ActionName, actual.ActionName);
+            Assert.AreEqual(expected.WeaponType, actual.WeaponType);
+            Assert.AreEqual(expected.IsMagic, actual.IsMagic);
+            Assert.AreEqual(expected.IsAdamantine, actual.IsAdamantine);
+            Assert.AreEqual(expected.IsSilver, actual.IsSilver);
+            Assert.AreEqual(expected.IsColdForgedIron, actual.IsColdForgedIron);
+            Assert.AreEqual(expected.IsVersatile, actual.IsVersatile);
+            Assert.AreEqual(expected.ToHit, actual.ToHit);
+            Assert.AreEqual(expected.Reach, actual.Reach);
+            Assert.AreEqual(expected.WeaponRangeShort, actual.WeaponRangeShort);
+            Assert.AreEqual(expected.WeaponRangeLong, actual.WeaponRangeLong);
+            Assert.AreEqual(expected.TargetType, actual.TargetType);
+            Assert.AreEqual(expected.PrimaryDamage, actual.PrimaryDamage);
+            Assert.AreEqual(expected.SecondaryDamage, actual.SecondaryDamage);
+            Assert.AreEqual(expected.OtherText, actual.OtherText);
+
+
+        }
+
+        [TestMethod]
+        public void Actions_Validate_SecondStandardAction()
+        {
+            Assert.IsInstanceOfType(actualNPCModel.NPCActions[1], typeof(WeaponAttack));
+
+            WeaponAttack expectedWeaponAttack = new WeaponAttack();
+
+            expectedWeaponAttack.ActionName = "All Specialstat Dagger";
+            expectedWeaponAttack.WeaponType = WeaponType.MWA;
+            expectedWeaponAttack.IsMagic = true;
+            expectedWeaponAttack.IsAdamantine = true;
+            expectedWeaponAttack.IsSilver = true;
+            expectedWeaponAttack.IsColdForgedIron = true;
+            expectedWeaponAttack.IsVersatile = true;
+            expectedWeaponAttack.ToHit = 0;
+            expectedWeaponAttack.Reach = 5;
+            expectedWeaponAttack.WeaponRangeShort = 30; // Default
+            expectedWeaponAttack.WeaponRangeLong = 60;  // Default
+            expectedWeaponAttack.TargetType = TargetType.target;
+            expectedWeaponAttack.PrimaryDamage = new DamageProperty(1, DieType.D6, 0, DamageType.Lightning);
+            expectedWeaponAttack.SecondaryDamage = null;
+            expectedWeaponAttack.OtherText = "";
+
+            WeaponAttack actualWeaponAttack = (WeaponAttack)actualNPCModel.NPCActions[1];
+
+            AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack); 
+        }
+
+        [TestMethod]
+        public void Actions_Validate_ThirdStandardAction()
+        {
+            Assert.IsInstanceOfType(actualNPCModel.NPCActions[2], typeof(WeaponAttack));
+
+            WeaponAttack expectedWeaponAttack = new WeaponAttack();
+
+            expectedWeaponAttack.ActionName = "Longbow";
+            expectedWeaponAttack.WeaponType = WeaponType.RWA;
+            expectedWeaponAttack.IsMagic = false;
+            expectedWeaponAttack.IsAdamantine = false;
+            expectedWeaponAttack.IsSilver = false;
+            expectedWeaponAttack.IsColdForgedIron = false;
+            expectedWeaponAttack.IsVersatile = false;
+            expectedWeaponAttack.ToHit = 6;
+            expectedWeaponAttack.Reach = 5;
+            expectedWeaponAttack.WeaponRangeShort = 120; 
+            expectedWeaponAttack.WeaponRangeLong = 600;  
+            expectedWeaponAttack.TargetType = TargetType.target;
+            expectedWeaponAttack.PrimaryDamage = new DamageProperty(2, DieType.D8, 3, DamageType.Piercing);
+            expectedWeaponAttack.SecondaryDamage = null;
+            expectedWeaponAttack.OtherText = "";
+
+            WeaponAttack actualWeaponAttack = (WeaponAttack)actualNPCModel.NPCActions[2];
+
+            AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack);
+        }
+
+        [TestMethod]
+        public void Actions_Validate_FourthStandardAction()
+        {
+            Assert.IsInstanceOfType(actualNPCModel.NPCActions[3], typeof(WeaponAttack));
+            WeaponAttack actualWeaponAttack = (WeaponAttack)actualNPCModel.NPCActions[3];
+
+            WeaponAttack expectedWeaponAttack = new WeaponAttack();
+
+            expectedWeaponAttack.ActionName = "No Idea Spell Attack";
+            expectedWeaponAttack.WeaponType = WeaponType.SA;
+            expectedWeaponAttack.IsMagic = false;
+            expectedWeaponAttack.IsAdamantine = false;
+            expectedWeaponAttack.IsSilver = false;
+            expectedWeaponAttack.IsColdForgedIron = false;
+            expectedWeaponAttack.IsVersatile = false;
+            expectedWeaponAttack.ToHit = 5;
+            expectedWeaponAttack.Reach = 10;
+            expectedWeaponAttack.WeaponRangeShort = 50; 
+            expectedWeaponAttack.WeaponRangeLong = 60;  // ??????  Default maybe?
+            expectedWeaponAttack.TargetType = TargetType.creature;
+            expectedWeaponAttack.PrimaryDamage = new DamageProperty(5, DieType.D10, 5, DamageType.Piercing);
+            expectedWeaponAttack.SecondaryDamage = null;
+            expectedWeaponAttack.OtherText = "";
+
+            
+
+            AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack);
+        }
+
+        [TestMethod]
+        public void Actions_Validate_FifthStandardAction()
+        {
+            Assert.IsInstanceOfType(actualNPCModel.NPCActions[4], typeof(WeaponAttack));
+            WeaponAttack actualWeaponAttack = (WeaponAttack)actualNPCModel.NPCActions[4];
+
+            WeaponAttack expectedWeaponAttack = new WeaponAttack();
+
+            expectedWeaponAttack.ActionName = "Bonus Damage Dagger";
+            expectedWeaponAttack.WeaponType = WeaponType.MSA;
+            expectedWeaponAttack.IsMagic = false;
+            expectedWeaponAttack.IsAdamantine = false;
+            expectedWeaponAttack.IsSilver = false;
+            expectedWeaponAttack.IsColdForgedIron = false;
+            expectedWeaponAttack.IsVersatile = false;
+            expectedWeaponAttack.ToHit = 5;
+            expectedWeaponAttack.Reach = 10;
+            expectedWeaponAttack.WeaponRangeShort = 30; // Default
+            expectedWeaponAttack.WeaponRangeLong = 60;  // Default
+            expectedWeaponAttack.TargetType = TargetType.target;
+            expectedWeaponAttack.PrimaryDamage = new DamageProperty(1, DieType.D6, 0, DamageType.Piercing);
+            expectedWeaponAttack.SecondaryDamage = new DamageProperty(6, DieType.D10, -4, DamageType.Acid); ;
+            expectedWeaponAttack.OtherText = "";
+
+            
+
+            AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack);
+        }
+
+        [TestMethod]
+        public void Actions_Validate_SixthStandardAction()
+        {
+            Assert.IsInstanceOfType(actualNPCModel.NPCActions[5], typeof(OtherAction));
+            OtherAction actualOtherAction = (OtherAction)actualNPCModel.NPCActions[5];
+
+            Assert.AreEqual("Some Other Action", actualOtherAction.ActionName);
+            Assert.AreEqual("Some Other Action Flavor Text Here.", actualOtherAction.ActionDescription);
+        }
+
+        #endregion
+
+        #region Lair Actions
+        [TestMethod]
+        public void Actions_LairActionCount()
+        {
+            Assert.AreEqual(3, actualNPCModel.LairActions.Count);
+        }
+
+        [TestMethod]
+        [DataRow(0, "Options", "All the options of the lair:")]
+        [DataRow(1, "Charm", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")]
+        [DataRow(2, "Teleport", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see.")]
+        public void Actions_Validate_LairActions(int actionIndex, string expectedName, string expectedDescription)
+        {
+            LairAction actualLairAction = actualNPCModel.LairActions[actionIndex];
+            Assert.AreEqual(expectedName, actualLairAction.ActionName);
+            Assert.AreEqual(expectedDescription, actualLairAction.ActionDescription);
+        }
+        #endregion
+
+        #region Legendary Actions
+        [TestMethod]
+        public void Actions_LegendaryActionCount()
+        {
+            Assert.AreEqual(3, actualNPCModel.LegendaryActions.Count);
+        }
+
+        [TestMethod]
+        [DataRow(0, "Options", "This creature has 5 legendary actions.")]
+        [DataRow(1, "Movement", "(Costs 1 action) The creature can move upto it's fly speed without provoking AOO.")]
+        [DataRow(2, "Tail Whip", "(Costs 2 actions) The creature can use it's tail whip attack action.")]
+        public void Actions_Validate_LegendaryActions(int actionIndex, string expectedName, string expectedDescription)
+        {
+            LegendaryActionModel actualLegendaryAction = actualNPCModel.LegendaryActions[actionIndex];
+            Assert.AreEqual(expectedName, actualLegendaryAction.ActionName);
+            Assert.AreEqual(expectedDescription, actualLegendaryAction.ActionDescription);
+        }
+        #endregion
+
+        #region Reactions
+        [TestMethod]
+        public void Actions_ReactionsCount()
+        {
+            Assert.AreEqual(1, actualNPCModel.Reactions.Count);
+        }
+
+        [TestMethod]
+        [DataRow(0, "Parry", "You know what it does.. NINJA DODGE.")]
+        public void Actions_Validate_Reactions(int actionIndex, string expectedName, string expectedDescription)
+        {
+            ActionModelBase actualReaction = actualNPCModel.Reactions[actionIndex];
+            Assert.AreEqual(expectedName, actualReaction.ActionName);
+            Assert.AreEqual(expectedDescription, actualReaction.ActionDescription);
+        }
+        #endregion
 
         #endregion
 
