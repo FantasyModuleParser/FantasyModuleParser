@@ -32,6 +32,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             NPCModel = npcController.GetNPCModel();
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = _updateSkillsDescription();
+            StrengthAttribute = UpdateStrengthAttribute();
             DexterityAttribute = UpdateDexterityAttribute();
             ConstitutionAttribute = UpdateConstitutionAttribute();
             IntelligenceAttribute = UpdateIntelligenceAttribute();
@@ -45,8 +46,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             NPCModel = nPCModel;
             SpeedDescription = UpdateSpeedDescription();
-            SkillsDescription = _updateSkillsDescription();
-            StrengthAttribute = UpdateStrengthAttribute();
+            SkillsDescription = _updateSkillsDescription();    
         }
         #region UpdateAbilityScores
         public string UpdateStrengthAttribute()
@@ -159,6 +159,38 @@ namespace FantasyModuleParser.NPC.ViewModels
             return "";
         }
         #endregion
+        #region UpdateSkills
+        private string _updateSkillsDescription()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(appendSkill("Acrobatics", NPCModel.Acrobatics));
+            stringBuilder.Append(appendSkill("Animal Handling", NPCModel.AnimalHandling));
+            stringBuilder.Append(appendSkill("Arcana", NPCModel.Arcana));
+            stringBuilder.Append(appendSkill("Athletics", NPCModel.Athletics));
+            stringBuilder.Append(appendSkill("Deception", NPCModel.Deception));
+            stringBuilder.Append(appendSkill("History", NPCModel.History));
+            stringBuilder.Append(appendSkill("Insight", NPCModel.Insight));
+            stringBuilder.Append(appendSkill("Intimidation", NPCModel.Intimidation));
+            stringBuilder.Append(appendSkill("Investigation", NPCModel.Investigation));
+            stringBuilder.Append(appendSkill("Medicine", NPCModel.Medicine));
+            stringBuilder.Append(appendSkill("Nature", NPCModel.Nature));
+            stringBuilder.Append(appendSkill("Perception", NPCModel.Perception));
+            stringBuilder.Append(appendSkill("Performance", NPCModel.Performance));
+            stringBuilder.Append(appendSkill("Persuasion", NPCModel.Persuasion));
+            stringBuilder.Append(appendSkill("Religion", NPCModel.Religion));
+            stringBuilder.Append(appendSkill("Sleight of Hand", NPCModel.SleightOfHand));
+            stringBuilder.Append(appendSkill("Stealth", NPCModel.Stealth));
+            stringBuilder.Append(appendSkill("Survival", NPCModel.Survival));
+        }
+            
+        private string appendSkill(string skillName, int skillValue)
+        {
+            string delimiter = ", ";
+            if (skillValue != 0)
+                return skillName + ((skillValue < 0) ? " -" : " +") + skillValue + delimiter;
+            return "";
+        }
+        #endregion
         #region UpdateSavingThrows
         private string _updateSavingThrows()
         {
@@ -180,41 +212,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             return "";
         }
         #endregion
-        #region UpdateSkills
-        private string _updateSkillsDescription()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            string delimiter = ", ";
-            stringBuilder.Append(appendSkill("Acrobatics", NPCModel.Acrobatics)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Animal Handling", NPCModel.AnimalHandling)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Arcana", NPCModel.Arcana)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Athletics", NPCModel.Athletics)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Deception", NPCModel.Deception)).Append(delimiter);
-            stringBuilder.Append(appendSkill("History", NPCModel.History)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Insight", NPCModel.Insight)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Intimidation", NPCModel.Intimidation)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Investigation", NPCModel.Investigation)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Medicine", NPCModel.Medicine)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Nature", NPCModel.Nature)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Perception", NPCModel.Perception)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Performance", NPCModel.Performance)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Persuasion", NPCModel.Persuasion)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Religion", NPCModel.Religion)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Sleight of Hand", NPCModel.SleightOfHand)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Stealth", NPCModel.Stealth)).Append(delimiter);
-            stringBuilder.Append(appendSkill("Survival", NPCModel.Survival)).Append(delimiter);
 
-            // Remove the last comma
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            return stringBuilder.ToString();
-        }
-        private string appendSkill(string skillName, int skillValue)
-        {
-            if(skillValue != 0)
-                return skillName + ((skillValue < 0) ? " " : " +") + skillValue;
-            return "";
-        }
-        #endregion
         #region UpdateSenses
         private string UpdateSenses()
         {
