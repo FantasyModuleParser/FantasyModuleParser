@@ -176,6 +176,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         {
             Assert.AreEqual(3900, LoadEngineerSuiteTestNPCFile().XP);
         }
+
         #endregion
 
         #region Resistances
