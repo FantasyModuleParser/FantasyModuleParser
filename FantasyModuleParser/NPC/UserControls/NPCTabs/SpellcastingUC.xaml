@@ -14,9 +14,9 @@
                 <CheckBox Name="chkSpellcasting" IsChecked="{Binding Spellcasting}" Content="Include 'Spellcasting' section for NPC" Margin="15,15,0,0">
                     <CheckBox.ToolTip>
                         <TextBlock>
-                                        Check this box to include an 'Spellcasting' section in your NPC.
-                                        <LineBreak />
-                                        <Italic>Uncheck it to have no 'Spellcasting' section</Italic>
+                            Check this box to include an 'Spellcasting' section in your NPC.
+                            <LineBreak />
+                            <Italic>Uncheck it to have no 'Spellcasting' section</Italic>
                         </TextBlock>
                     </CheckBox.ToolTip>
                 </CheckBox>
@@ -59,7 +59,7 @@
                     <ComboBoxItem>30th</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Select the NPC's caster level.
+                            Select the NPC's caster level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
@@ -73,7 +73,7 @@
                     <ComboBoxItem>Charisma</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Select the NPC's spellcasting ability.
+                            Select the NPC's spellcasting ability.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
@@ -81,9 +81,9 @@
                 <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding Path=SpellcastingSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" Margin="10,0,0,0" Padding="0" Height="20" PreviewTextInput="NumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Enter the NPC's spell save difficulty check score.
-                                        <LineBreak />
-                                        <Italic>The range is 0 to 30.</Italic>
+                            Enter the NPC's spell save difficulty check score.
+                            <LineBreak />
+                            <Italic>The range is 0 to 30.</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -93,9 +93,9 @@
                 <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding Path=SpellcastingSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="75" Height="20" Margin="10,2,0,0" PreviewTextInput="NumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Enter the NPC's spell 'to hit' bonus if appropriate.
-                                        <LineBreak />
-                                        <Italic>The range is 0 to 30.</Italic>
+                            Enter the NPC's spell 'to hit' bonus if appropriate.
+                            <LineBreak />
+                            <Italic>The range is 0 to 30.</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -121,7 +121,7 @@
                 <TextBox Name="strFlavorText" Text="{Binding Path=FlavorText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="450" Height="20" Padding="0,3,0,0" Margin="10,3,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Enter any flavor text about your NPC's casting. This is not essential and can be left blank.
+                            Enter any flavor text about your NPC's casting. This is not essential and can be left blank.
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -149,18 +149,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at this level. For cantrips, this is usually 'At Will' (meaning 'as many as required).
+                            Choose how many spell slots your NPC has at this level. For cantrips, this is usually 'At Will' (meaning 'as many as required).
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strCantripSpellList" Text="{Binding Path=CantripSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,5,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at will (i.e. as often as required)
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at will (i.e. as often as required)
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -179,18 +179,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 1st level.
+                            Choose how many spell slots your NPC has at 1st level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strFirstLevelSpellList" Text="{Binding Path=FirstLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 1st level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 1st level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -209,18 +209,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 2nd level.
+                            Choose how many spell slots your NPC has at 2nd level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strSecondLevelSpellList" Text="{Binding Path=SecondLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 2nd level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 2nd level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -239,18 +239,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 3rd level.
+                            Choose how many spell slots your NPC has at 3rd level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strThirdLevelSpellList" Text="{Binding Path=ThirdLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 3rd level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 3rd level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -269,18 +269,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 4th level.
+                            Choose how many spell slots your NPC has at 4th level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strFourthLevelSpellList" Text="{Binding Path=FourthLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 4th level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 4th level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -299,18 +299,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 5th level.
+                            Choose how many spell slots your NPC has at 5th level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strFifthLevelSpellList" Text="{Binding Path=FifthLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 5th level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 5th level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -329,18 +329,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 6th level.
+                            Choose how many spell slots your NPC has at 6th level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strSixthLevelSpellList" Text="{Binding Path=SixthLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 6th level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 6th level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -359,18 +359,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 7th level.
+                            Choose how many spell slots your NPC has at 7th level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strSeventhLevelSpellList" Text="{Binding Path=SeventhLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 7th level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 7th level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -389,18 +389,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 8th level.
+                            Choose how many spell slots your NPC has at 8th level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strEigthLevelSpellList" Text="{Binding Path=EigthLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 8th level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 8th level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -419,18 +419,18 @@
                     <ComboBoxItem>9 slots</ComboBoxItem>
                     <ComboBox.ToolTip>
                         <TextBlock>
-                                        Choose how many spell slots your NPC has at 9th level.
+                            Choose how many spell slots your NPC has at 9th level.
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <TextBox Name="strNinthLevelSpellList" Text="{Binding Path=NinthLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        Type the name of the spells the NPC can use at the 9th level.
-                                        <LineBreak />
-                                        <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
-                                        <LineBreak />
-                                        <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
+                            Type the name of the spells the NPC can use at the 9th level.
+                            <LineBreak />
+                            <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic>
+                            <LineBreak />
+                            <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
@@ -440,11 +440,11 @@
                 <TextBox Name="strMarkedSpells" Text="{Binding Path=MarkedSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="460" Height="20" Padding="0" Margin="10,18,0,0">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        If you have any spells marked with an asterisk (*), the footnote goes here.
-                                        <LineBreak />
-                                        <Italic>This is not essential and can be left blank.</Italic>
-                                        <LineBreak />
-                                        <Italic>NPC Engineer will enforce an asterisk at the start.</Italic>
+                            If you have any spells marked with an asterisk (*), the footnote goes here.
+                            <LineBreak />
+                            <Italic>This is not essential and can be left blank.</Italic>
+                            <LineBreak />
+                            <Italic>NPC Option will enforce an asterisk at the start.</Italic>
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>

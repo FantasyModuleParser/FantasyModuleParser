@@ -17,7 +17,7 @@
                     <TextBox Name="strAcrobatics" Text="{Binding Path=Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Acrobatics skill modifier.
+                                Enter the NPC's Acrobatics skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -27,7 +27,7 @@
                     <TextBox Name="strAnimalHandling" Text="{Binding Path=AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Animal Handling skill modifier.
+                                Enter the NPC's Animal Handling skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -37,7 +37,7 @@
                     <TextBox Name="strArcana" Text="{Binding Path=Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Arcana skill modifier.
+                                Enter the NPC's Arcana skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -47,7 +47,7 @@
                     <TextBox Name="strAthletics" Text="{Binding Path=Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Athletics skill modifier.
+                                Enter the NPC's Athletics skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -57,7 +57,7 @@
                     <TextBox Name="strDeception" Text="{Binding Path=Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Deception skill modifier.
+                                Enter the NPC's Deception skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -67,7 +67,7 @@
                     <TextBox Name="strHistory" Text="{Binding History}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's History skill modifier.
+                                Enter the NPC's History skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -77,7 +77,7 @@
                     <TextBox Name="strInsight" Text="{Binding Path=Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Insight skill modifier.
+                                Enter the NPC's Insight skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -87,7 +87,7 @@
                     <TextBox Name="strIntimidation" Text="{Binding Path=Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Intimidation skill modifier.
+                                Enter the NPC's Intimidation skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -97,7 +97,7 @@
                     <TextBox Name="strInvestigation" Text="{Binding Path=Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Investigation skill modifier.
+                                Enter the NPC's Investigation skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -107,7 +107,7 @@
                     <TextBox Name="strMedicine" Text="{Binding Path=Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Medicine skill modifier.
+                                Enter the NPC's Medicine skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -117,7 +117,7 @@
                     <TextBox Name="strNature" Text="{Binding Path=Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Nature skill modifier.
+                                Enter the NPC's Nature skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -127,7 +127,7 @@
                     <TextBox Name="strPerception" Text="{Binding Path=Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Perception skill modifier.
+                                Enter the NPC's Perception skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -137,7 +137,7 @@
                     <TextBox Name="strPerformance" Text="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Performance skill modifier.
+                                Enter the NPC's Performance skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -147,7 +147,7 @@
                     <TextBox Name="strPersuasion" Text="{Binding Path=Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Persuasion skill modifier.
+                                Enter the NPC's Persuasion skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -157,7 +157,7 @@
                     <TextBox Name="strReligion" Text="{Binding Path=Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Religion skill modifier.
+                                Enter the NPC's Religion skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -167,7 +167,7 @@
                     <TextBox Name="strSleightofHand" Text="{Binding Path=SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Sleight of Hand skill modifier.
+                                Enter the NPC's Sleight of Hand skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -177,7 +177,7 @@
                     <TextBox Name="strStealth" Text="{Binding Path=Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Stealth skill modifier.
+                                Enter the NPC's Stealth skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -187,7 +187,7 @@
                     <TextBox Name="strSurvival" Text="{Binding Path=Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="30" Margin="5,5,0,0" HorizontalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Enter the NPC's Survival skill modifier.
+                                Enter the NPC's Survival skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -222,9 +222,9 @@
                     <ListBox Name="listExotic" ItemsSource="{Binding Path=ExoticLanguages}" SelectionMode="Multiple" Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
                         <ListBox.ToolTip>
                             <TextBlock>
-                                            Select the exotic languages that your NPC knows.
-                                            <LineBreak />
-                                            <Italic>You can select as many as you like.</Italic>
+                                Select the exotic languages that your NPC knows.
+                                <LineBreak />
+                                <Italic>You can select as many as you like.</Italic>
                             </TextBlock>
                         </ListBox.ToolTip>
                         <ListBox.ItemContainerStyle>
@@ -247,9 +247,9 @@
                     <ListBox Name="listMonstrous" ItemsSource="{Binding Path=MonstrousLanguages}" SelectionMode="Multiple" Margin="0,0,0,0" FontSize="12" Height="185" Width="150">
                         <ListBox.ToolTip>
                             <TextBlock>
-                                            Select the monstrous languages that your NPC knows.
-                                            <LineBreak />
-                                            <Italic>You can select as many as you like.</Italic>
+                                Select the monstrous languages that your NPC knows.
+                                <LineBreak />
+                                <Italic>You can select as many as you like.</Italic>
                             </TextBlock>
                         </ListBox.ToolTip>
                         <ListBox.ItemContainerStyle>
@@ -266,9 +266,9 @@
                     <ListBox Name="listUser" SelectionMode="Multiple" Margin="10,0,0,0" FontSize="12" Height="185" Width="150">
                         <ListBox.ToolTip>
                             <TextBlock>
-                                            Select the user-defined languages that your NPC knows.
-                                            <LineBreak />
-                                            <Italic>To modify this list, select `Options|Manage language list` from the menu.</Italic>
+                                Select the user-defined languages that your NPC knows.
+                                <LineBreak />
+                                <Italic>To modify this list, select `Options|Manage language list` from the menu.</Italic>
                             </TextBlock>
                         </ListBox.ToolTip>
                     </ListBox>
@@ -286,16 +286,16 @@
                         <ComboBoxItem>Alternative language text (enter below)</ComboBoxItem>
                         <ComboBox.ToolTip>
                             <TextBlock>
-                                            Select any special options for your NPC's language skills.
-                                            <LineBreak />
-                                            <Italic>Choosing 'No special conditions' uses the languages above.</Italic>
+                                Select any special options for your NPC's language skills.
+                                <LineBreak />
+                                <Italic>Choosing 'No special conditions' uses the languages above.</Italic>
                             </TextBlock>
                         </ComboBox.ToolTip>
                     </ComboBox>
                     <TextBox Name="strLanguageOptionsText" Text="{Binding Path=LanguageOptionsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,5,0,0" HorizontalAlignment="Left" Width="296">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Fill in any text you want to use for the language skill in place of the standard texts above.
+                                Fill in any text you want to use for the language skill in place of the standard texts above.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
@@ -304,7 +304,7 @@
                     <CheckBox Name="chkTelepathy" IsChecked="{Binding Path=Telepathy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Telepathy" Margin="15,10,0,0">
                         <CheckBox.ToolTip>
                             <TextBlock>
-                                            Check this box if your NPC has telepathy.
+                                Check this box if your NPC has telepathy.
                             </TextBlock>
                         </CheckBox.ToolTip>
                     </CheckBox>
@@ -312,9 +312,9 @@
                     <TextBox Name="strTelepathyRange" Text="{Binding Path=TelepathyRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="175" Height="20" Margin="5,7,0,0">
                         <TextBox.ToolTip>
                             <TextBlock>
-                                            Fill in the range (and the unit) of your NPC's telepathy.
-                                            <LineBreak />
-                                            <Italic>For example: 150 ft. or 5 miles</Italic>
+                                Fill in the range (and the unit) of your NPC's telepathy.
+                                <LineBreak />
+                                <Italic>For example: 150 ft. or 5 miles</Italic>
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
