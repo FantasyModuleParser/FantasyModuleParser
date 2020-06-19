@@ -76,13 +76,13 @@
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Saving Throws" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <TextBlock Text="{Binding Path=SavingThrows, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0" TextWrapping="Wrap"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowSavingThrows}">
+                    <Label Content="Saving Throws" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=SavingThrows, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Skills" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <TextBlock Text="{Binding Path=SkillsDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0" TextWrapping="Wrap"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowSkills}">
+                    <Label Content="Skills" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=SkillsDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal">
                     <Label Content="Damage Vulnerabilities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
