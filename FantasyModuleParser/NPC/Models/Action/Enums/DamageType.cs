@@ -4,43 +4,43 @@ namespace FantasyModuleParser.NPC.Models.Action.Enums
 {
 	public enum DamageType
 	{
-		[Description("Bludgeoning")]
+		[Description("bludgeoning")]
 		Bludgeoning = 0,
 
-		[Description("Piercing")]
+		[Description("piercing")]
 		Piercing = 1,
 
-		[Description("Slashing")]
+		[Description("slashing")]
 		Slashing = 2,
 
-		[Description("Acid")]
+		[Description("acid")]
 		Acid = 3,
 
-		[Description("Cold")]
+		[Description("cold")]
 		Cold = 4,
 
-		[Description("Fire")]
+		[Description("fire")]
 		Fire = 5,
 
-		[Description("Force")]
+		[Description("force")]
 		Force = 6,
 
-		[Description("Lightning")]
+		[Description("lightning")]
 		Lightning = 7,
 
-		[Description("Necrotic")]
+		[Description("necrotic")]
 		Necrotic = 8,
 
-		[Description("Poison")]
+		[Description("poison")]
 		Poison = 9,
 
-		[Description("Psychic")]
+		[Description("psychic")]
 		Psychic = 10,
 
-		[Description("Radiant")]
+		[Description("radiant")]
 		Radiant = 11,
 
-		[Description("Thunder")]
+		[Description("thunder")]
 		Thunder = 12,
 	}
 }

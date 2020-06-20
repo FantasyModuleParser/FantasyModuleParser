@@ -113,6 +113,21 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
+            <Label Content="Weapon Resistances" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <ListBox Name="listSpecialResistance" SelectionMode="Multiple" ItemsSource="{Binding Path=SpecialWeaponDmgResistanceModelList}" Margin="25,10,0,0" FontSize="12" Height="270" Width="170">
+                <ListBox.ToolTip>
+                    <TextBlock>
+                        Select the damage vulnerabilities that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
+                    </TextBlock>
+                </ListBox.ToolTip>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
         </StackPanel>
         <StackPanel Name="stackSpecialImmunity" Orientation="Vertical" Margin="250,0,0,0" Visibility="Hidden" Width="360" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Label Content="Special Weapon Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -120,6 +135,21 @@
                 <ListBox.ToolTip>
                     <TextBlock>
                         Select the option that matches the weapon resistance your NPC has.
+                    </TextBlock>
+                </ListBox.ToolTip>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <Label Content="Weapon Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <ListBox Name="listSpecialImmunity" SelectionMode="Multiple" ItemsSource="{Binding Path=SpecialWeaponDmgImmunityModelList}" Margin="25,10,0,0" FontSize="12" Height="270" Width="170">
+                <ListBox.ToolTip>
+                    <TextBlock>
+                        Select the damage vulnerabilities that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
                     </TextBlock>
                 </ListBox.ToolTip>
                 <ListBox.ItemContainerStyle>

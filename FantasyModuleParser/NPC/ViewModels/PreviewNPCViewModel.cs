@@ -17,6 +17,8 @@ namespace FantasyModuleParser.NPC.ViewModels
     {
         public NPCModel NPCModel { get; set; }
         private NPCController npcController;
+        private string Resistance;
+        private string Immunity;
 
         public string SpeedDescription { get; set; }
         public string SkillsDescription { get; set; }
@@ -101,8 +103,9 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             NPCModel = nPCModel;
             SpeedDescription = UpdateSpeedDescription();
-            SkillsDescription = UpdateSkillsDescription();    
+            SkillsDescription = UpdateSkillsDescription();
         }
+
         #region UpdateAbilityScores
         public string UpdateStrengthAttribute()
         {
@@ -335,10 +338,53 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (SelectableActionModel selectableActionModel in NPCModel.DamageResistanceModelList)
             {
                 if (selectableActionModel.Selected == true)
-                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
+                    stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
             }
             if (stringBuilder.Length >= 2)
+            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+            stringBuilder.Append("; ");
+            if (stringBuilder.Length == 2)
+            {
+                stringBuilder.Remove(0, 2);
+            }
+            foreach (SelectableActionModel selectableActionModel in NPCModel.SpecialWeaponResistanceModelList)
+            {
+                if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
+                {
+                    if (selectableActionModel.ActionName == "Nonmagical")
+                    {
+                        Resistance = " from nonmagical attacks";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalSilvered")
+                    {
+                        Resistance = " from nonmagical attacks that aren't silvered";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
+                    {
+                        Resistance = " from nonmagical attacks that aren't adamantine";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
+                    {
+                        Resistance = " from nonmagical attacks that aren't cold-forged iron";
+                    }
+                    else if (selectableActionModel.ActionName == "Magical")
+                    {
+                        Resistance = " from magic weapons";
+                    }
+                    foreach (SelectableActionModel selectableActionModelDmg in NPCModel.SpecialWeaponDmgResistanceModelList)
+                    {
+                        if (selectableActionModelDmg.Selected == true)
+                            stringBuilder.Append(selectableActionModelDmg.ActionDescription).Append(", ");
+                    }
+                    if (stringBuilder.Length >= 2)
+                    {
+                        stringBuilder.Remove(stringBuilder.Length - 2, 2);
+                    }
+                    stringBuilder.Append(Resistance);    
+                }
+            }
             return stringBuilder.ToString().Trim();
         }
         #endregion
@@ -358,10 +404,49 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (SelectableActionModel selectableActionModel in NPCModel.DamageImmunityModelList)
             {
                 if (selectableActionModel.Selected == true)
-                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
+                    stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
             }
             if (stringBuilder.Length >= 2)
+            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+            stringBuilder.Append("; ");
+            if (stringBuilder.Length == 2)
+            {
+                stringBuilder.Remove(0, 2);
+            }
+            foreach (SelectableActionModel selectableActionModel in NPCModel.SpecialWeaponImmunityModelList)
+            {
+                if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
+                {
+                    if (selectableActionModel.ActionName == "Nonmagical")
+                    {
+                        Immunity = " from nonmagical attacks";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalSilvered")
+                    {
+                        Immunity = " from nonmagical attacks that aren't silvered";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
+                    {
+                        Immunity = " from nonmagical attacks that aren't adamantine";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
+                    {
+                        Immunity = " from nonmagical attacks that aren't cold-forged iron";
+                    }
+                    foreach (SelectableActionModel selectableActionModelDmg in NPCModel.SpecialWeaponDmgImmunityModelList)
+                    {
+                        if (selectableActionModelDmg.Selected == true)
+                            stringBuilder.Append(selectableActionModelDmg.ActionDescription).Append(", ");
+                    }
+                    if (stringBuilder.Length >= 2)
+                    {
+                        stringBuilder.Remove(stringBuilder.Length - 2, 2);
+                    }
+                    stringBuilder.Append(Immunity);
+                }
+            }
             return stringBuilder.ToString().Trim();
         }
         #endregion
@@ -437,8 +522,10 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string appendSenses(string senseName, int senseValue, string senseRange)
         {
             string delimiter = ", ";
-            if (senseValue != 0)
+            if (senseValue != 0 && NPCModel.BlindBeyond == false)
                 return senseName + senseValue + senseRange + delimiter;
+            if (senseValue != 0 && NPCModel.BlindBeyond == true)
+                return senseName + senseValue + senseRange + " (blind beyond)" + delimiter;
             return "";
         }
         #endregion

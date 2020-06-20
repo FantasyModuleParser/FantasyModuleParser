@@ -59,7 +59,9 @@ namespace FantasyModuleParser.NPC.Controllers
 			npcModel.DamageImmunityModelList = GetSelectableActionModelList(typeof(DamageType));
 			npcModel.ConditionImmunityModelList = GetSelectableActionModelList(typeof(ConditionType));
 			npcModel.SpecialWeaponImmunityModelList = GetSelectableActionModelList(typeof(WeaponImmunity));
+			npcModel.SpecialWeaponDmgImmunityModelList = GetSelectableActionModelList(typeof(DamageType));
 			npcModel.SpecialWeaponResistanceModelList = GetSelectableActionModelList(typeof(WeaponResistance));
+			npcModel.SpecialWeaponDmgResistanceModelList = GetSelectableActionModelList(typeof(DamageType));
 
 			return npcModel;
 		}
