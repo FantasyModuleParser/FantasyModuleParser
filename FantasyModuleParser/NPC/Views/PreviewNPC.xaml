@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC.Views"
         mc:Ignorable="d"
-        Title="NPC / Monster Preview" Height="700" Width="430">
+        Title="NPC / Monster Preview" Height="700" Width="437" ResizeMode="NoResize">
     <Grid Background="#FFE5E5E5">
-        <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Height="625" Width="420" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="0" Height="625" Width="420" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical">
-                <Label Content="{Binding Path=NPCModel.NPCName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
+                <Label Content="{Binding Path=NPCModel.NPCName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="{Binding Path=NPCModel.Size, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0" Padding="5,0,0,5"/>
                     <Label Content="{Binding Path=NPCModel.NPCType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
@@ -25,16 +25,16 @@
                     </Path.Data>
                 </Path>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Armor Class" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="{Binding Path=NPCModel.AC, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                    <Label Content="Armor Class" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,5,0,0"/>
+                    <Label Content="{Binding Path=NPCModel.AC, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,5,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="{Binding Path=NPCModel.HP, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <Label Content="{Binding Path=NPCModel.HP, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,5"/>
-                    <Label Content="{Binding Path=SpeedDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                    <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,5"/>
+                    <Label Content="{Binding Path=SpeedDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5"/>
                 </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
                     <Path.Data>
@@ -45,28 +45,28 @@
                 </Path>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="STR" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0" Padding="5,5,0,0"/>
-                        <Label Content="{Binding Path=StrengthAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                        <Label Content="STR" Width="50" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="0,5,0,0"/>
+                        <Label Content="{Binding Path=StrengthAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0" Padding="0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="DEX" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="{Binding Path=DexterityAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="DEX" Width="50" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="0,5,0,0"/>
+                        <Label Content="{Binding Path=DexterityAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0" Padding="0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="CON" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="{Binding Path=ConstitutionAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="CON" Width="50" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="0,5,0,0"/>
+                        <Label Content="{Binding Path=ConstitutionAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0" Padding="0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="INT" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="{Binding Path=IntelligenceAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="INT" Width="50" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="0,5,0,0"/>
+                        <Label Content="{Binding Path=IntelligenceAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0" Padding="0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="WIS" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="{Binding Path=WisdomAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,0"/>
+                        <Label Content="WIS" Width="50" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="0,5,0,0"/>
+                        <Label Content="{Binding Path=WisdomAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0" Padding="0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="CHA" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="15,5,0,0"/>
-                        <Label Content="{Binding Path=CharismaAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="8,0,0,5"/>
+                        <Label Content="CHA" Width="50" HorizontalContentAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="0,5,0,0"/>
+                        <Label Content="{Binding Path=CharismaAttribute, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="0" Padding="0"/>
                     </StackPanel>
                 </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
@@ -77,40 +77,40 @@
                     </Path.Data>
                 </Path>
                 <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowSavingThrows}">
-                    <Label Content="Saving Throws" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=SavingThrows, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                    <Label Content="Saving Throws" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,5,0,0"/>
+                    <TextBlock Text="{Binding Path=SavingThrows, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,5,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowSkills}">
                     <Label Content="Skills" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=SkillsDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=SkillsDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowDamageVulnerabilities}">
+                    <Label Content="Damage Vulnerabilities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=DamageVulnerabilities, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowDamageResistances}">
+                    <Label Content="Damage Resistances" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=DamageResistances, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowDamageImmunities}">
+                    <Label Content="Damage Immunities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=DamageImmunities, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowConditionImmunities}">
+                    <Label Content="Condition Immunities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=ConditionImmunities, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal">
-                    <Label Content="Damage Vulnerabilities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                    <Label Content="Senses" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=Senses, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Damage Resistances" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Damage Immunities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Condition Immunities" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Senses" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="{Binding Path=Senses, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Languages" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding ShowLanguages}">
+                    <Label Content="Languages" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=Languages, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Challenge" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,5"/>
-                    <Label Content="1 ( XP)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                    <Label Content="Challenge" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,5"/>
+                    <Label Content="{Binding Path=Challenge, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5"/>
                 </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
                     <Path.Data>
@@ -119,45 +119,45 @@
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,5,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,5,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits7, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName7, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc7, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits8, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName8, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc8, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits9, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName9, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc9, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Trait." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{Binding Path=TraitName10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                    <TextBlock Text="{Binding Path=TraitDesc10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal">
                     <Label Content="Innate Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>

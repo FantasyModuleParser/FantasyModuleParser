@@ -1,4 +1,6 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.NPC.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,32 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string CharismaAttribute { get; set; }
         public string SavingThrows { get; set; }
         public string Senses { get; set; }
+        public string DamageVulnerabilities { get; set; }
+        public string DamageResistances { get; set; }
+        public string DamageImmunities { get; set; }
+        public string ConditionImmunities { get; set; }
+        public string Languages { get; set; }
         public string Challenge { get; set; }
+        public string TraitName1 { get; set; }
+        public string TraitDesc1 { get; set; }
+        public string TraitName2 { get; set; }
+        public string TraitDesc2 { get; set; }
+        public string TraitName3 { get; set; }
+        public string TraitDesc3 { get; set; }
+        public string TraitName4 { get; set; }
+        public string TraitDesc4 { get; set; }
+        public string TraitName5 { get; set; }
+        public string TraitDesc5 { get; set; }
+        public string TraitName6 { get; set; }
+        public string TraitDesc6 { get; set; }
+        public string TraitName7 { get; set; }
+        public string TraitDesc7 { get; set; }
+        public string TraitName8 { get; set; }
+        public string TraitDesc8 { get; set; }
+        public string TraitName9 { get; set; }
+        public string TraitDesc9 { get; set; }
+        public string TraitName10 { get; set; }
+        public string TraitDesc10 { get; set; }
 
         public PreviewNPCViewModel()
         {
@@ -42,7 +69,32 @@ namespace FantasyModuleParser.NPC.ViewModels
             CharismaAttribute = UpdateCharismaAttribute();
             SavingThrows = UpdateSavingThrows();
             Senses = UpdateSenses();
+            DamageVulnerabilities = UpdateDamageVulnerabilities();
+            DamageResistances = UpdateDamageResistances();
+            DamageImmunities = UpdateDamageImmunities();
+            ConditionImmunities = UpdateConditionImmunities();
+            Languages = UpdateLanguages();
             Challenge = UpdateChallengeRating();
+            TraitName1 = UpdateTraitName1();
+            TraitDesc1 = UpdateTraitDescription1();
+            TraitName2 = UpdateTraitName2();
+            TraitDesc2 = UpdateTraitDescription2();
+            TraitName3 = UpdateTraitName3();
+            TraitDesc3 = UpdateTraitDescription3();
+            TraitName4 = UpdateTraitName4();
+            TraitDesc4 = UpdateTraitDescription4();
+            TraitName5 = UpdateTraitName5();
+            TraitDesc5 = UpdateTraitDescription5();
+            TraitName6 = UpdateTraitName6();
+            TraitDesc6 = UpdateTraitDescription6();
+            TraitName7 = UpdateTraitName7();
+            TraitDesc7 = UpdateTraitDescription7();
+            TraitName8 = UpdateTraitName8();
+            TraitDesc8 = UpdateTraitDescription8();
+            TraitName9 = UpdateTraitName9();
+            TraitDesc9 = UpdateTraitDescription9();
+            TraitName10 = UpdateTraitName10();
+            TraitDesc10 = UpdateTraitDescription10();
         }
 
         public PreviewNPCViewModel(NPCModel nPCModel)
@@ -144,7 +196,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
             if (NPCModel.Speed == 0)
                 stringBuilder.Append("0 ft., ");
-            else 
+            else
                 stringBuilder.Append(AppendSpeedAttribute("", NPCModel.Speed, false));
                 stringBuilder.Append(AppendSpeedAttribute("climb", NPCModel.Climb, false));
                 stringBuilder.Append(AppendSpeedAttribute("fly", NPCModel.Fly, NPCModel.Hover));
@@ -159,8 +211,10 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string AppendSpeedAttribute(string name, int value, bool hover)
         {
             string delimiter = ", ";
-            if (value != 0)
-                return name + " " + value + " ft." + (hover ? " (hover), ": ", ") + delimiter;
+            if (value != 0 && hover == false)
+                return name + " " + value + " ft." + delimiter;
+            else if (value != 0 && hover == true)
+                return name + " " + value + " ft." + " (hover)" + delimiter;
             return "";
         }
         #endregion
@@ -242,6 +296,131 @@ namespace FantasyModuleParser.NPC.ViewModels
             return "";
         }
         #endregion
+        #region UpdateDamageVulnerabilities
+        public Visibility ShowDamageVulnerabilities
+        {
+            get
+            {
+                if (DamageVulnerabilities.Length > 0)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateDamageVulnerabilities()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (SelectableActionModel selectableActionModel in NPCModel.DamageVulnerabilityModelList)
+            {
+                if (selectableActionModel.Selected == true)
+                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString().Trim();
+        }
+        #endregion
+        #region UpdateDamageResistances
+        public Visibility ShowDamageResistances
+        {
+            get
+            {
+                if (DamageResistances.Length > 0)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateDamageResistances()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (SelectableActionModel selectableActionModel in NPCModel.DamageResistanceModelList)
+            {
+                if (selectableActionModel.Selected == true)
+                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString().Trim();
+        }
+        #endregion
+        #region UpdateDamageImmunities
+        public Visibility ShowDamageImmunities
+        {
+            get
+            {
+                if (DamageImmunities.Length > 0)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateDamageImmunities()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (SelectableActionModel selectableActionModel in NPCModel.DamageImmunityModelList)
+            {
+                if (selectableActionModel.Selected == true)
+                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString().Trim();
+        }
+        #endregion
+        #region UpdateConditionImmunities
+        public Visibility ShowConditionImmunities
+        {
+            get
+            {
+                if (ConditionImmunities.Length > 0)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateConditionImmunities()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (SelectableActionModel selectableActionModel in NPCModel.ConditionImmunityModelList)
+            {
+                if (selectableActionModel.Selected == true)
+                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString().Trim();
+        }
+        #endregion
+        #region UpdateLanguages
+        public Visibility ShowLanguages
+        {
+            get
+            {
+                if (Languages.Length > 0)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateLanguages()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (LanguageModel languageModel in NPCModel.StandardLanguages)
+            {
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
+            }
+            foreach (LanguageModel languageModel in NPCModel.ExoticLanguages)
+            {
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
+            }
+            foreach (LanguageModel languageModel in NPCModel.MonstrousLanguages)
+            {
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            return stringBuilder.ToString().Trim();
+        }
+        #endregion
         #region UpdateSenses
         private string UpdateSenses()
         {
@@ -250,7 +429,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             stringBuilder.Append(appendSenses("blindsight ", NPCModel.Blindsight, " ft."));
             stringBuilder.Append(appendSenses("tremorsense ", NPCModel.Tremorsense, " ft."));
             stringBuilder.Append(appendSenses("truesight ", NPCModel.Truesight, " ft."));
-            stringBuilder.Append(appendSenses("passive perception ", NPCModel.PassivePerception, " ft."));
+            stringBuilder.Append(appendSenses("passive perception ", NPCModel.PassivePerception, ""));
             if (stringBuilder.Length >= 2)
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             return stringBuilder.ToString();
@@ -267,8 +446,318 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string UpdateChallengeRating()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(NPCModel.ChallengeRating + " (" + NPCModel.XP + ") XP");
+            stringBuilder.Append(NPCModel.ChallengeRating + " (" + NPCModel.XP + " XP)");
             return stringBuilder.ToString();
+        }
+        #endregion
+        #region UpdateTrait1
+        public Visibility ShowTraits1
+        {
+            get
+            {
+                if (NPCModel.Traits1 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName1()
+        {
+            if (NPCModel.Traits1 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits1 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription1()
+        {
+            if (NPCModel.TraitsDesc1 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc1);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait2
+        public Visibility ShowTraits2
+        {
+            get
+            {
+                if (NPCModel.Traits2 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName2()
+        {
+            if (NPCModel.Traits2 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits2 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription2()
+        {
+            if (NPCModel.TraitsDesc2 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc2);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait3
+        public Visibility ShowTraits3
+        {
+            get
+            {
+                if (NPCModel.Traits3 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName3()
+        {
+            if (NPCModel.Traits3 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits3 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription3()
+        {
+            if (NPCModel.TraitsDesc3 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc3);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait4
+        public Visibility ShowTraits4
+        {
+            get
+            {
+                if (NPCModel.Traits4 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName4()
+        {
+            if (NPCModel.Traits4 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits4 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription4()
+        {
+            if (NPCModel.TraitsDesc4 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc4);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait5
+        public Visibility ShowTraits5
+        {
+            get
+            {
+                if (NPCModel.Traits5 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName5()
+        {
+            if (NPCModel.Traits5 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits5 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription5()
+        {
+            if (NPCModel.TraitsDesc5 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc5);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait6
+        public Visibility ShowTraits6
+        {
+            get
+            {
+                if (NPCModel.Traits6 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName6()
+        {
+            if (NPCModel.Traits6 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits6 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription6()
+        {
+            if (NPCModel.TraitsDesc6 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc6);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait7
+        public Visibility ShowTraits7
+        {
+            get
+            {
+                if (NPCModel.Traits7 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName7()
+        {
+            if (NPCModel.Traits7 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits7 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription7()
+        {
+            if (NPCModel.TraitsDesc7 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc7);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait8
+        public Visibility ShowTraits8
+        {
+            get
+            {
+                if (NPCModel.Traits8 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName8()
+        {
+            if (NPCModel.Traits8 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits8 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription8()
+        {
+            if (NPCModel.TraitsDesc8 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc8);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait9
+        public Visibility ShowTraits9
+        {
+            get
+            {
+                if (NPCModel.Traits9 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName9()
+        {
+            if (NPCModel.Traits9 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits9 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription9()
+        {
+            if (NPCModel.TraitsDesc9 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc9);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateTrait10
+        public Visibility ShowTraits10
+        {
+            get
+            {
+                if (NPCModel.Traits10 != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateTraitName10()
+        {
+            if (NPCModel.Traits10 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.Traits10 + ".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateTraitDescription10()
+        {
+            if (NPCModel.TraitsDesc10 != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(NPCModel.TraitsDesc10);
+                return stringBuilder.ToString();
+            }
+            return "";
         }
         #endregion
     }
