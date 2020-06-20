@@ -37,5 +37,5 @@ namespace FantasyModuleParser.NPC.Views
         {
             Close();
         }
-    }
+	}
 }

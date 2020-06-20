@@ -22,7 +22,7 @@
                     <Image Source="/Resources/Bold.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Make the selected text bold.
+                            Make the selected text bold.
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -30,7 +30,7 @@
                     <Image Source="/Resources/italic.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Make the selected text italicized.
+                            Make the selected text italicized.
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -38,7 +38,7 @@
                     <Image Source="/Resources/underline.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Make the selected text underlined.
+                            Make the selected text underlined.
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -46,7 +46,7 @@
                     <Image Source="/Resources/undo.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Undo action
+                            Undo action
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -54,25 +54,25 @@
                     <Image Source="/Resources/redo.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Redo action
+                            Redo action
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
                 <Button Content="Clear Text" Padding="0" Margin="50,5,0,0" Height="20" Width="70">
                     <Button.ToolTip>
                         <TextBlock>
-                                        Clear all text from the window above.
-                                        <LineBreak />
-                                        <Italic>This is not recoverable; be sure you want to do this!</Italic>
+                            Clear all text from the window above.
+                            <LineBreak />
+                            <Italic>This is not recoverable; be sure you want to do this!</Italic>
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
                 <Button Content="Validate XML" Padding="0" Margin="125,5,0,0" Height="20" Width="75" Click="ValidateXML">
                     <Button.ToolTip>
                         <TextBlock>
-                                        This will display the above text in the format that Fantasy Grounds will see.
-                                        <LineBreak />
-                                        <Italic>You can use this to verify your descriptive text will display correctly with Fantasy Grounds.</Italic>
+                            This will display the above text in the format that Fantasy Grounds will see.
+                            <LineBreak />
+                            <Italic>You can use this to verify your descriptive text will display correctly with Fantasy Grounds.</Italic>
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -82,7 +82,7 @@
                     <Image Source="/Resources/Header.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Format the selected text as a header.
+                            Format the selected text as a header.
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -90,7 +90,7 @@
                     <Image Source="/Resources/Text Color.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Format the selected text as body text.
+                            Format the selected text as body text.
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -98,9 +98,9 @@
                     <Image Source="/Resources/Speech Bubble With Dots.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Format the selected paragraphs as 'Chat Frame Text'. This will indent the paragraph(s) in NPC Engineer as a visual cue that they have been modified.
-                                        <LineBreak />
-                                        <Italic>Note that if two or more paragraphs are selected, Fantasy Grounds will treat it as a continuous single paragraph.</Italic>
+                            Format the selected paragraphs as 'Chat Frame Text'. This will indent the paragraph(s) in NPC Engineer as a visual cue that they have been modified.
+                            <LineBreak />
+                            <Italic>Note that if two or more paragraphs are selected, Fantasy Grounds will treat it as a continuous single paragraph.</Italic>
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -108,7 +108,7 @@
                     <Image Source="/Resources/Bulleted List.png" />
                     <Button.ToolTip>
                         <TextBlock>
-                                        Format the selected paragraphs as a bulleted list.
+                            Format the selected paragraphs as a bulleted list.
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
@@ -119,9 +119,9 @@
                 <TextBox Name="strNonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <TextBox.ToolTip>
                         <TextBlock>
-                                        (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.
-                                        <LineBreak />
-                                        If this is left blank, the NPC's name will always show.
+                            (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.
+                            <LineBreak />
+                            If this is left blank, the NPC's name will always show.
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>

@@ -22,9 +22,9 @@
             <ListBox Name="listDamageVulnerability" SelectionMode="Multiple" ItemsSource="{Binding Path=DamageVulnerabilityModelList}" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
                 <ListBox.ToolTip>
                     <TextBlock>
-                                    Select the damage vulnerabilities that your NPC has.
-                                    <LineBreak />
-                                    <Italic>You can select as many as you like.</Italic>
+                        Select the damage vulnerabilities that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
                     </TextBlock>
                 </ListBox.ToolTip>
                 <ListBox.ItemContainerStyle>
@@ -39,9 +39,9 @@
             <ListBox Name="listDamageImmunity" SelectionMode="Multiple" ItemsSource="{Binding Path=DamageImmunityModelList}" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
                 <ListBox.ToolTip>
                     <TextBlock>
-                                    Select the damage immunities that your NPC has.
-                                    <LineBreak />
-                                    <Italic>You can select as many as you like.</Italic>
+                        Select the damage immunities that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
                     </TextBlock>
                 </ListBox.ToolTip>
                 <ListBox.ItemContainerStyle>
@@ -56,9 +56,9 @@
             <ListBox Name="listDamageResistance" SelectionMode="Multiple" ItemsSource="{Binding Path=DamageResistanceModelList}" Margin="25,0,0,0" FontSize="12" Height="270" Width="170">
                 <ListBox.ToolTip>
                     <TextBlock>
-                                    Select the damage resistances that your NPC has.
-                                    <LineBreak />
-                                    <Italic>You can select as many as you like.</Italic>
+                        Select the damage resistances that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
                     </TextBlock>
                 </ListBox.ToolTip>
                 <ListBox.ItemContainerStyle>
@@ -73,9 +73,9 @@
             <ListBox Name="listConditionImmunity" SelectionMode="Multiple" ItemsSource="{Binding Path=ConditionImmunityModelList}" Margin="25,0,0,0" FontSize="12" Height="310" Width="170">
                 <ListBox.ToolTip>
                     <TextBlock>
-                                    Select the damage vulnerabilities that your NPC has.
-                                    <LineBreak />
-                                    <Italic>You can select as many as you like.</Italic>
+                        Select the damage vulnerabilities that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
                     </TextBlock>
                 </ListBox.ToolTip>
                 <ListBox.ItemContainerStyle>
@@ -87,14 +87,14 @@
             <CheckBox Name="chkOther" IsChecked="{Binding Path=ConditionOther, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Other" Margin="30,5,0,0">
                 <CheckBox.ToolTip>
                     <TextBlock>
-                                    Check here if your NPC is immune to any other condition (type in the box)
+                        Check here if your NPC is immune to any other condition (type in the box)
                     </TextBlock>
                 </CheckBox.ToolTip>
             </CheckBox>
             <TextBox Name="strOther" Text="{Binding Path=ConditionOtherText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="160" Margin="30,5,0,0">
                 <TextBox.ToolTip>
                     <TextBlock>
-                                    Type in the name of any other condition that your NPC is immune to
+                        Type in the name of any other condition that your NPC is immune to
                     </TextBlock>
                 </TextBox.ToolTip>
             </TextBox>
@@ -104,7 +104,22 @@
             <ListBox Name="listWeaponResistances" SelectionMode="Single" ItemsSource="{Binding SpecialWeaponResistanceModelList}" Margin="0,0,0,0" Height="130" Width="350">
                 <ListBox.ToolTip>
                     <TextBlock>
-                                        Select the option that matches the weapon resistance your NPC has.
+                        Select the option that matches the weapon resistance your NPC has.
+                    </TextBlock>
+                </ListBox.ToolTip>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <Label Content="Weapon Resistances" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <ListBox Name="listSpecialResistance" SelectionMode="Multiple" ItemsSource="{Binding Path=SpecialWeaponDmgResistanceModelList}" Margin="25,10,0,0" FontSize="12" Height="270" Width="170">
+                <ListBox.ToolTip>
+                    <TextBlock>
+                        Select the damage vulnerabilities that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
                     </TextBlock>
                 </ListBox.ToolTip>
                 <ListBox.ItemContainerStyle>
@@ -119,7 +134,22 @@
             <ListBox Name="listWeaponImmunity" SelectionMode="Single" ItemsSource="{Binding SpecialWeaponImmunityModelList}" DisplayMemberPath="ActionDescription" Margin="0,0,0,0" Height="110" Width="350">
                 <ListBox.ToolTip>
                     <TextBlock>
-                                        Select the option that matches the weapon resistance your NPC has.
+                        Select the option that matches the weapon resistance your NPC has.
+                    </TextBlock>
+                </ListBox.ToolTip>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <Label Content="Weapon Immunities" Foreground="Gray"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <ListBox Name="listSpecialImmunity" SelectionMode="Multiple" ItemsSource="{Binding Path=SpecialWeaponDmgImmunityModelList}" Margin="25,10,0,0" FontSize="12" Height="270" Width="170">
+                <ListBox.ToolTip>
+                    <TextBlock>
+                        Select the damage vulnerabilities that your NPC has.
+                        <LineBreak />
+                        <Italic>You can select as many as you like.</Italic>
                     </TextBlock>
                 </ListBox.ToolTip>
                 <ListBox.ItemContainerStyle>

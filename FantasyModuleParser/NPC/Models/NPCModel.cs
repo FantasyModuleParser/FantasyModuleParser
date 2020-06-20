@@ -62,7 +62,9 @@ namespace FantasyModuleParser.NPC
         public List<SelectableActionModel> DamageImmunityModelList { get; set; }
         public List<SelectableActionModel> ConditionImmunityModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponResistanceModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponDmgResistanceModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponDmgImmunityModelList { get; set; }
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
         public int Acrobatics { get; set; }
