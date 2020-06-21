@@ -56,6 +56,8 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string TraitDesc9 { get; set; }
         public string TraitName10 { get; set; }
         public string TraitDesc10 { get; set; }
+        public string InnateSpellcastingLabel { get; set; }
+        public string InnateSpellcasting { get; set; }
 
         public PreviewNPCViewModel()
         {
@@ -97,6 +99,8 @@ namespace FantasyModuleParser.NPC.ViewModels
             TraitDesc9 = UpdateTraitDescription9();
             TraitName10 = UpdateTraitName10();
             TraitDesc10 = UpdateTraitDescription10();
+            InnateSpellcastingLabel = UpdateInnateSpellcastingLabel();
+            InnateSpellcasting = UpdateInnateSpellcasting();
         }
 
         public PreviewNPCViewModel(NPCModel nPCModel)
@@ -466,7 +470,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (SelectableActionModel selectableActionModel in NPCModel.ConditionImmunityModelList)
             {
                 if (selectableActionModel.Selected == true)
-                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
+                    stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
+            }
+            if (NPCModel.ConditionOther == true)
+            {
+                stringBuilder.Append(NPCModel.ConditionOtherText + ", ");
             }
             if (stringBuilder.Length >= 2)
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
@@ -525,7 +533,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             if (senseValue != 0 && NPCModel.BlindBeyond == false)
                 return senseName + senseValue + senseRange + delimiter;
             if (senseValue != 0 && NPCModel.BlindBeyond == true)
-                return senseName + senseValue + senseRange + " (blind beyond)" + delimiter;
+                return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
             return "";
         }
         #endregion
@@ -842,6 +850,105 @@ namespace FantasyModuleParser.NPC.ViewModels
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append(NPCModel.TraitsDesc10);
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        #endregion
+        #region UpdateInnateSpellcasting
+        public Visibility ShowInnateSpellcasting
+        {
+            get
+            {
+                if (NPCModel.InnateSpellcastingSection == true)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        public Visibility ShowInnateAtWill
+        {
+            get 
+            {
+                if (NPCModel.InnateAtWill != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        public Visibility ShowInnateFivePerDay
+        {
+            get
+            {
+                if (NPCModel.FivePerDay != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        public Visibility ShowInnateFourPerDay
+        {
+            get
+            {
+                if (NPCModel.FourPerDay != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        public Visibility ShowInnateThreePerDay
+        {
+            get
+            {
+                if (NPCModel.ThreePerDay != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        public Visibility ShowInnateTwoPerDay
+        {
+            get
+            {
+                if (NPCModel.TwoPerDay != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        public Visibility ShowInnateOnePerDay
+        {
+            get
+            {
+                if (NPCModel.OnePerDay != null)
+                    return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
+        private string UpdateInnateSpellcastingLabel()
+        {
+            if (NPCModel.InnateSpellcastingSection == true)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("Innate Spellcasting");
+                if (NPCModel.Psionics == true)
+                {
+                    stringBuilder.Append(" (Psionics)");
+                }
+                stringBuilder.Append(".");
+                return stringBuilder.ToString();
+            }
+            return "";
+        }
+        private string UpdateInnateSpellcasting()
+        {
+            if (NPCModel.InnateSpellcastingSection == true)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("The " + NPCModel.NPCName.ToLower() + "'s spellcasting ability is " + NPCModel.InnateSpellcastingAbility + " ("); 
+                if (NPCModel.InnateSpellSaveDCCheck == true)
+                    stringBuilder.Append("spell save DC " + NPCModel.InnateSpellSaveDC);
+                if (NPCModel.InnateSpellSaveDCCheck == true && NPCModel.InnateSpellHitBonusCheck == true)
+                    stringBuilder.Append(", ");
+                if (NPCModel.InnateSpellHitBonusCheck == true && NPCModel.InnateSpellHitBonus >= 0)
+                    stringBuilder.Append("+" + NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
+                else if (NPCModel.InnateSpellHitBonusCheck == true && NPCModel.InnateSpellHitBonus < 0)
+                    stringBuilder.Append(NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
+                stringBuilder.Append("). The " + NPCModel.NPCName.ToLower() + " can innately cast the following spells, " + NPCModel.ComponentText + ":");
                 return stringBuilder.ToString();
             }
             return "";

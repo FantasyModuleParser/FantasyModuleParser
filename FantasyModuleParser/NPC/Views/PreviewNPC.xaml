@@ -159,9 +159,35 @@
                     <Label Content="{Binding Path=TraitName10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
                     <TextBlock Text="{Binding Path=TraitDesc10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Innate Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Vertical" Visibility="{Binding Path=ShowInnateSpellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Content="{Binding Path=InnateSpellcastingLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=InnateSpellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateAtWill, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="At will:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.InnateAtWill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateFivePerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="5/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.FivePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateFourPerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="4/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.FourPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateThreePerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="3/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.ThreePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateTwoPerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="2/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.TwoPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateOnePerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="1/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.OnePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal">
                     <Label Content="Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>

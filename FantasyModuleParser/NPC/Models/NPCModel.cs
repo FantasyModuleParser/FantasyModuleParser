@@ -118,7 +118,9 @@ namespace FantasyModuleParser.NPC
         public bool InnateSpellcastingSection { get; set; }
         public bool Psionics { get; set; }
         public string InnateSpellcastingAbility { get; set; }
+        public bool InnateSpellSaveDCCheck { get; set; }
         public int InnateSpellSaveDC { get; set; }
+        public bool InnateSpellHitBonusCheck { get; set; }
         public int InnateSpellHitBonus { get; set; }
         public string ComponentText { get; set; }
         public string InnateAtWill { get; set; }
