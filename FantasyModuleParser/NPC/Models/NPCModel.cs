@@ -129,10 +129,12 @@ namespace FantasyModuleParser.NPC
         public string ThreePerDay { get; set; }
         public string TwoPerDay { get; set; }
         public string OnePerDay { get; set; }
-        public bool Spellcasting { get; set; }
+        public bool SpellcastingSection { get; set; }
         public string SpellcastingCasterLevel { get; set; }
         public string SCSpellcastingAbility { get; set; }
+        public bool SpellcastingSpellSaveDCCheck { get; set; }
         public int SpellcastingSpellSaveDC { get; set; }
+        public bool SpellcastingSpellHitBonusCheck { get; set; }
         public int SpellcastingSpellHitBonus { get; set; }
         public string SpellcastingSpellClass { get; set; }
         public string FlavorText { get; set; }
@@ -156,6 +158,7 @@ namespace FantasyModuleParser.NPC
         public string EighthLevelSpellList { get; set; }
         public string NinthLevelSpells { get; set; }
         public string NinthLevelSpellList { get; set; }
+        public bool MarkedSpellsCheck { get; set; }
         public string MarkedSpells { get; set; }
         public string Description { get; set; }
         public string NonID { get; set; }

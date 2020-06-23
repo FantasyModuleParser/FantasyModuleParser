@@ -189,11 +189,56 @@
                         <TextBlock Text="{Binding Path=NPCModel.OnePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
                     </WrapPanel>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                <WrapPanel Orientation="Vertical" Visibility="{Binding Path=ShowSpellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Content="{Binding Path=SpellcastingLabel}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=Spellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowCantrips, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingCantripsLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingCantrips, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowFirst, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingFirstLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingFirst, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowSecond, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingSecondLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingSecond, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowThird, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingThirdLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingThird, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowFourth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingFourthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingFourth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowFifth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingFifthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingFifth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowSixth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingSixthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingSixth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowSeventh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingSeventhLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingSeventh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowEighth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingEighthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingEighth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowNinth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingNinthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingNinth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowMarked, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBlock Text="{Binding Path=SpellcastingMarkedSpells, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
                 </WrapPanel>
-                <Label Content="Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <Label Content="Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0" Padding="5,0,0,0"/>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="1">
                     <Path.Data>
                         <GeometryGroup>
