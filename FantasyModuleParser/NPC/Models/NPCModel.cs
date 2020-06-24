@@ -62,7 +62,9 @@ namespace FantasyModuleParser.NPC
         public List<SelectableActionModel> DamageImmunityModelList { get; set; }
         public List<SelectableActionModel> ConditionImmunityModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponResistanceModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponDmgResistanceModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponDmgImmunityModelList { get; set; }
         public bool ConditionOther { get; set; }
         public string ConditionOtherText { get; set; }
         public int Acrobatics { get; set; }
@@ -116,7 +118,9 @@ namespace FantasyModuleParser.NPC
         public bool InnateSpellcastingSection { get; set; }
         public bool Psionics { get; set; }
         public string InnateSpellcastingAbility { get; set; }
+        public bool InnateSpellSaveDCCheck { get; set; }
         public int InnateSpellSaveDC { get; set; }
+        public bool InnateSpellHitBonusCheck { get; set; }
         public int InnateSpellHitBonus { get; set; }
         public string ComponentText { get; set; }
         public string InnateAtWill { get; set; }
@@ -125,10 +129,12 @@ namespace FantasyModuleParser.NPC
         public string ThreePerDay { get; set; }
         public string TwoPerDay { get; set; }
         public string OnePerDay { get; set; }
-        public bool Spellcasting { get; set; }
+        public bool SpellcastingSection { get; set; }
         public string SpellcastingCasterLevel { get; set; }
         public string SCSpellcastingAbility { get; set; }
+        public bool SpellcastingSpellSaveDCCheck { get; set; }
         public int SpellcastingSpellSaveDC { get; set; }
+        public bool SpellcastingSpellHitBonusCheck { get; set; }
         public int SpellcastingSpellHitBonus { get; set; }
         public string SpellcastingSpellClass { get; set; }
         public string FlavorText { get; set; }
@@ -152,6 +158,7 @@ namespace FantasyModuleParser.NPC
         public string EighthLevelSpellList { get; set; }
         public string NinthLevelSpells { get; set; }
         public string NinthLevelSpellList { get; set; }
+        public bool MarkedSpellsCheck { get; set; }
         public string MarkedSpells { get; set; }
         public string Description { get; set; }
         public string NonID { get; set; }
