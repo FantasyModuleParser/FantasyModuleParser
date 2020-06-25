@@ -21,7 +21,7 @@ namespace FMPTests.Importer.NPC
             _importEngineerSuiteNPC = new ImportEngineerSuiteNPC();
             actualNPCModel = new NPCModel();
         }
-
+        #region Size and Alignment
         [TestMethod]
         [DynamicData(nameof(SizeAndAlignmentData), DynamicDataSourceType.Method)]
         public void Test_Parse_SizeAndAlignment(NPCModel expectedNpcModel, string sizeAndAlignment)
@@ -53,5 +53,36 @@ namespace FMPTests.Importer.NPC
             npcModel.Alignment = alignment;
             return npcModel;
         }
+        #endregion
+
+        #region Armor Class
+        [TestMethod]
+        [DynamicData(nameof(ArmorClassData), DynamicDataSourceType.Method)]
+        public void Test_Parse_ArmorClass(NPCModel expectedNpcModel, string armorClass)
+        {
+            _importEngineerSuiteNPC.ParseSizeAndAlignment(actualNPCModel, armorClass);
+            AssertSizeAndAlignment(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertArmorClass(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.AC, actualNPCModel.AC);
+        }
+
+        private static IEnumerable<object[]> ArmorClassData()
+        {
+            yield return new object[] { generateNPCModel_ArmorClass("16"), "Armor Class 16" };
+            yield return new object[] { generateNPCModel_ArmorClass("20"), "Armor Class 20" };
+            yield return new object[] { generateNPCModel_ArmorClass("12"), "Armor Class 12" };
+        }
+        private static NPCModel generateNPCModel_ArmorClass(string armorClass)
+        {
+            NPCModel npcModel = new NPCModel();
+            npcModel.AC = armorClass;
+            return npcModel;
+        }
+        #endregion
+
+
     }
 }
