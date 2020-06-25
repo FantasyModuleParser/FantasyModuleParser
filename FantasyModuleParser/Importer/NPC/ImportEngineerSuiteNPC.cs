@@ -30,9 +30,20 @@ namespace FantasyModuleParser.Importer.NPC
 
             string line = "";
             StringReader stringReader = new StringReader(engineerSuiteNpcFileContent);
-
+            int lineNumber = 0;
             while((line = stringReader.ReadLine()) != null)
             {
+                if(lineNumber == 1)
+                {
+                    // Line number one indicates the NPC name
+                    parsedNPCModel.NPCName = line;
+                }
+                if(lineNumber == 2)
+                {
+                    // Line 2 indicates Size, Type, (tag), Alignment
+                    ParseSizeAndAlignment(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Armor Class", StringComparison.Ordinal))
                     ParseArmorClass(parsedNPCModel, line);
                 if (line.StartsWith("Hit Points", StringComparison.Ordinal))
@@ -41,6 +52,8 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseSpeedAttributes(parsedNPCModel, line);
                 if (line.StartsWith("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
                     ParseStatAttributes(parsedNPCModel, line);
+
+                lineNumber++;
             }
 
             return parsedNPCModel;
@@ -51,7 +64,26 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseSizeAndAlignment(NPCModel npcModel, string sizeAndAlignment)
         {
-            throw new NotImplementedException();
+            string[] npcCharacteristics = sizeAndAlignment.Split(' ');
+            npcModel.Size = npcCharacteristics[0].ToLower();
+            string tag = npcCharacteristics[1].ToLower();
+            if (tag.EndsWith(","))
+                npcModel.NPCType = tag.Substring(0, tag.Length - 1);
+            else
+                npcModel.NPCType = npcCharacteristics[1].ToLower();
+
+            if (npcCharacteristics[2].Contains("("))
+            {
+                // includes removing the comma character at the end
+                npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
+            }
+
+            if(npcModel.Tag != null && npcModel.Tag.Length > 0)
+                npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+            else
+                npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
+
+
         }
 
         /// <summary>

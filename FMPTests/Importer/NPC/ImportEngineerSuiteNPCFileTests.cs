@@ -52,12 +52,12 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         [TestMethod()]
         public void BaseStats_Name()
         {
-            Assert.AreEqual("V1_npc_basestats", LoadEngineerSuiteTestNPCFile().NPCName);
+            Assert.AreEqual("V1_npc_all", LoadEngineerSuiteTestNPCFile().NPCName);
         }
         [TestMethod()]
         public void BaseStats_Size()
         {
-            Assert.AreEqual("Tiny", LoadEngineerSuiteTestNPCFile().Size);
+            Assert.AreEqual("tiny", LoadEngineerSuiteTestNPCFile().Size);
         }
         [TestMethod()]
         public void BaseStats_Type()
@@ -67,12 +67,12 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         [TestMethod()]
         public void BaseStats_Tag()
         {
-            Assert.AreEqual("devil", LoadEngineerSuiteTestNPCFile().Tag);
+            Assert.AreEqual("(devil)", LoadEngineerSuiteTestNPCFile().Tag);
         }
         [TestMethod()]
         public void BaseStats_Alignment()
         {
-            Assert.AreEqual("devil", LoadEngineerSuiteTestNPCFile().Alignment);
+            Assert.AreEqual("lawful neutral", LoadEngineerSuiteTestNPCFile().Alignment);
         }
         [TestMethod()]
         public void BaseStats_ArmorClass()

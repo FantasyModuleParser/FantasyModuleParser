@@ -40,9 +40,9 @@ namespace FMPTests.Importer.NPC
 
         private static IEnumerable<object[]> SizeAndAlignmentData()
         {
-            yield return new object[] { generateNPCModel_SizeAndAlignment("tiny", "beast", "devil", "lawful neutral"), "Tiny beast (devil), lawful neutral" };
-            yield return new object[] { generateNPCModel_SizeAndAlignment("medium", "humanoid", "", "lawful good"), "Medium humanoid, lawful good" };
-            yield return new object[] { generateNPCModel_SizeAndAlignment("huge", "giant", "", "chaotic evil"), "Huge giant, chaotic evil" };
+            yield return new object[] { generateNPCModel_SizeAndAlignment("tiny", "beast", "(devil)", "lawful neutral"), "Tiny beast (devil), lawful neutral" };
+            yield return new object[] { generateNPCModel_SizeAndAlignment("medium", "humanoid", null, "lawful good"), "Medium humanoid, lawful good" };
+            yield return new object[] { generateNPCModel_SizeAndAlignment("huge", "giant", null, "chaotic evil"), "Huge giant, chaotic evil" };
         }
         private static NPCModel generateNPCModel_SizeAndAlignment(string size, string type, string tag, string alignment)
         {
