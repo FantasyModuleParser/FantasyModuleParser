@@ -39,7 +39,10 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseArmorClass(NPCModel npcModel, string armorClass)
         {
-            throw new NotImplementedException();
+            if(armorClass.StartsWith("Armor Class ", StringComparison.Ordinal))
+            {
+                npcModel.AC = armorClass.Substring(12);
+            }
         }
 
         /// <summary>

@@ -60,8 +60,8 @@ namespace FMPTests.Importer.NPC
         [DynamicData(nameof(ArmorClassData), DynamicDataSourceType.Method)]
         public void Test_Parse_ArmorClass(NPCModel expectedNpcModel, string armorClass)
         {
-            _importEngineerSuiteNPC.ParseSizeAndAlignment(actualNPCModel, armorClass);
-            AssertSizeAndAlignment(expectedNpcModel, actualNPCModel);
+            _importEngineerSuiteNPC.ParseArmorClass(actualNPCModel, armorClass);
+            AssertArmorClass(expectedNpcModel, actualNPCModel);
         }
 
         private void AssertArmorClass(NPCModel expectedNPCModel, NPCModel actualNPCModel)
