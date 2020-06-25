@@ -18,8 +18,8 @@
             <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="285" Height="220">
                 <Label Content="NPC Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Label Content="NPC Name:" VerticalContentAlignment="Center" Width="65" Margin="0,0,0,0" Height="20" Padding="0"/>
-                    <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Height="20" Width="200" Margin="5,0,0,0" Padding="0">
+                    <Label Content="NPC Name:" VerticalContentAlignment="Center" Width="65" Margin="0,0,0,0" Height="23" Padding="0"/>
+                    <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Height="23" Width="200" Margin="5,0,0,0" Padding="0">
                         <TextBox.ToolTip>
                             <TextBlock>
                                 Enter the NPCs Name.
@@ -30,8 +30,8 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Right">
-                  <Label Content="Size:" Height="20" Width="26" Margin="50,0,4,0" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-                    <ComboBox Name="strSize" Height="20" Width="200" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
+                  <Label Content="Size:" Height="23" Width="26" Margin="50,0,4,0" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                    <ComboBox Name="strSize" Height="23" Width="200" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
                         <ComboBoxItem>Tiny</ComboBoxItem>
                         <ComboBoxItem>Small</ComboBoxItem>
                         <ComboBoxItem>Medium</ComboBoxItem>
@@ -45,8 +45,9 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Left"><Label Content="Type:" Height="20" Margin="49,0,1,0" Padding="0" VerticalContentAlignment="Center"/>
-                    <ComboBox Name="strType" Height="20" Width="200" Margin="5,0,0,0" Padding="0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Left">
+                    <Label Content="Type:" Height="23" Margin="53,0,0,0" Padding="0" VerticalContentAlignment="Center"/>
+                    <ComboBox Name="strType" Height="23" Width="195" Margin="5,0,0,0" Padding="0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <ComboBoxItem>abberation</ComboBoxItem>
                         <ComboBoxItem>beast</ComboBoxItem>
                         <ComboBoxItem>celestial</ComboBoxItem>
@@ -78,8 +79,8 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Tag:" VerticalContentAlignment="Center" Margin="55,0,6,0" Padding="0"/>
-                    <ComboBox Name="strTag" Height="20" Width="109" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Label Content="Tag:" VerticalContentAlignment="Center" Margin="58,0,6,0" Padding="0"/>
+                    <ComboBox Name="strTag" Height="23" Width="109" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" >
                         <ComboBoxItem>(aarakocra)</ComboBoxItem>
                         <ComboBoxItem>(any race)</ComboBoxItem>
                         <ComboBoxItem>(bullywug)</ComboBoxItem>
@@ -129,8 +130,8 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Alignment:" Margin="18,0,7,0" Padding="0" VerticalAlignment="Center"/>
-                    <ComboBox Name="strAlignment" Height="20" Width="100" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
+                    <Label Content="Alignment:" Margin="21,0,7,0" Padding="0" VerticalAlignment="Center"/>
+                    <ComboBox Name="strAlignment" Height="23" Width="100" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
                         <ComboBoxItem>unaligned</ComboBoxItem>
                         <ComboBoxItem>lawful good</ComboBoxItem>
                         <ComboBoxItem>lawful neutral</ComboBoxItem>
@@ -149,8 +150,8 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Armor Class:" Margin="10,0,6,0" Padding="0"  VerticalAlignment="Center"/>
-                    <TextBox Name="strAC" Height="20" Width="100" Margin="0,0,0,0" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
+                    <Label Content="Armor Class:" Margin="13,0,6,0" Padding="0"  VerticalAlignment="Center"/>
+                    <TextBox Name="strAC" Height="23" Width="100" Margin="0,0,0,0" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
                         <TextBox.ToolTip>
                             <TextBlock>
                                 Enter the NPC's armor class.
@@ -163,8 +164,8 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Hit Points:" Height="20" Margin="22,0,6,0" Padding="0" VerticalAlignment="Center" />
-                    <TextBox Name="strHP" Height="20" Width="100" Margin="0,0,0,0" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" >
+                    <Label Content="Hit Points:" Height="23" Margin="25,0,6,0" Padding="0" VerticalAlignment="Center" />
+                    <TextBox Name="strHP" Height="23" Width="100" Margin="0,0,0,0" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" >
                         <TextBox.ToolTip>
                             <TextBlock>
                                 Enter the NPC's hit points, followed by its hit dice in brackets.
@@ -175,21 +176,12 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <Button Content="Mean" Width="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Button Content="Dice Roller" Width="80" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="DiceRoller_Click">
                         <Button.ToolTip>
                             <TextBlock>
                                 Click on this to apply the average hit points for the range.
                                 <LineBreak />
                                 <Italic>This is the value stated in official products for NPC hit points</Italic>
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Content="Roll" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="40">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                Click on this button to roll hit points.
-                                <LineBreak />
-                                <Italic>This will give each NPC an individual total</Italic>
                             </TextBlock>
                         </Button.ToolTip>
                     </Button>

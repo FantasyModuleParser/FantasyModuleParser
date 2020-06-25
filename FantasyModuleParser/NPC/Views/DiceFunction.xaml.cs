@@ -1,0 +1,104 @@
+﻿using FantasyModuleParser.Main;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action.Enums;
+using FantasyModuleParser.NPC.Views;
+using FantasyModuleParser.NPC.UserControls.NPCTabs;
+using System;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using static FantasyModuleParser.Extensions.EnumerationExtension;
+using System.Text;
+using FantasyModuleParser.Extensions;
+
+namespace FantasyModuleParser.NPC.Views
+{
+    /// <summary>
+    /// Interaction logic for DiceFunction.xaml
+    /// </summary>
+    public partial class DiceFunction : Window
+    {
+        #region Controllers
+        public NPCController npcController { get; set; }
+        #endregion
+        public DiceFunction()
+        {
+            InitializeComponent();
+            npcController = new NPCController();
+            DataContext = npcController.GetNPCModel();
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"[^0-9-]+"); ;
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Average_Click(object sender, RoutedEventArgs e)
+        {
+            rollResult.Clear();
+            int diceResult = (int.Parse(NumDice.Text) * ((int)SizeDice.SelectedValue + 1) / 2) + int.Parse(Bonus.Text);
+            int bonusHP = int.Parse(Bonus.Text);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(diceResult + " (" + NumDice.Text + SizeDice.SelectedValue.GetDescription());
+            if (int.Parse(Bonus.Text) > 0)
+            {
+                stringBuilder.Append(" + " + Bonus.Text + ")");
+            }
+            else if (int.Parse(Bonus.Text) < 0)
+            {
+                stringBuilder.Append(" - " + Math.Abs(bonusHP) + ")");
+            }
+            else
+            {
+                stringBuilder.Append(")");
+            }
+            rollResult.Text = stringBuilder.ToString();
+        }
+        private void Max_Click(object sender, RoutedEventArgs e)
+        {
+            rollResult.Clear();
+            int diceResult = int.Parse(NumDice.Text) * (int)SizeDice.SelectedValue + int.Parse(Bonus.Text);
+            int bonusHP = int.Parse(Bonus.Text);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(diceResult + " (" + NumDice.Text + SizeDice.SelectedValue.GetDescription());
+            if (int.Parse(Bonus.Text) > 0)
+            {
+                stringBuilder.Append(" + " + Bonus.Text + ")");
+            }
+            else if (int.Parse(Bonus.Text) < 0)
+            {
+                stringBuilder.Append(" - " + Math.Abs(bonusHP) + ")");
+            }
+            else
+            {
+                stringBuilder.Append(")");
+            }
+            rollResult.Text = stringBuilder.ToString();
+        }
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Roll_Click(object sender, RoutedEventArgs e)
+        {
+            rollResult.Clear();
+            Random rnd = new Random();
+            int randomDice = rnd.Next(1,(int)SizeDice.SelectedValue);
+            int bonusHP = int.Parse(Bonus.Text);
+            int diceResult = ((int.Parse(NumDice.Text) * randomDice + 1) / 2) + int.Parse(Bonus.Text);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(diceResult + " (" + NumDice.Text + SizeDice.SelectedValue.GetDescription());
+            if (int.Parse(Bonus.Text) > 0)
+                stringBuilder.Append(" + " + Bonus.Text + ")");
+            else if (int.Parse(Bonus.Text) < 0)
+                stringBuilder.Append(" - " + Math.Abs(bonusHP) + ")");
+            else
+                stringBuilder.Append(")");
+            rollResult.Text = stringBuilder.ToString();
+        }
+    }
+}
