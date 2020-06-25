@@ -83,6 +83,34 @@ namespace FMPTests.Importer.NPC
         }
         #endregion
 
+        #region Hit Points
+        [TestMethod]
+        [DynamicData(nameof(HitPointsData), DynamicDataSourceType.Method)]
+        public void Test_Parse_HitPoints(NPCModel expectedNpcModel, string speedAttributes)
+        {
+            _importEngineerSuiteNPC.ParseHitPoints(actualNPCModel, speedAttributes);
+            AssertHitPoints(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertHitPoints(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.HP, actualNPCModel.HP);
+        }
+
+        private static IEnumerable<object[]> HitPointsData()
+        {
+            yield return new object[] { generateNPCModel_HitPoints("90 (10d8 + 44)"), "Hit Points 90 (10d8 + 44)" };
+            yield return new object[] { generateNPCModel_HitPoints("100 (10d12 + 50)"), "Hit Points 100 (10d12 + 50)" };
+        }
+        private static NPCModel generateNPCModel_HitPoints(string hitPoints)
+        {
+            NPCModel npcModel = new NPCModel();
+            npcModel.HP = hitPoints;
+            return npcModel;
+        }
+        #endregion
+
+
         #region Speed Attributes
         [TestMethod]
         [DynamicData(nameof(SpeedAttributeData), DynamicDataSourceType.Method)]

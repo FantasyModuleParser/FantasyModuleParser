@@ -2,6 +2,7 @@
 using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -52,7 +53,10 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseHitPoints(NPCModel npcModel, string hitPoints)
         {
-            throw new NotImplementedException();
+            if(hitPoints.StartsWith("Hit Points"))
+            {
+                npcModel.HP = hitPoints.Substring(11);
+            }
         }
 
         /// <summary>
@@ -72,26 +76,22 @@ namespace FantasyModuleParser.Importer.NPC
             }
             foreach(string speedAttribute in speedAttributes.Split(','))
             {
-                var trimmedSpeedAttribute = speedAttribute.Trim().ToLower();
+                var trimmedSpeedAttribute = speedAttribute.Trim().ToLower(CultureInfo.CurrentCulture);
                 if(trimmedSpeedAttribute.StartsWith("speed ", StringComparison.Ordinal))
                 {
-                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
-                    npcModel.Speed = int.Parse(speedAttributeSplit[1]);
+                    npcModel.Speed = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
                 }
                 if (trimmedSpeedAttribute.StartsWith("burrow ", StringComparison.Ordinal))
                 {
-                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
-                    npcModel.Burrow = int.Parse(speedAttributeSplit[1]);
+                    npcModel.Burrow = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
                 }
                 if (trimmedSpeedAttribute.StartsWith("climb ", StringComparison.Ordinal))
                 {
-                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
-                    npcModel.Climb = int.Parse(speedAttributeSplit[1]);
+                    npcModel.Climb = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
                 }
                 if (trimmedSpeedAttribute.StartsWith("fly ", StringComparison.Ordinal))
                 {
-                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
-                    npcModel.Fly = int.Parse(speedAttributeSplit[1]);
+                    npcModel.Fly = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
                 }
                 if (trimmedSpeedAttribute.Contains("(hover)"))
                 {
@@ -99,8 +99,7 @@ namespace FantasyModuleParser.Importer.NPC
                 }
                 if (trimmedSpeedAttribute.StartsWith("swim ", StringComparison.Ordinal))
                 {
-                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
-                    npcModel.Swim = int.Parse(speedAttributeSplit[1]);
+                    npcModel.Swim = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
                 }
             }
         }
