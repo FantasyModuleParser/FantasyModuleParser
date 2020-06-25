@@ -2,6 +2,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,20 +23,25 @@ namespace FantasyModuleParser.NPC.Views
     public partial class PreviewNPC : Window
     {
         #region Controllers
-        public NPCController npcController { get; set; }
         private PreviewNPCViewModel viewModel;
         #endregion
         public PreviewNPC()
         {
             InitializeComponent();
-            //npcController = new NPCController();
-            //DataContext = npcController.GetNPCModel();
             viewModel = new PreviewNPCViewModel();
+            viewModel.NPCModel.PropertyChanged += RefreshDataContext;
             DataContext = viewModel;
         }
         public void WindowClose(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        public void RefreshDataContext(object sender, PropertyChangedEventArgs e)
+        {
+            // This is resource intensive way of forcing a refresh 
+            viewModel = new PreviewNPCViewModel();
+            DataContext = viewModel;
         }
 	}
 }
