@@ -3,6 +3,7 @@ using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -26,6 +27,22 @@ namespace FantasyModuleParser.Importer.NPC
         public NPCModel ParseEngineerSuiteNPCContent(string engineerSuiteNpcFileContent)
         {
             NPCModel parsedNPCModel = new NPCModel();
+
+            string line = "";
+            StringReader stringReader = new StringReader(engineerSuiteNpcFileContent);
+
+            while((line = stringReader.ReadLine()) != null)
+            {
+                if (line.StartsWith("Armor Class", StringComparison.Ordinal))
+                    ParseArmorClass(parsedNPCModel, line);
+                if (line.StartsWith("Hit Points", StringComparison.Ordinal))
+                    ParseHitPoints(parsedNPCModel, line);
+                if (line.StartsWith("Speed", StringComparison.Ordinal))
+                    ParseSpeedAttributes(parsedNPCModel, line);
+                if (line.StartsWith("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
+                    ParseStatAttributes(parsedNPCModel, line);
+            }
+
             return parsedNPCModel;
         }
 
@@ -61,7 +78,7 @@ namespace FantasyModuleParser.Importer.NPC
 
         /// <summary>
         /// 'Speed 10 ft., burrow 20 ft., climb 30 ft., fly 40 ft. (hover), swim 50 ft.'
-        /// </summary>
+        /// </summary>S
         public void ParseSpeedAttributes(NPCModel npcModel, string speedAttributes)
         {
             if (speedAttributes == null || speedAttributes.Length == 0)
@@ -109,7 +126,15 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseStatAttributes(NPCModel npcModel, string statAttributes)
         {
-            throw new NotImplementedException();
+            if(statAttributes.StartsWith("STR DEX CON INT WIS CHA")) { 
+            string[] splitAttributes = statAttributes.Split(' ');
+                npcModel.AttributeStr = int.Parse(splitAttributes[6], CultureInfo.CurrentCulture);
+                npcModel.AttributeDex = int.Parse(splitAttributes[8], CultureInfo.CurrentCulture);
+                npcModel.AttributeCon = int.Parse(splitAttributes[10], CultureInfo.CurrentCulture);
+                npcModel.AttributeInt = int.Parse(splitAttributes[12], CultureInfo.CurrentCulture);
+                npcModel.AttributeWis = int.Parse(splitAttributes[14], CultureInfo.CurrentCulture);
+                npcModel.AttributeCha = int.Parse(splitAttributes[16], CultureInfo.CurrentCulture);
+            }
         }
 
         /// <summary>

@@ -110,7 +110,6 @@ namespace FMPTests.Importer.NPC
         }
         #endregion
 
-
         #region Speed Attributes
         [TestMethod]
         [DynamicData(nameof(SpeedAttributeData), DynamicDataSourceType.Method)]
@@ -169,6 +168,41 @@ namespace FMPTests.Importer.NPC
         }
         #endregion
 
+        #region Stat Attributes
+        [TestMethod]
+        [DynamicData(nameof(StatAttributeData), DynamicDataSourceType.Method)]
+        public void Test_Parse_StatAttributes(NPCModel expectedNpcModel, string statAttributes)
+        {
+            _importEngineerSuiteNPC.ParseStatAttributes(actualNPCModel, statAttributes);
+            AssertStatAttributes(expectedNpcModel, actualNPCModel);
+        }
 
+        private void AssertStatAttributes(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.AttributeStr, actualNPCModel.AttributeStr);
+            Assert.AreEqual(expectedNPCModel.AttributeDex, actualNPCModel.AttributeDex);
+            Assert.AreEqual(expectedNPCModel.AttributeCon, actualNPCModel.AttributeCon);
+            Assert.AreEqual(expectedNPCModel.AttributeInt, actualNPCModel.AttributeInt);
+            Assert.AreEqual(expectedNPCModel.AttributeWis, actualNPCModel.AttributeWis);
+            Assert.AreEqual(expectedNPCModel.AttributeCha, actualNPCModel.AttributeCha);
+        }
+
+        private static IEnumerable<object[]> StatAttributeData()
+        {
+            yield return new object[] { generateNPCModel_StatAttributes(10,11,12,13,14,15), "STR DEX CON INT WIS CHA 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)" };
+            yield return new object[] { generateNPCModel_StatAttributes(20,19,16,14,12,8), "STR DEX CON INT WIS CHA 20 (+5) 19 (+4) 16 (+3) 14 (+2) 12 (+1) 8 (-1)" };
+        }
+        private static NPCModel generateNPCModel_StatAttributes(int str, int dex, int con, int intel, int wis, int cha)
+        {
+            NPCModel npcModel = new NPCModel();
+            npcModel.AttributeStr = str;
+            npcModel.AttributeDex = dex;
+            npcModel.AttributeCon = con;
+            npcModel.AttributeInt = intel;
+            npcModel.AttributeWis = wis;
+            npcModel.AttributeCha = cha;
+            return npcModel;
+        }
+        #endregion
     }
 }
