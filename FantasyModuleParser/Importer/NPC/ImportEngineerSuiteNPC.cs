@@ -3,8 +3,10 @@ using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace FantasyModuleParser.Importer.NPC
 {
@@ -58,7 +60,49 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseSpeedAttributes(NPCModel npcModel, string speedAttributes)
         {
-            throw new NotImplementedException();
+            if (speedAttributes == null || speedAttributes.Length == 0)
+            {
+                npcModel.Speed = 0;
+                npcModel.Burrow = 0;
+                npcModel.Climb = 0;
+                npcModel.Fly = 0;
+                npcModel.Hover = false;
+                npcModel.Swim = 0;
+                return;
+            }
+            foreach(string speedAttribute in speedAttributes.Split(','))
+            {
+                var trimmedSpeedAttribute = speedAttribute.Trim().ToLower();
+                if(trimmedSpeedAttribute.StartsWith("speed ", StringComparison.Ordinal))
+                {
+                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
+                    npcModel.Speed = int.Parse(speedAttributeSplit[1]);
+                }
+                if (trimmedSpeedAttribute.StartsWith("burrow ", StringComparison.Ordinal))
+                {
+                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
+                    npcModel.Burrow = int.Parse(speedAttributeSplit[1]);
+                }
+                if (trimmedSpeedAttribute.StartsWith("climb ", StringComparison.Ordinal))
+                {
+                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
+                    npcModel.Climb = int.Parse(speedAttributeSplit[1]);
+                }
+                if (trimmedSpeedAttribute.StartsWith("fly ", StringComparison.Ordinal))
+                {
+                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
+                    npcModel.Fly = int.Parse(speedAttributeSplit[1]);
+                }
+                if (trimmedSpeedAttribute.Contains("(hover)"))
+                {
+                    npcModel.Hover = true;
+                }
+                if (trimmedSpeedAttribute.StartsWith("swim ", StringComparison.Ordinal))
+                {
+                    string[] speedAttributeSplit = trimmedSpeedAttribute.Split(' ');
+                    npcModel.Swim = int.Parse(speedAttributeSplit[1]);
+                }
+            }
         }
 
         /// <summary>

@@ -83,6 +83,64 @@ namespace FMPTests.Importer.NPC
         }
         #endregion
 
+        #region Speed Attributes
+        [TestMethod]
+        [DynamicData(nameof(SpeedAttributeData), DynamicDataSourceType.Method)]
+        public void Test_Parse_SpeedAttributes(NPCModel expectedNpcModel, string speedAttributes)
+        {
+            _importEngineerSuiteNPC.ParseSpeedAttributes(actualNPCModel, speedAttributes);
+            AssertSpeedAttributes(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertSpeedAttributes(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.Speed, actualNPCModel.Speed);
+            Assert.AreEqual(expectedNPCModel.Burrow, actualNPCModel.Burrow);
+            Assert.AreEqual(expectedNPCModel.Climb, actualNPCModel.Climb);
+            Assert.AreEqual(expectedNPCModel.Fly, actualNPCModel.Fly);
+            Assert.AreEqual(expectedNPCModel.Hover, actualNPCModel.Hover);
+            Assert.AreEqual(expectedNPCModel.Swim, actualNPCModel.Swim);
+        }
+
+        private static IEnumerable<object[]> SpeedAttributeData()
+        {
+            yield return new object[] { generateNPCModel_SpeedAttributeData(0, 0, 0, 0, false, 0), "" };
+            yield return new object[] { generateNPCModel_SpeedAttributeData(0, 0, 0, 0, false, 0), "Speed 0 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 0, 0, 0, false, 0), "Speed 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(60, 0, 0, 0, false, 0), "Speed 60 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(0, 30, 0, 0, false, 0), "Speed 0 ft., burrow 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(0, 0, 30, 0, false, 0), "Speed 0 ft., climb 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(0, 0, 0, 30, false, 0), "Speed 0 ft., fly 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(0, 0, 0, 30, true, 0), "Speed 0 ft., fly 30 ft. (hover)"};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(0, 0, 0, 0, false, 30), "Speed 0 ft., swim 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 0, 0, false, 0), "Speed 30 ft., burrow 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 0, 30, 0, false, 0), "Speed 30 ft., climb 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 0, 0, 30, false, 0), "Speed 30 ft., fly 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 0, 0, 30, true, 0), "Speed 30 ft., fly 30 ft. (hover)"};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 0, 0, 0, false, 30), "Speed 30 ft., swim 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 30, 0, false, 0), "Speed 30 ft., climb 30 ft., burrow 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 0, 30, false, 0), "Speed 30 ft., fly 30 ft., burrow 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 0, 30, true, 0), "Speed 30 ft., fly 30 ft. (hover), burrow 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 0, 0, false, 30), "Speed 30 ft., burrow 30 ft., swim 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 30, 30, false, 0), "Speed 30 ft., climb 30 ft., fly 30 ft., burrow 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 30, 30, true, 0), "Speed 30 ft., climb 30 ft., fly 30 ft. (hover), burrow 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 30, 0, false, 30), "Speed 30 ft., climb 30 ft., burrow 30 ft., swim 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 30, 30, false, 30), "Speed 30 ft., climb 30 ft., fly 30 ft., burrow 30 ft., swim 30 ft."};
+            yield return new object[] { generateNPCModel_SpeedAttributeData(30, 30, 30, 30, true, 30), "Speed 30 ft., climb 30 ft., fly 30 ft. (hover), burrow 30 ft., swim 30 ft."};
+        }
+        private static NPCModel generateNPCModel_SpeedAttributeData(int speed, int burrow, int climb, int fly, bool hover, int swim)
+        {
+            NPCModel npcModel = new NPCModel();
+            npcModel.Speed = speed;
+            npcModel.Burrow = burrow;
+            npcModel.Climb = climb;
+            npcModel.Fly = fly;
+            npcModel.Hover = hover;
+            npcModel.Swim = swim;
+            return npcModel;
+        }
+        #endregion
+
 
     }
 }
