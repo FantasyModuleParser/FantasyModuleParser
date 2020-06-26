@@ -329,22 +329,91 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string UpdateSavingThrows()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(appendSavingThrow("Str", NPCModel.SavingThrowStr));
-            stringBuilder.Append(appendSavingThrow("Dex", NPCModel.SavingThrowDex));
-            stringBuilder.Append(appendSavingThrow("Con", NPCModel.SavingThrowCon));
-            stringBuilder.Append(appendSavingThrow("Int", NPCModel.SavingThrowInt));
-            stringBuilder.Append(appendSavingThrow("Wis", NPCModel.SavingThrowWis));
-            stringBuilder.Append(appendSavingThrow("Cha", NPCModel.SavingThrowCha));
+            stringBuilder.Append(appendSavingThrowStr("Str", NPCModel.SavingThrowStr));
+            stringBuilder.Append(appendSavingThrowDex("Dex", NPCModel.SavingThrowDex));
+            stringBuilder.Append(appendSavingThrowCon("Con", NPCModel.SavingThrowCon));
+            stringBuilder.Append(appendSavingThrowInt("Int", NPCModel.SavingThrowInt));
+            stringBuilder.Append(appendSavingThrowWis("Wis", NPCModel.SavingThrowWis));
+            stringBuilder.Append(appendSavingThrowCha("Cha", NPCModel.SavingThrowCha));
             if (stringBuilder.Length >= 2)
             {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
             return stringBuilder.ToString();
         }
-        private string appendSavingThrow(string savingThrowName, int savingThrowValue)
+        private string appendSavingThrowStr(string savingThrowName, int savingThrowValue)
         {
             string delimiter = ", ";
-            if (savingThrowValue != 0)
+            if (NPCModel.SavingThrowStrBool == true && savingThrowValue == 0)
+            {
+                return savingThrowName + " +" + savingThrowValue + delimiter;
+            }
+            else if (NPCModel.SavingThrowStrBool == false && savingThrowValue != 0)
+            {
+                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+            }
+            return "";
+        }
+        private string appendSavingThrowDex(string savingThrowName, int savingThrowValue)
+        {
+            string delimiter = ", ";
+            if (NPCModel.SavingThrowDexBool == true && savingThrowValue == 0)
+            {
+                return savingThrowName + " +" + savingThrowValue + delimiter;
+            }
+            else if (NPCModel.SavingThrowDexBool == false && savingThrowValue != 0)
+            {
+                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+            }
+            return "";
+        }
+        private string appendSavingThrowCon(string savingThrowName, int savingThrowValue)
+        {
+            string delimiter = ", ";
+            if (NPCModel.SavingThrowConBool == true && savingThrowValue == 0)
+            {
+                return savingThrowName + " +" + savingThrowValue + delimiter;
+            }
+            else if (NPCModel.SavingThrowConBool == false && savingThrowValue != 0)
+            {
+                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+            }
+            return "";
+        }
+        private string appendSavingThrowInt(string savingThrowName, int savingThrowValue)
+        {
+            string delimiter = ", ";
+            if (NPCModel.SavingThrowIntBool == true && savingThrowValue == 0)
+            {
+                return savingThrowName + " +" + savingThrowValue + delimiter;
+            }
+            else if (NPCModel.SavingThrowIntBool == false && savingThrowValue != 0)
+            {
+                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+            }
+            return "";
+        }
+        private string appendSavingThrowWis(string savingThrowName, int savingThrowValue)
+        {
+            string delimiter = ", ";
+            if (NPCModel.SavingThrowWisBool == true && savingThrowValue == 0)
+            {
+                return savingThrowName + " +" + savingThrowValue + delimiter;
+            }
+            else if (NPCModel.SavingThrowWisBool == false && savingThrowValue != 0)
+            {
+                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+            }
+            return "";
+        }
+        private string appendSavingThrowCha(string savingThrowName, int savingThrowValue)
+        {
+            string delimiter = ", ";
+            if (NPCModel.SavingThrowChaBool == true && savingThrowValue == 0)
+            {
+                return savingThrowName + " +" + savingThrowValue + delimiter;
+            }
+            else if (NPCModel.SavingThrowChaBool == false && savingThrowValue != 0)
             {
                 return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
             }

@@ -73,14 +73,22 @@ namespace FantasyModuleParser.NPC
         public bool SavingThrowWisBool { get { return _savingThrowWisBool; } set { Set(ref _savingThrowWisBool, value); } }
         private bool _savingThrowChaBool;
         public bool SavingThrowChaBool { get { return _savingThrowChaBool; } set { Set(ref _savingThrowChaBool, value); } }
-        public int Blindsight { get; set; }
-        public bool BlindBeyond { get; set; }
-        public int Darkvision { get; set; }
-        public int Tremorsense { get; set; }
-        public int Truesight { get; set; }
-        public int PassivePerception { get; set; }
-        public string ChallengeRating { get; set; }
-        public int XP { get; set; }
+        private int _blindsight;
+        public int Blindsight { get { return _blindsight; } set { Set(ref _blindsight, value); } }
+        private bool _blindBeyond;
+        public bool BlindBeyond { get { return _blindBeyond; } set { Set(ref _blindBeyond, value); } }
+        private int _darkvision;
+        public int Darkvision { get { return _darkvision; } set { Set(ref _darkvision, value); } }
+        private int _tremorsense;
+        public int Tremorsense { get { return _tremorsense; } set { Set(ref _tremorsense, value); } }
+        private int _truesight;
+        public int Truesight { get { return _truesight; } set { Set(ref _truesight, value); } }
+        private int _passivePerception;
+        public int PassivePerception { get { return _passivePerception; } set { Set(ref _passivePerception, value); } }
+        private string _challengeRating;
+        public string ChallengeRating { get { return _challengeRating; } set { Set(ref _challengeRating, value); } }
+        private int _xp;
+        public int XP { get { return _xp; } set { Set(ref _xp, value); } }
         public string NPCToken { get; set; }
         public List<SelectableActionModel> DamageResistanceModelList { get; set; }
         public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
