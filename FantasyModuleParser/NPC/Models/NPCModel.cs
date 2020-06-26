@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,12 +25,18 @@ namespace FantasyModuleParser.NPC
         public string NPCGender { get; set; }
         public bool Unique { get; set; }
         public bool NPCNamed { get; set; }
-        public int Speed { get; set; }
-        public int Burrow { get; set; }
-        public int Climb { get; set; }
-        public int Fly { get; set; }
-        public bool Hover { get; set; }
-        public int Swim { get; set; }
+        private int _speed;
+        public int Speed { get { return _speed; } set { Set(ref _speed, value); } }
+        private int _burrow;
+        public int Burrow { get { return _burrow; } set { Set(ref _burrow, value); } }
+        private int _climb;
+        public int Climb { get { return _climb; } set { Set(ref _climb, value); } }
+        private int _fly;
+        public int Fly { get { return _fly; } set { Set(ref _fly, value); } }
+        private bool _hover;
+        public bool Hover { get { return _hover; } set { Set(ref _hover, value); } }
+        private int _swim;
+        public int Swim { get { return _swim; } set { Set(ref _swim, value); } }
         public int AttributeStr { get; set; }
         public int AttributeDex { get; set; }
         public int AttributeCon { get; set; }
@@ -179,6 +186,20 @@ namespace FantasyModuleParser.NPC
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool Set<T>(ref T backingField, T value, [CallerMemberName] string propertyname = null)
+        {
+            // Check if the value and backing field are actualy different
+            if (EqualityComparer<T>.Default.Equals(backingField, value))
+            {
+                return false;
+            }
+
+            // Setting the backing field and the RaisePropertyChanged
+            backingField = value;
+            OnPropertyChanged(propertyname);
+            return true;
         }
     }
 }
