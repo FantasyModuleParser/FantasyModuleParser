@@ -86,6 +86,17 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             npcController = new NPCController();
             NPCModel = npcController.GetNPCModel();
+            initalizeViewModel();
+        }
+
+        public PreviewNPCViewModel(NPCModel nPCModel)
+        {
+            NPCModel = nPCModel;
+            initalizeViewModel();
+        }
+
+        private void initalizeViewModel()
+        {
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = UpdateSkillsDescription();
             StrengthAttribute = UpdateStrengthAttribute();
@@ -147,13 +158,6 @@ namespace FantasyModuleParser.NPC.ViewModels
             SpellcastingNinthLabel = UpdateSpellcastingNinthLabel();
             SpellcastingNinth = UpdateSpellcastingNinth();
             SpellcastingMarkedSpells = UpdateSpellcastingMarkedSpells();
-        }
-
-        public PreviewNPCViewModel(NPCModel nPCModel)
-        {
-            NPCModel = nPCModel;
-            SpeedDescription = UpdateSpeedDescription();
-            SkillsDescription = UpdateSkillsDescription();
         }
 
         #region UpdateAbilityScores
