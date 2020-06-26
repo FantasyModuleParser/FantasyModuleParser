@@ -81,6 +81,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string SpellcastingNinthLabel { get; set; }
         public string SpellcastingNinth { get; set; }
         public string SpellcastingMarkedSpells { get; set; }
+        public string WeaponName1 { get; set; }
 
         public PreviewNPCViewModel()
         {
@@ -147,6 +148,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             SpellcastingNinthLabel = UpdateSpellcastingNinthLabel();
             SpellcastingNinth = UpdateSpellcastingNinth();
             SpellcastingMarkedSpells = UpdateSpellcastingMarkedSpells();
+            WeaponName1 = UpdateWeaponName1();
         }
 
         public PreviewNPCViewModel(NPCModel nPCModel)
@@ -1358,6 +1360,10 @@ namespace FantasyModuleParser.NPC.ViewModels
                 stringBuilder.Append(" It has the following " + NPCModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
                 return stringBuilder.ToString();
             }
+            return "";
+        }
+        private string UpdateWeaponName1()
+        {
             return "";
         }
         #endregion

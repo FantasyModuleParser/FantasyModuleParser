@@ -87,9 +87,11 @@ namespace FantasyModuleParser.NPC.Views
         {
             rollResult.Clear();
             Random rnd = new Random();
-            int randomDice = rnd.Next(1,(int)SizeDice.SelectedValue);
             int bonusHP = int.Parse(Bonus.Text);
-            int diceResult = ((int.Parse(NumDice.Text) * randomDice + 1) / 2) + int.Parse(Bonus.Text);
+            int diceResult = 0;
+            for (int diceNum = 0; diceNum < int.Parse(NumDice.Text); diceNum++)
+                diceResult += rnd.Next(1, (int)SizeDice.SelectedValue);
+            diceResult = diceResult + bonusHP;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(diceResult + " (" + NumDice.Text + SizeDice.SelectedValue.GetDescription());
             if (int.Parse(Bonus.Text) > 0)
