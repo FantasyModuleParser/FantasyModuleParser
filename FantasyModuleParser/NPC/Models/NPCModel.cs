@@ -37,24 +37,42 @@ namespace FantasyModuleParser.NPC
         public bool Hover { get { return _hover; } set { Set(ref _hover, value); } }
         private int _swim;
         public int Swim { get { return _swim; } set { Set(ref _swim, value); } }
-        public int AttributeStr { get; set; }
-        public int AttributeDex { get; set; }
-        public int AttributeCon { get; set; }
-        public int AttributeInt { get; set; }
-        public int AttributeWis { get; set; }
-        public int AttributeCha { get; set; }
-        public int SavingThrowStr { get; set; }
-        public int SavingThrowDex { get; set; }
-        public int SavingThrowCon { get; set; }
-        public int SavingThrowInt { get; set; }
-        public int SavingThrowWis { get; set; }
-        public int SavingThrowCha { get; set; }
-        public bool SavingThrowStrBool { get; set; }
-        public bool SavingThrowDexBool { get; set; }
-        public bool SavingThrowConBool { get; set; }
-        public bool SavingThrowIntBool { get; set; }
-        public bool SavingThrowWisBool { get; set; }
-        public bool SavingThrowChaBool { get; set; }
+        private int _attributeStr;
+        public int AttributeStr { get { return _attributeStr; } set { Set(ref _attributeStr, value); } }
+        private int _attributeDex;
+        public int AttributeDex { get { return _attributeDex; } set { Set(ref _attributeDex, value); } }
+        private int _attributeCon;
+        public int AttributeCon { get { return _attributeCon; } set { Set(ref _attributeCon, value); } }
+        private int _attributeInt;
+        public int AttributeInt { get { return _attributeInt; } set { Set(ref _attributeInt, value); } }
+        private int _attributeWis;
+        public int AttributeWis { get { return _attributeWis; } set { Set(ref _attributeWis, value); } }
+        private int _attributeCha;
+        public int AttributeCha { get { return _attributeCha; } set { Set(ref _attributeCha, value); } }
+        private int _savingThrowStr;
+        public int SavingThrowStr { get { return _savingThrowStr; } set { Set(ref _savingThrowStr, value); } }
+        private int _savingThrowDex;
+        public int SavingThrowDex { get { return _savingThrowDex; } set { Set(ref _savingThrowDex, value); } }
+        private int _savingThrowCon;
+        public int SavingThrowCon { get { return _savingThrowCon; } set { Set(ref _savingThrowCon, value); } }
+        private int _savingThrowInt;
+        public int SavingThrowInt { get { return _savingThrowInt; } set { Set(ref _savingThrowInt, value); } }
+        private int _savingThrowWis;
+        public int SavingThrowWis { get { return _savingThrowWis; } set { Set(ref _savingThrowWis, value); } }
+        private int _savingThrowCha;
+        public int SavingThrowCha { get { return _savingThrowCha; } set { Set(ref _savingThrowCha, value); } }
+        private bool _savingThrowStrBool;
+        public bool SavingThrowStrBool { get { return _savingThrowStrBool; } set { Set(ref _savingThrowStrBool, value); } }
+        private bool _savingThrowDexBool;
+        public bool SavingThrowDexBool { get { return _savingThrowDexBool; } set { Set(ref _savingThrowDexBool, value); } }
+        private bool _savingThrowConBool;
+        public bool SavingThrowConBool { get { return _savingThrowConBool; } set { Set(ref _savingThrowConBool, value); } }
+        private bool _savingThrowIntBool;
+        public bool SavingThrowIntBool { get { return _savingThrowIntBool; } set { Set(ref _savingThrowIntBool, value); } }
+        private bool _savingThrowWisBool;
+        public bool SavingThrowWisBool { get { return _savingThrowWisBool; } set { Set(ref _savingThrowWisBool, value); } }
+        private bool _savingThrowChaBool;
+        public bool SavingThrowChaBool { get { return _savingThrowChaBool; } set { Set(ref _savingThrowChaBool, value); } }
         public int Blindsight { get; set; }
         public bool BlindBeyond { get; set; }
         public int Darkvision { get; set; }
