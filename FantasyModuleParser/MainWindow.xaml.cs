@@ -82,7 +82,7 @@ namespace FantasyModuleParser
                     new About().Show();
                     break;
                 case "ManageCategories":
-                    new ManageCategories().Show();
+                    new UserCreationManagement().Show();
                     break;
                 case "ManageProject":
                     new ProjectManagement().Show();

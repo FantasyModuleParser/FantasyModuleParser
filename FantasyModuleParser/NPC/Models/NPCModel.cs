@@ -15,6 +15,61 @@ namespace FantasyModuleParser.NPC
 {
     public class NPCModel
     {
+        #region Private Variables
+        private int _speed;
+        private int _burrow;
+        private int _climb;
+        private int _fly;
+        private bool _hover;
+        private int _swim;
+        private int _attributeStr;
+        private int _attributeDex;
+        private int _attributeCon;
+        private int _attributeInt;
+        private int _attributeWis;
+        private int _attributeCha;
+        private int _savingThrowStr;
+        private int _savingThrowDex;
+        private int _savingThrowCon;
+        private int _savingThrowInt;
+        private int _savingThrowWis;
+        private int _savingThrowCha;
+        private bool _savingThrowStrBool;
+        private bool _savingThrowDexBool;
+        private bool _savingThrowConBool;
+        private bool _savingThrowIntBool;
+        private bool _savingThrowWisBool;
+        private bool _savingThrowChaBool;
+        private int _blindsight;
+        private bool _blindBeyond;
+        private int _darkvision;
+        private int _tremorsense;
+        private int _truesight;
+        private int _passivePerception;
+        private string _challengeRating;
+        private int _xp;
+        private bool _conditionOther;
+        private string _conditionOtherText;
+        private int _acrobatics;
+        private int _animalHandling;
+        private int _arcana;
+        private int _athletics;
+        private int _deception;
+        private int _history;
+        private int _insight;
+        private int _intimidation;
+        private int _investigation;
+        private int _medicine;
+        private int _nature;
+        private int _perception;
+        private int _performance;
+        private int _persuasion;
+        private int _religion;
+        private int _sleightOfHand;
+        private int _stealth;
+        private int _survival;
+        #endregion
+        #region Public Variables
         public string NPCName { get; set; }
         public string Size { get; set; }
         public string NPCType { get; set; }
@@ -25,69 +80,37 @@ namespace FantasyModuleParser.NPC
         public string NPCGender { get; set; }
         public bool Unique { get; set; }
         public bool NPCNamed { get; set; }
-        private int _speed;
         public int Speed { get { return _speed; } set { Set(ref _speed, value); } }
-        private int _burrow;
         public int Burrow { get { return _burrow; } set { Set(ref _burrow, value); } }
-        private int _climb;
         public int Climb { get { return _climb; } set { Set(ref _climb, value); } }
-        private int _fly;
         public int Fly { get { return _fly; } set { Set(ref _fly, value); } }
-        private bool _hover;
         public bool Hover { get { return _hover; } set { Set(ref _hover, value); } }
-        private int _swim;
         public int Swim { get { return _swim; } set { Set(ref _swim, value); } }
-        private int _attributeStr;
         public int AttributeStr { get { return _attributeStr; } set { Set(ref _attributeStr, value); } }
-        private int _attributeDex;
         public int AttributeDex { get { return _attributeDex; } set { Set(ref _attributeDex, value); } }
-        private int _attributeCon;
         public int AttributeCon { get { return _attributeCon; } set { Set(ref _attributeCon, value); } }
-        private int _attributeInt;
         public int AttributeInt { get { return _attributeInt; } set { Set(ref _attributeInt, value); } }
-        private int _attributeWis;
         public int AttributeWis { get { return _attributeWis; } set { Set(ref _attributeWis, value); } }
-        private int _attributeCha;
         public int AttributeCha { get { return _attributeCha; } set { Set(ref _attributeCha, value); } }
-        private int _savingThrowStr;
         public int SavingThrowStr { get { return _savingThrowStr; } set { Set(ref _savingThrowStr, value); } }
-        private int _savingThrowDex;
         public int SavingThrowDex { get { return _savingThrowDex; } set { Set(ref _savingThrowDex, value); } }
-        private int _savingThrowCon;
         public int SavingThrowCon { get { return _savingThrowCon; } set { Set(ref _savingThrowCon, value); } }
-        private int _savingThrowInt;
         public int SavingThrowInt { get { return _savingThrowInt; } set { Set(ref _savingThrowInt, value); } }
-        private int _savingThrowWis;
         public int SavingThrowWis { get { return _savingThrowWis; } set { Set(ref _savingThrowWis, value); } }
-        private int _savingThrowCha;
         public int SavingThrowCha { get { return _savingThrowCha; } set { Set(ref _savingThrowCha, value); } }
-        private bool _savingThrowStrBool;
         public bool SavingThrowStrBool { get { return _savingThrowStrBool; } set { Set(ref _savingThrowStrBool, value); } }
-        private bool _savingThrowDexBool;
         public bool SavingThrowDexBool { get { return _savingThrowDexBool; } set { Set(ref _savingThrowDexBool, value); } }
-        private bool _savingThrowConBool;
         public bool SavingThrowConBool { get { return _savingThrowConBool; } set { Set(ref _savingThrowConBool, value); } }
-        private bool _savingThrowIntBool;
         public bool SavingThrowIntBool { get { return _savingThrowIntBool; } set { Set(ref _savingThrowIntBool, value); } }
-        private bool _savingThrowWisBool;
         public bool SavingThrowWisBool { get { return _savingThrowWisBool; } set { Set(ref _savingThrowWisBool, value); } }
-        private bool _savingThrowChaBool;
         public bool SavingThrowChaBool { get { return _savingThrowChaBool; } set { Set(ref _savingThrowChaBool, value); } }
-        private int _blindsight;
         public int Blindsight { get { return _blindsight; } set { Set(ref _blindsight, value); } }
-        private bool _blindBeyond;
         public bool BlindBeyond { get { return _blindBeyond; } set { Set(ref _blindBeyond, value); } }
-        private int _darkvision;
         public int Darkvision { get { return _darkvision; } set { Set(ref _darkvision, value); } }
-        private int _tremorsense;
         public int Tremorsense { get { return _tremorsense; } set { Set(ref _tremorsense, value); } }
-        private int _truesight;
         public int Truesight { get { return _truesight; } set { Set(ref _truesight, value); } }
-        private int _passivePerception;
         public int PassivePerception { get { return _passivePerception; } set { Set(ref _passivePerception, value); } }
-        private string _challengeRating;
         public string ChallengeRating { get { return _challengeRating; } set { Set(ref _challengeRating, value); } }
-        private int _xp;
         public int XP { get { return _xp; } set { Set(ref _xp, value); } }
         public string NPCToken { get; set; }
         public List<SelectableActionModel> DamageResistanceModelList { get; set; }
@@ -98,30 +121,31 @@ namespace FantasyModuleParser.NPC
         public List<SelectableActionModel> SpecialWeaponDmgResistanceModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponDmgImmunityModelList { get; set; }
-        public bool ConditionOther { get; set; }
-        public string ConditionOtherText { get; set; }
-        public int Acrobatics { get; set; }
-        public int AnimalHandling { get; set; }
-        public int Arcana { get; set; }
-        public int Athletics { get; set; }
-        public int Deception { get; set; }
-        public int History { get; set; }
-        public int Insight { get; set; }
-        public int Intimidation { get; set; }
-        public int Investigation { get; set; }
-        public int Medicine { get; set; }
-        public int Nature { get; set; }
-        public int Perception { get; set; }
-        public int Performance { get; set; }
-        public int Persuasion { get; set; }
-        public int Religion { get; set; }
-        public int SleightOfHand { get; set; }
-        public int Stealth { get; set; }
-        public int Survival { get; set; }
+        public bool ConditionOther { get { return _conditionOther; } set { Set(ref _conditionOther, value); } }
+        public string ConditionOtherText { get { return _conditionOtherText; } set { Set(ref _conditionOtherText, value); } }
+        public int Acrobatics { get { return _acrobatics; } set { Set(ref _acrobatics, value); } }
+        public int AnimalHandling { get { return _animalHandling; } set { Set(ref _animalHandling, value); } }
+        public int Arcana { get { return _arcana; } set { Set(ref _arcana, value); } }
+        public int Athletics { get { return _athletics; } set { Set(ref _athletics, value); } }
+        public int Deception { get { return _deception; } set { Set(ref _deception, value); } }
+        public int History { get { return _history; } set { Set(ref _history, value); } }
+        public int Insight { get { return _insight; } set { Set(ref _insight, value); } }
+        public int Intimidation { get { return _intimidation; } set { Set(ref _intimidation, value); } }
+        public int Investigation { get { return _investigation; } set { Set(ref _investigation, value); } }
+        public int Medicine { get { return _medicine; } set { Set(ref _medicine, value); } }
+        public int Nature { get { return _nature; } set { Set(ref _nature, value); } }
+        public int Perception { get { return _perception; } set { Set(ref _perception, value); } }
+        public int Performance { get { return _performance; } set { Set(ref _performance, value); } }
+        public int Persuasion { get { return _persuasion; } set { Set(ref _persuasion, value); } }
+        public int Religion { get { return _religion; } set { Set(ref _religion, value); } }
+        public int SleightOfHand { get { return _sleightOfHand; } set { Set(ref _sleightOfHand, value); } }
+        public int Stealth { get { return _stealth; } set { Set(ref _stealth, value); } }
+        public int Survival { get { return _survival; } set { Set(ref _survival, value); } }
         public ObservableCollection<LanguageModel> StandardLanguages { get; set; }
         public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
         public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
         public ObservableCollection<LanguageModel> UserLanguages { get; set; }
+        #endregion
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }

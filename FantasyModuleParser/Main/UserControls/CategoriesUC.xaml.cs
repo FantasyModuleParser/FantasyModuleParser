@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FantasyModuleParser.Main
+namespace FantasyModuleParser.Main.UserControls
 {
     /// <summary>
-    /// Interaction logic for ManageCategories.xaml
+    /// Interaction logic for CategoriesUC.xaml
     /// </summary>
-    public partial class ManageCategories : Window
+    public partial class CategoriesUC : UserControl
     {
-        public ManageCategories()
+        public CategoriesUC()
         {
             InitializeComponent();
-        }
-        private void ESExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

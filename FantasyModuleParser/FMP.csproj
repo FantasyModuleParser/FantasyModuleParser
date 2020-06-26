@@ -181,15 +181,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Main\UserControls\CategoriesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\UserLanguagesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\Views\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\Views\EditDeleteNPC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\ManageCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -303,14 +307,17 @@
     </Compile>
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
+    <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
+      <DependentUpon>CategoriesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
+      <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\EditDeleteNPC.xaml.cs">
       <DependentUpon>EditDeleteNPC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\ManageCategories.xaml.cs">
-      <DependentUpon>ManageCategories.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\ProjectManagement.xaml.cs">
       <DependentUpon>ProjectManagement.xaml</DependentUpon>
@@ -375,6 +382,9 @@
     <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
       <DependentUpon>PreviewNPC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\Views\UserCreationManagement.xaml.cs">
+      <DependentUpon>UserCreationManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
@@ -419,6 +429,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NPC\Views\Action\Reaction\Reactions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\UserCreationManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
