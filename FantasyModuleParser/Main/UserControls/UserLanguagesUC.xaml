@@ -5,8 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Main.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="250" d:DesignWidth="380">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        <Label Content="New Lanaguage" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+        <TextBox Height="23" Width="200" Padding="0" Grid.Row="1" Grid.Column="2"/>
+        <Button Content="Add" Width="50" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3"/>
+        <ListBox Width="300" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="3" Grid.ColumnSpan="4"/>
     </Grid>
 </UserControl>
