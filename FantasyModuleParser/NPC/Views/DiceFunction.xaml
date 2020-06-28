@@ -9,37 +9,54 @@
         mc:Ignorable="d"
         Title="Dice Average and Roller" Height="240" Width="470" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
-        <WrapPanel Orientation="Vertical">
-            <WrapPanel Orientation="Horizontal">
-                <WrapPanel Orientation="Vertical" Width="150">
-                    <Label Content="Number of Dice *" Width="150" HorizontalContentAlignment="Center" Margin="0,20,0,0" Padding="0" FontWeight="Bold" FontSize="16"/>
-                    <TextBox Name="NumDice" HorizontalAlignment="Center" Height="23" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" PreviewTextInput="NumberValidationTextBox"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Vertical">
-                    <Label Content="Size of Dice *" Width="150" HorizontalContentAlignment="Center" Margin="0,20,0,0" Padding="0" FontWeight="Bold" FontSize="16"/>
-                    <ComboBox Name="SizeDice" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DieType}}}" SelectedValuePath="Value" DisplayMemberPath="Description" HorizontalAlignment="Center" Height="23" Margin="0,10,0,0" Text="TextBox" VerticalAlignment="Top" Width="50" />
-                </WrapPanel>
-                <WrapPanel Orientation="Vertical">
-                    <Label Content="Bonus *" HorizontalContentAlignment="Center" Width="150" Margin="0,20,0,0" Padding="0" FontWeight="Bold" FontSize="16"/>
-                    <TextBox Name="Bonus" HorizontalAlignment="Center" Height="23" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" PreviewTextInput="NumberValidationTextBox"/>
-                </WrapPanel>
-            </WrapPanel>
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <Button Content="Average" Margin="0,0,5,0" Width="100" Click="Average_Click"/>
-                <Button Content="Max" Margin="0,0,5,0" Width="100" Click="Max_Click" />
-                <Button Content="Roll" Margin="5,0,0,0" Width="100" Click="Roll_Click"/>
-            </WrapPanel>
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
-                <WrapPanel Orientation="Vertical">
-                    <Label Content="Result" HorizontalContentAlignment="Center" Padding="0" FontWeight="Bold" FontSize="16"/>
-                    <TextBox Name="rollResult" HorizontalContentAlignment="Center" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Width="150" IsEnabled="False" />
-                </WrapPanel>
-            </WrapPanel>
-            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <Button Content="Close" Width="50" Click="Close_Click"/>
-            </WrapPanel>
-        </WrapPanel>
-        
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Label Content="Number of Dice *" Width="150" HorizontalContentAlignment="Center" Padding="0" FontWeight="Bold" FontSize="16" Grid.Column="2" Grid.ColumnSpan="8" Grid.Row="1"/>
+        <TextBox Name="NumDice" Width="100" HorizontalAlignment="Center" Text="" PreviewTextInput="NumberValidationTextBox" Grid.Column="2" Grid.ColumnSpan="8" Grid.Row="2"/>
+        <Label Content="Size of Dice *" HorizontalContentAlignment="Center" Padding="0" FontWeight="Bold" FontSize="16" Grid.Column="10" Grid.ColumnSpan="6" Grid.Row="1"/>
+        <ComboBox Name="SizeDice" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DieType}}}" SelectedValuePath="Value" DisplayMemberPath="Description" HorizontalAlignment="Center" Text="TextBox" VerticalAlignment="Top" Width="50"  Grid.Column="10" Grid.ColumnSpan="6" Grid.Row="2" />
+        <Label Content="Bonus *" HorizontalContentAlignment="Center" Padding="0" FontWeight="Bold" FontSize="16" Grid.Column="16" Grid.ColumnSpan="6" Grid.Row="1"/>
+        <TextBox Name="Bonus" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" PreviewTextInput="NumberValidationTextBox" Grid.Column="16" Grid.ColumnSpan="6" Grid.Row="2"/>
+        <Button Content="Average" Width="100" Click="Average_Click" Grid.Column="3" Grid.ColumnSpan="6" Grid.Row="4" />
+        <Button Content="Max" Width="100" Click="Max_Click" Grid.Column="9" Grid.ColumnSpan="6" Grid.Row="4" />
+        <Button Content="Roll" Width="100" Click="Roll_Click" Grid.Column="15" Grid.ColumnSpan="6" Grid.Row="4" />
+        <Label Content="Result" HorizontalContentAlignment="Center" Padding="0" FontWeight="Bold" FontSize="16" Grid.Column="2" Grid.ColumnSpan="19" Grid.Row="6" />
+        <TextBox Name="rollResult" HorizontalContentAlignment="Center" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" IsEnabled="False" Grid.Column="2" Grid.ColumnSpan="19" Grid.Row="7"/>
+        <Button Content="Close" Width="50" Click="Close_Click" Grid.Column="2" Grid.ColumnSpan="19" Grid.Row="9" />
     </Grid>
 </Window>

@@ -20,10 +20,7 @@
                         <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <overviewUserControl:OverviewControl RemoveAction="OverviewControl_RemoveAction"
-                                                              EditAction="OverviewControl_EditAction"
-                                                              RaiseActionInList="OverviewControl_RaiseActionInList"
-                                                              LowerActionInList="OverviewControl_LowerActionInList"></overviewUserControl:OverviewControl>
+                                    <overviewUserControl:OverviewControl RemoveAction="OverviewControl_RemoveAction" EditAction="OverviewControl_EditAction" RaiseActionInList="OverviewControl_RaiseActionInList" LowerActionInList="OverviewControl_LowerActionInList" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -70,13 +67,13 @@
             <Button Content="Close" Width="100" Click="CloseButton_Click" />
         </StackPanel>
         <StackPanel Name="stackMulti" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Hidden">
-            <multiAttackUserControl:MultiAttackControl x:Name="multiAttackControl"></multiAttackUserControl:MultiAttackControl>
+            <multiAttackUserControl:MultiAttackControl x:Name="multiAttackControl" />
         </StackPanel>
         <StackPanel Name="stackWeapon" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Visible">
-            <weaponAttackUserControl:WeaponAttackControl x:Name="weaponAttackControl"></weaponAttackUserControl:WeaponAttackControl>
+            <weaponAttackUserControl:WeaponAttackControl x:Name="weaponAttackControl" />
         </StackPanel>
         <StackPanel Name="stackOther" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Hidden">
-            <otherAttackUserControl:OtherActionControl x:Name="otherActionControl"></otherAttackUserControl:OtherActionControl>
+            <otherAttackUserControl:OtherActionControl x:Name="otherActionControl" />
         </StackPanel>
     </Grid>
 </Window>
