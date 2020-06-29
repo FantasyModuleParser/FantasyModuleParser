@@ -10,70 +10,66 @@
         mc:Ignorable="d"
         Title="Add or Edit NPC Actions" Height="600" Width="1010" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="550" Margin="5,5,0,0" />
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="425" Margin="560,50,0,0"/>
-        <StackPanel Orientation="Vertical" Margin="10,10,450,86">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Orientation="Vertical" Width="600">
-                        <Label Content="Actions" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <overviewUserControl:OverviewControl RemoveAction="OverviewControl_RemoveAction" EditAction="OverviewControl_EditAction" RaiseActionInList="OverviewControl_RaiseActionInList" LowerActionInList="OverviewControl_LowerActionInList" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="560,0,0,0">
-            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,25,0,0">
-                <RadioButton HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,0,0,0" Content="Multiattack" Name="multiAttack" Checked="action_Checked" GroupName="actionSelection">
-                    <RadioButton.ToolTip>
-                        <TextBlock>
-                            Select this option if your NPC has the Multiattack Option
-                            <LineBreak />
-                            <Italic>This will open a User Control to enter the Multiattack data</Italic>
-                        </TextBlock>
-                    </RadioButton.ToolTip>
-                </RadioButton>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <RadioButton HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0" Content="Weapon Attack" Name="weaponAttack" Checked="action_Checked" GroupName="actionSelection">
-                    <RadioButton.ToolTip>
-                        <TextBlock>
-                            Select this option to enter Weapon Attacks.
-                            <LineBreak />
-                            <Italic>Selecting this will open a User Control for Weapon Attacks.</Italic>
-                        </TextBlock>
-                    </RadioButton.ToolTip>
-                </RadioButton>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <RadioButton HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,25,0,0" Content="Other Attack" Name="otherAttack" Checked="action_Checked" GroupName="actionSelection">
-                    <RadioButton.ToolTip>
-                        <TextBlock>
-                            Select this option to add actions that are not covered by Weapon Attacks
-                            <LineBreak />
-                            <Italic>Selecting this will open a User Control for Other Actions.</Italic>
-                        </TextBlock>
-                    </RadioButton.ToolTip>
-                </RadioButton>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,500,0,0">
-            <Button Content="Close" Width="100" Click="CloseButton_Click" />
-        </StackPanel>
-        <StackPanel Name="stackMulti" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Hidden">
-            <multiAttackUserControl:MultiAttackControl x:Name="multiAttackControl" />
-        </StackPanel>
-        <StackPanel Name="stackWeapon" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Visible">
-            <weaponAttackUserControl:WeaponAttackControl x:Name="weaponAttackControl" />
-        </StackPanel>
-        <StackPanel Name="stackOther" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,70,0,0" Visibility="Hidden">
-            <otherAttackUserControl:OtherActionControl x:Name="otherActionControl" />
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="485" />
+            <ColumnDefinition Width="22" />
+            <ColumnDefinition Width="155" />
+            <ColumnDefinition Width="155" />
+            <ColumnDefinition Width="155" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="490" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4" />
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="1" />
+        <Label Content="Actions" Foreground="Gray" Padding="0" FontWeight="Bold" Grid.Column="2" Grid.Row="2" />
+        <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}" Grid.Column="2" Grid.Row="4">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <overviewUserControl:OverviewControl RemoveAction="OverviewControl_RemoveAction" EditAction="OverviewControl_EditAction" RaiseActionInList="OverviewControl_RaiseActionInList" LowerActionInList="OverviewControl_LowerActionInList" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <RadioButton Content="Multiattack" Name="multiAttack" Checked="action_Checked" GroupName="actionSelection" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="2">
+            <RadioButton.ToolTip>
+                <TextBlock>
+                    Select this option if your NPC has the Multiattack Option
+                    <LineBreak />
+                    <Italic>This will open a User Control to enter the Multiattack data</Italic>
+                </TextBlock>
+            </RadioButton.ToolTip>
+        </RadioButton>
+        <RadioButton Content="Weapon Attack" Name="weaponAttack" Checked="action_Checked" GroupName="actionSelection" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Grid.Row="2">
+            <RadioButton.ToolTip>
+                <TextBlock>
+                    Select this option to enter Weapon Attacks.
+                    <LineBreak />
+                    <Italic>Selecting this will open a User Control for Weapon Attacks.</Italic>
+                </TextBlock>
+            </RadioButton.ToolTip>
+        </RadioButton>
+        <RadioButton Content="Other Attack" Name="otherAttack" Checked="action_Checked" GroupName="actionSelection" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="6" Grid.Row="2">
+            <RadioButton.ToolTip>
+                <TextBlock>
+                    Select this option to add actions that are not covered by Weapon Attacks
+                    <LineBreak />
+                    <Italic>Selecting this will open a User Control for Other Actions.</Italic>
+                </TextBlock>
+            </RadioButton.ToolTip>
+        </RadioButton>
+        <Button Content="Close" Width="100" Click="CloseButton_Click" Grid.Row="6" Grid.Column="2"/>
+        <multiAttackUserControl:MultiAttackControl x:Name="multiAttackControl" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Visibility="Hidden"/>
+        <weaponAttackUserControl:WeaponAttackControl x:Name="weaponAttackControl" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Visibility="Hidden"/>
+        <otherAttackUserControl:OtherActionControl x:Name="otherActionControl" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Visibility="Hidden"/>
     </Grid>
 </Window>

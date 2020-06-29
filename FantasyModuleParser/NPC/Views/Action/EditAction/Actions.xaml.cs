@@ -37,21 +37,21 @@ namespace FantasyModuleParser.NPC
         {
             if (multiAttack.IsChecked == true)
             {
-                stackMulti.Visibility = Visibility.Visible;
-                stackOther.Visibility = Visibility.Hidden;
-                stackWeapon.Visibility = Visibility.Hidden;
+                multiAttackControl.Visibility = Visibility.Visible;
+                otherActionControl.Visibility = Visibility.Hidden;
+                weaponAttackControl.Visibility = Visibility.Hidden;
             }
             if (weaponAttack.IsChecked == true)
             {
-                stackMulti.Visibility = Visibility.Hidden;
-                stackOther.Visibility = Visibility.Hidden;
-                stackWeapon.Visibility = Visibility.Visible;
+                multiAttackControl.Visibility = Visibility.Hidden;
+                otherActionControl.Visibility = Visibility.Hidden;
+                weaponAttackControl.Visibility = Visibility.Visible;
             }
             if (otherAttack.IsChecked == true)
             {
-                stackMulti.Visibility = Visibility.Hidden;
-                stackOther.Visibility = Visibility.Visible;
-                stackWeapon.Visibility = Visibility.Hidden;
+                multiAttackControl.Visibility = Visibility.Hidden;
+                otherActionControl.Visibility = Visibility.Visible;
+                weaponAttackControl.Visibility = Visibility.Hidden;
             }
         }
 

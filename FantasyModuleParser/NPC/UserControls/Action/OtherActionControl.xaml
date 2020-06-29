@@ -7,17 +7,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="175" d:DesignWidth="400">
     <Grid>
-        <Label Content="Other Action" Foreground="Gray" Padding="0" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0">
-            <Label Content="Action" Padding="0" Margin="51,3,0,0"/>
-            <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="20"  Text="{Binding Path=ActionName}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,55,0,0">
-            <Label Content="Description" Padding="0" Margin="25,3,0,0"/>
-            <TextBox Width="300" Padding="0" Margin="5,3,0,0" Height="60" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Path=ActionDescription}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,110,0,0">
-            <Button Content="Add" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="AddButton_Click"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="23" />
+        </Grid.RowDefinitions>
+        <Label Content="Other Action" Foreground="Gray" Padding="0" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label Content="Action" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <TextBox Width="289" Padding="0" HorizontalAlignment="Left" Text="{Binding Path=ActionName}" Grid.Column="5" Grid.ColumnSpan="10" Grid.Row="2" />
+        <Label Content="Description" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <TextBox Width="289" HorizontalAlignment="Left" Padding="0" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Path=ActionDescription}" Grid.Row="4" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="10"/>
+        <Button Content="Add" Padding="0" Width="60" Click="AddButton_Click" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="14" />
     </Grid>
 </UserControl>

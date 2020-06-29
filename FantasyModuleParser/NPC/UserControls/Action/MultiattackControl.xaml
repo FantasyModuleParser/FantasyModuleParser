@@ -6,14 +6,25 @@
              mc:Ignorable="d" 
         d:DesignHeight="170" d:DesignWidth="400">
     <Grid>
-        <Label Content="Multiattack" FontWeight="Bold" Foreground="Gray" Padding="0" Margin="20,10,0,0"/>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Multiattack:" Padding="0" Margin="30,30,0,0"/>
-            <CheckBox x:Name="multiAttackCB" Padding="0" Margin="10,32,0,0" />
-            <TextBox x:Name="multiAttackTextArea" Text="{Binding Path=ActionDescription}" TextWrapping="Wrap" Width="250" Height="60" Padding="0" Margin="10,30,0,0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,80,0,0">
-            <Button Content="Add" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="40,20,0,0" Click="AddButton_Click"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="85" />
+            <ColumnDefinition Width="295" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="51" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Label Content="Multiattack" FontWeight="Bold" Foreground="Gray" Padding="0" Grid.Column="1" Grid.Row="1"/>
+        <CheckBox Content="Multiattack" x:Name="multiAttackCB" Padding="5,0,0,0" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="multiAttackTextArea" Text="{Binding Path=ActionDescription}" TextWrapping="Wrap" Padding="0" VerticalScrollBarVisibility="Visible" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"/>
+        <Button Content="Add" Width="50" Padding="0" Click="AddButton_Click" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>
