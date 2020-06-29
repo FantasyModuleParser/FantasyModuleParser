@@ -14,8 +14,18 @@ using Newtonsoft.Json;
 
 namespace FantasyModuleParser.NPC.Controllers
 {
-	public class NPCController : ControllerBase
+	public class NPCController
 	{
+		private static NPCModel _npcModel;
+		public NPCModel GetNPCModel()
+		{
+			if(_npcModel == null)
+			{
+				_npcModel = InitializeNPCModel();
+			}
+			return _npcModel;
+		}
+
 		public void Save(string path, NPCModel npcModel)
 		{
 			using (StreamWriter file = File.CreateText(@path))
@@ -41,12 +51,7 @@ namespace FantasyModuleParser.NPC.Controllers
 		{
 			string jsonData = File.ReadAllText(path);
 			NPCModel npcModel = JsonConvert.DeserializeObject<NPCModel>(jsonData);
-
-			var application = Application.Current;
-
-			if (application is App app)
-				app.NpcModel = npcModel;
-
+			_npcModel = npcModel;
 			OnLoadNpcModelEvent(EventArgs.Empty);
 		}
 
