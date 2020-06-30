@@ -333,6 +333,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exporters\FantasyGroundsExporter.cs" />
+    <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="Main\Services\ModuleService.cs" />
