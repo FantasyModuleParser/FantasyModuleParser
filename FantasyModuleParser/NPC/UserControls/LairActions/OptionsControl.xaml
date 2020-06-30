@@ -7,15 +7,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="170" d:DesignWidth="400">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Label Content="Options" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Options:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="35,5,0,0" />
-                <TextBox Text="{Binding ActionDescription}" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="20,20,0,0">
-                <Button Content="Add/Update" Height="20" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="0,0,0,0" Click="AddButton_Click"/>
-            </StackPanel>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="15" />
+        </Grid.RowDefinitions>
+        <Label Content="Options" Padding="0" Foreground="Gray" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label Content="Options:" HorizontalAlignment="Right" Padding="0" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" />
+        <TextBox Text="{Binding ActionDescription}" Padding="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Grid.Row="3" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="13" />
+        <Button Content="Add/Update" Width="100" Padding="0" Click="AddButton_Click" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="19"/>
     </Grid>
 </UserControl>

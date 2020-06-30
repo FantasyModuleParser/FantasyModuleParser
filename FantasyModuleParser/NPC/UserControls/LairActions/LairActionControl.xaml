@@ -7,19 +7,68 @@
              mc:Ignorable="d" 
              d:DesignHeight="170" d:DesignWidth="400">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Label Content="New Lair Action" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Action:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="46,0,0,0" />
-                <TextBox Text="{Binding Path=ActionName}" Width="200" Padding="0" Margin="10,0,0,0" Height="20"  />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="20,5,0,0" />
-                <TextBox Text="{Binding Path=ActionDescription}" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Margin="10,5,0,0" Height="60" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Add/Update" Width="100" Padding="0" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="AddButton_Click"/>
-            </StackPanel>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Label Content="New Lair Action" Foreground="Gray" FontWeight="Bold" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="10"/>
+        <Label Content="Action:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="4" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="4" />
+        <TextBox Text="{Binding Path=ActionName}" Padding="0" Grid.Row="4" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="24"/>
+        <Label Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="7" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="7" />
+        <TextBox Text="{Binding Path=ActionDescription}" Padding="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Grid.Row="7" Grid.RowSpan="4" Grid.Column="9" Grid.ColumnSpan="24"/>
+        <Button Content="Add/Update" Padding="0" Width="80" Click="AddButton_Click" Grid.Row="13" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="35"/>
     </Grid>
 </UserControl>

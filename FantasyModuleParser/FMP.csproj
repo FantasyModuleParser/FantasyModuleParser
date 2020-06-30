@@ -185,6 +185,34 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Main\UserControls\Settings\ArtifactsSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\EquipmentSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\NPCSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\ParcelSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\SpellSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\SuiteSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\TablesSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\UserControls\UserLanguagesUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -310,6 +338,27 @@
     <Compile Include="Main\Services\ModuleService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
       <DependentUpon>CategoriesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\ArtifactsSettingsUC.xaml.cs">
+      <DependentUpon>ArtifactsSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\EquipmentSettingsUC.xaml.cs">
+      <DependentUpon>EquipmentSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\NPCSettingsUC.xaml.cs">
+      <DependentUpon>NPCSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\ParcelSettingsUC.xaml.cs">
+      <DependentUpon>ParcelSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\SpellSettingsUC.xaml.cs">
+      <DependentUpon>SpellSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\SuiteSettingsUC.xaml.cs">
+      <DependentUpon>SuiteSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\TablesSettingsUC.xaml.cs">
+      <DependentUpon>TablesSettingsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
       <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
