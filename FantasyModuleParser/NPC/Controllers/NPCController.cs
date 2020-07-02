@@ -47,12 +47,13 @@ namespace FantasyModuleParser.NPC.Controllers
 				handler(this, e);
 			}
 		}
-		public void Load(string path)
+		public NPCModel Load(string path)
 		{
 			string jsonData = File.ReadAllText(path);
 			NPCModel npcModel = JsonConvert.DeserializeObject<NPCModel>(jsonData);
 			_npcModel = npcModel;
 			OnLoadNpcModelEvent(EventArgs.Empty);
+			return _npcModel;
 		}
 
 		public NPCModel InitializeNPCModel()

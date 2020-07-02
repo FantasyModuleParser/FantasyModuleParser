@@ -19,7 +19,7 @@ namespace FantasyModuleParser.NPC.Models
         public bool IsGMOnly { get; set; }
         public bool IsLockedRecords { get; set; }
         public string ModulePath { get; set; }
-        List<NPCModel> NPCModels { get; set; }
+        public List<NPCModel> NPCModels { get; set; }
         // Indicates the currently loaded NPC Model data object used in all NPC Engineer panels
         List<NPCModel> LoadedNPCModel { get; set; }
 
