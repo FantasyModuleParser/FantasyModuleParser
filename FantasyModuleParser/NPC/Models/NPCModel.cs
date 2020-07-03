@@ -93,28 +93,7 @@ namespace FantasyModuleParser.NPC
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
         public string TelepathyRange { get; set; }
-        public string Traits1 { get; set; }
-        public string TraitsDesc1 { get; set; }
-        public string Traits2 { get; set; }
-        public string TraitsDesc2 { get; set; }
-        public string Traits3 { get; set; }
-        public string TraitsDesc3 { get; set; }
-        public string Traits4 { get; set; }
-        public string TraitsDesc4 { get; set; }
-        public string Traits5 { get; set; }
-        public string TraitsDesc5 { get; set; }
-        public string Traits6 { get; set; }
-        public string TraitsDesc6 { get; set; }
-        public string Traits7 { get; set; }
-        public string TraitsDesc7 { get; set; }
-        public string Traits8 { get; set; }
-        public string TraitsDesc8 { get; set; }
-        public string Traits9 { get; set; }
-        public string TraitsDesc9 { get; set; }
-        public string Traits10 { get; set; }
-        public string TraitsDesc10 { get; set; }
-        public string Traits11 { get; set; }
-        public string TraitsDesc11 { get; set; }
+        public ObservableCollection<ActionModelBase> Traits { get; set; }
         public bool InnateSpellcastingSection { get; set; }
         public bool Psionics { get; set; }
         public string InnateSpellcastingAbility { get; set; }

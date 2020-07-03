@@ -4,210 +4,51 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
+             xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
+             xmlns:Model="clr-namespace:FantasyModuleParser.NPC.Models.Action"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
-    <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="520" Margin="5,5,0,0" VerticalAlignment="Top" Width="600"/>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Traits" Foreground="Gray"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <TextBox Name="strTraits1" Text="{Binding Path=Traits1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,10,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's first trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Down1" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down1_Click" Margin="210,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits2" Text="{Binding Path=Traits2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's second trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up2_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down2" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down2_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits3" Text="{Binding Path=Traits3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's third trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up3_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down3" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down3_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits4" Text="{Binding Path=Traits4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's fourth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up4_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down4" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down4_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits5" Text="{Binding Path=Traits5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's fifth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up5_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down5" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down5_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits6" Text="{Binding Path=Traits6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's sixth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up6_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down6" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down6_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits7" Text="{Binding Path=Traits7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's seventh trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up7_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down7" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down7_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits8" Text="{Binding Path=Traits8, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's eigth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up8_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down8" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down8_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits9" Text="{Binding Path=Traits9, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's ninth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up9_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down9" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down9_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits10" Text="{Binding Path=Traits10, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's tenth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up10_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                        <Button Name="btn_Down10" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Down10_Click" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/down_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                    <TextBox Name="strTraits11" Text="{Binding Path=Traits11, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,5,0,0" Width="200" Background="#FFE5E5E5">
-                        <TextBox.ToolTip>
-                            The name of your NPC's eleventh trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btn_Up11" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Up11_Click" Margin="185,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Image Source="/Resources/up_arrow.png" />
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <TextBox Name="strTraitDesc1" Text="{Binding Path=TraitsDesc1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="38" Margin="5,45,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's first trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc2" Text="{Binding Path=TraitsDesc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's second trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc3" Text="{Binding Path=TraitsDesc3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's third trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc4" Text="{Binding Path=TraitsDesc4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's fourth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc5" Text="{Binding Path=TraitsDesc5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's fifth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc6" Text="{Binding Path=TraitsDesc6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's sixth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc7" Text="{Binding Path=TraitsDesc7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's seventh trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc8" Text="{Binding Path=TraitsDesc8, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's eigth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc9" Text="{Binding Path=TraitsDesc9, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's ninth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc10" Text="{Binding Path=TraitsDesc10, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's tenth trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <TextBox Name="strTraitDesc11" Text="{Binding Path=TraitsDesc11, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="360" Height="36" Margin="5,7,0,0" Padding="0" TextWrapping="Wrap" Background="#FFE5E5E5" VerticalScrollBarVisibility="Auto">
-                        <TextBox.ToolTip>
-                            The descriptive text of your NPC's eleventh trait.
-                        </TextBox.ToolTip>
-                    </TextBox>
-                </StackPanel>
+    <UserControl.Resources>
+        <x:Array x:Key="TraitActionList" Type="Model:ActionModelBase">
+            <Model:ActionModelBase ActionID="0" ActionName="Action 1" ActionDescription="Action 1 Desc"/>
+            <Model:ActionModelBase ActionID="1" ActionName="Action 2" ActionDescription="Action 2 Desc"/>
+            <Model:ActionModelBase ActionID="2" ActionName="Action 3" ActionDescription="Action 1 Desc"/>
+            <Model:ActionModelBase ActionID="3" ActionName="Some Insanely Long Action Name" ActionDescription="Action 2 Desc"/>
+            <Model:ActionModelBase ActionID="4" ActionName="Action 5" ActionDescription="Action 1 Desc"/>
+            <Model:ActionModelBase ActionID="5" ActionName="Action 6" ActionDescription="Action 2 Desc"/>
+            <Model:ActionModelBase ActionID="6" ActionName="Action 7" ActionDescription="Action 2 Desc"/>
+        </x:Array>
+    </UserControl.Resources>
+    <Grid Background="#FFE5E5E5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="580"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="480" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Label Content="Traits" Foreground="Gray" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2" Grid.Column="1" Margin="5,0,0,5">
+            <StackPanel Orientation="Vertical">
+                <ItemsControl Name="TraitsList" ItemsSource="{Binding Path=Traits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <!--<ItemsControl Name="TraitsList" ItemsSource="{StaticResource TraitActionList}">-->
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <overviewUserControl:OverviewControl RaiseActionInList="OverviewControl_RaiseActionInList"
+                                                                 LowerActionInList="OverviewControl_LowerActionInList"
+                                                                 RemoveAction="OverviewControl_RemoveAction"></overviewUserControl:OverviewControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
+        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Content="Add Trait" Click="AddTraitButton_Click"></Button>
     </Grid>
 </UserControl>
