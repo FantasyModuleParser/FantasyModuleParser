@@ -49,8 +49,8 @@ namespace FantasyModuleParser.NPC.Models.Action
 		public string GenerateWeaponAttackDescription()
 		{
 			StringBuilder sb = new StringBuilder();
-			int PrimaryDamageTotal = (int)PrimaryDamage.DieType * PrimaryDamage.NumOfDice / 2 + PrimaryDamage.Bonus;
-			int SecondaryDamageTotal = (int)SecondaryDamage.DieType * SecondaryDamage.NumOfDice / 2 + SecondaryDamage.Bonus;
+			int PrimaryDamageTotal = PrimaryDamage.NumOfDice * ((int)PrimaryDamage.DieType + 1) / 2 + PrimaryDamage.Bonus;
+			int SecondaryDamageTotal = SecondaryDamage.NumOfDice * ((int)SecondaryDamage.DieType + 1) / 2 + SecondaryDamage.Bonus;
 			
 			if (WeaponType == WeaponType.WA)
 			{

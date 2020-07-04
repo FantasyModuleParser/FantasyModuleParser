@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC.Views"
         mc:Ignorable="d"
-        Title="NPC / Monster Preview" Height="700" Width="437" ResizeMode="NoResize">
+        Title="NPC / Monster Preview" Height="700" Width="437" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
         <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="0" Height="625" Width="420" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical">
-                <Label Content="{Binding Path=NPCModel.NPCName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
+                <Label Content="{Binding Path=NPCModel.NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="{Binding Path=NPCModel.Size, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0" Padding="5,0,0,5"/>
-                    <Label Content="{Binding Path=NPCModel.NPCType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
-                    <Label Content="{Binding Path=NPCModel.Tag, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
+                    <Label Content="{Binding Path=NPCModel.Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0" Padding="5,0,0,5"/>
+                    <Label Content="{Binding Path=NPCModel.NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
+                    <Label Content="{Binding Path=NPCModel.Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
                     <Label Content="," Padding="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
-                    <Label Content="{Binding Path=NPCModel.Alignment, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
+                    <Label Content="{Binding Path=NPCModel.Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" Margin="0"/>
                 </StackPanel>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
                     <Path.Data>
@@ -26,11 +26,11 @@
                 </Path>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Armor Class" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,5,0,0"/>
-                    <Label Content="{Binding Path=NPCModel.AC, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,5,0,0"/>
+                    <Label Content="{Binding Path=NPCModel.AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,5,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <Label Content="{Binding Path=NPCModel.HP, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                    <Label Content="{Binding Path=NPCModel.HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,5"/>
@@ -159,15 +159,86 @@
                     <Label Content="{Binding Path=TraitName10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
                     <TextBlock Text="{Binding Path=TraitDesc10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Innate Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <WrapPanel Orientation="Vertical" Visibility="{Binding Path=ShowInnateSpellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Content="{Binding Path=InnateSpellcastingLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=InnateSpellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateAtWill, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="At will:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.InnateAtWill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateFivePerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="5/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.FivePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateFourPerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="4/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.FourPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateThreePerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="3/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.ThreePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateTwoPerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="2/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.TwoPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowInnateOnePerDay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="1/day each:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=NPCModel.OnePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                    </WrapPanel>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Spellcasting." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,5"/>
+                <WrapPanel Orientation="Vertical" Visibility="{Binding Path=ShowSpellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Content="{Binding Path=SpellcastingLabel}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=Spellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowCantrips, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingCantripsLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingCantrips, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowFirst, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingFirstLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingFirst, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowSecond, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingSecondLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingSecond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowThird, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingThirdLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingThird, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowFourth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingFourthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingFourth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowFifth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingFifthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingFifth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowSixth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingSixthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingSixth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowSeventh, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingSeventhLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingSeventh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowEighth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingEighthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingEighth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowNinth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Label Content="{Binding Path=SpellcastingNinthLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" />
+                        <TextBlock Text="{Binding Path=SpellcastingNinth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowMarked, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBlock Text="{Binding Path=SpellcastingMarkedSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,5" TextWrapping="Wrap"/>
+                    </WrapPanel>
                 </WrapPanel>
-                <Label Content="Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,0,0,0" Padding="5,0,0,0"/>
+                <Label Content="Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0" Padding="5,0,0,0"/>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="1">
                     <Path.Data>
                         <GeometryGroup>
@@ -175,66 +246,23 @@
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
-                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
-                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
-                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
-                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
-                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
-                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
-                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
-                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
-                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
-                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Weapon." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Melee Weapon Attack." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="+0 to hit, range 5 ft., one target." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="Hit:" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content="4 (1d8) piercing damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,0,0,0"/>
-                    <Label Content="." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0"/>
-                    <Label Content="plus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="2,0,0,0"/>
-                    <Label Content="4 (1d8) acid damage." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="3,0,0,0"/>
-                </WrapPanel>
+                <StackPanel Orientation="Vertical">
+                    <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCModel.NPCActions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!--<overviewUserControl:OverviewControl ShowEditButton="Hidden"></overviewUserControl:OverviewControl>-->
+                                <StackPanel Orientation="Vertical">
+                                    <!--<Bold>
+                                        <Label Content="{Binding Path=ActionName}" />
+                                    </Bold>
+                                    <Label> :: </Label>-->
+                                    <TextBlock Text="{Binding Path=ActionName}" />
+                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
                 <Label Content="Reactions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,5,0,0" Padding="5,0,0,0"/>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="1">
                     <Path.Data>
@@ -243,26 +271,23 @@
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Reaction." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
+                <StackPanel Orientation="Vertical">
+                    <ItemsControl Name="NpcReactionList" ItemsSource="{Binding Path=NPCModel.Reactions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!--<overviewUserControl:OverviewControl ShowEditButton="Hidden"></overviewUserControl:OverviewControl>-->
+                                <StackPanel Orientation="Vertical">
+                                    <!--<Bold>
+                                        <Label Content="{Binding Path=ActionName}" />
+                                    </Bold>
+                                    <Label> :: </Label>-->
+                                    <TextBlock Text="{Binding Path=ActionName}" />
+                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
                 <Label Content="Legendary Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,5,0,0" Padding="5,0,0,0"/>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="1">
                     <Path.Data>
@@ -271,22 +296,23 @@
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Legendary Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
+                <StackPanel Orientation="Vertical">
+                    <ItemsControl Name="NpcLegendaryActionList" ItemsSource="{Binding Path=NPCModel.LegendaryActions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!--<overviewUserControl:OverviewControl ShowEditButton="Hidden"></overviewUserControl:OverviewControl>-->
+                                <StackPanel Orientation="Vertical">
+                                    <!--<Bold>
+                                        <Label Content="{Binding Path=ActionName}" />
+                                    </Bold>
+                                    <Label> :: </Label>-->
+                                    <TextBlock Text="{Binding Path=ActionName}" />
+                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
                 <Label Content="Lair Actions" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,5,0,0" Padding="5,0,0,0"/>
                 <Path Fill="Black" Stroke="Black" StrokeThickness="1">
                     <Path.Data>
@@ -295,26 +321,26 @@
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal">
-                    <Label Content="Lair Action." FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                    <Label Content=""  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="5,5,0,0"/>
-                </WrapPanel>
+                <StackPanel Orientation="Vertical">
+                    <ItemsControl Name="NpcLairActionList" ItemsSource="{Binding Path=NPCModel.LairActions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!--<overviewUserControl:OverviewControl ShowEditButton="Hidden"></overviewUserControl:OverviewControl>-->
+                                <StackPanel Orientation="Vertical">
+                                    <!--<Bold>
+                                        <Label Content="{Binding Path=ActionName}" />
+                                    </Bold>
+                                    <Label> :: </Label>-->
+                                    <TextBlock Text="{Binding Path=ActionName}" />
+                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="205" Margin="10">
-            <Button Content="Update Window" Width="100" Margin="0,0,5,0" />
             <Button Content="Close" Width="100" Click="WindowClose"/>
         </StackPanel>
     </Grid>

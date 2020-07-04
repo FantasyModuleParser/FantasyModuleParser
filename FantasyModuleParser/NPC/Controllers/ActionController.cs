@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FantasyModuleParser.NPC.Controllers
 {
-    public class ActionController : ControllerBase
+    public class ActionController : NPCController
     {
         public void GenerateWeaponDescription(WeaponAttack weaponAttack)
         {

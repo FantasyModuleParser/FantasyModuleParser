@@ -140,5 +140,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			}
 		}
 		#endregion
+
+		private void DiceRoller_Click(object sender, RoutedEventArgs e)
+		{
+			new DiceFunction().Show();
+		}
 	}
 }

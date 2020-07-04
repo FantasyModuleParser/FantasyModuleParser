@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="FantasyModuleParser.Main.UserControls.Settings.SpellSettingsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="16" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="5,5,5,5" Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="0" Grid.RowSpan="6" />
+        <Label Content="Spell Options Settings" Foreground="Gray" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" />
+        <CheckBox Content="Save spells in a Project subfolder" IsChecked="True" IsEnabled="False" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" />
+        <CheckBox Content="Reload last item edited on Spell Options launch" IsChecked="False" IsEnabled="False" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" />
+        <CheckBox Content="Pop up caster box after spell import" IsChecked="True" IsEnabled="False" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="7" />
+        <Image Source="/Resources/spellengineer_logo.png" Width="200" Height="200" Grid.Row="1" Grid.RowSpan="12" Grid.Column="9" Grid.ColumnSpan="4"/>
+    </Grid>
+</UserControl>

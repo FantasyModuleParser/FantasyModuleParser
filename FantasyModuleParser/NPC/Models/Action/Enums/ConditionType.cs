@@ -4,49 +4,49 @@ namespace FantasyModuleParser.NPC.Models.Action.Enums
 {
     public enum ConditionType
     {
-		[Description("Blinded")]
+		[Description("blinded")]
 		Blinded = 0,
 
-		[Description("Charmed")]
+		[Description("charmed")]
 		Charmed = 1,
 
-		[Description("Deafened")]
+		[Description("deafened")]
 		Deafened = 2,
 
-		[Description("Exhaustion")]
+		[Description("exhaustion")]
 		Exhaustion = 3,
 
-		[Description("Frightened")]
+		[Description("frightened")]
 		Frightened = 4,
 
-		[Description("Grappled")]
+		[Description("grappled")]
 		Grappled = 5,
 
-		[Description("Incapacitated")]
+		[Description("incapacitated")]
 		Incapacitated = 6,
 
-		[Description("Invisible")]
+		[Description("invisible")]
 		Invisible = 7,
 
-		[Description("Paralyzed")]
+		[Description("paralyzed")]
 		Paralyzed = 8,
 
-		[Description("Petrified")]
+		[Description("petrified")]
 		Petrified = 9,
 
-		[Description("Poisoned")]
+		[Description("poisoned")]
 		Poisoned = 10,
 
-		[Description("Prone")]
+		[Description("prone")]
 		Prone = 11,
 
-		[Description("Restrained")]
+		[Description("restrained")]
 		Restrained = 12,
 
-		[Description("Stunned")]
+		[Description("stunned")]
 		Stunned = 13,
 
-		[Description("Unconscious")]
+		[Description("unconscious")]
 		Unconscious = 14,
 	}
 }

@@ -1,645 +1,673 @@
 ﻿<UserControl x:Class="FantasyModuleParser.NPC.UserControls.NPCTabs.BaseStatsUC"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
-             mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
-    <!--Formatting of Objects as follows: -->
-    <!--Borders Height="" Width="" Margin="" HorizontalAlignment="" VerticalAlignment="" BorderBrush="" BorderThickness="" /> -->
-    <!-- <StackPanel Orientation="" Height="" Width="" Margin="" HorizontalAlignment="" VerticalAlignment=""> -->
-    <!-- <Label Content="" Height="" Width="" Margin="" Padding="" Foreground="" FontWeight="" HorizontalAlignment="" VerticalAlignment="" /> -->
-    <!-- <TextBox Name="" Height="" Width="" Margin="" Padding="" Text="" HorizontalAlignment="" VerticalAlignment=""> -->
-    <!-- <ComboBox Name="" Height="" Width="" Margin="" Padding="" Text="" HorizontalAlignment="" VerticalAlignment=""> -->
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="600" d:DesignWidth="600">
     <Grid>
-        <Border Height="215" Width="580" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1" />
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="285" Height="220">
-                <Label Content="NPC Information" Foreground="Gray"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Label Content="NPC Name:" VerticalContentAlignment="Center" Width="65" Margin="0,0,0,0" Height="20" Padding="0"/>
-                    <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Height="20" Width="200" Margin="5,0,0,0" Padding="0">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPCs Name.
-                                <LineBreak />
-                                This will also set the main image name and token name, and default save name.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Right">
-                  <Label Content="Size:" Height="20" Width="26" Margin="50,0,4,0" Padding="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-                    <ComboBox Name="strSize" Height="20" Width="200" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
-                        <ComboBoxItem>Tiny</ComboBoxItem>
-                        <ComboBoxItem>Small</ComboBoxItem>
-                        <ComboBoxItem>Medium</ComboBoxItem>
-                        <ComboBoxItem>Large</ComboBoxItem>
-                        <ComboBoxItem>Huge</ComboBoxItem>
-                        <ComboBoxItem>Gargantuan</ComboBoxItem>
-                        <ComboBox.ToolTip>
-                            <TextBlock>
-                                Select from the standard size categories.
-                            </TextBlock>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Width="280" Margin="0,3,0,0" HorizontalAlignment="Left"><Label Content="Type:" Height="20" Margin="49,0,1,0" Padding="0" VerticalContentAlignment="Center"/>
-                    <ComboBox Name="strType" Height="20" Width="200" Margin="5,0,0,0" Padding="0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <ComboBoxItem>abberation</ComboBoxItem>
-                        <ComboBoxItem>beast</ComboBoxItem>
-                        <ComboBoxItem>celestial</ComboBoxItem>
-                        <ComboBoxItem>construct</ComboBoxItem>
-                        <ComboBoxItem>dragon</ComboBoxItem>
-                        <ComboBoxItem>elemental</ComboBoxItem>
-                        <ComboBoxItem>fey</ComboBoxItem>
-                        <ComboBoxItem>fiend</ComboBoxItem>
-                        <ComboBoxItem>giant</ComboBoxItem>
-                        <ComboBoxItem>humanoid</ComboBoxItem>
-                        <ComboBoxItem>monstrosity</ComboBoxItem>
-                        <ComboBoxItem>ooze</ComboBoxItem>
-                        <ComboBoxItem>plants</ComboBoxItem>
-                        <ComboBoxItem>undead</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny abberations</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny beasts</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny constructs</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny elementals</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny monstrosities</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny oozes</ComboBoxItem>
-                        <ComboBoxItem>swarm of tiny plants</ComboBoxItem>
-                        <ComboBoxItem>trap</ComboBoxItem>
-                        <ComboBoxItem>vehicle</ComboBoxItem>
-                        <ComboBox.ToolTip>
-                            <TextBlock>
-                                Select from the standard creature types.
-                            </TextBlock>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Tag:" VerticalContentAlignment="Center" Margin="55,0,6,0" Padding="0"/>
-                    <ComboBox Name="strTag" Height="20" Width="109" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                        <ComboBoxItem>(aarakocra)</ComboBoxItem>
-                        <ComboBoxItem>(any race)</ComboBoxItem>
-                        <ComboBoxItem>(bullywug)</ComboBoxItem>
-                        <ComboBoxItem>(demon)</ComboBoxItem>
-                        <ComboBoxItem>(derro)</ComboBoxItem>
-                        <ComboBoxItem>(devil)</ComboBoxItem>
-                        <ComboBoxItem>(dragonborn)</ComboBoxItem>
-                        <ComboBoxItem>(dwarf)</ComboBoxItem>
-                        <ComboBoxItem>(elf)</ComboBoxItem>
-                        <ComboBoxItem>(firenewt)</ComboBoxItem>
-                        <ComboBoxItem>(genasi)</ComboBoxItem>
-                        <ComboBoxItem>(gith)</ComboBoxItem>
-                        <ComboBoxItem>(gnoll)</ComboBoxItem>
-                        <ComboBoxItem>(gnome)</ComboBoxItem>
-                        <ComboBoxItem>(goblinoid)</ComboBoxItem>
-                        <ComboBoxItem>(grimlock)</ComboBoxItem>
-                        <ComboBoxItem>(grung)</ComboBoxItem>
-                        <ComboBoxItem>(half-elf)</ComboBoxItem>
-                        <ComboBoxItem>(half-orc)</ComboBoxItem>
-                        <ComboBoxItem>(halfling)</ComboBoxItem>
-                        <ComboBoxItem>(human)</ComboBoxItem>
-                        <ComboBoxItem>(kenku)</ComboBoxItem>
-                        <ComboBoxItem>(kobold)</ComboBoxItem>
-                        <ComboBoxItem>(kuo-toa)</ComboBoxItem>
-                        <ComboBoxItem>(lizardfolk)</ComboBoxItem>
-                        <ComboBoxItem>(merfolk)</ComboBoxItem>
-                        <ComboBoxItem>(orc)</ComboBoxItem>
-                        <ComboBoxItem>(quaggoth)</ComboBoxItem>
-                        <ComboBoxItem>(ratfolk)</ComboBoxItem>
-                        <ComboBoxItem>(sahuagin)</ComboBoxItem>
-                        <ComboBoxItem>(shapechanger)</ComboBoxItem>
-                        <ComboBoxItem>(thri-kreen)</ComboBoxItem>
-                        <ComboBoxItem>(tiefling)</ComboBoxItem>
-                        <ComboBoxItem>(titan)</ComboBoxItem>
-                        <ComboBoxItem>(triton)</ComboBoxItem>
-                        <ComboBoxItem>(troglodyte)</ComboBoxItem>
-                        <ComboBoxItem>(xvart)</ComboBoxItem>
-                        <ComboBoxItem>(yuan-ti)</ComboBoxItem>
-                        <ComboBoxItem>(yugoloth)</ComboBoxItem>
-                        <ComboBox.ToolTip>
-                            <TextBlock>
-                                Select a specific sub-type of creature
-                                <LineBreak />
-                                <Italic>You can leave it blank if desired.</Italic>
-                            </TextBlock>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Alignment:" Margin="18,0,7,0" Padding="0" VerticalAlignment="Center"/>
-                    <ComboBox Name="strAlignment" Height="20" Width="100" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
-                        <ComboBoxItem>unaligned</ComboBoxItem>
-                        <ComboBoxItem>lawful good</ComboBoxItem>
-                        <ComboBoxItem>lawful neutral</ComboBoxItem>
-                        <ComboBoxItem>lawful evil</ComboBoxItem>
-                        <ComboBoxItem>neutral good</ComboBoxItem>
-                        <ComboBoxItem>true neutral</ComboBoxItem>
-                        <ComboBoxItem>neutral evil</ComboBoxItem>
-                        <ComboBoxItem>chaotic good</ComboBoxItem>
-                        <ComboBoxItem>chaotic neutral</ComboBoxItem>
-                        <ComboBoxItem>chaotic evil</ComboBoxItem>
-                        <ComboBox.ToolTip>
-                            <TextBlock>
-                                Select from the standard alignments.
-                            </TextBlock>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Armor Class:" Margin="10,0,6,0" Padding="0"  VerticalAlignment="Center"/>
-                    <TextBox Name="strAC" Height="20" Width="100" Margin="0,0,0,0" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's armor class.
-                                <LineBreak />
-                                You can also enter the armor type in brackets.
-                                <LineBreak />
-                                <Bold>Example:</Bold> 12 (leather armor)
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-                    <Label Content="Hit Points:" Height="20" Margin="22,0,6,0" Padding="0" VerticalAlignment="Center" />
-                    <TextBox Name="strHP" Height="20" Width="100" Margin="0,0,0,0" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" >
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's hit points, followed by its hit dice in brackets.
-                                <LineBreak />
-                                <Bold>Example:</Bold> 4 (1d6 + 1)
-                                <LineBreak />
-                                <Italic>Double-click to open a window that will help build a correct expression</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Button Content="Mean" Width="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                Click on this to apply the average hit points for the range.
-                                <LineBreak />
-                                <Italic>This is the value stated in official products for NPC hit points</Italic>
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Content="Roll" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="40">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                Click on this button to roll hit points.
-                                <LineBreak />
-                                <Italic>This will give each NPC an individual total</Italic>
-                            </TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Height="220">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                    <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                    <ComboBox Name="strGender" Text="{Binding Path=NPCGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="10,30,0,0" VerticalAlignment="Center" Width="100">
-                        <ComboBox.ToolTip>
-                            <TextBlock><Run Text="Select the NPC's gender."/><LineBreak /><Italic><Run Text="This will insert gender-specific pronouns in the descriptive text"/></Italic></TextBlock>
-                        </ComboBox.ToolTip>
-                        <ComboBoxItem IsSelected="True" Content="neutral"/>
-                        <ComboBoxItem Content="male"/>
-                        <ComboBoxItem Content="female"/>
-                    </ComboBox>
-                    <CheckBox IsChecked="{Binding Path=Unique, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="chkUnique" Margin="10,30,0,0" Padding="0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" />
-                    <Label Content="Unique" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalContentAlignment="Center" Height="20" Padding="0">
-                        <Label.ToolTip>
-                            <TextBlock>
-                                Check if the NPC is unique for any reason.
-                                <LineBreak />
-                                <Italic>This will capitalize its name in the descriptive text.</Italic>
-                            </TextBlock>
-                        </Label.ToolTip>
-                    </Label>
-                    <CheckBox IsChecked="{Binding Path=NPCNamed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="chkNamed" Margin="10,30,0,0" Padding="0" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <Label Content="Name" HorizontalAlignment="Left" Margin="5,30,0,0" Height="20" VerticalContentAlignment="Center" Padding="0">
-                        <Label.ToolTip>
-                            <TextBlock>
-                                Check if the name enter is a proper name.
-                                <LineBreak />
-                                <Italic>This will use just the first word of the name in the descriptive text.</Italic>
-                                <LineBreak />
-                                ('Thomas Wolfbane' will be referred to as 'Thomas' throughout; 'Ironbane, Destroyer of Worlds' as 'Ironbane')
-                            </TextBlock>
-                        </Label.ToolTip>
-                    </Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="Speed (ft.)" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Speed" HorizontalContentAlignment="Left" Margin="110,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
-                    <TextBox Text="{Binding Path=Speed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="intSpeed" HorizontalContentAlignment="Left" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's base movement speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Burrow" HorizontalContentAlignment="Left" Margin="105,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                    <TextBox Name="intBurrow" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Path=Burrow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's burrowing speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Climb" HorizontalContentAlignment="Left" Margin="112,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                    <TextBox Name="intClimb" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Path=Climb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's climbing speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Fly" HorizontalContentAlignment="Left" Margin="128,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                    <TextBox Name="intFly" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Path=Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's flying speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Name="boolHover" Content="Hover" IsChecked="{Binding Path=Hover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,3,0,0" Padding="5,0,0,0" VerticalContentAlignment="Center" Height="20">
-                        <CheckBox.ToolTip>
-                            <TextBlock>
-                                Check this box if the NPC hovers instead of flies
-                            </TextBlock>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Swim" HorizontalContentAlignment="Left" Margin="115,3,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                    <TextBox Name="intSwim" HorizontalAlignment="Left" Height="20" Margin="5,3,0,0" Text="{Binding Path=Swim, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's swimming speed in feet (ft.)
-                                <LineBreak />
-                                <Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="230" Margin="5,230,0,0" VerticalAlignment="Top" Width="280"/>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" Width="150" VerticalAlignment="Top" Height="225" Margin="10,235,0,0">
-                <Label Content="Statistics" Padding="0" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Ability Scores" Width="150" Padding="0" HorizontalContentAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="STR" HorizontalAlignment="Center" Margin="35,5,0,0" Height="20" VerticalContentAlignment="Center" Padding="0"/>
-                    <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=AttributeStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0"  PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's Strength ability.
-                                <LineBreak />
-                                <Italic>The range is 0 to 30</Italic>
-                                <LineBreak />
-                                The ability modifier is calculated and shown to the right of this box.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Name="strModStr" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
-                    <Label Name="strModStr1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="DEX" HorizontalAlignment="Left" Margin="33,5,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                    <TextBox Name="strAttrDex" Text="{Binding Path=AttributeDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="DexterityScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0"  PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's Dexterity ability.
-                                <LineBreak />
-                                <Italic>The range is 0 to 30</Italic>
-                                <LineBreak />
-                                The ability modifier is calculated and shown to the right of this box.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Name="strModDex" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
-                    <Label Name="strModDex1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="CON" HorizontalAlignment="Left" Margin="30,5,0,0" Padding="0" Height="20" VerticalContentAlignment="Center"/>
-                    <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=AttributeCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's Constitution ability.
-                                <LineBreak />
-                                <Italic>The range is 0 to 30</Italic>
-                                <LineBreak />
-                                The ability modifier is calculated and shown to the right of this box.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Name="strModCon" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
-                    <Label Name="strModCon1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="INT" HorizontalAlignment="Left" Margin="37,5,0,0" Height="20" Padding="0" VerticalContentAlignment="Center"/>
-                    <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=AttributeInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's Intelligence ability.
-                                <LineBreak />
-                                <Italic>The range is 0 to 30</Italic>
-                                <LineBreak />
-                                The ability modifier is calculated and shown to the right of this box.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Name="strModInt" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
-                    <Label Name="strModInt1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="WIS" HorizontalAlignment="Left" Margin="34,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                    <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=AttributeWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's Wisdom ability.
-                                <LineBreak />
-                                <Italic>The range is 0 to 30</Italic>
-                                <LineBreak />
-                                The ability modifier is calculated and shown to the right of this box.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Name="strModWis" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
-                    <Label Name="strModWis1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="CHA" HorizontalAlignment="Left" Margin="31,5,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                    <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=AttributeCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's Charisma ability.
-                                <LineBreak />
-                                <Italic>The range is 0 to 30</Italic>
-                                <LineBreak />
-                                The ability modifier is calculated and shown to the right of this box.
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <Label Name="strModCha" Content="+" Height="20" Padding="0" HorizontalAlignment="Center" Margin="5,5,0,0" VerticalContentAlignment="Center"/>
-                    <Label Name="strModCha1" Content="0" Height="20" Padding="0" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalContentAlignment="Center"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,255,0,0" Height="205">
-                <StackPanel Orientation="Horizontal" >
-                    <Label Content="Saving Throws" HorizontalContentAlignment="Center" Margin="0,0,0,0" Padding="0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="25" Width="130">
-                    <Label Content="STR" HorizontalAlignment="Left" Margin="24,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                    <TextBox Name="strSaveStr" Text="{Binding Path=SavingThrowStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's saving throw bonus for strength saves.
-                                <LineBreak />
-                                <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                <LineBreak />
-                                <Italic>E.g. +2 is entered as 2.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Name="chkSave0Str" IsChecked="{Binding Path=SavingThrowStrBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
-                        <CheckBox.ToolTip>
-                            <TextBlock>
-                                Check here if the saving throw should be set to show as '+0' in the statblock.
-                            </TextBlock>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="25" Width="130">
-                    <Label Content="DEX" HorizontalAlignment="Left" Margin="22,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                    <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=SavingThrowDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's saving throw bonus for dexterity saves.
-                                <LineBreak />
-                                <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                <LineBreak />
-                                <Italic>E.g. +2 is entered as 2.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Name="chkSave0Dex" IsChecked="{Binding Path=SavingThrowDexBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
-                        <CheckBox.ToolTip>
-                            <TextBlock>
-                                Check here if the saving throw should be set to show as '+0' in the statblock.
-                            </TextBlock>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="25" Width="130">
-                    <Label Content="CON" HorizontalAlignment="Left" Margin="19,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                    <TextBox Name="strSaveCon" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=SavingThrowCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's saving throw bonus for constitution saves.
-                                <LineBreak />
-                                <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                <LineBreak />
-                                <Italic>E.g. +2 is entered as 2.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Name="chkSave0Con" IsChecked="{Binding Path=SavingThrowConBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
-                        <CheckBox.ToolTip>
-                            <TextBlock>
-                                Check here if the saving throw should be set to show as '+0' in the statblock.
-                            </TextBlock>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="25" Width="130">
-                    <Label Content="INT" HorizontalAlignment="Left" Margin="26,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                    <TextBox Name="strSaveInt" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=SavingThrowInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's saving throw bonus for intelligence saves.
-                                <LineBreak />
-                                <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                <LineBreak />
-                                <Italic>E.g. +2 is entered as 2.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Name="chkSave0Int" IsChecked="{Binding Path=SavingThrowIntBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
-                        <CheckBox.ToolTip>
-                            <TextBlock>
-                                Check here if the saving throw should be set to show as '+0' in the statblock.
-                            </TextBlock>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="25" Width="130">
-                    <Label Content="WIS" HorizontalAlignment="Left" Margin="23,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                    <TextBox Name="strSaveWis" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=SavingThrowWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's saving throw bonus for wisdom saves.
-                                <LineBreak />
-                                <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                <LineBreak />
-                                <Italic>E.g. +2 is entered as 2.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Name="chkSave0Wis" IsChecked="{Binding Path=SavingThrowWisBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
-                        <CheckBox.ToolTip>
-                            <TextBlock>
-                                Check here if the saving throw should be set to show as '+0' in the statblock.
-                            </TextBlock>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="25" Width="130">
-                    <Label Content="CHA" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                    <TextBox Name="strSaveCha" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=SavingThrowCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.ToolTip>
-                            <TextBlock>
-                                Enter the NPC's saving throw bonus for charisma saves.
-                                <LineBreak />
-                                <Italic>Positive Values must be entered without the plus sign.</Italic>
-                                <LineBreak />
-                                <Italic>E.g. +2 is entered as 2.</Italic>
-                            </TextBlock>
-                        </TextBox.ToolTip>
-                    </TextBox>
-                    <CheckBox Name="chkSave0Cha" IsChecked="{Binding Path=SavingThrowChaBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Center">
-                        <CheckBox.ToolTip>
-                            <TextBlock>
-                                Check here if the saving throw should be set to show as '+0' in the statblock.
-                            </TextBlock>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="230" Margin="300,230,0,0" VerticalAlignment="Top" Width="280"/>
-        <StackPanel Orientation="Vertical" Width="270" VerticalAlignment="Top" Height="200" Margin="270,235,0,0">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Senses" Foreground="Gray" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" FontWeight="Bold" Padding="0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Sense Ranges (ft.)" Padding="0" Margin="0,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Blindsight" HorizontalAlignment="Left" Margin="52,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                <TextBox Name="strBlindsight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=Blindsight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" PreviewTextInput="NumberValidationTextBox">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            Enter the NPC's maximum blindsight range in feet (ft.)
-                            <LineBreak />
-                            <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-                <CheckBox Name="chkBlindBeyond" IsChecked="{Binding Path=BlindBeyond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="blind beyond" Height="20" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="5,5,0,0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Label Content="Darkvision" HorizontalAlignment="Left" Margin="62,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                <TextBox Name="strDarkvision" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=Darkvision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            Enter the NPC's maximum darkvision range in feet (ft.)
-                            <LineBreak />
-                            <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Label Content="Tremorsense" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                <TextBox Name="strTremorsense" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=Tremorsense, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            Enter the NPC's maximum tremorsense range in feet (ft.)
-                            <LineBreak />
-                            <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Label Content="Truesight" HorizontalAlignment="Left" Margin="69,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                <TextBox Name="strTruesight" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=Truesight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            Enter the NPC's maximum truesight range in feet (ft.)
-                            <LineBreak />
-                            <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Label Content="Passive Perception" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalContentAlignment="Center" Padding="0" Height="20"/>
-                <TextBox Name="strPassivePerception" HorizontalContentAlignment="Center" Height="20" Margin="5,5,0,0" Text="{Binding Path=PassivePerception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            Enter the NPC's Passive Perception
-                            <LineBreak />
-                            <Italic>Passive Perception is 10 + Wisdom Modifier</Italic>
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="420" Height="100" Margin="0,450,0,0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Margin="5,0,0,0">
-                <Label Content="Challenge" HorizontalAlignment="Left" Margin="17,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                <TextBox Name="strChallenge" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding Path=ChallengeRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            Enter the appropriate challenge rating for the NPC.
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-                <Label Content="Experience" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalContentAlignment="Center" Height="20" Padding="0"/>
-                <TextBox Name="strExperience" HorizontalContentAlignment="Center" Height="20" Margin="5,0,0,0" Text="{Binding Path=XP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="40" Padding="0" PreviewTextInput="NumberValidationTextBox">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            This will be calculated automatically based on the challenge rating chosen; this can be overwritten by typing a new XP value
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-                <Label Content="XP" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalContentAlignment="Center" Padding="0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="20" Margin="15,5,0,0">
-                <Label Content="NPC Token:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" Padding="0"/>
-                <TextBox Name="strNPCToken" Text="{Binding Path=NPCToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="20" Margin="5,0,0,0" Padding="0">
-                    <TextBox.ToolTip>
-                        <TextBlock>
-                            File location to the PNG image used for the NPC.
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-                <Button Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0">
-                    <Image Source="/Resources/Folder.png" />
-                </Button>
-            </StackPanel>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="2" Grid.RowSpan="25" Grid.Column="2" Grid.ColumnSpan="55" />
+        <!--#region Top-->
+        <Label Content="NPC Information" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Padding="0" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="12"/>
+        <Label Content="NPC Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="7" />
+        <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPCs Name.
+					<LineBreak />
+					This will also set the main image name and token name, and default save name.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Size:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="9" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="3"  />
+        <ComboBox Name="strSize" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="9" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
+            <ComboBoxItem>Tiny</ComboBoxItem>
+            <ComboBoxItem>Small</ComboBoxItem>
+            <ComboBoxItem>Medium</ComboBoxItem>
+            <ComboBoxItem>Large</ComboBoxItem>
+            <ComboBoxItem>Huge</ComboBoxItem>
+            <ComboBoxItem>Gargantuan</ComboBoxItem>
+            <ComboBox.ToolTip>
+                <TextBlock>
+					Select from the standard size categories.
+                </TextBlock>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <Label Content="Type:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="12" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="4" />
+        <ComboBox Name="strType" Padding="0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
+            <ComboBoxItem>abberation</ComboBoxItem>
+            <ComboBoxItem>beast</ComboBoxItem>
+            <ComboBoxItem>celestial</ComboBoxItem>
+            <ComboBoxItem>construct</ComboBoxItem>
+            <ComboBoxItem>dragon</ComboBoxItem>
+            <ComboBoxItem>elemental</ComboBoxItem>
+            <ComboBoxItem>fey</ComboBoxItem>
+            <ComboBoxItem>fiend</ComboBoxItem>
+            <ComboBoxItem>giant</ComboBoxItem>
+            <ComboBoxItem>humanoid</ComboBoxItem>
+            <ComboBoxItem>monstrosity</ComboBoxItem>
+            <ComboBoxItem>ooze</ComboBoxItem>
+            <ComboBoxItem>plants</ComboBoxItem>
+            <ComboBoxItem>undead</ComboBoxItem>
+            <ComboBoxItem>swarm of tiny abberations</ComboBoxItem>
+            <ComboBoxItem>swarm of tiny beasts</ComboBoxItem>
+            <ComboBoxItem>swarm of tiny constructs</ComboBoxItem>
+            <ComboBoxItem>swarm of tiny elementals</ComboBoxItem>
+            <ComboBoxItem>swarm of tiny monstrosities</ComboBoxItem>
+            <ComboBoxItem>swarm of tiny oozes</ComboBoxItem>
+            <ComboBoxItem>swarm of tiny plants</ComboBoxItem>
+            <ComboBoxItem>trap</ComboBoxItem>
+            <ComboBoxItem>vehicle</ComboBoxItem>
+            <ComboBox.ToolTip>
+                <TextBlock>
+					Select from the standard creature types.
+                </TextBlock>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <Label Content="Tag:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="15" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="3" />
+        <ComboBox Name="strTag" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="15" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+            <ComboBoxItem>(aarakocra)</ComboBoxItem>
+            <ComboBoxItem>(any race)</ComboBoxItem>
+            <ComboBoxItem>(bullywug)</ComboBoxItem>
+            <ComboBoxItem>(demon)</ComboBoxItem>
+            <ComboBoxItem>(derro)</ComboBoxItem>
+            <ComboBoxItem>(devil)</ComboBoxItem>
+            <ComboBoxItem>(dragonborn)</ComboBoxItem>
+            <ComboBoxItem>(dwarf)</ComboBoxItem>
+            <ComboBoxItem>(elf)</ComboBoxItem>
+            <ComboBoxItem>(firenewt)</ComboBoxItem>
+            <ComboBoxItem>(genasi)</ComboBoxItem>
+            <ComboBoxItem>(gith)</ComboBoxItem>
+            <ComboBoxItem>(gnoll)</ComboBoxItem>
+            <ComboBoxItem>(gnome)</ComboBoxItem>
+            <ComboBoxItem>(goblinoid)</ComboBoxItem>
+            <ComboBoxItem>(grimlock)</ComboBoxItem>
+            <ComboBoxItem>(grung)</ComboBoxItem>
+            <ComboBoxItem>(half-elf)</ComboBoxItem>
+            <ComboBoxItem>(half-orc)</ComboBoxItem>
+            <ComboBoxItem>(halfling)</ComboBoxItem>
+            <ComboBoxItem>(human)</ComboBoxItem>
+            <ComboBoxItem>(kenku)</ComboBoxItem>
+            <ComboBoxItem>(kobold)</ComboBoxItem>
+            <ComboBoxItem>(kuo-toa)</ComboBoxItem>
+            <ComboBoxItem>(lizardfolk)</ComboBoxItem>
+            <ComboBoxItem>(merfolk)</ComboBoxItem>
+            <ComboBoxItem>(orc)</ComboBoxItem>
+            <ComboBoxItem>(quaggoth)</ComboBoxItem>
+            <ComboBoxItem>(ratfolk)</ComboBoxItem>
+            <ComboBoxItem>(sahuagin)</ComboBoxItem>
+            <ComboBoxItem>(shapechanger)</ComboBoxItem>
+            <ComboBoxItem>(thri-kreen)</ComboBoxItem>
+            <ComboBoxItem>(tiefling)</ComboBoxItem>
+            <ComboBoxItem>(titan)</ComboBoxItem>
+            <ComboBoxItem>(triton)</ComboBoxItem>
+            <ComboBoxItem>(troglodyte)</ComboBoxItem>
+            <ComboBoxItem>(xvart)</ComboBoxItem>
+            <ComboBoxItem>(yuan-ti)</ComboBoxItem>
+            <ComboBoxItem>(yugoloth)</ComboBoxItem>
+            <ComboBox.ToolTip>
+                <TextBlock>
+					Select a specific sub-type of creature
+					<LineBreak />
+					<Italic>You can leave it blank if desired.</Italic>
+                </TextBlock>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <Label Content="Alignment:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="18" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="7" />
+        <ComboBox Name="strAlignment" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="18" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+            <ComboBoxItem>unaligned</ComboBoxItem>
+            <ComboBoxItem>lawful good</ComboBoxItem>
+            <ComboBoxItem>lawful neutral</ComboBoxItem>
+            <ComboBoxItem>lawful evil</ComboBoxItem>
+            <ComboBoxItem>neutral good</ComboBoxItem>
+            <ComboBoxItem>true neutral</ComboBoxItem>
+            <ComboBoxItem>neutral evil</ComboBoxItem>
+            <ComboBoxItem>chaotic good</ComboBoxItem>
+            <ComboBoxItem>chaotic neutral</ComboBoxItem>
+            <ComboBoxItem>chaotic evil</ComboBoxItem>
+            <ComboBox.ToolTip>
+                <TextBlock>
+					Select from the standard alignments.
+                </TextBlock>
+            </ComboBox.ToolTip>
+        </ComboBox>
+        <Label Content="Armor Class:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="21" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="8" />
+        <TextBox Name="strAC" Padding="0" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="21" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's armor class.
+					<LineBreak />
+					You can also enter the armor type in brackets.
+					<LineBreak />
+					<Bold>Example:</Bold> 12 (leather armor)
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Hit Points:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="6" />
+        <TextBox Name="strHP" Padding="0" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="24" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's hit points, followed by its hit dice in brackets.
+					<LineBreak />
+					<Bold>Example:</Bold> 4 (1d6 + 1)
+					<LineBreak />
+					<Italic>Double-click to open a window that will help build a correct expression</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Button Content="Dice Roller" Padding="0" Click="DiceRoller_Click" Grid.Row="24" Grid.RowSpan="2" Grid.Column="23" Grid.ColumnSpan="10">
+            <Button.ToolTip>
+                <TextBlock>
+					Click here to open a new window for different dice roll options.
+					<LineBreak />
+					<Italic>This is the value stated in official products for NPC hit points</Italic>
+                </TextBlock>
+            </Button.ToolTip>
+        </Button>
+        <Label Content="Gender:" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="6"/>
+        <ComboBox Name="strGender" Padding="0" Text="{Binding Path=NPCGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="5">
+            <ComboBox.ToolTip>
+                <TextBlock>
+					Select the NPC's gender
+					<LineBreak />
+					<Italic>This will insert gender-specific pronouns in the descriptive text</Italic>
+                </TextBlock>
+            </ComboBox.ToolTip>
+            <ComboBoxItem IsSelected="True" Content="neutral"/>
+            <ComboBoxItem Content="male"/>
+            <ComboBoxItem Content="female"/>
+        </ComboBox>
+        <CheckBox IsChecked="{Binding Path=Unique, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="chkUnique" Content="Unique" Padding="5,0,0,0" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="45" Grid.ColumnSpan="7">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check if the NPC is unique for any reason.
+					<LineBreak />
+					<Italic>This will capitalize its name in the descriptive text.</Italic>
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <CheckBox IsChecked="{Binding Path=NPCNamed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="chkNamed" Content="Name" Padding="5,0,0,0" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="52" Grid.ColumnSpan="6">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check if the name enter is a proper name.
+					<LineBreak />
+					<Italic>This will use just the first word of the name in the descriptive text.</Italic>
+					<LineBreak />
+					('Thomas Wolfbane' will be referred to as 'Thomas' throughout; 'Ironbane, Destroyer of Worlds' as 'Ironbane')
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Content="Speed (ft.)" Padding="0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="9" Grid.RowSpan="2" Grid.Column="38" Grid.ColumnSpan="16"/>
+        <Label Content="Speed" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="12" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="4"/>
+        <TextBox Text="{Binding Path=Speed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="intSpeed" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="12" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's base movement speed in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Burrow" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="15" Grid.RowSpan="2" Grid.Column="38" Grid.ColumnSpan="5" />
+        <TextBox Name="intBurrow" Padding="0" Text="{Binding Path=Burrow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="15" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's burrowing speed in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Climb" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="18" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="4" />
+        <TextBox Name="intClimb" Padding="0" Text="{Binding Path=Climb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="18" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's climbing speed in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Fly" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="21" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="2"  />
+        <TextBox Name="intFly" Padding="0" Text="{Binding Path=Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="21" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's flying speed in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="boolHover" Content="Hover" VerticalAlignment="Center" IsChecked="{Binding Path=Hover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="48" Grid.ColumnSpan="6">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check this box if the NPC hovers instead of flies
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Content="Swim" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="4"  />
+        <TextBox Name="intSwim" Padding="0" Text="{Binding Path=Swim, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="24" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's swimming speed in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC cannot move in this way.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <!--#endregion-->
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="28" Grid.RowSpan="25" Grid.Column="2" Grid.ColumnSpan="24" />
+        <Label Content="Statistics" Padding="0" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Grid.Row="29" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="5"/>
+        <!--#region Ability Scores-->
+        <Label Content="Ability Scores" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="10" />
+        <Label Content="STR" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3"/>
+        <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" Text="{Binding Path=AttributeStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's Strength ability.
+					<LineBreak />
+					<Italic>The range is 0 to 30</Italic>
+					<LineBreak />
+					The ability modifier is calculated and shown to the right of this box.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Name="strModStr" Content="+" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="35" Grid.RowSpan="2" Grid.Column="13" />
+        <Label Name="strModStr1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="14"/>
+        <Label Content="DEX" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
+        <TextBox Name="strAttrDex" Text="{Binding Path=AttributeDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="DexterityScore_TextChanged" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's Dexterity ability.
+					<LineBreak />
+					<Italic>The range is 0 to 30</Italic>
+					<LineBreak />
+					The ability modifier is calculated and shown to the right of this box.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Name="strModDex" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="13" />
+        <Label Name="strModDex1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="14"  />
+        <Label Content="CON" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
+        <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" Text="{Binding Path=AttributeCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's Constitution ability.
+					<LineBreak />
+					<Italic>The range is 0 to 30</Italic>
+					<LineBreak />
+					The ability modifier is calculated and shown to the right of this box.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Name="strModCon" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="13" />
+        <Label Name="strModCon1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="14" />
+        <Label Content="INT" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
+        <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" Text="{Binding Path=AttributeInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+                    Enter the NPC's Intelligence ability.
+				    <LineBreak />
+					<Italic>The range is 0 to 30</Italic>
+					<LineBreak />
+					The ability modifier is calculated and shown to the right of this box.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Name="strModInt" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="13" />
+        <Label Name="strModInt1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="14" />
+        <Label Content="WIS" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
+        <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" Text="{Binding Path=AttributeWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's Wisdom ability.
+					<LineBreak />
+					<Italic>The range is 0 to 30</Italic>
+					<LineBreak />
+					The ability modifier is calculated and shown to the right of this box.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Name="strModWis" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="13" />
+        <Label Name="strModWis1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="14" />
+        <Label Content="CHA" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
+        <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" Text="{Binding Path=AttributeCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="50" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's Charisma ability.
+					<LineBreak />
+					<Italic>The range is 0 to 30</Italic>
+					<LineBreak />
+					The ability modifier is calculated and shown to the right of this box.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Name="strModCha" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="13" />
+        <Label Name="strModCha1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="14" />
+        <!--#endregion-->
+        <!--#region Saving Throws-->
+        <Label Content="Saving Throws" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="10"/>
+        <Label Content="STR" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
+        <TextBox Name="strSaveStr" Text="{Binding Path=SavingThrowStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+            <TextBox.ToolTip>
+                <TextBlock>
+				    Enter the NPC's saving throw bonus for strength saves.
+				    <LineBreak />
+				    <Italic>Positive Values must be entered without the plus sign.</Italic>
+				    <LineBreak />
+				    <Italic>E.g. +2 is entered as 2.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="chkSave0Str" IsChecked="{Binding Path=SavingThrowStrBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="23" Grid.ColumnSpan="2">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check here if the saving throw should be set to show as '+0' in the statblock.
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Content="DEX" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
+        <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Text="{Binding Path=SavingThrowDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's saving throw bonus for dexterity saves.
+					<LineBreak />
+					<Italic>Positive Values must be entered without the plus sign.</Italic>
+					<LineBreak />
+					<Italic>E.g. +2 is entered as 2.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="chkSave0Dex" IsChecked="{Binding Path=SavingThrowDexBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="23" Grid.ColumnSpan="2">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check here if the saving throw should be set to show as '+0' in the statblock.
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Content="CON" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
+        <TextBox Name="strSaveCon" Text="{Binding Path=SavingThrowCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's saving throw bonus for constitution saves.
+					<LineBreak />
+					<Italic>Positive Values must be entered without the plus sign.</Italic>
+					<LineBreak />
+					<Italic>E.g. +2 is entered as 2.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="chkSave0Con" IsChecked="{Binding Path=SavingThrowConBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="23" Grid.ColumnSpan="2">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check here if the saving throw should be set to show as '+0' in the statblock.
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Content="INT" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
+        <TextBox Name="strSaveInt" Text="{Binding Path=SavingThrowInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's saving throw bonus for intelligence saves.
+					<LineBreak />
+					<Italic>Positive Values must be entered without the plus sign.</Italic>
+					<LineBreak />
+					<Italic>E.g. +2 is entered as 2.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="chkSave0Int" IsChecked="{Binding Path=SavingThrowIntBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="23" Grid.ColumnSpan="2">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check here if the saving throw should be set to show as '+0' in the statblock.
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Content="WIS" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
+        <TextBox Name="strSaveWis" Text="{Binding Path=SavingThrowWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's saving throw bonus for wisdom saves.
+					<LineBreak />
+					<Italic>Positive Values must be entered without the plus sign.</Italic>
+					<LineBreak />
+					<Italic>E.g. +2 is entered as 2.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="chkSave0Wis" IsChecked="{Binding Path=SavingThrowWisBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="23" Grid.ColumnSpan="2">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check here if the saving throw should be set to show as '+0' in the statblock.
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <Label Content="CHA" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
+        <TextBox Name="strSaveCha" Text="{Binding Path=SavingThrowCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="50" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's saving throw bonus for charisma saves.
+					<LineBreak />
+					<Italic>Positive Values must be entered without the plus sign.</Italic>
+					<LineBreak />
+					<Italic>E.g. +2 is entered as 2.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="chkSave0Cha" IsChecked="{Binding Path=SavingThrowChaBool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="23" Grid.ColumnSpan="2">
+            <CheckBox.ToolTip>
+                <TextBlock>
+					Check here if the saving throw should be set to show as '+0' in the statblock.
+                </TextBlock>
+            </CheckBox.ToolTip>
+        </CheckBox>
+        <!--#endregion-->
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="28" Grid.RowSpan="25" Grid.Column="27" Grid.ColumnSpan="30" />
+        <!--#region Senses-->
+        <Label Content="Senses" Padding="0" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Grid.Row="29" Grid.RowSpan="2" Grid.Column="28" Grid.ColumnSpan="4"/>
+        <Label Content="Sense Ranges (ft.)" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="27" Grid.ColumnSpan="29"/>
+        <Label Content="Blindsight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="31" Grid.ColumnSpan="9"/>
+        <TextBox Name="strBlindsight" Text="{Binding Path=Blindsight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+            <TextBox.ToolTip>
+                <TextBlock>
+				    Enter the NPC's maximum blindsight range in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox Name="chkBlindBeyond" IsChecked="{Binding Path=BlindBeyond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="blind beyond" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="35" Grid.RowSpan="2" Grid.Column="48" Grid.ColumnSpan="12"/>
+        <Label Content="Darkvision" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="33" Grid.ColumnSpan="7" />
+        <TextBox Name="strDarkvision" Text="{Binding Path=Darkvision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's maximum darkvision range in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Tremorsense" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="30" Grid.ColumnSpan="10" />
+        <TextBox Name="strTremorsense" Text="{Binding Path=Tremorsense, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's maximum tremorsense range in feet (ft.)
+					<LineBreak />
+					<Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Truesight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="31" Grid.ColumnSpan="9"/>
+        <TextBox Name="strTruesight" Text="{Binding Path=Truesight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+            <TextBox.ToolTip>
+                <TextBlock>
+				    Enter the NPC's maximum truesight range in feet (ft.)
+				    <LineBreak />
+				    <Italic>A value of 0 indicates the NPC has no ability in the sense.</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Passive Perception" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="27" Grid.ColumnSpan="13"/>
+        <TextBox Name="strPassivePerception" Text="{Binding Path=PassivePerception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's Passive Perception
+					<LineBreak />
+					<Italic>Passive Perception is 10 + Wisdom Modifier</Italic>
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <!--#endregion-->
+        <Label Content="Challenge" Padding="0" HorizontalAlignment="Right" VerticalAlignment="TOp" Grid.Row="54" Grid.RowSpan="3" Grid.Column="10" Grid.ColumnSpan="7"/>
+        <TextBox Name="strChallenge" Text="{Binding Path=ChallengeRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="54" Grid.RowSpan="2" Grid.Column="18" Grid.ColumnSpan="6">
+            <TextBox.ToolTip>
+                <TextBlock>
+				    Enter the appropriate challenge rating for the NPC.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="Experience" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="2" Grid.Column="25" Grid.ColumnSpan="6"/>
+        <TextBox Name="strExperience" Text="{Binding Path=XP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Padding="0" Grid.Row="54" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="6">
+            <TextBox.ToolTip>
+                <TextBlock>
+					This will be calculated automatically based on the challenge rating chosen; this can be overwritten by typing a new XP value
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Label Content="XP" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="2" Grid.Column="38" Grid.ColumnSpan="2" />
+        <Label Content="NPC Token:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="57" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="8" />
+        <TextBox Name="strNPCToken" Text="{Binding Path=NPCToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="57" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="30">
+            <TextBox.ToolTip>
+                <TextBlock>
+					File location to the PNG image used for the NPC.
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Button Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Row="57" Grid.RowSpan="2" Grid.Column="50" Grid.ColumnSpan="2">
+            <Image Source="/Resources/Folder.png" />
+        </Button>
     </Grid>
 </UserControl>

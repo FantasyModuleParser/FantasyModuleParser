@@ -15,7 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FantasyModuleParser;
+using FantasyModuleParser.Exporters;
 using FantasyModuleParser.Main;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.UserControls.Options;
 
@@ -82,7 +84,7 @@ namespace FantasyModuleParser
                     new About().Show();
                     break;
                 case "ManageCategories":
-                    new ManageCategories().Show();
+                    new UserCreationManagement().Show();
                     break;
                 case "ManageProject":
                     new ProjectManagement().Show();
@@ -106,6 +108,25 @@ namespace FantasyModuleParser
                 stackNPC.Visibility = Visibility.Visible;
                 stackMain.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void CreateModule_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO:  This is a prime example of how Dependency Injection would be 
+            // amazing!  each exporter uses the interface IExporter, so the DI system
+            // could be updated based on the user's selection from somewhere else
+
+            // For now, just infer that IExporter = new FantasyGroundsExporter;
+
+            IExporter exporter = new FantasyGroundsExporter();
+
+            // DI would be used here to get an singleton instance of ModuleService (acting almost as a factory...)
+            ModuleService moduleService = new ModuleService();
+
+            //moduleService.GetModuleModel() refers to the static instantiation of ModuleModel, which is modified
+            // throughout the application
+
+            exporter.CreateModule(moduleService.GetModuleModel());
         }
     }
 }

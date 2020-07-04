@@ -86,7 +86,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					new About().Show();
 					break;
 				case "ManageCategories":
-					new ManageCategories().Show();
+					new UserCreationManagement().Show();
 					break;
 				case "ManageProject":
 					new ProjectManagement().Show();
@@ -142,6 +142,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			DataContext = npcModel;
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
+			TraitsUserControl.Refresh();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -165,6 +166,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// a NPC File
 				BaseStatsUserControl.Refresh();
 				SkillsUserControl.Refresh();
+				TraitsUserControl.Refresh();
 			}
 		}
 

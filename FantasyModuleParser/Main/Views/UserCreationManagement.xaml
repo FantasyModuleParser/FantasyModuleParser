@@ -1,0 +1,30 @@
+﻿<Window x:Class="FantasyModuleParser.Main.UserCreationManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FantasyModuleParser.Main"
+        xmlns:CategoriesUserControl="clr-namespace:FantasyModuleParser.Main.UserControls"
+        xmlns:LanguagesUserControl="clr-namespace:FantasyModuleParser.Main.UserControls"
+        mc:Ignorable="d"
+        Title="UserCreationManagement" Height="345" Width="410" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
+    <Grid Background="#FFE5E5E5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="23"/>
+        </Grid.RowDefinitions>
+        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Grid.Row="0">
+            <TabItem Header="Categories">
+                <Grid Background="#FFE5E5E5">
+                    <CategoriesUserControl:CategoriesUC HorizontalAlignment="Center" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="User-Created Languages">
+                <Grid Background="#FFE5E5E5">
+                    <LanguagesUserControl:UserLanguagesUC HorizontalAlignment="Center" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="Close" Width="75" Grid.Row="1" />
+    </Grid>
+</Window>

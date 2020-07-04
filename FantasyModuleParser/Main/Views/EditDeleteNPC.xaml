@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser"
         mc:Ignorable="d"
-        Title="Edit or Delete Items in a JSON file" Height="230" Width="350" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
+        Title="Edit or Delete Items in a JSON file" Height="230" Width="350" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <TabControl Height="160" Width="330" VerticalAlignment="Top" HorizontalAlignment="Left">
             <TabItem Header="NPCs">
