@@ -94,31 +94,6 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             NPCModel = nPCModel;
             initalizeViewModel();
-        }
-
-        private void initalizeViewModel()
-        {
-            SpeedDescription = UpdateSpeedDescription();
-            SkillsDescription = UpdateSkillsDescription();
-            StrengthAttribute = UpdateStrengthAttribute();
-            DexterityAttribute = UpdateDexterityAttribute();
-            ConstitutionAttribute = UpdateConstitutionAttribute();
-            IntelligenceAttribute = UpdateIntelligenceAttribute();
-            WisdomAttribute = UpdateWisdomAttribute();
-            CharismaAttribute = UpdateCharismaAttribute();
-            SavingThrows = UpdateSavingThrows();
-            Senses = UpdateSenses();
-            DamageVulnerabilities = UpdateDamageVulnerabilities();
-            DamageResistances = UpdateDamageResistances();
-            DamageImmunities = UpdateDamageImmunities();
-            ConditionImmunities = UpdateConditionImmunities();
-            Languages = UpdateLanguages();
-            Challenge = UpdateChallengeRating();
-        }
-
-        public PreviewNPCViewModel(NPCModel nPCModel)
-        {
-            NPCModel = nPCModel;
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = UpdateSkillsDescription();
             InnateSpellcastingLabel = UpdateInnateSpellcastingLabel();
@@ -147,6 +122,26 @@ namespace FantasyModuleParser.NPC.ViewModels
             SpellcastingNinth = UpdateSpellcastingNinth();
             SpellcastingMarkedSpells = UpdateSpellcastingMarkedSpells();
             WeaponName1 = UpdateWeaponName1();
+        }
+
+        private void initalizeViewModel()
+        {
+            SpeedDescription = UpdateSpeedDescription();
+            SkillsDescription = UpdateSkillsDescription();
+            StrengthAttribute = UpdateStrengthAttribute();
+            DexterityAttribute = UpdateDexterityAttribute();
+            ConstitutionAttribute = UpdateConstitutionAttribute();
+            IntelligenceAttribute = UpdateIntelligenceAttribute();
+            WisdomAttribute = UpdateWisdomAttribute();
+            CharismaAttribute = UpdateCharismaAttribute();
+            SavingThrows = UpdateSavingThrows();
+            Senses = UpdateSenses();
+            DamageVulnerabilities = UpdateDamageVulnerabilities();
+            DamageResistances = UpdateDamageResistances();
+            DamageImmunities = UpdateDamageImmunities();
+            ConditionImmunities = UpdateConditionImmunities();
+            Languages = UpdateLanguages();
+            Challenge = UpdateChallengeRating();
         }
 
         #region UpdateAbilityScores
