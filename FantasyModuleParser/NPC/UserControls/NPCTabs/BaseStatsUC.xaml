@@ -66,6 +66,8 @@
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -129,7 +131,7 @@
             <RowDefinition Height="10" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="2" Grid.RowSpan="25" Grid.Column="2" Grid.ColumnSpan="55" />
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="2" Grid.RowSpan="25" Grid.Column="2" Grid.ColumnSpan="57" />
         <!--#region Top-->
         <Label Content="NPC Information" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Padding="0" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="12"/>
         <Label Content="NPC Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="7" />
@@ -309,7 +311,7 @@
                 </TextBlock>
             </CheckBox.ToolTip>
         </CheckBox>
-        <CheckBox IsChecked="{Binding Path=NPCNamed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="chkNamed" Content="Name" Padding="5,0,0,0" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="52" Grid.ColumnSpan="6">
+        <CheckBox IsChecked="{Binding Path=NPCNamed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="chkNamed" Content="Name" Padding="5,0,0,0" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="53" Grid.ColumnSpan="6">
             <CheckBox.ToolTip>
                 <TextBlock>
 					Check if the name enter is a proper name.
@@ -379,7 +381,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <!--#endregion-->
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="28" Grid.RowSpan="25" Grid.Column="2" Grid.ColumnSpan="24" />
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="28" Grid.RowSpan="25" Grid.Column="2" Grid.ColumnSpan="25" />
         <Label Content="Statistics" Padding="0" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Grid.Row="29" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="5"/>
         <!--#region Ability Scores-->
         <Label Content="Ability Scores" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="10" />
@@ -585,12 +587,12 @@
             </CheckBox.ToolTip>
         </CheckBox>
         <!--#endregion-->
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="28" Grid.RowSpan="25" Grid.Column="27" Grid.ColumnSpan="30" />
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0" Grid.Row="28" Grid.RowSpan="25" Grid.Column="28" Grid.ColumnSpan="31" />
         <!--#region Senses-->
-        <Label Content="Senses" Padding="0" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Grid.Row="29" Grid.RowSpan="2" Grid.Column="28" Grid.ColumnSpan="4"/>
-        <Label Content="Sense Ranges (ft.)" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="27" Grid.ColumnSpan="29"/>
-        <Label Content="Blindsight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="31" Grid.ColumnSpan="9"/>
-        <TextBox Name="strBlindsight" Text="{Binding Path=Blindsight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+        <Label Content="Senses" Padding="0" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Grid.Row="29" Grid.RowSpan="2" Grid.Column="29" Grid.ColumnSpan="5"/>
+        <Label Content="Sense Ranges (ft.)" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="28" Grid.ColumnSpan="29"/>
+        <Label Content="Blindsight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="9"/>
+        <TextBox Name="strBlindsight" Text="{Binding Path=Blindsight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's maximum blindsight range in feet (ft.)
@@ -599,9 +601,9 @@
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <CheckBox Name="chkBlindBeyond" IsChecked="{Binding Path=BlindBeyond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="blind beyond" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="35" Grid.RowSpan="2" Grid.Column="48" Grid.ColumnSpan="12"/>
-        <Label Content="Darkvision" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="33" Grid.ColumnSpan="7" />
-        <TextBox Name="strDarkvision" Text="{Binding Path=Darkvision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+        <CheckBox Name="chkBlindBeyond" IsChecked="{Binding Path=BlindBeyond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="blind beyond" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="35" Grid.RowSpan="2" Grid.Column="49" Grid.ColumnSpan="12"/>
+        <Label Content="Darkvision" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="34" Grid.ColumnSpan="7" />
+        <TextBox Name="strDarkvision" Text="{Binding Path=Darkvision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's maximum darkvision range in feet (ft.)
@@ -610,8 +612,8 @@
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Label Content="Tremorsense" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="30" Grid.ColumnSpan="10" />
-        <TextBox Name="strTremorsense" Text="{Binding Path=Tremorsense, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+        <Label Content="Tremorsense" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="31" Grid.ColumnSpan="10" />
+        <TextBox Name="strTremorsense" Text="{Binding Path=Tremorsense, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's maximum tremorsense range in feet (ft.)
@@ -620,8 +622,8 @@
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Label Content="Truesight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="31" Grid.ColumnSpan="9"/>
-        <TextBox Name="strTruesight" Text="{Binding Path=Truesight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+        <Label Content="Truesight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="9"/>
+        <TextBox Name="strTruesight" Text="{Binding Path=Truesight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's maximum truesight range in feet (ft.)
@@ -630,8 +632,8 @@
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Label Content="Passive Perception" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="27" Grid.ColumnSpan="13"/>
-        <TextBox Name="strPassivePerception" Text="{Binding Path=PassivePerception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="6">
+        <Label Content="Passive Perception" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="28" Grid.ColumnSpan="13"/>
+        <TextBox Name="strPassivePerception" Text="{Binding Path=PassivePerception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Passive Perception
