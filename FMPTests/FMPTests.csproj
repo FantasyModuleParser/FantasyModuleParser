@@ -56,11 +56,15 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Exporters\FantasyGroundsExporterTests.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Resources\Mage1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FantasyModuleParser\FMP.csproj">
@@ -68,6 +72,7 @@
       <Name>FMP</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

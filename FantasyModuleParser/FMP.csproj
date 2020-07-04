@@ -138,6 +138,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -333,8 +334,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exporters\FantasyGroundsExporter.cs" />
+    <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
+    <Compile Include="Main\Services\ModuleService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
       <DependentUpon>CategoriesUC.xaml</DependentUpon>
     </Compile>
@@ -378,7 +382,6 @@
       <DependentUpon>Supporters.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Controllers\ActionController.cs" />
-    <Compile Include="NPC\Controllers\ControllerBase.cs" />
     <Compile Include="NPC\Controllers\LanguageController.cs" />
     <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
     <Compile Include="NPC\Models\Action\DamageTypeModel.cs" />
@@ -390,6 +393,7 @@
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
+    <Compile Include="NPC\Models\ModuleModel.cs" />
     <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
@@ -425,6 +429,7 @@
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
+    <Compile Include="NPC\ViewModels\ProjectManagementViewModel.cs" />
     <Compile Include="NPC\Views\DiceFunction.xaml.cs">
       <DependentUpon>DiceFunction.xaml</DependentUpon>
     </Compile>
