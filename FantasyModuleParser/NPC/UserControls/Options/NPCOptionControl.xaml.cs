@@ -142,6 +142,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			DataContext = npcModel;
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
+			TraitsUserControl.Refresh();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -165,6 +166,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// a NPC File
 				BaseStatsUserControl.Refresh();
 				SkillsUserControl.Refresh();
+				TraitsUserControl.Refresh();
 			}
 		}
 

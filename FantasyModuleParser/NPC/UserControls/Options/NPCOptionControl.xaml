@@ -93,7 +93,7 @@
             </TabItem>
             <TabItem Header="Traits">
                 <Grid Background="#FFE5E5E5">
-                    <TraitsUserControl:TraitsUC></TraitsUserControl:TraitsUC>
+                    <TraitsUserControl:TraitsUC x:Name="TraitsUserControl"></TraitsUserControl:TraitsUC>
                 </Grid>
             </TabItem>
             <TabItem Header="Innate/Psionics">

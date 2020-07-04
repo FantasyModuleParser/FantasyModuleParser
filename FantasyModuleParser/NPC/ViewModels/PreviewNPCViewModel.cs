@@ -114,6 +114,13 @@ namespace FantasyModuleParser.NPC.ViewModels
             ConditionImmunities = UpdateConditionImmunities();
             Languages = UpdateLanguages();
             Challenge = UpdateChallengeRating();
+        }
+
+        public PreviewNPCViewModel(NPCModel nPCModel)
+        {
+            NPCModel = nPCModel;
+            SpeedDescription = UpdateSpeedDescription();
+            SkillsDescription = UpdateSkillsDescription();
             TraitName1 = UpdateTraitName1();
             TraitDesc1 = UpdateTraitDescription1();
             TraitName2 = UpdateTraitName2();
