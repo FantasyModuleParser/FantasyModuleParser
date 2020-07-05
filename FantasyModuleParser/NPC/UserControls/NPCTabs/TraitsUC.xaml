@@ -41,9 +41,7 @@
                 <!--<ItemsControl Name="TraitsList" ItemsSource="{StaticResource TraitActionList}">-->
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <overviewUserControl:OverviewControl RaiseActionInList="OverviewControl_RaiseActionInList"
-                                                                 LowerActionInList="OverviewControl_LowerActionInList"
-                                                                 RemoveAction="OverviewControl_RemoveAction"></overviewUserControl:OverviewControl>
+                            <overviewUserControl:OverviewControl RaiseActionInList="OverviewControl_RaiseActionInList" LowerActionInList="OverviewControl_LowerActionInList" RemoveAction="OverviewControl_RemoveAction" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
