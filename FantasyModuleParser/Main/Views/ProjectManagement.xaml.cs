@@ -22,7 +22,7 @@ namespace FantasyModuleParser.Main
             this.Close();
         }
 
-        private void btn_OpenModuleFilePath(object sender, RoutedEventArgs e)
+        private void OpenModuleFilePath(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             folderBrowserDialog.Description = "Custom Description";
