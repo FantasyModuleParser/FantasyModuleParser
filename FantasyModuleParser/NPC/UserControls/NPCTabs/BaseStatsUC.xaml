@@ -126,6 +126,7 @@
             <RowDefinition Height="10" />
             <RowDefinition Height="10" />
             <RowDefinition Height="5" />
+            <RowDefinition Height="5"/>
             <RowDefinition Height="10" />
             <RowDefinition Height="10" />
             <RowDefinition Height="10" />
@@ -135,7 +136,7 @@
         <!--#region Top-->
         <Label Content="NPC Information" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Padding="0" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="12"/>
         <Label Content="NPC Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="7" />
-        <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
+        <TextBox Name="NPC_name" Text="{Binding Path=NPCName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPCs Name.
@@ -145,7 +146,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Size:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="9" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="3"  />
-        <ComboBox Name="strSize" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="9" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
+        <ComboBox Name="strSize" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="9" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
             <ComboBoxItem>Tiny</ComboBoxItem>
             <ComboBoxItem>Small</ComboBoxItem>
             <ComboBoxItem>Medium</ComboBoxItem>
@@ -159,7 +160,7 @@
             </ComboBox.ToolTip>
         </ComboBox>
         <Label Content="Type:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="12" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="4" />
-        <ComboBox Name="strType" Padding="0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
+        <ComboBox Name="strType" Padding="5,0,0,0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21">
             <ComboBoxItem>abberation</ComboBoxItem>
             <ComboBoxItem>beast</ComboBoxItem>
             <ComboBoxItem>celestial</ComboBoxItem>
@@ -190,7 +191,7 @@
             </ComboBox.ToolTip>
         </ComboBox>
         <Label Content="Tag:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="15" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="3" />
-        <ComboBox Name="strTag" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="15" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+        <ComboBox Name="strTag" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="15" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
             <ComboBoxItem>(aarakocra)</ComboBoxItem>
             <ComboBoxItem>(any race)</ComboBoxItem>
             <ComboBoxItem>(bullywug)</ComboBoxItem>
@@ -239,7 +240,7 @@
             </ComboBox.ToolTip>
         </ComboBox>
         <Label Content="Alignment:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="18" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="7" />
-        <ComboBox Name="strAlignment" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="18" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+        <ComboBox Name="strAlignment" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="18" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
             <ComboBoxItem>unaligned</ComboBoxItem>
             <ComboBoxItem>lawful good</ComboBoxItem>
             <ComboBoxItem>lawful neutral</ComboBoxItem>
@@ -257,7 +258,7 @@
             </ComboBox.ToolTip>
         </ComboBox>
         <Label Content="Armor Class:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="21" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="8" />
-        <TextBox Name="strAC" Padding="0" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="21" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+        <TextBox Name="strAC" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's armor class.
@@ -269,7 +270,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Hit Points:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="6" />
-        <TextBox Name="strHP" Padding="0" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="24" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+        <TextBox Name="strHP" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="24" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's hit points, followed by its hit dice in brackets.
@@ -290,7 +291,7 @@
             </Button.ToolTip>
         </Button>
         <Label Content="Gender:" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="6"/>
-        <ComboBox Name="strGender" Padding="0" Text="{Binding Path=NPCGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="5">
+        <ComboBox Name="strGender" Text="{Binding Path=NPCGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="6" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="5">
             <ComboBox.ToolTip>
                 <TextBlock>
 					Select the NPC's gender
@@ -324,7 +325,7 @@
         </CheckBox>
         <Label Content="Speed (ft.)" Padding="0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="9" Grid.RowSpan="2" Grid.Column="38" Grid.ColumnSpan="16"/>
         <Label Content="Speed" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="12" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="4"/>
-        <TextBox Text="{Binding Path=Speed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="intSpeed" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="12" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+        <TextBox Text="{Binding Path=Speed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="intSpeed" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="12" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's base movement speed in feet (ft.)
@@ -334,7 +335,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Burrow" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="15" Grid.RowSpan="2" Grid.Column="38" Grid.ColumnSpan="5" />
-        <TextBox Name="intBurrow" Padding="0" Text="{Binding Path=Burrow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="15" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+        <TextBox Name="intBurrow" Text="{Binding Path=Burrow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="15" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's burrowing speed in feet (ft.)
@@ -344,7 +345,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Climb" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="18" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="4" />
-        <TextBox Name="intClimb" Padding="0" Text="{Binding Path=Climb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="18" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+        <TextBox Name="intClimb" Text="{Binding Path=Climb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="18" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's climbing speed in feet (ft.)
@@ -354,7 +355,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Fly" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="21" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="2"  />
-        <TextBox Name="intFly" Padding="0" Text="{Binding Path=Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="21" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+        <TextBox Name="intFly" Text="{Binding Path=Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="21" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's flying speed in feet (ft.)
@@ -371,7 +372,7 @@
             </CheckBox.ToolTip>
         </CheckBox>
         <Label Content="Swim" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.RowSpan="2" Grid.Column="39" Grid.ColumnSpan="4"  />
-        <TextBox Name="intSwim" Padding="0" Text="{Binding Path=Swim, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="24" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
+        <TextBox Name="intSwim" Text="{Binding Path=Swim, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="24" Grid.RowSpan="2" Grid.Column="44" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's swimming speed in feet (ft.)
@@ -386,7 +387,7 @@
         <!--#region Ability Scores-->
         <Label Content="Ability Scores" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="10" />
         <Label Content="STR" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3"/>
-        <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" Text="{Binding Path=AttributeStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" Text="{Binding Path=AttributeStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Strength ability.
@@ -400,7 +401,7 @@
         <Label Name="strModStr" Content="+" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="35" Grid.RowSpan="2" Grid.Column="13" />
         <Label Name="strModStr1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="14"/>
         <Label Content="DEX" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrDex" Text="{Binding Path=AttributeDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="DexterityScore_TextChanged" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrDex" Text="{Binding Path=AttributeDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="DexterityScore_TextChanged" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Dexterity ability.
@@ -414,7 +415,7 @@
         <Label Name="strModDex" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="13" />
         <Label Name="strModDex1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="14"  />
         <Label Content="CON" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" Text="{Binding Path=AttributeCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" Text="{Binding Path=AttributeCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Constitution ability.
@@ -428,7 +429,7 @@
         <Label Name="strModCon" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="13" />
         <Label Name="strModCon1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="14" />
         <Label Content="INT" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" Text="{Binding Path=AttributeInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" Text="{Binding Path=AttributeInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
                     Enter the NPC's Intelligence ability.
@@ -442,7 +443,7 @@
         <Label Name="strModInt" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="13" />
         <Label Name="strModInt1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="14" />
         <Label Content="WIS" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" Text="{Binding Path=AttributeWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" Text="{Binding Path=AttributeWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Wisdom ability.
@@ -456,7 +457,7 @@
         <Label Name="strModWis" Content="+" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="13" />
         <Label Name="strModWis1" Content="0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="14" />
         <Label Content="CHA" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" Text="{Binding Path=AttributeCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="50" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" Text="{Binding Path=AttributeCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Charisma ability.
@@ -473,7 +474,7 @@
         <!--#region Saving Throws-->
         <Label Content="Saving Throws" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="10"/>
         <Label Content="STR" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
-        <TextBox Name="strSaveStr" Text="{Binding Path=SavingThrowStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+        <TextBox Name="strSaveStr" Text="{Binding Path=SavingThrowStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's saving throw bonus for strength saves.
@@ -492,7 +493,7 @@
             </CheckBox.ToolTip>
         </CheckBox>
         <Label Content="DEX" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
-        <TextBox Name="strSaveDex" HorizontalContentAlignment="Center" Text="{Binding Path=SavingThrowDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+        <TextBox Name="strSaveDex" Text="{Binding Path=SavingThrowDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's saving throw bonus for dexterity saves.
@@ -511,7 +512,7 @@
             </CheckBox.ToolTip>
         </CheckBox>
         <Label Content="CON" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
-        <TextBox Name="strSaveCon" Text="{Binding Path=SavingThrowCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+        <TextBox Name="strSaveCon" Text="{Binding Path=SavingThrowCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's saving throw bonus for constitution saves.
@@ -530,7 +531,7 @@
             </CheckBox.ToolTip>
         </CheckBox>
         <Label Content="INT" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
-        <TextBox Name="strSaveInt" Text="{Binding Path=SavingThrowInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+        <TextBox Name="strSaveInt" Text="{Binding Path=SavingThrowInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's saving throw bonus for intelligence saves.
@@ -549,7 +550,7 @@
             </CheckBox.ToolTip>
         </CheckBox>
         <Label Content="WIS" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
-        <TextBox Name="strSaveWis" Text="{Binding Path=SavingThrowWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+        <TextBox Name="strSaveWis" Text="{Binding Path=SavingThrowWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's saving throw bonus for wisdom saves.
@@ -568,7 +569,7 @@
             </CheckBox.ToolTip>
         </CheckBox>
         <Label Content="CHA" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="3"/>
-        <TextBox Name="strSaveCha" Text="{Binding Path=SavingThrowCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" PreviewTextInput="NumberValidationTextBox" Grid.Row="50" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
+        <TextBox Name="strSaveCha" Text="{Binding Path=SavingThrowCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="2">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's saving throw bonus for charisma saves.
@@ -592,7 +593,7 @@
         <Label Content="Senses" Padding="0" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Grid.Row="29" Grid.RowSpan="2" Grid.Column="29" Grid.ColumnSpan="5"/>
         <Label Content="Sense Ranges (ft.)" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="28" Grid.ColumnSpan="29"/>
         <Label Content="Blindsight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="9"/>
-        <TextBox Name="strBlindsight" Text="{Binding Path=Blindsight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="35" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
+        <TextBox Name="strBlindsight" Text="{Binding Path=Blindsight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's maximum blindsight range in feet (ft.)
@@ -603,7 +604,7 @@
         </TextBox>
         <CheckBox Name="chkBlindBeyond" IsChecked="{Binding Path=BlindBeyond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="blind beyond" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="35" Grid.RowSpan="2" Grid.Column="49" Grid.ColumnSpan="12"/>
         <Label Content="Darkvision" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="34" Grid.ColumnSpan="7" />
-        <TextBox Name="strDarkvision" Text="{Binding Path=Darkvision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="38" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
+        <TextBox Name="strDarkvision" Text="{Binding Path=Darkvision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's maximum darkvision range in feet (ft.)
@@ -613,7 +614,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Tremorsense" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="31" Grid.ColumnSpan="10" />
-        <TextBox Name="strTremorsense" Text="{Binding Path=Tremorsense, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="41" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
+        <TextBox Name="strTremorsense" Text="{Binding Path=Tremorsense, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's maximum tremorsense range in feet (ft.)
@@ -623,7 +624,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Truesight" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="9"/>
-        <TextBox Name="strTruesight" Text="{Binding Path=Truesight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="44" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
+        <TextBox Name="strTruesight" Text="{Binding Path=Truesight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's maximum truesight range in feet (ft.)
@@ -633,7 +634,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Passive Perception" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="28" Grid.ColumnSpan="13"/>
-        <TextBox Name="strPassivePerception" Text="{Binding Path=PassivePerception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
+        <TextBox Name="strPassivePerception" Text="{Binding Path=PassivePerception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox" Grid.Row="47" Grid.RowSpan="2" Grid.Column="42" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Passive Perception
@@ -643,32 +644,32 @@
             </TextBox.ToolTip>
         </TextBox>
         <!--#endregion-->
-        <Label Content="Challenge" Padding="0" HorizontalAlignment="Right" VerticalAlignment="TOp" Grid.Row="54" Grid.RowSpan="3" Grid.Column="10" Grid.ColumnSpan="7"/>
-        <TextBox Name="strChallenge" Text="{Binding Path=ChallengeRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="54" Grid.RowSpan="2" Grid.Column="18" Grid.ColumnSpan="6">
+        <Label Content="Challenge" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="3" Grid.Column="10" Grid.ColumnSpan="7"/>
+        <TextBox Name="strChallenge" Text="{Binding Path=ChallengeRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="54" Grid.RowSpan="3" Grid.Column="18" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the appropriate challenge rating for the NPC.
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Label Content="Experience" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="2" Grid.Column="25" Grid.ColumnSpan="6"/>
-        <TextBox Name="strExperience" Text="{Binding Path=XP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" Padding="0" Grid.Row="54" Grid.RowSpan="2" Grid.Column="32" Grid.ColumnSpan="6">
+        <Label Content="Experience" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="3" Grid.Column="25" Grid.ColumnSpan="6"/>
+        <TextBox Name="strExperience" Text="{Binding Path=XP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="54" Grid.RowSpan="3" Grid.Column="32" Grid.ColumnSpan="6">
             <TextBox.ToolTip>
                 <TextBlock>
 					This will be calculated automatically based on the challenge rating chosen; this can be overwritten by typing a new XP value
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Label Content="XP" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="2" Grid.Column="38" Grid.ColumnSpan="2" />
-        <Label Content="NPC Token:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="57" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="8" />
-        <TextBox Name="strNPCToken" Text="{Binding Path=NPCToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="57" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="30">
+        <Label Content="XP" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="3" Grid.Column="38" Grid.ColumnSpan="2" />
+        <Label Content="NPC Token:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="58" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="8" />
+        <TextBox Name="strNPCToken" Text="{Binding Path=NPCToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="58" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="30">
             <TextBox.ToolTip>
                 <TextBlock>
 					File location to the PNG image used for the NPC.
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Button Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Row="57" Grid.RowSpan="2" Grid.Column="50" Grid.ColumnSpan="2">
+        <Button Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Row="58" Grid.RowSpan="2" Grid.Column="50" Grid.ColumnSpan="2">
             <Image Source="/Resources/Folder.png" />
         </Button>
     </Grid>
