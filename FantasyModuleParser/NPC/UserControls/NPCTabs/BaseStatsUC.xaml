@@ -270,7 +270,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Hit Points:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="6" />
-        <TextBox Name="strHP" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="24" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+        <TextBox Name="strHP" Text="{Binding Path=HP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="DiceRoller_Click" Padding="5,0,0,0" Grid.Row="24" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's hit points, followed by its hit dice in brackets.
