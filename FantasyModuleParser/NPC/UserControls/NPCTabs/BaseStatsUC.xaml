@@ -662,15 +662,12 @@
         </TextBox>
         <Label Content="XP" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="54" Grid.RowSpan="3" Grid.Column="38" Grid.ColumnSpan="2" />
         <Label Content="NPC Token:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="58" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="8" />
-        <TextBox Name="strNPCToken" Text="{Binding Path=NPCToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="58" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="30">
+        <TextBox Name="strNPCToken" Text="{Binding Path=NPCToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Row="58" Grid.RowSpan="2" Grid.Column="20" Grid.ColumnSpan="30" MouseDoubleClick="strNPCToken_MouseDoubleClick">
             <TextBox.ToolTip>
                 <TextBlock>
-					File location to the PNG image used for the NPC.
+					Double-click to select the file location to the PNG image used for the NPC.
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Button Width="15" Height="15" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Row="58" Grid.RowSpan="2" Grid.Column="50" Grid.ColumnSpan="2">
-            <Image Source="/Resources/Folder.png" />
-        </Button>
     </Grid>
 </UserControl>
