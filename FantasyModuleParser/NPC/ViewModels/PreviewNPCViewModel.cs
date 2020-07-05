@@ -36,26 +36,6 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string ConditionImmunities { get; set; }
         public string Languages { get; set; }
         public string Challenge { get; set; }
-        public string TraitName1 { get; set; }
-        public string TraitDesc1 { get; set; }
-        public string TraitName2 { get; set; }
-        public string TraitDesc2 { get; set; }
-        public string TraitName3 { get; set; }
-        public string TraitDesc3 { get; set; }
-        public string TraitName4 { get; set; }
-        public string TraitDesc4 { get; set; }
-        public string TraitName5 { get; set; }
-        public string TraitDesc5 { get; set; }
-        public string TraitName6 { get; set; }
-        public string TraitDesc6 { get; set; }
-        public string TraitName7 { get; set; }
-        public string TraitDesc7 { get; set; }
-        public string TraitName8 { get; set; }
-        public string TraitDesc8 { get; set; }
-        public string TraitName9 { get; set; }
-        public string TraitDesc9 { get; set; }
-        public string TraitName10 { get; set; }
-        public string TraitDesc10 { get; set; }
         public string InnateSpellcastingLabel { get; set; }
         public string InnateSpellcasting { get; set; }
         public string SpellcastingLabel { get; set; }
@@ -608,6 +588,11 @@ namespace FantasyModuleParser.NPC.ViewModels
                     stringBuilder.Append(languageModel.Language).Append(", ");
             }
             foreach (LanguageModel languageModel in NPCModel.MonstrousLanguages)
+            {
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
+            }
+            foreach (LanguageModel languageModel in NPCModel.UserLanguages)
             {
                 if (languageModel.Selected == true)
                     stringBuilder.Append(languageModel.Language).Append(", ");
