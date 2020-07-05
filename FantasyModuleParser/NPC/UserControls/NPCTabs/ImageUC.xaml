@@ -71,7 +71,7 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         <Label Content="NPC Image:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"/>
-        <TextBox Name="strNPCImage" Text="{Binding NPCImage}" Padding="5,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="15">
+        <TextBox Name="strNPCImage" Text="{Binding NPCImage}" MouseDoubleClick="strNPCImage_MouseDoubleClick" Padding="5,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="15">
             <TextBox.ToolTip>
                 <TextBlock>
                     Double click to select the file location to the JPG image used for the NPC.
