@@ -36,26 +36,6 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string ConditionImmunities { get; set; }
         public string Languages { get; set; }
         public string Challenge { get; set; }
-        public string TraitName1 { get; set; }
-        public string TraitDesc1 { get; set; }
-        public string TraitName2 { get; set; }
-        public string TraitDesc2 { get; set; }
-        public string TraitName3 { get; set; }
-        public string TraitDesc3 { get; set; }
-        public string TraitName4 { get; set; }
-        public string TraitDesc4 { get; set; }
-        public string TraitName5 { get; set; }
-        public string TraitDesc5 { get; set; }
-        public string TraitName6 { get; set; }
-        public string TraitDesc6 { get; set; }
-        public string TraitName7 { get; set; }
-        public string TraitDesc7 { get; set; }
-        public string TraitName8 { get; set; }
-        public string TraitDesc8 { get; set; }
-        public string TraitName9 { get; set; }
-        public string TraitDesc9 { get; set; }
-        public string TraitName10 { get; set; }
-        public string TraitDesc10 { get; set; }
         public string InnateSpellcastingLabel { get; set; }
         public string InnateSpellcasting { get; set; }
         public string SpellcastingLabel { get; set; }
@@ -142,6 +122,8 @@ namespace FantasyModuleParser.NPC.ViewModels
             ConditionImmunities = UpdateConditionImmunities();
             Languages = UpdateLanguages();
             Challenge = UpdateChallengeRating();
+            InnateSpellcastingLabel = UpdateInnateSpellcastingLabel();
+            InnateSpellcasting = UpdateInnateSpellcasting();
         }
 
         #region UpdateAbilityScores
@@ -662,7 +644,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get 
             {
-                if (NPCModel.InnateAtWill != null)
+                if (NPCModel.InnateAtWill != null && NPCModel.InnateAtWill.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -671,7 +653,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.FivePerDay != null)
+                if (NPCModel.FivePerDay != null && NPCModel.FivePerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -680,7 +662,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.FourPerDay != null)
+                if (NPCModel.FourPerDay != null && NPCModel.FourPerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -689,7 +671,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.ThreePerDay != null)
+                if (NPCModel.ThreePerDay != null && NPCModel.ThreePerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -698,7 +680,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.TwoPerDay != null)
+                if (NPCModel.TwoPerDay != null && NPCModel.TwoPerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -707,7 +689,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.OnePerDay != null)
+                if (NPCModel.OnePerDay != null && NPCModel.OnePerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
