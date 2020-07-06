@@ -38,6 +38,9 @@ namespace FantasyModuleParser.NPC.Views
             setupPropertyChangedEventForLanguages(viewModel.NPCModel.ExoticLanguages);
             setupPropertyChangedEventForLanguages(viewModel.NPCModel.MonstrousLanguages);
             // Custom method for UserLanguages, as the user can add / remove languages at will
+            if(viewModel.NPCModel.UserLanguages == null)
+                viewModel.NPCModel.UserLanguages = new ObservableCollection<LanguageModel>();
+            
             viewModel.NPCModel.UserLanguages.CollectionChanged += (sender, e) =>
             {
                 if (e.NewItems != null)
