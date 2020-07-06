@@ -122,8 +122,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		private void SaveNPCToFile(object sender, RoutedEventArgs e)
 		{
-		
-			NPCModel npcModel = ((App)Application.Current).NpcModel;
+
+			NPCModel npcModel = npcController.GetNPCModel();
 			string savePath = Path.Combine(installPath, installFolder, npcModel.NPCName + ".json");
 
 			((App)Application.Current).NpcModel = npcModel;
@@ -132,11 +132,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 		private void NewNPC_Click(object sender, RoutedEventArgs e)
 		{
-			NPCModel npcModel = npcController.GetNPCModel();
-			DataContext = npcModel;
+			npcController.ClearNPCModel();
+			DataContext = npcController.GetNPCModel();
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
 			TraitsUserControl.Refresh();
+			InnateCastingUserControl.Refresh();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -161,6 +162,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				BaseStatsUserControl.Refresh();
 				SkillsUserControl.Refresh();
 				TraitsUserControl.Refresh();
+				InnateCastingUserControl.Refresh();
 			}
 		}
 

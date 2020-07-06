@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
-    <Grid>
+    <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="80" Margin="10,40,0,0" VerticalAlignment="Top" Width="580"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="220" Margin="10,125,0,0" VerticalAlignment="Top" Width="580"/>
         <StackPanel Orientation="Vertical">

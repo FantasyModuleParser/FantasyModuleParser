@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using FantasyModuleParser.NPC.ViewModels;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
@@ -19,9 +20,6 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     /// </summary>
     public partial class InnateCastingUC : UserControl
     {
-        #region Controllers
-        public NPCController npcController { get; set; }
-        #endregion
         #region Methods
         private void InnateSpellcasting_Click(object sender, RoutedEventArgs e)
         {
@@ -33,11 +31,19 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             e.Handled = regex.IsMatch(e.Text);
         }
         #endregion
+
+        private NPCController npcController;
         public InnateCastingUC()
         {
             InitializeComponent();
             npcController = new NPCController();
             DataContext = npcController.GetNPCModel();
+        }
+
+        public void Refresh()
+        {
+            DataContext = npcController.GetNPCModel();
+            //(DataContext as InnateSpellcastingViewModel).Refresh()k;
         }
     }
 }
