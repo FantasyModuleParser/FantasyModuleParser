@@ -22,14 +22,14 @@ namespace FantasyModuleParser.Main
             this.Close();
         }
 
-        private void btn_OpenModuleFilePath(object sender, RoutedEventArgs e)
+        private void OpenModuleFilePath(object sender, RoutedEventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Custom Description";
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Description = "Custom Description";
 
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string sSelectedPath = fbd.SelectedPath;
+                string sSelectedPath = folderBrowserDialog.SelectedPath;
                 ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
                 viewModel.ModuleModel.ModulePath = sSelectedPath;
                 ModulePathTB.Text = sSelectedPath;
@@ -58,12 +58,12 @@ namespace FantasyModuleParser.Main
 
         private void SaveToModule_Click(object sender, RoutedEventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Select which folder to save the Project Module data to";
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Description = "Select which folder to save the Project Module data to";
 
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string sSelectedPath = fbd.SelectedPath;
+                string sSelectedPath = folderBrowserDialog.SelectedPath;
                 ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
                 viewModel.SaveModule(sSelectedPath, viewModel.ModuleModel);
             }

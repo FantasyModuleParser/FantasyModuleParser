@@ -129,8 +129,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap" />
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -233,8 +233,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -258,8 +258,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -283,8 +283,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -308,8 +308,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

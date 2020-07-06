@@ -98,11 +98,7 @@
                     <CheckBox Content="Add Module Name to Path" Padding="0" FontSize="8" Margin="120,20,0,0" VerticalContentAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=ModuleModel.ModulePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Padding="0" Width="300" Margin="30,5,0,0"/>
-                    <Button Name="btn_Folder1" Click="btn_OpenModuleFilePath" Width="15" Height="15" BorderThickness="0"  
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="5,7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0">
-                        <Image Source="/Resources/Folder.png" />
-                    </Button>
+                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=ModuleModel.ModulePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MouseDoubleClick="OpenModuleFilePath" Padding="0" Width="300" Margin="30,5,0,0"/>
                 </StackPanel>
                 <!--
                 Module filepaths are not required unless we save off images to 

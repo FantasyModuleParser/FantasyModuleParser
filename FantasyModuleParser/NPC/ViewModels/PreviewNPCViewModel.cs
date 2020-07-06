@@ -594,6 +594,11 @@ namespace FantasyModuleParser.NPC.ViewModels
                 if (languageModel.Selected == true)
                     stringBuilder.Append(languageModel.Language).Append(", ");
             }
+            foreach (LanguageModel languageModel in NPCModel.UserLanguages)
+            {
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
+            }
             if (stringBuilder.Length >= 2)
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             return stringBuilder.ToString().Trim();
