@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FantasyModuleParser.NPC.ViewModels;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace FantasyModuleParser.Main
 {
@@ -19,13 +10,80 @@ namespace FantasyModuleParser.Main
     /// </summary>
     public partial class ProjectManagement : Window
     {
+        private ProjectManagementViewModel projectManagementViewModel;
         public ProjectManagement()
         {
             InitializeComponent();
+            projectManagementViewModel = new ProjectManagementViewModel();
+            DataContext = projectManagementViewModel;
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void OpenModuleFilePath(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Description = "Custom Description";
+
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string sSelectedPath = folderBrowserDialog.SelectedPath;
+                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+                viewModel.ModuleModel.ModulePath = sSelectedPath;
+                ModulePathTB.Text = sSelectedPath;
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+            viewModel.UpdateModule();
+        }
+
+        private void SaveModule_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+            if (viewModel.ModuleModel.SaveFilePath == null || viewModel.ModuleModel.SaveFilePath.Length <= 0)
+                SaveToModule_Click(sender, e);
+            else
+                viewModel.SaveModule(viewModel.ModuleModel.SaveFilePath, viewModel.ModuleModel);
+        }
+        private void SaveModuleAndClose_Click(object sender, RoutedEventArgs e)
+        {
+            SaveModule_Click(sender, e);
+            ESExit_Click(sender, e);
+        }
+
+        private void SaveToModule_Click(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Description = "Select which folder to save the Project Module data to";
+
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string sSelectedPath = folderBrowserDialog.SelectedPath;
+                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+                viewModel.SaveModule(sSelectedPath, viewModel.ModuleModel);
+            }
+        }
+
+        private void LoadModule_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+                viewModel.LoadModule(openFileDlg.FileName);
+                DataContext = viewModel;
+            }
         }
     }
 }

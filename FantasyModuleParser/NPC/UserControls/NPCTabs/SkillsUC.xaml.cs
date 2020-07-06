@@ -63,6 +63,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             {
                 npcModel.MonstrousLanguages = languageController.GenerateMonsterLanguages();
             }
+            if (npcModel.UserLanguages == null || npcModel.UserLanguages.Count == 0)
+            {
+                npcModel.UserLanguages = languageController.GenerateUserLanguages();
+            }
             return npcModel;
         }
     }

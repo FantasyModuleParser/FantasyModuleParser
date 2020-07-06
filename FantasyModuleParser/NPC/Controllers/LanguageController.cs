@@ -14,6 +14,7 @@ namespace FantasyModuleParser.NPC.Controllers
         {
             ObservableCollection<LanguageModel> langs = new ObservableCollection<LanguageModel>();
             langs.Add(new LanguageModel("Common"));
+            langs.Add(new LanguageModel("Drow Sign"));
             langs.Add(new LanguageModel("Dwarvish"));
             langs.Add(new LanguageModel("Elvish"));
             langs.Add(new LanguageModel("Giant"));
@@ -32,6 +33,8 @@ namespace FantasyModuleParser.NPC.Controllers
             langs.Add(new LanguageModel("Abyssal"));
             langs.Add(new LanguageModel("Aquan"));
             langs.Add(new LanguageModel("Auran"));
+            langs.Add(new LanguageModel("Beastspeech"));
+            langs.Add(new LanguageModel("Druidic"));
             langs.Add(new LanguageModel("Celestial"));
             langs.Add(new LanguageModel("Deep Speech"));
             langs.Add(new LanguageModel("Draconic"));
@@ -50,7 +53,7 @@ namespace FantasyModuleParser.NPC.Controllers
             ObservableCollection<LanguageModel> langs = new ObservableCollection<LanguageModel>();
 
             langs.Add(new LanguageModel("Aarakocra"));
-            langs.Add(new LanguageModel("Bullywug"));        
+            langs.Add(new LanguageModel("Bullywug"));
             langs.Add(new LanguageModel("Gith"));
             langs.Add(new LanguageModel("Gnoll"));
             langs.Add(new LanguageModel("Grell"));
@@ -72,6 +75,10 @@ namespace FantasyModuleParser.NPC.Controllers
 
             return langs;
         }
-
+        public ObservableCollection<LanguageModel> GenerateUserLanguages()
+        {
+            ObservableCollection<LanguageModel> langs = new ObservableCollection<LanguageModel>();
+            return langs;
+        }
     }
 }

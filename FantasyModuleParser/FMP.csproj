@@ -138,6 +138,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -181,15 +182,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Main\UserControls\CategoriesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\ArtifactsSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\EquipmentSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\NPCSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\ParcelSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\SpellSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\SuiteSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\TablesSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\UserLanguagesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\Views\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\Views\EditDeleteNPC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\ManageCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NPC\UserControls\NPCTabs\DescriptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\NPCTabs\ImageUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,17 +338,44 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exporters\FantasyGroundsExporter.cs" />
+    <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
+    <Compile Include="Main\Services\ModuleService.cs" />
+    <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
+      <DependentUpon>CategoriesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\ArtifactsSettingsUC.xaml.cs">
+      <DependentUpon>ArtifactsSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\EquipmentSettingsUC.xaml.cs">
+      <DependentUpon>EquipmentSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\NPCSettingsUC.xaml.cs">
+      <DependentUpon>NPCSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\ParcelSettingsUC.xaml.cs">
+      <DependentUpon>ParcelSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\SpellSettingsUC.xaml.cs">
+      <DependentUpon>SpellSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\SuiteSettingsUC.xaml.cs">
+      <DependentUpon>SuiteSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\TablesSettingsUC.xaml.cs">
+      <DependentUpon>TablesSettingsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
+      <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPC.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\EditDeleteNPC.xaml.cs">
       <DependentUpon>EditDeleteNPC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\ManageCategories.xaml.cs">
-      <DependentUpon>ManageCategories.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\ProjectManagement.xaml.cs">
       <DependentUpon>ProjectManagement.xaml</DependentUpon>
@@ -323,7 +387,6 @@
       <DependentUpon>Supporters.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Controllers\ActionController.cs" />
-    <Compile Include="NPC\Controllers\ControllerBase.cs" />
     <Compile Include="NPC\Controllers\LanguageController.cs" />
     <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
     <Compile Include="NPC\Models\Action\DamageTypeModel.cs" />
@@ -335,6 +398,7 @@
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
+    <Compile Include="NPC\Models\ModuleModel.cs" />
     <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
@@ -350,6 +414,9 @@
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\DescriptionUC.xaml.cs">
       <DependentUpon>DescriptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\ImageUC.xaml.cs">
+      <DependentUpon>ImageUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml.cs">
       <DependentUpon>InnateCastingUC.xaml</DependentUpon>
@@ -369,12 +436,17 @@
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\ViewModels\InnateSpellcastingViewModel.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
+    <Compile Include="NPC\ViewModels\ProjectManagementViewModel.cs" />
     <Compile Include="NPC\Views\DiceFunction.xaml.cs">
       <DependentUpon>DiceFunction.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
       <DependentUpon>PreviewNPC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\UserCreationManagement.xaml.cs">
+      <DependentUpon>UserCreationManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
@@ -420,6 +492,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NPC\Views\Action\Reaction\Reactions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\UserCreationManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

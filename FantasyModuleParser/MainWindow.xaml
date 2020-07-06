@@ -11,7 +11,7 @@
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
             <MenuItem Header="_Options">
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ManageProject" />
-                <MenuItem Header="_Create Module" />
+                <MenuItem Header="_Create Module" Click="CreateModule_Click"/>
                 <Separator />
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
                 <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" />
