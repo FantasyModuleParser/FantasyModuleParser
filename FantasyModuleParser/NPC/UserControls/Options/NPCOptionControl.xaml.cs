@@ -138,8 +138,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 		private void NewNPC_Click(object sender, RoutedEventArgs e)
 		{
-			NPCModel npcModel = npcController.GetNPCModel();
-			DataContext = npcModel;
+			npcController.ClearNPCModel();
+			DataContext = npcController.GetNPCModel();
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
 			TraitsUserControl.Refresh();
