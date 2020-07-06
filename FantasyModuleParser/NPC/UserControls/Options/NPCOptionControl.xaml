@@ -99,12 +99,12 @@
             </TabItem>
             <TabItem Header="Innate/Psionics">
                 <Grid Background="#FFE5E5E5">
-                    <InnateCastingUserControl:InnateCastingUC x:Name="InnateCastingUserControl"></InnateCastingUserControl:InnateCastingUC>
+                    <InnateCastingUserControl:InnateCastingUC x:Name="InnateCastingUserControl" />
                 </Grid>
             </TabItem>
             <TabItem Header="Casting">
                 <Grid Background="#FFE5E5E5">
-                    <SpellcastingUserControl:SpellcastingUC x:Name="SpellcastingUserControl"></SpellcastingUserControl:SpellcastingUC>
+                    <SpellcastingUserControl:SpellcastingUC x:Name="SpellcastingUserControl" />
                 </Grid>
             </TabItem>
             <TabItem Header="Actions">
