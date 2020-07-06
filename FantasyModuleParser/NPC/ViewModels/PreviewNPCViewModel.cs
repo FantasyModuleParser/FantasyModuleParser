@@ -122,6 +122,8 @@ namespace FantasyModuleParser.NPC.ViewModels
             ConditionImmunities = UpdateConditionImmunities();
             Languages = UpdateLanguages();
             Challenge = UpdateChallengeRating();
+            InnateSpellcastingLabel = UpdateInnateSpellcastingLabel();
+            InnateSpellcasting = UpdateInnateSpellcasting();
         }
 
         #region UpdateAbilityScores
@@ -647,7 +649,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get 
             {
-                if (NPCModel.InnateAtWill != null)
+                if (NPCModel.InnateAtWill != null && NPCModel.InnateAtWill.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -656,7 +658,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.FivePerDay != null)
+                if (NPCModel.FivePerDay != null && NPCModel.FivePerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -665,7 +667,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.FourPerDay != null)
+                if (NPCModel.FourPerDay != null && NPCModel.FourPerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -674,7 +676,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.ThreePerDay != null)
+                if (NPCModel.ThreePerDay != null && NPCModel.ThreePerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -683,7 +685,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.TwoPerDay != null)
+                if (NPCModel.TwoPerDay != null && NPCModel.TwoPerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -692,7 +694,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.OnePerDay != null)
+                if (NPCModel.OnePerDay != null && NPCModel.OnePerDay.Length > 0)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
