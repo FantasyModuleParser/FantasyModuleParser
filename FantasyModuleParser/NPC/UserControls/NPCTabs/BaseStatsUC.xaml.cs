@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static FantasyModuleParser.Extensions.EnumerationExtension;
+using Microsoft.Win32;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
@@ -144,6 +145,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		private void DiceRoller_Click(object sender, RoutedEventArgs e)
 		{
 			new DiceFunction().Show();
+		}
+
+		private void strNPCToken_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+			if (openFileDialog.ShowDialog() == true)
+				strNPCToken.Text = openFileDialog.FileName;
 		}
 	}
 }

@@ -258,6 +258,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\NPCTabs\ImageUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -410,6 +414,9 @@
     <Compile Include="NPC\UserControls\NPCTabs\DescriptionUC.xaml.cs">
       <DependentUpon>DescriptionUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\UserControls\NPCTabs\ImageUC.xaml.cs">
+      <DependentUpon>ImageUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml.cs">
       <DependentUpon>InnateCastingUC.xaml</DependentUpon>
     </Compile>
@@ -428,6 +435,7 @@
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\ViewModels\InnateSpellcastingViewModel.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
     <Compile Include="NPC\ViewModels\ProjectManagementViewModel.cs" />
     <Compile Include="NPC\Views\DiceFunction.xaml.cs">
