@@ -5,6 +5,7 @@
   "Tag": "(quaggoth)",
   "Alignment": "neutral good",
   "AC": "15",
+  "ACText": "(natural armor)",
   "HP": "123 (10d8+84)",
   "NPCGender": "male",
   "Unique": true,

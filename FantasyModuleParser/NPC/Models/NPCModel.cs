@@ -90,6 +90,7 @@ namespace FantasyModuleParser.NPC
         public string Tag { get; set; }
         public string Alignment { get; set; }
         public string AC { get; set; }
+        public string ACText { get; set; }
         public string HP { get; set; }
         public string NPCGender { get; set; }
         public bool Unique { get; set; }

@@ -258,14 +258,23 @@
             </ComboBox.ToolTip>
         </ComboBox>
         <Label Content="Armor Class:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="21" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="8" />
-        <TextBox Name="strAC" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
+        <TextBox Name="strAC" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="4">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's armor class.
 					<LineBreak />
+					<Bold>Example:</Bold> 12
+                </TextBlock>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBox Name="strACText" Text="{Binding Path=ACText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="16" Grid.ColumnSpan="16">
+            <TextBox.ToolTip>
+                <TextBlock>
+					Enter the NPC's armor class text.
+					<LineBreak />
 					You can also enter the armor type in brackets.
 					<LineBreak />
-					<Bold>Example:</Bold> 12 (leather armor)
+					<Bold>Example:</Bold> (leather armor)
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
