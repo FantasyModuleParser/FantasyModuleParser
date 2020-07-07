@@ -72,18 +72,18 @@ namespace FantasyModuleParser.Exporters
                 xmlWriter.WriteAttributeString("version", "4");
                 xmlWriter.WriteAttributeString("dataversion", "20200528");
                 xmlWriter.WriteAttributeString("release", "8|CoreRPG:4");
-
+                xmlWriter.WriteStartElement("npc");
                 //Now, write out each NPC with id-####
                 foreach (NPCModel npcModel in moduleModel.NPCModels)
                 {
-                    xmlWriter.WriteStartElement("npc");
-                    xmlWriter.WriteStartElement(npcModel.NPCName.ToLower());
                     
+                    xmlWriter.WriteStartElement(npcModel.NPCName.ToLower()); // Open <npcModel.NPCName>
                     //Put together all the innards of the NPC to XML
-                    
                     WriteAbilities(xmlWriter, npcModel);
                     WriteAC(xmlWriter, npcModel);
                     WriteActions(xmlWriter, npcModel);
+                    WriteAlignment(xmlWriter, npcModel);
+                    WriteConditionImmunities(xmlWriter, npcModel);
                     WriteHP(xmlWriter, npcModel);
                     WriteInnateSpells(xmlWriter, npcModel);
                     WriteLairActions(xmlWriter, npcModel);
@@ -98,9 +98,9 @@ namespace FantasyModuleParser.Exporters
                     WriteXP(xmlWriter, npcModel);
 
                     xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
-                    xmlWriter.WriteEndElement(); // Closes </npc>
+                    
                 }
-
+                xmlWriter.WriteEndElement(); // Closes </npc>
                 xmlWriter.WriteEndElement(); // Closes </root>
                 xmlWriter.WriteEndDocument();
                 xmlWriter.Close();
@@ -155,108 +155,120 @@ namespace FantasyModuleParser.Exporters
             else
                 WisModifier = "-";
 
-            xmlWriter.WriteStartElement("abilities");
-            xmlWriter.WriteStartElement("charisma");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(ChaBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(ChaModifier + ChaBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeCha);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("constitution");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(ConBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(ConModifier + ConBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeCon);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("dexterity");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(DexBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(DexModifier + DexBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeDex);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("intelligence");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(IntBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(IntModifier + IntBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeInt);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("strength");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(StrBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(StrModifier + StrBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeStr);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("wisdom");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(WisBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(WisModifier + WisBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeWis);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("abilities"); // Open <abilities>
+            xmlWriter.WriteStartElement("charisma"); // Open <charisma>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(ChaBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(ChaModifier + ChaBonus); // Add bonus value with + or -
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeCha); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </charisma>
+            xmlWriter.WriteStartElement("constitution"); // Open <constitution>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(ConBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(ConModifier + ConBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeCon); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </constitution>
+            xmlWriter.WriteStartElement("dexterity"); // Open <dexterity>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(DexBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(DexModifier + DexBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeDex); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </dexterity>
+            xmlWriter.WriteStartElement("intelligence"); // Open <intelligence>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(IntBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(IntModifier + IntBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeInt); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </intelligence>
+            xmlWriter.WriteStartElement("strength"); // Open <strength>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(StrBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(StrModifier + StrBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeStr); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </strength>
+            xmlWriter.WriteStartElement("wisdom"); // Open <wisdom>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(WisBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(WisModifier + WisBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeWis); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </intelligence>
+            xmlWriter.WriteEndElement(); // Close </abilities>
         }
 
         
         private void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
         {
-            xmlWriter.WriteStartElement("ac");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AC);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("actext");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(npcModel.ACText);
-            xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("ac"); // Open <ac>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type=number
+            xmlWriter.WriteValue(npcModel.AC); // Add AC value
+            xmlWriter.WriteEndElement(); // Close </ac>
+            xmlWriter.WriteStartElement("actext"); // Open <actext>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(npcModel.ACText); // Add AC Text string
+            xmlWriter.WriteEndElement(); // Close </actext>
         }
 
         private void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            xmlWriter.WriteStartElement("actions");
+
+            xmlWriter.WriteEndElement();
+        }
+
+        private void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+
+        private void WriteConditionImmunities(XmlWriter xmlWriter, NPCModel npcModel)
         {
 
         }
