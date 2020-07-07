@@ -26,6 +26,8 @@ namespace FantasyModuleParser.NPC.Controllers
 			return _npcModel;
 		}
 
+		public void ClearNPCModel() { NPCController._npcModel = InitializeNPCModel(); }
+
 		public void Save(string path, NPCModel npcModel)
 		{
 			using (StreamWriter file = File.CreateText(@path))

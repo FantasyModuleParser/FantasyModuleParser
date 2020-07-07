@@ -68,6 +68,20 @@ namespace FantasyModuleParser.NPC
         private int _sleightOfHand;
         private int _stealth;
         private int _survival;
+        #region Innate Spellcasting
+        private bool _innateSpellcastingSection;
+        private bool _markAsPsionics;
+        private string _innateSpellcastingAbility;
+        private int _innateSpellSaveDC;
+        private int _innaateSpellHitBonus;
+        private string _innateComponentText;
+        private string _innateAtWill;
+        private string _innateOnePerDay;
+        private string _innateTwoPerDay;
+        private string _innateThreePerDay;
+        private string _innateFourPerDay;
+        private string _innateFivePerDay;
+        #endregion
         #endregion
         #region Public Variables
         public string NPCName { get; set; }
@@ -150,42 +164,21 @@ namespace FantasyModuleParser.NPC
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
         public string TelepathyRange { get; set; }
-        public string Traits1 { get; set; }
-        public string TraitsDesc1 { get; set; }
-        public string Traits2 { get; set; }
-        public string TraitsDesc2 { get; set; }
-        public string Traits3 { get; set; }
-        public string TraitsDesc3 { get; set; }
-        public string Traits4 { get; set; }
-        public string TraitsDesc4 { get; set; }
-        public string Traits5 { get; set; }
-        public string TraitsDesc5 { get; set; }
-        public string Traits6 { get; set; }
-        public string TraitsDesc6 { get; set; }
-        public string Traits7 { get; set; }
-        public string TraitsDesc7 { get; set; }
-        public string Traits8 { get; set; }
-        public string TraitsDesc8 { get; set; }
-        public string Traits9 { get; set; }
-        public string TraitsDesc9 { get; set; }
-        public string Traits10 { get; set; }
-        public string TraitsDesc10 { get; set; }
-        public string Traits11 { get; set; }
-        public string TraitsDesc11 { get; set; }
-        public bool InnateSpellcastingSection { get; set; }
-        public bool Psionics { get; set; }
-        public string InnateSpellcastingAbility { get; set; }
+        public ObservableCollection<ActionModelBase> Traits { get; set; }
+        public bool InnateSpellcastingSection { get { return _innateSpellcastingSection; } set { Set(ref _innateSpellcastingSection, value); } }
+        public bool Psionics { get { return _markAsPsionics; } set { Set(ref _markAsPsionics, value); } }
+        public string InnateSpellcastingAbility { get { return _innateSpellcastingAbility; } set { Set(ref _innateSpellcastingAbility, value); } }
         public bool InnateSpellSaveDCCheck { get; set; }
-        public int InnateSpellSaveDC { get; set; }
+        public int InnateSpellSaveDC { get { return _innateSpellSaveDC; } set { Set(ref _innateSpellSaveDC, value); } }
         public bool InnateSpellHitBonusCheck { get; set; }
-        public int InnateSpellHitBonus { get; set; }
-        public string ComponentText { get; set; }
-        public string InnateAtWill { get; set; }
-        public string FivePerDay { get; set; }
-        public string FourPerDay { get; set; }
-        public string ThreePerDay { get; set; }
-        public string TwoPerDay { get; set; }
-        public string OnePerDay { get; set; }
+        public int InnateSpellHitBonus { get { return _innaateSpellHitBonus; } set { Set(ref _innaateSpellHitBonus, value); } }
+        public string ComponentText { get { return _innateComponentText; } set { Set(ref _innateComponentText, value); } }
+        public string InnateAtWill { get { return _innateAtWill; } set { Set(ref _innateAtWill, value); } }
+        public string FivePerDay { get { return _innateFivePerDay; } set { Set(ref _innateFivePerDay, value); } }
+        public string FourPerDay { get { return _innateFourPerDay; } set { Set(ref _innateFourPerDay, value); } }
+        public string ThreePerDay { get { return _innateThreePerDay; } set { Set(ref _innateThreePerDay, value); } }
+        public string TwoPerDay { get { return _innateTwoPerDay; } set { Set(ref _innateTwoPerDay, value); } }
+        public string OnePerDay { get { return _innateOnePerDay; } set { Set(ref _innateOnePerDay, value); } }
         public bool SpellcastingSection { get; set; }
         public string SpellcastingCasterLevel { get; set; }
         public string SCSpellcastingAbility { get; set; }

@@ -53,7 +53,7 @@ namespace FantasyModuleParser.NPC.Controllers
             ObservableCollection<LanguageModel> langs = new ObservableCollection<LanguageModel>();
 
             langs.Add(new LanguageModel("Aarakocra"));
-            langs.Add(new LanguageModel("Bullywug"));        
+            langs.Add(new LanguageModel("Bullywug"));
             langs.Add(new LanguageModel("Gith"));
             langs.Add(new LanguageModel("Gnoll"));
             langs.Add(new LanguageModel("Grell"));
@@ -75,6 +75,10 @@ namespace FantasyModuleParser.NPC.Controllers
 
             return langs;
         }
-
+        public ObservableCollection<LanguageModel> GenerateUserLanguages()
+        {
+            ObservableCollection<LanguageModel> langs = new ObservableCollection<LanguageModel>();
+            return langs;
+        }
     }
 }

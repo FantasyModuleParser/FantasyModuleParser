@@ -119,46 +119,23 @@
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,5,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,5,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits7, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName7, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc7, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits8, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName8, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc8, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits9, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName9, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc9, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" Visibility="{Binding Path=ShowTraits10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Label Content="{Binding Path=TraitName10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
-                    <TextBlock Text="{Binding Path=TraitDesc10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Padding="5,0,0,0" TextWrapping="Wrap"/>
-                </WrapPanel>
+                <StackPanel Orientation="Vertical">
+                    <ItemsControl Name="NpcTraitList" ItemsSource="{Binding Path=NPCModel.Traits}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!--<overviewUserControl:OverviewControl ShowEditButton="Hidden"></overviewUserControl:OverviewControl>-->
+                                <StackPanel Orientation="Vertical">
+                                    <!--<Bold>
+                                        <Label Content="{Binding Path=ActionName}" />
+                                    </Bold>
+                                    <Label> :: </Label>-->
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
                 <WrapPanel Orientation="Vertical" Visibility="{Binding Path=ShowInnateSpellcasting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                     <WrapPanel Orientation="Horizontal">
                         <Label Content="{Binding Path=InnateSpellcastingLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0" Padding="5,0,0,0"/>
@@ -256,8 +233,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -281,8 +258,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -306,8 +283,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -331,8 +308,8 @@
                                         <Label Content="{Binding Path=ActionName}" />
                                     </Bold>
                                     <Label> :: </Label>-->
-                                    <TextBlock Text="{Binding Path=ActionName}" />
-                                    <TextBlock Text="{Binding Path=ActionDescription}" />
+                                    <TextBlock Text="{Binding Path=ActionName}" FontStyle="Italic" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=ActionDescription}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

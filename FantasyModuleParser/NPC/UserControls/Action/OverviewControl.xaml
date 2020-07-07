@@ -45,6 +45,6 @@
                 <Image Source="/Resources/down_arrow.png" />
             </Button>
         </Grid>
-        <TextBox  Grid.RowSpan="3" Grid.Column="2" IsReadOnly="True" TextWrapping="WrapWithOverflow" Text="{Binding ActionDescription}" />
+        <TextBox  Grid.RowSpan="3" Grid.Column="2" IsReadOnly="False" TextWrapping="WrapWithOverflow" Text="{Binding ActionDescription}" />
     </Grid>
 </UserControl>
