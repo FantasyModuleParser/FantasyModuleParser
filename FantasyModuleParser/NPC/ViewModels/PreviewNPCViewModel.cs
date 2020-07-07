@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.NPC.Controllers;
+﻿using FantasyModuleParser.Extensions;
+using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.NPC.ViewModel;

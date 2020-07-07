@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models;
+using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -84,6 +86,8 @@ namespace FantasyModuleParser.Exporters
                     WriteActions(xmlWriter, npcModel);
                     WriteAlignment(xmlWriter, npcModel);
                     WriteConditionImmunities(xmlWriter, npcModel);
+                    WriteCR(xmlWriter, npcModel);
+                    WriteDamageImmunities(xmlWriter, npcModel);
                     WriteHP(xmlWriter, npcModel);
                     WriteInnateSpells(xmlWriter, npcModel);
                     WriteLairActions(xmlWriter, npcModel);
@@ -258,19 +262,79 @@ namespace FantasyModuleParser.Exporters
 
         private void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
         {
-            xmlWriter.WriteStartElement("actions");
-
-            xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("actions"); // Open <actions>
+            int actionID = 1;
+            foreach (ActionModelBase action in npcModel.NPCActions)
+            {
+                xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
+                xmlWriter.WriteStartElement("desc"); // Open <desc>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(action.ActionDescription); // Add Action Description
+                xmlWriter.WriteEndElement(); // Close </desc>
+                xmlWriter.WriteStartElement("name"); // Open <name>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(action.ActionName); // Add Action Name
+                xmlWriter.WriteEndElement(); // Close </name>
+                xmlWriter.WriteEndElement(); // Close </id-####>
+                actionID = ++ actionID;
+            }
+                xmlWriter.WriteEndElement(); // Close </actions>
         }
 
         private void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("alignment"); // Open <alignment>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteString(npcModel.Alignment); // Add alignment string
+            xmlWriter.WriteEndElement(); // Close </alignment>
         }
 
         private void WriteConditionImmunities(XmlWriter xmlWriter, NPCModel npcModel)
         {
+            StringBuilder stringBuilder = new StringBuilder();
+            xmlWriter.WriteStartElement("conditionimmunities"); // Open <conditionimmunities>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            
+            foreach (SelectableActionModel condition in npcModel.ConditionImmunityModelList)
+            {
+                if (condition.Selected == true)
+                    stringBuilder.Append(condition.ActionDescription.ToLower()).Append(", ");
+            }
+            if (npcModel.ConditionOther == true)
+            {
+                stringBuilder.Append(npcModel.ConditionOtherText.ToLower() + ", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
 
+            xmlWriter.WriteValue(stringBuilder.ToString().Trim());
+            xmlWriter.WriteEndElement(); // Close </conditionimmunities>
+        }
+        
+        private void WriteCR(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            xmlWriter.WriteStartElement("cr"); // Open <cr>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteString(npcModel.ChallengeRating); // Add CR string
+            xmlWriter.WriteEndElement(); // Close </cr>
+        }
+
+        private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            xmlWriter.WriteStartElement("damageimmunities"); // Open <damageimmunities>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+
+            foreach (SelectableActionModel damageImmunities in npcModel.DamageImmunityModelList)
+            {
+                if (damageImmunities.Selected == true)
+                    stringBuilder.Append(damageImmunities.ActionDescription.ToLower()).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+
+            xmlWriter.WriteValue(stringBuilder.ToString().Trim());
+            xmlWriter.WriteEndElement(); // Close </damageimmunities>
         }
 
         private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
