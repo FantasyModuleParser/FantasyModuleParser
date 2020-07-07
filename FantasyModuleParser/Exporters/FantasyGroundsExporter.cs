@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.NPC.Models;
+﻿using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -63,56 +64,159 @@ namespace FantasyModuleParser.Exporters
 
         public string GenerateDBXmlFile(ModuleModel moduleModel)
         {
-            //Blank Mod:
-            /*
-             *  <?xml version="1.0" encoding="utf-8"?>
-             *  <root version="4" dataversion="20200528" release="8|CoreRPG:4" />
-             */
+            using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
+            using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
+            {
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("root");
+                xmlWriter.WriteAttributeString("version", "4");
+                xmlWriter.WriteAttributeString("dataversion", "20200528");
+                xmlWriter.WriteAttributeString("release", "8|CoreRPG:4");
 
-            XmlDocument xml = new XmlDocument();
+                //Now, write out each NPC with id-####
+                int _idNumber = 1;
+                foreach (NPCModel npcModel in moduleModel.NPCModels)
+                {
+                    xmlWriter.WriteStartElement("npc");
+                    xmlWriter.WriteStartElement("id-" + _idNumber.ToString("D4"));
+                    
+                    //Put together all the innards of the NPC to XML
+                    
+                    WriteAbilities(xmlWriter, npcModel);
+                    WriteAC(xmlWriter, npcModel);
+                    WriteActions(xmlWriter, npcModel);
+                    WriteHP(xmlWriter, npcModel);
+                    WriteInnateSpells(xmlWriter, npcModel);
+                    WriteLairActions(xmlWriter, npcModel);
+                    WriteLegendaryActions(xmlWriter, npcModel);
+                    WriteName(xmlWriter, npcModel);
+                    WriteReactions(xmlWriter, npcModel);
+                    WriteSpells(xmlWriter, npcModel);
+                    WriteSpellSlots(xmlWriter, npcModel);
+                    WriteText(xmlWriter, npcModel);
+                    WriteToken(xmlWriter, npcModel);
+                    WriteTraits(xmlWriter, npcModel);
+                    WriteXP(xmlWriter, npcModel);
 
-            XmlElement rootElement = xml.CreateElement("root");
-            rootElement.SetAttribute("version", "4"); // Not sure how relevant this is
-            rootElement.SetAttribute("dataversion", DateTime.Now.ToString("yyyyMMdd", CultureInfo.InvariantCulture));
-            rootElement.SetAttribute("release", "8|CoreRPG:4");
-            xml.AppendChild(rootElement);
+                    xmlWriter.WriteEndElement(); // Closes </id-####>
+                    xmlWriter.WriteEndElement(); // Closes </npc>
+                }
 
-            return writeXmlDocumentToString(xml);
+                xmlWriter.WriteEndElement(); // Closes </root>
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Close();
+
+                return sw.ToString();
+            }
+        }
+
+        private void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+
+        private void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+
+        private void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+
+        private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+
+        private void WriteInnateSpells(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+
+        private void WriteLairActions(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteLegendaryActions(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteName(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteReactions(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteSpells(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteSpellSlots(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteText(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteToken(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+
+        }
+        private void WriteXP(XmlWriter xmlWriter, NPCModel npcModel)
+        {
 
         }
 
         public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
         {
-            XmlDocument xml = new XmlDocument();
+            using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
+            using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
+            {
+               
 
-            XmlElement rootElement = xml.CreateElement("root");
-            rootElement.SetAttribute("version", "4"); // Not sure how relevant this is
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("root");
+                xmlWriter.WriteAttributeString("version", "4");
 
-            xml.AppendChild(rootElement);
+                // <name>
+                xmlWriter.WriteStartElement("name");
+                xmlWriter.WriteString(moduleModel.Name);
+                xmlWriter.WriteEndElement();
 
-            XmlElement nameElement = xml.CreateElement("name");
-            nameElement.InnerText = moduleModel.Name;
+                // <category>
+                xmlWriter.WriteStartElement("category");
+                xmlWriter.WriteString(moduleModel.Category);
+                xmlWriter.WriteEndElement();
 
-            XmlElement categoryElement = xml.CreateElement("category");
-            categoryElement.InnerText = moduleModel.Category;
+                // <author>
+                xmlWriter.WriteStartElement("author");
+                xmlWriter.WriteString(moduleModel.Author);
+                xmlWriter.WriteEndElement();
 
-            XmlElement authorElement = xml.CreateElement("author");
-            authorElement.InnerText = moduleModel.Author;
+                // <ruleset>
+                xmlWriter.WriteStartElement("ruleset");
+                xmlWriter.WriteString("5E");
+                xmlWriter.WriteEndElement();
 
-            XmlElement ruleSetElement = xml.CreateElement("ruleset");
-            ruleSetElement.InnerText = "5E";
+                xmlWriter.WriteEndElement();
 
-            rootElement.AppendChild(nameElement);
-            rootElement.AppendChild(categoryElement);
-            rootElement.AppendChild(authorElement);
-            rootElement.AppendChild(ruleSetElement);
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Close();
 
-            xml.AppendChild(rootElement);
-
-            return writeXmlDocumentToString(xml);
+                return sw.ToString();
+            }
         }
 
-        private string writeXmlDocumentToString(XmlDocument xmlDocument)
+        private XmlWriterSettings GetXmlWriterSettings()
         {
             XmlWriterSettings settings = new XmlWriterSettings
             {
@@ -124,6 +228,12 @@ namespace FantasyModuleParser.Exporters
                 IndentChars = "  ",
                 NewLineHandling = NewLineHandling.Replace
             };
+
+            return settings;
+        }
+        private string writeXmlDocumentToString(XmlDocument xmlDocument)
+        {
+            XmlWriterSettings settings = GetXmlWriterSettings();
 
             string document = "";
             using (StringWriter sw = new StringWriterWithEncoding())

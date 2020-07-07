@@ -69,6 +69,12 @@ namespace FantasyModuleParser.NPC.Controllers
 			npcModel.SpecialWeaponResistanceModelList = GetSelectableActionModelList(typeof(WeaponResistance));
 			npcModel.SpecialWeaponDmgResistanceModelList = GetSelectableActionModelList(typeof(DamageType));
 
+			// Setup Langauges for passing Unit Tests
+			npcModel.StandardLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();
+			npcModel.MonstrousLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();
+			npcModel.ExoticLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();
+			npcModel.UserLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();
+
 			return npcModel;
 		}
 
