@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FantasyModuleParser.NPC.Models
+namespace FantasyModuleParser.Main.Models
 {
     public class ModuleModel
     {
@@ -19,9 +19,7 @@ namespace FantasyModuleParser.NPC.Models
         public bool IsGMOnly { get; set; }
         public bool IsLockedRecords { get; set; }
         public string ModulePath { get; set; }
-        public List<NPCModel> NPCModels { get; set; }
-        // Indicates the currently loaded NPC Model data object used in all NPC Engineer panels
-        List<NPCModel> LoadedNPCModel { get; set; }
+        public List<CategoryModel> Categories { get; set; }
 
     }
 }

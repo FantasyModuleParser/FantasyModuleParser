@@ -342,6 +342,7 @@
     <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
+    <Compile Include="Main\Models\CategoryModel.cs" />
     <Compile Include="Main\Services\ModuleService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
       <DependentUpon>CategoriesUC.xaml</DependentUpon>
@@ -397,7 +398,7 @@
     <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
-    <Compile Include="NPC\Models\ModuleModel.cs" />
+    <Compile Include="Main\Models\ModuleModel.cs" />
     <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>

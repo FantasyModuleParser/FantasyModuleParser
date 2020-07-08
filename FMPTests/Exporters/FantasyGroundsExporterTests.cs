@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FantasyModuleParser.NPC.Models;
 using FantasyModuleParser.Main.Services;
 using System.IO;
 using System.Reflection;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.Main.Models;
 
 namespace FantasyModuleParser.Exporters.Tests
 {
@@ -28,6 +28,9 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.Author = "Fredska";
             moduleModel.Category = "Supplement";
             moduleModel.ModulePath = "Path\\To\\Everything";
+
+            moduleModel.Categories = new List<CategoryModel>();
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Supplement" });
 
             exporter = new FantasyGroundsExporter();
         }
@@ -74,8 +77,9 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.ModulePath = 
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
-            moduleModel.NPCModels = new List<NPCModel>();
-            moduleModel.NPCModels.Add(npcModel);
+            moduleModel.Categories = new List<CategoryModel>();
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
+            moduleModel.Categories[0].NPCModels.Add(npcModel);
 
             // And finally, for the actual integration test run
             exporter.CreateModule(moduleModel);
@@ -86,16 +90,18 @@ namespace FantasyModuleParser.Exporters.Tests
         {
             string xmlContent = exporter.GenerateDBXmlFile(moduleModel);
 
-            string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+            string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                               "<root version=\"4\" dataversion=\"20200528\" release=\"8|CoreRPG:4\" />";
+
             Assert.AreEqual(expected, xmlContent);
         }
 
         public void Create_DBXml_OneNewNPC()
         {
             // For this test, load a newly initalized NPC into the ModuleModel data object
-            moduleModel.NPCModels = new List<NPCModel>();
-            moduleModel.NPCModels.Add(new NPCController().InitializeNPCModel());
+            moduleModel.Categories = new List<CategoryModel>();
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
+            moduleModel.Categories[0].NPCModels.Add(new NPCController().InitializeNPCModel());
 
             string xmlContent = exporter.GenerateDBXmlFile(moduleModel);
 

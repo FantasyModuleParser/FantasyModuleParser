@@ -1,4 +1,4 @@
-﻿using FantasyModuleParser.NPC.Models;
+﻿using FantasyModuleParser.Main.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
