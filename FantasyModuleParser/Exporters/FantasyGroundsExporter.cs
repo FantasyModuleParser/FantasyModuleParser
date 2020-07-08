@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models;
+using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -16,6 +18,9 @@ namespace FantasyModuleParser.Exporters
 {
     public class FantasyGroundsExporter : IExporter
     {
+        string Immunity;
+        string Resistance;
+
         public void CreateModule(ModuleModel moduleModel)
         {
             if (moduleModel.ModulePath == null || moduleModel.ModulePath.Length == 0)
@@ -72,18 +77,20 @@ namespace FantasyModuleParser.Exporters
                 xmlWriter.WriteAttributeString("version", "4");
                 xmlWriter.WriteAttributeString("dataversion", "20200528");
                 xmlWriter.WriteAttributeString("release", "8|CoreRPG:4");
-
+                xmlWriter.WriteStartElement("npc");
                 //Now, write out each NPC with id-####
                 foreach (NPCModel npcModel in moduleModel.NPCModels)
                 {
-                    xmlWriter.WriteStartElement("npc");
-                    xmlWriter.WriteStartElement(npcModel.NPCName.ToLower());
                     
+                    xmlWriter.WriteStartElement(npcModel.NPCName.ToLower()); // Open <npcModel.NPCName>
                     //Put together all the innards of the NPC to XML
-                    
                     WriteAbilities(xmlWriter, npcModel);
                     WriteAC(xmlWriter, npcModel);
                     WriteActions(xmlWriter, npcModel);
+                    WriteAlignment(xmlWriter, npcModel);
+                    WriteConditionImmunities(xmlWriter, npcModel);
+                    WriteCR(xmlWriter, npcModel);
+                    WriteDamageImmunities(xmlWriter, npcModel);
                     WriteHP(xmlWriter, npcModel);
                     WriteInnateSpells(xmlWriter, npcModel);
                     WriteLairActions(xmlWriter, npcModel);
@@ -98,9 +105,9 @@ namespace FantasyModuleParser.Exporters
                     WriteXP(xmlWriter, npcModel);
 
                     xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
-                    xmlWriter.WriteEndElement(); // Closes </npc>
+                    
                 }
-
+                xmlWriter.WriteEndElement(); // Closes </npc>
                 xmlWriter.WriteEndElement(); // Closes </root>
                 xmlWriter.WriteEndDocument();
                 xmlWriter.Close();
@@ -155,112 +162,283 @@ namespace FantasyModuleParser.Exporters
             else
                 WisModifier = "-";
 
-            xmlWriter.WriteStartElement("abilities");
-            xmlWriter.WriteStartElement("charisma");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(ChaBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(ChaModifier + ChaBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeCha);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("constitution");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(ConBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(ConModifier + ConBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeCon);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("dexterity");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(DexBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(DexModifier + DexBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeDex);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("intelligence");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(IntBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(IntModifier + IntBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeInt);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("strength");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(StrBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(StrModifier + StrBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeStr);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("wisdom");
-            xmlWriter.WriteStartElement("bonus");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(WisBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("modifier");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(WisModifier + WisBonus);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("score");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AttributeWis);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("abilities"); // Open <abilities>
+            xmlWriter.WriteStartElement("charisma"); // Open <charisma>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(ChaBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(ChaModifier + ChaBonus); // Add bonus value with + or -
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeCha); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </charisma>
+            xmlWriter.WriteStartElement("constitution"); // Open <constitution>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(ConBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(ConModifier + ConBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeCon); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </constitution>
+            xmlWriter.WriteStartElement("dexterity"); // Open <dexterity>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(DexBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(DexModifier + DexBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeDex); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </dexterity>
+            xmlWriter.WriteStartElement("intelligence"); // Open <intelligence>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(IntBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(IntModifier + IntBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeInt); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </intelligence>
+            xmlWriter.WriteStartElement("strength"); // Open <strength>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(StrBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(StrModifier + StrBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeStr); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </strength>
+            xmlWriter.WriteStartElement("wisdom"); // Open <wisdom>
+            xmlWriter.WriteStartElement("bonus"); // Open <bonus>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(WisBonus); // Add bonus value
+            xmlWriter.WriteEndElement(); // Close </bonus>
+            xmlWriter.WriteStartElement("modifier"); // Open <modifier>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+            xmlWriter.WriteValue(WisModifier + WisBonus); // Add bonus value with + or minus
+            xmlWriter.WriteEndElement(); // Close </modifier>
+            xmlWriter.WriteStartElement("score"); // Open <score>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+            xmlWriter.WriteValue(npcModel.AttributeWis); // Add Attibute value
+            xmlWriter.WriteEndElement(); // Close </score>
+            xmlWriter.WriteEndElement(); // Close </intelligence>
+            xmlWriter.WriteEndElement(); // Close </abilities>
         }
 
         
         private void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
         {
-            xmlWriter.WriteStartElement("ac");
-            xmlWriter.WriteAttributeString("type", "number");
-            xmlWriter.WriteValue(npcModel.AC);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("actext");
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteValue(npcModel.ACText);
-            xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("ac"); // Open <ac>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type=number
+            xmlWriter.WriteValue(npcModel.AC); // Add AC value
+            xmlWriter.WriteEndElement(); // Close </ac>
+            xmlWriter.WriteStartElement("actext"); // Open <actext>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(npcModel.ACText); // Add AC Text string
+            xmlWriter.WriteEndElement(); // Close </actext>
         }
 
         private void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("actions"); // Open <actions>
+            int actionID = 1;
+            foreach (ActionModelBase action in npcModel.NPCActions)
+            {
+                xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
+                xmlWriter.WriteStartElement("desc"); // Open <desc>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(action.ActionDescription); // Add Action Description
+                xmlWriter.WriteEndElement(); // Close </desc>
+                xmlWriter.WriteStartElement("name"); // Open <name>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(action.ActionName); // Add Action Name
+                xmlWriter.WriteEndElement(); // Close </name>
+                xmlWriter.WriteEndElement(); // Close </id-####>
+                actionID = ++ actionID;
+            }
+                xmlWriter.WriteEndElement(); // Close </actions>
         }
 
+        private void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            xmlWriter.WriteStartElement("alignment"); // Open <alignment>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteString(npcModel.Alignment); // Add alignment string
+            xmlWriter.WriteEndElement(); // Close </alignment>
+        }
+
+        private void WriteConditionImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            xmlWriter.WriteStartElement("conditionimmunities"); // Open <conditionimmunities>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            
+            foreach (SelectableActionModel condition in npcModel.ConditionImmunityModelList)
+            {
+                if (condition.Selected)
+                    stringBuilder.Append(condition.ActionDescription.ToLower()).Append(", ");
+            }
+            if (npcModel.ConditionOther)
+            {
+                stringBuilder.Append(npcModel.ConditionOtherText.ToLower() + ", ");
+            }
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+
+            xmlWriter.WriteValue(stringBuilder.ToString().Trim());
+            xmlWriter.WriteEndElement(); // Close </conditionimmunities>
+        }
+        
+        private void WriteCR(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            xmlWriter.WriteStartElement("cr"); // Open <cr>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteString(npcModel.ChallengeRating); // Add CR string
+            xmlWriter.WriteEndElement(); // Close </cr>
+        }
+
+        private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            xmlWriter.WriteStartElement("damageimmunities"); // Open <damageimmunities>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+
+            foreach (SelectableActionModel damageImmunities in npcModel.DamageImmunityModelList)
+            {
+                if (damageImmunities.Selected)
+                    stringBuilder.Append(damageImmunities.ActionDescription.ToLower()).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+            {
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+            stringBuilder.Append("; ");
+            if (stringBuilder.Length >= 2)
+            {
+                stringBuilder.Remove(0, 2);
+            }
+            foreach (SelectableActionModel specialWeaponImmunity in npcModel.SpecialWeaponImmunityModelList)
+            {
+                if (specialWeaponImmunity.Selected == true && specialWeaponImmunity.ActionName != "NoSpecial")
+                {
+                    if (specialWeaponImmunity.ActionName == "Nonmagical")
+                    {
+                        Immunity = " from nonmagical attacks";
+                    }
+                    else if (specialWeaponImmunity.ActionName == "NonmagicalSilvered")
+                    {
+                        Immunity = " from nonmagical attacks that aren't silvered";
+                    }
+                    else if (specialWeaponImmunity.ActionName == "NonmagicalAdamantine")
+                    {
+                        Immunity = " from nonmagical attacks that aren't adamantine";
+                    }
+                    else if (specialWeaponImmunity.ActionName == "NonmagicalColdForgedIron")
+                    {
+                        Immunity = " from nonmagical attacks that aren't cold-forged iron";
+                    }
+                    foreach (SelectableActionModel specialWeaponDmgImmunity in npcModel.SpecialWeaponDmgImmunityModelList)
+                    {
+                        if (specialWeaponDmgImmunity.Selected)
+                            stringBuilder.Append(specialWeaponDmgImmunity.ActionDescription).Append(", ");
+                    }
+                    if (stringBuilder.Length >= 2)
+                    {
+                        stringBuilder.Remove(stringBuilder.Length - 2, 2);
+                    }
+                    stringBuilder.Append(Immunity);
+                }
+            }
+
+            xmlWriter.WriteString(stringBuilder.ToString().Trim());
+            xmlWriter.WriteEndElement(); // Close </damageimmunities>
+        }
+
+        private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            xmlWriter.WriteStartElement("damageresistances"); // Open <damageimmunities>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+
+            foreach (SelectableActionModel damageResistances in npcModel.DamageResistanceModelList)
+            {
+                if (damageResistances.Selected == true)
+                    stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+            {
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+            stringBuilder.Append("; ");
+            if (stringBuilder.Length == 2)
+            {
+                stringBuilder.Remove(0, 2);
+            }
+            foreach (SelectableActionModel specialWeaponResistances in npcModel.SpecialWeaponResistanceModelList)
+            {
+                if (specialWeaponResistances.Selected == true && specialWeaponResistances.ActionName != "NoSpecial")
+                {
+                    if (specialWeaponResistances.ActionName == "Nonmagical")
+                    {
+                        Resistance = " from nonmagical attacks";
+                    }
+                    else if (specialWeaponResistances.ActionName == "NonmagicalSilvered")
+                    {
+                        Resistance = " from nonmagical attacks that aren't silvered";
+                    }
+                    else if (specialWeaponResistances.ActionName == "NonmagicalAdamantine")
+                    {
+                        Resistance = " from nonmagical attacks that aren't adamantine";
+                    }
+                    else if (specialWeaponResistances.ActionName == "NonmagicalColdForgedIron")
+                    {
+                        Resistance = " from nonmagical attacks that aren't cold-forged iron";
+                    }
+                    else if (specialWeaponResistances.ActionName == "Magical")
+                    {
+                        Resistance = " from magic weapons";
+                    }
+                    foreach (SelectableActionModel specialWeaponDmgResistance in npcModel.SpecialWeaponDmgResistanceModelList)
+                    {
+                        if (specialWeaponDmgResistance.Selected == true)
+                            stringBuilder.Append(specialWeaponDmgResistance.ActionDescription).Append(", ");
+                    }
+                    if (stringBuilder.Length >= 2)
+                    {
+                        stringBuilder.Remove(stringBuilder.Length - 2, 2);
+                    }
+                    stringBuilder.Append(Resistance);
+                }
+            }
+
+            xmlWriter.WriteValue(stringBuilder.ToString().Trim());
+            xmlWriter.WriteEndElement(); // Close </damageresistances>
+        }
         private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
         {
 
