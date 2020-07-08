@@ -1,5 +1,5 @@
-﻿using FantasyModuleParser.NPC;
-using FantasyModuleParser.NPC.Models;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
@@ -74,41 +74,58 @@ namespace FantasyModuleParser.Exporters
                 xmlWriter.WriteAttributeString("version", "4");
                 xmlWriter.WriteAttributeString("dataversion", "20200528");
                 xmlWriter.WriteAttributeString("release", "8|CoreRPG:4");
-                xmlWriter.WriteStartElement("npc");
-                //Now, write out each NPC with id-####
-                foreach (NPCModel npcModel in moduleModel.NPCModels)
-                {
-                    
-                    xmlWriter.WriteStartElement(npcModel.NPCName.ToLower()); // Open <npcModel.NPCName>
-                    //Put together all the innards of the NPC to XML
-                    WriteAbilities(xmlWriter, npcModel);
-                    WriteAC(xmlWriter, npcModel);
-                    WriteActions(xmlWriter, npcModel);
-                    WriteAlignment(xmlWriter, npcModel);
-                    WriteConditionImmunities(xmlWriter, npcModel);
-                    WriteCR(xmlWriter, npcModel);
-                    WriteDamageImmunities(xmlWriter, npcModel);
-                    WriteHP(xmlWriter, npcModel);
-                    WriteInnateSpells(xmlWriter, npcModel);
-                    WriteLairActions(xmlWriter, npcModel);
-                    WriteLegendaryActions(xmlWriter, npcModel);
-                    WriteName(xmlWriter, npcModel);
-                    WriteReactions(xmlWriter, npcModel);
-                    WriteSpells(xmlWriter, npcModel);
-                    WriteSpellSlots(xmlWriter, npcModel);
-                    WriteText(xmlWriter, npcModel);
-                    WriteToken(xmlWriter, npcModel);
-                    WriteTraits(xmlWriter, npcModel);
-                    WriteXP(xmlWriter, npcModel);
 
-                    xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
-                    
+                // For the Blank DB XML unit test, need to check if any NPCs exist
+                if (moduleModel.Categories != null && moduleModel.Categories.Count > 0
+                    && moduleModel.Categories[0].NPCModels.Count > 0)
+                {
+                    xmlWriter.WriteStartElement("npc");
+
+                    //Category section in the XML generation
+                    foreach (CategoryModel categoryModel in moduleModel.Categories)
+                    {
+                        xmlWriter.WriteStartElement("category");
+
+                        //Now, write out each NPC with id-####
+                        foreach (NPCModel npcModel in categoryModel.NPCModels)
+                        {
+
+                            xmlWriter.WriteStartElement(npcModel.NPCName.ToLower()); // Open <npcModel.NPCName>
+                                                                                     //Put together all the innards of the NPC to XML
+                            WriteAbilities(xmlWriter, npcModel);
+                            WriteAC(xmlWriter, npcModel);
+                            WriteActions(xmlWriter, npcModel);
+                            WriteAlignment(xmlWriter, npcModel);
+                            WriteConditionImmunities(xmlWriter, npcModel);
+                            WriteCR(xmlWriter, npcModel);
+                            WriteDamageImmunities(xmlWriter, npcModel);
+                            WriteHP(xmlWriter, npcModel);
+                            WriteInnateSpells(xmlWriter, npcModel);
+                            WriteLairActions(xmlWriter, npcModel);
+                            WriteLegendaryActions(xmlWriter, npcModel);
+                            WriteName(xmlWriter, npcModel);
+                            WriteReactions(xmlWriter, npcModel);
+                            WriteSpells(xmlWriter, npcModel);
+                            WriteSpellSlots(xmlWriter, npcModel);
+                            WriteText(xmlWriter, npcModel);
+                            WriteToken(xmlWriter, npcModel);
+                            WriteTraits(xmlWriter, npcModel);
+                            WriteXP(xmlWriter, npcModel);
+
+                            xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
+
+                        }
+
+                        xmlWriter.WriteEndElement(); // Close </category>
+
+
+                    }
+                    xmlWriter.WriteEndElement(); // Closes </npc>
                 }
-                xmlWriter.WriteEndElement(); // Closes </npc>
+                
                 xmlWriter.WriteEndElement(); // Closes </root>
                 xmlWriter.WriteEndDocument();
                 xmlWriter.Close();
-
                 return sw.ToString();
             }
         }
