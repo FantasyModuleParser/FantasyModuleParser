@@ -441,7 +441,9 @@ namespace FantasyModuleParser.Exporters
         }
         private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("hp"); // Open <hp>
+            xmlWriter.WriteAttributeString("type", "number"); // Add type=number
+            xmlWriter.WriteEndElement(); // Close </hp>
         }
 
         private void WriteInnateSpells(XmlWriter xmlWriter, NPCModel npcModel)
