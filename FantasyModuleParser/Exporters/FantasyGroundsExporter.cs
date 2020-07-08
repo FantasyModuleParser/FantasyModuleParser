@@ -102,6 +102,8 @@ namespace FantasyModuleParser.Exporters
                             WriteConditionImmunities(xmlWriter, npcModel);
                             WriteCR(xmlWriter, npcModel);
                             WriteDamageImmunities(xmlWriter, npcModel);
+                            WriteDamageResistances(xmlWriter, npcModel);
+                            WriteDamageVulnerabilities(xmlWriter, npcModel);
                             WriteHP(xmlWriter, npcModel);
                             WriteInnateSpells(xmlWriter, npcModel);
                             WriteLairActions(xmlWriter, npcModel);
@@ -266,8 +268,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteEndElement(); // Close </intelligence>
             xmlWriter.WriteEndElement(); // Close </abilities>
         }
-
-        
         private void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("ac"); // Open <ac>
@@ -279,7 +279,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteValue(npcModel.ACText); // Add AC Text string
             xmlWriter.WriteEndElement(); // Close </actext>
         }
-
         private void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("actions"); // Open <actions>
@@ -300,7 +299,6 @@ namespace FantasyModuleParser.Exporters
             }
                 xmlWriter.WriteEndElement(); // Close </actions>
         }
-
         private void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("alignment"); // Open <alignment>
@@ -404,62 +402,83 @@ namespace FantasyModuleParser.Exporters
         private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            xmlWriter.WriteStartElement("damageresistances"); // Open <damageimmunities>
+            xmlWriter.WriteStartElement("damageresistances"); // Open <damageresistances>
             xmlWriter.WriteAttributeString("type", "string"); // Add type=string
 
             foreach (SelectableActionModel damageResistances in npcModel.DamageResistanceModelList)
             {
-                if (damageResistances.Selected == true)
+                if (damageResistances.Selected)
                     stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", ");
             }
             if (stringBuilder.Length >= 2)
             {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
+
+            // By default, Damage Resistances & Special Weapon Resistances are separated by a ';' symbol.
+            // If no SpecialWeaponResistances are selected, the ';' character is removed at the end of this method.
             stringBuilder.Append("; ");
-            if (stringBuilder.Length == 2)
+
+            foreach (SelectableActionModel specialWeaponResistance in npcModel.SpecialWeaponResistanceModelList)
             {
-                stringBuilder.Remove(0, 2);
-            }
-            foreach (SelectableActionModel specialWeaponResistances in npcModel.SpecialWeaponResistanceModelList)
-            {
-                if (specialWeaponResistances.Selected == true && specialWeaponResistances.ActionName != "NoSpecial")
+                if (specialWeaponResistance.Selected == true && specialWeaponResistance.ActionName != "NoSpecial")
                 {
-                    if (specialWeaponResistances.ActionName == "Nonmagical")
+
+                    switch (specialWeaponResistance.ActionName)
                     {
-                        Resistance = " from nonmagical attacks";
+                        case "Nonmagical":
+                            Immunity = " from nonmagical attacks";
+                            break;
+                        case "NonmagicalSilvered":
+                            Immunity = " from nonmagical attacks that aren't silvered";
+                            break;
+                        case "NonmagicalAdamantine":
+                            Immunity = " from nonmagical attacks that aren't adamantine";
+                            break;
+                        case "NonmagicalColdForgedIron":
+                            Immunity = " from nonmagical attacks that aren't cold-forged iron";
+                            break;
                     }
-                    else if (specialWeaponResistances.ActionName == "NonmagicalSilvered")
-                    {
-                        Resistance = " from nonmagical attacks that aren't silvered";
-                    }
-                    else if (specialWeaponResistances.ActionName == "NonmagicalAdamantine")
-                    {
-                        Resistance = " from nonmagical attacks that aren't adamantine";
-                    }
-                    else if (specialWeaponResistances.ActionName == "NonmagicalColdForgedIron")
-                    {
-                        Resistance = " from nonmagical attacks that aren't cold-forged iron";
-                    }
-                    else if (specialWeaponResistances.ActionName == "Magical")
-                    {
-                        Resistance = " from magic weapons";
-                    }
+
                     foreach (SelectableActionModel specialWeaponDmgResistance in npcModel.SpecialWeaponDmgResistanceModelList)
                     {
-                        if (specialWeaponDmgResistance.Selected == true)
+                        if (specialWeaponDmgResistance.Selected)
                             stringBuilder.Append(specialWeaponDmgResistance.ActionDescription).Append(", ");
                     }
                     if (stringBuilder.Length >= 2)
                     {
                         stringBuilder.Remove(stringBuilder.Length - 2, 2);
                     }
-                    stringBuilder.Append(Resistance);
+                    stringBuilder.Append(Immunity);
                 }
             }
 
-            xmlWriter.WriteValue(stringBuilder.ToString().Trim());
+            string weaponDamageResistanceString = stringBuilder.ToString().Trim();
+            if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture))
+                weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1);
+
+            xmlWriter.WriteString(weaponDamageResistanceString);
             xmlWriter.WriteEndElement(); // Close </damageresistances>
+        }
+
+        private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            xmlWriter.WriteStartElement("damagevulnerabilities"); // Open <damagevulnerabilities>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+
+            foreach (SelectableActionModel damageVulnerabilities in npcModel.DamageVulnerabilityModelList)
+            {
+                if (damageVulnerabilities.Selected == true)
+                    stringBuilder.Append(damageVulnerabilities.ActionDescription.ToLower()).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+            {
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+
+            xmlWriter.WriteValue(stringBuilder);
+            xmlWriter.WriteEndElement(); // Close </damagevulnerabilities>
         }
         private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
         {
