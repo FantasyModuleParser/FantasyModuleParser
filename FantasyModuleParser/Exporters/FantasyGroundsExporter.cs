@@ -337,31 +337,30 @@ namespace FantasyModuleParser.Exporters
             {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
+
             stringBuilder.Append("; ");
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(0, 2);
-            }
+
             foreach (SelectableActionModel specialWeaponImmunity in npcModel.SpecialWeaponImmunityModelList)
             {
                 if (specialWeaponImmunity.Selected == true && specialWeaponImmunity.ActionName != "NoSpecial")
                 {
-                    if (specialWeaponImmunity.ActionName == "Nonmagical")
+
+                    switch (specialWeaponImmunity.ActionName)
                     {
-                        Immunity = " from nonmagical attacks";
+                        case "Nonmagical":
+                            Immunity = " from nonmagical attacks";
+                            break;
+                        case "NonmagicalSilvered":
+                            Immunity = " from nonmagical attacks that aren't silvered";
+                            break;
+                        case "NonmagicalAdamantine":
+                            Immunity = " from nonmagical attacks that aren't adamantine";
+                            break;
+                        case "NonmagicalColdForgedIron":
+                            Immunity = " from nonmagical attacks that aren't cold-forged iron";
+                            break;
                     }
-                    else if (specialWeaponImmunity.ActionName == "NonmagicalSilvered")
-                    {
-                        Immunity = " from nonmagical attacks that aren't silvered";
-                    }
-                    else if (specialWeaponImmunity.ActionName == "NonmagicalAdamantine")
-                    {
-                        Immunity = " from nonmagical attacks that aren't adamantine";
-                    }
-                    else if (specialWeaponImmunity.ActionName == "NonmagicalColdForgedIron")
-                    {
-                        Immunity = " from nonmagical attacks that aren't cold-forged iron";
-                    }
+
                     foreach (SelectableActionModel specialWeaponDmgImmunity in npcModel.SpecialWeaponDmgImmunityModelList)
                     {
                         if (specialWeaponDmgImmunity.Selected)
@@ -375,7 +374,11 @@ namespace FantasyModuleParser.Exporters
                 }
             }
 
-            xmlWriter.WriteString(stringBuilder.ToString().Trim());
+            string weaponDamageImmunityString = stringBuilder.ToString().Trim();
+            if (weaponDamageImmunityString.EndsWith(";", true, CultureInfo.CurrentCulture))
+                weaponDamageImmunityString = weaponDamageImmunityString.Substring(0, weaponDamageImmunityString.Length - 1);
+
+            xmlWriter.WriteString(weaponDamageImmunityString);
             xmlWriter.WriteEndElement(); // Close </damageimmunities>
         }
 
