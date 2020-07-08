@@ -355,6 +355,8 @@ namespace FantasyModuleParser.Exporters
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
 
+            // By default, Damage Immunities & Special Weapon Immunities are separated by a ';' symbol.
+            // If no SpecialWeaponImmunities are selected, the ';' character is removed at the end of this method.
             stringBuilder.Append("; ");
 
             foreach (SelectableActionModel specialWeaponImmunity in npcModel.SpecialWeaponImmunityModelList)
