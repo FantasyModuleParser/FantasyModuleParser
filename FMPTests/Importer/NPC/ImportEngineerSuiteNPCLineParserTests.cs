@@ -204,5 +204,162 @@ namespace FMPTests.Importer.NPC
             return npcModel;
         }
         #endregion
+
+        #region Saving Throws
+        [TestMethod]
+        [DynamicData(nameof(SavingThrowData), DynamicDataSourceType.Method)]
+        public void Test_Parse_SavingThrows(NPCModel expectedNpcModel, string savingThrows)
+        {
+            _importEngineerSuiteNPC.ParseSavingThrows(actualNPCModel, savingThrows);
+            AssertSavingThrows(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertSavingThrows(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.SavingThrowStr, actualNPCModel.SavingThrowStr);
+            Assert.AreEqual(expectedNPCModel.SavingThrowDex, actualNPCModel.SavingThrowDex);
+            Assert.AreEqual(expectedNPCModel.SavingThrowCon, actualNPCModel.SavingThrowCon);
+            Assert.AreEqual(expectedNPCModel.SavingThrowInt, actualNPCModel.SavingThrowInt);
+            Assert.AreEqual(expectedNPCModel.SavingThrowWis, actualNPCModel.SavingThrowWis);
+            Assert.AreEqual(expectedNPCModel.SavingThrowCha, actualNPCModel.SavingThrowCha);
+
+            Assert.AreEqual(expectedNPCModel.SavingThrowStrBool, actualNPCModel.SavingThrowStrBool);
+            Assert.AreEqual(expectedNPCModel.SavingThrowDexBool, actualNPCModel.SavingThrowDexBool);
+            Assert.AreEqual(expectedNPCModel.SavingThrowConBool, actualNPCModel.SavingThrowConBool);
+            Assert.AreEqual(expectedNPCModel.SavingThrowIntBool, actualNPCModel.SavingThrowIntBool);
+            Assert.AreEqual(expectedNPCModel.SavingThrowWisBool, actualNPCModel.SavingThrowWisBool);
+            Assert.AreEqual(expectedNPCModel.SavingThrowChaBool, actualNPCModel.SavingThrowChaBool);
+        }
+
+        private static IEnumerable<object[]> SavingThrowData()
+        {
+            yield return new object[] { generateNPCModel_SavingThrows(1, false, 2, false, 3, false, 0, true, 5, false, 6, false), "Saving Throws Str +1, Dex +2, Con +3, Int +0, Wis +5, Cha +6" };
+            yield return new object[] { generateNPCModel_SavingThrows(1, false, 0, false, 0, false, 0, false, 0, false, 0, false), "Saving Throws Str +1" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 2, false, 0, false, 0, false, 0, false, 0, false), "Saving Throws Dex +2" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 3, false, 0, false, 0, false, 0, false), "Saving Throws Con +3" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 4, false, 0, false, 0, false), "Saving Throws Int +4" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 0, false, 5, false, 0, false), "Saving Throws Wis +5" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 0, false, 0, false, 6, false), "Saving Throws Cha +6" };
+            yield return new object[] { generateNPCModel_SavingThrows(-1, false, 0, false, 0, false, 0, false, 0, false, 0, false), "Saving Throws Str -1" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, -2, false, 0, false, 0, false, 0, false, 0, false), "Saving Throws Dex -2" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, -3, false, 0, false, 0, false, 0, false), "Saving Throws Con -3" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, -4, false, 0, false, 0, false), "Saving Throws Int -4" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 0, false, -5, false, 0, false), "Saving Throws Wis -5" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 0, false, 0, false, -6, false), "Saving Throws Cha -6" };
+            yield return new object[] { generateNPCModel_SavingThrows(1, false, 2, false, 0, false, 0, false, 0, false, 0, false), "Saving Throws Str +1, Dex +2" };
+            yield return new object[] { generateNPCModel_SavingThrows(1, false, 0, false, 2, false, 0, false, 0, false, 0, false), "Saving Throws Str +1, Con +2" };
+            yield return new object[] { generateNPCModel_SavingThrows(1, false, 0, false, 0, false, 3, false, 0, false, 0, false), "Saving Throws Str +1, Int +3" };
+            yield return new object[] { generateNPCModel_SavingThrows(1, false, 0, false, 0, false, 0, false, 4, false, 0, false), "Saving Throws Str +1, Wis +4" };
+            yield return new object[] { generateNPCModel_SavingThrows(1, false, 0, false, 0, false, 0, false, 0, false, 6, false), "Saving Throws Str +1, Cha +6" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, true, 0, false, 0, false, 0, false, 0, false, 0, false), "Saving Throws Str +0" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, true, 0, false, 0, false, 0, false, 0, false), "Saving Throws Dex +0" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, true, 0, false, 0, false, 0, false), "Saving Throws Con +0" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 0, true, 0, false, 0, false), "Saving Throws Int +0" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 0, false, 0, true, 0, false), "Saving Throws Wis +0" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, false, 0, false, 0, false, 0, false, 0, false, 0, true), "Saving Throws Cha +0" };
+            yield return new object[] { generateNPCModel_SavingThrows(0, true, 0, true, 0, true, 0, true, 0, true, 0, true), "Saving Throws Str +0, Dex +0, Con +0, Int +0, Wis +0, Cha +0" };
+        }
+        private static NPCModel generateNPCModel_SavingThrows(
+            int str, bool strAsZero, 
+            int dex, bool dexAsZero, 
+            int con, bool conAsZero, 
+            int intel, bool intelAsZero,
+            int wis, bool wisAsZero,
+            int cha, bool chaAsZero)
+        {
+            NPCModel npcModel = new NPCModel();
+            npcModel.SavingThrowStr = str;
+            npcModel.SavingThrowStrBool = strAsZero;
+            npcModel.SavingThrowDex = dex;
+            npcModel.SavingThrowDexBool = dexAsZero;
+            npcModel.SavingThrowCon = con;
+            npcModel.SavingThrowConBool = conAsZero;
+            npcModel.SavingThrowInt = intel;
+            npcModel.SavingThrowIntBool = intelAsZero;
+            npcModel.SavingThrowWis = wis;
+            npcModel.SavingThrowWisBool = wisAsZero;
+            npcModel.SavingThrowCha = cha;
+            npcModel.SavingThrowChaBool = chaAsZero;
+            return npcModel;
+        }
+        #endregion
+
+        #region Skill Attributes
+        [TestMethod]
+        [DynamicData(nameof(SkillAttributesData), DynamicDataSourceType.Method)]
+        public void Test_Parse_SkillAttributes(NPCModel expectedNpcModel, string skillAttributes)
+        {
+            _importEngineerSuiteNPC.ParseSkillAttributes(actualNPCModel, skillAttributes);
+            AssertSkills(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertSkills(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.Acrobatics, actualNPCModel.Acrobatics);
+            Assert.AreEqual(expectedNPCModel.AnimalHandling, actualNPCModel.AnimalHandling);
+            Assert.AreEqual(expectedNPCModel.Arcana, actualNPCModel.Arcana);
+            Assert.AreEqual(expectedNPCModel.Athletics, actualNPCModel.Athletics);
+            Assert.AreEqual(expectedNPCModel.Deception, actualNPCModel.Deception);
+            Assert.AreEqual(expectedNPCModel.History, actualNPCModel.History);
+            Assert.AreEqual(expectedNPCModel.Insight, actualNPCModel.Insight);
+            Assert.AreEqual(expectedNPCModel.Intimidation, actualNPCModel.Intimidation);
+            Assert.AreEqual(expectedNPCModel.Investigation, actualNPCModel.Investigation);
+            Assert.AreEqual(expectedNPCModel.Medicine, actualNPCModel.Medicine);
+            Assert.AreEqual(expectedNPCModel.Nature, actualNPCModel.Nature);
+            Assert.AreEqual(expectedNPCModel.Perception, actualNPCModel.Perception);
+            Assert.AreEqual(expectedNPCModel.Performance, actualNPCModel.Performance);
+            Assert.AreEqual(expectedNPCModel.Persuasion, actualNPCModel.Persuasion);
+            Assert.AreEqual(expectedNPCModel.Religion, actualNPCModel.Religion);
+            Assert.AreEqual(expectedNPCModel.SleightOfHand, actualNPCModel.SleightOfHand);
+            Assert.AreEqual(expectedNPCModel.Stealth, actualNPCModel.Stealth);
+            Assert.AreEqual(expectedNPCModel.Survival, actualNPCModel.Survival);
+        }
+
+        private static IEnumerable<object[]> SkillAttributesData()
+        {
+            yield return new object[] { generateNPCModel_SkillAttributes(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18), "Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9, Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18" };
+        }
+        private static NPCModel generateNPCModel_SkillAttributes(
+            int Acrobatics,
+            int AnimalHandling,
+            int Arcana,
+            int Athletics,
+            int Deception,
+            int History,
+            int Insight,
+            int Intimidation,
+            int Investigation,
+            int Medicine,
+            int Nature,
+            int Perception,
+            int Performance,
+            int Persuasion,
+            int Religion,
+            int SleightOfHand,
+            int Stealth,
+            int Survival)
+        {
+            NPCModel npcModel = new NPCModel();
+            npcModel.Acrobatics = Acrobatics;
+            npcModel.AnimalHandling = AnimalHandling;
+            npcModel.Arcana = Arcana;
+            npcModel.Athletics = Athletics;
+            npcModel.Deception = Deception;
+            npcModel.History = History;
+            npcModel.Insight = Insight;
+            npcModel.Intimidation = Intimidation;
+            npcModel.Investigation = Investigation;
+            npcModel.Medicine = Medicine;
+            npcModel.Nature = Nature;
+            npcModel.Perception = Perception;
+            npcModel.Performance = Performance;
+            npcModel.Persuasion = Persuasion;
+            npcModel.Religion = Religion;
+            npcModel.SleightOfHand = SleightOfHand;
+            npcModel.Stealth = Stealth;
+            npcModel.Survival = Survival;
+            return npcModel;
+        }
+        #endregion
     }
 }

@@ -127,10 +127,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			string savePath = Path.Combine(installPath, installFolder, npcModel.NPCName + ".json");
 
 			if (npcModel == null)
-				npcModel = new NPCModel
-				{
-					NPCImage = strNPCImage.Text,
-				};
+				npcModel = npcController.InitializeNPCModel();
 
 			((App)Application.Current).NpcModel = npcModel;
 			npcController.Save(savePath, npcModel);
