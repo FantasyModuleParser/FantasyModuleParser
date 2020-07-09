@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Skills;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -105,8 +106,8 @@ namespace FantasyModuleParser.Exporters
                             WriteDamageResistances(xmlWriter, npcModel);
                             WriteDamageVulnerabilities(xmlWriter, npcModel);
                             WriteHP(xmlWriter, npcModel);
-                            WriteInnateSpells(xmlWriter, npcModel);
                             WriteLairActions(xmlWriter, npcModel);
+                            WriteLanguages(xmlWriter, npcModel);
                             WriteLegendaryActions(xmlWriter, npcModel);
                             WriteName(xmlWriter, npcModel);
                             WriteReactions(xmlWriter, npcModel);
@@ -427,16 +428,16 @@ namespace FantasyModuleParser.Exporters
                     switch (specialWeaponResistance.ActionName)
                     {
                         case "Nonmagical":
-                            Immunity = " from nonmagical attacks";
+                            Resistance = " from nonmagical attacks";
                             break;
                         case "NonmagicalSilvered":
-                            Immunity = " from nonmagical attacks that aren't silvered";
+                            Resistance = " from nonmagical attacks that aren't silvered";
                             break;
                         case "NonmagicalAdamantine":
-                            Immunity = " from nonmagical attacks that aren't adamantine";
+                            Resistance = " from nonmagical attacks that aren't adamantine";
                             break;
                         case "NonmagicalColdForgedIron":
-                            Immunity = " from nonmagical attacks that aren't cold-forged iron";
+                            Resistance = " from nonmagical attacks that aren't cold-forged iron";
                             break;
                     }
 
@@ -449,7 +450,7 @@ namespace FantasyModuleParser.Exporters
                     {
                         stringBuilder.Remove(stringBuilder.Length - 2, 2);
                     }
-                    stringBuilder.Append(Immunity);
+                    stringBuilder.Append(Resistance);
                 }
             }
 
@@ -476,33 +477,110 @@ namespace FantasyModuleParser.Exporters
             {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
+            string weaponDamageVulnerabilityString = stringBuilder.ToString().Trim();
 
-            xmlWriter.WriteValue(stringBuilder);
+            xmlWriter.WriteValue(weaponDamageVulnerabilityString);
             xmlWriter.WriteEndElement(); // Close </damagevulnerabilities>
         }
         private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
         {
+            string[] hpArray = npcModel.HP.Split('(');
+            string hpValue = hpArray[0].Trim(); // Removes any whitespace
+            string hpDieBreakdown = "(" + hpArray[1];
+
+            xmlWriter.WriteStartElement("hd"); // Open <hd>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteString(hpDieBreakdown); // Write HP formula
+            xmlWriter.WriteEndElement(); // Close </hd>
             xmlWriter.WriteStartElement("hp"); // Open <hp>
             xmlWriter.WriteAttributeString("type", "number"); // Add type=number
+            xmlWriter.WriteString(hpValue); // Write HP value
             xmlWriter.WriteEndElement(); // Close </hp>
-        }
-
-        private void WriteInnateSpells(XmlWriter xmlWriter, NPCModel npcModel)
-        {
-
         }
 
         private void WriteLairActions(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("lairactions"); // Open <actions>
+            int actionID = 1;
+            foreach (LairAction lairaction in npcModel.LairActions)
+            {
+                xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
+                xmlWriter.WriteStartElement("desc"); // Open <desc>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(lairaction.ActionDescription); // Add Action Description
+                xmlWriter.WriteEndElement(); // Close </desc>
+                xmlWriter.WriteStartElement("name"); // Open <name>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(lairaction.ActionName); // Add Action Name
+                xmlWriter.WriteEndElement(); // Close </name>
+                xmlWriter.WriteEndElement(); // Close </id-####>
+                actionID = ++actionID;
+            }
+            xmlWriter.WriteEndElement(); // Close </lairactions>
         }
+
+        private void WriteLanguages(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            xmlWriter.WriteStartElement("languages"); // Open <languages>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+
+            foreach (LanguageModel standardLanguage in npcModel.StandardLanguages)
+            {
+                if (standardLanguage.Selected == true)
+                    stringBuilder.Append(standardLanguage.Language.ToLower()).Append(", ");
+            }
+            foreach (LanguageModel monstrousLanguage in npcModel.MonstrousLanguages)
+            {
+                if (monstrousLanguage.Selected == true)
+                    stringBuilder.Append(monstrousLanguage.Language.ToLower()).Append(", ");
+            }
+            foreach (LanguageModel exoticLanguage in npcModel.ExoticLanguages)
+            {
+                if (exoticLanguage.Selected == true)
+                    stringBuilder.Append(exoticLanguage.Language.ToLower()).Append(", ");
+            }
+            if (npcModel.Telepathy == true)
+            {
+                stringBuilder.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+            }
+            if (stringBuilder.Length >= 2)
+            {
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+            string languageString = stringBuilder.ToString().Trim();
+
+            xmlWriter.WriteValue(languageString);
+            xmlWriter.WriteEndElement(); // Close </languages>
+        }
+
         private void WriteLegendaryActions(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("legendaryactions"); // Open <legendaryactions>
+            int actionID = 1;
+            foreach (LegendaryActionModel legendaryaction in npcModel.LegendaryActions)
+            {
+                xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
+                xmlWriter.WriteStartElement("desc"); // Open <desc>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(legendaryaction.ActionDescription); // Add Action Description
+                xmlWriter.WriteEndElement(); // Close </desc>
+                xmlWriter.WriteStartElement("name"); // Open <name>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(legendaryaction.ActionName); // Add Action Name
+                xmlWriter.WriteEndElement(); // Close </name>
+                xmlWriter.WriteEndElement(); // Close </id-####>
+                actionID = ++actionID;
+            }
+            xmlWriter.WriteEndElement(); // Close </legendaryactions>
         }
+        
         private void WriteName(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("name"); // Open <name>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteString(npcModel.NPCName); // Add NPC name
+            xmlWriter.WriteEndElement(); // Close </name>
         }
         private void WriteReactions(XmlWriter xmlWriter, NPCModel npcModel)
         {
