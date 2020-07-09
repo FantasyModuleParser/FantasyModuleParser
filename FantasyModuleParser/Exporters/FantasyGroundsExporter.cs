@@ -111,6 +111,8 @@ namespace FantasyModuleParser.Exporters
                             WriteLegendaryActions(xmlWriter, npcModel);
                             WriteName(xmlWriter, npcModel);
                             WriteReactions(xmlWriter, npcModel);
+                            WriteSavingThrows(xmlWriter, npcModel);
+                            WriteSenses(xmlWriter, npcModel);
                             WriteSpells(xmlWriter, npcModel);
                             WriteSpellSlots(xmlWriter, npcModel);
                             WriteText(xmlWriter, npcModel);
@@ -584,8 +586,82 @@ namespace FantasyModuleParser.Exporters
         }
         private void WriteReactions(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("reactions"); // Open <reactions>
+            int actionID = 1;
+            foreach (ActionModelBase reaction in npcModel.Reactions)
+            {
+                xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
+                xmlWriter.WriteStartElement("desc"); // Open <desc>
+                xmlWriter.WriteString(reaction.ActionDescription); // Add Action Description
+                xmlWriter.WriteEndElement(); // Close </desc>
+                xmlWriter.WriteStartElement("name"); // Open <name>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(reaction.ActionName); // Add Action Name
+                xmlWriter.WriteEndElement(); // Close </name>
+                xmlWriter.WriteEndElement(); // Close </id-####>
+                actionID = ++actionID;
+            }
+            xmlWriter.WriteEndElement(); // Close </reactions>
         }
+
+        private void WriteSavingThrows(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (npcModel.SavingThrowStr != 0 || npcModel.SavingThrowStrBool)
+                stringBuilder.Append("Str ").Append(npcModel.SavingThrowStr >= 0 ? "+" : "").Append(npcModel.SavingThrowStr).Append(", ");
+            if (npcModel.SavingThrowDex != 0 || npcModel.SavingThrowDexBool)
+                stringBuilder.Append("Dex ").Append(npcModel.SavingThrowDex >= 0 ? "+" : "").Append(npcModel.SavingThrowDex).Append(", ");
+            if (npcModel.SavingThrowCon != 0 || npcModel.SavingThrowConBool)
+                stringBuilder.Append("Con ").Append(npcModel.SavingThrowCon >= 0 ? "+" : "").Append(npcModel.SavingThrowCon).Append(", ");
+            if (npcModel.SavingThrowInt != 0 || npcModel.SavingThrowIntBool)
+                stringBuilder.Append("Int ").Append(npcModel.SavingThrowInt >= 0 ? "+" : "").Append(npcModel.SavingThrowInt).Append(", ");
+            if (npcModel.SavingThrowWis != 0 || npcModel.SavingThrowWisBool)
+                stringBuilder.Append("Wis ").Append(npcModel.SavingThrowWis >= 0 ? "+" : "").Append(npcModel.SavingThrowWis).Append(", ");
+            if (npcModel.SavingThrowCha != 0 || npcModel.SavingThrowChaBool)
+                stringBuilder.Append("Cha ").Append(npcModel.SavingThrowCha >= 0 ? "+" : "").Append(npcModel.SavingThrowCha).Append(", ");
+
+            if (stringBuilder.Length >= 2)
+            {
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+            string savingThrowString = stringBuilder.ToString().Trim();
+
+            xmlWriter.WriteStartElement("savingthrows"); // Open <savingthrows>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(savingThrowString);
+            xmlWriter.WriteEndElement(); // Close </savingthrows>
+        }
+
+        private void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (npcModel.Speed > 0)
+                stringBuilder.Append(npcModel.Speed + " ft.").Append(", ");
+            if (npcModel.BlindBeyond)
+                stringBuilder.Append("blindsight " + npcModel.Blindsight + " ft. (blind beyond this radius)").Append(", ");
+            if (npcModel.Blindsight > 0 && !npcModel.BlindBeyond)
+                stringBuilder.Append("blindsight " + npcModel.Blindsight + " ft.").Append(", ");
+            if (npcModel.Burrow > 0)
+                stringBuilder.Append("burrow " + npcModel.Burrow + " ft.").Append(", ");
+            if (npcModel.Climb > 0)
+                stringBuilder.Append("climb " + npcModel.Climb + " ft.").Append(", ");
+            if (npcModel.Hover)
+                stringBuilder.Append("fly " + npcModel.Fly + " ft. (hover)").Append(", ");
+            if (npcModel.Fly > 0 && !npcModel.Hover)
+                stringBuilder.Append("fly " + npcModel.Fly + " ft.").Append(", ");
+            if (npcModel.Swim > 0)
+                stringBuilder.Append("swim " + npcModel.Swim + " ft.").Append(", ");
+            stringBuilder.Append("passive Perception " + npcModel.PassivePerception);
+            string sensesString = stringBuilder.ToString().Trim();
+
+            xmlWriter.WriteStartElement("senses"); // Open <senses>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(sensesString);
+            xmlWriter.WriteEndElement(); // Close </senses>
+        }
+
         private void WriteSpells(XmlWriter xmlWriter, NPCModel npcModel)
         {
 
