@@ -1,5 +1,8 @@
 ﻿using FantasyModuleParser.Importer.NPC;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -358,6 +361,148 @@ namespace FMPTests.Importer.NPC
             npcModel.SleightOfHand = SleightOfHand;
             npcModel.Stealth = Stealth;
             npcModel.Survival = Survival;
+            return npcModel;
+        }
+        #endregion
+
+        #region Damage Vulnerabilities
+        [TestMethod]
+        [DynamicData(nameof(DamageVulnerabilitesData), DynamicDataSourceType.Method)]
+        public void Test_Parse_DamageVulnerabilites(NPCModel expectedNpcModel, string damageVulnerabilites)
+        {
+            _importEngineerSuiteNPC.ParseDamageVulnerabilities(actualNPCModel, damageVulnerabilites);
+            AssertDamageVulnerabilites(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertDamageVulnerabilites(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.Acrobatics, actualNPCModel.Acrobatics);
+
+            foreach(SelectableActionModel expectedDamageVulnerability in expectedNPCModel.DamageVulnerabilityModelList)
+            {
+                SelectableActionModel actualDamageVulnerability = actualNPCModel.DamageVulnerabilityModelList.First(item => item.ActionName.Equals(expectedDamageVulnerability.ActionName));
+                Assert.IsNotNull(actualDamageVulnerability);
+                Assert.AreEqual(expectedDamageVulnerability.Selected, actualDamageVulnerability.Selected);
+            }
+        }
+
+        private static IEnumerable<object[]> DamageVulnerabilitesData()
+        {
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(
+                new DamageType[] { DamageType.Acid, DamageType.Fire, DamageType.Lightning, DamageType.Poison, 
+                    DamageType.Radiant, DamageType.Bludgeoning, DamageType.Slashing }),
+                "Damage Vulnerabilities acid, fire, lightning, poison, radiant; bludgeoning and slashing" };
+        }
+        private static NPCModel generateNPCModel_DamageVulnerabilites(DamageType[] damageVulnerabilities)
+        {
+            NPCModel npcModel = new NPCModel();
+            NPCController npcController = new NPCController();
+            npcModel.DamageVulnerabilityModelList = npcController.GetSelectableActionModelList(typeof(DamageType));
+
+            foreach(DamageType damageType in damageVulnerabilities)
+            {
+                string damageTypeName = damageType.ToString();
+                npcModel.DamageVulnerabilityModelList.First(item => item.ActionName.Equals(damageType.ToString())).Selected = true;
+            }
+
+            return npcModel;
+        }
+        #endregion
+
+        #region Damage Resistances
+        [TestMethod]
+        [DynamicData(nameof(DamageResistancesData), DynamicDataSourceType.Method)]
+        public void Test_Parse_DamageResistances(NPCModel expectedNpcModel, string damageResistances)
+        {
+            _importEngineerSuiteNPC.ParseDamageResistances(actualNPCModel, damageResistances);
+            AssertDamageResistances(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertDamageResistances(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            foreach (SelectableActionModel expectedDamageImmunity in expectedNPCModel.DamageResistanceModelList)
+            {
+                SelectableActionModel actualDamageImmunity = actualNPCModel.DamageResistanceModelList.First
+                    (item => item.ActionName.Equals(expectedDamageImmunity.ActionName));
+
+                Assert.IsNotNull(actualDamageImmunity);
+                Assert.AreEqual(expectedDamageImmunity.Selected, actualDamageImmunity.Selected);
+            }
+        }
+
+        private static IEnumerable<object[]> DamageResistancesData()
+        {
+            yield return new object[] { generateNPCModel_DamageResistances(
+                new DamageType[] { DamageType.Cold, DamageType.Force, DamageType.Necrotic,
+                    DamageType.Psychic, DamageType.Thunder }, WeaponResistance.Nonmagical),
+                "Damage Resistances cold, force, necrotic, psychic, thunder from nonmagical weapons" };
+        }
+        private static NPCModel generateNPCModel_DamageResistances(DamageType[] damageVulnerabilities, WeaponResistance? weaponResistance)
+        {
+            NPCModel npcModel = new NPCModel();
+            NPCController npcController = new NPCController();
+            npcModel.DamageResistanceModelList = npcController.GetSelectableActionModelList(typeof(DamageType));
+            npcModel.SpecialWeaponDmgResistanceModelList = npcController.GetSelectableActionModelList(typeof(WeaponResistance));
+            foreach (DamageType damageType in damageVulnerabilities)
+            {
+                string damageTypeName = damageType.ToString();
+                npcModel.DamageResistanceModelList.First(item => item.ActionName.Equals(damageType.ToString())).Selected = true;
+            }
+
+            if (weaponResistance != null)
+            {
+                npcModel.SpecialWeaponDmgResistanceModelList.First(item => item.ActionName.Equals(weaponResistance.ToString())).Selected = true;
+            }
+
+            return npcModel;
+        }
+        #endregion
+
+        #region Damage Immunities
+        [TestMethod]
+        [DynamicData(nameof(DamageImmunitiesData), DynamicDataSourceType.Method)]
+        public void Test_Parse_DamageImmunities(NPCModel expectedNpcModel, string damageImmunities)
+        {
+            _importEngineerSuiteNPC.ParseDamageImmunities(actualNPCModel, damageImmunities);
+            AssertDamageImmunities(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertDamageImmunities(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            foreach (SelectableActionModel expectedDamageImmunity in expectedNPCModel.DamageImmunityModelList)
+            {
+                SelectableActionModel actualDamageImmunity = actualNPCModel.DamageImmunityModelList.First
+                    (item => item.ActionName.Equals(expectedDamageImmunity.ActionName));
+
+                Assert.IsNotNull(actualDamageImmunity);
+                Assert.AreEqual(expectedDamageImmunity.Selected, actualDamageImmunity.Selected);
+            }
+        }
+
+        private static IEnumerable<object[]> DamageImmunitiesData()
+        {
+            yield return new object[] { generateNPCModel_DamageImmunities(
+                new DamageType[] { DamageType.Acid, DamageType.Force, DamageType.Poison,
+                    DamageType.Thunder, DamageType.Slashing }, WeaponImmunity.NonmagicalSilvered),
+                "Damage Immunities acid, force, poison, thunder; slashing from nonmagical weapons that aren't silvered" };
+        }
+        private static NPCModel generateNPCModel_DamageImmunities(DamageType[] damageImmunities, WeaponImmunity? weaponImmunity)
+        {
+            NPCModel npcModel = new NPCModel();
+            NPCController npcController = new NPCController();
+            npcModel.DamageImmunityModelList = npcController.GetSelectableActionModelList(typeof(DamageType));
+            npcModel.SpecialWeaponDmgImmunityModelList = npcController.GetSelectableActionModelList(typeof(WeaponImmunity));
+            foreach (DamageType damageType in damageImmunities)
+            {
+                string damageTypeName = damageType.ToString();
+                npcModel.DamageImmunityModelList.First(item => item.ActionName.Equals(damageType.ToString())).Selected = true;
+            }
+
+            if(weaponImmunity != null)
+            {
+                npcModel.SpecialWeaponDmgImmunityModelList.First(item => item.ActionName.Equals(weaponImmunity.ToString())).Selected = true;
+            }
+
             return npcModel;
         }
         #endregion
