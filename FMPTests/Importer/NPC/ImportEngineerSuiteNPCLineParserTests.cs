@@ -506,5 +506,47 @@ namespace FMPTests.Importer.NPC
             return npcModel;
         }
         #endregion
+
+        #region Condition Immunities
+        [TestMethod]
+        [DynamicData(nameof(ConditionImmunitiesData), DynamicDataSourceType.Method)]
+        public void Test_Parse_ConditionImmunities(NPCModel expectedNpcModel, string conditionImmunities)
+        {
+            _importEngineerSuiteNPC.ParseConditionImmunities(actualNPCModel, conditionImmunities);
+            AssertConditionImmunities(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertConditionImmunities(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            foreach (SelectableActionModel expectedConditionImmunity in expectedNPCModel.ConditionImmunityModelList)
+            {
+                SelectableActionModel actualConditionImmunity = actualNPCModel.ConditionImmunityModelList.First
+                    (item => item.ActionName.Equals(expectedConditionImmunity.ActionName));
+
+                Assert.IsNotNull(actualConditionImmunity);
+                Assert.AreEqual(expectedConditionImmunity.Selected, actualConditionImmunity.Selected);
+            }
+        }
+
+        private static IEnumerable<object[]> ConditionImmunitiesData()
+        {
+            yield return new object[] { generateNPCModel_ConditionImmunities(
+                new ConditionType[] { ConditionType.Charmed, ConditionType.Frightened, ConditionType.Invisible,
+                                    ConditionType.Paralyzed, ConditionType.Prone, ConditionType.Restrained}),
+                "Condition Immunities blinded, frightened, invisible, paralyzed, prone, restrained" };
+        }
+        private static NPCModel generateNPCModel_ConditionImmunities(ConditionType[] conditionImmunities)
+        {
+            NPCModel npcModel = new NPCModel();
+            NPCController npcController = new NPCController();
+            npcModel.ConditionImmunityModelList = npcController.GetSelectableActionModelList(typeof(ConditionType));
+            foreach (ConditionType damageType in conditionImmunities)
+            {
+                npcModel.ConditionImmunityModelList.First(item => item.ActionName.Equals(damageType.ToString())).Selected = true;
+            }
+
+            return npcModel;
+        }
+        #endregion
     }
 }
