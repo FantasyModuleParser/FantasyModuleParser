@@ -113,8 +113,7 @@ namespace FantasyModuleParser.Exporters
                             WriteReactions(xmlWriter, npcModel);
                             WriteSavingThrows(xmlWriter, npcModel);
                             WriteSenses(xmlWriter, npcModel);
-                            WriteSpells(xmlWriter, npcModel);
-                            WriteSpellSlots(xmlWriter, npcModel);
+                            WriteSkills(xmlWriter, npcModel);
                             WriteText(xmlWriter, npcModel);
                             WriteToken(xmlWriter, npcModel);
                             WriteTraits(xmlWriter, npcModel);
@@ -662,25 +661,130 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteEndElement(); // Close </senses>
         }
 
-        private void WriteSpells(XmlWriter xmlWriter, NPCModel npcModel)
+        private void WriteSkills(XmlWriter xmlWriter, NPCModel npcModel)
         {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (npcModel.Acrobatics != 0)
+                stringBuilder.Append("Acrobatics ").Append(npcModel.Acrobatics >= 0 ? "+" : "").Append(npcModel.Acrobatics).Append(", ");
+            if (npcModel.AnimalHandling != 0)
+                stringBuilder.Append("Animal Handling ").Append(npcModel.AnimalHandling >= 0 ? "+" : "").Append(npcModel.AnimalHandling).Append(", ");
+            if (npcModel.Arcana != 0)
+                stringBuilder.Append("Arcana ").Append(npcModel.Arcana >= 0 ? "+" : "").Append(npcModel.Arcana).Append(", ");
+            if (npcModel.Athletics != 0)
+                stringBuilder.Append("Athletics ").Append(npcModel.Athletics >= 0 ? "+" : "").Append(npcModel.Athletics).Append(", ");
+            if (npcModel.Deception != 0)
+                stringBuilder.Append("Deception ").Append(npcModel.Deception >= 0 ? "+" : "").Append(npcModel.Deception).Append(", ");
+            if (npcModel.History != 0)
+                stringBuilder.Append("History ").Append(npcModel.History >= 0 ? "+" : "").Append(npcModel.History).Append(", ");
+            if (npcModel.Insight != 0)
+                stringBuilder.Append("Insight ").Append(npcModel.Insight >= 0 ? "+" : "").Append(npcModel.Insight).Append(", ");
+            if (npcModel.Intimidation != 0)
+                stringBuilder.Append("Intimidation ").Append(npcModel.Intimidation >= 0 ? "+" : "").Append(npcModel.Intimidation).Append(", ");
+            if (npcModel.Investigation != 0)
+                stringBuilder.Append("Investigation ").Append(npcModel.Investigation >= 0 ? "+" : "").Append(npcModel.Investigation).Append(", ");
+            if (npcModel.Medicine != 0)
+                stringBuilder.Append("Medicine ").Append(npcModel.Medicine >= 0 ? "+" : "").Append(npcModel.Medicine).Append(", ");
+            if (npcModel.Nature != 0)
+                stringBuilder.Append("Nature ").Append(npcModel.Nature >= 0 ? "+" : "").Append(npcModel.Nature).Append(", ");
+            if (npcModel.Perception != 0)
+                stringBuilder.Append("Perception ").Append(npcModel.Perception >= 0 ? "+" : "").Append(npcModel.Perception).Append(", ");
+            if (npcModel.Performance != 0)
+                stringBuilder.Append("Performance ").Append(npcModel.Performance >= 0 ? "+" : "").Append(npcModel.Performance).Append(", ");
+            if (npcModel.Persuasion != 0)
+                stringBuilder.Append("Persuasion ").Append(npcModel.Persuasion >= 0 ? "+" : "").Append(npcModel.Persuasion).Append(", ");
+            if (npcModel.Religion != 0)
+                stringBuilder.Append("Religion ").Append(npcModel.Religion >= 0 ? "+" : "").Append(npcModel.Religion).Append(", ");
+            if (npcModel.SleightOfHand != 0)
+                stringBuilder.Append("SleightOfHand ").Append(npcModel.SleightOfHand >= 0 ? "+" : "").Append(npcModel.SleightOfHand).Append(", ");
+            if (npcModel.Stealth != 0)
+                stringBuilder.Append("Stealth ").Append(npcModel.Stealth >= 0 ? "+" : "").Append(npcModel.Stealth).Append(", ");
+            if (npcModel.Survival != 0)
+                stringBuilder.Append("Survival ").Append(npcModel.Survival >= 0 ? "+" : "").Append(npcModel.Survival).Append(", ");
 
-        }
-        private void WriteSpellSlots(XmlWriter xmlWriter, NPCModel npcModel)
-        {
+            if (stringBuilder.Length >= 2)
+            {
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+            string skillsString = stringBuilder.ToString().Trim();
 
+            xmlWriter.WriteStartElement("skills"); // Open <skills>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(skillsString);
+            xmlWriter.WriteEndElement(); // Close </skills>
         }
+
         private void WriteText(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            
         }
         private void WriteToken(XmlWriter xmlWriter, NPCModel npcModel)
         {
-
+            xmlWriter.WriteStartElement("token"); // Open <token>
+            xmlWriter.WriteAttributeString("type", "token"); // Add type=token
+            xmlWriter.WriteValue(npcModel.NPCToken);
+            xmlWriter.WriteEndElement(); // Close </token>
         }
         private void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
         {
+            xmlWriter.WriteStartElement("traits"); // Open <actions>
+            int actionID = 1;
+            string actionName = "";
 
+            foreach (ActionModelBase traits in npcModel.Traits)
+            {
+                xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
+                xmlWriter.WriteStartElement("desc"); // Open <desc>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(traits.ActionDescription); // Add Action Description
+                xmlWriter.WriteEndElement(); // Close </desc>
+                xmlWriter.WriteStartElement("name"); // Open <name>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(traits.ActionName); // Add Action Name
+                xmlWriter.WriteEndElement(); // Close </name>
+                xmlWriter.WriteEndElement(); // Close </id-####>
+                actionID = ++actionID;
+            }
+            if (npcModel.Psionics)
+            {
+                actionName = "Innate Spellcasting (Psionics)";
+            }
+            else if (npcModel.InnateSpellcastingSection && !npcModel.Psionics)
+            {
+                actionName = "Innate Spellcasting";
+            }
+            if (actionName.Length > 0)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("The " + npcModel.NPCName + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility + ". ");
+                stringBuilder.Append("It can innately cast the following spells, " + npcModel.ComponentText + ":");
+                if (npcModel.InnateAtWill != null)
+                    stringBuilder.Append("\rAt will: " + npcModel.InnateAtWill);
+                if (npcModel.FivePerDay != null)
+                    stringBuilder.Append("\r5/day each: " + npcModel.FivePerDay);
+                if (npcModel.FourPerDay != null)
+                    stringBuilder.Append("\r4/day each: " + npcModel.FourPerDay);
+                if (npcModel.ThreePerDay != null)
+                    stringBuilder.Append("\r3/day each: " + npcModel.ThreePerDay);
+                if (npcModel.TwoPerDay != null)
+                    stringBuilder.Append("\r2/day each: " + npcModel.TwoPerDay);
+                if (npcModel.OnePerDay != null)
+                    stringBuilder.Append("\r1/day each: " + npcModel.OnePerDay);
+                string innateCastingDescription = stringBuilder.ToString();
+
+                xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
+                xmlWriter.WriteStartElement("desc"); // Open <desc>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(innateCastingDescription); // Add Action Description
+                xmlWriter.WriteEndElement(); // Close </desc>
+                xmlWriter.WriteStartElement("name"); // Open <name>
+                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+                xmlWriter.WriteString(actionName); // Add Action Name
+                xmlWriter.WriteEndElement(); // Close </name>
+                xmlWriter.WriteEndElement(); // Close </id-####>
+                actionID = ++actionID;
+            }
+            
+            xmlWriter.WriteEndElement(); // Close </traits>
         }
         private void WriteXP(XmlWriter xmlWriter, NPCModel npcModel)
         {
