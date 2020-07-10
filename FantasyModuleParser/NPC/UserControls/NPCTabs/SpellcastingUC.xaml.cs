@@ -37,5 +37,11 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             //var npcModel = ((App)Application.Current).NpcModelObject;
             DataContext = npcController.GetNPCModel();
         }
+
+        public void Refresh()
+        {
+            var npcModel = npcController.GetNPCModel();
+            DataContext = npcController.GetNPCModel();
+        }
     }
 }
