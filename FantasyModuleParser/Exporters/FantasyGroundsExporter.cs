@@ -292,13 +292,17 @@ namespace FantasyModuleParser.Exporters
         }
         private void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
         {
+            string[] acArray = npcModel.AC.Split('(');
+            string acValue = acArray[0].Trim(); // Removes any whitespace
+            string acDescription = "(" + acArray[1];
+
             xmlWriter.WriteStartElement("ac"); // Open <ac>
             xmlWriter.WriteAttributeString("type", "number"); // Add type=number
-            xmlWriter.WriteValue(npcModel.AC); // Add AC value
+            xmlWriter.WriteValue(acValue); // Add AC value
             xmlWriter.WriteEndElement(); // Close </ac>
             xmlWriter.WriteStartElement("actext"); // Open <actext>
             xmlWriter.WriteAttributeString("type", "string"); // Add type=string
-            xmlWriter.WriteValue(npcModel.ACText); // Add AC Text string
+            xmlWriter.WriteValue(acDescription); // Add AC Text string
             xmlWriter.WriteEndElement(); // Close </actext>
         }
         private void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)

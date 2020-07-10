@@ -24,11 +24,11 @@
                 <MenuItem Header="_Open NPC" Click="LoadNPCOption_Click"/>
                 <MenuItem Header="_Save NPC" Click="SaveNPCToFile"/>
                 <Separator />
-                <MenuItem Header="_Save as HTML" />
-                <MenuItem Header="_Save as RTF" />
+                <MenuItem Header="_Save as HTML" IsEnabled="False" />
+                <MenuItem Header="_Save as RTF" IsEnabled="False"/>
                 <Separator />
-                <MenuItem Header="_Save as Fight Club XML" />
-                <MenuItem Header="_Place BBCode on Clipboard" />
+                <MenuItem Header="_Save as Fight Club XML" IsEnabled="False" />
+                <MenuItem Header="_Place BBCode on Clipboard" IsEnabled="False" />
             </MenuItem>
             <MenuItem Header="_Options">
                 <MenuItem Header="_Import Text" Click="ImportText_Click"/>
@@ -60,11 +60,11 @@
                 <MenuItem Header="_View Tables folder" Click="Table_Click" />
                 <Separator />
                 <MenuItem Header="_View Fantasy Grounds folder" Click="FG_Click"/>
-                <MenuItem Header="_View Engineer Suite systems folder" />
+                <MenuItem Header="_View Fantasy Module Parser systems folder" />
             </MenuItem>
-            <MenuItem Header="_Backup">
-                <MenuItem Header="_Manage Backup Settings" />
-                <MenuItem Header="_Schedule Backups" />
+            <MenuItem Header="_Backup" IsEnabled="False">
+                <MenuItem Header="_Manage Backup Settings"/>
+                <MenuItem Header="_Schedule Backups"/>
                 <MenuItem Header="_Perform Backup Now" />
             </MenuItem>
             <MenuItem Header="_Information">
