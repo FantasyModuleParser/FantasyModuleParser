@@ -136,6 +136,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			DataContext = npcController.GetNPCModel();
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
+			SpellcastingUserControl.Refresh();
 			TraitsUserControl.Refresh();
 			InnateCastingUserControl.Refresh();
 		}
@@ -161,6 +162,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// a NPC File
 				BaseStatsUserControl.Refresh();
 				SkillsUserControl.Refresh();
+				SpellcastingUserControl.Refresh();
 				TraitsUserControl.Refresh();
 				InnateCastingUserControl.Refresh();
 			}
