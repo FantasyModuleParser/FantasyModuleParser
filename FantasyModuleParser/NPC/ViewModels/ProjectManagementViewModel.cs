@@ -26,6 +26,13 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public void SaveModule(string folderPath, ModuleModel moduleModel)
         {
+            // If the module has no Categories set, then default the first one to the Module Title
+            if(moduleModel.Categories == null || moduleModel.Categories.Count == 0)
+            {
+                moduleModel.Categories = new List<CategoryModel>();
+                moduleModel.Categories.Add(new CategoryModel() { Name = moduleModel.Name });
+            }
+
             string appendedFileName = folderPath + "\\" + moduleModel.ModFilename + ".fpm";
             moduleModel.SaveFilePath = folderPath;
             moduleService.Save(appendedFileName, moduleModel);

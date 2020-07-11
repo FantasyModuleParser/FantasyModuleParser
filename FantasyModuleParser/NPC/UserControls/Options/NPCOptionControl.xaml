@@ -177,7 +177,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30">
             <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="150"/>
+            <ComboBox ItemsSource="{Binding Path=ModuleModel.Categories, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Path=Name}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="150"/>
         </StackPanel>
     </Grid>
 </UserControl>

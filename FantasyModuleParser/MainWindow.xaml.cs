@@ -84,7 +84,7 @@ namespace FantasyModuleParser
                     new About().Show();
                     break;
                 case "ManageCategories":
-                    new UserCreationManagement().Show();
+                    new FMPConfigurationView().Show();
                     break;
                 case "ManageProject":
                     new ProjectManagement().Show();

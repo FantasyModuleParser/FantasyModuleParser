@@ -52,5 +52,14 @@ namespace FantasyModuleParser.Main.Services
             ModuleModel moduleModel = JsonConvert.DeserializeObject<ModuleModel>(jsonData);
             ModuleService.moduleModel = moduleModel;
         }
+        public bool IsModuleConfigured()
+        {
+            if (moduleModel == null)
+                return false;
+
+            if (moduleModel.Name == null || moduleModel.Name.Length == 0)
+                return false;
+            return true;
+        }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static FantasyModuleParser.Extensions.EnumerationExtension;
+using FantasyModuleParser.NPC.ViewModels;
 
 namespace FantasyModuleParser.NPC.UserControls.Options
 {
@@ -23,17 +24,19 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		#region Controllers
 		public NPCController npcController { get; set; }
 		#endregion
-
-		#region Variables
-		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+		#region ViewModel
+		private NPCOptionControlViewModel npcOptionControlViewModel;
+        #endregion
+        #region Variables
+        string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 		string installFolder = "FMP/NPC";
 		#endregion
 		public NPCOptionControl()
 		{
 			InitializeComponent();
 			npcController = new NPCController();
-			//var npcModel = ((App)Application.Current).NpcModelObject;
-			DataContext = npcController.GetNPCModel();
+			npcOptionControlViewModel = new NPCOptionControlViewModel();
+			DataContext = npcOptionControlViewModel;
 		}
 		private void openfolder(string strPath, string strFolder)
 		{
@@ -86,7 +89,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					new About().Show();
 					break;
 				case "ManageCategories":
-					new UserCreationManagement().Show();
+					new FMPConfigurationView().Show();
 					break;
 				case "ManageProject":
 					new ProjectManagement().Show();

@@ -371,6 +371,7 @@
     <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
       <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -437,6 +438,7 @@
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\ViewModels\InnateSpellcastingViewModel.cs" />
+    <Compile Include="NPC\ViewModels\NPCOptionControlViewModel.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
     <Compile Include="NPC\ViewModels\ProjectManagementViewModel.cs" />
     <Compile Include="NPC\Views\DiceFunction.xaml.cs">
@@ -445,8 +447,8 @@
     <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
       <DependentUpon>PreviewNPC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main\Views\UserCreationManagement.xaml.cs">
-      <DependentUpon>UserCreationManagement.xaml</DependentUpon>
+    <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
+      <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
@@ -495,7 +497,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Main\Views\UserCreationManagement.xaml">
+    <Page Include="Main\Views\FMPConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
