@@ -41,42 +41,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			Directory.CreateDirectory(fPath);
 			System.Diagnostics.Process.Start(fPath);
 		}
-		private void AppData_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
-		}
-		private void Projects_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
-		}
-		private void Artifacts_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Artifacts");
-		}
-		private void Equipment_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Equipment");
-		}
-		private void NPC_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/NPC");
-		}
-		private void Parcel_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Parcel");
-		}
-		private void Spell_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Spell");
-		}
-		private void Table_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Table");
-		}
-		private void FG_Click(object sender, RoutedEventArgs e)
-		{
-			openfolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds");
-		}
 		private void Menu_Click(object sender, RoutedEventArgs e)
 		{
 			var menuitem = (MenuItem)sender;
@@ -166,6 +130,10 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				TraitsUserControl.Refresh();
 				InnateCastingUserControl.Refresh();
 			}
+		}
+		private void AddToProject_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
