@@ -156,7 +156,6 @@ namespace FantasyModuleParser.Exporters
                                                                // 0 = unlocked, 1 = locked
             xmlWriter.WriteEndElement(); // Close </locked>
         }
-
         private void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
         {
             int ChaBonus = -5 + (npcModel.AttributeCha / 2);
@@ -294,7 +293,7 @@ namespace FantasyModuleParser.Exporters
         {
             string[] acArray = npcModel.AC.Split('(');
             string acValue = acArray[0].Trim(); // Removes any whitespace
-            string acDescription = "(" + acArray[1];
+            string acDescription = acArray.Length >= 2 ? "(" + acArray[1] : "";
 
             xmlWriter.WriteStartElement("ac"); // Open <ac>
             xmlWriter.WriteAttributeString("type", "number"); // Add type=number
@@ -332,7 +331,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteString(npcModel.Alignment); // Add alignment string
             xmlWriter.WriteEndElement(); // Close </alignment>
         }
-
         private void WriteConditionImmunities(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -353,8 +351,7 @@ namespace FantasyModuleParser.Exporters
 
             xmlWriter.WriteValue(stringBuilder.ToString().Trim());
             xmlWriter.WriteEndElement(); // Close </conditionimmunities>
-        }
-        
+        }      
         private void WriteCR(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("cr"); // Open <cr>
@@ -362,7 +359,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteString(npcModel.ChallengeRating); // Add CR string
             xmlWriter.WriteEndElement(); // Close </cr>
         }
-
         private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -424,7 +420,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteString(weaponDamageImmunityString);
             xmlWriter.WriteEndElement(); // Close </damageimmunities>
         }
-
         private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -486,7 +481,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteString(weaponDamageResistanceString);
             xmlWriter.WriteEndElement(); // Close </damageresistances>
         }
-
         private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -522,7 +516,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteString(hpValue); // Write HP value
             xmlWriter.WriteEndElement(); // Close </hp>
         }
-
         private void WriteLairActions(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("lairactions"); // Open <actions>
@@ -543,42 +536,102 @@ namespace FantasyModuleParser.Exporters
             }
             xmlWriter.WriteEndElement(); // Close </lairactions>
         }
-
         private void WriteLanguages(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            xmlWriter.WriteStartElement("languages"); // Open <languages>
-            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            StringBuilder stringBuilderOption = new StringBuilder();
 
-            foreach (LanguageModel standardLanguage in npcModel.StandardLanguages)
+            foreach (LanguageModel languageModel in npcModel.StandardLanguages)
             {
-                if (standardLanguage.Selected == true)
-                    stringBuilder.Append(standardLanguage.Language.ToLower()).Append(", ");
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
             }
-            foreach (LanguageModel monstrousLanguage in npcModel.MonstrousLanguages)
+            foreach (LanguageModel languageModel in npcModel.ExoticLanguages)
             {
-                if (monstrousLanguage.Selected == true)
-                    stringBuilder.Append(monstrousLanguage.Language.ToLower()).Append(", ");
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
             }
-            foreach (LanguageModel exoticLanguage in npcModel.ExoticLanguages)
+            foreach (LanguageModel languageModel in npcModel.MonstrousLanguages)
             {
-                if (exoticLanguage.Selected == true)
-                    stringBuilder.Append(exoticLanguage.Language.ToLower()).Append(", ");
+                if (languageModel.Selected == true)
+                    stringBuilder.Append(languageModel.Language).Append(", ");
             }
-            if (npcModel.Telepathy == true)
+            if (npcModel.UserLanguages != null && npcModel.UserLanguages.Count > 0)
+            {
+                foreach (LanguageModel languageModel in npcModel.UserLanguages)
+                {
+                    if (languageModel.Selected == true)
+                        stringBuilder.Append(languageModel.Language).Append(", ");
+                }
+            }
+            
+            if (npcModel.Telepathy)
             {
                 stringBuilder.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
             }
             if (stringBuilder.Length >= 2)
-            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            string languageString = stringBuilder.ToString().Trim();
 
-            xmlWriter.WriteValue(languageString);
+
+            if (npcModel.LanguageOptions == "No special conditions" || npcModel.LanguageOptions == null)
+            {
+                stringBuilderOption.Append(stringBuilder);
+            }
+            else if (npcModel.LanguageOptions == "Speaks no languages")
+            {
+                stringBuilderOption.Append("-");
+            }
+            else if (npcModel.LanguageOptions == "Speaks all languages")
+            {
+                stringBuilderOption.Append("all").Append(", ");
+                if (npcModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+            }
+            else if (npcModel.LanguageOptions == "Can't speak; Knows selected languages")
+            {
+                stringBuilderOption.Append("understands" + stringBuilder + " but can't speak").Append(", ");
+                if (npcModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+            }
+            else if (npcModel.LanguageOptions == "Can't speak; Knows creator's languages")
+            {
+                stringBuilderOption.Append("understands the languages of its creator but can't speak").Append(", ");
+                if (npcModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+            }
+            else if (npcModel.LanguageOptions == "Can't speak; Knows languages known in life")
+            {
+                stringBuilderOption.Append("any languages it knew in life").Append(", ");
+                if (npcModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+            }
+            else if (npcModel.LanguageOptions == "Alternative language text (enter below)")
+            {
+                stringBuilderOption.Append(npcModel.LanguageOptionsText.ToString().Trim()).Append(", ");
+                if (npcModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+            }
+
+            xmlWriter.WriteStartElement("languages"); // Open <languages>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(stringBuilderOption.ToString());
             xmlWriter.WriteEndElement(); // Close </languages>
         }
-
         private void WriteLegendaryActions(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("legendaryactions"); // Open <legendaryactions>
