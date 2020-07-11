@@ -26,7 +26,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public void SaveModule(string folderPath, ModuleModel moduleModel)
         {
-            string appendedFileName = folderPath + "\\" + moduleModel.ModFilename + ".fpm";
+            string appendedFileName = folderPath + "\\" + moduleModel.ModFilename + ".fmp";
             moduleModel.SaveFilePath = folderPath;
             moduleService.Save(appendedFileName, moduleModel);
         }
