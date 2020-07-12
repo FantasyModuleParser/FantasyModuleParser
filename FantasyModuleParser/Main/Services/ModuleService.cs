@@ -1,9 +1,11 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.NPC;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,6 +62,23 @@ namespace FantasyModuleParser.Main.Services
             if (moduleModel.Name == null || moduleModel.Name.Length == 0)
                 return false;
             return true;
+        }
+
+        public void AddNPCToCategory(NPCModel npcModel, string categoryValue)
+        {
+            if (categoryValue == null || categoryValue.Length == 0)
+                throw new InvalidDataException("Category value is null;  Cannot save NPC");
+            if (npcModel == null)
+                throw new InvalidDataException("NPC Model data object is null");
+
+            CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
+            if (categoryModel == null)
+                throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            else
+                categoryModel.NPCModels.Add(npcModel);  // The real magic is here
+
+            string appendedFileName = moduleModel.SaveFilePath + "\\" + moduleModel.ModFilename + ".fmp";
+            Save(appendedFileName, moduleModel);
         }
     }
 }

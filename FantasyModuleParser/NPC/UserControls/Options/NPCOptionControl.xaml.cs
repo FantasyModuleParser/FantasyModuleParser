@@ -13,6 +13,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using static FantasyModuleParser.Extensions.EnumerationExtension;
 using FantasyModuleParser.NPC.ViewModels;
+using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 
 namespace FantasyModuleParser.NPC.UserControls.Options
 {
@@ -197,6 +199,19 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			npcOptionControlViewModel.Refresh();
 			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
 			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
+		}
+
+		private void AddToProjectButton_Click(object sender, RoutedEventArgs e)
+		{
+			if(FGCategoryComboBox.Items.Count == 0)
+			{
+				MessageBox.Show("No Module Project loaded!\nPlease create / load a Module through Options -> Manage Project");
+				return;
+			}
+
+			ModuleService moduleService = new ModuleService();
+			moduleService.AddNPCToCategory(npcController.GetNPCModel(), 
+				(FGCategoryComboBox.SelectedItem as CategoryModel).Name);
 		}
 	}
 }

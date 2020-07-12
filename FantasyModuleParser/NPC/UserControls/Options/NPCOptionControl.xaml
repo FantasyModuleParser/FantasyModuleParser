@@ -172,7 +172,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Add to Project" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Add to Project" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" Click="AddToProjectButton_Click">
                 <Button.ToolTip>
                     <TextBlock>
                     Add this NPC to a parsing project (or update it if it already part of a project) depending on the settings chosen in your project
