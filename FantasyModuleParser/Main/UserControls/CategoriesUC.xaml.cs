@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.Main.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,17 @@ namespace FantasyModuleParser.Main.UserControls
     /// </summary>
     public partial class CategoriesUC : UserControl
     {
+        private CategoriesUCViewModel viewModel;
         public CategoriesUC()
         {
             InitializeComponent();
+            viewModel = new CategoriesUCViewModel();
+            DataContext = viewModel;
+        }
+
+        private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.AddCategoryToModule(NewCategoryValue.Text);
         }
     }
 }

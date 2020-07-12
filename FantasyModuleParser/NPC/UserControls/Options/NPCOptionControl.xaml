@@ -15,8 +15,15 @@
              xmlns:SpellcastingUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:DescriptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:ImageUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
+             xmlns:Model="clr-namespace:FantasyModuleParser.Main.Models"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="620">
+             d:DesignHeight="700" d:DesignWidth="620" Loaded="NPCOptionControl_Loaded">
+    <UserControl.Resources>
+        <x:Array x:Key="CategoryTestList" Type="Model:CategoryModel">
+            <Model:CategoryModel Name="Test 1"/>
+            <Model:CategoryModel Name="Test 2"/>
+        </x:Array>
+    </UserControl.Resources>
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="620">
             <MenuItem Header="_File">
@@ -177,7 +184,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30">
             <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top"/>
-            <ComboBox ItemsSource="{Binding Path=ModuleModel.Categories, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Path=Name}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="150"/>
+            <ComboBox Name="FGCategoryComboBox" PreviewMouseDown="FGCategoryComboBox_MouseDownClick" PreviewKeyDown="FGCategoryComboBox_PreviewKeyDown" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="150"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -3,6 +3,7 @@ using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             // If the module has no Categories set, then default the first one to the Module Title
             if(moduleModel.Categories == null || moduleModel.Categories.Count == 0)
             {
-                moduleModel.Categories = new List<CategoryModel>();
+                moduleModel.Categories = new ObservableCollection<CategoryModel>();
                 moduleModel.Categories.Add(new CategoryModel() { Name = moduleModel.Name });
             }
 

@@ -3,6 +3,7 @@ using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,18 @@ namespace FantasyModuleParser.NPC.ViewModels
     {
         private ModuleService _moduleService;
         public ModuleModel ModuleModel { get; set; }
+        public ObservableCollection<CategoryModel> ViewModelCategories { get; set; }
         public NPCOptionControlViewModel()
         {
             _moduleService = new ModuleService();
             ModuleModel = _moduleService.GetModuleModel();
+            ViewModelCategories = ModuleModel.Categories;
+        }
+        public void Refresh()
+        {
+            ModuleModel = _moduleService.GetModuleModel();
+            ViewModelCategories = ModuleModel.Categories;
+            RaisePropertyChanged("NPCOptionControlViewModel");
         }
 
         public void AddNPCToCategory(NPCModel npcModel, string categoryValue)
@@ -28,7 +37,7 @@ namespace FantasyModuleParser.NPC.ViewModels
                 throw new InvalidDataException("NPC Model data object is null");
 
             ModuleModel _moduleModel = _moduleService.GetModuleModel();
-            CategoryModel categoryModel = _moduleModel.Categories.Find(item => item.Name.Equals(categoryValue));
+            CategoryModel categoryModel = _moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
             else

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace FantasyModuleParser.Main.Models
         public bool IsGMOnly { get; set; }
         public bool IsLockedRecords { get; set; }
         public string ModulePath { get; set; }
-        public List<CategoryModel> Categories { get; set; }
+        public ObservableCollection<CategoryModel> Categories { get; set; }
 
     }
 }

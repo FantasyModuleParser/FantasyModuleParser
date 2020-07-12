@@ -371,6 +371,7 @@
     <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
       <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
     <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>

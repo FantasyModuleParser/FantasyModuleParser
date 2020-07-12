@@ -175,5 +175,28 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 			new PreviewNPC().Show();
 		}
+
+		private void NPCOptionControl_Loaded(object sender, RoutedEventArgs e)
+		{
+			npcOptionControlViewModel.Refresh();
+			DataContext = npcOptionControlViewModel;
+		}
+
+		// For some reason I don't know, the ItemsSource binding does not work in XAML for getting the
+		// updated list of Categories based on the loaded module.  This is the alternate way for the UI
+		// to be refreshed (FGCategoryComboBox_MouseDownClick && FGCategoryComboBox_PreviewKeyDown)
+		private void FGCategoryComboBox_MouseDownClick(object sender, MouseButtonEventArgs e)
+		{
+			npcOptionControlViewModel.Refresh();
+			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
+			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
+		}
+
+		private void FGCategoryComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			npcOptionControlViewModel.Refresh();
+			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
+			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
+		}
 	}
 }
