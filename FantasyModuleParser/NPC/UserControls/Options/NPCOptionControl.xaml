@@ -38,9 +38,6 @@
                 <MenuItem Header="_Place BBCode on Clipboard" IsEnabled="False" />
             </MenuItem>
             <MenuItem Header="_Options">
-                <MenuItem Header="_Import Text" Click="ImportText_Click"/>
-                <MenuItem Header="_Create Module" />
-                <Separator />
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories"/>
                 <MenuItem Header="_Manage NPC File" Click="EditDeleteNPC_Click" />
                 <MenuItem Header="_Manage Weapons List" Click="EditDeleteNPC_Click" />
@@ -54,20 +51,6 @@
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ProjectManagement"/>
                 <Separator />
                 <MenuItem Header="_Other Options (Future Release)" IsEnabled="False"/>
-            </MenuItem>
-            <MenuItem Header="_Directories">
-                <MenuItem Header="_View Appdata folder" Click="AppData_Click" />
-                <MenuItem Header="_View Projects folder" Click="Projects_Click" />
-                <Separator />
-                <MenuItem Header="_View Artefacts folder" Click="Artifacts_Click" />
-                <MenuItem Header="_View Equipment folder" Click="Equipment_Click" />
-                <MenuItem Header="_View NPCs folder" Click="NPC_Click" />
-                <MenuItem Header="_View Parcels folder" Click="Parcel_Click" />
-                <MenuItem Header="_View Spells folder" Click="Spell_Click" />
-                <MenuItem Header="_View Tables folder" Click="Table_Click" />
-                <Separator />
-                <MenuItem Header="_View Fantasy Grounds folder" Click="FG_Click"/>
-                <MenuItem Header="_View Fantasy Module Parser systems folder" />
             </MenuItem>
             <MenuItem Header="_Backup" IsEnabled="False">
                 <MenuItem Header="_Manage Backup Settings"/>

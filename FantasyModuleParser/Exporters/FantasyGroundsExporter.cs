@@ -652,7 +652,6 @@ namespace FantasyModuleParser.Exporters
             }
             xmlWriter.WriteEndElement(); // Close </legendaryactions>
         }
-        
         private void WriteName(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("name"); // Open <name>
@@ -679,7 +678,6 @@ namespace FantasyModuleParser.Exporters
             }
             xmlWriter.WriteEndElement(); // Close </reactions>
         }
-
         private void WriteSavingThrows(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -708,7 +706,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteValue(savingThrowString);
             xmlWriter.WriteEndElement(); // Close </savingthrows>
         }
-
         private void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -737,7 +734,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteValue(sensesString);
             xmlWriter.WriteEndElement(); // Close </senses>
         }
-
         private void WriteSkills(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -789,7 +785,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteValue(skillsString);
             xmlWriter.WriteEndElement(); // Close </skills>
         }
-
         private void WriteText(XmlWriter xmlWriter, NPCModel npcModel)
         {
             xmlWriter.WriteStartElement("text"); // Open <text>
@@ -953,14 +948,11 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteValue(npcModel.XP);
             xmlWriter.WriteEndElement(); // Close </xp>
         }
-
         public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
         {
             using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
             using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
             {
-               
-
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("root");
                 xmlWriter.WriteAttributeString("version", "4");
@@ -993,7 +985,6 @@ namespace FantasyModuleParser.Exporters
                 return sw.ToString();
             }
         }
-
         private XmlWriterSettings GetXmlWriterSettings()
         {
             XmlWriterSettings settings = new XmlWriterSettings
@@ -1024,7 +1015,6 @@ namespace FantasyModuleParser.Exporters
 
             return document;
         }
-
         public sealed class StringWriterWithEncoding : StringWriter
         {
             private readonly Encoding encoding;
