@@ -1,4 +1,4 @@
-﻿using FantasyModuleParser.NPC.Models;
+﻿using FantasyModuleParser.Main.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

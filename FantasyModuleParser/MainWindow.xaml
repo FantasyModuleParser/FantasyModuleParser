@@ -30,9 +30,9 @@
                 <MenuItem Header="_View Tables folder" Click="Table_Click" />
                 <Separator />
                 <MenuItem Header="_View Fantasy Grounds folder" Click="FG_Click" />
-                <MenuItem Header="_View Engineer Suite systems folder" />
+                <MenuItem Header="_View Fantasy Module Parser systems folder" />
             </MenuItem>
-            <MenuItem Header="_Backup">
+            <MenuItem Header="_Backup" IsEnabled="False">
                 <MenuItem Header="_Manage Backup Settings" />
                 <MenuItem Header="_Schedule Backups" />
                 <MenuItem Header="_Perform Backup Now" />

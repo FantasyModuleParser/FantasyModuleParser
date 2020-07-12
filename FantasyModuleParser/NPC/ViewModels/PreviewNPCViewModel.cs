@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.NPC.Controllers;
+﻿using FantasyModuleParser.Extensions;
+using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.NPC.ViewModel;
@@ -576,9 +577,12 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return Visibility.Collapsed;
             }
         }
+        
         private string UpdateLanguages()
         {
             StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilderOption = new StringBuilder();
+
             foreach (LanguageModel languageModel in NPCModel.StandardLanguages)
             {
                 if (languageModel.Selected == true)
@@ -594,15 +598,86 @@ namespace FantasyModuleParser.NPC.ViewModels
                 if (languageModel.Selected == true)
                     stringBuilder.Append(languageModel.Language).Append(", ");
             }
-            foreach (LanguageModel languageModel in NPCModel.UserLanguages)
+            if (NPCModel.UserLanguages != null && NPCModel.UserLanguages.Count > 0)
             {
-                if (languageModel.Selected == true)
-                    stringBuilder.Append(languageModel.Language).Append(", ");
+                foreach (LanguageModel languageModel in NPCModel.UserLanguages)
+                {
+                    if (languageModel.Selected == true)
+                        stringBuilder.Append(languageModel.Language).Append(", ");
+                }
+            }
+            if (NPCModel.Telepathy)
+            {
+                stringBuilder.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
             }
             if (stringBuilder.Length >= 2)
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            return stringBuilder.ToString().Trim();
+
+
+            if (NPCModel.LanguageOptions == "No special conditions" || NPCModel.LanguageOptions == null)
+            {
+                stringBuilderOption.Append(stringBuilder);
+                return stringBuilderOption.ToString();
+            }
+            else if (NPCModel.LanguageOptions == "Speaks no languages")
+            {
+                stringBuilderOption.Append("-");
+                return stringBuilderOption.ToString();
+            }
+            else if (NPCModel.LanguageOptions == "Speaks all languages")
+            {
+                stringBuilderOption.Append("all").Append(", ");
+                if (NPCModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+                return stringBuilderOption.ToString();
+            }
+            else if (NPCModel.LanguageOptions == "Can't speak; Knows selected languages")
+            {
+                stringBuilderOption.Append("understands" + stringBuilder + " but can't speak").Append(", ");
+                if (NPCModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+                return stringBuilderOption.ToString();
+            }
+            else if (NPCModel.LanguageOptions == "Can't speak; Knows creator's languages")
+            {
+                stringBuilderOption.Append("understands the languages of its creator but can't speak").Append(", ");
+                if (NPCModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+                return stringBuilderOption.ToString();
+            }
+            else if (NPCModel.LanguageOptions == "Can't speak; Knows languages known in life")
+            {
+                stringBuilderOption.Append("Understands all languages it spoke in life but can't speak").Append(", ");
+                if (NPCModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+                return stringBuilderOption.ToString();
+            }
+            else if (NPCModel.LanguageOptions == "Alternative language text (enter below)")
+            {
+                stringBuilderOption.Append(NPCModel.LanguageOptionsText.ToString().Trim()).Append(", ");
+                if (NPCModel.Telepathy)
+                {
+                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
+                }
+                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
+                return stringBuilderOption.ToString();
+            }
+            else
+                return "";
         }
+
         #endregion
         #region UpdateSenses
         private string UpdateSenses()

@@ -1,5 +1,5 @@
-﻿using FantasyModuleParser.Main.Services;
-using FantasyModuleParser.NPC.Models;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public void SaveModule(string folderPath, ModuleModel moduleModel)
         {
-            string appendedFileName = folderPath + "\\" + moduleModel.ModFilename + ".fpm";
+            string appendedFileName = folderPath + "\\" + moduleModel.ModFilename + ".fmp";
             moduleModel.SaveFilePath = folderPath;
             moduleService.Save(appendedFileName, moduleModel);
         }

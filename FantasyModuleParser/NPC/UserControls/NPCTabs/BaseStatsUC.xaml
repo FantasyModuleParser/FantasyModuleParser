@@ -261,11 +261,9 @@
         <TextBox Name="strAC" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="11">
             <TextBox.ToolTip>
                 <TextBlock>
-					Enter the NPC's armor class.
+					Enter the NPC's armor class and armor class text.
 					<LineBreak />
-					You can also enter the armor type in brackets.
-					<LineBreak />
-					<Bold>Example:</Bold> 12 (leather armor)
+					<Bold>Example:</Bold> 12 (natural armor)
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
