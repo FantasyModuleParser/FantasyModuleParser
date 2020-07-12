@@ -610,7 +610,7 @@ namespace FantasyModuleParser.Exporters
             }
             else if (npcModel.LanguageOptions == "Can't speak; Knows languages known in life")
             {
-                stringBuilderOption.Append("any languages it knew in life").Append(", ");
+                stringBuilderOption.Append("Understands all languages it spoke in life but can't speak").Append(", ");
                 if (npcModel.Telepathy)
                 {
                     stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
