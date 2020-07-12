@@ -61,7 +61,7 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(WeaponType.GetDescription() + ": ");
 			}
 
-			ToHitStringBuilder(sb);
+			ToHitStringBuilder(stringBuilder);
 			stringBuilder.Append(ToHit + " to hit, ");
 
 			if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.WA || WeaponType == WeaponType.MSA || WeaponType == WeaponType.SA)
@@ -96,11 +96,11 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
 			}
 			
-			AddPrimaryDamageToStringBuilder(sb);
+			AddPrimaryDamageToStringBuilder(stringBuilder);
 
 			if (AddSecondDamage)
 			{
-				AddSecondaryDamageToStringBuilder(sb, SecondaryDamageTotal);
+				AddSecondaryDamageToStringBuilder(stringBuilder, SecondaryDamageTotal);
 			}
 			else
 			{
