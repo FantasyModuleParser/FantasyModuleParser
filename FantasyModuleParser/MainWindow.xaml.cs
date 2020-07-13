@@ -77,6 +77,7 @@ namespace FantasyModuleParser
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
+            ProjectManagement projectManagement = null;
             var menuitem = (MenuItem)sender;
             switch (menuitem.Name)
             {
@@ -87,10 +88,14 @@ namespace FantasyModuleParser
                     new FMPConfigurationView().Show();
                     break;
                 case "ManageProject":
-                    new ProjectManagement().Show();
+                    projectManagement = new ProjectManagement();
+                    projectManagement.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
+                    projectManagement.Show();
                     break;
                 case "ProjectManagement":
-                    new ProjectManagement().Show();
+                    projectManagement = new ProjectManagement();
+                    projectManagement.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
+                    projectManagement.Show();
                     break;
                 case "Settings":
                     new Settings().Show();
@@ -99,6 +104,11 @@ namespace FantasyModuleParser
                     new Supporters().Show();
                     break;
             }
+        }
+
+        private void ProjectManagement_OnCloseWindowAction(object sender, EventArgs e)
+        {
+            npcOptionUserControl.Refresh();
         }
 
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)

@@ -338,11 +338,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Exporters\FantasyGroundsExporter.cs" />
     <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="Main\Models\CategoryModel.cs" />
+    <Compile Include="Main\Models\FMPConfigurationModel.cs" />
+    <Compile Include="Main\Models\UserLanguageModel.cs" />
+    <Compile Include="Main\Services\FMPConfigurationService.cs" />
     <Compile Include="Main\Services\ModuleService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
       <DependentUpon>CategoriesUC.xaml</DependentUpon>
@@ -373,6 +377,7 @@
     </Compile>
     <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
     <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
+    <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

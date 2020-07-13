@@ -506,6 +506,10 @@ namespace FantasyModuleParser.Exporters
         }
         private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
         {
+            if(npcModel.HP == null)
+            {
+                npcModel.HP = "0 (0)";
+            }
             string[] hpArray = npcModel.HP.Split('(');
             string hpValue = hpArray[0].Trim(); // Removes any whitespace
             string hpDieBreakdown = "(" + hpArray[1];

@@ -187,5 +187,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				MessageBox.Show("Error detected while adding NPC to button :: " + exception.Message);
 			}
 		}
+
+		public void Refresh()
+		{
+			npcOptionControlViewModel.Refresh();
+			DataContext = npcOptionControlViewModel;
+		}
 	}
 }

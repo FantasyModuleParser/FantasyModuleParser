@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FantasyModuleParser.Commands;
+using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,27 @@ namespace FantasyModuleParser.Main.UserControls
     /// </summary>
     public partial class UserLanguagesUC : UserControl
     {
+        private UserLanguagesUCViewModel userLanguagesUCViewModel;
         public UserLanguagesUC()
         {
             InitializeComponent();
+            userLanguagesUCViewModel = new UserLanguagesUCViewModel();
+            DataContext = userLanguagesUCViewModel;
+            OnRemoveCategoryCommand = new ActionCommand(x => userLanguagesUCViewModel.RemoveUserLanguage(x.ToString()));
+        }
+
+        public ICommand OnRemoveCategoryCommand { get; set; }
+
+        private void AddNewCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            userLanguagesUCViewModel.AddUserLanguage(NewUserLanguageText.Text);
+        }
+
+        private void RemoveCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (sender as Button);
+            UserLanguageModel userLanguageModel = button.DataContext as UserLanguageModel;
+            userLanguagesUCViewModel.RemoveUserLanguage(userLanguageModel);
         }
     }
 }

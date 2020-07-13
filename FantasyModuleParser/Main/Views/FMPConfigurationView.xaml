@@ -32,6 +32,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Close" Width="75" Grid.Row="1" />
+        <Button Content="Close" Width="75" Grid.Row="1" Click="CloseButton_Click" />
     </Grid>
 </Window>
