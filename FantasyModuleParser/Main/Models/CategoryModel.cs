@@ -11,10 +11,5 @@ namespace FantasyModuleParser.Main.Models
     {
         public string Name { get; set; }
         public List<NPCModel> NPCModels { get; set; } = new List<NPCModel>();
-
-        public string ToString()
-        {
-            return Name;
-        }
     }
 }

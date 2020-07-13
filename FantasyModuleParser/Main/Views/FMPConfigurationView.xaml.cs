@@ -26,7 +26,7 @@ namespace FantasyModuleParser.Main
             InitializeComponent();
 
             // Enable it so the popup window can close on the Escape key
-            this.PreviewKeyDown += (s, e) => { if (e.Key == Key.Escape) Close(); };
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
 
             configurationViewModel = new FMPConfigurationViewModel();
             DataContext = configurationViewModel;
@@ -40,7 +40,7 @@ namespace FantasyModuleParser.Main
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
