@@ -338,11 +338,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Exporters\FantasyGroundsExporter.cs" />
     <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="Main\Models\CategoryModel.cs" />
+    <Compile Include="Main\Models\FMPConfigurationModel.cs" />
+    <Compile Include="Main\Services\FMPConfigurationService.cs" />
     <Compile Include="Main\Services\ModuleService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
       <DependentUpon>CategoriesUC.xaml</DependentUpon>
@@ -371,6 +374,9 @@
     <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
       <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
+    <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
+    <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -437,6 +443,7 @@
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\ViewModels\InnateSpellcastingViewModel.cs" />
+    <Compile Include="NPC\ViewModels\NPCOptionControlViewModel.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
     <Compile Include="NPC\ViewModels\ProjectManagementViewModel.cs" />
     <Compile Include="NPC\Views\DiceFunction.xaml.cs">
@@ -445,8 +452,8 @@
     <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
       <DependentUpon>PreviewNPC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main\Views\UserCreationManagement.xaml.cs">
-      <DependentUpon>UserCreationManagement.xaml</DependentUpon>
+    <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
+      <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
@@ -495,7 +502,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Main\Views\UserCreationManagement.xaml">
+    <Page Include="Main\Views\FMPConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

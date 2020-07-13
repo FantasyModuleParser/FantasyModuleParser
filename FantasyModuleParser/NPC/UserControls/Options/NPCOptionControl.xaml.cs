@@ -12,6 +12,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static FantasyModuleParser.Extensions.EnumerationExtension;
+using FantasyModuleParser.NPC.ViewModels;
+using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 
 namespace FantasyModuleParser.NPC.UserControls.Options
 {
@@ -23,17 +26,19 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		#region Controllers
 		public NPCController npcController { get; set; }
 		#endregion
-
-		#region Variables
-		string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+		#region ViewModel
+		private NPCOptionControlViewModel npcOptionControlViewModel;
+        #endregion
+        #region Variables
+        string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 		string installFolder = "FMP/NPC";
 		#endregion
 		public NPCOptionControl()
 		{
 			InitializeComponent();
 			npcController = new NPCController();
-			//var npcModel = ((App)Application.Current).NpcModelObject;
-			DataContext = npcController.GetNPCModel();
+			npcOptionControlViewModel = new NPCOptionControlViewModel();
+			DataContext = npcOptionControlViewModel;
 		}
 		private void openfolder(string strPath, string strFolder)
 		{
@@ -50,7 +55,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					new About().Show();
 					break;
 				case "ManageCategories":
-					new UserCreationManagement().Show();
+					new FMPConfigurationView().Show();
 					break;
 				case "ManageProject":
 					new ProjectManagement().Show();
@@ -139,6 +144,39 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
 			new PreviewNPC().Show();
+		}
+
+		private void NPCOptionControl_Loaded(object sender, RoutedEventArgs e)
+		{
+			npcOptionControlViewModel.Refresh();
+			DataContext = npcOptionControlViewModel;
+		}
+
+		private void AddToProjectButton_Click(object sender, RoutedEventArgs e)
+		{
+			if(FGCategoryComboBox.Items.Count == 0)
+			{
+				MessageBox.Show("No Module Project loaded!\nPlease create / load a Module through Options -> Manage Project");
+				return;
+			}
+
+			ModuleService moduleService = new ModuleService();
+			try { 
+			moduleService.AddNPCToCategory(npcController.GetNPCModel(), 
+				(FGCategoryComboBox.SelectedItem as CategoryModel).Name);
+			}
+			catch (Exception exception)
+			{
+				MessageBox.Show("Error detected while adding NPC to button :: " + exception.Message);
+			}
+		}
+
+		public void Refresh()
+		{
+			npcOptionControlViewModel.Refresh();
+			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
+			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
+			DataContext = npcOptionControlViewModel;
 		}
 	}
 }

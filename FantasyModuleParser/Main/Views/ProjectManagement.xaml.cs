@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace FantasyModuleParser.Main
 {
@@ -14,6 +15,10 @@ namespace FantasyModuleParser.Main
         public ProjectManagement()
         {
             InitializeComponent();
+
+            // Enable it so the popup window can close on the Escape key
+            this.PreviewKeyDown += (s, e) => { if (e.Key == Key.Escape) Close(); };
+
             projectManagementViewModel = new ProjectManagementViewModel();
             DataContext = projectManagementViewModel;
         }
@@ -39,6 +44,7 @@ namespace FantasyModuleParser.Main
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+            OnCloseWindowEvent(EventArgs.Empty);
             viewModel.UpdateModule();
         }
 
@@ -83,6 +89,16 @@ namespace FantasyModuleParser.Main
                 ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
                 viewModel.LoadModule(openFileDlg.FileName);
                 DataContext = viewModel;
+            }
+        }
+
+        public event EventHandler OnCloseWindowAction;
+        protected virtual void OnCloseWindowEvent(EventArgs e)
+        {
+            EventHandler handler = OnCloseWindowAction;
+            if (handler != null)
+            {
+                handler(this, e);
             }
         }
     }

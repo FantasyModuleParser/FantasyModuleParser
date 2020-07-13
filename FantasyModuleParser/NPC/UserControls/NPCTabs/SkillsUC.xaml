@@ -345,7 +345,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="User" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="28" Grid.RowSpan="3" Grid.Column="37" Grid.ColumnSpan="15"/>
-        <ListBox Name="listUser" SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="37" Grid.ColumnSpan="15">
+        <ListBox Name="listUser"  ItemsSource="{Binding Path=UserLanguages}"  SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="37" Grid.ColumnSpan="15">
             <ListBox.ToolTip>
                 <TextBlock>
 				    Select the user-defined languages that your NPC knows.

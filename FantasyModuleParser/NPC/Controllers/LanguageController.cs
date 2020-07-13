@@ -1,4 +1,6 @@
-﻿using FantasyModuleParser.NPC.Models.Skills;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Models.Skills;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -77,8 +79,12 @@ namespace FantasyModuleParser.NPC.Controllers
         }
         public ObservableCollection<LanguageModel> GenerateUserLanguages()
         {
-            ObservableCollection<LanguageModel> langs = new ObservableCollection<LanguageModel>();
-            return langs;
+            //TODO: When DependencyInjection is implemented (specificially Ninject), remove this
+            // service instantiation
+            FMPConfigurationService fmpConfigurationService = new FMPConfigurationService();
+            FMPConfigurationModel fMPConfigurationModel =  fmpConfigurationService.Load();
+
+            return fMPConfigurationModel.UserLanguages;
         }
     }
 }
