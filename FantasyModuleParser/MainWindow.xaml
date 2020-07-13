@@ -69,7 +69,7 @@
                 <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
-        <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Hidden">
+        <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Collapsed">
             <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700"></npcOptionUserControl:NPCOptionControl>
         </StackPanel>
         <StackPanel Name="stackMain" Margin="160,50,0,0">

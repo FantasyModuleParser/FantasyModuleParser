@@ -11,6 +11,7 @@ using System.Reflection;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Main.Models;
+using System.Xml.Linq;
 
 namespace FantasyModuleParser.Exporters.Tests
 {
@@ -29,7 +30,7 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.Category = "Supplement";
             moduleModel.ModulePath = "Path\\To\\Everything";
 
-            moduleModel.Categories = new List<CategoryModel>();
+            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();;
             moduleModel.Categories.Add(new CategoryModel() { Name = "Supplement" });
 
             exporter = new FantasyGroundsExporter();
@@ -77,7 +78,7 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.ModulePath = 
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
-            moduleModel.Categories = new List<CategoryModel>();
+            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();
             moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
             moduleModel.Categories[0].NPCModels.Add(npcModel);
 
@@ -85,21 +86,22 @@ namespace FantasyModuleParser.Exporters.Tests
             exporter.CreateModule(moduleModel);
         }
 
-        [TestMethod]
         public void Create_BlankDB_XMLFile()
         {
             string xmlContent = exporter.GenerateDBXmlFile(moduleModel);
 
-            string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+            string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
                               "<root version=\"4\" dataversion=\"20200528\" release=\"8|CoreRPG:4\" />";
 
-            Assert.AreEqual(expected, xmlContent);
+            string cleaned = xmlContent.Replace("\n", "").Replace("\r", "");
+
+            Assert.AreEqual(XmlPrettyPrint(expected), XmlPrettyPrint(cleaned));
         }
 
         public void Create_DBXml_OneNewNPC()
         {
             // For this test, load a newly initalized NPC into the ModuleModel data object
-            moduleModel.Categories = new List<CategoryModel>();
+            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();;
             moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
             moduleModel.Categories[0].NPCModels.Add(new NPCController().InitializeNPCModel());
 
@@ -107,7 +109,13 @@ namespace FantasyModuleParser.Exporters.Tests
 
             string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
                               "<root version=\"4\" dataversion=\"20200528\" release=\"8|CoreRPG:4\" />";
-            Assert.AreEqual(expected, xmlContent);
+            Assert.AreEqual(XmlPrettyPrint(expected), XmlPrettyPrint(xmlContent));
+        }
+
+        private string XmlPrettyPrint(string input)
+        {
+            XDocument xDocument = new XDocument(input);
+            return xDocument.ToString();
         }
     }
 }
