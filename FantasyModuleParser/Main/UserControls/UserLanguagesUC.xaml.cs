@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Commands;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.ViewModels;
+using FantasyModuleParser.NPC.Models.Skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace FantasyModuleParser.Main.UserControls
         private void RemoveCategoryButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (sender as Button);
-            UserLanguageModel userLanguageModel = button.DataContext as UserLanguageModel;
+            LanguageModel userLanguageModel = button.DataContext as LanguageModel;
             userLanguagesUCViewModel.RemoveUserLanguage(userLanguageModel);
         }
     }

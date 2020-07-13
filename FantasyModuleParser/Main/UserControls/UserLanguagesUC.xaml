@@ -31,7 +31,7 @@
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding UserLanguageValue}" Grid.Column="0" />
+                        <TextBlock Text="{Binding Language}" Grid.Column="0" />
                         <Button Click="RemoveCategoryButton_Click" Grid.Column="1">Remove</Button>
                     </Grid>
                 </DataTemplate>

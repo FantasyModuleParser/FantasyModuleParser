@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FantasyModuleParser.NPC.Models.Skills;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace FantasyModuleParser.Main.Models
 {
     public class FMPConfigurationModel
     {
-        public ObservableCollection<UserLanguageModel> UserLanguages { get; set; } = new ObservableCollection<UserLanguageModel>();
+        public ObservableCollection<LanguageModel> UserLanguages { get; set; } = new ObservableCollection<LanguageModel>();
         public FMPConfigurationModel()
         {
         }

@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Commands;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Models.Skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,20 +27,20 @@ namespace FantasyModuleParser.Main.ViewModels
             //validate that the language is not null AND is populated
             if (newUserLanguage != null && newUserLanguage.Length > 0) {
                 // Check for any duplicates
-                UserLanguageModel userLanguageModel = 
-                    FMPConfigurationModel.UserLanguages.FirstOrDefault(item => item.UserLanguageValue.Equals(newUserLanguage));
+                LanguageModel userLanguageModel = 
+                    FMPConfigurationModel.UserLanguages.FirstOrDefault(item => item.Language.Equals(newUserLanguage));
                 if(userLanguageModel == null) { 
-                    FMPConfigurationModel.UserLanguages.Add(new UserLanguageModel() { UserLanguageValue = newUserLanguage });
+                    FMPConfigurationModel.UserLanguages.Add(new LanguageModel() { Language = newUserLanguage });
                     fmpConfigurationService.Save(FMPConfigurationModel);
                 }
             }
         }
         public void RemoveUserLanguage(string userLanguage)
         {
-            FMPConfigurationModel.UserLanguages.Remove(new UserLanguageModel() { UserLanguageValue = userLanguage });
+            FMPConfigurationModel.UserLanguages.Remove(new LanguageModel() { Language = userLanguage });
             fmpConfigurationService.Save(FMPConfigurationModel);
         }
-        public void RemoveUserLanguage(UserLanguageModel userLanguageModel)
+        public void RemoveUserLanguage(LanguageModel userLanguageModel)
         {
             FMPConfigurationModel.UserLanguages.Remove(userLanguageModel);
             fmpConfigurationService.Save(FMPConfigurationModel);

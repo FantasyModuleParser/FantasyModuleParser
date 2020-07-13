@@ -345,7 +345,6 @@
     <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="Main\Models\CategoryModel.cs" />
     <Compile Include="Main\Models\FMPConfigurationModel.cs" />
-    <Compile Include="Main\Models\UserLanguageModel.cs" />
     <Compile Include="Main\Services\FMPConfigurationService.cs" />
     <Compile Include="Main\Services\ModuleService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
