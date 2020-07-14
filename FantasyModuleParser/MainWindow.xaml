@@ -32,7 +32,7 @@
                 <MenuItem Header="_View Fantasy Grounds folder" Click="FG_Click" />
                 <MenuItem Header="_View Fantasy Module Parser systems folder" />
             </MenuItem>
-            <MenuItem Header="_Backup" IsEnabled="False">
+            <MenuItem Header="_Backup" Visibility="Collapsed" >
                 <MenuItem Header="_Manage Backup Settings" />
                 <MenuItem Header="_Schedule Backups" />
                 <MenuItem Header="_Perform Backup Now" />
@@ -40,10 +40,10 @@
             <MenuItem Header="_Information">
                 <MenuItem Header="_About Fantasy Module Parser" Click="Menu_Click" Name="About"/>
                 <MenuItem Header="_Fantasy Module Parser Supporters" Click="Menu_Click" Name="Supporters" />
-                <MenuItem Header="_Quickstart Guide" />
-                <MenuItem Header="_Links in Fantasy Grounds" />
+                <MenuItem Header="_Quickstart Guide" Visibility="Collapsed" />
+                <MenuItem Header="_Links in Fantasy Grounds" Visibility="Collapsed" />
                 <Separator />
-                <MenuItem Header="_Buy me a coffee" />
+                <MenuItem Header="_Buy me a coffee" Visibility="Collapsed" />
             </MenuItem>
         </Menu>
         <StackPanel Orientation="Vertical" Width="200" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0">

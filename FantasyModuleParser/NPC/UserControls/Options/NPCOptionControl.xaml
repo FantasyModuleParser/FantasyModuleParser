@@ -31,39 +31,40 @@
                 <MenuItem Header="_Open NPC" Click="LoadNPCOption_Click"/>
                 <MenuItem Header="_Save NPC" Click="SaveNPCToFile"/>
                 <Separator />
-                <MenuItem Header="_Save as HTML" IsEnabled="False" />
-                <MenuItem Header="_Save as RTF" IsEnabled="False"/>
+                <MenuItem Header="_Save as HTML" Visibility="Collapsed" />
+                <MenuItem Header="_Save as RTF" Visibility="Collapsed" />
                 <Separator />
-                <MenuItem Header="_Save as Fight Club XML" IsEnabled="False" />
-                <MenuItem Header="_Place BBCode on Clipboard" IsEnabled="False" />
+                <MenuItem Header="_Save as Fight Club XML" Visibility="Collapsed" />
+                <MenuItem Header="_Place BBCode on Clipboard" Visibility="Collapsed" />
             </MenuItem>
             <MenuItem Header="_Options">
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories"/>
-                <MenuItem Header="_Manage NPC File" Click="EditDeleteNPC_Click" />
-                <MenuItem Header="_Manage Weapons List" Click="EditDeleteNPC_Click" />
-                <MenuItem Header="_Manage Actions List" Click="EditDeleteNPC_Click" />
-                <MenuItem Header="_Manage Traits List" Click="EditDeleteNPC_Click" />
-                <MenuItem Header="_Manage Languages" Click="EditDeleteNPC_Click" />
+                <MenuItem Header="_Manage NPC File" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
+                <MenuItem Header="_Manage Weapons List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
+                <MenuItem Header="_Manage Actions List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
+                <MenuItem Header="_Manage Traits List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
+                <MenuItem Header="_Manage Languages" Click="ManageCategories" />
                 <Separator />
                 <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings"/>
             </MenuItem>
             <MenuItem Header="_Fantasy Module Parser">
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ProjectManagement"/>
                 <Separator />
-                <MenuItem Header="_Other Options (Future Release)" IsEnabled="False"/>
+                <MenuItem Header="_Other Options (Future Release)" Visibility="Collapsed" />
             </MenuItem>
-            <MenuItem Header="_Backup" IsEnabled="False">
+            <MenuItem Header="_Backup" Visibility="Collapsed">
                 <MenuItem Header="_Manage Backup Settings"/>
                 <MenuItem Header="_Schedule Backups"/>
                 <MenuItem Header="_Perform Backup Now" />
             </MenuItem>
+
             <MenuItem Header="_Information">
                 <MenuItem Header="_About Fantasy Module Parser" Click="Menu_Click" Name="About"/>
                 <MenuItem Header="_Supporters" Click="Menu_Click" Name="Supporters" />
-                <MenuItem Header="_Quickstart Guide" />
-                <MenuItem Header="_Links in Fantasy Grounds" />
+                <MenuItem Header="_Quickstart Guide" Visibility="Collapsed" />
+                <MenuItem Header="_Links in Fantasy Grounds" Visibility="Collapsed" />
                 <Separator />
-                <MenuItem Header="_Buy me a coffee" />
+                <MenuItem Header="_Buy me a coffee" Visibility="Collapsed" />
             </MenuItem>
         </Menu>
         <TabControl HorizontalAlignment="Left" Height="605" Margin="0,22,0,0" VerticalAlignment="Top" Width="617">
@@ -114,7 +115,7 @@
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
-            <Button Content="Import Text" Click="ImportText_Click" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Import Text" Click="ImportText_Click" IsEnabled="False" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
                     Select this button to import your NPC from a PDF, text file, or webpage
@@ -123,7 +124,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="FG List Options" Click="FGListOptions_Click" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="FG List Options" Click="FGListOptions_Click" IsEnabled="False" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
                     This opens a new dialogue box where you can choose terrain types where your creature can be found in or state the mythology that it comes from
@@ -139,7 +140,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Copy Statblock" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Copy Statblock" IsEnabled="False" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
                     Copy the graphical statblock to the clipboard, ready for pasting in another application
