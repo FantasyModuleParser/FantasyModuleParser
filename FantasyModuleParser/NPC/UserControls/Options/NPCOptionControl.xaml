@@ -38,12 +38,12 @@
                 <MenuItem Header="_Place BBCode on Clipboard" Visibility="Collapsed" />
             </MenuItem>
             <MenuItem Header="_Options">
-                <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories"/>
+                <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
                 <MenuItem Header="_Manage NPC File" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
                 <MenuItem Header="_Manage Weapons List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
                 <MenuItem Header="_Manage Actions List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
                 <MenuItem Header="_Manage Traits List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
-                <MenuItem Header="_Manage Languages" Click="ManageCategories" />
+                <MenuItem Header="_Manage Languages" Click="Menu_Click" Name="ManageLanguages" />
                 <Separator />
                 <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings"/>
             </MenuItem>
