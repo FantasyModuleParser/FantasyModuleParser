@@ -136,10 +136,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				InnateCastingUserControl.Refresh();
 			}
 		}
-		private void AddToProject_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
