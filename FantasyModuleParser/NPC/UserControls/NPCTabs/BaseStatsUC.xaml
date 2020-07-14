@@ -385,7 +385,7 @@
         <!--#region Ability Scores-->
         <Label Content="Ability Scores" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="32" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="10" />
         <Label Content="STR" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3"/>
-        <TextBox Name="strAttrStr" LostFocus="StrengthScore_TextChanged" Text="{Binding Path=AttributeStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrStr" TextChanged="StrengthScore_TextChanged" Text="{Binding Path=AttributeStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Strength ability.
@@ -398,7 +398,7 @@
         </TextBox>
         <Label Name="strModStr" Content="+0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="13" Grid.ColumnSpan="2" />
         <Label Content="DEX" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrDex" Text="{Binding Path=AttributeDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="DexterityScore_TextChanged" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrDex" Text="{Binding Path=AttributeDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="DexterityScore_TextChanged" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Dexterity ability.
@@ -411,7 +411,7 @@
         </TextBox>
         <Label Name="strModDex" Content="+0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="13" Grid.ColumnSpan="2" />
         <Label Content="CON" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrCon" LostFocus="ConstitutionScore_TextChanged" Text="{Binding Path=AttributeCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrCon" TextChanged="ConstitutionScore_TextChanged" Text="{Binding Path=AttributeCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Constitution ability.
@@ -424,7 +424,7 @@
         </TextBox>
         <Label Name="strModCon" Content="+0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="13" Grid.ColumnSpan="2" />
         <Label Content="INT" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrInt" LostFocus="IntelligenceScore_TextChanged" Text="{Binding Path=AttributeInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrInt" TextChanged="IntelligenceScore_TextChanged" Text="{Binding Path=AttributeInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
                     Enter the NPC's Intelligence ability.
@@ -437,7 +437,7 @@
         </TextBox>
         <Label Name="strModInt" Content="+0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="13" Grid.ColumnSpan="2" />
         <Label Content="WIS" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrWis" LostFocus="WisdomScore_TextChanged" Text="{Binding Path=AttributeWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrWis" TextChanged="WisdomScore_TextChanged" Text="{Binding Path=AttributeWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Wisdom ability.
@@ -450,7 +450,7 @@
         </TextBox>
         <Label Name="strModWis" Content="+0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="13" Grid.ColumnSpan="2" />
         <Label Content="CHA" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" />
-        <TextBox Name="strAttrCha" LostFocus="CharismaScore_TextChanged" Text="{Binding Path=AttributeCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
+        <TextBox Name="strAttrCha" TextChanged="CharismaScore_TextChanged" Text="{Binding Path=AttributeCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Charisma ability.
