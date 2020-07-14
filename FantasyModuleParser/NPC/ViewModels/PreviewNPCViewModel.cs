@@ -684,7 +684,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(appendSenses("darkvision ", NPCModel.Darkvision, " ft."));
-            stringBuilder.Append(appendSenses("blindsight ", NPCModel.Blindsight, " ft."));
+            stringBuilder.Append(appendBlindSenses("blindsight ", NPCModel.Blindsight, " ft."));
             stringBuilder.Append(appendSenses("tremorsense ", NPCModel.Tremorsense, " ft."));
             stringBuilder.Append(appendSenses("truesight ", NPCModel.Truesight, " ft."));
             stringBuilder.Append(appendSenses("passive perception ", NPCModel.PassivePerception, ""));
@@ -692,14 +692,27 @@ namespace FantasyModuleParser.NPC.ViewModels
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             return stringBuilder.ToString();
         }
+
         private string appendSenses(string senseName, int senseValue, string senseRange)
+        {
+            if (senseValue != 0)
+            {
+                string delimiter = ", ";
+                return senseName + senseValue + senseRange + delimiter;
+            }
+            return "";
+            
+        }
+
+        private string appendBlindSenses(string senseName, int senseValue, string senseRange)
         {
             string delimiter = ", ";
             if (senseValue != 0 && NPCModel.BlindBeyond == false)
                 return senseName + senseValue + senseRange + delimiter;
-            if (senseValue != 0 && NPCModel.BlindBeyond == true)
+            else if (senseValue != 0 && NPCModel.BlindBeyond == true)
                 return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
             return "";
+            
         }
         #endregion
         #region UpdateChallengeRating
