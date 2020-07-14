@@ -136,10 +136,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				InnateCastingUserControl.Refresh();
 			}
 		}
-		private void AddToProject_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
@@ -162,8 +158,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 			ModuleService moduleService = new ModuleService();
 			try { 
-			moduleService.AddNPCToCategory(npcController.GetNPCModel(), 
-				(FGCategoryComboBox.SelectedItem as CategoryModel).Name);
+				moduleService.AddNPCToCategory(npcController.GetNPCModel(), (FGCategoryComboBox.SelectedItem as CategoryModel).Name);
+				MessageBox.Show("NPC has been added to the project");
 			}
 			catch (Exception exception)
 			{

@@ -23,6 +23,13 @@ namespace FantasyModuleParser.NPC.ViewModels
         public void UpdateModule()
         {
             moduleService.UpdateModuleModel(ModuleModel);
+            ModuleModel = moduleService.GetModuleModel();
+        }
+        public void NewModuleSetup()
+        {
+            moduleService.UpdateModuleModel(new ModuleModel());
+            ModuleModel = moduleService.GetModuleModel();
+            RaisePropertyChanged("NewModuleModelChange");
         }
 
         public void SaveModule(string folderPath, ModuleModel moduleModel)

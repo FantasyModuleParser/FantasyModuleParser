@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using static FantasyModuleParser.Extensions.EnumerationExtension;
 using Microsoft.Win32;
+using System.Text;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
@@ -49,14 +50,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			int num;
 			if (int.TryParse(strAttrStr.Text, out num))
 			{
-				strModStr1.Content = -5 + (num / 2);
+				int answer = -5 + (num / 2);
+				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
-					strModStr.Content = "";
+					strModStr.Content = answer;
 				}
 				else
 				{
-					strModStr.Content = "+";
+					strModStr.Content = stringBuilder.Append("+" + answer);
 				}
 			}
 		}
@@ -65,14 +67,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			int num;
 			if (int.TryParse(strAttrDex.Text, out num))
 			{
-				strModDex1.Content = -5 + (num / 2);
+				int answer = -5 + (num / 2);
+				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
-					strModDex.Content = "";
+					strModDex.Content = answer;
 				}
 				else
 				{
-					strModDex.Content = "+";
+					strModDex.Content = stringBuilder.Append("+" + answer);
 				}
 			}
 		}
@@ -81,14 +84,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			int num;
 			if (int.TryParse(strAttrCon.Text, out num))
 			{
-				strModCon1.Content = -5 + (num / 2);
+				int answer = -5 + (num / 2);
+				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
-					strModCon.Content = "";
+					strModCon.Content = answer;
 				}
 				else
 				{
-					strModCon.Content = "+";
+					strModCon.Content = stringBuilder.Append("+" + answer);
 				}
 			}
 		}
@@ -97,14 +101,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			int num;
 			if (int.TryParse(strAttrInt.Text, out num))
 			{
-				strModInt1.Content = -5 + (num / 2);
+				int answer = -5 + (num / 2);
+				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
-					strModInt.Content = "";
+					strModInt.Content = answer;
 				}
 				else
 				{
-					strModInt.Content = "+";
+					strModInt.Content = stringBuilder.Append("+" + answer);
 				}
 			}
 		}
@@ -113,14 +118,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			int num;
 			if (int.TryParse(strAttrWis.Text, out num))
 			{
-				strModWis1.Content = -5 + (num / 2);
+				int answer = -5 + (num / 2);
+				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
-					strModWis.Content = "";
+					strModWis.Content = answer;
 				}
 				else
 				{
-					strModWis.Content = "+";
+					strModWis.Content = stringBuilder.Append("+" + answer);
 				}
 			}
 		}
@@ -129,14 +135,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			int num;
 			if (int.TryParse(strAttrCha.Text, out num))
 			{
-				strModCha1.Content = -5 + (num / 2);
+				int answer = -5 + (num / 2);
+				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
-					strModCha.Content = "";
+					strModCha.Content = answer;
 				}
 				else
 				{
-					strModCha.Content = "+";
+					strModCha.Content = stringBuilder.Append("+" + answer);
 				}
 			}
 		}

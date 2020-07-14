@@ -1,5 +1,8 @@
-﻿using FantasyModuleParser.NPC.ViewModels;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.ViewModels;
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -17,20 +20,20 @@ namespace FantasyModuleParser.Main
             InitializeComponent();
 
             // Enable it so the popup window can close on the Escape key
-            this.PreviewKeyDown += (s, e) => { if (e.Key == Key.Escape) Close(); };
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
 
             projectManagementViewModel = new ProjectManagementViewModel();
             DataContext = projectManagementViewModel;
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void OpenModuleFilePath(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Custom Description";
+            folderBrowserDialog.Description = "Select where the Folder and Module file will be stored";
 
             if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -90,6 +93,20 @@ namespace FantasyModuleParser.Main
                 viewModel.LoadModule(openFileDlg.FileName);
                 DataContext = viewModel;
             }
+        }
+
+        private void NewProject_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ProjectManagementViewModel).NewModuleSetup();
+
+            // For some reason, the fields are not updated automatically.  
+            // TODO:  This is the workaround for now.
+            ModuleName.Text = "";
+            ModuleCategory.Text = "";
+            ModuleAuthor.Text = "";
+            ModuleModFilename.Text = "";
+            ModuleThumbnameFilename.Text = "";
+            ModulePathTB.Text = "";
         }
 
         public event EventHandler OnCloseWindowAction;

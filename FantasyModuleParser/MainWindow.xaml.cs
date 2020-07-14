@@ -103,6 +103,9 @@ namespace FantasyModuleParser
                 case "Supporters":
                     new Supporters().Show();
                     break;
+                case "Exit":
+                    Close();
+                    break;
             }
         }
 
