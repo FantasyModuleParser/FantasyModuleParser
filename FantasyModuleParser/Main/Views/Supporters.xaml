@@ -17,7 +17,7 @@
                 <Label Content="PerryChalmers" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="PlastiqueSurgeon" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="ShadowLinks" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
+                <Label Content="Sir Bayard" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
             </StackPanel>
             <StackPanel Orientation="Vertical">
