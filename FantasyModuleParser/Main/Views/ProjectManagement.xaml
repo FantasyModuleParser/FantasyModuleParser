@@ -38,7 +38,7 @@
     <Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="800">
             <MenuItem Header="_File">
-                <MenuItem Header="_New Project" />
+                <MenuItem Header="_New Project" Click="NewProject_Click" />
                 <MenuItem Header="_Load Project" Click="LoadModule_Click"/>
                 <MenuItem Header="_Save Project" Click="SaveModule_Click"/>
                 <MenuItem Header="_Save Project To" Click="SaveToModule_Click"/>

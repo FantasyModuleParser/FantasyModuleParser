@@ -175,32 +175,32 @@ namespace FantasyModuleParser.Exporters
             if (npcModel.AttributeCha >= 10)
                 ChaModifier = "+";
             else
-                ChaModifier = "-";
+                ChaModifier = "";
 
             if (npcModel.AttributeCon >= 10)
                 ConModifier = "+";
             else
-                ConModifier = "-";
+                ConModifier = "";
 
             if (npcModel.AttributeDex >= 10)
                 DexModifier = "+";
             else
-                DexModifier = "-";
+                DexModifier = "";
 
             if (npcModel.AttributeInt >= 10)
                 IntModifier = "+";
             else
-                IntModifier = "-";
+                IntModifier = "";
 
             if (npcModel.AttributeStr >= 10)
                 StrModifier = "+";
             else
-                StrModifier = "-";
+                StrModifier = "";
 
             if (npcModel.AttributeWis >= 10)
                 WisModifier = "+";
             else
-                WisModifier = "-";
+                WisModifier = "";
 
             xmlWriter.WriteStartElement("abilities"); // Open <abilities>
             xmlWriter.WriteStartElement("charisma"); // Open <charisma>
