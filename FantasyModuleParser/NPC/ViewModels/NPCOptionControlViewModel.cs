@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FantasyModuleParser.NPC.ViewModels
 {
@@ -40,9 +41,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             CategoryModel categoryModel = _moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
-            else
-                if (categoryModel.NPCModels.FirstOrDefault(npc => npc.NPCName.Equals(npcModel.NPCName)) == null)
-                    categoryModel.NPCModels.Add(npcModel);  // The real magic is here
+            else if (categoryModel.NPCModels.FirstOrDefault(npc => npc.NPCName.Equals(npcModel.NPCName)) == null)
+            {
+                categoryModel.NPCModels.Add(npcModel);  // The real magic is here
+            }
+                    
         }
     }
 }
