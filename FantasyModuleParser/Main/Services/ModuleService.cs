@@ -30,7 +30,6 @@ namespace FantasyModuleParser.Main.Services
         {
             return moduleModel;
         }
-
         public void UpdateModuleModel(ModuleModel moduleModel)
         {
             ModuleService.moduleModel = moduleModel;

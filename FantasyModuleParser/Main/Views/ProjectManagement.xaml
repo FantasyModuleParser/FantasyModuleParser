@@ -67,26 +67,26 @@
                 <Label Content="Module Information" Foreground="Gray" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Module Title:" Margin="60,5,0,0" Padding="0"/>
-                    <TextBox Text="{Binding Path=ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" Padding="0"/>
+                    <TextBox x:Name="ModuleName" Text="{Binding Path=ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" Padding="0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Module Category:" Margin="34,3,0,0" Padding="0"/>
-                    <TextBox Text="{Binding Path=ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
+                    <TextBox x:Name="ModuleCategory" Text="{Binding Path=ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Module Author:" Margin="46,3,0,0" Padding="0"/>
-                    <TextBox Text="{Binding Path=ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
+                    <TextBox x:Name="ModuleAuthor" Text="{Binding Path=ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Module Filename:" Margin="35,3,0,0" Padding="0"/>
-                    <TextBox Text="{Binding Path=ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
+                    <TextBox x:Name="ModuleModFilename" Text="{Binding Path=ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content=".mod" FontSize="8" Padding="0" Margin="314,0,0,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Thumbnail Filename:" Margin="20,3,0,0" Padding="0"/>
-                    <TextBox Text="{Binding Path=ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
+                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding Path=ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox IsChecked="{Binding Path=ModuleModel.IsGMOnly, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="GM View Only" Padding="0" Margin="30,5,0,0"/>
