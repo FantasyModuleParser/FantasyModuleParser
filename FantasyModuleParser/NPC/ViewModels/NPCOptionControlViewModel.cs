@@ -41,7 +41,8 @@ namespace FantasyModuleParser.NPC.ViewModels
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
             else
-                categoryModel.NPCModels.Add(npcModel);  // The real magic is here
+                if (categoryModel.NPCModels.FirstOrDefault(npc => npc.NPCName.Equals(npcModel.NPCName)) == null)
+                    categoryModel.NPCModels.Add(npcModel);  // The real magic is here
         }
     }
 }
