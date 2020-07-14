@@ -28,7 +28,7 @@ namespace FantasyModuleParser.Main.Services
 
         public ModuleModel GetModuleModel()
         {
-            return ModuleService.moduleModel;
+            return moduleModel;
         }
 
         public void UpdateModuleModel(ModuleModel moduleModel)
