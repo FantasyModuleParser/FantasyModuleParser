@@ -64,6 +64,11 @@ namespace FantasyModuleParser.NPC.UserControls.Action
             Regex regex = new Regex(@"[^0-9-]+"); ;
             e.Handled = regex.IsMatch(e.Text);
         }
+        private void PositiveNumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"[^0-9-]+");
+            e.Handled = regex.IsMatch(e.Text) || e.Text.Contains("-");
+        }
         private void OtherText_Checked(object sender, RoutedEventArgs e)
         {
             OtherText_Text.IsReadOnly = false;

@@ -47,7 +47,7 @@
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <CheckBox Content="Spell Save DC" IsChecked="{Binding Path=InnateSpellSaveDCCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Margin="20,5,0,0"/>
-                <TextBox Name="intInnateSpellSaveDC" Text="{Binding Path=InnateSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
+                <TextBox Name="intInnateSpellSaveDC" Text="{Binding Path=InnateSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="50" Height="20" Margin="10,0,0,0" PreviewTextInput="PositiveNumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
                             Enter the NPC's spell save difficulty.
@@ -57,7 +57,7 @@
                     </TextBox.ToolTip>
                 </TextBox>
                 <CheckBox Content="Spell Hit Bonus" IsChecked="{Binding Path=InnateSpellHitBonusCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Margin="10,5,0,0"/>
-                <TextBox Name="intInnateSpellHitBonus" Text="{Binding Path=InnateSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
+                <TextBox Name="intInnateSpellHitBonus" Text="{Binding Path=InnateSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="50" Height="20" Margin="10,0,0,0" PreviewTextInput="NumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
                             Enter the NPC's spell 'to hit' bonus if appropriate.
