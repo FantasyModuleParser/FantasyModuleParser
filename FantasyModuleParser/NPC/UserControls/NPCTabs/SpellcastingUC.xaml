@@ -26,7 +26,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Caster Level" Margin="32,0,0,0" Padding="0,2,0,0" />
-                <ComboBox Name="strCasterLevel" Text="{Binding Path=SpellcastingCasterLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="75" Margin="10,0,0,0" Padding="0,1,0,0" Height="20">
+                <ComboBox Name="strCasterLevel" Text="{Binding Path=SpellcastingCasterLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" Width="75" Margin="10,0,0,0" Height="20">
                     <ComboBoxItem>1st</ComboBoxItem>
                     <ComboBoxItem>2nd</ComboBoxItem>
                     <ComboBoxItem>3rd</ComboBoxItem>
@@ -64,7 +64,7 @@
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <Label Content="Spellcasting Ability" Padding="0,2,0,0" Margin="10,0,0,0"/>
-                <ComboBox Name="strSCSpellcastingAbility" Text="{Binding Path=SCSpellcastingAbility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="20" Margin="10,1,0,0">
+                <ComboBox Name="strSCSpellcastingAbility" Text="{Binding Path=SCSpellcastingAbility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="20" Margin="10,0,0,0">
                     <ComboBoxItem>Strength</ComboBoxItem>
                     <ComboBoxItem>Dexterity</ComboBoxItem>
                     <ComboBoxItem>Constitution</ComboBoxItem>
@@ -78,7 +78,7 @@
                     </ComboBox.ToolTip>
                 </ComboBox>
                 <CheckBox Content="Spell Save DC" IsChecked="{Binding Path=SpellcastingSpellSaveDCCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Margin="20,3,0,0"/>
-                <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding Path=SpellcastingSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" Margin="10,0,0,0" Padding="0" Height="20" PreviewTextInput="NumberValidationTextBox">
+                <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding Path=SpellcastingSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="50" Margin="10,0,0,0" Padding="0" Height="20" PreviewTextInput="PositiveNumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
                             Enter the NPC's spell save difficulty check score.
@@ -90,7 +90,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <CheckBox Content="Spell Hit Bonus" IsChecked="{Binding Path=SpellcastingSpellHitBonusCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,3,0,0" Padding="5,0,0,0"/>
-                <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding Path=SpellcastingSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="75" Height="20" Margin="10,2,0,0" PreviewTextInput="NumberValidationTextBox">
+                <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding Path=SpellcastingSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="75" Height="20" Margin="10,2,0,0" PreviewTextInput="NumberValidationTextBox">
                     <TextBox.ToolTip>
                         <TextBlock>
                             Enter the NPC's spell 'to hit' bonus if appropriate.
@@ -167,7 +167,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="1st Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strFirstLevelSpells" Text="{Binding Path=FirstLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="28,2,0,0">
+                <ComboBox Name="strFirstLevelSpells" Text="{Binding Path=FirstLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="28,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -197,7 +197,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="2nd Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strSecondLevelSpells" Text="{Binding Path=SecondLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="20" Width="60" Padding="0" Margin="24,2,0,0">
+                <ComboBox Name="strSecondLevelSpells" Text="{Binding Path=SecondLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="20" Width="60" Padding="0" Margin="24,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -227,7 +227,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="3rd Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strThirdLevelSpells" Text="{Binding Path=ThirdLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="26,2,0,0">
+                <ComboBox Name="strThirdLevelSpells" Text="{Binding Path=ThirdLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="26,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -257,7 +257,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="4th Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strFourthLevelSpells" Text="{Binding Path=FourthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                <ComboBox Name="strFourthLevelSpells" Text="{Binding Path=FourthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -287,7 +287,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="5th Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strfifthLevelSpells" Text="{Binding Path=FifthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                <ComboBox Name="strfifthLevelSpells" Text="{Binding Path=FifthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -317,7 +317,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="6th Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strSixthLevelSpells" Text="{Binding Path=SixthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                <ComboBox Name="strSixthLevelSpells" Text="{Binding Path=SixthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -347,7 +347,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="7th Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strSeventhLevelSpells" Text="{Binding Path=SeventhLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                <ComboBox Name="strSeventhLevelSpells" Text="{Binding Path=SeventhLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -377,7 +377,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="8th Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strEigthLevelSpells" Text="{Binding Path=EighthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                <ComboBox Name="strEigthLevelSpells" Text="{Binding Path=EighthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -407,7 +407,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="9th Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strNinthLevelSpells" Text="{Binding Path=NinthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0">
+                <ComboBox Name="strNinthLevelSpells" Text="{Binding Path=NinthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
