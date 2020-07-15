@@ -11,7 +11,6 @@
 *.sln.docstates
 
 # FTP files built for public consumption;  No need to track with git
-ftp.
 ftp.fantasymoduleparser.tech/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
