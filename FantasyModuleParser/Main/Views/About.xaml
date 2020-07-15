@@ -22,7 +22,7 @@
             <RowDefinition Height="23" />
         </Grid.RowDefinitions>
         <Label Content="Fantasy Module Parser" FontSize="24" Foreground="DarkBlue" FontWeight="Bold" Padding="0" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1"/>
-        <Label Content="v0.1.0-Alpha" FontSize="12" Padding="0" Grid.Row="2" Grid.Column="1"/>
+        <Label Content="v0.1.0.2-Alpha" FontSize="12" Padding="0" Grid.Row="2" Grid.Column="1"/>
         <Path Fill="Black" Stroke="Black" StrokeThickness="2" Grid.ColumnSpan="2" Grid.Row="3">
             <Path.Data>
                 <GeometryGroup>
