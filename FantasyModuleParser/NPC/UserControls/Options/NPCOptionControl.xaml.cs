@@ -72,11 +72,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			}
 		}
 		#region MenuOptions
-		private void EditDeleteNPC_Click(object sender, RoutedEventArgs e)
-		{
-			EditDeleteNPC win2 = new EditDeleteNPC();
-			win2.Show();
-		}
+		
 		#endregion
 		#region Actions
 		private void ImportText_Click(object sender, RoutedEventArgs e)

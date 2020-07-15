@@ -36,7 +36,7 @@
     <MinimumRequiredVersion>0.1.0.1</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -226,10 +226,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Main\Views\EditDeleteNPC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Main\Views\ProjectManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -383,9 +379,6 @@
     <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\EditDeleteNPC.xaml.cs">
-      <DependentUpon>EditDeleteNPC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\ProjectManagement.xaml.cs">
       <DependentUpon>ProjectManagement.xaml</DependentUpon>
