@@ -29,11 +29,16 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         #region Methods
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"[^0-9-]+"); ;
-            e.Handled = regex.IsMatch(e.Text);
-        }
-        #endregion
-        public BaseStatsUC()
+			Regex regex = new Regex(@"[^0-9-]+"); ;
+			e.Handled = regex.IsMatch(e.Text);
+		}
+		private void PositiveNumberValidationTextBox(object sender, TextCompositionEventArgs e)
+		{
+			Regex regex = new Regex(@"[^0-9-]+");
+			e.Handled = regex.IsMatch(e.Text) || e.Text.Contains("-");
+		}
+		#endregion
+		public BaseStatsUC()
         {
             InitializeComponent();
             npcController = new NPCController();
@@ -62,6 +67,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 				}
 			}
 		}
+		
 		private void DexterityScore_TextChanged(object sender, RoutedEventArgs e)
 		{
 			int num;
@@ -115,10 +121,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		}
 		private void WisdomScore_TextChanged(object sender, RoutedEventArgs e)
 		{
-			int num;
-			if (int.TryParse(strAttrWis.Text, out num))
+			uint num;
+			if (uint.TryParse(strAttrWis.Text, out num))
 			{
-				int answer = -5 + (num / 2);
+				int answer = (int)(-5 + (num / 2));
 				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
@@ -132,10 +138,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		}
 		private void CharismaScore_TextChanged(object sender, RoutedEventArgs e)
 		{
-			int num;
-			if (int.TryParse(strAttrCha.Text, out num))
+			uint num;
+			if (uint.TryParse(strAttrCha.Text, out num))
 			{
-				int answer = -5 + (num / 2);
+				int answer = (int)(-5 + (num / 2));
 				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
