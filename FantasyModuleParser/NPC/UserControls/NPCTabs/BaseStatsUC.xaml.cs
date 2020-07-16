@@ -24,6 +24,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     {
         #region Controllers
         public NPCController npcController { get; set; }
+		#endregion
+
+		#region Variables
+		private bool _isViewDiceFunctionWindowOpen = false;
         #endregion
 
         #region Methods
@@ -157,7 +161,18 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 
 		private void DiceRoller_Click(object sender, RoutedEventArgs e)
 		{
-			new DiceFunction().Show();
+			if (!_isViewDiceFunctionWindowOpen)
+			{
+				_isViewDiceFunctionWindowOpen = true;
+				DiceFunction diceFunction = new DiceFunction();
+				diceFunction.Closing += DiceFunction_Closing;
+				diceFunction.Show();
+			}
+		}
+
+		private void DiceFunction_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			_isViewDiceFunctionWindowOpen = false;
 		}
 
 		private void strNPCToken_MouseDoubleClick(object sender, MouseButtonEventArgs e)

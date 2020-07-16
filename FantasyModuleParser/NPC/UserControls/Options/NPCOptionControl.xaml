@@ -45,7 +45,7 @@
                 <MenuItem Header="_Manage Traits List" Visibility="Collapsed" />
                 <MenuItem Header="_Manage Languages" Click="Menu_Click" Name="ManageLanguages" />
                 <Separator />
-                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings"/>
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Collapsed"/>
             </MenuItem>
             <MenuItem Header="_Fantasy Module Parser">
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ProjectManagement"/>

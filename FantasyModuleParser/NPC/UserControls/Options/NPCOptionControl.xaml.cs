@@ -32,6 +32,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
         #region Variables
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 		string installFolder = "FMP/NPC";
+		private bool _isViewStatblockWindowOpen = false;
 		#endregion
 		public NPCOptionControl()
 		{
@@ -52,22 +53,25 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			switch (menuitem.Name)
 			{
 				case "About":
-					new About().Show();
+                    new About().ShowDialog();
 					break;
 				case "ManageCategories":
-					new FMPConfigurationView().Show();
+					new FMPConfigurationView().ShowDialog();
+					break;
+				case "ManageLanguages":
+					new FMPConfigurationView().ShowDialog();
 					break;
 				case "ManageProject":
-					new ProjectManagement().Show();
+					new ProjectManagement().ShowDialog();
 					break;
 				case "ProjectManagement":
-					new ProjectManagement().Show();
+					new ProjectManagement().ShowDialog();
 					break;
 				case "Settings":
-					new Settings().Show();
+					new Settings().ShowDialog();
 					break;
 				case "Supporters":
-					new Supporters().Show();
+					new Supporters().ShowDialog();
 					break;
 			}
 		}
@@ -135,7 +139,18 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
-			new PreviewNPC().Show();
+			if (!_isViewStatblockWindowOpen)
+			{
+				_isViewStatblockWindowOpen = true;
+				PreviewNPC previewNPC = new PreviewNPC();
+				previewNPC.Closing += PreviewNPC_Closing;
+				previewNPC.Show();
+			}
+		}
+
+		private void PreviewNPC_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			_isViewStatblockWindowOpen = false;
 		}
 
 		private void NPCOptionControl_Loaded(object sender, RoutedEventArgs e)

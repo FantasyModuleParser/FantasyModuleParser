@@ -45,11 +45,11 @@ namespace FantasyModuleParser
         }
         private void Projects_Click(object sender, RoutedEventArgs e)
         {
-                OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
+            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
         }
         private void Artifacts_Click(object sender, RoutedEventArgs e)
         {
-                OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Artifacts");
+            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Artifacts");
         }
         private void Equipment_Click(object sender, RoutedEventArgs e)
         {
@@ -82,10 +82,10 @@ namespace FantasyModuleParser
             switch (menuitem.Name)
             {
                 case "About":
-                    new About().Show();
+                    new About().ShowDialog();
                     break;
                 case "ManageCategories":
-                    new FMPConfigurationView().Show();
+                    new FMPConfigurationView().ShowDialog();
                     break;
                 case "ManageProject":
                     projectManagement = new ProjectManagement();
@@ -95,13 +95,13 @@ namespace FantasyModuleParser
                 case "ProjectManagement":
                     projectManagement = new ProjectManagement();
                     projectManagement.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
-                    projectManagement.Show();
+                    projectManagement.ShowDialog();
                     break;
                 case "Settings":
-                    new Settings().Show();
+                    new Settings().ShowDialog();
                     break;
                 case "Supporters":
-                    new Supporters().Show();
+                    new Supporters().ShowDialog();
                     break;
                 case "Exit":
                     Close();
