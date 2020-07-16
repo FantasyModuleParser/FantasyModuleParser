@@ -23,8 +23,10 @@ namespace FantasyModuleParser.NPC.Views
     /// <summary>
     /// Interaction logic for PreviewNPC.xaml
     /// </summary>
+    
     public partial class PreviewNPC : Window
     {
+
         #region Controllers
         private PreviewNPCViewModel viewModel;
         #endregion
@@ -68,6 +70,7 @@ namespace FantasyModuleParser.NPC.Views
 
             DataContext = viewModel;
         }
+        
         public void WindowClose(object sender, RoutedEventArgs e)
         {
             Close();

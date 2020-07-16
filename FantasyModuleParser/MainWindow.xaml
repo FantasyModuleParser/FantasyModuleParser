@@ -14,7 +14,7 @@
                 <MenuItem Header="_Create Module" Click="CreateModule_Click"/>
                 <Separator />
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
-                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" />
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Collapsed"/>
                 <Separator />
                 <MenuItem Header="_Exit" Click="Menu_Click" Name="Exit" />
             </MenuItem>
@@ -70,7 +70,7 @@
             </ListBox>
         </StackPanel>
         <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Collapsed">
-            <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700"></npcOptionUserControl:NPCOptionControl>
+            <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700" />
         </StackPanel>
         <StackPanel Name="stackMain" Margin="160,50,0,0">
             <Image Source="/Resources/es2_logo.png" Width="400" Height="400"/>
