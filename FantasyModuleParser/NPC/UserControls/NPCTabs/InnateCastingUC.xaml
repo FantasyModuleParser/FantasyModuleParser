@@ -8,208 +8,203 @@
              d:DesignHeight="600" d:DesignWidth="600">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="590" />
+            <ColumnDefinition Width="5" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="90" />
             <RowDefinition Height="5" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="400" />
         </Grid.RowDefinitions>
-        <CheckBox Name="chkInnateSpellcastingSection" Checked="InnateSpellcasting_Click" Content="Include 'Innate Spellcasting' section for NPC" IsChecked="{Binding Path=InnateSpellcastingSection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="16">
-            <CheckBox.ToolTip>
-                <TextBlock>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Name="chkInnateSpellcastingSection" Checked="InnateSpellcasting_Click" Content="Include 'Innate Spellcasting' section for NPC" IsChecked="{Binding Path=InnateSpellcastingSection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="1">
+                <CheckBox.ToolTip>
+                    <TextBlock>
                     Check this box to include an 'Innate Spellcasting' section in your NPC.<LineBreak />
                     <Italic>Uncheck it to have no 'Innate Spellcasting' section</Italic>
-                </TextBlock>
-            </CheckBox.ToolTip>
-        </CheckBox>
-        <CheckBox Name="chkPsionics" Content="Mark section as 'Psionics'" IsChecked="{Binding Path=Psionics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="19" Grid.ColumnSpan="10">
-            <CheckBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </CheckBox.ToolTip>
+            </CheckBox>
+            <CheckBox Name="chkPsionics" Content="Mark section as 'Psionics'" IsChecked="{Binding Path=Psionics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="2">
+                <CheckBox.ToolTip>
+                    <TextBlock>
                     Check this box to mark this section as 'Innate Spellcasting (Psionics) for your NPC.
-                </TextBlock>
-            </CheckBox.ToolTip>
-        </CheckBox>
-        <!--#region Caster Information-->
-        <Border BorderBrush="Black" BorderThickness="1" Margin="-5,0,-5,-5" Grid.Row="4" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="32"/>
-        <Label Content="Caster Information" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="6"/>
-        <Label Content="Spellcasting Ability" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="6"/>
-        <ComboBox Name="strInnateSpellcastingAbility" Text="{Binding Path=InnateSpellcastingAbility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="6">
-            <ComboBoxItem>Strength</ComboBoxItem>
-            <ComboBoxItem>Dexterity</ComboBoxItem>
-            <ComboBoxItem>Constitution</ComboBoxItem>
-            <ComboBoxItem>Intelligence</ComboBoxItem>
-            <ComboBoxItem>Wisdom</ComboBoxItem>
-            <ComboBoxItem>Charisma</ComboBoxItem>
-            <ComboBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </CheckBox.ToolTip>
+            </CheckBox>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.Column="1"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Content="Caster Information" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Center"  FontWeight="Bold" Grid.Row="0"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Spellcasting Ability" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Grid.Column="0"/>
+                <ComboBox Name="strInnateSpellcastingAbility" Text="{Binding Path=InnateSpellcastingAbility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2" Grid.Column="1" >
+                    <ComboBoxItem>Strength</ComboBoxItem>
+                    <ComboBoxItem>Dexterity</ComboBoxItem>
+                    <ComboBoxItem>Constitution</ComboBoxItem>
+                    <ComboBoxItem>Intelligence</ComboBoxItem>
+                    <ComboBoxItem>Wisdom</ComboBoxItem>
+                    <ComboBoxItem>Charisma</ComboBoxItem>
+                    <ComboBox.ToolTip>
+                        <TextBlock>
                     Select the ability that is your NPC's innate spellcasting ability.
-                </TextBlock>
-            </ComboBox.ToolTip>
-        </ComboBox>
-        <CheckBox Content="Spell Save DC" IsChecked="{Binding Path=InnateSpellSaveDCCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="6" Grid.Column="15" Grid.ColumnSpan="6">
-            <CheckBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <CheckBox Content="Spell Save DC" IsChecked="{Binding Path=InnateSpellSaveDCCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
+                    <CheckBox.ToolTip>
+                        <TextBlock>
                     Check this box if there is a spell save DC associated with the innately casted spells.
-                </TextBlock>
-            </CheckBox.ToolTip>
-        </CheckBox>
-        <TextBox Name="intInnateSpellSaveDC" Text="{Binding Path=InnateSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="PositiveNumberValidationTextBox" Grid.Row="6" Grid.Column="22" Grid.ColumnSpan="2">
-            <TextBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </CheckBox.ToolTip>
+                </CheckBox>
+                <TextBox Name="intInnateSpellSaveDC" Text="{Binding Path=InnateSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="PositiveNumberValidationTextBox" Grid.Column="3" Margin="2">
+                    <TextBox.ToolTip>
+                        <TextBlock>
                     Enter the NPC's spell save difficulty.<LineBreak /><Italic>The range is 0 to 30.</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <CheckBox Content="Spell Hit Bonus" IsChecked="{Binding Path=InnateSpellHitBonusCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="6" Grid.Column="25" Grid.ColumnSpan="5">
-            <CheckBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <CheckBox Content="Spell Hit Bonus" IsChecked="{Binding Path=InnateSpellHitBonusCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4">
+                    <CheckBox.ToolTip>
+                        <TextBlock>
                     Check this box if there is a 'to hit' associated with the innately casted spells.
-                </TextBlock>
-            </CheckBox.ToolTip>
-        </CheckBox>
-        <TextBox Name="intInnateSpellHitBonus" Text="{Binding Path=InnateSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox" Grid.Row="6" Grid.Column="31" Grid.ColumnSpan="2">
-            <TextBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </CheckBox.ToolTip>
+                </CheckBox>
+                <TextBox Name="intInnateSpellHitBonus" Text="{Binding Path=InnateSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox" Grid.Row="6" Grid.Column="31" Grid.ColumnSpan="2" Margin="2">
+                    <TextBox.ToolTip>
+                        <TextBlock>
                     Enter the NPC's spell 'to hit' bonus if appropriate.<LineBreak /><Italic>The range is -30 to 30.</Italic><LineBreak />
                     <Italic>Leave at zero if the NPC should not have a 'to hit' bonus mentioned.</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Component Text" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="5"/>
-        <TextBox Name="strComponentText" Text="{Binding Path=ComponentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="25">
-            <TextBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="11*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Component Text" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="0"/>
+                <TextBox Name="strComponentText" Text="{Binding Path=ComponentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="2">
+                    <TextBox.ToolTip>
+                        <TextBlock>
                     Enter information about the components required to cast this spell.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <!--#endregion-->
-        <!--#region Spell Selection-->
-        <Border BorderBrush="Black" BorderThickness="1" Margin="-5,-5,-5,-5" Grid.Row="10" Grid.RowSpan="15" Grid.Column="1" Grid.ColumnSpan="32"/>
-        <Label Content="Spell Selection" Foreground="Gray" Padding="0" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="5"/>
-        <Label Content="# of Casts" Foreground="Black" Padding="0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="At Will:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="5/Day each:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="4/Day each:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="3/Day each:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="20" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="2/Day each:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="22" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="1/Day each:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="24" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="Spells" Foreground="Black" Padding="0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="12" Grid.Column="6" Grid.ColumnSpan="4"/>
-        <TextBox Name="strInnatAtWill" Text="{Binding Path=InnateAtWill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="14" Grid.Column="6" Grid.ColumnSpan="27">
-            <TextBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </Grid>
+
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Grid.Column="1"/>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Content="Spell Selection" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="# of Casts" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+            <Label Content="At Will:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+            <Label Content="5/Day each:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+            <Label Content="4/Day each:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+            <Label Content="3/Day each:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+            <Label Content="2/Day each:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0"/>
+            <Label Content="1/Day each:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0"/>
+            <Label Content="Spells" Foreground="Black"  FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+            <TextBox Name="strInnatAtWill" Text="{Binding Path=InnateAtWill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2" Grid.Row="2" Grid.Column="1">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Type the name of the spells the NPC can use at will (i.e. as often as required)<LineBreak />
                     <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic><LineBreak />
                     <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <TextBox Name="strFivePerDay" Text="{Binding Path=FivePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="16" Grid.Column="6" Grid.ColumnSpan="27">
-            <TextBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox Name="strFivePerDay" Text="{Binding Path=FivePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2" Grid.Row="3" Grid.Column="1">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Type the name of the spells the NPC can use five times a day.<LineBreak />
                     <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic><LineBreak />
                     <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <TextBox Name="strFourPerDay" Text="{Binding Path=FourPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="18" Grid.Column="6" Grid.ColumnSpan="27">
-            <TextBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox Name="strFourPerDay" Text="{Binding Path=FourPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2" Grid.Row="4" Grid.Column="1">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Type the name of the spells the NPC can use five times a day.<LineBreak />
                     <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic><LineBreak />
                     <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <TextBox Name="strThreePerDay" Text="{Binding Path=ThreePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="20" Grid.Column="6" Grid.ColumnSpan="27">
-            <TextBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox Name="strThreePerDay" Text="{Binding Path=ThreePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2" Grid.Row="5" Grid.Column="1">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Type the name of the spells the NPC can use five times a day.<LineBreak />
                     <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic><LineBreak />
                     <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <TextBox Name="strTwoPerDay" Text="{Binding Path=TwoPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="22" Grid.Column="6" Grid.ColumnSpan="27">
-            <TextBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox Name="strTwoPerDay" Text="{Binding Path=TwoPerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2" Grid.Row="6" Grid.Column="1">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Type the name of the spells the NPC can use five times a day.<LineBreak />
                     <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic><LineBreak />
                     <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <TextBox Name="strOnePerDay" Text="{Binding Path=OnePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="24" Grid.Column="6" Grid.ColumnSpan="27">
-            <TextBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox Name="strOnePerDay" Text="{Binding Path=OnePerDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2" Grid.Row="7" Grid.Column="1">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Type the name of the spells the NPC can use five times a day.<LineBreak />
                     <Italic>Separate spells in your list with a comma and then a space to ensure that Fantasy Grounds picks them up properly.</Italic><LineBreak />
                     <Italic>(e.g. Magic Missile, Light, Shield)</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+        </Grid>
+        <!--#region Caster Information-->
+
+
+        <!--#endregion-->
+        <!--#region Spell Selection-->
+        <!--<Border BorderBrush="Black" BorderThickness="1" Margin="-5,-5,-5,-5" Grid.Row="10" Grid.RowSpan="15" Grid.Column="1" Grid.ColumnSpan="32"/>-->
+
         <!--#endregion-->
     </Grid>
 </UserControl>
