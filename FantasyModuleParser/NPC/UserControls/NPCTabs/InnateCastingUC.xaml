@@ -197,13 +197,5 @@
                 </TextBox.ToolTip>
             </TextBox>
         </Grid>
-        <!--#region Caster Information-->
-
-
-        <!--#endregion-->
-        <!--#region Spell Selection-->
-        <!--<Border BorderBrush="Black" BorderThickness="1" Margin="-5,-5,-5,-5" Grid.Row="10" Grid.RowSpan="15" Grid.Column="1" Grid.ColumnSpan="32"/>-->
-
-        <!--#endregion-->
     </Grid>
 </UserControl>
