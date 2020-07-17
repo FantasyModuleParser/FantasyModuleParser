@@ -133,7 +133,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="View Statblock" Click="PreviewNPC_Click" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="View Statblock" Click="PreviewNPC_Click" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" IsTabStop="False">
                 <Button.ToolTip>
                     <TextBlock>
                         View NPC / Monster Statblock
@@ -147,7 +147,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Save NPC" Click="SaveNPCToFile" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Save NPC" Click="SaveNPCToFile" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" IsTabStop="False">
                 <Button.ToolTip>
                     <TextBlock>
                     Save your NPC to your drive as a *.JSON file
@@ -156,7 +156,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Add to Project" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" Click="AddToProjectButton_Click">
+            <Button Content="Add to Project" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" Click="AddToProjectButton_Click" IsTabStop="False">
                 <Button.ToolTip>
                     <TextBlock>
                     Add this NPC to a parsing project (or update it if it already part of a project) depending on the settings chosen in your project

@@ -183,5 +183,5 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			if (openFileDialog.ShowDialog() == true)
 				strNPCToken.Text = openFileDialog.FileName;
 		}
-	}
+    }
 }
