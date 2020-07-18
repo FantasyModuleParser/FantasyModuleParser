@@ -97,7 +97,7 @@ namespace FantasyModuleParser.Exporters
                         foreach (NPCModel npcModel in categoryModel.NPCModels)
                         {
 
-                            xmlWriter.WriteStartElement(npcModel.NPCName.ToLower()); // Open <npcModel.NPCName>
+                            xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel)); // Open <npcModel.NPCName>
                                                                                      //Put together all the innards of the NPC to XML
                             WriteLocked(xmlWriter, npcModel);
                             WriteAbilities(xmlWriter, npcModel);
@@ -139,6 +139,12 @@ namespace FantasyModuleParser.Exporters
                 xmlWriter.Close();
                 return sw.ToString();
             }
+        }
+
+        private string NPCNameToXMLFormat(NPCModel npcModel)
+        {
+            string name = npcModel.NPCName.ToLower();
+            return name.Replace(" ", "_");
         }
 
         private void WriteLocked(XmlWriter xmlWriter, NPCModel npcModel)
