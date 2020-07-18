@@ -343,6 +343,7 @@
     <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
+    <Compile Include="Importer\NPC\IImportNPC.cs" />
     <Compile Include="Main\Models\CategoryModel.cs" />
     <Compile Include="Main\Models\FMPConfigurationModel.cs" />
     <Compile Include="Main\Services\FMPConfigurationService.cs" />

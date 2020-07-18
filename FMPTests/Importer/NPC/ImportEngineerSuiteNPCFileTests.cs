@@ -44,7 +44,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.V1_npc_all.npc");
 
-            return _importEngineerSuiteNPC.ParseEngineerSuiteNPCContent(fileContent);
+            return _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
         }
 
         #region Base Stats

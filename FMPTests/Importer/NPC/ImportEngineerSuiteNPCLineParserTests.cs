@@ -3,6 +3,7 @@ using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
+using FantasyModuleParser.NPC.Models.Skills;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -548,5 +549,109 @@ namespace FMPTests.Importer.NPC
             return npcModel;
         }
         #endregion
+
+        #region Senses
+        [TestMethod]
+        [DynamicData(nameof(VisionAttributesData), DynamicDataSourceType.Method)]
+        public void Test_Parse_Senses(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseVisionAttributes(actualNPCModel, text);
+            AssertVisionAttributes(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertVisionAttributes(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.Blindsight, actualNPCModel.Blindsight);
+            Assert.AreEqual(expectedNPCModel.BlindBeyond, actualNPCModel.BlindBeyond);
+            Assert.AreEqual(expectedNPCModel.Darkvision, actualNPCModel.Darkvision);
+            Assert.AreEqual(expectedNPCModel.Tremorsense, actualNPCModel.Tremorsense);
+            Assert.AreEqual(expectedNPCModel.Truesight, actualNPCModel.Truesight);
+            Assert.AreEqual(expectedNPCModel.PassivePerception, actualNPCModel.PassivePerception);
+        }
+
+        private static IEnumerable<object[]> VisionAttributesData()
+        {
+            yield return new object[] { generateNPCModel_VisionAttributes(60, true, 70,80,90,22),
+                "Senses blindsight 60 ft. (blind beyond this radius), darkvision 70 ft., tremorsense 80 ft., truesight 90 ft., passive Perception 22" };
+            yield return new object[] { generateNPCModel_VisionAttributes(10, false, 30,50,70,12),
+                "Senses blindsight 10 ft., darkvision 30 ft., tremorsense 50 ft., truesight 70 ft., passive Perception 12" };
+        }
+        private static NPCModel generateNPCModel_VisionAttributes(int blindSight, bool blindBeyond, 
+            int darkVision, int tremorSense, int trueSight, int passivePerception)
+        {
+            NPCModel npcModel = new NPCModel();
+
+            npcModel.Blindsight = blindSight;
+            npcModel.BlindBeyond = blindBeyond;
+            npcModel.Darkvision = darkVision;
+            npcModel.Tremorsense = tremorSense;
+            npcModel.Truesight = trueSight;
+            npcModel.PassivePerception = passivePerception;
+
+            return npcModel;
+        }
+        #endregion
+
+        #region Languages
+        [TestMethod]
+        [DynamicData(nameof(LanguagesData), DynamicDataSourceType.Method)]
+        public void Test_Parse_Languages(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseLanguages(actualNPCModel, text);
+            AssertLanguages(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertLanguages(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            foreach (LanguageModel expectedLang in expectedNPCModel.StandardLanguages)
+                Assert.AreEqual(expectedLang.Selected, 
+                    actualNPCModel.StandardLanguages.First(item => item.Language.Equals(expectedLang.Language)).Selected);
+
+            foreach (LanguageModel expectedLang in expectedNPCModel.ExoticLanguages)
+                Assert.AreEqual(expectedLang.Selected,
+                    actualNPCModel.ExoticLanguages.First(item => item.Language.Equals(expectedLang.Language)).Selected);
+
+            foreach (LanguageModel expectedLang in expectedNPCModel.MonstrousLanguages)
+                Assert.AreEqual(expectedLang.Selected,
+                    actualNPCModel.MonstrousLanguages.First(item => item.Language.Equals(expectedLang.Language)).Selected);
+        }
+
+        private static IEnumerable<object[]> LanguagesData()
+        {
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null), "Languages Common" };
+            yield return new object[] { generateNPCModel_Languages("Common, Dwarvish", null, null, null), "Languages Common, Dwarvish" };
+            yield return new object[] { generateNPCModel_Languages(null, "Abyssal", null, null), "Languages Abyssal" };
+            yield return new object[] { generateNPCModel_Languages(null, "Abyssal, Auran", null, null), "Languages Abyssal, Auran" };
+            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror", null), "Languages Hook Horror" };
+            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror, Gnoll", null), "Languages Hook Horror, Gnoll" };
+            yield return new object[] { generateNPCModel_Languages("Common", "Abyssal", "Hook Horror", null), "Languages Hook Horror, Common, Abyssal" };
+        }
+        private static NPCModel generateNPCModel_Languages(string standard, string exotic, string monster, string user)
+        {
+            // Custom Controller for handling Languages
+            LanguageController languageController = new LanguageController();
+
+            NPCModel npcModel = new NPCModel();
+            npcModel.StandardLanguages = languageController.GenerateStandardLanguages();
+            npcModel.ExoticLanguages = languageController.GenerateExoticLanguages();
+            npcModel.MonstrousLanguages = languageController.GenerateMonsterLanguages();
+
+            if(standard != null)
+                foreach(string lang in standard.Split(','))
+                    npcModel.StandardLanguages.First(item => item.Language.Equals(lang.Trim())).Selected = true;
+
+            if(exotic != null)
+                foreach (string lang in exotic.Split(','))
+                    npcModel.ExoticLanguages.First(item => item.Language.Equals(lang.Trim())).Selected = true;
+
+            if(monster != null)
+                foreach (string lang in monster.Split(','))
+                    npcModel.MonstrousLanguages.First(item => item.Language.Equals(lang.Trim())).Selected = true;
+
+            return npcModel;
+        }
+        #endregion
+
+
     }
 }
