@@ -652,6 +652,36 @@ namespace FMPTests.Importer.NPC
         }
         #endregion
 
+        #region Challenge Rating and XP
+        [TestMethod]
+        [DynamicData(nameof(ChallengeXPData), DynamicDataSourceType.Method)]
+        public void Test_Parse_ChallengeXP(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseChallengeRatingAndXP(actualNPCModel, text);
+            AssertChallengeXP(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertChallengeXP(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.ChallengeRating, actualNPCModel.ChallengeRating);
+            Assert.AreEqual(expectedNPCModel.XP, actualNPCModel.XP);
+        }
+
+        private static IEnumerable<object[]> ChallengeXPData()
+        {
+            yield return new object[] { generateNPCModel_ChallengeXP("8", 3900), "Challenge 8 (3,900 XP)" };
+            yield return new object[] { generateNPCModel_ChallengeXP("3",  450), "Challenge 3 (450 XP)" };
+        }
+        private static NPCModel generateNPCModel_ChallengeXP(string challengeRating, int xpAward)
+        {
+            NPCModel npcModel = new NPCModel();
+
+            npcModel.ChallengeRating = challengeRating;
+            npcModel.XP = xpAward;
+
+            return npcModel;
+        }
+        #endregion
 
     }
 }
