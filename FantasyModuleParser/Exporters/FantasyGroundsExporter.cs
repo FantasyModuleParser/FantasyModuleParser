@@ -117,9 +117,12 @@ namespace FantasyModuleParser.Exporters
                             WriteReactions(xmlWriter, npcModel);
                             WriteSavingThrows(xmlWriter, npcModel);
                             WriteSenses(xmlWriter, npcModel);
+                            WriteSize(xmlWriter, npcModel);
                             WriteSkills(xmlWriter, npcModel);
+                            WriteSpeed(xmlWriter, npcModel);
                             WriteText(xmlWriter, npcModel);
                             WriteToken(xmlWriter, npcModel);
+                            WriteType(xmlWriter, npcModel);
                             WriteTraits(xmlWriter, npcModel);
                             WriteXP(xmlWriter, npcModel);
 
@@ -723,13 +726,45 @@ namespace FantasyModuleParser.Exporters
         private void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
         {
             StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(appendSenses("darkvision ", npcModel.Darkvision, " ft."));
+            stringBuilder.Append(appendBlindSenses("blindsight ", npcModel.Blindsight, " ft."));
+            stringBuilder.Append(appendSenses("tremorsense ", npcModel.Tremorsense, " ft."));
+            stringBuilder.Append(appendSenses("truesight ", npcModel.Truesight, " ft."));
+            stringBuilder.Append(appendSenses("passive perception ", npcModel.PassivePerception, ""));
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            string sensesString = stringBuilder.ToString().Trim();
+
+            xmlWriter.WriteStartElement("senses"); // Open <senses>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(sensesString);
+            xmlWriter.WriteEndElement(); // Close </senses>
+        }
+        private string appendSenses(string senseName, int senseValue, string senseRange)
+        {
+            if (senseValue != 0)
+            {
+                string delimiter = ", ";
+                return senseName + senseValue + senseRange + delimiter;
+            }
+            return "";
+        }
+        private string appendBlindSenses(string senseName, int senseValue, string senseRange)
+        {
+            NPCModel npcModel = new NPCModel();
+            string delimiter = ", ";
+            if (senseValue != 0 && npcModel.BlindBeyond == false)
+                return senseName + senseValue + senseRange + delimiter;
+            else if (senseValue != 0 && npcModel.BlindBeyond == true)
+                return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
+            return "";
+        }
+        private void WriteSpeed(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
 
             if (npcModel.Speed > 0)
                 stringBuilder.Append(npcModel.Speed + " ft.").Append(", ");
-            if (npcModel.BlindBeyond)
-                stringBuilder.Append("blindsight " + npcModel.Blindsight + " ft. (blind beyond this radius)").Append(", ");
-            if (npcModel.Blindsight > 0 && !npcModel.BlindBeyond)
-                stringBuilder.Append("blindsight " + npcModel.Blindsight + " ft.").Append(", ");
             if (npcModel.Burrow > 0)
                 stringBuilder.Append("burrow " + npcModel.Burrow + " ft.").Append(", ");
             if (npcModel.Climb > 0)
@@ -740,13 +775,33 @@ namespace FantasyModuleParser.Exporters
                 stringBuilder.Append("fly " + npcModel.Fly + " ft.").Append(", ");
             if (npcModel.Swim > 0)
                 stringBuilder.Append("swim " + npcModel.Swim + " ft.").Append(", ");
-            stringBuilder.Append("passive Perception " + npcModel.PassivePerception);
-            string sensesString = stringBuilder.ToString().Trim();
+            if (stringBuilder.Length >= 2)
+                stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            string speedString = stringBuilder.ToString().Trim();
 
-            xmlWriter.WriteStartElement("senses"); // Open <senses>
+            xmlWriter.WriteStartElement("speed"); // Open <speed>
             xmlWriter.WriteAttributeString("type", "string"); // Add type=string
-            xmlWriter.WriteValue(sensesString);
-            xmlWriter.WriteEndElement(); // Close </senses>
+            xmlWriter.WriteValue(speedString);
+            xmlWriter.WriteEndElement(); // Close </speed>
+        }
+        private void WriteSize(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            xmlWriter.WriteStartElement("size"); // Open <size>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(npcModel.Size);
+            xmlWriter.WriteEndElement(); // Close </size>
+        }
+        private void WriteType(XmlWriter xmlWriter, NPCModel npcModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(npcModel.NPCType);
+            if (npcModel.Tag != null)
+                stringBuilder.Append(" " + npcModel.Tag);
+
+            xmlWriter.WriteStartElement("type"); // Open <size>
+            xmlWriter.WriteAttributeString("type", "string"); // Add type=string
+            xmlWriter.WriteValue(stringBuilder.ToString());
+            xmlWriter.WriteEndElement(); // Close </size>
         }
         private void WriteSkills(XmlWriter xmlWriter, NPCModel npcModel)
         {
