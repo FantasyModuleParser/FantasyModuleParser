@@ -683,5 +683,123 @@ namespace FMPTests.Importer.NPC
         }
         #endregion
 
+        #region Traits  (NOT IMPLEMENTED)
+        #endregion
+
+        #region Spellcasting
+        [TestMethod]
+        [DynamicData(nameof(SpellcastingData), DynamicDataSourceType.Method)]
+        public void Test_Parse_Spellcasting(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseSpellCastingAttributes(actualNPCModel, text);
+            AssertSpellcasting(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertSpellcasting(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.SpellcastingCasterLevel, actualNPCModel.SpellcastingCasterLevel);
+            Assert.AreEqual(expectedNPCModel.SCSpellcastingAbility, actualNPCModel.SCSpellcastingAbility);
+            Assert.AreEqual(expectedNPCModel.SpellcastingSpellSaveDC, actualNPCModel.SpellcastingSpellSaveDC);
+            Assert.AreEqual(expectedNPCModel.SpellcastingSpellHitBonus, actualNPCModel.SpellcastingSpellHitBonus);
+            Assert.AreEqual(expectedNPCModel.SpellcastingSpellClass, actualNPCModel.SpellcastingSpellClass);
+            Assert.AreEqual(expectedNPCModel.FlavorText, actualNPCModel.FlavorText);
+            Assert.AreEqual(expectedNPCModel.CantripSpells, actualNPCModel.CantripSpells);
+            Assert.AreEqual(expectedNPCModel.CantripSpellList, actualNPCModel.CantripSpellList);
+            Assert.AreEqual(expectedNPCModel.FirstLevelSpells, actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual(expectedNPCModel.FirstLevelSpellList, actualNPCModel.FirstLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.SecondLevelSpells, actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual(expectedNPCModel.SecondLevelSpellList, actualNPCModel.SecondLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.ThirdLevelSpells, actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual(expectedNPCModel.ThirdLevelSpellList, actualNPCModel.ThirdLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.FourthLevelSpells, actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.FourthLevelSpellList, actualNPCModel.FourthLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.FifthLevelSpells, actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.FifthLevelSpellList, actualNPCModel.FifthLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.SixthLevelSpells, actualNPCModel.SixthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.SixthLevelSpellList, actualNPCModel.SixthLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.SeventhLevelSpells, actualNPCModel.SeventhLevelSpells);
+            Assert.AreEqual(expectedNPCModel.SeventhLevelSpellList, actualNPCModel.SeventhLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.EighthLevelSpells, actualNPCModel.EighthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.EighthLevelSpellList, actualNPCModel.EighthLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.NinthLevelSpells, actualNPCModel.NinthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.NinthLevelSpellList, actualNPCModel.NinthLevelSpellList);
+            Assert.AreEqual(expectedNPCModel.MarkedSpells, actualNPCModel.MarkedSpells);
+        }
+
+        private static IEnumerable<object[]> SpellcastingData()
+        {
+            yield return new object[] { 
+                generateNPCModel_Spellcasting("18th", "Constitution", 8, 12, "Sorcerer", "", 
+                "At will", "Cantrips1",
+                "9 slots", "Spell 1st", "8 slots", "Spell 2nd",
+                "7 slots", "Spell 3rd", "6 slots", "Spell 4th",
+                "5 slots", "Spell 5th", "4 slots", "Spell 6th",
+                "3 slots", "Spell 7th", "2 slots", "Spell 8th",
+                "1 slots", "Spell 9th", "Spell 2nd"),
+                "Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)." +
+                " V1_npc_all has the following Sorcerer spells prepared:" +
+                "\rCantrips (At will): Cantrips1" +
+                "\r1st level (9 slots): Spell 1st" +
+                "\r2nd level (8 slots): Spell 2nd" +
+                "\r3rd level (7 slots): Spell 3rd" +
+                "\r4th level (6 slots): Spell 4th" +
+                "\r5th level (5 slots): Spell 5th" +
+                "\r6th level (4 slots): Spell 6th" +
+                "\r7th level (3 slots): Spell 7th" +
+                "\r8th level (2 slots): Spell 8th" +
+                "\r9th level (1 slot): Spell 9th" +
+                "\r*Spell 2nd" };
+        }
+        private static NPCModel generateNPCModel_Spellcasting(
+            string spellCasterLevel, string ability, int saveDC, int hitBonus, string spellClass, string flavorText,
+            string cantripSpells, string cantripSpellList, string firstSpells, string firstSpellList,
+            string secondSpells, string secondSpellList, string thirdSpells, string thirdSpellList,
+            string fourthSpells, string fourthSpellList, string fifthSpells, string fifthSpellList,
+            string sixthSpells, string sixthSpellList, string seventhSpells, string seventhSpellList,
+            string eighthSpells, string eighthSpellList, string ninthSpells, string ninthSpellList,
+            string markedSpells)
+        {
+            NPCModel npcModel = new NPCModel();
+
+            npcModel.SpellcastingCasterLevel = spellCasterLevel;
+            npcModel.SCSpellcastingAbility = ability;
+            npcModel.SpellcastingSpellSaveDC = saveDC;
+            npcModel.SpellcastingSpellHitBonus = hitBonus;
+            npcModel.SpellcastingSpellClass = spellClass;
+            npcModel.FlavorText = flavorText;
+            npcModel.CantripSpells = cantripSpells;
+            npcModel.CantripSpellList = cantripSpellList;
+            npcModel.FirstLevelSpells = firstSpells;
+            npcModel.FirstLevelSpellList = firstSpellList;
+
+            npcModel.SecondLevelSpells = secondSpells;
+            npcModel.SecondLevelSpellList = secondSpellList;
+
+            npcModel.ThirdLevelSpells = thirdSpells;
+            npcModel.ThirdLevelSpellList = thirdSpellList;
+
+            npcModel.FourthLevelSpells = fourthSpells;
+            npcModel.FourthLevelSpellList = fourthSpellList;
+
+            npcModel.FifthLevelSpells = fifthSpells;
+            npcModel.FifthLevelSpellList = fifthSpellList;
+
+            npcModel.SixthLevelSpells = sixthSpells;
+            npcModel.SixthLevelSpellList = sixthSpellList;
+
+            npcModel.SeventhLevelSpells = seventhSpells;
+            npcModel.SeventhLevelSpellList = seventhSpellList;
+
+            npcModel.EighthLevelSpells = eighthSpells;
+            npcModel.EighthLevelSpellList = eighthSpellList;
+
+            npcModel.NinthLevelSpells = ninthSpells;
+            npcModel.NinthLevelSpellList = ninthSpellList;
+            npcModel.MarkedSpells = markedSpells;
+
+            return npcModel;
+        }
+        #endregion
+
     }
 }
