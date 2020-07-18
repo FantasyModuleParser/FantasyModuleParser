@@ -137,7 +137,7 @@
         <!--#region Skill Bonuses-->
         <Label Content="Skill Bonuses" Foreground="Gray" FontWeight="Bold" Padding="0" VerticalAlignment="Center" Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="8"/>
         <Label Content="Acrobatics" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strAcrobatics" Text="{Binding Path=Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="5" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strAcrobatics" Text="{Binding Path=Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="5" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Acrobatics skill modifier.
@@ -145,7 +145,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Animal Handling" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="8" Grid.RowSpan="3" Grid.Column="4" Grid.ColumnSpan="9"/>
-        <TextBox Name="strAnimalHandling" Text="{Binding Path=AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="8" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strAnimalHandling" Text="{Binding Path=AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="8" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Animal Handling skill modifier.
@@ -153,7 +153,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Arcana" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="12" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strArcana" Text="{Binding Path=Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="12" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strArcana" Text="{Binding Path=Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="12" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Arcana skill modifier.
@@ -161,7 +161,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Athletics" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="15" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="5" />
-        <TextBox Name="strAthletics" Text="{Binding Path=Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="15" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strAthletics" Text="{Binding Path=Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="15" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Athletics skill modifier.
@@ -169,7 +169,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Deception" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="18" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strDeception" Text="{Binding Path=Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="18" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strDeception" Text="{Binding Path=Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="18" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Deception skill modifier.
@@ -177,7 +177,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="History" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="21" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strHistory" Text="{Binding History}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strHistory" Text="{Binding History}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's History skill modifier.
@@ -185,7 +185,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Insight" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="24" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strInsight" Text="{Binding Path=Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="24" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strInsight" Text="{Binding Path=Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="24" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 						Enter the NPC's Insight skill modifier.
@@ -193,7 +193,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Intimidation" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="27" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="7"/>
-        <TextBox Name="strIntimidation" Text="{Binding Path=Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="27" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strIntimidation" Text="{Binding Path=Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="27" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Intimidation skill modifier.
@@ -201,7 +201,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Investigation" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="31" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="7"/>
-        <TextBox Name="strInvestigation" Text="{Binding Path=Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="31" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strInvestigation" Text="{Binding Path=Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="31" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Investigation skill modifier.
@@ -209,7 +209,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Medicine" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="5"/>
-        <TextBox Name="strMedicine" Text="{Binding Path=Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strMedicine" Text="{Binding Path=Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Medicine skill modifier.
@@ -217,7 +217,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Nature" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strNature" Text="{Binding Path=Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strNature" Text="{Binding Path=Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Nature skill modifier.
@@ -225,7 +225,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Perception" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strPerception" Text="{Binding Path=Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strPerception" Text="{Binding Path=Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's Perception skill modifier.
@@ -233,7 +233,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Performance" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="7"/>
-        <TextBox Name="strPerformance" Text="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strPerformance" Text="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's Performance skill modifier.
@@ -241,7 +241,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Persuasion" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strPersuasion" Text="{Binding Path=Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strPersuasion" Text="{Binding Path=Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's Persuasion skill modifier.
@@ -249,7 +249,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Religion" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="5"/>
-        <TextBox Name="strReligion" Text="{Binding Path=Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strReligion" Text="{Binding Path=Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 				    Enter the NPC's Religion skill modifier.
@@ -257,7 +257,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Sleight of Hand" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="53" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="9"/>
-        <TextBox Name="strSleightofHand" Text="{Binding Path=SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="53" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strSleightofHand" Text="{Binding Path=SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="53" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Sleight of Hand skill modifier.
@@ -265,7 +265,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Stealth" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="56" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strStealth" Text="{Binding Path=Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="56" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strStealth" Text="{Binding Path=Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="56" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Stealth skill modifier.
@@ -273,7 +273,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Label Content="Survival" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="59" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strSurvival" Text="{Binding Path=Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Row="59" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
+        <TextBox Name="strSurvival" Text="{Binding Path=Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="59" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3">
             <TextBox.ToolTip>
                 <TextBlock>
 					Enter the NPC's Survival skill modifier.
@@ -345,7 +345,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="User" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="28" Grid.RowSpan="3" Grid.Column="37" Grid.ColumnSpan="15"/>
-        <ListBox Name="listUser" SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="37" Grid.ColumnSpan="15">
+        <ListBox Name="listUser"  ItemsSource="{Binding Path=UserLanguages}"  SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="37" Grid.ColumnSpan="15">
             <ListBox.ToolTip>
                 <TextBlock>
 				    Select the user-defined languages that your NPC knows.

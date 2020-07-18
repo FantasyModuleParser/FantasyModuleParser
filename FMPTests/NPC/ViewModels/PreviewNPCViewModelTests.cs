@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FantasyModuleParser.NPC.Controllers;
 
 namespace FantasyModuleParser.NPC.ViewModels.Tests
 {
@@ -39,7 +40,7 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
         [DataRow(30, 30, 30, 30, true, 30, "30 ft., climb 30 ft., fly 30 ft. (hover), burrow 30 ft., swim 30 ft.")]
         public void UpdateSpeedDescriptionTest(int speed, int burrow, int climb, int fly, bool hover, int swim, string expected)
         {
-            _npcModel = new NPCModel();
+            _npcModel = new NPCController().InitializeNPCModel();
             _npcModel.Speed = speed;
             _npcModel.Burrow = burrow;
             _npcModel.Climb = climb;

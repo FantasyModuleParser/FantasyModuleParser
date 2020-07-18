@@ -53,17 +53,16 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 
         public void Refresh()
         {
-            DataContext = npcController.GetNPCModel();
-        }
-        private void AddTraitButton_Click(object sender, RoutedEventArgs e)
-        {
             NPCModel npcModel = npcController.GetNPCModel();
             if (npcModel.Traits == null)
             {
                 npcModel.Traits = new ObservableCollection<ActionModelBase>();
             }
-            npcModel.Traits.Add(new ActionModelBase());
-            DataContext = npcModel;
+            DataContext = npcController.GetNPCModel();
+        }
+        private void AddTraitButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as NPCModel).Traits.Add(new ActionModelBase());
         }
 
         private void OverviewControl_RaiseActionInList(object sender, EventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser"
         mc:Ignorable="d"
-        Title="Fantasy Module Parser Supporters" Height="280" Width="360" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
+        Title="Fantasy Module Parser Supporters" Height="300" Width="360" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
@@ -13,28 +13,29 @@
                 <Label Content="BCHADDOCK" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="BubbaGrim" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="epithet" Margin="40,0,0,0" Padding="0"/>
+                <Label Content="LtBadger" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="PerryChalmers" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="PlastiqueSurgeon" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="ShadowLinks" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
+                <Label Content="Sir Bayard" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Label Content="Level 2 Supporters" Foreground="Gray" FontWeight="Bold" FontSize="16" Margin="20,0,0,0" />
                 <Label Content="APimpNamedShane" Margin="40,0,0,0" Padding="0"/>
+                <Label Content="Barren 791" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="BeeGrinder" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="BeemanPat" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="Berwind" Margin="40,0,0,0" Padding="0"/>
+                <Label Content="ivormac-music" Margin="40,0,0,0" Padding="0" />
                 <Label Content="Caliente" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="keriks" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="MythikWolf" Margin="40,0,0,0" Padding="0"/>
                 <Label Content="rob2e" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Close" Margin="120,200,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Click="ESExit_Click"/>
+            <Button Content="Close" Margin="120,220,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Click="ESExit_Click"/>
         </StackPanel>
     </Grid>
 </Window>

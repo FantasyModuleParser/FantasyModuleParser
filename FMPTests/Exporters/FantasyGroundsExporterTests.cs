@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FantasyModuleParser.NPC.Models;
 using FantasyModuleParser.Main.Services;
 using System.IO;
 using System.Reflection;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.Main.Models;
+using System.Xml.Linq;
 
 namespace FantasyModuleParser.Exporters.Tests
 {
@@ -29,6 +30,9 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.Category = "Supplement";
             moduleModel.ModulePath = "Path\\To\\Everything";
 
+            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();;
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Supplement" });
+
             exporter = new FantasyGroundsExporter();
         }
 
@@ -37,8 +41,8 @@ namespace FantasyModuleParser.Exporters.Tests
         {
             string xmlContent = exporter.GenerateDefinitionXmlContent(moduleModel);
 
-            string expected = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
-                "<root version=\"3.3\">\r\n" +
+            string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
+                "<root version=\"4\">\r\n" +
                 "  <name>Test Module</name>\r\n" +
                 "  <category>Supplement</category>\r\n" +
                 "  <author>Fredska</author>\r\n" +
@@ -52,7 +56,7 @@ namespace FantasyModuleParser.Exporters.Tests
         {
 
             // * Initialize Test Data
-
+            
             string[] pathParams = new string[]
             {
                 Directory.GetCurrentDirectory(),
@@ -74,11 +78,44 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.ModulePath = 
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
-            moduleModel.NPCModels = new List<NPCModel>();
-            moduleModel.NPCModels.Add(npcModel);
+            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
+            moduleModel.Categories[0].NPCModels.Add(npcModel);
 
             // And finally, for the actual integration test run
             exporter.CreateModule(moduleModel);
+        }
+
+        public void Create_BlankDB_XMLFile()
+        {
+            string xmlContent = exporter.GenerateDBXmlFile(moduleModel);
+
+            string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                              "<root version=\"4\" dataversion=\"20200528\" release=\"8|CoreRPG:4\" />";
+
+            string cleaned = xmlContent.Replace("\n", "").Replace("\r", "");
+
+            Assert.AreEqual(XmlPrettyPrint(expected), XmlPrettyPrint(cleaned));
+        }
+
+        public void Create_DBXml_OneNewNPC()
+        {
+            // For this test, load a newly initalized NPC into the ModuleModel data object
+            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();;
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
+            moduleModel.Categories[0].NPCModels.Add(new NPCController().InitializeNPCModel());
+
+            string xmlContent = exporter.GenerateDBXmlFile(moduleModel);
+
+            string expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                              "<root version=\"4\" dataversion=\"20200528\" release=\"8|CoreRPG:4\" />";
+            Assert.AreEqual(XmlPrettyPrint(expected), XmlPrettyPrint(xmlContent));
+        }
+
+        private string XmlPrettyPrint(string input)
+        {
+            XDocument xDocument = new XDocument(input);
+            return xDocument.ToString();
         }
     }
 }

@@ -45,11 +45,11 @@ namespace FantasyModuleParser
         }
         private void Projects_Click(object sender, RoutedEventArgs e)
         {
-                OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
+            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
         }
         private void Artifacts_Click(object sender, RoutedEventArgs e)
         {
-                OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Artifacts");
+            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Artifacts");
         }
         private void Equipment_Click(object sender, RoutedEventArgs e)
         {
@@ -77,28 +77,41 @@ namespace FantasyModuleParser
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
+            ProjectManagement projectManagement = null;
             var menuitem = (MenuItem)sender;
             switch (menuitem.Name)
             {
                 case "About":
-                    new About().Show();
+                    new About().ShowDialog();
                     break;
                 case "ManageCategories":
-                    new UserCreationManagement().Show();
+                    new FMPConfigurationView().ShowDialog();
                     break;
                 case "ManageProject":
-                    new ProjectManagement().Show();
+                    projectManagement = new ProjectManagement();
+                    projectManagement.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
+                    projectManagement.Show();
                     break;
                 case "ProjectManagement":
-                    new ProjectManagement().Show();
+                    projectManagement = new ProjectManagement();
+                    projectManagement.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
+                    projectManagement.ShowDialog();
                     break;
                 case "Settings":
-                    new Settings().Show();
+                    new Settings().ShowDialog();
                     break;
                 case "Supporters":
-                    new Supporters().Show();
+                    new Supporters().ShowDialog();
+                    break;
+                case "Exit":
+                    Close();
                     break;
             }
+        }
+
+        private void ProjectManagement_OnCloseWindowAction(object sender, EventArgs e)
+        {
+            npcOptionUserControl.Refresh();
         }
 
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)

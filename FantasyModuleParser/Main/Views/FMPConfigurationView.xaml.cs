@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FantasyModuleParser.Main.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,24 +16,31 @@ using System.Windows.Shapes;
 namespace FantasyModuleParser.Main
 {
     /// <summary>
-    /// Interaction logic for Settings.xaml
+    /// Interaction logic for FMPConfigurationView.xaml
     /// </summary>
-    public partial class Settings : Window
+    public partial class FMPConfigurationView : Window
     {
-        public Settings()
+        private FMPConfigurationViewModel configurationViewModel;
+        public FMPConfigurationView()
         {
             InitializeComponent();
 
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
+
+            configurationViewModel = new FMPConfigurationViewModel();
+            DataContext = configurationViewModel;
         }
-        private void Accept_Click(object sender, RoutedEventArgs e)
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            configurationViewModel.Refresh();
+            DataContext = configurationViewModel;
         }
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
