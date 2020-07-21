@@ -543,12 +543,29 @@ namespace FMPTests.Importer.NPC
             }
         }
 
+        private const string CONDITION_IMMUNITY_PREFIX = "Condition Immunities";
         private static IEnumerable<object[]> ConditionImmunitiesData()
         {
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Blinded}), CONDITION_IMMUNITY_PREFIX + " blinded" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Charmed}), CONDITION_IMMUNITY_PREFIX + " charmed" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Deafened }), CONDITION_IMMUNITY_PREFIX + " deafened" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Exhaustion }), CONDITION_IMMUNITY_PREFIX + " exhaustion" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Frightened }), CONDITION_IMMUNITY_PREFIX + " frightened" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Grappled }), CONDITION_IMMUNITY_PREFIX + " grappled" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Incapacitated }), CONDITION_IMMUNITY_PREFIX + " incapacitated" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Invisible }), CONDITION_IMMUNITY_PREFIX + " invisible" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Paralyzed }), CONDITION_IMMUNITY_PREFIX + " paralyzed" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Petrified }), CONDITION_IMMUNITY_PREFIX + " petrified" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Poisoned }), CONDITION_IMMUNITY_PREFIX + " poisoned" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Prone }), CONDITION_IMMUNITY_PREFIX + " prone" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Restrained }), CONDITION_IMMUNITY_PREFIX + " restrained" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Stunned }), CONDITION_IMMUNITY_PREFIX + " stunned" };
+            yield return new object[] { generateNPCModel_ConditionImmunities(new ConditionType[] { ConditionType.Unconscious }), CONDITION_IMMUNITY_PREFIX + " unconscious" };
+
             yield return new object[] { generateNPCModel_ConditionImmunities(
-                new ConditionType[] { ConditionType.Charmed, ConditionType.Frightened, ConditionType.Invisible,
+                new ConditionType[] { ConditionType.Blinded, ConditionType.Frightened, ConditionType.Invisible,
                                     ConditionType.Paralyzed, ConditionType.Prone, ConditionType.Restrained}),
-                "Condition Immunities blinded, frightened, invisible, paralyzed, prone, restrained" };
+                CONDITION_IMMUNITY_PREFIX + " blinded, frightened, invisible, paralyzed, prone, restrained" };
         }
         private static NPCModel generateNPCModel_ConditionImmunities(ConditionType[] conditionImmunities)
         {

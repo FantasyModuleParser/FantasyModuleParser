@@ -9,7 +9,7 @@
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
-                <TextBox Width="500" Height="600" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap"/>
+                <TextBox x:Name="ImportTextBox" Width="500" Height="600" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap" AcceptsReturn="True"/>
                 <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Margin="350,5,0,0">
                     <ComboBoxItem IsSelected="True">PDF and Web Source</ComboBoxItem>
                     <ComboBoxItem>DnD Beyond</ComboBoxItem>
@@ -24,7 +24,7 @@
                     <ComboBoxItem>Roll20 Compendium</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <StackPanel>
+            <!--<StackPanel>
                 <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="10,10,0,0" Height="625" Width="420" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <StackPanel Orientation="Vertical">
                         <Label Content="New Creature" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Padding="5,0,0,0"/>
@@ -321,12 +321,12 @@
                         </WrapPanel>
                     </StackPanel>
                 </ScrollViewer>
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button Content="Delete All Text" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,650,0,0" />
             <Button Content="Append Clipboard" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,650,0,0" />
-            <Button Content="Import and Return" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="330,650,0,0" />
+            <Button Content="Import and Return" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="330,650,0,0" Click="ImportTextAndReturnButton_Click" />
             <Button Content="Cancel All Changes" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="175,650,0,0" Click="ESExit_Click"/>
         </StackPanel>
     </Grid>

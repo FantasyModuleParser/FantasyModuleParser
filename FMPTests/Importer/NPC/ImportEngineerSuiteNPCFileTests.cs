@@ -209,7 +209,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                 {
                     case "Acid":
                     case "Fire":
-                    case "Lighting":
+                    case "Lightning":
                     case "Poison":
                     case "Radiant":
                     case "Bludgeoning":
@@ -219,7 +219,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                 }
             }
 
-            Assert.AreEqual(expectedDamageVulnerabilites, LoadEngineerSuiteTestNPCFile().DamageVulnerabilityModelList);
+            AssertSelectableActionModelList(expectedDamageVulnerabilites, LoadEngineerSuiteTestNPCFile().DamageVulnerabilityModelList);
         }
 
         [TestMethod()]
@@ -242,8 +242,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                 }
             }
 
-            Assert.AreEqual(expectedDamageResistances, LoadEngineerSuiteTestNPCFile().DamageResistanceModelList);
-
+            AssertSelectableActionModelList(expectedDamageResistances, LoadEngineerSuiteTestNPCFile().DamageResistanceModelList);
         }
 
         [TestMethod()]
@@ -269,9 +268,9 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Resistances_DamageImmunities()
         {
             NPCController controller = new NPCController();
-            List<SelectableActionModel> expectedActionModelList = controller.GetSelectableActionModelList(typeof(DamageType));
+            List<SelectableActionModel> expectedDamageImmunityModelList = controller.GetSelectableActionModelList(typeof(DamageType));
 
-            foreach (SelectableActionModel selectableActionModel in expectedActionModelList)
+            foreach (SelectableActionModel selectableActionModel in expectedDamageImmunityModelList)
             {
                 switch (selectableActionModel.ActionName)
                 {
@@ -285,8 +284,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                 }
             }
 
-            Assert.AreEqual(expectedActionModelList, LoadEngineerSuiteTestNPCFile().DamageImmunityModelList);
-
+            AssertSelectableActionModelList(expectedDamageImmunityModelList, LoadEngineerSuiteTestNPCFile().DamageImmunityModelList);
         }
 
         [TestMethod()]
@@ -329,7 +327,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                 }
             }
 
-            Assert.AreEqual(expectedActionModelList, LoadEngineerSuiteTestNPCFile().ConditionImmunityModelList);
+            AssertSelectableActionModelList(expectedActionModelList, LoadEngineerSuiteTestNPCFile().ConditionImmunityModelList);
         }
 
         #endregion

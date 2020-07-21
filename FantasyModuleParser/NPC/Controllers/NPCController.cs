@@ -27,6 +27,10 @@ namespace FantasyModuleParser.NPC.Controllers
 		}
 
 		public void ClearNPCModel() { NPCController._npcModel = InitializeNPCModel(); }
+		public void LoadNPCModel(NPCModel npcModel)
+        {
+			_npcModel = npcModel;
+        }
 
 		public void Save(string path, NPCModel npcModel)
 		{

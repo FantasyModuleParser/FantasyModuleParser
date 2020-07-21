@@ -81,9 +81,22 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		#region Actions
 		private void ImportText_Click(object sender, RoutedEventArgs e)
 		{
+			ImportText importTextWindow = new ImportText();
+            importTextWindow.Closing += ImportTextWindow_Closing;
 			new ImportText().Show();
 		}
-		private void FGListOptions_Click(object sender, RoutedEventArgs e)
+
+        private void ImportTextWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+			DataContext = npcController.GetNPCModel();
+			BaseStatsUserControl.Refresh();
+			SkillsUserControl.Refresh();
+			SpellcastingUserControl.Refresh();
+			TraitsUserControl.Refresh();
+			InnateCastingUserControl.Refresh();
+		}
+
+        private void FGListOptions_Click(object sender, RoutedEventArgs e)
 		{
 			new FGListOptions().Show();
 		}

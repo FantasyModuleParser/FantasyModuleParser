@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FantasyModuleParser.Importer.NPC;
+using FantasyModuleParser.NPC.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +21,23 @@ namespace FantasyModuleParser.NPC
     /// </summary>
     public partial class ImportText : Window
     {
+        private IImportNPC importNPCService;
         public ImportText()
         {
             InitializeComponent();
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void ImportTextAndReturnButton_Click(object sender, RoutedEventArgs e)
+        {
+            importNPCService = new ImportEngineerSuiteNPC();
+            NPCController npcController = new NPCController();
+
+            npcController.LoadNPCModel(importNPCService.ImportTextToNPCModel(ImportTextBox.Text));
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -64,6 +64,8 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseDamageVulnerabilities(parsedNPCModel, line);
                 if (line.StartsWith("Damage Immunities", StringComparison.Ordinal))
                     ParseDamageImmunities(parsedNPCModel, line);
+                if (line.StartsWith("Condition Immunities", StringComparison.Ordinal))
+                    ParseConditionImmunities(parsedNPCModel, line);
                 lineNumber++;
             }
 
@@ -396,7 +398,19 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseConditionImmunities(NPCModel npcModel, string conditionImmunities)
         {
-            throw new NotImplementedException();
+            NPCController npcController = new NPCController();
+            List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(ConditionType));
+
+            if (conditionImmunities.Trim().Length != 0 && conditionImmunities.StartsWith("Condition Immunities", StringComparison.Ordinal))
+                foreach (string conditionImmunityTypeValue in conditionImmunities.Split(' '))
+                {
+                    string conditionImmunityTypeValueTrimmed = conditionImmunityTypeValue.Replace(',', ' ').Replace(';', ' ').Trim();
+                    SelectableActionModel conditionImmunityTypeModel = selectableActionModels.FirstOrDefault(item => item.ActionDescription.Equals(conditionImmunityTypeValueTrimmed));
+                    if (conditionImmunityTypeModel != null)
+                        conditionImmunityTypeModel.Selected = true;
+                }
+
+            npcModel.ConditionImmunityModelList = selectableActionModels;
         }
 
         /// <summary>
