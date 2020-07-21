@@ -801,5 +801,161 @@ namespace FMPTests.Importer.NPC
         }
         #endregion
 
+        #region Actions
+
+        #region Multiattack
+        [TestMethod]
+        [DynamicData(nameof(MultiattackData), DynamicDataSourceType.Method)]
+        public void Test_Parse_Actions_Multiattack(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseStandardAction(actualNPCModel, text);
+            AssertAction_Multiattack(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertAction_Multiattack(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.NPCActions.Count, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(typeof(Multiattack), actualNPCModel.NPCActions[0].GetType());
+            Assert.AreEqual(expectedNPCModel.NPCActions[0].ActionName, actualNPCModel.NPCActions[0].ActionName);
+            Assert.AreEqual(expectedNPCModel.NPCActions[0].ActionDescription, actualNPCModel.NPCActions[0].ActionDescription);
+        }
+
+        private static IEnumerable<object[]> MultiattackData()
+        {
+            yield return new object[] { generateNPCModel_Multiattack(".This creature makes 3 attacks."), "Multiattack. .This creature makes 3 attacks." };
+        }
+        private static NPCModel generateNPCModel_Multiattack(string actionDescription)
+        {
+            NPCModel npcModel = new NPCModel();
+            Multiattack multiattack = new Multiattack() { ActionDescription = actionDescription };
+            npcModel.NPCActions.Add(multiattack);
+
+            return npcModel;
+        }
+        #endregion
+
+        #region Weapon (Attack) Action
+        [TestMethod]
+        [DynamicData(nameof(WeaponActionData), DynamicDataSourceType.Method)]
+        public void Test_Parse_Actions_WeaponAction(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseStandardAction(actualNPCModel, text);
+            AssertAction_WeaponAction(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertAction_WeaponAction(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.NPCActions.Count, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(expectedNPCModel.NPCActions[0].GetType(), actualNPCModel.NPCActions[0].GetType());
+            Assert.AreEqual(typeof(WeaponAttack), expectedNPCModel.NPCActions[0].GetType());
+            Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
+
+            WeaponAttack expectedWeaponAttack = expectedNPCModel.NPCActions[0] as WeaponAttack;
+            WeaponAttack actualWeaponAttack = actualNPCModel.NPCActions[0] as WeaponAttack;
+
+            Assert.AreEqual(expectedWeaponAttack.ActionName, actualWeaponAttack.ActionName);
+            Assert.AreEqual(expectedWeaponAttack.WeaponType, actualWeaponAttack.WeaponType);
+            Assert.AreEqual(expectedWeaponAttack.ToHit, actualWeaponAttack.ToHit);
+            Assert.AreEqual(expectedWeaponAttack.Reach, actualWeaponAttack.Reach);
+            Assert.AreEqual(expectedWeaponAttack.WeaponRangeShort, actualWeaponAttack.WeaponRangeShort);
+            Assert.AreEqual(expectedWeaponAttack.WeaponRangeLong, actualWeaponAttack.WeaponRangeLong);
+            Assert.AreEqual(expectedWeaponAttack.TargetType, actualWeaponAttack.TargetType);
+            Assert.AreEqual(expectedWeaponAttack.IsAdamantine, actualWeaponAttack.IsAdamantine);
+            Assert.AreEqual(expectedWeaponAttack.IsColdForgedIron, actualWeaponAttack.IsColdForgedIron);
+            Assert.AreEqual(expectedWeaponAttack.IsMagic, actualWeaponAttack.IsMagic);
+            Assert.AreEqual(expectedWeaponAttack.IsSilver, actualWeaponAttack.IsSilver);
+            Assert.AreEqual(expectedWeaponAttack.IsVersatile, actualWeaponAttack.IsVersatile);
+            Assert.AreEqual(expectedWeaponAttack.PrimaryDamage, actualWeaponAttack.PrimaryDamage);
+            Assert.AreEqual(expectedWeaponAttack.SecondaryDamage, actualWeaponAttack.SecondaryDamage);
+        }
+
+        private static IEnumerable<object[]> WeaponActionData()
+        {
+            yield return new object[] { generateNPCModel_WeaponAction("All Specialstat Dagger", WeaponType.MWA,
+                0, 5, 30, 60, TargetType.target, true, true, true, true, true,
+                new DamageProperty(){Bonus = 0, DamageType = DamageType.Lightning, DieType = DieType.D6, NumOfDice = 1 },
+                new DamageProperty(){Bonus = 0, DamageType = DamageType.Lightning, DieType = DieType.D8, NumOfDice = 1 }), 
+                "All Specialstat Dagger. Melee Weapon Attack: +0 to hit, reach 5 ft., one target. " +
+                "Hit: 3 (1d6) lightning, silver, adamantine, cold-forged iron, magic damage " +
+                "or 4 (1d8) lightning, silver, adamantine, cold-forged iron, magic damage if used with two hands." };
+            yield return new object[] { generateNPCModel_WeaponAction("Longbow", WeaponType.RWA,
+                6, 0, 120, 600, TargetType.target, false, false, false, false, false,
+                new DamageProperty(){Bonus = 3, DamageType = DamageType.Slashing, DieType = DieType.D8, NumOfDice = 2 },
+                null),
+                "Longbow. Ranged Weapon Attack: +6 to hit, range 120/600 ft., one target. Hit: 12 (2d8 + 3) slashing damage." };
+            yield return new object[] { generateNPCModel_WeaponAction("No Idea Spell Attack", WeaponType.SA,
+                5, 10, 50, 0, TargetType.creature, false, false, false, false, false,
+                new DamageProperty(){Bonus = 2, DamageType = DamageType.Fire, DieType = DieType.D8, NumOfDice = 2 },
+                null),
+                "No Idea Spell Attack. Melee or Ranged Spell Attack: +5 to hit, reach 10 ft. or range 50 ft., one creature. Hit: 11 (2d8 + 2) fire damage." };
+            yield return new object[] { generateNPCModel_WeaponAction("No Idea Spell Attack", WeaponType.SA,
+                5, 10, 0, 0, TargetType.target, false, false, false, false, false,
+                new DamageProperty(){Bonus = 0, DamageType = DamageType.Piercing, DieType = DieType.D6, NumOfDice = 1 },
+                new DamageProperty(){Bonus = -4, DamageType = DamageType.Acid, DieType = DieType.D10, NumOfDice = 6 }),
+                "Bonus Damage Dagger. Melee Spell Attack: +5 to hit, reach 10 ft., one target. Hit: 3 (1d6) piercing damage plus 29 (6d10 - 4) acid damage." };
+        }
+        private static NPCModel generateNPCModel_WeaponAction(string actionName, WeaponType weaponType, int toHit, int reach,
+            int weaponShortRange, int weaponLongRange,
+            TargetType targetType, bool isAdamantine, bool isColdForgedIron, bool isMagic, bool isSilver, bool isVersatile,
+            DamageProperty primaryDamage, DamageProperty secondaryDamage)
+        {
+            NPCModel npcModel = new NPCModel();
+            WeaponAttack weaponAttack = new WeaponAttack();
+            weaponAttack.ActionName = actionName;
+            weaponAttack.WeaponType = weaponType;
+            weaponAttack.ToHit = toHit;
+            weaponAttack.Reach = reach;
+            weaponAttack.WeaponRangeShort = weaponShortRange;
+            weaponAttack.WeaponRangeLong = weaponLongRange;
+            weaponAttack.TargetType = targetType;
+
+            // Boolean values
+            weaponAttack.IsAdamantine = isAdamantine;
+            weaponAttack.IsColdForgedIron = isColdForgedIron;
+            weaponAttack.IsMagic = isMagic;
+            weaponAttack.IsSilver = isSilver;
+            weaponAttack.IsVersatile = isVersatile;
+
+            weaponAttack.PrimaryDamage = primaryDamage;
+            weaponAttack.SecondaryDamage = secondaryDamage;
+
+            npcModel.NPCActions.Add(weaponAttack);
+
+            return npcModel;
+        }
+        #endregion
+
+        #region Other Action
+        [TestMethod]
+        [DynamicData(nameof(OtherActionData), DynamicDataSourceType.Method)]
+        public void Test_Parse_Actions_OtherAction(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseStandardAction(actualNPCModel, text);
+            AssertAction_OtherAction(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertAction_OtherAction(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            Assert.AreEqual(expectedNPCModel.NPCActions.Count, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(typeof(OtherAction), actualNPCModel.NPCActions[0].GetType());
+            Assert.AreEqual(expectedNPCModel.NPCActions[0].ActionName, actualNPCModel.NPCActions[0].ActionName);
+            Assert.AreEqual(expectedNPCModel.NPCActions[0].ActionDescription, actualNPCModel.NPCActions[0].ActionDescription);
+        }
+
+        private static IEnumerable<object[]> OtherActionData()
+        {
+            yield return new object[] { generateNPCModel_OtherAction("Some Other Action", "Some Other Action Flavor Text Here."), "Some Other Action. Some Other Action Flavor Text Here." };
+        }
+        private static NPCModel generateNPCModel_OtherAction(string actionName, string actionDescription)
+        {
+            NPCModel npcModel = new NPCModel();
+            OtherAction otherAction = new OtherAction() {ActionName = actionName, ActionDescription = actionDescription };
+            npcModel.NPCActions.Add(otherAction);
+
+            return npcModel;
+        }
+        #endregion
+
+        #endregion
     }
 }
