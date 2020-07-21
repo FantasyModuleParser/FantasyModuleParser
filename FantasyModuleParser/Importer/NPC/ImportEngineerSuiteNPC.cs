@@ -54,6 +54,8 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseStatAttributes(parsedNPCModel, line);
                 if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
                     ParseSavingThrows(parsedNPCModel, line);
+                if (line.StartsWith("Skills"))
+                    ParseSkillAttributes(parsedNPCModel, line);
                 lineNumber++;
             }
 
@@ -189,32 +191,32 @@ namespace FantasyModuleParser.Importer.NPC
                     {
                         if (isStr)
                         {
-                            npcModel.SavingThrowStr = parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowStr = parseAttributeStringToInt(savingThrowWord);
                             npcModel.SavingThrowStrBool = npcModel.SavingThrowStr == 0;
                         }
                         if (isDex)
                         {
-                            npcModel.SavingThrowDex = parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowDex = parseAttributeStringToInt(savingThrowWord);
                             npcModel.SavingThrowDexBool = npcModel.SavingThrowDex == 0;
                         }
                         if (isCon)
                         {
-                            npcModel.SavingThrowCon = parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowCon = parseAttributeStringToInt(savingThrowWord);
                             npcModel.SavingThrowConBool = npcModel.SavingThrowCon == 0;
                         }
                         if (isInt)
                         {
-                            npcModel.SavingThrowInt= parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowInt= parseAttributeStringToInt(savingThrowWord);
                             npcModel.SavingThrowIntBool = npcModel.SavingThrowInt== 0;
                         }
                         if (isWis)
                         {
-                            npcModel.SavingThrowWis= parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowWis= parseAttributeStringToInt(savingThrowWord);
                             npcModel.SavingThrowWisBool = npcModel.SavingThrowWis== 0;
                         }
                         if (isCha)
                         {
-                            npcModel.SavingThrowCha= parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowCha= parseAttributeStringToInt(savingThrowWord);
                             npcModel.SavingThrowChaBool = npcModel.SavingThrowCha== 0;
                         }
 
@@ -234,7 +236,7 @@ namespace FantasyModuleParser.Importer.NPC
                 
             }
         }
-        private int parseSavingThrowString(string savingThrowValue)
+        private int parseAttributeStringToInt(string savingThrowValue)
         {
             savingThrowValue = savingThrowValue.Replace('+', ' ');
             savingThrowValue = savingThrowValue.Replace(',', ' ');
@@ -243,11 +245,76 @@ namespace FantasyModuleParser.Importer.NPC
         }
 
         /// <summary>
-        /// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9, Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
+        /// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9,
+        ///  Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
         /// </summary>
         public void ParseSkillAttributes(NPCModel npcModel, string skillAttributes)
         {
-            throw new NotImplementedException();
+            int columnIndex = 0;
+            string[] skillAttributeArray = skillAttributes.Split(' ');
+            foreach (string skillAttributeValue in skillAttributeArray)
+            {
+                switch (skillAttributeValue)
+                {
+                    case "Acrobatics":
+                        npcModel.Acrobatics = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Animal":
+                        npcModel.AnimalHandling = parseAttributeStringToInt(skillAttributeArray[columnIndex + 2]);
+                        break;
+                    case "Arcana":
+                        npcModel.Arcana = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Athletics":
+                        npcModel.Athletics = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Deception":
+                        npcModel.Deception = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "History":
+                        npcModel.History = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Insight":
+                        npcModel.Insight = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Intimidation":
+                        npcModel.Intimidation = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Investigation":
+                        npcModel.Investigation = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Medicine":
+                        npcModel.Medicine = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Nature":
+                        npcModel.Nature = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Perception":
+                        npcModel.Perception = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Performance":
+                        npcModel.Performance = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Persuasion":
+                        npcModel.Persuasion = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Religion":
+                        npcModel.Religion = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Sleight":
+                        npcModel.SleightOfHand = parseAttributeStringToInt(skillAttributeArray[columnIndex + 3]);
+                        break;
+                    case "Stealth":
+                        npcModel.Stealth = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Survival":
+                        npcModel.Survival = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    default:
+                        break;
+                }
+                columnIndex++;
+            }
         }
 
         /// <summary>
