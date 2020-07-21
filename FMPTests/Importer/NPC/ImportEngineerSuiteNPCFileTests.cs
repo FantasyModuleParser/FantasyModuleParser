@@ -143,7 +143,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(2, parsedNPCModel.SavingThrowDex);
             Assert.AreEqual(3, parsedNPCModel.SavingThrowCon);
             Assert.AreEqual(0, parsedNPCModel.SavingThrowInt);
-            Assert.AreEqual(5, parsedNPCModel.SavingThrowWis);
+            Assert.AreEqual(-5, parsedNPCModel.SavingThrowWis);
             Assert.AreEqual(6, parsedNPCModel.SavingThrowCha);
 
             Assert.AreEqual(false, parsedNPCModel.SavingThrowStrBool);

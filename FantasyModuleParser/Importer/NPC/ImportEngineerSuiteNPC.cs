@@ -52,7 +52,8 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseSpeedAttributes(parsedNPCModel, line);
                 if (line.StartsWith("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
                     ParseStatAttributes(parsedNPCModel, line);
-
+                if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
+                    ParseSavingThrows(parsedNPCModel, line);
                 lineNumber++;
             }
 
@@ -174,7 +175,71 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseSavingThrows(NPCModel npcModel, string savingThrows)
         {
-            throw new NotImplementedException();
+            if(savingThrows.StartsWith("Saving Throws"))
+            {
+                string[] splitSavingThrows = savingThrows.Split(' ');
+                bool isStr = false, isDex = false, isCon = false, isInt = false, isWis = false, isCha = false;
+                bool attributeIdentified = false;
+                foreach(string savingThrowWord in splitSavingThrows)
+                {
+                    if (savingThrowWord.Equals("Saving", StringComparison.Ordinal) || savingThrowWord.Equals("Throws", StringComparison.Ordinal))
+                        continue;
+
+                    if (attributeIdentified)
+                    {
+                        if (isStr)
+                        {
+                            npcModel.SavingThrowStr = parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowStrBool = npcModel.SavingThrowStr == 0;
+                        }
+                        if (isDex)
+                        {
+                            npcModel.SavingThrowDex = parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowDexBool = npcModel.SavingThrowDex == 0;
+                        }
+                        if (isCon)
+                        {
+                            npcModel.SavingThrowCon = parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowConBool = npcModel.SavingThrowCon == 0;
+                        }
+                        if (isInt)
+                        {
+                            npcModel.SavingThrowInt= parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowIntBool = npcModel.SavingThrowInt== 0;
+                        }
+                        if (isWis)
+                        {
+                            npcModel.SavingThrowWis= parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowWisBool = npcModel.SavingThrowWis== 0;
+                        }
+                        if (isCha)
+                        {
+                            npcModel.SavingThrowCha= parseSavingThrowString(savingThrowWord);
+                            npcModel.SavingThrowChaBool = npcModel.SavingThrowCha== 0;
+                        }
+
+                        attributeIdentified = false; // Reset for next attribute check
+                    } 
+                    else
+                    {
+                        isStr = savingThrowWord.Equals("Str", StringComparison.Ordinal);
+                        isDex = savingThrowWord.Equals("Dex", StringComparison.Ordinal);
+                        isCon = savingThrowWord.Equals("Con", StringComparison.Ordinal);
+                        isInt = savingThrowWord.Equals("Int", StringComparison.Ordinal);
+                        isWis = savingThrowWord.Equals("Wis", StringComparison.Ordinal);
+                        isCha = savingThrowWord.Equals("Cha", StringComparison.Ordinal);
+                        attributeIdentified = true;
+                    }
+                }
+                
+            }
+        }
+        private int parseSavingThrowString(string savingThrowValue)
+        {
+            savingThrowValue = savingThrowValue.Replace('+', ' ');
+            savingThrowValue = savingThrowValue.Replace(',', ' ');
+            string savingThrowValueSubstring = savingThrowValue.Trim();
+            return int.Parse(savingThrowValueSubstring, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
