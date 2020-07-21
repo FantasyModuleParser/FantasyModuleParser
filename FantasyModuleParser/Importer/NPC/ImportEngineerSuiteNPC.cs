@@ -1,5 +1,7 @@
 ﻿using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -54,8 +56,14 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseStatAttributes(parsedNPCModel, line);
                 if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
                     ParseSavingThrows(parsedNPCModel, line);
-                if (line.StartsWith("Skills"))
+                if (line.StartsWith("Skills", StringComparison.Ordinal))
                     ParseSkillAttributes(parsedNPCModel, line);
+                if (line.StartsWith("Damage Resistances", StringComparison.Ordinal))
+                    ParseDamageResistances(parsedNPCModel, line);
+                if (line.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
+                    ParseDamageVulnerabilities(parsedNPCModel, line);
+                if (line.StartsWith("Damage Immunities", StringComparison.Ordinal))
+                    ParseDamageImmunities(parsedNPCModel, line);
                 lineNumber++;
             }
 
@@ -322,7 +330,33 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseDamageVulnerabilities(NPCModel npcModel, string damageVulnerabilites)
         {
-            throw new NotImplementedException();
+            if(damageVulnerabilites.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
+            {
+                npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList(damageVulnerabilites);
+            } else
+            {
+                // Populate with all options deselected
+                npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList("");
+            }
+        }
+
+        private List<SelectableActionModel> parseDamageTypeStringToList(string damageTypes)
+        {
+            NPCController npcController = new NPCController();
+            List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(DamageType));
+            if(damageTypes.Length == 0)
+                return selectableActionModels;
+
+            foreach(string damageTypeValue in damageTypes.Split(' '))
+            {
+                string damageTypeValueTrimmed = damageTypeValue.Replace(',', ' ').Replace(';', ' ').Trim();
+                SelectableActionModel damageTypeModel = selectableActionModels.FirstOrDefault(item => item.ActionDescription.Equals(damageTypeValueTrimmed));
+                if (damageTypeModel != null)
+                    damageTypeModel.Selected = true;
+            }
+
+
+            return selectableActionModels;
         }
 
         /// <summary>
@@ -330,7 +364,15 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseDamageResistances(NPCModel npcModel, string damageResistances)
         {
-            throw new NotImplementedException();
+            if (damageResistances.StartsWith("Damage Resistances", StringComparison.Ordinal))
+            {
+                npcModel.DamageResistanceModelList = parseDamageTypeStringToList(damageResistances);
+            }
+            else
+            {
+                // Populate with all options deselected
+                npcModel.DamageResistanceModelList = parseDamageTypeStringToList("");
+            }
         }
 
         /// <summary>
@@ -338,7 +380,15 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseDamageImmunities(NPCModel npcModel, string damageImmunities)
         {
-            throw new NotImplementedException();
+            if (damageImmunities.StartsWith("Damage Immunities", StringComparison.Ordinal))
+            {
+                npcModel.DamageImmunityModelList = parseDamageTypeStringToList(damageImmunities);
+            }
+            else
+            {
+                // Populate with all options deselected
+                npcModel.DamageImmunityModelList = parseDamageTypeStringToList("");
+            }
         }
 
         /// <summary>

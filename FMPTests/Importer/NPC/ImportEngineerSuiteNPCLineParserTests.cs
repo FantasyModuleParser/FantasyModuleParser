@@ -386,13 +386,27 @@ namespace FMPTests.Importer.NPC
                 Assert.AreEqual(expectedDamageVulnerability.Selected, actualDamageVulnerability.Selected);
             }
         }
-
+        private const string DAMAGE_VULNERABILITY_PREFIX = "Damage Vulnerabilities";
         private static IEnumerable<object[]> DamageVulnerabilitesData()
         {
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] {}), "" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites( new DamageType[] { DamageType.Acid}), DAMAGE_VULNERABILITY_PREFIX + " acid" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Bludgeoning }), DAMAGE_VULNERABILITY_PREFIX + " bludgeoning" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Cold }), DAMAGE_VULNERABILITY_PREFIX + " cold" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Fire }), DAMAGE_VULNERABILITY_PREFIX + " fire" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Force }), DAMAGE_VULNERABILITY_PREFIX + " force" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Lightning }), DAMAGE_VULNERABILITY_PREFIX + " lightning" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Necrotic }), DAMAGE_VULNERABILITY_PREFIX + " necrotic" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Piercing }), DAMAGE_VULNERABILITY_PREFIX + " piercing" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Poison }), DAMAGE_VULNERABILITY_PREFIX + " poison" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Psychic }), DAMAGE_VULNERABILITY_PREFIX + " psychic" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Radiant }), DAMAGE_VULNERABILITY_PREFIX + " radiant" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Slashing }), DAMAGE_VULNERABILITY_PREFIX + " slashing" };
+            yield return new object[] { generateNPCModel_DamageVulnerabilites(new DamageType[] { DamageType.Thunder }), DAMAGE_VULNERABILITY_PREFIX + " thunder" };
             yield return new object[] { generateNPCModel_DamageVulnerabilites(
                 new DamageType[] { DamageType.Acid, DamageType.Fire, DamageType.Lightning, DamageType.Poison, 
                     DamageType.Radiant, DamageType.Bludgeoning, DamageType.Slashing }),
-                "Damage Vulnerabilities acid, fire, lightning, poison, radiant; bludgeoning and slashing" };
+                DAMAGE_VULNERABILITY_PREFIX + " acid, fire, lightning, poison, radiant; bludgeoning and slashing" };
         }
         private static NPCModel generateNPCModel_DamageVulnerabilites(DamageType[] damageVulnerabilities)
         {
@@ -957,5 +971,117 @@ namespace FMPTests.Importer.NPC
         #endregion
 
         #endregion
+
+        #region Lair Actions
+        [TestMethod]
+        [DynamicData(nameof(LairActionData), DynamicDataSourceType.Method)]
+        public void Test_Parse_LairAction(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseLairAction(actualNPCModel, text);
+            AssertLairAction(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertLairAction(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            // Check to see if expected & actual NPCs have a lair action
+            Assert.AreEqual(1, expectedNPCModel.LairActions.Count);
+            Assert.AreEqual(1, actualNPCModel.LairActions.Count);
+
+            Assert.AreEqual(expectedNPCModel.LairActions[0].ActionName, actualNPCModel.LairActions[0].ActionName);
+            Assert.AreEqual(expectedNPCModel.LairActions[0].ActionDescription, actualNPCModel.LairActions[0].ActionDescription);
+        }
+
+        private static IEnumerable<object[]> LairActionData()
+        {
+            yield return new object[] { generateNPCModel_LairActions("", "All the options of the lair:"), "All the options of the lair:" };
+            yield return new object[] { generateNPCModel_LairActions("", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")
+                , "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day."};
+            yield return new object[] {generateNPCModel_LairActions("", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see."),
+                "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see."};
+        }
+        private static NPCModel generateNPCModel_LairActions(string actionName, string actionDescription)
+        {
+            NPCModel npcModel = new NPCModel();
+
+            LairAction lairAction = new LairAction() { ActionName = actionName, ActionDescription = actionDescription };
+
+            npcModel.LairActions.Add(lairAction);
+
+            return npcModel;
+        }
+        #endregion
+
+        #region Legendary Actions
+        [TestMethod]
+        [DynamicData(nameof(LegendaryActionData), DynamicDataSourceType.Method)]
+        public void Test_Parse_LegendaryAction(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseLegendaryAction(actualNPCModel, text);
+            AssertLegendaryAction(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertLegendaryAction(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            // Check to see if expected & actual NPCs have a lair action
+            Assert.AreEqual(1, expectedNPCModel.LegendaryActions.Count);
+            Assert.AreEqual(1, actualNPCModel.LegendaryActions.Count);
+
+            Assert.AreEqual(expectedNPCModel.LegendaryActions[0].ActionName, actualNPCModel.LegendaryActions[0].ActionName);
+            Assert.AreEqual(expectedNPCModel.LegendaryActions[0].ActionDescription, actualNPCModel.LegendaryActions[0].ActionDescription);
+        }
+
+        private static IEnumerable<object[]> LegendaryActionData()
+        {
+            yield return new object[] { generateNPCModel_LegendaryActions("Options", "This creature has 5 legendary actions."), "Options. This creature has 5 legendary actions." };
+            yield return new object[] { generateNPCModel_LegendaryActions("Movement", "(Costs 1 action) The creature can move upto it's fly speed without provoking AOO."), "Movement. (Costs 1 action) The creature can move upto it's fly speed without provoking AOO." };
+            yield return new object[] { generateNPCModel_LegendaryActions("Tail Whip", "(Costs 2 actions) The creature can use it's tail whip attack action."), "Tail Whip. (Costs 2 actions) The creature can use it's tail whip attack action." };
+        }
+        private static NPCModel generateNPCModel_LegendaryActions(string actionName, string actionDescription)
+        {
+            NPCModel npcModel = new NPCModel();
+
+            LegendaryActionModel legendaryAction = new LegendaryActionModel() { ActionName = actionName, ActionDescription = actionDescription };
+
+            npcModel.LegendaryActions.Add(legendaryAction);
+
+            return npcModel;
+        }
+        #endregion
+
+        #region Reactions
+        [TestMethod]
+        [DynamicData(nameof(ReactionsData), DynamicDataSourceType.Method)]
+        public void Test_Parse_Reactions(NPCModel expectedNpcModel, string text)
+        {
+            _importEngineerSuiteNPC.ParseReaction(actualNPCModel, text);
+            AssertReactions(expectedNpcModel, actualNPCModel);
+        }
+
+        private void AssertReactions(NPCModel expectedNPCModel, NPCModel actualNPCModel)
+        {
+            // Check to see if expected & actual NPCs have a lair action
+            Assert.AreEqual(1, expectedNPCModel.Reactions.Count);
+            Assert.AreEqual(1, actualNPCModel.Reactions.Count);
+
+            Assert.AreEqual(expectedNPCModel.Reactions[0].ActionName, actualNPCModel.Reactions[0].ActionName);
+            Assert.AreEqual(expectedNPCModel.Reactions[0].ActionDescription, actualNPCModel.Reactions[0].ActionDescription);
+        }
+
+        private static IEnumerable<object[]> ReactionsData()
+        {
+            yield return new object[] { generateNPCModel_Reactions("Parry", "You know what it does.. NINJA DODGE."), "Parry. You know what it does.. NINJA DODGE." };
+        }
+        private static NPCModel generateNPCModel_Reactions(string actionName, string actionDescription)
+        {
+            NPCModel npcModel = new NPCModel();
+
+            ActionModelBase reactionData = new ActionModelBase() { ActionName = actionName, ActionDescription = actionDescription };
+
+            npcModel.Reactions.Add(reactionData);
+
+            return npcModel;
+        }
+        #endregion
+
     }
 }
