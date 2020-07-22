@@ -5,6 +5,7 @@ using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Models.Skills;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -603,18 +604,57 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseStandardAction(NPCModel npcModel, string standardAction)
         {
+            string[] standardActionArray;
+            StringBuilder stringBuilder = new StringBuilder();
             if (standardAction.StartsWith(Multiattack.LocalActionName))
             {
                 Multiattack multiattackModel = new Multiattack();
-                string[] standardActionArray = standardAction.Split('.');
-                StringBuilder stringBuilder = new StringBuilder();
+                standardActionArray = standardAction.Split('.');
                 for (int idx = 1; idx < standardActionArray.Length; idx++)
                 {
                     stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
                 }
                 multiattackModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
                 npcModel.NPCActions.Add(multiattackModel);
+                return;
             }
+
+            // For any standard action, it will contain one of the following from the WeaponType enum description
+            if(standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA)) ||
+                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MWA)) ||
+                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RSA)) ||
+                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RWA)) ||
+                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.SA)) ||
+                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.WA)))
+            {
+
+                // TODO:  Parse out the standard action here!!!
+                return;
+            }
+
+            // if not Multiattack or standard action, then it's an OtherAction
+            OtherAction otherActionModel = new OtherAction();
+            standardActionArray = standardAction.Split('.');
+            for (int idx = 1; idx < standardActionArray.Length; idx++)
+            {
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
+            }
+            otherActionModel.ActionName = standardActionArray[0];
+            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
+            npcModel.NPCActions.Add(otherActionModel);
+        }
+
+        private string GetDescription(Type EnumType, object enumValue)
+        {
+            var descriptionAttribute = EnumType
+                .GetField(enumValue.ToString())
+                .GetCustomAttributes(typeof(DescriptionAttribute), false)
+                .FirstOrDefault() as DescriptionAttribute;
+
+
+            return descriptionAttribute != null
+                ? descriptionAttribute.Description
+                : enumValue.ToString();
         }
 
         /// <summary>
