@@ -162,7 +162,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(70, parsedNPCModel.Darkvision);
             Assert.AreEqual(80, parsedNPCModel.Tremorsense);
             Assert.AreEqual(90, parsedNPCModel.Truesight);
-            Assert.AreEqual(40, parsedNPCModel.PassivePerception);
+            Assert.AreEqual(22, parsedNPCModel.PassivePerception);
 
             Assert.AreEqual(true, parsedNPCModel.BlindBeyond);
         }
@@ -411,13 +411,13 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                     case "Celestial":
                     case "Draconic":
                     case "Infernal":
-                    case "Slyvan":
+                    case "Sylvan":
                         language.Selected = true;
                         break;
                 }
             }
 
-            AssertLanguageModelList(expectedLanguages, LoadEngineerSuiteTestNPCFile().StandardLanguages);
+            AssertLanguageModelList(expectedLanguages, LoadEngineerSuiteTestNPCFile().ExoticLanguages);
         }
 
         [TestMethod()]
@@ -442,7 +442,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                 }
             }
 
-            AssertLanguageModelList(expectedLanguages, LoadEngineerSuiteTestNPCFile().StandardLanguages);
+            AssertLanguageModelList(expectedLanguages, LoadEngineerSuiteTestNPCFile().MonstrousLanguages);
         }
 
         [TestMethod()]
@@ -451,7 +451,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
 
             Assert.AreEqual(true, actualNPCModel.Telepathy);
-            Assert.AreEqual(90, actualNPCModel.TelepathyRange);
+            Assert.AreEqual("90", actualNPCModel.TelepathyRange);
         }
 
         #endregion
