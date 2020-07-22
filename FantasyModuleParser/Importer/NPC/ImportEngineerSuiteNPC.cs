@@ -66,6 +66,10 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseDamageImmunities(parsedNPCModel, line);
                 if (line.StartsWith("Condition Immunities", StringComparison.Ordinal))
                     ParseConditionImmunities(parsedNPCModel, line);
+                if (line.StartsWith("Senses", StringComparison.Ordinal))
+                    ParseVisionAttributes(parsedNPCModel, line);
+                if (line.StartsWith("Challenge", StringComparison.Ordinal))
+                    ParseChallengeRatingAndXP(parsedNPCModel, line);
                 lineNumber++;
             }
 
@@ -418,7 +422,34 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseVisionAttributes(NPCModel npcModel, string visionAttributes)
         {
-            throw new NotImplementedException();
+            if(visionAttributes != null &&  visionAttributes.StartsWith("Senses", StringComparison.Ordinal))
+            {
+                if (visionAttributes.Contains("blind beyond this radius"))
+                    npcModel.BlindBeyond = true;
+
+                string[] visionAttributeArray = visionAttributes.Split(' ');
+                int arrayIndex = 0;
+                foreach (string attribute in visionAttributeArray)
+                {
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("blindsight", StringComparison.Ordinal))
+                    {
+                        npcModel.Blindsight = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("darkvision", StringComparison.Ordinal))
+                    {
+                        npcModel.Darkvision = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("tremorsense", StringComparison.Ordinal))
+                    {
+                        npcModel.Tremorsense = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("Perception", StringComparison.Ordinal))
+                    {
+                        npcModel.PassivePerception = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    arrayIndex++;
+                }
+            }
         }
 
         /// <summary>
@@ -434,7 +465,14 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseChallengeRatingAndXP(NPCModel npcModel, string challengeRatingAndXP)
         {
-            throw new NotImplementedException();
+            if(challengeRatingAndXP != null && challengeRatingAndXP.StartsWith("Challenge"))
+            {
+                string[] splitArray = challengeRatingAndXP.Split(' ');
+                npcModel.ChallengeRating = splitArray[1];
+                string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(').ToArray());
+                npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
+            }
+            
         }
 
         /// <summary>

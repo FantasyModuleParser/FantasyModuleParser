@@ -82,11 +82,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void ImportText_Click(object sender, RoutedEventArgs e)
 		{
 			ImportText importTextWindow = new ImportText();
-            importTextWindow.Closing += ImportTextWindow_Closing;
-			new ImportText().Show();
+			importTextWindow.IsVisibleChanged += ImportTextWindow_IsVisibleChanged;
+			importTextWindow.Show();
 		}
 
-        private void ImportTextWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		private void ImportTextWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 			DataContext = npcController.GetNPCModel();
 			BaseStatsUserControl.Refresh();
