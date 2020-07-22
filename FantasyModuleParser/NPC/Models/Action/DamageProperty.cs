@@ -7,7 +7,7 @@ using FantasyModuleParser.NPC.Models.Action.Enums;
 
 namespace FantasyModuleParser.NPC.Models.Action
 {
-    public class DamageProperty
+    public class DamageProperty : IEquatable<DamageProperty>
     {
 	    public int NumOfDice { get; set; }
 
@@ -27,6 +27,20 @@ namespace FantasyModuleParser.NPC.Models.Action
             DieType = dieType;
             Bonus = bonus;
             DamageType = damageType;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as DamageProperty);
+        }
+
+        public bool Equals(DamageProperty other)
+        {
+            return other != null &&
+                   NumOfDice == other.NumOfDice &&
+                   DieType == other.DieType &&
+                   Bonus == other.Bonus &&
+                   DamageType == other.DamageType;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.NPC;
+﻿using FantasyModuleParser.Importer.Utils;
+using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
@@ -18,9 +19,10 @@ namespace FantasyModuleParser.Importer.NPC
 {
     public class ImportEngineerSuiteNPC : IImportNPC
     {
+        private ImportCommonUtils importCommonUtils;
         public ImportEngineerSuiteNPC()
         {
-
+            importCommonUtils = new ImportCommonUtils();
         }
 
         private bool continueTraitFlag = false,
@@ -627,8 +629,59 @@ namespace FantasyModuleParser.Importer.NPC
                 standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.SA)) ||
                 standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.WA)))
             {
+                WeaponAttack weaponAttackModel = new WeaponAttack();
 
-                // TODO:  Parse out the standard action here!!!
+                weaponAttackModel.WeaponType = GetWeaponTypeFromString(standardAction);
+                weaponAttackModel.ActionName = standardAction.Split('.')[0];
+
+                int firstColonIndex = standardAction.IndexOf(':');
+                string weaponDescription = standardAction.Substring(firstColonIndex + 2);
+
+                string[] weaponDescriptionDataSplit = weaponDescription.Split(',');
+
+                foreach(string weaponDescriptionData in weaponDescriptionDataSplit)
+                {
+                    if(weaponDescriptionData.Contains("to hit"))
+                    {
+                        weaponAttackModel.ToHit = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[0]);
+                    }
+                    if (weaponDescriptionData.Contains("reach"))
+                    {
+                        weaponAttackModel.Reach = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[2]);
+                    }
+                    if (weaponDescriptionData.Contains("one target"))
+                    {
+                        weaponAttackModel.TargetType = TargetType.target;
+                    }
+                    if (weaponDescriptionData.Contains("one creature"))
+                    {
+                        weaponAttackModel.TargetType = TargetType.creature;
+                    }
+                }
+
+                string damagePropertyData = weaponDescription.Substring(weaponDescription.IndexOf("Hit: ", StringComparison.Ordinal) + 4);
+                if (damagePropertyData.Contains(" or "))
+                {
+                    string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " or " }, StringSplitOptions.None);
+                    weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
+                    weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
+                    weaponAttackModel.IsVersatile = true;
+                }
+                else
+                {
+                    weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyData);
+                    weaponAttackModel.IsVersatile = false;
+                }
+
+                weaponAttackModel.IsMagic = damagePropertyData.Contains("magic");
+                weaponAttackModel.IsSilver = damagePropertyData.Contains("silver");
+                weaponAttackModel.IsAdamantine = damagePropertyData.Contains("adamantine");
+                weaponAttackModel.IsColdForgedIron = damagePropertyData.Contains("cold-forged iron");
+
+                //TODO:  Add Other Text
+                weaponAttackModel.OtherText = "";
+
+                npcModel.NPCActions.Add(weaponAttackModel);
                 return;
             }
 
@@ -655,6 +708,25 @@ namespace FantasyModuleParser.Importer.NPC
             return descriptionAttribute != null
                 ? descriptionAttribute.Description
                 : enumValue.ToString();
+        }
+
+        private WeaponType GetWeaponTypeFromString(string standardActionData)
+        {
+            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA)))
+                return WeaponType.MSA;
+            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.MWA)))
+                return WeaponType.MWA;
+            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.RSA)))
+                return WeaponType.RSA;
+            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.RWA)))
+                return WeaponType.RWA;
+            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.SA)))
+                return WeaponType.SA;
+            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.WA)))
+                return WeaponType.WA;
+
+            Console.WriteLine("Standard Action failed to parse any weapon type;  Default to MWA");
+            return WeaponType.MWA;
         }
 
         /// <summary>
