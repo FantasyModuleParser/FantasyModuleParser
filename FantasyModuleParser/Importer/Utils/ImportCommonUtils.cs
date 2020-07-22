@@ -110,5 +110,25 @@ namespace FantasyModuleParser.Importer.Utils
                 ? descriptionAttribute.Description
                 : enumValue.ToString();
         }
+
+        public WeaponType GetWeaponTypeFromString(string standardActionData)
+        {
+            string standardActionDataLower = standardActionData.ToLower();
+            if (standardActionDataLower.Contains(GetDescription(typeof(WeaponType), WeaponType.SA).ToLower(CultureInfo.CurrentCulture)))
+                return WeaponType.SA;
+            if (standardActionDataLower.Contains(GetDescription(typeof(WeaponType), WeaponType.WA).ToLower(CultureInfo.CurrentCulture)))
+                return WeaponType.WA;
+            if (standardActionDataLower.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA).ToLower(CultureInfo.CurrentCulture)))
+                return WeaponType.MSA;
+            if (standardActionDataLower.Contains(GetDescription(typeof(WeaponType), WeaponType.MWA).ToLower(CultureInfo.CurrentCulture)))
+                return WeaponType.MWA;
+            if (standardActionDataLower.Contains(GetDescription(typeof(WeaponType), WeaponType.RSA).ToLower(CultureInfo.CurrentCulture)))
+                return WeaponType.RSA;
+            if (standardActionDataLower.Contains(GetDescription(typeof(WeaponType), WeaponType.RWA).ToLower(CultureInfo.CurrentCulture)))
+                return WeaponType.RWA;
+            
+            Console.WriteLine("Standard Action failed to parse any weapon type;  Default to MWA");
+            return WeaponType.MWA;
+        }
     }
 }

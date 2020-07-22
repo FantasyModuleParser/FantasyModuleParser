@@ -586,7 +586,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.WeaponRangeShort = 120; 
             expectedWeaponAttack.WeaponRangeLong = 600;  
             expectedWeaponAttack.TargetType = TargetType.target;
-            expectedWeaponAttack.PrimaryDamage = new DamageProperty(2, DieType.D8, 3, DamageType.Piercing);
+            expectedWeaponAttack.PrimaryDamage = new DamageProperty(2, DieType.D8, 3, DamageType.Slashing);
             expectedWeaponAttack.SecondaryDamage = null;
             expectedWeaponAttack.OtherText = "";
 

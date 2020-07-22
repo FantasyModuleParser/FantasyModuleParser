@@ -631,7 +631,7 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 WeaponAttack weaponAttackModel = new WeaponAttack();
 
-                weaponAttackModel.WeaponType = GetWeaponTypeFromString(standardAction);
+                weaponAttackModel.WeaponType = importCommonUtils.GetWeaponTypeFromString(standardAction);
                 weaponAttackModel.ActionName = standardAction.Split('.')[0];
 
                 int firstColonIndex = standardAction.IndexOf(':');
@@ -648,6 +648,18 @@ namespace FantasyModuleParser.Importer.NPC
                     if (weaponDescriptionData.Contains("reach"))
                     {
                         weaponAttackModel.Reach = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[2]);
+                    }
+                    if (weaponDescriptionData.Contains("range"))
+                    {
+                        if(weaponAttackModel.WeaponType.Equals(WeaponType.SA) || weaponAttackModel.WeaponType.Equals(WeaponType.WA))
+                        {
+
+                        } 
+                        else
+                        { 
+                            weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[0], CultureInfo.CurrentCulture);
+                            weaponAttackModel.WeaponRangeLong = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[1], CultureInfo.CurrentCulture);
+                        }
                     }
                     if (weaponDescriptionData.Contains("one target"))
                     {
@@ -670,6 +682,7 @@ namespace FantasyModuleParser.Importer.NPC
                 else
                 {
                     weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyData);
+                    weaponAttackModel.SecondaryDamage = null;
                     weaponAttackModel.IsVersatile = false;
                 }
 
@@ -708,25 +721,6 @@ namespace FantasyModuleParser.Importer.NPC
             return descriptionAttribute != null
                 ? descriptionAttribute.Description
                 : enumValue.ToString();
-        }
-
-        private WeaponType GetWeaponTypeFromString(string standardActionData)
-        {
-            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA)))
-                return WeaponType.MSA;
-            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.MWA)))
-                return WeaponType.MWA;
-            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.RSA)))
-                return WeaponType.RSA;
-            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.RWA)))
-                return WeaponType.RWA;
-            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.SA)))
-                return WeaponType.SA;
-            if (standardActionData.Contains(GetDescription(typeof(WeaponType), WeaponType.WA)))
-                return WeaponType.WA;
-
-            Console.WriteLine("Standard Action failed to parse any weapon type;  Default to MWA");
-            return WeaponType.MWA;
         }
 
         /// <summary>
