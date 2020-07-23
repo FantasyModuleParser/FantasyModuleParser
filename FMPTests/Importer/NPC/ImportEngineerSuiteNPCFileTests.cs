@@ -251,17 +251,10 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             NPCController controller = new NPCController();
             List<SelectableActionModel> expectedWeaponResistance = controller.GetSelectableActionModelList(typeof(WeaponResistance));
 
-            foreach (SelectableActionModel selectableActionModel in expectedWeaponResistance)
-            {
-                switch (selectableActionModel.ActionName)
-                {
-                    case "Resistant to nonmagical weapons":
-                        selectableActionModel.Selected = true;
-                        break;
-                }
-            }
+            expectedWeaponResistance.First(item => item.ActionName.Equals(WeaponResistance.Nonmagical.ToString(), StringComparison.Ordinal)).Selected = true;
 
-            Assert.AreEqual(expectedWeaponResistance, LoadEngineerSuiteTestNPCFile().SpecialWeaponResistanceModelList);
+            AssertSelectableActionModelList(expectedWeaponResistance, LoadEngineerSuiteTestNPCFile().SpecialWeaponResistanceModelList);
+
         }
 
         [TestMethod()]
@@ -269,7 +262,6 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         {
             NPCController controller = new NPCController();
             List<SelectableActionModel> expectedDamageImmunityModelList = controller.GetSelectableActionModelList(typeof(DamageType));
-
             foreach (SelectableActionModel selectableActionModel in expectedDamageImmunityModelList)
             {
                 switch (selectableActionModel.ActionName)
@@ -283,8 +275,9 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                         break;
                 }
             }
-
-            AssertSelectableActionModelList(expectedDamageImmunityModelList, LoadEngineerSuiteTestNPCFile().DamageImmunityModelList);
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            AssertSelectableActionModelList(expectedDamageImmunityModelList, actualNPCModel.DamageImmunityModelList);
+            
         }
 
         [TestMethod()]
@@ -293,17 +286,9 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             NPCController controller = new NPCController();
             List<SelectableActionModel> expectedActionModelList = controller.GetSelectableActionModelList(typeof(WeaponImmunity));
 
-            foreach (SelectableActionModel selectableActionModel in expectedActionModelList)
-            {
-                switch (selectableActionModel.ActionName)
-                {
-                    case "Immune to nonmagical weapons that aren't silvered":
-                        selectableActionModel.Selected = true;
-                        break;
-                }
-            }
+            expectedActionModelList.First(item => item.ActionName.Equals(WeaponImmunity.NonmagicalSilvered.ToString(), StringComparison.Ordinal)).Selected = true;
 
-            Assert.AreEqual(expectedActionModelList, LoadEngineerSuiteTestNPCFile().SpecialWeaponImmunityModelList);
+            AssertSelectableActionModelList(expectedActionModelList, actualNPCModel.SpecialWeaponImmunityModelList);
         }
 
         [TestMethod()]
@@ -535,8 +520,6 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(expected.PrimaryDamage, actual.PrimaryDamage);
             Assert.AreEqual(expected.SecondaryDamage, actual.SecondaryDamage);
             Assert.AreEqual(expected.OtherText, actual.OtherText);
-
-
         }
 
         [TestMethod]
@@ -615,7 +598,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.WeaponRangeShort = 50; 
             expectedWeaponAttack.WeaponRangeLong = 60;  // ??????  Default maybe?
             expectedWeaponAttack.TargetType = TargetType.creature;
-            expectedWeaponAttack.PrimaryDamage = new DamageProperty(5, DieType.D10, 5, DamageType.Piercing);
+            expectedWeaponAttack.PrimaryDamage = new DamageProperty(2, DieType.D8, 2, DamageType.Fire);
             expectedWeaponAttack.SecondaryDamage = null;
             expectedWeaponAttack.OtherText = "";
 
@@ -645,7 +628,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.WeaponRangeLong = 60;  // Default
             expectedWeaponAttack.TargetType = TargetType.target;
             expectedWeaponAttack.PrimaryDamage = new DamageProperty(1, DieType.D6, 0, DamageType.Piercing);
-            expectedWeaponAttack.SecondaryDamage = new DamageProperty(6, DieType.D10, -4, DamageType.Acid); ;
+            expectedWeaponAttack.SecondaryDamage = new DamageProperty(6, DieType.D10, -4, DamageType.Acid);
             expectedWeaponAttack.OtherText = "";
 
             
@@ -672,10 +655,16 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(3, actualNPCModel.LairActions.Count);
         }
 
+        /// <summary>
+        /// Unit test for Lair Action.  Important to note that ActionName is a placeholder that is populated in ***Part 3***
+        /// </summary>
+        /// <param name="actionIndex"></param>
+        /// <param name="expectedName"></param>
+        /// <param name="expectedDescription"></param>
         [TestMethod]
-        [DataRow(0, "Options", "All the options of the lair:")]
-        [DataRow(1, "Charm", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")]
-        [DataRow(2, "Teleport", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see.")]
+        [DataRow(0, "0", "All the options of the lair:")]
+        [DataRow(1, "1", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")]
+        [DataRow(2, "2", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see.")]
         public void Actions_Validate_LairActions(int actionIndex, string expectedName, string expectedDescription)
         {
             LairAction actualLairAction = actualNPCModel.LairActions[actionIndex];
