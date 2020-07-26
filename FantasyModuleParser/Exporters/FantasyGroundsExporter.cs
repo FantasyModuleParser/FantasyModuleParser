@@ -9,7 +9,6 @@ using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -77,51 +76,14 @@ namespace FantasyModuleParser.Exporters
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("root");
                 xmlWriter.WriteAttributeString("version", "4");
-                xmlWriter.WriteAttributeString("dataversion", "20200718");
+                xmlWriter.WriteAttributeString("dataversion", "20200528");
                 xmlWriter.WriteAttributeString("release", "8|CoreRPG:4");
 
                 // For the Blank DB XML unit test, need to check if any NPCs exist
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0
                     && moduleModel.Categories[0].NPCModels.Count > 0)
                 {
-                    xmlWriter.WriteStartElement("libary"); // Open <library>
-                    xmlWriter.WriteStartElement("lib" + WriteLibraryName(moduleModel)); // Open <lib + Module Name>
-                    xmlWriter.WriteAttributeString("static", "true"); // Add static=true
-                    xmlWriter.WriteStartElement("categoryname"); // Open <categoryname>
-                    xmlWriter.WriteAttributeString("type", "string"); // Add type=string
-                    xmlWriter.WriteString(moduleModel.Category); // Write Category Name
-                    xmlWriter.WriteEndElement(); // Close </categoryname>
-                    xmlWriter.WriteStartElement("name"); // Open <name>
-                    xmlWriter.WriteAttributeString("type", "string"); // Add type=string
-                    xmlWriter.WriteString(WriteLibraryName(moduleModel)); // Write Library Name
-                    xmlWriter.WriteEndElement(); // Close </name>
-                    xmlWriter.WriteStartElement("entries"); // Open <entries>
-                    xmlWriter.WriteStartElement("npc"); // Open <npc>
-                    xmlWriter.WriteStartElement("librarylink"); // Open <librarylink>
-                    xmlWriter.WriteAttributeString("type", "windowreference"); // Add type=windowreference
-                    xmlWriter.WriteStartElement("class"); // Open <class>
-                    xmlWriter.WriteString("reference_list"); // Write reference_list
-                    xmlWriter.WriteEndElement(); // Close </class>
-                    xmlWriter.WriteStartElement("recordname"); // Open <recordname>
-                    xmlWriter.WriteString(".."); // Write ..
-                    xmlWriter.WriteEndElement(); // Close </recordname>
-                    xmlWriter.WriteEndElement(); // Close </librarylink>
-                    xmlWriter.WriteStartElement("name"); // Open <name>
-                    xmlWriter.WriteAttributeString("type", "string"); // Add type=string
-                    xmlWriter.WriteString("NPCs"); // Write NPCs
-                    xmlWriter.WriteEndElement(); // Close </name>
-                    xmlWriter.WriteStartElement("recordtype"); // Open <recordtype>
-                    xmlWriter.WriteAttributeString("type", "string"); // Add type=string
-                    xmlWriter.WriteString("npc"); // Write npc
-                    xmlWriter.WriteEndElement(); // Close </recordtype>
-                    xmlWriter.WriteEndElement(); // Close </npc>
-                    xmlWriter.WriteEndElement(); // Close </entries>
-                    xmlWriter.WriteEndElement(); // Close </lib + Module Name>
-                    xmlWriter.WriteEndElement(); // Close </library>
-
-                    xmlWriter.WriteStartElement("reference"); // Open <reference>
-                    xmlWriter.WriteAttributeString("static", "true"); // Add static=true
-                    xmlWriter.WriteStartElement("npcdata"); // Open <npcdata>
+                    xmlWriter.WriteStartElement("npc");
 
                     //Category section in the XML generation
                     foreach (CategoryModel categoryModel in moduleModel.Categories)
@@ -131,7 +93,7 @@ namespace FantasyModuleParser.Exporters
                         xmlWriter.WriteAttributeString("baseicon", "0");
                         xmlWriter.WriteAttributeString("decalicon", "0");
 
-                        //Now, write out each NPC with NPC Name
+                        //Now, write out each NPC with id-####
                         foreach (NPCModel npcModel in categoryModel.NPCModels)
                         {
 
@@ -172,8 +134,7 @@ namespace FantasyModuleParser.Exporters
 
 
                     }
-                    xmlWriter.WriteEndElement(); // Close </npcdata>
-                    xmlWriter.WriteEndElement(); // Close </reference>
+                    xmlWriter.WriteEndElement(); // Closes </npc>
                 }
                 
                 xmlWriter.WriteEndElement(); // Closes </root>
@@ -182,11 +143,7 @@ namespace FantasyModuleParser.Exporters
                 return sw.ToString();
             }
         }
-        private string WriteLibraryName(ModuleModel moduleModel)
-        {
-            string libname = moduleModel.Name.ToLower();
-            return libname.Replace(" ", "");
-        }
+
         private string NPCNameToXMLFormat(NPCModel npcModel)
         {
             string name = npcModel.NPCName.ToLower();
@@ -727,7 +684,6 @@ namespace FantasyModuleParser.Exporters
             {
                 xmlWriter.WriteStartElement("id-" + actionID.ToString("D4")); // Open <id-####>
                 xmlWriter.WriteStartElement("desc"); // Open <desc>
-                xmlWriter.WriteAttributeString("type", "string"); // Add type=string
                 xmlWriter.WriteString(reaction.ActionDescription); // Add Action Description
                 xmlWriter.WriteEndElement(); // Close </desc>
                 xmlWriter.WriteStartElement("name"); // Open <name>
