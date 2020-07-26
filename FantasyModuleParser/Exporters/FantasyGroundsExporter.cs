@@ -209,41 +209,44 @@ namespace FantasyModuleParser.Exporters
                 xmlWriter.WriteEndElement();
 
                 xmlWriter.WriteStartElement("lists");                       // Open <lists>
-                xmlWriter.WriteStartElement("monsters");                    // Open <monsters>
-                xmlWriter.WriteStartElement("sortlist");                    // Open <sortlist>
-                xmlWriter.WriteStartElement("name");                        // Open <name>
-                xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
-                xmlWriter.WriteString("NPCs");                              // Type NPCs
-                xmlWriter.WriteEndElement();                                // Close </name>
-                xmlWriter.WriteStartElement("index");                       // Open <index>
-                //TODO:  Needs a better descriptive method name
-                WriteIDLinkList(xmlWriter, "id01", "lists.monsters.byletter", "NPCs - Alphabetical Index");
-                WriteIDLinkList(xmlWriter, "id02", "lists.monsters.bycr", "NPCs - Challenge Rating Index");
-                WriteIDLinkList(xmlWriter, "id03", "lists.monsters.bytype", "NPCs - Class Index");
+                    xmlWriter.WriteStartElement("monsters");                    // Open <monsters>
+                        xmlWriter.WriteStartElement("sortlist");                    // Open <sortlist>
+                            xmlWriter.WriteStartElement("name");                        // Open <name>
+                            xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
+                            xmlWriter.WriteString("NPCs");                              // Type NPCs
+                            xmlWriter.WriteEndElement();                                // Close </name>
+                            xmlWriter.WriteStartElement("index");                       // Open <index>
+                                //TODO:  Needs a better descriptive method name
+                                WriteIDLinkList(xmlWriter, "id01", "lists.monsters.byletter", "NPCs - Alphabetical Index");
+                                WriteIDLinkList(xmlWriter, "id02", "lists.monsters.bycr", "NPCs - Challenge Rating Index");
+                                WriteIDLinkList(xmlWriter, "id03", "lists.monsters.bytype", "NPCs - Class Index");
 
-                xmlWriter.WriteEndElement();                                // Close </index>
-                xmlWriter.WriteEndElement();                                // Close </sortlist>
-                xmlWriter.WriteStartElement("byletter");                    // Open <byletter>
-                xmlWriter.WriteStartElement("description");                 // Open <description>
-                xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
-                xmlWriter.WriteString("NPCs by Name");                      // Write NPCs by Name
-                xmlWriter.WriteEndElement();                                // Close </description> 
-                xmlWriter.WriteStartElement("groups");                      // Open <groups>
-                CreateReferenceByFirstLetter(xmlWriter, FatNPCList);        // Use CreateReferenceByFirstLetter Method
-                xmlWriter.WriteEndElement();                                // Close </groups>
+                            xmlWriter.WriteEndElement();                                // Close </index>
+                        xmlWriter.WriteEndElement();                                // Close </sortlist>
+                        xmlWriter.WriteStartElement("byletter");                    // Open <byletter>
+                            xmlWriter.WriteStartElement("description");                 // Open <description>
+                            xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
+                            xmlWriter.WriteString("NPCs by Name");                      // Write NPCs by Name
+                            xmlWriter.WriteEndElement();                                // Close </description> 
+                            
+                            xmlWriter.WriteStartElement("groups");                      // Open <groups>
+                            CreateReferenceByFirstLetter(xmlWriter, FatNPCList);        // Use CreateReferenceByFirstLetter Method
+                        xmlWriter.WriteEndElement();                                // Close </groups>
+                    xmlWriter.WriteEndElement();                                // Close </byletter>
                 xmlWriter.WriteEndElement();                                // Close </monsters>
-                xmlWriter.WriteEndElement();                                // Close </lists>
+            xmlWriter.WriteEndElement();                                // Close </lists>
 
                 // For the Blank DB XML unit test, need to check if any NPCs exist
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0
                     && moduleModel.Categories[0].NPCModels.Count > 0)
                 {
-                    xmlWriter.WriteStartElement("library");                       // Open <library>
-                    xmlWriter.WriteStartElement(WriteLibraryName(moduleModel));  // Open <Module Name>
-                    xmlWriter.WriteStartElement("categoryname");                 // Open <categoryname>
-                    xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
-                    xmlWriter.WriteString(moduleModel.Category);                 // Write "Category Name"
-                    xmlWriter.WriteEndElement();                                 // Close </categoryname>
+                    xmlWriter.WriteStartElement("library");                      // Open <library>
+                        xmlWriter.WriteStartElement(WriteLibraryName(moduleModel));  // Open <Module Name>
+                            
+                            xmlWriter.WriteStartElement("categoryname");                 // Open <categoryname>
+                            xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
+                            xmlWriter.WriteString(moduleModel.Category);                 // Write "Category Name"
+                            xmlWriter.WriteEndElement();                                 // Close </categoryname>
                     xmlWriter.WriteStartElement("name");                         // Open <name>
                     xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
                     xmlWriter.WriteString(WriteLibraryName(moduleModel));        // Write "Library Name"
