@@ -457,22 +457,30 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         }
 
         [TestMethod()]
-        [DataRow("At will", "Cantrips1")]
-        [DataRow("9 slots", "Spell 1st")]
-        [DataRow("8 slots", "Spell 2nd")]
-        [DataRow("7 slots", "Spell 3rd")]
-        [DataRow("6 slots", "Spell 4th")]
-        [DataRow("5 slots", "Spell 5th")]
-        [DataRow("4 slots", "Spell 6th")]
-        [DataRow("3 slots", "Spell 7th")]
-        [DataRow("2 slots", "Spell 8th")]
-        [DataRow("1 slots", "Spell 9th")]
-        public void Casting_SpellSelection(string numOfCasts, string spellList)
+        public void Casting_SpellSelection()
         {
             NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
 
-            Assert.AreEqual(numOfCasts, actualNPCModel.CantripSpells);
-            Assert.AreEqual(spellList, actualNPCModel.CantripSpellList);
+            Assert.AreEqual("At will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("Cantrips1", actualNPCModel.CantripSpellList);
+            Assert.AreEqual("9 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("Spell 1st", actualNPCModel.FirstLevelSpellList);
+            Assert.AreEqual("8 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("Spell 2nd", actualNPCModel.SecondLevelSpellList);
+            Assert.AreEqual("7 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("Spell 3rd", actualNPCModel.ThirdLevelSpellList);
+            Assert.AreEqual("6 slots", actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual("Spell 4th", actualNPCModel.FourthLevelSpellList);
+            Assert.AreEqual("5 slots", actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual("Spell 5th", actualNPCModel.FifthLevelSpellList);
+            Assert.AreEqual("4 slots", actualNPCModel.SixthLevelSpells);
+            Assert.AreEqual("Spell 6th", actualNPCModel.SixthLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.SeventhLevelSpells);
+            Assert.AreEqual("Spell 7th", actualNPCModel.SeventhLevelSpellList);
+            Assert.AreEqual("2 slots", actualNPCModel.EighthLevelSpells);
+            Assert.AreEqual("Spell 8th", actualNPCModel.EighthLevelSpellList);
+            Assert.AreEqual("1 slot", actualNPCModel.NinthLevelSpells);
+            Assert.AreEqual("Spell 9th", actualNPCModel.NinthLevelSpellList);
         }
         [TestMethod()]
         public void Casting_MarkedSpells()

@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Importer.Utils;
+using FantasyModuleParser.Main.UserControls.Settings;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
@@ -685,7 +686,105 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseSpellCastingAttributes(NPCModel npcModel, string spellCastingAttributes)
         {
+            if (spellCastingAttributes.StartsWith("Spellcasting"))
+            {
+                // Start with getting spellcaster level
+                npcModel.SpellcastingCasterLevel = spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4);
+
+                // Spellcasting Ability
+                int abilityIsIndex = spellCastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
+                int spellSaveDCIndex = spellCastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
+                // 24 is the string length to "spellcasting ability is "
+                npcModel.SCSpellcastingAbility = spellCastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
+
+                // Spell Save DC & Attack Bonus
+                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
+                String spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                foreach(String subpart in spellSaveAndAttackData.Split(' '))
+                {
+                    if (subpart.Contains(","))
+                    {
+                        npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                    }
+                    if (subpart.Contains('+') || subpart.Contains('-'))
+                        npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
+                }
+
+                // Spell Class
+                int hasTheFollowingIndex = spellCastingAttributes.IndexOf("has the following ");
+                int spellsPreparedIndex = spellCastingAttributes.IndexOf(" spells prepared:");
+                npcModel.SpellcastingSpellClass = spellCastingAttributes.Substring(hasTheFollowingIndex + 18, spellsPreparedIndex - hasTheFollowingIndex - 18);
+                npcModel.FlavorText = "";
+
+                // Parse through all the spell slots, based on the phrase "\r"
+                ParseSpellLevelAndList(spellCastingAttributes, npcModel);
+            }
             //throw new NotImplementedException();
+        }
+
+        private void ParseSpellLevelAndList(String spellAttributes, NPCModel npcModel)
+        {
+            foreach(String spellData in spellAttributes.Split(new string[] { "\\r" }, StringSplitOptions.None))
+            {
+                string[] spellDataArray = spellData.Split(' ');
+                switch (spellDataArray[0])
+                {
+                    case "Cantrips":
+                        npcModel.CantripSpells = (spellDataArray[1] + " " + spellDataArray[2]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.CantripSpellList = appendSpellList(spellDataArray, 3);
+                        break;
+                    case "1st":
+                        npcModel.FirstLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.FirstLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "2nd":
+                        npcModel.SecondLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.SecondLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "3rd":
+                        npcModel.ThirdLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.ThirdLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "4th":
+                        npcModel.FourthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.FourthLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "5th":
+                        npcModel.FifthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.FifthLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "6th":
+                        npcModel.SixthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.SixthLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "7th":
+                        npcModel.SeventhLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.SeventhLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "8th":
+                        npcModel.EighthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.EighthLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    case "9th":
+                        npcModel.NinthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.NinthLevelSpellList = appendSpellList(spellDataArray, 4);
+                        break;
+                    default:
+                        if (!spellData.Contains("spellcasting ability is"))
+                            npcModel.MarkedSpells = appendSpellList(spellDataArray, 0);
+                        break;
+                }
+            }
+        }
+        private string appendSpellList(string[] spellDataArray, int startIndex)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int index = startIndex; index < spellDataArray.Length; index++)
+            {
+                stringBuilder.Append(spellDataArray[index]).Append(" ");
+            }
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            return stringBuilder.ToString();
         }
 
         /// <summary>
