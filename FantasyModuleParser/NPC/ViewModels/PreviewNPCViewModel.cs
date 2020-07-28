@@ -701,7 +701,6 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return senseName + senseValue + senseRange + delimiter;
             }
             return "";
-            
         }
 
         private string appendBlindSenses(string senseName, int senseValue, string senseRange)
