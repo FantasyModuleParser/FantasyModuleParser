@@ -93,7 +93,7 @@ namespace FantasyModuleParser.Exporters
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 
-			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
+			using (StringWriter sw = new StringWriterWithEncoding(Encoding.GetEncoding("ISO-8859-1")))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
 			{
 				xmlWriter.WriteStartDocument();
@@ -102,15 +102,14 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteComment("Written by Theodore Story, Darkpool, and Dusk (c) 2020");
 
 				xmlWriter.WriteStartElement("root");
-				xmlWriter.WriteAttributeString("version", "4");
-				xmlWriter.WriteAttributeString("dataversion", "20200718");
-				xmlWriter.WriteAttributeString("release", "8|CoreRPG:4");
+				xmlWriter.WriteAttributeString("version", "3.1");
 
 				xmlWriter.WriteStartElement("image");       // Future use
 				xmlWriter.WriteString(" ");                 // Future use
 				xmlWriter.WriteEndElement();                // Future use
 
 				xmlWriter.WriteStartElement("reference");
+				xmlWriter.WriteAttributeString("static", "true");
 				xmlWriter.WriteStartElement("npcdata");
 
 				//Category section in the XML generation
@@ -154,136 +153,142 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
                 }
                 xmlWriter.WriteEndElement(); // Close </category>
-            }
-			xmlWriter.WriteEndElement(); // Close </npcdata>
-			xmlWriter.WriteEndElement(); // Closer </reference>
-			xmlWriter.WriteStartElement("spelldata");           // Future use
-			xmlWriter.WriteString(" ");                         // Future use
-			xmlWriter.WriteEndElement();                        // Future use
-			xmlWriter.WriteStartElement("equipmentdata");       // Future use
-			xmlWriter.WriteAttributeString("static", "true");   // Future use
-			xmlWriter.WriteString(" ");                         // Future use
-			xmlWriter.WriteEndElement();                        // Future use
-			xmlWriter.WriteStartElement("equipmentlists");      // Future use
-			xmlWriter.WriteStartElement("equipment");           // Future use
-			xmlWriter.WriteStartElement("name");                // Future use
-			xmlWriter.WriteAttributeString("type", "string");   // Future use
-			xmlWriter.WriteString("Equipment");                 // Future use
-			xmlWriter.WriteEndElement();                        // Future use
-			xmlWriter.WriteEndElement();                        // Future use
-			xmlWriter.WriteEndElement();                        // Future use
-			
-			xmlWriter.WriteStartElement("referencemanual");
-			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(moduleModel.Name);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("chapters");
-			xmlWriter.WriteStartElement("chapter_00");
-			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(moduleModel.Name);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("subchapters");
-			xmlWriter.WriteStartElement("subchapter_00");
-			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString("NPCs");
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("refpages");
-			xmlWriter.WriteStartElement("aa_indextype");
-			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString("(Index)");
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("blocks");
-			xmlWriter.WriteString(" ");
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("lists");                       // Open <lists>
-			xmlWriter.WriteStartElement("monsters");                    // Open <monsters>
-			xmlWriter.WriteStartElement("sortlist");                    // Open <sortlist>
-			xmlWriter.WriteStartElement("name");                        // Open <name>
-			xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
-			xmlWriter.WriteString("NPCs");                              // Type NPCs
-			xmlWriter.WriteEndElement();                                // Close </name>
-			xmlWriter.WriteStartElement("index");                       // Open <index>
-			//TODO:  Needs a better descriptive method name
-			WriteIDLinkList(xmlWriter, "id01", "lists.monsters.byletter", "NPCs - Alphabetical Index");
-			WriteIDLinkList(xmlWriter, "id02", "lists.monsters.bycr", "NPCs - Challenge Rating Index");
-			WriteIDLinkList(xmlWriter, "id03", "lists.monsters.bytype", "NPCs - Class Index");
-			xmlWriter.WriteEndElement();                                // Close </index>
-			xmlWriter.WriteEndElement();                                // Close </sortlist>
-			xmlWriter.WriteStartElement("byletter");                    // Open <byletter>
-			xmlWriter.WriteStartElement("description");                 // Open <description>
-			xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
-			xmlWriter.WriteString("NPCs by Name");                      // Write NPCs by Name
-			xmlWriter.WriteEndElement();                                // Close </description> 				
-			xmlWriter.WriteStartElement("groups");                      // Open <groups>
-			CreateReferenceByFirstLetter(xmlWriter, FatNPCList);        // Use CreateReferenceByFirstLetter Method
-			xmlWriter.WriteEndElement();                                // Close </groups>
-			xmlWriter.WriteEndElement();                                // Close </byletter>
-			xmlWriter.WriteStartElement("bycr");                    // Open <bycr>
-			xmlWriter.WriteStartElement("description");                 // Open <description>
-			xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
-			xmlWriter.WriteString("NPCs by CR");						// Write NPCs by CR
-			xmlWriter.WriteEndElement();                                // Close </description> 
-			xmlWriter.WriteStartElement("groups");                      // Open <groups>
-			CreateReferenceByCR(xmlWriter, FatNPCList);					// Use CreateReferenceByCR Method
-			xmlWriter.WriteEndElement();                                // Close </groups>
-			xmlWriter.WriteEndElement();                                // Close </bycr>
-			xmlWriter.WriteStartElement("bytype");                    // Open <bytype>
-			xmlWriter.WriteStartElement("description");                 // Open <description>
-			xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
-			xmlWriter.WriteString("NPCs by Class");                        // Write NPCs by Class
-			xmlWriter.WriteEndElement();                                // Close </description> 
-			xmlWriter.WriteStartElement("groups");                      // Open <groups>
-			CreateReferenceByType(xmlWriter, FatNPCList);                 // Use CreateReferenceByType Method
-			xmlWriter.WriteEndElement();                                // Close </groups>
-			xmlWriter.WriteEndElement();                                // Close </bytype>
-			xmlWriter.WriteEndElement();                                // Close </monsters>
-			xmlWriter.WriteEndElement();                                // Close </lists>
+                }
+				xmlWriter.WriteEndElement(); // Close </npcdata>
+				xmlWriter.WriteStartElement("spelldata");           // Future use
+				xmlWriter.WriteString(" ");                         // Future use
+				xmlWriter.WriteEndElement();                        // Future use
+				xmlWriter.WriteStartElement("equipmentdata");       // Future use
+				xmlWriter.WriteAttributeString("static", "true");   // Future use
+				xmlWriter.WriteString(" ");                         // Future use
+				xmlWriter.WriteEndElement();                        // Future use
+				xmlWriter.WriteStartElement("equipmentlists");      // Future use
+				xmlWriter.WriteStartElement("equipment");           // Future use
+				xmlWriter.WriteStartElement("name");                // Future use
+				xmlWriter.WriteAttributeString("type", "string");   // Future use
+				xmlWriter.WriteString("Equipment");                 // Future use
+				xmlWriter.WriteEndElement();                        // Future use
+				xmlWriter.WriteEndElement();                        // Future use
+				xmlWriter.WriteEndElement();                        // Future use
 
-			// For the Blank DB XML unit test, need to check if any NPCs exist
-			if (moduleModel.Categories != null && moduleModel.Categories.Count > 0
-			&& moduleModel.Categories[0].NPCModels.Count > 0)
-			{
-				xmlWriter.WriteStartElement("library");                      // Open <library>
-				xmlWriter.WriteStartElement(WriteLibraryName(moduleModel));  // Open <Module Name>
-							
-				xmlWriter.WriteStartElement("categoryname");                 // Open <categoryname>
-				xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
-				xmlWriter.WriteString(moduleModel.Category);                 // Write "Category Name"
-				xmlWriter.WriteEndElement();                                 // Close </categoryname>
-				xmlWriter.WriteStartElement("name");                         // Open <name>
-				xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
-				xmlWriter.WriteString(WriteLibraryName(moduleModel));        // Write "Library Name"
-				xmlWriter.WriteEndElement();                                 // Close </name>
-				xmlWriter.WriteStartElement("entries");                      // Open <entries>
-				xmlWriter.WriteStartElement("r01monsters");                  // Open <r01monsters>
-				xmlWriter.WriteStartElement("librarylink");                  // Open <librarylink>
-				xmlWriter.WriteAttributeString("type", "windowreference");   // Add type="windowreference"
-				xmlWriter.WriteStartElement("class");                        // Open <class>
-				xmlWriter.WriteString("referenceindexsorted");               // Write "referenceindexsorted"
-				xmlWriter.WriteEndElement();                                 // Close </class>
-				xmlWriter.WriteStartElement("recordname");                   // Open <recordname>
-				xmlWriter.WriteString("lists.monsters.sortlist");            // Write "lists.monsters.sortlist"
-				xmlWriter.WriteEndElement();                                 // Close </recordname>
-				xmlWriter.WriteEndElement();                                 // Close </librarylink>
-				xmlWriter.WriteStartElement("name");                         // Open <name>
-				xmlWriter.WriteAttributeString("type", "string");            // Add type=string
-				xmlWriter.WriteString("NPCs");                               // Write "NPCs"
-				xmlWriter.WriteEndElement();                                 // Close </name>
-				xmlWriter.WriteEndElement();                                 // Close </r01monsters>
-				xmlWriter.WriteEndElement();                                 // Close </entries>
-				xmlWriter.WriteEndElement();                                 // Close </Module Name>
-				xmlWriter.WriteEndElement();                                 // Close </library>
+				xmlWriter.WriteStartElement("npclists");                       // Open <npclists>
+				xmlWriter.WriteStartElement("npcs");                        // Open <npcs>
+				xmlWriter.WriteStartElement("name");                        // Open <name>
+				xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
+				xmlWriter.WriteString("NPCs");                              // Type NPCs
+				xmlWriter.WriteEndElement();                                // Close </name>
+				xmlWriter.WriteStartElement("index");                       // Open <index>
+				//TODO:  Needs a better descriptive method name
+				WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter", "NPCs - Alphabetical Index");
+				WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel", "NPCs - Challenge Rating Index");
+				WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype", "NPCs - Class Index");
+				xmlWriter.WriteEndElement();                                // Close </index>
+				xmlWriter.WriteEndElement();                                // Close </npcs>
+				xmlWriter.WriteStartElement("byletter");                    // Open <byletter>
+				xmlWriter.WriteStartElement("description");                 // Open <description>
+				xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
+				xmlWriter.WriteString("NPCs");                      // Write NPCs
+				xmlWriter.WriteEndElement();                                // Close </description> 				
+				xmlWriter.WriteStartElement("groups");                      // Open <groups>
+				CreateReferenceByFirstLetter(xmlWriter, moduleModel, FatNPCList);        // Use CreateReferenceByFirstLetter Method
+				xmlWriter.WriteEndElement();                                // Close </groups>
+				xmlWriter.WriteEndElement();                                // Close </byletter>
+				xmlWriter.WriteStartElement("bylevel");                    // Open <bycr>
+				xmlWriter.WriteStartElement("description");                 // Open <description>
+				xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
+				xmlWriter.WriteString("NPCs");                      // Write NPCs
+				xmlWriter.WriteEndElement();                                // Close </description> 
+				xmlWriter.WriteStartElement("groups");                      // Open <groups>
+				CreateReferenceByCR(xmlWriter, moduleModel, FatNPCList);                    // Use CreateReferenceByCR Method
+				xmlWriter.WriteEndElement();                                // Close </groups>
+				xmlWriter.WriteEndElement();                                // Close </bycr>
+				xmlWriter.WriteStartElement("bytype");                    // Open <bytype>
+				xmlWriter.WriteStartElement("description");                 // Open <description>
+				xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
+				xmlWriter.WriteString("NPCs");                        // Write NPCs
+				xmlWriter.WriteEndElement();                                // Close </description> 
+				xmlWriter.WriteStartElement("groups");                      // Open <groups>
+				CreateReferenceByType(xmlWriter, moduleModel, FatNPCList);                 // Use CreateReferenceByType Method
+				xmlWriter.WriteEndElement();                                // Close </groups>
+				xmlWriter.WriteEndElement();                                // Close </bytype>
+				xmlWriter.WriteEndElement();                                // Close </npclists>
+
+				xmlWriter.WriteStartElement("tables");      // Future use
+				xmlWriter.WriteString(" ");                 // Future use
+				xmlWriter.WriteEndElement();                // Future use
+
+				xmlWriter.WriteEndElement(); // Close </reference>
+				
+				xmlWriter.WriteStartElement("referencemanual");
+				xmlWriter.WriteStartElement("name");
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString(moduleModel.Name);
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("chapters");
+				xmlWriter.WriteStartElement("chapter_00");
+				xmlWriter.WriteStartElement("name");
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString(moduleModel.Name);
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("subchapters");
+				xmlWriter.WriteStartElement("subchapter_00");
+				xmlWriter.WriteStartElement("name");
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString("NPCs");
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("refpages");
+				xmlWriter.WriteStartElement("aa_indextype");
+				xmlWriter.WriteStartElement("name");
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString("(Index)");
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("blocks");
+				xmlWriter.WriteString(" ");
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				
+
+                // For the Blank DB XML unit test, need to check if any NPCs exist
+                if (moduleModel.Categories != null && moduleModel.Categories.Count > 0 && moduleModel.Categories[0].NPCModels.Count > 0)
+				{
+					xmlWriter.WriteStartElement("library");                      // Open <library>
+					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel));  // Open <Module Name>
+
+					xmlWriter.WriteStartElement("name");                         // Open <name>
+					xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
+					xmlWriter.WriteString(WriteLibraryNameUpperCase(moduleModel) + " Reference Library");        // Write "Library Name Reference Library"
+					xmlWriter.WriteEndElement();								// Close </name>
+
+					xmlWriter.WriteStartElement("categoryname");                 // Open <categoryname>
+					xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
+					xmlWriter.WriteString(moduleModel.Category);                 // Write "Category Name"
+					xmlWriter.WriteEndElement();                                 // Close </categoryname>
+					                                
+					xmlWriter.WriteStartElement("entries");                      // Open <entries>
+					xmlWriter.WriteStartElement("r01monsters");                  // Open <r01monsters>
+					xmlWriter.WriteStartElement("librarylink");                  // Open <librarylink>
+					xmlWriter.WriteAttributeString("type", "windowreference");   // Add type="windowreference"
+					xmlWriter.WriteStartElement("class");                        // Open <class>
+					xmlWriter.WriteString("referenceindex");               // Write "referenceindexs"
+					xmlWriter.WriteEndElement();                                 // Close </class>
+					xmlWriter.WriteStartElement("recordname");                   // Open <recordname>
+					xmlWriter.WriteString("reference.npclists.npcs");            // Write "reference.npclists.npcs"
+					xmlWriter.WriteEndElement();                                 // Close </recordname>
+					xmlWriter.WriteEndElement();                                 // Close </librarylink>
+					xmlWriter.WriteStartElement("name");                         // Open <name>
+					xmlWriter.WriteAttributeString("type", "string");            // Add type=string
+					xmlWriter.WriteString("NPCs");                               // Write "NPCs"
+					xmlWriter.WriteEndElement();                                 // Close </name>
+					xmlWriter.WriteEndElement();                                 // Close </r01monsters>
+					xmlWriter.WriteEndElement();                                 // Close </entries>
+					xmlWriter.WriteEndElement();                                 // Close </Module Name>
+					xmlWriter.WriteEndElement();                                 // Close </library>
 				}
 
 				xmlWriter.WriteEndElement(); // Closes </root>
@@ -294,49 +299,62 @@ namespace FantasyModuleParser.Exporters
 		}
 
 		#region Common methods for Reference Manual XML
-		private void WriteIDLinkList(XmlWriter xmlWriter, string id, string listId, string listDescription)
+		private void WriteIDLinkList(XmlWriter xmlWriter, ModuleModel moduleModel, string id, string listId, string listDescription)
 		{
 			xmlWriter.WriteStartElement(id);                        // Open <id>
-			xmlWriter.WriteStartElement("linklist");                    // Open <linklist>
+			xmlWriter.WriteStartElement("listlink");                    // Open <listlink>
 			xmlWriter.WriteAttributeString("type", "windowreference");  // Add type="windowreference"
 			xmlWriter.WriteStartElement("class");                       // Open <class>
 			xmlWriter.WriteString("reference_colindex");                // Write "reference_colindex"
 			xmlWriter.WriteEndElement();                                // Close </class>
 			xmlWriter.WriteStartElement("recordname");                  // Open <recordname>
-			xmlWriter.WriteString(listId);             // Write "lists.monsters.bytype"
+			xmlWriter.WriteString(listId + "@" + moduleModel.Name);             // Write "reference.npclist.bytype"
 			xmlWriter.WriteEndElement();                                // Close </recordname>
-			xmlWriter.WriteEndElement();                                // Close </linklist>
+			xmlWriter.WriteEndElement();                                // Close </listlink>
 			xmlWriter.WriteStartElement("name");                        // Open <name>
 			xmlWriter.WriteAttributeString("type", "string");           // Add type="string"
 			xmlWriter.WriteString(listDescription);                // Write "NPCs - Class Index"
 			xmlWriter.WriteEndElement();                                // Close </name>
 			xmlWriter.WriteEndElement();                                // Close </id>
 		}
-		#endregion
-
-		private void NPCLocation(XmlWriter xmlWriter, List<NPCModel> NPCList)
+		private void NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			foreach (NPCModel npc in NPCList)
 			{
 				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npc));
-				xmlWriter.WriteStartElement("name");
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString(npc.NPCName);
-				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("link");
 				xmlWriter.WriteAttributeString("type", "windowreference");
 				xmlWriter.WriteStartElement("class");
 				xmlWriter.WriteString("npc");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("recordname");
-				xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc));
+				xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
 				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("description");
+				xmlWriter.WriteStartElement("field");
+				xmlWriter.WriteString("name");
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("source");
+				xmlWriter.WriteAttributeString("type", "number");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
 			}
 		}
+		private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
+		{
+			string libname = moduleModel.Name.ToLower();
+			return libname.Replace(" ", "");
+		}
+		private string WriteLibraryNameUpperCase(ModuleModel moduleModel)
+		{
+			string libname = moduleModel.Name;
+			return libname.Replace(" ", "");
+		}
+		#endregion
 
-		public void CreateReferenceByFirstLetter(XmlWriter xmlWriter, List<NPCModel> NPCList)
+		public void CreateReferenceByFirstLetter(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			var AlphabetList = NPCList.GroupBy(x => x.NPCName.ToUpper()[0]).Select(x => x.ToList()).ToList();
@@ -344,10 +362,10 @@ namespace FantasyModuleParser.Exporters
 			{
 				// Assumption here is GroupBy will correctly group so that each List<NPCModel> is populated with one NPCModel object
 				string actualLetter = npcList[0].NPCName[0] + "";
-				ProcessNPCListByLetter(xmlWriter, actualLetter, npcList);
+				ProcessNPCListByLetter(xmlWriter, moduleModel, actualLetter, npcList);
 			}
 		}
-		private void ProcessNPCListByLetter(XmlWriter xmlWriter, string actualLetter, List<NPCModel> NPCList)
+		private void ProcessNPCListByLetter(XmlWriter xmlWriter, ModuleModel moduleModel, string actualLetter, List<NPCModel> NPCList)
 		{
 			xmlWriter.WriteStartElement("typeletter" + actualLetter);
 			xmlWriter.WriteStartElement("description");
@@ -355,12 +373,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(actualLetter);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("index");
-			NPCLocation(xmlWriter, NPCList);
+			NPCLocation(xmlWriter, moduleModel, NPCList);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 		}
 
-		public void CreateReferenceByCR(XmlWriter xmlWriter, List<NPCModel> NPCList)
+		public void CreateReferenceByCR(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.ChallengeRating.CompareTo(npcTwo.ChallengeRating));
 			var CRList = NPCList.GroupBy(x => x.ChallengeRating.ToUpper()[0]).Select(x => x.ToList()).ToList();
@@ -368,10 +386,10 @@ namespace FantasyModuleParser.Exporters
 			{
 				// Assumption here is GroupBy will correctly group so that each List<NPCModel> is populated with one NPCModel object
 				string actualCR = npcList[0].ChallengeRating + "";
-				ProcessNPCListByCR(xmlWriter, actualCR, npcList);
+				ProcessNPCListByCR(xmlWriter, moduleModel, actualCR, npcList);
 			}
 		}
-		private void ProcessNPCListByCR(XmlWriter xmlWriter, string actualCR, List<NPCModel> NPCList)
+		private void ProcessNPCListByCR(XmlWriter xmlWriter, ModuleModel moduleModel, string actualCR, List<NPCModel> NPCList)
 		{
 			xmlWriter.WriteStartElement("cr" + actualCR);
 			xmlWriter.WriteStartElement("description");
@@ -379,12 +397,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("CR " + actualCR);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("index");
-			NPCLocation(xmlWriter, NPCList);
+			NPCLocation(xmlWriter, moduleModel, NPCList);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 		}
 
-		public void CreateReferenceByType(XmlWriter xmlWriter, List<NPCModel> NPCList)
+		public void CreateReferenceByType(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.NPCType.CompareTo(npcTwo.NPCType));
 			var TypeList = NPCList.GroupBy(x => x.NPCType.ToLower()[0]).Select(x => x.ToList()).ToList();
@@ -392,10 +410,10 @@ namespace FantasyModuleParser.Exporters
 			{
 				// Assumption here is GroupBy will correctly group so that each List<NPCModel> is populated with one NPCModel object
 				string actualType = npcList[0].NPCType + "";
-				ProcessNPCListByType(xmlWriter, actualType, npcList);
+				ProcessNPCListByType(xmlWriter, moduleModel, actualType, npcList);
 			}
 		}
-		private void ProcessNPCListByType(XmlWriter xmlWriter, string actualType, List<NPCModel> NPCList)
+		private void ProcessNPCListByType(XmlWriter xmlWriter, ModuleModel moduleModel, string actualType, List<NPCModel> NPCList)
 		{
 			xmlWriter.WriteStartElement("type_" + actualType);
 			xmlWriter.WriteStartElement("description");
@@ -403,16 +421,11 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(actualType);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("index");
-			NPCLocation(xmlWriter, NPCList);
+			NPCLocation(xmlWriter, moduleModel, NPCList);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 		}
 
-		private string WriteLibraryName(ModuleModel moduleModel)
-		{
-			string libname = moduleModel.Name.ToLower();
-			return libname.Replace(" ", "");
-		}
 		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
@@ -1331,7 +1344,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			XmlWriterSettings settings = new XmlWriterSettings
 			{
-				Encoding = Encoding.UTF8,
+				Encoding = Encoding.GetEncoding("ISO-8859-1"),
 				ConformanceLevel = ConformanceLevel.Document,
 				OmitXmlDeclaration = false,
 				CloseOutput = true,

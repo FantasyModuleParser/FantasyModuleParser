@@ -377,7 +377,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="8th Level" Padding="0" Margin="15,4,0,0" />
-                <ComboBox Name="strEigthLevelSpells" Text="{Binding Path=EighthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center" TabIndex="26">
+                <ComboBox Name="strEighthLevelSpells" Text="{Binding Path=EighthLevelSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="27,2,0,0" HorizontalContentAlignment="Center" TabIndex="26">
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
@@ -393,7 +393,7 @@
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <TextBox Name="strEigthLevelSpellList" Text="{Binding Path=EigthLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0" TabIndex="27">
+                <TextBox Name="strEighthLevelSpellList" Text="{Binding Path=EighthLevelSpellList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="400" Padding="0" Margin="15,2,0,0" TabIndex="27">
                     <TextBox.ToolTip>
                         <TextBlock>
                             Type the name of the spells the NPC can use at the 8th level.
