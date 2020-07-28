@@ -670,9 +670,9 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         /// <param name="expectedName"></param>
         /// <param name="expectedDescription"></param>
         [TestMethod]
-        [DataRow(0, "0", "All the options of the lair:")]
-        [DataRow(1, "1", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")]
-        [DataRow(2, "2", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see.")]
+        [DataRow(0, "Options", "All the options of the lair:")]
+        [DataRow(1, "Charm", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")]
+        [DataRow(2, "Teleport", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see.")]
         public void Actions_Validate_LairActions(int actionIndex, string expectedName, string expectedDescription)
         {
             LairAction actualLairAction = actualNPCModel.LairActions[actionIndex];

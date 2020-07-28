@@ -118,6 +118,33 @@ namespace FantasyModuleParser.Importer.NPC
                     resetContinueFlags();
                 }
 
+                // Parsing through ***Part 3***
+                if (line.StartsWith("NPCgender:"))
+                {
+                    parsedNPCModel.NPCGender = line.Substring(11);
+                }
+                if (line.StartsWith("NPCunique:"))
+                {
+                    parsedNPCModel.Unique = line.Equals("NPCunique: 1", StringComparison.Ordinal);
+                }
+                if (line.StartsWith("NPCpropername:"))
+                {
+                    parsedNPCModel.NPCNamed = line.Equals("NPCpropername: 1", StringComparison.Ordinal);
+                }
+                if (line.StartsWith("NPCimagePath:"))
+                {
+                    parsedNPCModel.NPCImage = line.Substring(14);
+                }
+                if (line.StartsWith("NPCTokenPath:"))
+                {
+                    parsedNPCModel.NPCToken = line.Substring(13);
+                }
+                if (line.StartsWith("LAction"))
+                {
+                    // Get the lair action number
+                    int lairActionIndex = int.Parse(line.Split(':')[0].Substring(7), CultureInfo.CurrentCulture);
+                    parsedNPCModel.LairActions[lairActionIndex - 1].ActionName = line.Split(':')[1].Trim();
+                }
 
 
                 // Process any 'continue' flags accordingly here
