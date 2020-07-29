@@ -50,7 +50,9 @@ namespace FantasyModuleParser.NPC.Models.Action
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			int PrimaryDamageTotal = PrimaryDamage.NumOfDice * ((int)PrimaryDamage.DieType + 1) / 2 + PrimaryDamage.Bonus;
-			int SecondaryDamageTotal = SecondaryDamage.NumOfDice * ((int)SecondaryDamage.DieType + 1) / 2 + SecondaryDamage.Bonus;
+			int SecondaryDamageTotal = 0;
+			if (SecondaryDamage != null)
+				SecondaryDamageTotal = SecondaryDamage.NumOfDice * ((int)SecondaryDamage.DieType + 1) / 2 + SecondaryDamage.Bonus;
 			
 			if (WeaponType == WeaponType.WA)
 			{

@@ -186,7 +186,7 @@ namespace FantasyModuleParser.Importer.NPC
         public void ParseSizeAndAlignment(NPCModel npcModel, string sizeAndAlignment)
         {
             string[] npcCharacteristics = sizeAndAlignment.Split(' ');
-            npcModel.Size = npcCharacteristics[0].ToLower();
+            npcModel.Size = npcCharacteristics[0];
             string tag = npcCharacteristics[1].ToLower();
             if (tag.EndsWith(","))
                 npcModel.NPCType = tag.Substring(0, tag.Length - 1);
@@ -913,6 +913,10 @@ namespace FantasyModuleParser.Importer.NPC
 
                 //TODO:  Add Other Text
                 weaponAttackModel.OtherText = "";
+
+                // Update the WA description
+                ActionController actionController = new ActionController();
+                actionController.GenerateWeaponDescription(weaponAttackModel);
 
                 npcModel.NPCActions.Add(weaponAttackModel);
                 return;

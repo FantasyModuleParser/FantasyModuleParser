@@ -1,20 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FantasyModuleParser.Importer.NPC;
+﻿using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Action.Enums;
+using FantasyModuleParser.NPC.Models.Skills;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Versioning;
-using System.Reflection;
-using System.IO;
-using FantasyModuleParser.NPC;
-using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action.Enums;
-using FantasyModuleParser.Extensions;
 using System.Collections.ObjectModel;
-using FantasyModuleParser.NPC.Models.Skills;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace FantasyModuleParser.Importer.NPC.Tests
 {
@@ -57,7 +52,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         [TestMethod()]
         public void BaseStats_Size()
         {
-            Assert.AreEqual("tiny", LoadEngineerSuiteTestNPCFile().Size);
+            Assert.AreEqual("Tiny", LoadEngineerSuiteTestNPCFile().Size);
         }
         [TestMethod()]
         public void BaseStats_Type()
