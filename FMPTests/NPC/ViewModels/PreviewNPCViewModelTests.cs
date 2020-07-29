@@ -74,7 +74,7 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
 
         public static NPCModel generateNPCWithSkills(int acrobatics, int athletics)
         {
-            NPCModel npcModel = new NPCModel();
+            NPCModel npcModel = new NPCController().InitializeNPCModel();
             npcModel.Acrobatics = acrobatics;
             npcModel.Athletics = athletics;
 

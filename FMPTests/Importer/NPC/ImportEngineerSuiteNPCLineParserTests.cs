@@ -910,17 +910,17 @@ namespace FMPTests.Importer.NPC
                 "Hit: 3 (1d6) lightning, silver, adamantine, cold-forged iron, magic damage " +
                 "or 4 (1d8) lightning, silver, adamantine, cold-forged iron, magic damage if used with two hands." };
             yield return new object[] { generateNPCModel_WeaponAction("Longbow", WeaponType.RWA,
-                6, 0, 120, 600, TargetType.target, false, false, false, false, false,
+                6, 5, 120, 600, TargetType.target, false, false, false, false, false,
                 new DamageProperty(){Bonus = 3, DamageType = DamageType.Slashing, DieType = DieType.D8, NumOfDice = 2 },
                 null),
                 "Longbow. Ranged Weapon Attack: +6 to hit, range 120/600 ft., one target. Hit: 12 (2d8 + 3) slashing damage." };
             yield return new object[] { generateNPCModel_WeaponAction("No Idea Spell Attack", WeaponType.SA,
-                5, 10, 50, 0, TargetType.creature, false, false, false, false, false,
+                5, 10, 50, 60, TargetType.creature, false, false, false, false, false,
                 new DamageProperty(){Bonus = 2, DamageType = DamageType.Fire, DieType = DieType.D8, NumOfDice = 2 },
                 null),
                 "No Idea Spell Attack. Melee or Ranged Spell Attack: +5 to hit, reach 10 ft. or range 50 ft., one creature. Hit: 11 (2d8 + 2) fire damage." };
-            yield return new object[] { generateNPCModel_WeaponAction("No Idea Spell Attack", WeaponType.SA,
-                5, 10, 0, 0, TargetType.target, false, false, false, false, false,
+            yield return new object[] { generateNPCModel_WeaponAction("Bonus Damage Dagger", WeaponType.MSA,
+                5, 10, 30, 60, TargetType.target, false, false, false, false, false,
                 new DamageProperty(){Bonus = 0, DamageType = DamageType.Piercing, DieType = DieType.D6, NumOfDice = 1 },
                 new DamageProperty(){Bonus = -4, DamageType = DamageType.Acid, DieType = DieType.D10, NumOfDice = 6 }),
                 "Bonus Damage Dagger. Melee Spell Attack: +5 to hit, reach 10 ft., one target. Hit: 3 (1d6) piercing damage plus 29 (6d10 - 4) acid damage." };
