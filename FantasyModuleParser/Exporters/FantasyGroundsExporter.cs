@@ -94,8 +94,8 @@ namespace FantasyModuleParser.Exporters
 			}
 			return FatNPCList;
 		}
-		
-		private string NewFileName(ModuleModel moduleModel)
+
+		private string NewThumbnailFileName(ModuleModel moduleModel)
         {
 			string ThumbnailFilename = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "thumbnail.png");
 			return ThumbnailFilename;
@@ -103,14 +103,49 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void SaveThumbnailImage(ModuleModel moduleModel)
         {
-			File.Copy(moduleModel.ThumbnailPath, NewFileName(moduleModel));
+			if (File.Exists(@Path.Combine(NewThumbnailFileName(moduleModel))))
+			{
+				File.Delete(@Path.Combine(NewThumbnailFileName(moduleModel)));
+				File.Copy(moduleModel.ThumbnailPath, NewThumbnailFileName(moduleModel));
+			}
+			else
+			{
+				File.Copy(moduleModel.ThumbnailPath, NewThumbnailFileName(moduleModel));
+			}
 		}
+
+		private void AddNPCTokensToFolder()
+        {
+			
+        }
 		public string GenerateDBXmlFile(ModuleModel moduleModel)
 		{
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 
-			using (StringWriter sw = new StringWriterWithEncoding(Encoding.GetEncoding("ISO-8859-1")))
+			foreach (NPCModel npcModel in FatNPCList)
+            {
+				if (npcModel.NPCToken != null)
+                {
+					string Filename = NPCNameToXMLFormat(npcModel) + "_token.png";
+					string NPCTokenFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "tokens", Filename);
+					string NPCTokenDirectory = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "tokens");
+					if (Directory.Exists(NPCTokenDirectory))
+                    {
+						if (File.Exists(NPCTokenFileName))
+                        {
+							File.Delete(NPCTokenFileName);
+                        }
+					}
+					else
+                    {
+						Directory.CreateDirectory(NPCTokenDirectory);
+					}
+					File.Copy(npcModel.NPCToken, NPCTokenFileName);
+				}
+            }
+			
+			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
 			{
 				xmlWriter.WriteStartDocument();
@@ -163,7 +198,7 @@ namespace FantasyModuleParser.Exporters
                     WriteSkills(xmlWriter, npcModel);
                     WriteSpeed(xmlWriter, npcModel);
                     WriteText(xmlWriter, npcModel);
-                    WriteToken(xmlWriter, npcModel);
+                    WriteToken(xmlWriter, npcModel, moduleModel);
                     WriteType(xmlWriter, npcModel);
                     WriteTraits(xmlWriter, npcModel);
                     WriteXP(xmlWriter, npcModel);
@@ -1161,7 +1196,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("Edit this later");
 			xmlWriter.WriteEndElement(); // Close </text>
 		}
-		private void WriteToken(XmlWriter xmlWriter, NPCModel npcModel)
+		private void WriteToken(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("token"); // Open <token>
 			xmlWriter.WriteAttributeString("type", "token"); // Add type=token
@@ -1171,7 +1206,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			else
 			{
-				xmlWriter.WriteValue(npcModel.NPCToken);
+				xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png@" + moduleModel.Name);
 			}
 			xmlWriter.WriteEndElement(); // Close </token>
 		}
@@ -1361,7 +1396,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			XmlWriterSettings settings = new XmlWriterSettings
 			{
-				Encoding = Encoding.GetEncoding("ISO-8859-1"),
+				Encoding = Encoding.UTF8,
 				ConformanceLevel = ConformanceLevel.Document,
 				OmitXmlDeclaration = false,
 				CloseOutput = true,
