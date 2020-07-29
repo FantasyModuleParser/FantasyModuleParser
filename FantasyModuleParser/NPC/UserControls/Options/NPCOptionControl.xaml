@@ -25,7 +25,13 @@
         </x:Array>
     </UserControl.Resources>
     <Grid>
-        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="620">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="600" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Menu x:Name="Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="620" Grid.Row="0">
             <MenuItem Header="_File">
                 <MenuItem Header="_New NPC" Click="NewNPC_Click"/>
                 <MenuItem Header="_Open NPC" Click="LoadNPCOption_Click"/>
@@ -67,7 +73,7 @@
                 <MenuItem Header="_Buy me a coffee" Visibility="Collapsed" />
             </MenuItem>
         </Menu>
-        <TabControl HorizontalAlignment="Left" Height="605" Margin="0,22,0,0" VerticalAlignment="Top" Width="617">
+        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="617" Grid.Row="1">
             <TabItem Header="Base Stats">
                 <Grid Background="#FFE5E5E5">
                     <BaseStatsUserControl:BaseStatsUC x:Name="BaseStatsUserControl" />
@@ -100,7 +106,7 @@
             </TabItem>
             <TabItem Header="Actions">
                 <Grid Background="#FFE5E5E5">
-                    <ActionUserControl:ActionOverviewUC />
+                    <ActionUserControl:ActionOverviewUC x:Name="ActionOverviewUserControl" />
                 </Grid>
             </TabItem>
             <TabItem Header="Description">
@@ -114,7 +120,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3">
             <Button Content="Import Text" Click="ImportText_Click" IsEnabled="False" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
@@ -166,9 +172,27 @@
                 </Button.ToolTip>
             </Button>
         </StackPanel>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30">
-            <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top"/>
-            <ComboBox Name="FGCategoryComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="150"/>
-        </StackPanel>
+
+        <Grid Grid.Row="2" Background="#FFE5E5E5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+            <ComboBox Name="FGCategoryComboBox" DisplayMemberPath="Name" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="1"/>
+            <Button x:Name="PrevNPCInCategory_Button" Content="Prev NPC" Grid.Row="0" Grid.Column="2" Margin="5" Grid.RowSpan="2" Click="PrevNPCInCategory_Button_Click"/>
+            <Button x:Name="NextNPCInCategory_Button" Content="Next NPC" Grid.Row="0" Grid.Column="3" Margin="5" Grid.RowSpan="2" Click="NextNPCInCategory_Button_Click"/>
+        </Grid>
+        <!--<StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="2">
+            <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <ComboBox Name="FGCategoryComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+        </StackPanel>-->
     </Grid>
 </UserControl>

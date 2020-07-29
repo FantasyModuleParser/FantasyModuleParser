@@ -32,6 +32,11 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			NPCActions = actionController.GetNPCModel().NPCActions;
         }
 
+		public void Refresh()
+        {
+			NPCActions = actionController.GetNPCModel().NPCActions;
+		}
+
 		private void LairActions_Click(object sender, RoutedEventArgs e)
 		{
 			new ViewLairActions().Show();

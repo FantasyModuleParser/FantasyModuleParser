@@ -1,20 +1,15 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections;
+﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Action.Enums;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.Models.Action.Enums;
-using Newtonsoft.Json;
 
 namespace FantasyModuleParser.NPC.Controllers
 {
-	public class NPCController
+    public class NPCController
 	{
 		private static NPCModel _npcModel;
 		public NPCModel GetNPCModel()
@@ -57,6 +52,11 @@ namespace FantasyModuleParser.NPC.Controllers
 			OnLoadNpcModelEvent(EventArgs.Empty);
 			return _npcModel;
 		}
+
+		public void UpdateNPCModel(NPCModel npcModel)
+        {
+			_npcModel = npcModel;
+        }
 
 		public NPCModel InitializeNPCModel()
 		{

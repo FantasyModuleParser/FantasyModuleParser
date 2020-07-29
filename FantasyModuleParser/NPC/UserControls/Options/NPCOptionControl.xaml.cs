@@ -1,20 +1,13 @@
 ﻿using FantasyModuleParser.Main;
-using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action.Enums;
-using FantasyModuleParser.NPC.Views;
-using FantasyModuleParser.NPC.UserControls.NPCTabs;
-using System;
-using System.Collections;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using static FantasyModuleParser.Extensions.EnumerationExtension;
-using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.ViewModels;
+using FantasyModuleParser.NPC.Views;
+using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace FantasyModuleParser.NPC.UserControls.Options
 {
@@ -33,6 +26,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 		string installFolder = "FMP/NPC";
 		private bool _isViewStatblockWindowOpen = false;
+		private int categoryIndex = 0;
 		#endregion
 		public NPCOptionControl()
 		{
@@ -103,11 +97,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 			npcController.ClearNPCModel();
 			DataContext = npcController.GetNPCModel();
-			BaseStatsUserControl.Refresh();
-			SkillsUserControl.Refresh();
-			SpellcastingUserControl.Refresh();
-			TraitsUserControl.Refresh();
-			InnateCastingUserControl.Refresh();
+			RefreshUserControls();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -129,11 +119,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// TODO:  Get the active tab the user is on
 				// As the assumption here is the User is on the Base Stats tab while loading
 				// a NPC File
-				BaseStatsUserControl.Refresh();
-				SkillsUserControl.Refresh();
-				SpellcastingUserControl.Refresh();
-				TraitsUserControl.Refresh();
-				InnateCastingUserControl.Refresh();
+				RefreshUserControls();
 			}
 		}
 
@@ -185,5 +171,49 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
 			DataContext = npcOptionControlViewModel;
 		}
-	}
+
+        private void PrevNPCInCategory_Button_Click(object sender, RoutedEventArgs e)
+        {
+			CategoryModel categoryModel = FGCategoryComboBox.SelectedItem as CategoryModel;
+			if (categoryModel != null)
+			{
+				if (categoryIndex == 0)
+					categoryIndex = categoryModel.NPCModels.Count - 1;
+				else
+					categoryIndex--;
+				npcController.UpdateNPCModel(categoryModel.NPCModels[categoryIndex]);
+            }
+			RefreshUserControls();
+
+		}
+
+        private void NextNPCInCategory_Button_Click(object sender, RoutedEventArgs e)
+        {
+			CategoryModel categoryModel = FGCategoryComboBox.SelectedItem as CategoryModel;
+			if (categoryModel != null)
+			{
+				if (categoryIndex == categoryModel.NPCModels.Count - 1)
+					categoryIndex = 0;
+				else
+					categoryIndex++;
+
+				npcController.UpdateNPCModel(categoryModel.NPCModels[categoryIndex]);
+			}
+			RefreshUserControls();
+		}
+
+		//TODO:  As a gut feeling, I *think* we do not need to force a refresh of the relevant UserControls
+		// I do not have any concrete way of addressing this (and may even be an anti-pattern for MVVM)
+		private void RefreshUserControls()
+        {
+			npcOptionControlViewModel.Refresh();
+
+			BaseStatsUserControl.Refresh();
+			SkillsUserControl.Refresh();
+			SpellcastingUserControl.Refresh();
+			TraitsUserControl.Refresh();
+			InnateCastingUserControl.Refresh();
+			ActionOverviewUserControl.Refresh();
+		}
+    }
 }
