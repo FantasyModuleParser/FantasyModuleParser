@@ -124,7 +124,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -346,6 +346,8 @@
     <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
+    <Compile Include="Importer\NPC\IImportNPC.cs" />
+    <Compile Include="Importer\Utils\ImportCommonUtils.cs" />
     <Compile Include="Main\Models\CategoryModel.cs" />
     <Compile Include="Main\Models\FMPConfigurationModel.cs" />
     <Compile Include="Main\Services\FMPConfigurationService.cs" />
@@ -377,6 +379,7 @@
     <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
       <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Importer\NPC\ImportEngineerSuiteNPC.cs" />
     <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
     <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
     <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
