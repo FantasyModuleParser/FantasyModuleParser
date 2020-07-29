@@ -38,7 +38,14 @@ namespace FantasyModuleParser.Exporters
 			string moduleFolderPath = Path.Combine(moduleModel.ModulePath, moduleModel.Name);
 
 			// Create the folder all content will go into based on the Module name
-			System.IO.Directory.CreateDirectory(moduleFolderPath);
+			Directory.CreateDirectory(moduleFolderPath);
+
+			// Save Thumbnail to Module Folder
+			if (moduleModel.ThumbnailPath != null && moduleModel.ThumbnailPath.Length != 0)
+            {
+				SaveThumbnailImage(moduleModel);
+
+			}
 
 			// A blank module consists of two files;  db.xml & definition.xml
 			string dbXmlFileContent = GenerateDBXmlFile(moduleModel);
@@ -87,7 +94,17 @@ namespace FantasyModuleParser.Exporters
 			}
 			return FatNPCList;
 		}
+		
+		private string NewFileName(ModuleModel moduleModel)
+        {
+			string ThumbnailFilename = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "thumbnail.png");
+			return ThumbnailFilename;
 
+		}
+		private void SaveThumbnailImage(ModuleModel moduleModel)
+        {
+			File.Copy(moduleModel.ThumbnailPath, NewFileName(moduleModel));
+		}
 		public string GenerateDBXmlFile(ModuleModel moduleModel)
 		{
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);

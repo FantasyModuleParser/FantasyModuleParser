@@ -44,6 +44,20 @@ namespace FantasyModuleParser.Main
             }
         }
 
+        private void OpenThumbnailFilePath(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string sSelectedPath = openFileDialog.FileName;
+                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+                viewModel.ModuleModel.ThumbnailPath = sSelectedPath;
+                ModuleThumbnameFilename.Text = sSelectedPath;
+            }
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;

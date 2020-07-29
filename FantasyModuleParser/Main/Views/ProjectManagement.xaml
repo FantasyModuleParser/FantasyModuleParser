@@ -86,7 +86,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Thumbnail Filename:" Margin="20,3,0,0" Padding="0"/>
-                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding Path=ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
+                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding Path=ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" MouseDoubleClick="OpenThumbnailFilePath" Margin="5,3,0,0" Padding="0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox IsChecked="{Binding Path=ModuleModel.IsGMOnly, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="GM View Only" Padding="0" Margin="30,5,0,0"/>
