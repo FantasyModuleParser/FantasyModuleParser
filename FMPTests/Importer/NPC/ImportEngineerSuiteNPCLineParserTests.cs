@@ -766,20 +766,20 @@ namespace FMPTests.Importer.NPC
                 "7 slots", "Spell 3rd", "6 slots", "Spell 4th",
                 "5 slots", "Spell 5th", "4 slots", "Spell 6th",
                 "3 slots", "Spell 7th", "2 slots", "Spell 8th",
-                "1 slots", "Spell 9th", "Spell 2nd"),
+                "1 slot", "Spell 9th", "*Spell 2nd"),
                 "Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)." +
                 " V1_npc_all has the following Sorcerer spells prepared:" +
-                "\rCantrips (At will): Cantrips1" +
-                "\r1st level (9 slots): Spell 1st" +
-                "\r2nd level (8 slots): Spell 2nd" +
-                "\r3rd level (7 slots): Spell 3rd" +
-                "\r4th level (6 slots): Spell 4th" +
-                "\r5th level (5 slots): Spell 5th" +
-                "\r6th level (4 slots): Spell 6th" +
-                "\r7th level (3 slots): Spell 7th" +
-                "\r8th level (2 slots): Spell 8th" +
-                "\r9th level (1 slot): Spell 9th" +
-                "\r*Spell 2nd" };
+                "\\rCantrips (At will): Cantrips1" +
+                "\\r1st level (9 slots): Spell 1st" +
+                "\\r2nd level (8 slots): Spell 2nd" +
+                "\\r3rd level (7 slots): Spell 3rd" +
+                "\\r4th level (6 slots): Spell 4th" +
+                "\\r5th level (5 slots): Spell 5th" +
+                "\\r6th level (4 slots): Spell 6th" +
+                "\\r7th level (3 slots): Spell 7th" +
+                "\\r8th level (2 slots): Spell 8th" +
+                "\\r9th level (1 slot): Spell 9th" +
+                "\\r*Spell 2nd" };
         }
         private static NPCModel generateNPCModel_Spellcasting(
             string spellCasterLevel, string ability, int saveDC, int hitBonus, string spellClass, string flavorText,
@@ -1010,10 +1010,10 @@ namespace FMPTests.Importer.NPC
 
         private static IEnumerable<object[]> LairActionData()
         {
-            yield return new object[] { generateNPCModel_LairActions("", "All the options of the lair:"), "All the options of the lair:" };
-            yield return new object[] { generateNPCModel_LairActions("", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")
+            yield return new object[] { generateNPCModel_LairActions("0", "All the options of the lair:"), "All the options of the lair:" };
+            yield return new object[] { generateNPCModel_LairActions("0", "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day.")
                 , "One humanoid V1_npc_all can see within 30 feet of him must succeed on a DC 14 Wisdom saving throw or be magically charmed for 1 day."};
-            yield return new object[] {generateNPCModel_LairActions("", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see."),
+            yield return new object[] {generateNPCModel_LairActions("0", "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see."),
                 "V1_npc_all magically teleports, along with any equipment he is wearing or carrying, up to 60 feet to an unoccupied space he can see."};
         }
         private static NPCModel generateNPCModel_LairActions(string actionName, string actionDescription)
