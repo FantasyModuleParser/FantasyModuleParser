@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC"
         mc:Ignorable="d"
-        Title="Import Text" Height="725" Width="975" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
+        Title="Import Text" Height="610" Width="520" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
@@ -15,27 +15,24 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
             <RowDefinition Height="500"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
         <TextBox x:Name="ImportTextBox" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap" AcceptsReturn="True"/>
-        <ComboBox Grid.Row="2" Grid.Column="1">
+        <ComboBox Grid.Row="2" Grid.Column="1" Width="200" Height="25" HorizontalAlignment="Right" Margin="5">
             <ComboBoxItem IsSelected="True">Engineer Suite v1 (NPC)</ComboBoxItem>
         </ComboBox>
 
-            <Grid Grid.Row="3" Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="5"/>
-                </Grid.ColumnDefinitions>
-                <Button Content="Import and Return" Grid.Column="1" Click="ImportTextAndReturnButton_Click" />
-                <Button Content="Cancel All Changes" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ESExit_Click"/>
-            </Grid>
-            <!--<Button Content="Delete All Text" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,650,0,0" />-->
-            <!--<Button Content="Append Clipboard" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,650,0,0" />-->
-            
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Import and Return" Grid.Column="1" HorizontalAlignment="Left" Click="ImportTextAndReturnButton_Click" Width="130" />
+            <Button Content="Cancel All Changes" Grid.Column="2" Width="130" HorizontalAlignment="Right" Click="ESExit_Click"/>
+        </Grid>
     </Grid>
 </Window>
