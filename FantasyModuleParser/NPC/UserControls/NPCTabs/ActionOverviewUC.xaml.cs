@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,13 +29,13 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		public ActionOverviewUC()
         {
             InitializeComponent();
-			actionController = new ActionController();
-			NPCActions = actionController.GetNPCModel().NPCActions;
-        }
+			DataContext = new ActionOverviewUserControlViewModel();
+		}
 
 		public void Refresh()
         {
-			NPCActions = actionController.GetNPCModel().NPCActions;
+			//NPCActions = actionController.GetNPCModel().NPCActions;
+			(DataContext as ActionOverviewUserControlViewModel).Refresh();
 		}
 
 		private void LairActions_Click(object sender, RoutedEventArgs e)
