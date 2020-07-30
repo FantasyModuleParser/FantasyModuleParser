@@ -651,6 +651,7 @@ namespace FantasyModuleParser.Importer.NPC
             npcModel.StandardLanguages = languageController.GenerateStandardLanguages();
             npcModel.ExoticLanguages = languageController.GenerateExoticLanguages();
             npcModel.MonstrousLanguages = languageController.GenerateMonsterLanguages();
+            npcModel.UserLanguages = new System.Collections.ObjectModel.ObservableCollection<LanguageModel>();
 
             string languageStringTrimmed = languages.Remove(0, 9); // Removes the 'Languages' word
             foreach(string language in languageStringTrimmed.Split(','))
@@ -679,7 +680,16 @@ namespace FantasyModuleParser.Importer.NPC
                 {
                     npcModel.Telepathy = true;
                     npcModel.TelepathyRange = languageTrimmed.Split(' ')[1];
+                    continue;
                 }
+
+                // At this point, any other hits would be considered an User Language
+
+                npcModel.UserLanguages.Add(new LanguageModel()
+                {
+                    Language = language.Trim(),
+                    Selected = true
+                });
             }
 
         }
