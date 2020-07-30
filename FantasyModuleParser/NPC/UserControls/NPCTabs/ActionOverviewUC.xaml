@@ -40,7 +40,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="295">
                 <ScrollViewer VerticalScrollBarVisibility="Visible"  Height="255" Width="590" Margin="10,10,0,0">
                     <StackPanel Orientation="Vertical">
-                        <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
+                        <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCModel.NPCActions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <overviewUserControl:OverviewControl ShowEditButton="Hidden"></overviewUserControl:OverviewControl>

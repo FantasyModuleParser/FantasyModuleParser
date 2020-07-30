@@ -38,7 +38,7 @@ namespace FantasyModuleParser.Importer.NPC
         /// <returns></returns>
         public NPCModel ImportTextToNPCModel(string importTextContent)
         {
-            NPCModel parsedNPCModel = new NPCModel();
+            NPCModel parsedNPCModel = new NPCController().InitializeNPCModel();
 
             string line = "";
             StringReader stringReader = new StringReader(importTextContent);

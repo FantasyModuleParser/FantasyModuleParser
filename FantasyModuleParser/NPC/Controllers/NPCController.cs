@@ -38,6 +38,7 @@ namespace FantasyModuleParser.NPC.Controllers
 			{ 
 				JsonSerializer serializer = new JsonSerializer();
 				serializer.Formatting = Formatting.Indented;
+				serializer.TypeNameHandling = TypeNameHandling.All;
 				serializer.Serialize(file, npcModel);
 			}
 		}
@@ -56,7 +57,10 @@ namespace FantasyModuleParser.NPC.Controllers
 		public NPCModel Load(string path)
 		{
 			string jsonData = File.ReadAllText(@path);
-			NPCModel npcModel = JsonConvert.DeserializeObject<NPCModel>(jsonData);
+			NPCModel npcModel = JsonConvert.DeserializeObject<NPCModel>(jsonData, new JsonSerializerSettings()
+			{
+				TypeNameHandling = TypeNameHandling.Auto
+			});
 			_npcModel = npcModel;
 			OnLoadNpcModelEvent(EventArgs.Empty);
 			return _npcModel;

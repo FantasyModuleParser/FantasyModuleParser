@@ -1,20 +1,9 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
-using System;
-using System.Collections.Generic;
+using FantasyModuleParser.NPC.ViewModels;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
@@ -24,13 +13,17 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     public partial class ActionOverviewUC : UserControl
     {
 		private ActionController actionController;
-		public ObservableCollection<ActionModelBase> NPCActions { get; set; }
+		private ActionOverviewUCViewModel viewModel = new ActionOverviewUCViewModel();
 		public ActionOverviewUC()
         {
             InitializeComponent();
-			actionController = new ActionController();
-			NPCActions = actionController.GetNPCModel().NPCActions;
+			DataContext = viewModel;
         }
+		public void Refresh()
+        {
+			//NPCActions = actionController.GetNPCModel().NPCActions;
+			(DataContext as ActionOverviewUCViewModel).Refresh();
+		}
 
 		private void LairActions_Click(object sender, RoutedEventArgs e)
 		{
