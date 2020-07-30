@@ -42,9 +42,11 @@ namespace FantasyModuleParser.Importer.NPC
 
             string line = "";
             StringReader stringReader = new StringReader(importTextContent);
-            int lineNumber = 0;
+            int lineNumber = 1;
             while((line = stringReader.ReadLine()) != null)
             {
+                if (line.StartsWith("***Part 1***"))
+                    continue;
                 if(lineNumber == 1)
                 {
                     // Line number one indicates the NPC name
@@ -80,14 +82,17 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseVisionAttributes(parsedNPCModel, line);
                 if (line.StartsWith("Languages", StringComparison.Ordinal))
                     ParseLanguages(parsedNPCModel, line);
-                if (line.StartsWith("Challenge", StringComparison.Ordinal))
+                if (line.StartsWith("Challenge", StringComparison.Ordinal)) { 
                     ParseChallengeRatingAndXP(parsedNPCModel, line);
-                if (line.StartsWith("Trait", StringComparison.Ordinal))
-                {
-                    resetContinueFlags();
                     continueTraitFlag = true;
-                    ParseTraits(parsedNPCModel, line.Substring(5)); // Removes the term 'Trait' from the parse method
+                    continue;
                 }
+                //if (line.StartsWith("Trait", StringComparison.Ordinal))
+                //{
+                //    resetContinueFlags();
+                //    continueTraitFlag = true;
+                //    ParseTraits(parsedNPCModel, line.Substring(5)); // Removes the term 'Trait' from the parse method
+                //}
                 if (line.StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
@@ -207,10 +212,16 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
             }
 
-            if(npcModel.Tag != null && npcModel.Tag.Length > 0)
-                npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
+                if (npcCharacteristics.Length > 4)
+                    npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+                else
+                    npcModel.Alignment = npcCharacteristics[3];
             else
+                if (npcCharacteristics.Length > 3)
                 npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
+            else
+                npcModel.Alignment = npcCharacteristics[2];
 
 
         }
@@ -726,7 +737,7 @@ namespace FantasyModuleParser.Importer.NPC
                 stringBuilder.Append(traitArray[idx]).Append(".");
             }
             stringBuilder.Remove(stringBuilder.Length - 1, 1);
-            traitModel.ActionDescription = stringBuilder.ToString();
+            traitModel.ActionDescription = stringBuilder.ToString().Trim();
 
             npcModel.Traits.Add(traitModel);
         }

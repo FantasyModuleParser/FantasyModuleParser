@@ -70,6 +70,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Resources\V1_npc_all.npc" />
+    <EmbeddedResource Include="Resources\AnimatedClaySphinx.npc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FantasyModuleParser\FMP.csproj">

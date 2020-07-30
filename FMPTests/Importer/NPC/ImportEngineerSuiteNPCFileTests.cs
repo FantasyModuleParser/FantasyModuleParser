@@ -776,5 +776,37 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         #endregion
 
+        [TestMethod()]
+        public void Import_AnimatedClaySphinx_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.AnimatedClaySphinx.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.AreEqual("Animated Clay Sphinx", actualNPCModel.NPCName);
+            Assert.AreEqual("Large", actualNPCModel.Size);
+            Assert.AreEqual("construct", actualNPCModel.NPCType);
+            Assert.AreEqual("unaligned", actualNPCModel.Alignment);  // Bugfix corrects this issue
+            Assert.AreEqual("14 (natural armor)", actualNPCModel.AC);
+            Assert.AreEqual("60 (7d10 + 21)", actualNPCModel.HP);
+            Assert.AreEqual(20, actualNPCModel.Speed);
+
+            // Validate Stats
+            Assert.AreEqual(10, actualNPCModel.AttributeStr);
+            Assert.AreEqual(10, actualNPCModel.AttributeDex);
+            Assert.AreEqual(10, actualNPCModel.AttributeCon);
+            Assert.AreEqual(10, actualNPCModel.AttributeInt);
+            Assert.AreEqual(10, actualNPCModel.AttributeWis);
+            Assert.AreEqual(10, actualNPCModel.AttributeCha);
+
+            // Traits  <--- Bugfix corrects this issue
+            Assert.AreEqual(2, actualNPCModel.Traits.Count);
+            Assert.AreEqual("Antimagic Susceptibility", actualNPCModel.Traits[0].ActionName);
+            Assert.AreEqual("False Appearance", actualNPCModel.Traits[1].ActionName);
+            Assert.AreEqual("The clay sphinx is incapacitated while in the area of an antimagic field. If targeted by dispel magic, the clay sphinx must succeed on a Constitution saving throw against the caster's spell save DC or fall unconscious for 1 minute.", actualNPCModel.Traits[0].ActionDescription);
+            Assert.AreEqual("While the clay sphinx remains motionless, it is indistinguishable from a clay statue.", actualNPCModel.Traits[1].ActionDescription);
+           
+        }
+
     }
 }
