@@ -88,12 +88,13 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		private void ImportTextWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-			DataContext = npcController.GetNPCModel();
+			(DataContext as NPCOptionControlViewModel).Refresh();
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
 			SpellcastingUserControl.Refresh();
 			TraitsUserControl.Refresh();
 			InnateCastingUserControl.Refresh();
+			ResistanceUserControl.Refresh();
 		}
 
         private void FGListOptions_Click(object sender, RoutedEventArgs e)
@@ -115,12 +116,14 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void NewNPC_Click(object sender, RoutedEventArgs e)
 		{
 			npcController.ClearNPCModel();
-			DataContext = npcController.GetNPCModel();
+			//DataContext = npcController.GetNPCModel();
+			(DataContext as NPCOptionControlViewModel).Refresh();
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
 			SpellcastingUserControl.Refresh();
 			TraitsUserControl.Refresh();
 			InnateCastingUserControl.Refresh();
+			ResistanceUserControl.Refresh();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -137,7 +140,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				NPCModel npcModel = npcController.GetNPCModel();
 
 				//Refresh all the data on the UI
-				DataContext = npcModel;
+				//DataContext = npcModel;
+				(DataContext as NPCOptionControlViewModel).Refresh();
 
 				// TODO:  Get the active tab the user is on
 				// As the assumption here is the User is on the Base Stats tab while loading
@@ -147,6 +151,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				SpellcastingUserControl.Refresh();
 				TraitsUserControl.Refresh();
 				InnateCastingUserControl.Refresh();
+				ResistanceUserControl.Refresh();
 			}
 		}
 

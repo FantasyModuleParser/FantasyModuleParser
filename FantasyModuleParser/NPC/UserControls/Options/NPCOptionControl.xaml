@@ -75,7 +75,7 @@
             </TabItem>
             <TabItem Header="Resistances">
                 <Grid Background="#FFE5E5E5">
-                    <ResistancesUserControl:ResistancesUC />
+                    <ResistancesUserControl:ResistancesUC x:Name="ResistanceUserControl" />
                 </Grid>
             </TabItem>
             <TabItem Header="Skills">

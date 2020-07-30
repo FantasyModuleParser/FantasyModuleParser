@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FantasyModuleParser.NPC.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,19 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     /// </summary>
     public partial class ResistancesUC : UserControl
     {
+		private ResistanceUserControlViewModel resistanceUserControlViewModel;
         public ResistancesUC()
         {
             InitializeComponent();
+			resistanceUserControlViewModel = new ResistanceUserControlViewModel();
+			DataContext = resistanceUserControlViewModel;
         }
+
+		public void Refresh()
+		{
+			(DataContext as ResistanceUserControlViewModel).Refresh();
+		}
+
 		private void ResVulnImm_Click(object sender, RoutedEventArgs e)
 		{
 			stackDmgVulnerability.Visibility = BoolToVis(DamageVulnerability.IsSelected);
