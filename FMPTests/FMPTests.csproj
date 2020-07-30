@@ -58,6 +58,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Exporters\FantasyGroundsExporterTests.cs" />
+    <Compile Include="Importer\NPC\ImportEngineerSuiteNPCLineParserTests.cs" />
+    <Compile Include="Importer\NPC\ImportEngineerSuiteNPCFileTests.cs" />
+    <Compile Include="Importer\Utils\ImportCommonUtilsTests.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +69,7 @@
     <Content Include="Resources\Mage1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Resources\V1_npc_all.npc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FantasyModuleParser\FMP.csproj">
