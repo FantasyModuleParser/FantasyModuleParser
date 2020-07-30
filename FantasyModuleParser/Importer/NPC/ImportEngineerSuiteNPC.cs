@@ -773,6 +773,7 @@ namespace FantasyModuleParser.Importer.NPC
         {
             if (spellCastingAttributes.StartsWith("Spellcasting"))
             {
+                npcModel.SpellcastingSection = true;
                 // Start with getting spellcaster level
                 npcModel.SpellcastingCasterLevel = spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4);
 
