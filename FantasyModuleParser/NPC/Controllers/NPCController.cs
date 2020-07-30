@@ -38,7 +38,7 @@ namespace FantasyModuleParser.NPC.Controllers
 			{ 
 				JsonSerializer serializer = new JsonSerializer();
 				serializer.Formatting = Formatting.Indented;
-				serializer.TypeNameHandling = TypeNameHandling.All;
+				serializer.TypeNameHandling = TypeNameHandling.Objects;
 				serializer.Serialize(file, npcModel);
 			}
 		}
