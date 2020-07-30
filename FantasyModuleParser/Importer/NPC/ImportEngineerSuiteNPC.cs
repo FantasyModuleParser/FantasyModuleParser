@@ -88,6 +88,11 @@ namespace FantasyModuleParser.Importer.NPC
                     continueTraitFlag = true;
                     ParseTraits(parsedNPCModel, line.Substring(5)); // Removes the term 'Trait' from the parse method
                 }
+                if (line.StartsWith("Innate Spellcasting"))
+                {
+                    resetContinueFlags();
+                    ParseInnateSpellCastingAttributes(parsedNPCModel, line);
+                }
                 if (line.StartsWith("Spellcasting"))
                 {
                     resetContinueFlags();
@@ -143,7 +148,10 @@ namespace FantasyModuleParser.Importer.NPC
                 {
                     // Get the lair action number
                     int lairActionIndex = int.Parse(line.Split(':')[0].Substring(7), CultureInfo.CurrentCulture);
-                    parsedNPCModel.LairActions[lairActionIndex - 1].ActionName = line.Split(':')[1].Trim();
+                    
+                    // Need to check to see if Lair Action is even populated (there is a chance data isn't saved from ES v1)
+                    if (parsedNPCModel.LairActions.Count >= lairActionIndex)
+                        parsedNPCModel.LairActions[lairActionIndex - 1].ActionName = line.Split(':')[1].Trim();
                 }
 
 
@@ -356,6 +364,8 @@ namespace FantasyModuleParser.Importer.NPC
         }
         private int parseAttributeStringToInt(string savingThrowValue)
         {
+            if (savingThrowValue.Length == 0 || savingThrowValue.Trim().Length == 0)
+                return 0;
             savingThrowValue = savingThrowValue.Replace('+', ' ');
             savingThrowValue = savingThrowValue.Replace(',', ' ');
             string savingThrowValueSubstring = savingThrowValue.Trim();
@@ -549,6 +559,7 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.DamageResistanceModelList = parseDamageTypeStringToList("");
                 npcModel.SpecialWeaponResistanceModelList = parseSpecialDamageResistanceStringToList("");
             }
+            npcModel.SpecialWeaponDmgResistanceModelList = new NPCController().GetSelectableActionModelList(typeof(DamageType));
         }
 
         /// <summary>
@@ -567,6 +578,8 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.DamageImmunityModelList = parseDamageTypeStringToList("");
                 npcModel.SpecialWeaponImmunityModelList = parseSpecialDamageImmunityStringToList("");
             }
+
+            npcModel.SpecialWeaponDmgImmunityModelList = new NPCController().GetSelectableActionModelList(typeof(DamageType));
         }
 
         /// <summary>
@@ -706,6 +719,51 @@ namespace FantasyModuleParser.Importer.NPC
             traitModel.ActionDescription = stringBuilder.ToString();
 
             npcModel.Traits.Add(traitModel);
+        }
+
+        /// <summary>
+        /// Innate Spellcasting. V1_npc_all's innate spellcasting ability is Wisdom (spell save DC 8, +30 to hit with spell attacks). He can innately cast the following spells, requiring no material components:\rAt will: Super Cantrips\r5/day each: Daylight\r4/day each: False Life\r3/day each: Hunger\r2/day each: Breakfast, Lunch, Dinner\r1/day each: Nom Noms
+        /// </summary>
+        /// <param name="npcModel"></param>
+        /// <param name="innateSpellcastingAttributes"></param>
+        public void ParseInnateSpellCastingAttributes(NPCModel npcModel, string innateSpellcastingAttributes)
+        {
+            if (innateSpellcastingAttributes.StartsWith("Innate Spellcasting"))
+            {
+                npcModel.InnateSpellcastingSection = true;
+                // Innate Spellcasting Ability
+                int abilityIsIndex = innateSpellcastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
+                int spellSaveDCIndex = innateSpellcastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
+                // 24 is the string length to "spellcasting ability is "
+                npcModel.InnateSpellcastingAbility = innateSpellcastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
+
+                // Spell Save DC & Attack Bonus
+                int spellAttacksIndex = innateSpellcastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
+                String spellSaveAndAttackData = innateSpellcastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                foreach (String subpart in spellSaveAndAttackData.Split(' '))
+                {
+                    if (subpart.Contains(","))
+                    {
+                        npcModel.InnateSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                    }
+                    if (subpart.Contains('+') || subpart.Contains('-'))
+                        npcModel.InnateSpellHitBonus = parseAttributeStringToInt(subpart);
+                }
+
+                // Component Text
+                int preComponentText = innateSpellcastingAttributes.IndexOf("following spells,", StringComparison.Ordinal);
+                int postComponentText = innateSpellcastingAttributes.IndexOf(":\\r", StringComparison.Ordinal);
+                npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18, postComponentText - preComponentText - 18);
+
+                string[] innateSpellcastingAttributesArray = innateSpellcastingAttributes.Split(new string[] { "\\r" }, StringSplitOptions.RemoveEmptyEntries);
+                npcModel.InnateAtWill = innateSpellcastingAttributesArray[1].Substring(9);
+                npcModel.FivePerDay = innateSpellcastingAttributesArray[2].Substring(12);
+                npcModel.FourPerDay = innateSpellcastingAttributesArray[3].Substring(12);
+                npcModel.ThreePerDay = innateSpellcastingAttributesArray[4].Substring(12);
+                npcModel.TwoPerDay = innateSpellcastingAttributesArray[5].Substring(12);
+                npcModel.OnePerDay = innateSpellcastingAttributesArray[6].Substring(12);
+
+            }
         }
 
         /// <summary>

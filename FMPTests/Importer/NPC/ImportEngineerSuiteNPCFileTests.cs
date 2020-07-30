@@ -436,6 +436,68 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         #endregion
 
+        #region Innate Spellcasting
+        [TestMethod()]
+        public void InnateCasting_CasterInformation()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+
+            Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
+            Assert.AreEqual("Wisdom", actualNPCModel.InnateSpellcastingAbility);
+            Assert.AreEqual(8, actualNPCModel.InnateSpellSaveDC);
+            Assert.AreEqual(30, actualNPCModel.InnateSpellHitBonus);
+            Assert.AreEqual(12, actualNPCModel.SpellcastingSpellHitBonus);
+        }
+
+        [TestMethod()]
+        public void InnateCasting_ComponentText()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+
+            Assert.AreEqual("requiring no material components", actualNPCModel.ComponentText);
+        }
+
+        [TestMethod()]
+        public void InnateCasting_Spells_AtWill()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            Assert.AreEqual("Super Cantrips", actualNPCModel.InnateAtWill);
+        }
+        [TestMethod()]
+        public void InnateCasting_Spells_FivePerDay()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            Assert.AreEqual("Daylight", actualNPCModel.FivePerDay);
+        }
+
+        [TestMethod()]
+        public void InnateCasting_Spells_FourPerDay()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            Assert.AreEqual("False Life", actualNPCModel.FourPerDay);
+        }
+
+        [TestMethod()]
+        public void InnateCasting_Spells_ThreePerDay()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            Assert.AreEqual("Hunger", actualNPCModel.ThreePerDay);
+        }
+
+        [TestMethod()]
+        public void InnateCasting_Spells_TwoPerDay()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            Assert.AreEqual("Breakfast, Lunch, Dinner", actualNPCModel.TwoPerDay);
+        }
+        [TestMethod()]
+        public void InnateCasting_Spells_OnePerDay()
+        {
+            NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            Assert.AreEqual("Nom Noms", actualNPCModel.OnePerDay);
+        }
+        #endregion
+
         #region Casting
 
         [TestMethod()]
