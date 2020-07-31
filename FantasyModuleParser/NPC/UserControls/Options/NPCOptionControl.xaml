@@ -105,7 +105,7 @@
             </TabItem>
             <TabItem Header="Description">
                 <Grid Background="#FFE5E5E5">
-                    <DescriptionUserControl:DescriptionUC />
+                    <DescriptionUserControl:DescriptionUC x:Name="DescriptionUserControl" />
                 </Grid>
             </TabItem>
             <TabItem Header="Image">

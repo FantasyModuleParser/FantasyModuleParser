@@ -199,6 +199,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			InnateCastingUserControl.Refresh();
 			ResistanceUserControl.Refresh();
 			ActionOverviewUserControl.Refresh();
+			DescriptionUserControl.Refresh();
 		}
 	}
 }

@@ -10,7 +10,7 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="270,465,0,0" VerticalAlignment="Top" Width="160"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="440,465,0,0" VerticalAlignment="Top" Width="165"/>
         <StackPanel Orientation="Vertical">
-            <RichTextBox Name="descriptionRTB" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
+            <RichTextBox Name="descriptionRTB" TextChanged="descriptionRTB_TextChanged" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.ToolTip>
                     <TextBlock>
                         This box contains the formatted descriptive text that will be added to your NPC.

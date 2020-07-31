@@ -52,5 +52,16 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
                 }
             }
         }
+        public void Refresh()
+        {
+            descriptionRTB.Document.Blocks.Clear();
+            descriptionRTB.AppendText(npcController.GetNPCModel().Description);
+        }
+
+        private void descriptionRTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextRange range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
+            npcController.GetNPCModel().Description = range.Text;
+        }
     }
 }
