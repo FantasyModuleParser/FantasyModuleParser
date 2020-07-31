@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace FantasyModuleParser.Importer.NPC.Tests
 {
@@ -29,7 +30,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
         {
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(@embeddedResourcePath))
-            using (StreamReader reader = new StreamReader(stream))
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF32))
             {
                 return reader.ReadToEnd();
             }
@@ -841,6 +842,19 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             List<SelectableActionModel> expectedSpecialWeaponResistanceList = controller.GetSelectableActionModelList(typeof(WeaponResistance));
             expectedSpecialWeaponResistanceList.First(item => item.ActionName.Equals(WeaponResistance.NoSpecial.ToString(), StringComparison.Ordinal)).Selected = true;
             AssertSelectableActionModelList(expectedSpecialWeaponResistanceList, actualNPCModel.SpecialWeaponResistanceModelList);
+        }
+
+        /// <summary>
+        /// Test is to check that spellcaster level (5th) is properly imported
+        /// </summary>
+        [TestMethod()]
+        public void Import_TheMummyPriest_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.Ankhotep_The_Mummy_Priest.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.AreEqual("5th", actualNPCModel.SpellcastingCasterLevel);
         }
     }
 }

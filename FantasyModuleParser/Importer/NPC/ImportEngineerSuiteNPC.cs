@@ -1,5 +1,4 @@
 ﻿using FantasyModuleParser.Importer.Utils;
-using FantasyModuleParser.Main.UserControls.Settings;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
@@ -11,10 +10,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
 
 namespace FantasyModuleParser.Importer.NPC
 {
@@ -40,8 +36,10 @@ namespace FantasyModuleParser.Importer.NPC
         {
             NPCModel parsedNPCModel = new NPCController().InitializeNPCModel();
 
+
             string line = "";
             StringReader stringReader = new StringReader(importTextContent);
+
             int lineNumber = 1;
             while((line = stringReader.ReadLine()) != null)
             {
@@ -818,7 +816,7 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 npcModel.SpellcastingSection = true;
                 // Start with getting spellcaster level
-                npcModel.SpellcastingCasterLevel = spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4);
+                npcModel.SpellcastingCasterLevel = spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4).Trim();
 
                 // Spellcasting Ability
                 int abilityIsIndex = spellCastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
