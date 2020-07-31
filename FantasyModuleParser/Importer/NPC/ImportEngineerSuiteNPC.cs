@@ -899,6 +899,10 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseStandardAction(NPCModel npcModel, string standardAction)
         {
+            // Don't deal w/ an empty string.
+            if (standardAction.Length == 0 || standardAction.Trim().Length == 0)
+                return;
+
             string[] standardActionArray;
             StringBuilder stringBuilder = new StringBuilder();
             if (standardAction.StartsWith(Multiattack.LocalActionName))
