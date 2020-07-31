@@ -12,17 +12,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     /// </summary>
     public partial class ActionOverviewUC : UserControl
     {
-		private ActionController actionController;
-		private ActionOverviewUCViewModel viewModel = new ActionOverviewUCViewModel();
+		private ActionController actionController = new ActionController();
 		public ActionOverviewUC()
         {
             InitializeComponent();
-			DataContext = viewModel;
+			DataContext = actionController.GetNPCModel();
         }
 		public void Refresh()
         {
-			//NPCActions = actionController.GetNPCModel().NPCActions;
-			(DataContext as ActionOverviewUCViewModel).Refresh();
+			DataContext = actionController.GetNPCModel();
 		}
 
 		private void LairActions_Click(object sender, RoutedEventArgs e)
