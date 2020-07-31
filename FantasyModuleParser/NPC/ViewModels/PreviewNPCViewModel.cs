@@ -125,6 +125,30 @@ namespace FantasyModuleParser.NPC.ViewModels
             Challenge = UpdateChallengeRating();
             InnateSpellcastingLabel = UpdateInnateSpellcastingLabel();
             InnateSpellcasting = UpdateInnateSpellcasting();
+            SpellcastingLabel = UpdateSpellcastingLabel();
+            Spellcasting = UpdateSpellcasting();
+            SpellcastingCantripsLabel = UpdateSpellcastingCantripsLabel();
+            SpellcastingCantrips = UpdateSpellcastingCantrips();
+            SpellcastingFirstLabel = UpdateSpellcastingFirstLabel();
+            SpellcastingFirst = UpdateSpellcastingFirst();
+            SpellcastingSecondLabel = UpdateSpellcastingSecondLabel();
+            SpellcastingSecond = UpdateSpellcastingSecond();
+            SpellcastingThirdLabel = UpdateSpellcastingThirdLabel();
+            SpellcastingThird = UpdateSpellcastingThird();
+            SpellcastingFourthLabel = UpdateSpellcastingFourthLabel();
+            SpellcastingFourth = UpdateSpellcastingFourth();
+            SpellcastingFifthLabel = UpdateSpellcastingFifthLabel();
+            SpellcastingFifth = UpdateSpellcastingFifth();
+            SpellcastingSixthLabel = UpdateSpellcastingSixthLabel();
+            SpellcastingSixth = UpdateSpellcastingSixth();
+            SpellcastingSeventhLabel = UpdateSpellcastingSeventhLabel();
+            SpellcastingSeventh = UpdateSpellcastingSeventh();
+            SpellcastingEighthLabel = UpdateSpellcastingEighthLabel();
+            SpellcastingEighth = UpdateSpellcastingEighth();
+            SpellcastingNinthLabel = UpdateSpellcastingNinthLabel();
+            SpellcastingNinth = UpdateSpellcastingNinth();
+            SpellcastingMarkedSpells = UpdateSpellcastingMarkedSpells();
+            WeaponName1 = UpdateWeaponName1();
         }
 
         #region UpdateAbilityScores
