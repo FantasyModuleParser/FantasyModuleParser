@@ -77,7 +77,7 @@
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <CheckBox Content="Spell Save DC" IsChecked="{Binding Path=SpellcastingSpellSaveDCCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" Margin="20,3,0,0" TabIndex="4"/>
+                <Label Content="Spell Save DC" Padding="5,0,0,0" Margin="20,3,0,0" TabIndex="4" />
                 <TextBox Name="intSpellcastingSpellSaveDC" Text="{Binding Path=SpellcastingSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="50" Margin="10,0,0,0" Padding="0" Height="20" PreviewTextInput="PositiveNumberValidationTextBox" TabIndex="5">
                     <TextBox.ToolTip>
                         <TextBlock>
@@ -89,7 +89,7 @@
                 </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <CheckBox Content="Spell Hit Bonus" IsChecked="{Binding Path=SpellcastingSpellHitBonusCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,3,0,0" Padding="5,0,0,0" TabIndex="6"/>
+                <Label Content="Spell Hit Bonus" Margin="15,3,0,0" Padding="5,0,0,0" TabIndex="6"/>
                 <TextBox Name="intSpellcastingSpellHitBonus" Text="{Binding Path=SpellcastingSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="75" Height="20" Margin="10,2,0,0" PreviewTextInput="NumberValidationTextBox" TabIndex="7">
                     <TextBox.ToolTip>
                         <TextBlock>

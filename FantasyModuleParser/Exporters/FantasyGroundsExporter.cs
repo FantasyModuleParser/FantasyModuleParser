@@ -1246,16 +1246,16 @@ namespace FantasyModuleParser.Exporters
 			{
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.Append("The " + npcModel.NPCName.ToLower() + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility);
-				if (npcModel.InnateSpellSaveDCCheck)
+				if (npcModel.InnateSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.InnateSpellSaveDC);
-					if (npcModel.InnateSpellHitBonusCheck)
+					if (npcModel.InnateSpellHitBonus != 0)
 					{
 						stringBuilder.Append("spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus);
 					}
 					stringBuilder.Append(")");
 				}
-				else if (!npcModel.InnateSpellSaveDCCheck && npcModel.InnateSpellHitBonusCheck)
+				else if (npcModel.InnateSpellHitBonus != 0)
 				{
 					stringBuilder.Append("(spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus + ")");
 				}
@@ -1296,18 +1296,14 @@ namespace FantasyModuleParser.Exporters
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " is a " + npcModel.SpellcastingCasterLevel + "-level spellcaster. ");
 				stringBuilder.Append("Its spellcasting ability is " + npcModel.SCSpellcastingAbility);
-				if (npcModel.SpellcastingSpellSaveDCCheck)
+				if (npcModel.SpellcastingSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.SpellcastingSpellSaveDC);
-					if (npcModel.SpellcastingSpellHitBonusCheck)
+					if (npcModel.SpellcastingSpellHitBonus != 0)
 					{
 						stringBuilder.Append(", spell hit bonus ").Append(npcModel.SpellcastingSpellHitBonus >= 0 ? "+" : "").Append(npcModel.SpellcastingSpellHitBonus);
 					}
 					stringBuilder.Append(")");
-				}
-				else if (!npcModel.SpellcastingSpellSaveDCCheck && npcModel.SpellcastingSpellHitBonusCheck)
-				{
-					stringBuilder.Append("(spell hit bonus ").Append(npcModel.SpellcastingSpellHitBonus >= 0 ? "+" : "").Append(npcModel.SpellcastingSpellHitBonus + ")");
 				}
 
 				stringBuilder.Append(". ");

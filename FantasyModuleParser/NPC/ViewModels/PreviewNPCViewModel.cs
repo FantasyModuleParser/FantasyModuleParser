@@ -807,13 +807,13 @@ namespace FantasyModuleParser.NPC.ViewModels
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("The " + NPCModel.NPCName.ToLower() + "'s spellcasting ability is " + NPCModel.InnateSpellcastingAbility + " ("); 
-                if (NPCModel.InnateSpellSaveDCCheck == true)
+                if (NPCModel.InnateSpellSaveDC != 0)
                     stringBuilder.Append("spell save DC " + NPCModel.InnateSpellSaveDC);
-                if (NPCModel.InnateSpellSaveDCCheck == true && NPCModel.InnateSpellHitBonusCheck == true)
+                if (NPCModel.InnateSpellSaveDC != 0 && NPCModel.InnateSpellHitBonus != 0)
                     stringBuilder.Append(", ");
-                if (NPCModel.InnateSpellHitBonusCheck == true && NPCModel.InnateSpellHitBonus >= 0)
+                if (NPCModel.InnateSpellHitBonus > 0)
                     stringBuilder.Append("+" + NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
-                else if (NPCModel.InnateSpellHitBonusCheck == true && NPCModel.InnateSpellHitBonus < 0)
+                else if (NPCModel.InnateSpellHitBonus < 0)
                     stringBuilder.Append(NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
                 stringBuilder.Append("). The " + NPCModel.NPCName.ToLower() + " can innately cast the following spells, " + NPCModel.ComponentText + ":");
                 return stringBuilder.ToString();
@@ -1139,10 +1139,10 @@ namespace FantasyModuleParser.NPC.ViewModels
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("The " + NPCModel.NPCName.ToLower() + " is a " + NPCModel.SpellcastingCasterLevel + " level spellcaster. Its spellcasting ability is ");
                 stringBuilder.Append(NPCModel.SCSpellcastingAbility);
-                if (NPCModel.SpellcastingSpellSaveDCCheck == true)
+                if (NPCModel.SpellcastingSpellSaveDC != 0)
                 {
                     stringBuilder.Append(" (spell save DC " + NPCModel.SpellcastingSpellSaveDC);
-                    if (NPCModel.SpellcastingSpellHitBonusCheck == true)
+                    if (NPCModel.SpellcastingSpellHitBonus != 0)
                     {
                         stringBuilder.Append(", ");
                         if (NPCModel.SpellcastingSpellHitBonus >= 0)
@@ -1159,18 +1159,6 @@ namespace FantasyModuleParser.NPC.ViewModels
                     {
                         stringBuilder.Append(").");
                     }
-                }
-                else if (NPCModel.SpellcastingSpellSaveDCCheck == false && NPCModel.SpellcastingSpellHitBonusCheck == true)
-                {
-                    if (NPCModel.SpellcastingSpellHitBonus >= 0)
-                    {
-                        stringBuilder.Append(" (+" + NPCModel.SpellcastingSpellHitBonus);
-                    }
-                    else
-                    {
-                        stringBuilder.Append(" (" + NPCModel.SpellcastingSpellHitBonus);
-                    }
-                    stringBuilder.Append(" to hit with spell attacks).");
                 }
                 if (NPCModel.FlavorText != null)
                 {
