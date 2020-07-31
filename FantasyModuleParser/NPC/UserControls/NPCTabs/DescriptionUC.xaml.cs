@@ -55,7 +55,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         public void Refresh()
         {
             descriptionRTB.Document.Blocks.Clear();
-            descriptionRTB.AppendText(npcController.GetNPCModel().Description);
+            //descriptionRTB.AppendText(npcController.GetNPCModel().Description);
         }
 
         private void descriptionRTB_TextChanged(object sender, TextChangedEventArgs e)
