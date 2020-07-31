@@ -569,6 +569,7 @@ namespace FantasyModuleParser.Importer.NPC
                 // Populate with all options deselected
                 npcModel.DamageResistanceModelList = parseDamageTypeStringToList("");
                 npcModel.SpecialWeaponResistanceModelList = parseSpecialDamageResistanceStringToList("");
+                npcModel.SpecialWeaponResistanceModelList.First().Selected = true;
             }
             npcModel.SpecialWeaponDmgResistanceModelList = new NPCController().GetSelectableActionModelList(typeof(DamageType));
         }
@@ -588,6 +589,7 @@ namespace FantasyModuleParser.Importer.NPC
                 // Populate with all options deselected
                 npcModel.DamageImmunityModelList = parseDamageTypeStringToList("");
                 npcModel.SpecialWeaponImmunityModelList = parseSpecialDamageImmunityStringToList("");
+                npcModel.SpecialWeaponImmunityModelList.First().Selected = true;
             }
 
             npcModel.SpecialWeaponDmgImmunityModelList = new NPCController().GetSelectableActionModelList(typeof(DamageType));
@@ -760,15 +762,25 @@ namespace FantasyModuleParser.Importer.NPC
 
                 // Spell Save DC & Attack Bonus
                 int spellAttacksIndex = innateSpellcastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
-                String spellSaveAndAttackData = innateSpellcastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
-                foreach (String subpart in spellSaveAndAttackData.Split(' '))
-                {
-                    if (subpart.Contains(","))
+
+                // If no spell attack bonus is available, spellAttacksIndex equals -1
+                if(spellAttacksIndex != -1) { 
+                    String spellSaveAndAttackData = innateSpellcastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                    foreach (String subpart in spellSaveAndAttackData.Split(' '))
                     {
-                        npcModel.InnateSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                        if (subpart.Contains(","))
+                        {
+                            npcModel.InnateSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                        }
+                        if (subpart.Contains('+') || subpart.Contains('-'))
+                            npcModel.InnateSpellHitBonus = parseAttributeStringToInt(subpart);
                     }
-                    if (subpart.Contains('+') || subpart.Contains('-'))
-                        npcModel.InnateSpellHitBonus = parseAttributeStringToInt(subpart);
+                } else
+                {
+                    // Process only the Save DC
+                    string innateSpellcastingSaveDCString = innateSpellcastingAttributes.Substring(spellSaveDCIndex);
+                    innateSpellcastingSaveDCString = innateSpellcastingSaveDCString.Substring(0, innateSpellcastingSaveDCString.IndexOf(").", StringComparison.Ordinal));
+                    npcModel.InnateSpellSaveDC = int.Parse(innateSpellcastingSaveDCString.Substring("(spell save DC ".Length), CultureInfo.CurrentCulture);
                 }
 
                 // Component Text
@@ -777,12 +789,22 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18, postComponentText - preComponentText - 18);
 
                 string[] innateSpellcastingAttributesArray = innateSpellcastingAttributes.Split(new string[] { "\\r" }, StringSplitOptions.RemoveEmptyEntries);
-                npcModel.InnateAtWill = innateSpellcastingAttributesArray[1].Substring(9);
-                npcModel.FivePerDay = innateSpellcastingAttributesArray[2].Substring(12);
-                npcModel.FourPerDay = innateSpellcastingAttributesArray[3].Substring(12);
-                npcModel.ThreePerDay = innateSpellcastingAttributesArray[4].Substring(12);
-                npcModel.TwoPerDay = innateSpellcastingAttributesArray[5].Substring(12);
-                npcModel.OnePerDay = innateSpellcastingAttributesArray[6].Substring(12);
+                for(int arrayIndex = 1; arrayIndex < innateSpellcastingAttributesArray.Length; arrayIndex++)
+                {
+                    string innerData = innateSpellcastingAttributesArray[arrayIndex];
+                    if(innerData.StartsWith("At will:", StringComparison.Ordinal))
+                        npcModel.InnateAtWill = innerData.Substring(9);
+                    if (innerData.StartsWith("5/day each:", StringComparison.Ordinal))
+                        npcModel.FivePerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("4/day each:", StringComparison.Ordinal))
+                        npcModel.FourPerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("3/day each:", StringComparison.Ordinal))
+                        npcModel.ThreePerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("2/day each:", StringComparison.Ordinal))
+                        npcModel.TwoPerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("1/day each:", StringComparison.Ordinal))
+                        npcModel.OnePerDay = innerData.Substring(12);
+                }
 
             }
         }

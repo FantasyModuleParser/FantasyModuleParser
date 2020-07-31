@@ -79,6 +79,10 @@ namespace FantasyModuleParser.NPC.Controllers
 			npcModel.SpecialWeaponResistanceModelList = GetSelectableActionModelList(typeof(WeaponResistance));
 			npcModel.SpecialWeaponDmgResistanceModelList = GetSelectableActionModelList(typeof(DamageType));
 
+			// For SpecialWeaponDmgResistance & Immunity lists, make the default selected to "No special weapon immunity / resistance", which is the first in each list
+			npcModel.SpecialWeaponImmunityModelList.First().Selected = true;
+			npcModel.SpecialWeaponResistanceModelList.First().Selected = true;
+
 			// Setup Langauges for passing Unit Tests
 			npcModel.StandardLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();
 			npcModel.MonstrousLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();
