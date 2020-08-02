@@ -380,7 +380,14 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString("npc");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("recordname");
-				xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
+				if (moduleModel.IsLockedRecords)
+                {
+					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
+				}
+				else 
+				{
+					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc));
+				}	
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteStartElement("field");
@@ -443,7 +450,22 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void ProcessNPCListByCR(XmlWriter xmlWriter, ModuleModel moduleModel, string actualCR, List<NPCModel> NPCList)
 		{
-			xmlWriter.WriteStartElement("cr" + actualCR);
+			if (actualCR == "1/8")
+			{
+				xmlWriter.WriteStartElement("CR0125");
+			}
+			else if (actualCR == "1/4")
+			{
+				xmlWriter.WriteStartElement("CR025");
+			}
+			else if (actualCR == "1/2")
+			{
+				xmlWriter.WriteStartElement("CR05");
+			}
+			else
+			{
+				xmlWriter.WriteStartElement("CR" + actualCR);
+			}
 			xmlWriter.WriteStartElement("description");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("CR " + actualCR);
