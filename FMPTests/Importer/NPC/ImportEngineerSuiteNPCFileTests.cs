@@ -24,7 +24,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Initialize()
         {
             _importEngineerSuiteNPC = new ImportEngineerSuiteNPC();
-            //actualNPCModel = LoadEngineerSuiteTestNPCFile();
+            actualNPCModel = LoadEngineerSuiteTestNPCFile();
         }
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
@@ -861,7 +861,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(2, actualNPCModel.NPCActions.Count);
             Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
             Assert.AreEqual(true, (actualNPCModel.NPCActions[0] as WeaponAttack).OtherTextCheck);
-            Assert.AreEqual(" If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. A cursed target can't regain hit points, and its maximum hit points decrease by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust.\rThe curse lasts until removed by the remove curse spell or other magic.",
+            Assert.AreEqual(". If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. A cursed target can't regain hit points, and its maximum hit points decrease by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust.\\rThe curse lasts until removed by the remove curse spell or other magic.",
                 (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
         }
 

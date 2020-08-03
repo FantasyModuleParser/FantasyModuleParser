@@ -1067,8 +1067,17 @@ namespace FantasyModuleParser.Importer.NPC
             int regexMatchLength = regex.Match(damagePropertyData).Value.Length;
             if (damagePropertyData.Length != regexMatchLength)
             {
-                weaponAttackModel.OtherTextCheck = true;
-                weaponAttackModel.OtherText = damagePropertyData.Substring(regexMatchLength);
+                // in the case that the last character is a period, just ignore flavor text
+                if (damagePropertyData.Substring(regexMatchLength).Equals(".", StringComparison.Ordinal))
+                {
+                    weaponAttackModel.OtherTextCheck = false;
+                    weaponAttackModel.OtherText = "";
+                } 
+                else 
+                {     
+                    weaponAttackModel.OtherTextCheck = true;
+                    weaponAttackModel.OtherText = damagePropertyData.Substring(regexMatchLength);
+                }
             }
         }
 

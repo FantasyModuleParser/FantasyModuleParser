@@ -503,7 +503,7 @@ namespace FantasyModuleParser.Exporters
 		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
-			return name.Replace(" ", "_");
+			return name.Replace(","," ").Replace(" ", "_");
 		}
 		private void WriteLocked(XmlWriter xmlWriter, NPCModel npcModel)
 		{
