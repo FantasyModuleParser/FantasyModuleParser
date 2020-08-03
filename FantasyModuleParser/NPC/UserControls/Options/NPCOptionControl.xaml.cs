@@ -89,12 +89,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void ImportTextWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 			(DataContext as NPCOptionControlViewModel).Refresh();
-			BaseStatsUserControl.Refresh();
-			SkillsUserControl.Refresh();
-			SpellcastingUserControl.Refresh();
-			TraitsUserControl.Refresh();
-			InnateCastingUserControl.Refresh();
-			ResistanceUserControl.Refresh();
+			refreshNPCUserControls();
 		}
 
         private void FGListOptions_Click(object sender, RoutedEventArgs e)
@@ -118,12 +113,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			npcController.ClearNPCModel();
 			//DataContext = npcController.GetNPCModel();
 			(DataContext as NPCOptionControlViewModel).Refresh();
-			BaseStatsUserControl.Refresh();
-			SkillsUserControl.Refresh();
-			SpellcastingUserControl.Refresh();
-			TraitsUserControl.Refresh();
-			InnateCastingUserControl.Refresh();
-			ResistanceUserControl.Refresh();
+			refreshNPCUserControls();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -146,12 +136,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// TODO:  Get the active tab the user is on
 				// As the assumption here is the User is on the Base Stats tab while loading
 				// a NPC File
-				BaseStatsUserControl.Refresh();
-				SkillsUserControl.Refresh();
-				SpellcastingUserControl.Refresh();
-				TraitsUserControl.Refresh();
-				InnateCastingUserControl.Refresh();
-				ResistanceUserControl.Refresh();
+				refreshNPCUserControls();
 			}
 		}
 
@@ -202,6 +187,18 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
 			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
 			DataContext = npcOptionControlViewModel;
+		}
+
+		private void refreshNPCUserControls()
+		{
+			npcOptionControlViewModel.Refresh();
+			BaseStatsUserControl.Refresh();
+			SkillsUserControl.Refresh();
+			SpellcastingUserControl.Refresh();
+			TraitsUserControl.Refresh();
+			InnateCastingUserControl.Refresh();
+			ResistanceUserControl.Refresh();
+			ActionOverviewUserControl.Refresh();
 		}
 	}
 }

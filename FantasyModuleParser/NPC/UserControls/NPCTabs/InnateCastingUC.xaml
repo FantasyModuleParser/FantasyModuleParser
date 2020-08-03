@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
-    <Grid Background="#FFE5E5E5">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="590" />
@@ -72,13 +72,7 @@
                         </TextBlock>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <CheckBox Content="Spell Save DC" IsChecked="{Binding Path=InnateSpellSaveDCCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" TabIndex="4">
-                    <CheckBox.ToolTip>
-                        <TextBlock>
-                    Check this box if there is a spell save DC associated with the innately casted spells.
-                        </TextBlock>
-                    </CheckBox.ToolTip>
-                </CheckBox>
+                <Label Content="Spell Save DC" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" TabIndex="4" />
                 <TextBox Name="intInnateSpellSaveDC" Text="{Binding Path=InnateSpellSaveDC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="PositiveNumberValidationTextBox" Grid.Column="3" Margin="2" TabIndex="5">
                     <TextBox.ToolTip>
                         <TextBlock>
@@ -86,13 +80,7 @@
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
-                <CheckBox Content="Spell Hit Bonus" IsChecked="{Binding Path=InnateSpellHitBonusCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" TabIndex="6">
-                    <CheckBox.ToolTip>
-                        <TextBlock>
-                    Check this box if there is a 'to hit' associated with the innately casted spells.
-                        </TextBlock>
-                    </CheckBox.ToolTip>
-                </CheckBox>
+                <Label Content="Spell Hit Bonus" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" TabIndex="6" />
                 <TextBox Name="intInnateSpellHitBonus" Text="{Binding Path=InnateSpellHitBonus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox" Grid.Row="6" Grid.Column="31" Grid.ColumnSpan="2" Margin="2" TabIndex="7">
                     <TextBox.ToolTip>
                         <TextBlock>

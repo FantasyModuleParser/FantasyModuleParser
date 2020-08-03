@@ -168,9 +168,7 @@ namespace FantasyModuleParser.NPC
         public bool InnateSpellcastingSection { get { return _innateSpellcastingSection; } set { Set(ref _innateSpellcastingSection, value); } }
         public bool Psionics { get { return _markAsPsionics; } set { Set(ref _markAsPsionics, value); } }
         public string InnateSpellcastingAbility { get { return _innateSpellcastingAbility; } set { Set(ref _innateSpellcastingAbility, value); } }
-        public bool InnateSpellSaveDCCheck { get; set; }
         public int InnateSpellSaveDC { get { return _innateSpellSaveDC; } set { Set(ref _innateSpellSaveDC, value); } }
-        public bool InnateSpellHitBonusCheck { get; set; }
         public int InnateSpellHitBonus { get { return _innaateSpellHitBonus; } set { Set(ref _innaateSpellHitBonus, value); } }
         public string ComponentText { get { return _innateComponentText; } set { Set(ref _innateComponentText, value); } }
         public string InnateAtWill { get { return _innateAtWill; } set { Set(ref _innateAtWill, value); } }
@@ -182,9 +180,7 @@ namespace FantasyModuleParser.NPC
         public bool SpellcastingSection { get; set; }
         public string SpellcastingCasterLevel { get; set; }
         public string SCSpellcastingAbility { get; set; }
-        public bool SpellcastingSpellSaveDCCheck { get; set; }
         public int SpellcastingSpellSaveDC { get; set; }
-        public bool SpellcastingSpellHitBonusCheck { get; set; }
         public int SpellcastingSpellHitBonus { get; set; }
         public string SpellcastingSpellClass { get; set; }
         public string FlavorText { get; set; }
