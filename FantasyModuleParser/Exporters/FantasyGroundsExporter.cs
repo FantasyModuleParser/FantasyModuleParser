@@ -125,7 +125,7 @@ namespace FantasyModuleParser.Exporters
 
 			foreach (NPCModel npcModel in FatNPCList)
             {
-				if (npcModel.NPCToken != null)
+				if (npcModel.NPCToken != null && npcModel.NPCToken != " ")
                 {
 					string Filename = NPCNameToXMLFormat(npcModel) + "_token.png";
 					string NPCTokenFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "tokens", Filename);
@@ -360,7 +360,15 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("reference_colindex");                // Write "reference_colindex"
 			xmlWriter.WriteEndElement();                                // Close </class>
 			xmlWriter.WriteStartElement("recordname");                  // Open <recordname>
-			xmlWriter.WriteString(listId + "@" + moduleModel.Name);             // Write "reference.npclist.bytype"
+			if (moduleModel.IsLockedRecords == true)
+            {
+				xmlWriter.WriteString(listId + "@" + moduleModel.Name);             // Write "reference.npclist.bytype"
+			}
+			else
+            {
+				xmlWriter.WriteString(listId);
+
+			}
 			xmlWriter.WriteEndElement();                                // Close </recordname>
 			xmlWriter.WriteEndElement();                                // Close </listlink>
 			xmlWriter.WriteStartElement("name");                        // Open <name>
@@ -503,7 +511,8 @@ namespace FantasyModuleParser.Exporters
 		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
-			return name.Replace(" ", "_");
+			string name_nocomma = name.Replace(",", "");
+			return name_nocomma.Replace(" ", "_");
 		}
 		private void WriteLocked(XmlWriter xmlWriter, NPCModel npcModel)
 		{
@@ -842,6 +851,8 @@ namespace FantasyModuleParser.Exporters
 				}
 
 			string weaponDamageResistanceString = stringBuilder.ToString().Trim();
+			if (weaponDamageResistanceString.StartsWith(";", true, CultureInfo.CurrentCulture))
+				weaponDamageResistanceString = weaponDamageResistanceString.Remove(0, 2);
 			if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture))
 				weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1);
 
@@ -1222,13 +1233,21 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("token"); // Open <token>
 			xmlWriter.WriteAttributeString("type", "token"); // Add type=token
-			if (npcModel.NPCToken == null)
+			if (npcModel.NPCToken == null || npcModel.NPCToken == " ")
 			{
 				xmlWriter.WriteString("");
 			}
 			else
 			{
-				xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png@" + moduleModel.Name);
+				if (moduleModel.IsLockedRecords == true)
+                {
+					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png@" + moduleModel.Name);
+				}
+				else
+                {
+					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png");
+
+				}
 			}
 			xmlWriter.WriteEndElement(); // Close </token>
 		}
