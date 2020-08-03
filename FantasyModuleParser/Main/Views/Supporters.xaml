@@ -7,35 +7,58 @@
         mc:Ignorable="d"
         Title="Fantasy Module Parser Supporters" Height="300" Width="360" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico">
     <Grid Background="#FFE5E5E5">
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Level 1 Supporters" Foreground="Gray" FontWeight="Bold" FontSize="16" Margin="20,0,0,0" />
-                <Label Content="BCHADDOCK" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="BubbaGrim" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="epithet" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="LtBadger" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="PerryChalmers" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="PlastiqueSurgeon" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="ShadowLinks" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Sir Bayard" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Future Supporter" Margin="40,0,0,0" Padding="0"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <Label Content="Level 2 Supporters" Foreground="Gray" FontWeight="Bold" FontSize="16" Margin="20,0,0,0" />
-                <Label Content="APimpNamedShane" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Barren 791" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="BeeGrinder" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="BeemanPat" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="Berwind" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="ivormac-music" Margin="40,0,0,0" Padding="0" />
-                <Label Content="Caliente" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="keriks" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="MythikWolf" Margin="40,0,0,0" Padding="0"/>
-                <Label Content="rob2e" Margin="40,0,0,0" Padding="0"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="Close" Margin="120,220,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Click="ESExit_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="180" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="170" />
+        </Grid.ColumnDefinitions>
+        <WrapPanel Grid.Row="1" Grid.Column="0">
+            <Label Content="Level 1 Supporters" Padding="0" Foreground="Gray" FontWeight="Bold" FontSize="16" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" Grid.Column="3">
+            <Label Content="Level 2 Supporters" Padding="0" Foreground="Gray" FontWeight="Bold" FontSize="16" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="2" Grid.Column="0">
+            <ScrollViewer Width="170">
+                <TextBlock>
+                    BCHADDOCK<LineBreak />
+                    BubbaGrim<LineBreak />
+                    epithet<LineBreak />
+                    Greg<LineBreak />
+                    LtBadger<LineBreak />
+                    PerryChalmers<LineBreak />
+                    PlastiqueSurgeon<LineBreak />
+                    SHADE<LineBreak />
+                    ShadowLinks<LineBreak />
+                    Shamu<LineBreak />
+                    Sir Bayard<LineBreak />
+                </TextBlock>
+            </ScrollViewer>
+        </WrapPanel>
+        <WrapPanel Grid.Row="2" Grid.Column="2">
+            <ScrollViewer Width="170">
+                <TextBlock>
+                    APimpNamedShane<LineBreak />
+                    Barren 791<LineBreak />
+                    BeeGrinder<LineBreak />
+                    BeemanPat<LineBreak />
+                    Berwind<LineBreak />
+                    Caliente<LineBreak />
+                    ivormac-music<LineBreak />
+                    keriks<LineBreak />
+                    MythikWolf<LineBreak />
+                    rob2e<LineBreak />
+                </TextBlock>
+            </ScrollViewer>
+        </WrapPanel>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
+            <Button Content="Close" Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ESExit_Click"/>
         </StackPanel>
     </Grid>
 </Window>

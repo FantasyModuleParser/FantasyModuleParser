@@ -73,7 +73,7 @@ namespace FantasyModuleParser.NPC
         private bool _markAsPsionics;
         private string _innateSpellcastingAbility;
         private int _innateSpellSaveDC;
-        private int _innaateSpellHitBonus;
+        private int _innateSpellHitBonus;
         private string _innateComponentText;
         private string _innateAtWill;
         private string _innateOnePerDay;
@@ -81,6 +81,37 @@ namespace FantasyModuleParser.NPC
         private string _innateThreePerDay;
         private string _innateFourPerDay;
         private string _innateFivePerDay;
+        #endregion
+        #region Spellcasting
+        private bool _SpellcastingSection;
+        private string _SpellcastingCasterLevel;
+        private string _SCSpellcastingAbility;
+        private int _SpellcastingSpellSaveDC;
+        private int _SpellcastingSpellHitBonus;
+        private string _SpellcastingSpellClass;
+        private string _FlavorText;
+        private string _CantripSpells;
+        private string _CantripSpellList;
+        private string _FirstLevelSpells;
+        private string _FirstLevelSpellList;
+        private string _SecondLevelSpells;
+        private string _SecondLevelSpellList;
+        private string _ThirdLevelSpells;
+        private string _ThirdLevelSpellList;
+        private string _FourthLevelSpells;
+        private string _FourthLevelSpellList;
+        private string _FifthLevelSpells;
+        private string _FifthLevelSpellList;
+        private string _SixthLevelSpells;
+        private string _SixthLevelSpellList;
+        private string _SeventhLevelSpells;
+        private string _SeventhLevelSpellList;
+        private string _EighthLevelSpells;
+        private string _EighthLevelSpellList;
+        private string _NinthLevelSpells;
+        private string _NinthLevelSpellList;
+        private bool _MarkedSpellsCheck;
+        private string _MarkedSpells;
         #endregion
         #endregion
         #region Public Variables
@@ -168,10 +199,8 @@ namespace FantasyModuleParser.NPC
         public bool InnateSpellcastingSection { get { return _innateSpellcastingSection; } set { Set(ref _innateSpellcastingSection, value); } }
         public bool Psionics { get { return _markAsPsionics; } set { Set(ref _markAsPsionics, value); } }
         public string InnateSpellcastingAbility { get { return _innateSpellcastingAbility; } set { Set(ref _innateSpellcastingAbility, value); } }
-        public bool InnateSpellSaveDCCheck { get; set; }
         public int InnateSpellSaveDC { get { return _innateSpellSaveDC; } set { Set(ref _innateSpellSaveDC, value); } }
-        public bool InnateSpellHitBonusCheck { get; set; }
-        public int InnateSpellHitBonus { get { return _innaateSpellHitBonus; } set { Set(ref _innaateSpellHitBonus, value); } }
+        public int InnateSpellHitBonus { get { return _innateSpellHitBonus; } set { Set(ref _innateSpellHitBonus, value); } }
         public string ComponentText { get { return _innateComponentText; } set { Set(ref _innateComponentText, value); } }
         public string InnateAtWill { get { return _innateAtWill; } set { Set(ref _innateAtWill, value); } }
         public string FivePerDay { get { return _innateFivePerDay; } set { Set(ref _innateFivePerDay, value); } }
@@ -179,37 +208,35 @@ namespace FantasyModuleParser.NPC
         public string ThreePerDay { get { return _innateThreePerDay; } set { Set(ref _innateThreePerDay, value); } }
         public string TwoPerDay { get { return _innateTwoPerDay; } set { Set(ref _innateTwoPerDay, value); } }
         public string OnePerDay { get { return _innateOnePerDay; } set { Set(ref _innateOnePerDay, value); } }
-        public bool SpellcastingSection { get; set; }
-        public string SpellcastingCasterLevel { get; set; }
-        public string SCSpellcastingAbility { get; set; }
-        public bool SpellcastingSpellSaveDCCheck { get; set; }
-        public int SpellcastingSpellSaveDC { get; set; }
-        public bool SpellcastingSpellHitBonusCheck { get; set; }
-        public int SpellcastingSpellHitBonus { get; set; }
-        public string SpellcastingSpellClass { get; set; }
-        public string FlavorText { get; set; }
-        public string CantripSpells { get; set; }
-        public string CantripSpellList { get; set; }
-        public string FirstLevelSpells { get; set; }
-        public string FirstLevelSpellList { get; set; }
-        public string SecondLevelSpells { get; set; }
-        public string SecondLevelSpellList { get; set; }
-        public string ThirdLevelSpells { get; set; }
-        public string ThirdLevelSpellList { get; set; }
-        public string FourthLevelSpells { get; set; }
-        public string FourthLevelSpellList { get; set; }
-        public string FifthLevelSpells { get; set; }
-        public string FifthLevelSpellList { get; set; }
-        public string SixthLevelSpells { get; set; }
-        public string SixthLevelSpellList { get; set; }
-        public string SeventhLevelSpells { get; set; }
-        public string SeventhLevelSpellList { get; set; }
-        public string EighthLevelSpells { get; set; }
-        public string EighthLevelSpellList { get; set; }
-        public string NinthLevelSpells { get; set; }
-        public string NinthLevelSpellList { get; set; }
-        public bool MarkedSpellsCheck { get; set; }
-        public string MarkedSpells { get; set; }
+        public bool SpellcastingSection { get { return _SpellcastingSection; } set { Set(ref _SpellcastingSection, value); } }
+        public string SpellcastingCasterLevel { get { return _SpellcastingCasterLevel; } set { Set(ref _SpellcastingCasterLevel, value); } }
+        public string SCSpellcastingAbility { get { return _SCSpellcastingAbility; } set { Set(ref _SCSpellcastingAbility, value); } }
+        public int SpellcastingSpellSaveDC { get { return _SpellcastingSpellSaveDC; } set { Set(ref _SpellcastingSpellSaveDC, value); } }
+        public int SpellcastingSpellHitBonus { get { return _SpellcastingSpellHitBonus; } set { Set(ref _SpellcastingSpellHitBonus, value); } }
+        public string SpellcastingSpellClass { get { return _SpellcastingSpellClass; } set { Set(ref _SpellcastingSpellClass, value); } }
+        public string FlavorText { get { return _FlavorText; } set { Set(ref _FlavorText, value); } }
+        public string CantripSpells { get { return _CantripSpells; } set { Set(ref _CantripSpells, value); } }
+        public string CantripSpellList { get { return _CantripSpellList; } set { Set(ref _CantripSpellList, value); } }
+        public string FirstLevelSpells { get { return _FirstLevelSpells; } set { Set(ref _FirstLevelSpells, value); } }
+        public string FirstLevelSpellList { get { return _FirstLevelSpellList; } set { Set(ref _FirstLevelSpellList, value); } }
+        public string SecondLevelSpells { get { return _SecondLevelSpells; } set { Set(ref _SecondLevelSpells, value); } }
+        public string SecondLevelSpellList { get { return _SecondLevelSpellList; } set { Set(ref _SecondLevelSpellList, value); } }
+        public string ThirdLevelSpells { get { return _ThirdLevelSpells; } set { Set(ref _ThirdLevelSpells, value); } }
+        public string ThirdLevelSpellList { get { return _ThirdLevelSpellList; } set { Set(ref _ThirdLevelSpellList, value); } }
+        public string FourthLevelSpells { get { return _FourthLevelSpells; } set { Set(ref _FourthLevelSpells, value); } }
+        public string FourthLevelSpellList { get { return _FourthLevelSpellList; } set { Set(ref _FourthLevelSpellList, value); } }
+        public string FifthLevelSpells { get { return _FifthLevelSpells; } set { Set(ref _FifthLevelSpells, value); } }
+        public string FifthLevelSpellList { get { return _FifthLevelSpellList; } set { Set(ref _FifthLevelSpellList, value); } }
+        public string SixthLevelSpells { get { return _SixthLevelSpells; } set { Set(ref _SixthLevelSpells, value); } }
+        public string SixthLevelSpellList { get { return _SixthLevelSpellList; } set { Set(ref _SixthLevelSpellList, value); } }
+        public string SeventhLevelSpells { get { return _SeventhLevelSpells; } set { Set(ref _SeventhLevelSpells, value); } }
+        public string SeventhLevelSpellList { get { return _SeventhLevelSpellList; } set { Set(ref _SeventhLevelSpellList, value); } }
+        public string EighthLevelSpells { get { return _EighthLevelSpells; } set { Set(ref _EighthLevelSpells, value); } }
+        public string EighthLevelSpellList { get { return _EighthLevelSpellList; } set { Set(ref _EighthLevelSpellList, value); } }
+        public string NinthLevelSpells { get { return _NinthLevelSpells; } set { Set(ref _NinthLevelSpells, value); } }
+        public string NinthLevelSpellList { get { return _NinthLevelSpellList; } set { Set(ref _NinthLevelSpellList, value); } }
+        public bool MarkedSpellsCheck { get { return _MarkedSpellsCheck; } set { Set(ref _MarkedSpellsCheck, value); } }
+        public string MarkedSpells { get { return _MarkedSpells; } set { Set(ref _MarkedSpells, value); } }
         public string Description { get; set; }
         public string NonID { get; set; }
         public string NPCImage { get; set; }

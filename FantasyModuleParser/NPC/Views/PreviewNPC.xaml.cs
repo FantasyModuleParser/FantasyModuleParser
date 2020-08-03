@@ -23,14 +23,20 @@ namespace FantasyModuleParser.NPC.Views
     /// <summary>
     /// Interaction logic for PreviewNPC.xaml
     /// </summary>
+    
     public partial class PreviewNPC : Window
     {
+
         #region Controllers
         private PreviewNPCViewModel viewModel;
         #endregion
         public PreviewNPC()
         {
             InitializeComponent();
+
+            // Enable it so the popup window can close on the Escape key
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
+
             viewModel = new PreviewNPCViewModel();
             viewModel.NPCModel.PropertyChanged += RefreshDataContext;
 
@@ -64,6 +70,7 @@ namespace FantasyModuleParser.NPC.Views
 
             DataContext = viewModel;
         }
+        
         public void WindowClose(object sender, RoutedEventArgs e)
         {
             Close();

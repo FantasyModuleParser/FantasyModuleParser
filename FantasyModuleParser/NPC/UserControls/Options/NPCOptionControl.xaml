@@ -39,13 +39,13 @@
             </MenuItem>
             <MenuItem Header="_Options">
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
-                <MenuItem Header="_Manage NPC File" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
-                <MenuItem Header="_Manage Weapons List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
-                <MenuItem Header="_Manage Actions List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
-                <MenuItem Header="_Manage Traits List" Click="EditDeleteNPC_Click" Visibility="Collapsed" />
+                <MenuItem Header="_Manage NPC File" Visibility="Collapsed" />
+                <MenuItem Header="_Manage Weapons List" Visibility="Collapsed" />
+                <MenuItem Header="_Manage Actions List" Visibility="Collapsed" />
+                <MenuItem Header="_Manage Traits List" Visibility="Collapsed" />
                 <MenuItem Header="_Manage Languages" Click="Menu_Click" Name="ManageLanguages" />
                 <Separator />
-                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings"/>
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Collapsed"/>
             </MenuItem>
             <MenuItem Header="_Fantasy Module Parser">
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ProjectManagement"/>
@@ -75,7 +75,7 @@
             </TabItem>
             <TabItem Header="Resistances">
                 <Grid Background="#FFE5E5E5">
-                    <ResistancesUserControl:ResistancesUC />
+                    <ResistancesUserControl:ResistancesUC x:Name="ResistanceUserControl" />
                 </Grid>
             </TabItem>
             <TabItem Header="Skills">
@@ -100,7 +100,7 @@
             </TabItem>
             <TabItem Header="Actions">
                 <Grid Background="#FFE5E5E5">
-                    <ActionUserControl:ActionOverviewUC />
+                    <ActionUserControl:ActionOverviewUC x:Name="ActionOverviewUserControl"  />
                 </Grid>
             </TabItem>
             <TabItem Header="Description">
@@ -115,7 +115,7 @@
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
-            <Button Content="Import Text" Click="ImportText_Click" IsEnabled="False" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Import Text" Click="ImportText_Click" IsEnabled="True" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
                     Select this button to import your NPC from a PDF, text file, or webpage
@@ -133,7 +133,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="View Statblock" Click="PreviewNPC_Click" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="View Statblock" Click="PreviewNPC_Click" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" IsTabStop="False">
                 <Button.ToolTip>
                     <TextBlock>
                         View NPC / Monster Statblock
@@ -147,7 +147,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Save NPC" Click="SaveNPCToFile" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Save NPC" Click="SaveNPCToFile" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" IsTabStop="False">
                 <Button.ToolTip>
                     <TextBlock>
                     Save your NPC to your drive as a *.JSON file
@@ -156,7 +156,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Add to Project" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" Click="AddToProjectButton_Click">
+            <Button Content="Add to Project" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="90" Click="AddToProjectButton_Click" IsTabStop="False">
                 <Button.ToolTip>
                     <TextBlock>
                     Add this NPC to a parsing project (or update it if it already part of a project) depending on the settings chosen in your project

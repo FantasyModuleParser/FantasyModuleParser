@@ -32,6 +32,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
         #region Variables
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 		string installFolder = "FMP/NPC";
+		private bool _isViewStatblockWindowOpen = false;
 		#endregion
 		public NPCOptionControl()
 		{
@@ -52,38 +53,46 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			switch (menuitem.Name)
 			{
 				case "About":
-					new About().Show();
+                    new About().ShowDialog();
 					break;
 				case "ManageCategories":
-					new FMPConfigurationView().Show();
+					new FMPConfigurationView().ShowDialog();
+					break;
+				case "ManageLanguages":
+					new FMPConfigurationView().ShowDialog();
 					break;
 				case "ManageProject":
-					new ProjectManagement().Show();
+					new ProjectManagement().ShowDialog();
 					break;
 				case "ProjectManagement":
-					new ProjectManagement().Show();
+					new ProjectManagement().ShowDialog();
 					break;
 				case "Settings":
-					new Settings().Show();
+					new Settings().ShowDialog();
 					break;
 				case "Supporters":
-					new Supporters().Show();
+					new Supporters().ShowDialog();
 					break;
 			}
 		}
 		#region MenuOptions
-		private void EditDeleteNPC_Click(object sender, RoutedEventArgs e)
-		{
-			EditDeleteNPC win2 = new EditDeleteNPC();
-			win2.Show();
-		}
+		
 		#endregion
 		#region Actions
 		private void ImportText_Click(object sender, RoutedEventArgs e)
 		{
-			new ImportText().Show();
+			ImportText importTextWindow = new ImportText();
+			importTextWindow.IsVisibleChanged += ImportTextWindow_IsVisibleChanged;
+			importTextWindow.Show();
 		}
-		private void FGListOptions_Click(object sender, RoutedEventArgs e)
+
+		private void ImportTextWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+			(DataContext as NPCOptionControlViewModel).Refresh();
+			refreshNPCUserControls();
+		}
+
+        private void FGListOptions_Click(object sender, RoutedEventArgs e)
 		{
 			new FGListOptions().Show();
 		}
@@ -102,12 +111,9 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void NewNPC_Click(object sender, RoutedEventArgs e)
 		{
 			npcController.ClearNPCModel();
-			DataContext = npcController.GetNPCModel();
-			BaseStatsUserControl.Refresh();
-			SkillsUserControl.Refresh();
-			SpellcastingUserControl.Refresh();
-			TraitsUserControl.Refresh();
-			InnateCastingUserControl.Refresh();
+			//DataContext = npcController.GetNPCModel();
+			(DataContext as NPCOptionControlViewModel).Refresh();
+			refreshNPCUserControls();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -124,22 +130,30 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				NPCModel npcModel = npcController.GetNPCModel();
 
 				//Refresh all the data on the UI
-				DataContext = npcModel;
+				//DataContext = npcModel;
+				(DataContext as NPCOptionControlViewModel).Refresh();
 
 				// TODO:  Get the active tab the user is on
 				// As the assumption here is the User is on the Base Stats tab while loading
 				// a NPC File
-				BaseStatsUserControl.Refresh();
-				SkillsUserControl.Refresh();
-				SpellcastingUserControl.Refresh();
-				TraitsUserControl.Refresh();
-				InnateCastingUserControl.Refresh();
+				refreshNPCUserControls();
 			}
 		}
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
-			new PreviewNPC().Show();
+			if (!_isViewStatblockWindowOpen)
+			{
+				_isViewStatblockWindowOpen = true;
+				PreviewNPC previewNPC = new PreviewNPC();
+				previewNPC.Closing += PreviewNPC_Closing;
+				previewNPC.Show();
+			}
+		}
+
+		private void PreviewNPC_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			_isViewStatblockWindowOpen = false;
 		}
 
 		private void NPCOptionControl_Loaded(object sender, RoutedEventArgs e)
@@ -173,6 +187,18 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
 			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
 			DataContext = npcOptionControlViewModel;
+		}
+
+		private void refreshNPCUserControls()
+		{
+			npcOptionControlViewModel.Refresh();
+			BaseStatsUserControl.Refresh();
+			SkillsUserControl.Refresh();
+			SpellcastingUserControl.Refresh();
+			TraitsUserControl.Refresh();
+			InnateCastingUserControl.Refresh();
+			ResistanceUserControl.Refresh();
+			ActionOverviewUserControl.Refresh();
 		}
 	}
 }

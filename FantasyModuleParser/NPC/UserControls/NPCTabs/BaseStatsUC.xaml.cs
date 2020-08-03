@@ -24,16 +24,25 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     {
         #region Controllers
         public NPCController npcController { get; set; }
+		#endregion
+
+		#region Variables
+		private bool _isViewDiceFunctionWindowOpen = false;
         #endregion
 
         #region Methods
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"[^0-9-]+"); ;
-            e.Handled = regex.IsMatch(e.Text);
-        }
-        #endregion
-        public BaseStatsUC()
+			Regex regex = new Regex(@"[^0-9-]+"); ;
+			e.Handled = regex.IsMatch(e.Text);
+		}
+		private void PositiveNumberValidationTextBox(object sender, TextCompositionEventArgs e)
+		{
+			Regex regex = new Regex(@"[^0-9-]+");
+			e.Handled = regex.IsMatch(e.Text) || e.Text.Contains("-");
+		}
+		#endregion
+		public BaseStatsUC()
         {
             InitializeComponent();
             npcController = new NPCController();
@@ -62,6 +71,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 				}
 			}
 		}
+		
 		private void DexterityScore_TextChanged(object sender, RoutedEventArgs e)
 		{
 			int num;
@@ -115,10 +125,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		}
 		private void WisdomScore_TextChanged(object sender, RoutedEventArgs e)
 		{
-			int num;
-			if (int.TryParse(strAttrWis.Text, out num))
+			uint num;
+			if (uint.TryParse(strAttrWis.Text, out num))
 			{
-				int answer = -5 + (num / 2);
+				int answer = (int)(-5 + (num / 2));
 				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
@@ -132,10 +142,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		}
 		private void CharismaScore_TextChanged(object sender, RoutedEventArgs e)
 		{
-			int num;
-			if (int.TryParse(strAttrCha.Text, out num))
+			uint num;
+			if (uint.TryParse(strAttrCha.Text, out num))
 			{
-				int answer = -5 + (num / 2);
+				int answer = (int)(-5 + (num / 2));
 				StringBuilder stringBuilder = new StringBuilder();
 				if (num < 10)
 				{
@@ -151,7 +161,18 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 
 		private void DiceRoller_Click(object sender, RoutedEventArgs e)
 		{
-			new DiceFunction().Show();
+			if (!_isViewDiceFunctionWindowOpen)
+			{
+				_isViewDiceFunctionWindowOpen = true;
+				DiceFunction diceFunction = new DiceFunction();
+				diceFunction.Closing += DiceFunction_Closing;
+				diceFunction.Show();
+			}
+		}
+
+		private void DiceFunction_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			_isViewDiceFunctionWindowOpen = false;
 		}
 
 		private void strNPCToken_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -162,5 +183,5 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			if (openFileDialog.ShowDialog() == true)
 				strNPCToken.Text = openFileDialog.FileName;
 		}
-	}
+    }
 }

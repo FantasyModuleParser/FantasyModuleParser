@@ -13,6 +13,7 @@ namespace FantasyModuleParser
 
         public App()
         {
+            ShutdownMode = ShutdownMode.OnLastWindowClose;
             NPCController npcController = new NPCController();
             NpcModel = npcController.InitializeNPCModel();
         }
