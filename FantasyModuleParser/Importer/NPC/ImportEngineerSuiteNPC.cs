@@ -11,6 +11,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FantasyModuleParser.Importer.NPC
 {
@@ -923,110 +924,33 @@ namespace FantasyModuleParser.Importer.NPC
             if (standardAction.Length == 0 || standardAction.Trim().Length == 0)
                 return;
 
-            string[] standardActionArray;
-            StringBuilder stringBuilder = new StringBuilder();
+            
             if (standardAction.StartsWith(Multiattack.LocalActionName))
             {
-                Multiattack multiattackModel = new Multiattack();
-                standardActionArray = standardAction.Split('.');
-                for (int idx = 1; idx < standardActionArray.Length; idx++)
-                {
-                    stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
-                }
-                multiattackModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
-                npcModel.NPCActions.Add(multiattackModel);
+                ParseMultiattackAction(npcModel, standardAction);
                 return;
             }
 
             // For any standard action, it will contain one of the following from the WeaponType enum description
-            if(standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA)) ||
+            if (standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA)) ||
                 standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MWA)) ||
                 standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RSA)) ||
                 standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RWA)) ||
                 standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.SA)) ||
                 standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.WA)))
             {
-                WeaponAttack weaponAttackModel = new WeaponAttack();
-
-                weaponAttackModel.WeaponType = importCommonUtils.GetWeaponTypeFromString(standardAction);
-                weaponAttackModel.ActionName = standardAction.Split('.')[0];
-
-                int firstColonIndex = standardAction.IndexOf(':');
-                string weaponDescription = standardAction.Substring(firstColonIndex + 2);
-
-                string[] weaponDescriptionDataSplit = weaponDescription.Split(',');
-
-                foreach(string weaponDescriptionData in weaponDescriptionDataSplit)
-                {
-                    if(weaponDescriptionData.Contains("to hit"))
-                    {
-                        weaponAttackModel.ToHit = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[0]);
-                    }
-                    if (weaponDescriptionData.Contains("reach"))
-                    {
-                        weaponAttackModel.Reach = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[2]);
-                    }
-                    if (weaponDescriptionData.Contains("range"))
-                    {
-                        if(weaponAttackModel.WeaponType.Equals(WeaponType.SA) || weaponAttackModel.WeaponType.Equals(WeaponType.WA))
-                        {
-                            weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[6], CultureInfo.CurrentCulture);
-                        } 
-                        else
-                        { 
-                            weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[0], CultureInfo.CurrentCulture);
-                            weaponAttackModel.WeaponRangeLong = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[1], CultureInfo.CurrentCulture);
-                        }
-                    }
-                    if (weaponDescriptionData.Contains("one target"))
-                    {
-                        weaponAttackModel.TargetType = TargetType.target;
-                    }
-                    if (weaponDescriptionData.Contains("one creature"))
-                    {
-                        weaponAttackModel.TargetType = TargetType.creature;
-                    }
-                }
-
-                string damagePropertyData = weaponDescription.Substring(weaponDescription.IndexOf("Hit: ", StringComparison.Ordinal) + 4);
-                if (damagePropertyData.Contains(" or "))
-                {
-                    string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " or " }, StringSplitOptions.None);
-                    weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
-                    weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
-                    weaponAttackModel.IsVersatile = true;
-                }
-                else if (damagePropertyData.Contains(" plus "))
-                {
-                    string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
-                    weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
-                    weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
-                    weaponAttackModel.IsVersatile = false;
-                }
-                else
-                {
-                    weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyData);
-                    weaponAttackModel.SecondaryDamage = null;
-                    weaponAttackModel.IsVersatile = false;
-                }
-
-                weaponAttackModel.IsMagic = damagePropertyData.Contains("magic");
-                weaponAttackModel.IsSilver = damagePropertyData.Contains("silver");
-                weaponAttackModel.IsAdamantine = damagePropertyData.Contains("adamantine");
-                weaponAttackModel.IsColdForgedIron = damagePropertyData.Contains("cold-forged iron");
-
-                //TODO:  Add Other Text
-                weaponAttackModel.OtherText = "";
-
-                // Update the WA description
-                ActionController actionController = new ActionController();
-                actionController.GenerateWeaponDescription(weaponAttackModel);
-
-                npcModel.NPCActions.Add(weaponAttackModel);
+                ParseWeaponAttackAction(npcModel, standardAction);
                 return;
             }
 
             // if not Multiattack or standard action, then it's an OtherAction
+            ParseOtherAction(npcModel, standardAction);
+        }
+
+        private static string[] ParseOtherAction(NPCModel npcModel, string standardAction)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string[] standardActionArray;
             OtherAction otherActionModel = new OtherAction();
             standardActionArray = standardAction.Split('.');
             for (int idx = 1; idx < standardActionArray.Length; idx++)
@@ -1036,6 +960,140 @@ namespace FantasyModuleParser.Importer.NPC
             otherActionModel.ActionName = standardActionArray[0];
             otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
             npcModel.NPCActions.Add(otherActionModel);
+            return standardActionArray;
+        }
+
+        private void ParseWeaponAttackAction(NPCModel npcModel, string standardAction)
+        {
+            WeaponAttack weaponAttackModel = new WeaponAttack();
+
+            weaponAttackModel.WeaponType = importCommonUtils.GetWeaponTypeFromString(standardAction);
+            weaponAttackModel.ActionName = standardAction.Split('.')[0];
+
+            int firstColonIndex = standardAction.IndexOf(':');
+            string weaponDescription = standardAction.Substring(firstColonIndex + 2);
+
+            string[] weaponDescriptionDataSplit = weaponDescription.Split(',');
+
+            foreach (string weaponDescriptionData in weaponDescriptionDataSplit)
+            {
+                if (weaponDescriptionData.Contains("to hit"))
+                {
+                    weaponAttackModel.ToHit = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[0]);
+                }
+                if (weaponDescriptionData.Contains("reach"))
+                {
+                    weaponAttackModel.Reach = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[2]);
+                }
+                if (weaponDescriptionData.Contains("range"))
+                {
+                    if (weaponAttackModel.WeaponType.Equals(WeaponType.SA) || weaponAttackModel.WeaponType.Equals(WeaponType.WA))
+                    {
+                        weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[6], CultureInfo.CurrentCulture);
+                    }
+                    else
+                    {
+                        weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[0], CultureInfo.CurrentCulture);
+                        weaponAttackModel.WeaponRangeLong = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[1], CultureInfo.CurrentCulture);
+                    }
+                }
+                if (weaponDescriptionData.Contains("one target"))
+                {
+                    weaponAttackModel.TargetType = TargetType.target;
+                }
+                if (weaponDescriptionData.Contains("one creature"))
+                {
+                    weaponAttackModel.TargetType = TargetType.creature;
+                }
+            }
+
+            ParseWeaponAttackDamageText(weaponAttackModel, weaponDescription);
+
+            // Update the WA description
+            ActionController actionController = new ActionController();
+            actionController.GenerateWeaponDescription(weaponAttackModel);
+
+            npcModel.NPCActions.Add(weaponAttackModel);
+        }
+
+        private void ParseWeaponAttackDamageText(WeaponAttack weaponAttackModel, string weaponDescription)
+        {
+            Regex PrimarySecondaryDamageRegex = new Regex(@".*damage plus.*damage");
+            Regex PrimaryOnlyDamageRegex = new Regex(@".*?damage");
+            Regex PrimaryWithVersatileRegex = new Regex(@".*damage or.*if used with two hands");
+            string damagePropertyData = weaponDescription.Substring(weaponDescription.IndexOf("Hit: ", StringComparison.Ordinal) + 4);
+            string flavorText = "";
+            // This is the versatile weapon check
+            if (PrimaryWithVersatileRegex.IsMatch(damagePropertyData))
+            {
+                string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " or " }, StringSplitOptions.None);
+                weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
+                weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
+                weaponAttackModel.IsVersatile = true;
+
+                // Parse out any flavor text
+                ParseWeaponAttackFlavorText(weaponAttackModel, damagePropertyData, PrimaryWithVersatileRegex);
+            }
+            // Check for a secondary damage type
+            else if (PrimarySecondaryDamageRegex.IsMatch(damagePropertyData))
+            {
+                string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
+                weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
+                weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
+                weaponAttackModel.IsVersatile = false;
+
+                // Parse out any flavor text
+                ParseWeaponAttackFlavorText(weaponAttackModel, damagePropertyData, PrimarySecondaryDamageRegex);
+            }
+            else
+            {
+                weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyData);
+                weaponAttackModel.SecondaryDamage = null;
+                weaponAttackModel.IsVersatile = false;
+                // Parse out any flavor text
+                ParseWeaponAttackFlavorText(weaponAttackModel, damagePropertyData, PrimaryOnlyDamageRegex);
+            }
+
+            weaponAttackModel.IsMagic = damagePropertyData.Contains("magic");
+            weaponAttackModel.IsSilver = damagePropertyData.Contains("silver");
+            weaponAttackModel.IsAdamantine = damagePropertyData.Contains("adamantine");
+            weaponAttackModel.IsColdForgedIron = damagePropertyData.Contains("cold-forged iron");
+
+        }
+
+        private void ParseWeaponAttackFlavorText(WeaponAttack weaponAttackModel, string damagePropertyData, Regex regex)
+        {
+            // Check for any flavor text
+            int regexMatchLength = regex.Match(damagePropertyData).Value.Length;
+            if (damagePropertyData.Length != regexMatchLength)
+            {
+                // in the case that the last character is a period, just ignore flavor text
+                if (damagePropertyData.Substring(regexMatchLength).Equals(".", StringComparison.Ordinal))
+                {
+                    weaponAttackModel.OtherTextCheck = false;
+                    weaponAttackModel.OtherText = "";
+                } 
+                else 
+                {     
+                    weaponAttackModel.OtherTextCheck = true;
+                    weaponAttackModel.OtherText = damagePropertyData.Substring(regexMatchLength);
+                }
+            }
+        }
+
+        private static string[] ParseMultiattackAction(NPCModel npcModel, string standardAction)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string[] standardActionArray;
+            Multiattack multiattackModel = new Multiattack();
+            standardActionArray = standardAction.Split('.');
+            for (int idx = 1; idx < standardActionArray.Length; idx++)
+            {
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
+            }
+            multiattackModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
+            npcModel.NPCActions.Add(multiattackModel);
+            return standardActionArray;
         }
 
         private string GetDescription(Type EnumType, object enumValue)

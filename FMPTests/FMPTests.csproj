@@ -74,6 +74,7 @@
     <EmbeddedResource Include="Resources\NPC_YADragon.npc" />
     <EmbeddedResource Include="Resources\GiantFireBeetle.npc" />
     <EmbeddedResource Include="Resources\Ankhotep_The_Mummy_Priest.npc" />
+    <EmbeddedResource Include="Resources\Giant_Sand_Spider.npc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FantasyModuleParser\FMP.csproj">

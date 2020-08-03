@@ -29,8 +29,9 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
         {
+
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(@embeddedResourcePath))
-            using (StreamReader reader = new StreamReader(stream, Encoding.UTF32))
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
             {
                 return reader.ReadToEnd();
             }
@@ -855,6 +856,31 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
 
             Assert.AreEqual("5th", actualNPCModel.SpellcastingCasterLevel);
+
+            // Need to validate the Flavor text for Rotting Fist attack
+            Assert.AreEqual(2, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
+            Assert.AreEqual(true, (actualNPCModel.NPCActions[0] as WeaponAttack).OtherTextCheck);
+            Assert.AreEqual(". If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. A cursed target can't regain hit points, and its maximum hit points decrease by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust.\\rThe curse lasts until removed by the remove curse spell or other magic.",
+                (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
+        }
+
+        /// <summary>
+        /// Test is to test that an action's flavor text is being imported correctly
+        /// </summary>
+        [TestMethod()]
+        public void Import_GiantSandSpider_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.Giant_Sand_Spider.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.AreEqual(1, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
+
+            Assert.AreEqual(true, (actualNPCModel.NPCActions[0] as WeaponAttack).OtherTextCheck);
+            Assert.AreEqual(", and the target must make a DC 11 Constitution saving throw, taking 13 (3d8) poison damage on a failed save, or half as much on a successful one. If the poison reduces the target to 0 hit points, the target is stable but poisoned for 1 hour. Even after regaining hit points, the target is paralyzed while it retains the poisoned condition",
+                (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
         }
     }
 }

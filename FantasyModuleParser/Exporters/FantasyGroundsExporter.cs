@@ -511,8 +511,7 @@ namespace FantasyModuleParser.Exporters
 		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
-			string name_nocomma = name.Replace(",", "");
-			return name_nocomma.Replace(" ", "_");
+			return name.Replace(" ", "_");
 		}
 		private void WriteLocked(XmlWriter xmlWriter, NPCModel npcModel)
 		{
