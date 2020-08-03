@@ -23,6 +23,20 @@ namespace FantasyModuleParser.Exporters
 		string Immunity;
 		string Resistance;
 
+		public string DatabaseXML(ModuleModel moduleModel)
+        {
+			string xmlRecord;
+			if (moduleModel.IsGMOnly)
+            {
+				return xmlRecord = "db.xml";
+            }
+			else
+            {
+				return xmlRecord = "client.xml";
+            }
+			return "";
+        }
+
 		public void CreateModule(ModuleModel moduleModel)
 		{
 			if (moduleModel.ModulePath == null || moduleModel.ModulePath.Length == 0)
@@ -52,7 +66,7 @@ namespace FantasyModuleParser.Exporters
 			string definitionXmlFileContent = GenerateDefinitionXmlContent(moduleModel);
 
 			// Write the string array to a new file named "WriteLines.txt".
-			using (StreamWriter outputFile = new StreamWriter(Path.Combine(moduleFolderPath, "db.xml")))
+			using (StreamWriter outputFile = new StreamWriter(Path.Combine(moduleFolderPath, DatabaseXML(moduleModel))))
 			{
 				outputFile.WriteLine(dbXmlFileContent);
 			}
@@ -161,7 +175,10 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();                // Future use
 
 				xmlWriter.WriteStartElement("reference");
-				xmlWriter.WriteAttributeString("static", "true");
+				if (moduleModel.IsLockedRecords)
+                {
+					xmlWriter.WriteAttributeString("static", "true");
+				}
 				xmlWriter.WriteStartElement("npcdata");
 
 				//Category section in the XML generation
@@ -511,7 +528,7 @@ namespace FantasyModuleParser.Exporters
 		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
-			return name.Replace(" ", "_");
+			return name.Replace(" ", "_").Replace(",", "");
 		}
 		private void WriteLocked(XmlWriter xmlWriter, NPCModel npcModel)
 		{
