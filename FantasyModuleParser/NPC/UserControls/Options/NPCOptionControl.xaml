@@ -106,7 +106,7 @@
             </TabItem>
             <TabItem Header="Actions">
                 <Grid Background="#FFE5E5E5">
-                    <ActionUserControl:ActionOverviewUC x:Name="ActionOverviewUserControl" />
+                    <ActionUserControl:ActionOverviewUC x:Name="ActionOverviewUserControl"  />
                 </Grid>
             </TabItem>
             <TabItem Header="Description">

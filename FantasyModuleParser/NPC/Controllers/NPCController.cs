@@ -33,6 +33,7 @@ namespace FantasyModuleParser.NPC.Controllers
 			{ 
 				JsonSerializer serializer = new JsonSerializer();
 				serializer.Formatting = Formatting.Indented;
+				serializer.TypeNameHandling = TypeNameHandling.Objects;
 				serializer.Serialize(file, npcModel);
 			}
 		}
@@ -51,7 +52,10 @@ namespace FantasyModuleParser.NPC.Controllers
 		public NPCModel Load(string path)
 		{
 			string jsonData = File.ReadAllText(@path);
-			NPCModel npcModel = JsonConvert.DeserializeObject<NPCModel>(jsonData);
+			NPCModel npcModel = JsonConvert.DeserializeObject<NPCModel>(jsonData, new JsonSerializerSettings()
+			{
+				TypeNameHandling = TypeNameHandling.Auto
+			});
 			_npcModel = npcModel;
 			OnLoadNpcModelEvent(EventArgs.Empty);
 			return _npcModel;
@@ -74,6 +78,10 @@ namespace FantasyModuleParser.NPC.Controllers
 			npcModel.SpecialWeaponDmgImmunityModelList = GetSelectableActionModelList(typeof(DamageType));
 			npcModel.SpecialWeaponResistanceModelList = GetSelectableActionModelList(typeof(WeaponResistance));
 			npcModel.SpecialWeaponDmgResistanceModelList = GetSelectableActionModelList(typeof(DamageType));
+
+			// For SpecialWeaponDmgResistance & Immunity lists, make the default selected to "No special weapon immunity / resistance", which is the first in each list
+			npcModel.SpecialWeaponImmunityModelList.First().Selected = true;
+			npcModel.SpecialWeaponResistanceModelList.First().Selected = true;
 
 			// Setup Langauges for passing Unit Tests
 			npcModel.StandardLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();

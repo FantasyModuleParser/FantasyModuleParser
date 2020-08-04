@@ -23,6 +23,20 @@ namespace FantasyModuleParser.Exporters
 		string Immunity;
 		string Resistance;
 
+		public string DatabaseXML(ModuleModel moduleModel)
+        {
+			string xmlRecord;
+			if (moduleModel.IsGMOnly)
+            {
+				return xmlRecord = "db.xml";
+            }
+			else
+            {
+				return xmlRecord = "client.xml";
+            }
+			return "";
+        }
+
 		public void CreateModule(ModuleModel moduleModel)
 		{
 			if (moduleModel.ModulePath == null || moduleModel.ModulePath.Length == 0)
@@ -52,7 +66,7 @@ namespace FantasyModuleParser.Exporters
 			string definitionXmlFileContent = GenerateDefinitionXmlContent(moduleModel);
 
 			// Write the string array to a new file named "WriteLines.txt".
-			using (StreamWriter outputFile = new StreamWriter(Path.Combine(moduleFolderPath, "db.xml")))
+			using (StreamWriter outputFile = new StreamWriter(Path.Combine(moduleFolderPath, DatabaseXML(moduleModel))))
 			{
 				outputFile.WriteLine(dbXmlFileContent);
 			}
@@ -125,7 +139,7 @@ namespace FantasyModuleParser.Exporters
 
 			foreach (NPCModel npcModel in FatNPCList)
             {
-				if (npcModel.NPCToken != null)
+				if (npcModel.NPCToken != null && npcModel.NPCToken != " ")
                 {
 					string Filename = NPCNameToXMLFormat(npcModel) + "_token.png";
 					string NPCTokenFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "tokens", Filename);
@@ -161,7 +175,10 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();                // Future use
 
 				xmlWriter.WriteStartElement("reference");
-				xmlWriter.WriteAttributeString("static", "true");
+				if (moduleModel.IsLockedRecords)
+                {
+					xmlWriter.WriteAttributeString("static", "true");
+				}
 				xmlWriter.WriteStartElement("npcdata");
 
 				//Category section in the XML generation
@@ -360,7 +377,15 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("reference_colindex");                // Write "reference_colindex"
 			xmlWriter.WriteEndElement();                                // Close </class>
 			xmlWriter.WriteStartElement("recordname");                  // Open <recordname>
-			xmlWriter.WriteString(listId + "@" + moduleModel.Name);             // Write "reference.npclist.bytype"
+			if (moduleModel.IsLockedRecords == true)
+            {
+				xmlWriter.WriteString(listId + "@" + moduleModel.Name);             // Write "reference.npclist.bytype"
+			}
+			else
+            {
+				xmlWriter.WriteString(listId);
+
+			}
 			xmlWriter.WriteEndElement();                                // Close </recordname>
 			xmlWriter.WriteEndElement();                                // Close </listlink>
 			xmlWriter.WriteStartElement("name");                        // Open <name>
@@ -380,7 +405,14 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString("npc");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("recordname");
-				xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
+				if (moduleModel.IsLockedRecords)
+                {
+					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
+				}
+				else 
+				{
+					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc));
+				}	
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteStartElement("field");
@@ -443,7 +475,22 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void ProcessNPCListByCR(XmlWriter xmlWriter, ModuleModel moduleModel, string actualCR, List<NPCModel> NPCList)
 		{
-			xmlWriter.WriteStartElement("cr" + actualCR);
+			if (actualCR == "1/8")
+			{
+				xmlWriter.WriteStartElement("CR0125");
+			}
+			else if (actualCR == "1/4")
+			{
+				xmlWriter.WriteStartElement("CR025");
+			}
+			else if (actualCR == "1/2")
+			{
+				xmlWriter.WriteStartElement("CR05");
+			}
+			else
+			{
+				xmlWriter.WriteStartElement("CR" + actualCR);
+			}
 			xmlWriter.WriteStartElement("description");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("CR " + actualCR);
@@ -481,7 +528,7 @@ namespace FantasyModuleParser.Exporters
 		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
-			return name.Replace(" ", "_");
+			return name.Replace(" ", "_").Replace(",", "");
 		}
 		private void WriteLocked(XmlWriter xmlWriter, NPCModel npcModel)
 		{
@@ -820,6 +867,8 @@ namespace FantasyModuleParser.Exporters
 				}
 
 			string weaponDamageResistanceString = stringBuilder.ToString().Trim();
+			if (weaponDamageResistanceString.StartsWith(";", true, CultureInfo.CurrentCulture))
+				weaponDamageResistanceString = weaponDamageResistanceString.Remove(0, 2);
 			if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture))
 				weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1);
 
@@ -1200,13 +1249,21 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("token"); // Open <token>
 			xmlWriter.WriteAttributeString("type", "token"); // Add type=token
-			if (npcModel.NPCToken == null)
+			if (npcModel.NPCToken == null || npcModel.NPCToken == " ")
 			{
 				xmlWriter.WriteString("");
 			}
 			else
 			{
-				xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png@" + moduleModel.Name);
+				if (moduleModel.IsLockedRecords == true)
+                {
+					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png@" + moduleModel.Name);
+				}
+				else
+                {
+					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png");
+
+				}
 			}
 			xmlWriter.WriteEndElement(); // Close </token>
 		}
@@ -1246,16 +1303,16 @@ namespace FantasyModuleParser.Exporters
 			{
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.Append("The " + npcModel.NPCName.ToLower() + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility);
-				if (npcModel.InnateSpellSaveDCCheck)
+				if (npcModel.InnateSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.InnateSpellSaveDC);
-					if (npcModel.InnateSpellHitBonusCheck)
+					if (npcModel.InnateSpellHitBonus != 0)
 					{
 						stringBuilder.Append("spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus);
 					}
 					stringBuilder.Append(")");
 				}
-				else if (!npcModel.InnateSpellSaveDCCheck && npcModel.InnateSpellHitBonusCheck)
+				else if (npcModel.InnateSpellHitBonus != 0)
 				{
 					stringBuilder.Append("(spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus + ")");
 				}
@@ -1296,18 +1353,14 @@ namespace FantasyModuleParser.Exporters
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " is a " + npcModel.SpellcastingCasterLevel + "-level spellcaster. ");
 				stringBuilder.Append("Its spellcasting ability is " + npcModel.SCSpellcastingAbility);
-				if (npcModel.SpellcastingSpellSaveDCCheck)
+				if (npcModel.SpellcastingSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.SpellcastingSpellSaveDC);
-					if (npcModel.SpellcastingSpellHitBonusCheck)
+					if (npcModel.SpellcastingSpellHitBonus != 0)
 					{
 						stringBuilder.Append(", spell hit bonus ").Append(npcModel.SpellcastingSpellHitBonus >= 0 ? "+" : "").Append(npcModel.SpellcastingSpellHitBonus);
 					}
 					stringBuilder.Append(")");
-				}
-				else if (!npcModel.SpellcastingSpellSaveDCCheck && npcModel.SpellcastingSpellHitBonusCheck)
-				{
-					stringBuilder.Append("(spell hit bonus ").Append(npcModel.SpellcastingSpellHitBonus >= 0 ? "+" : "").Append(npcModel.SpellcastingSpellHitBonus + ")");
 				}
 
 				stringBuilder.Append(". ");
