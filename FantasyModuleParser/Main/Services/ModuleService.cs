@@ -75,7 +75,10 @@ namespace FantasyModuleParser.Main.Services
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
             else
-                categoryModel.NPCModels.Add(npcModel);  // The real magic is here
+            { 
+                if( categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
+                    categoryModel.NPCModels.Add(npcModel);  // The real magic is here
+            }
 
             string appendedFileName = moduleModel.SaveFilePath + "\\" + moduleModel.ModFilename + ".fmp";
             Save(appendedFileName, moduleModel);

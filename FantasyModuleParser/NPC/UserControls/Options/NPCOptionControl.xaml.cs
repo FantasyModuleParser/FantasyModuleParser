@@ -83,7 +83,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void ImportTextWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 			(DataContext as NPCOptionControlViewModel).Refresh();
-			refreshNPCUserControls();
+			RefreshUserControls();
 		}
 
         private void FGListOptions_Click(object sender, RoutedEventArgs e)
@@ -180,6 +180,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			npcOptionControlViewModel.Refresh();
 			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
 			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
+			CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
 			DataContext = npcOptionControlViewModel;
 		}
 
@@ -192,8 +193,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					categoryIndex = categoryModel.NPCModels.Count - 1;
 				else
 					categoryIndex--;
-				npcController.UpdateNPCModel(categoryModel.NPCModels[categoryIndex]);
-            }
+
+				// By updating the selected Item here, it will invoke CategorySelectedNPCComboBox_SelectionChanged event 
+				// because the CategorySelectedNPCComboBox selected item has changed
+				CategorySelectedNPCComboBox.SelectedItem = categoryModel.NPCModels[categoryIndex];
+			}
 			RefreshUserControls();
 
 		}
@@ -208,7 +212,9 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				else
 					categoryIndex++;
 
-				npcController.UpdateNPCModel(categoryModel.NPCModels[categoryIndex]);
+				// By updating the selected Item here, it will invoke CategorySelectedNPCComboBox_SelectionChanged event 
+				// because the CategorySelectedNPCComboBox selected item has changed
+				CategorySelectedNPCComboBox.SelectedItem = categoryModel.NPCModels[categoryIndex];
 			}
 			RefreshUserControls();
 		}
@@ -225,6 +231,13 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			InnateCastingUserControl.Refresh();
 			ResistanceUserControl.Refresh();
 			ActionOverviewUserControl.Refresh();
+		}
+
+        private void CategorySelectedNPCComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			NPCModel selectedNPCModel = CategorySelectedNPCComboBox.SelectedItem as NPCModel;
+			npcController.UpdateNPCModel(selectedNPCModel);
+			RefreshUserControls();
 		}
     }
 }
