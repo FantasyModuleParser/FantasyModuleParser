@@ -1,65 +1,65 @@
 [
 	{
         "ver": "0.1.0.1-Alpha",
-        "fixed": "(Lost to time.)",
-		"date": "2020-07-14",
-        "added": "(Lost to time.)",
-        "known": "(Lost to time.)"
+        "fixed": "",
+	"date": "2020-07-14",
+        "added": "Initial Alpha release",
+        "known": ""
     },
 	{
         "ver": "0.1.0.2-Alpha",
-        "fixed": "- Preview Window would add (blind beyond this radius) to all Senses\r- Negative numbers able to be input for Abilities, Speed, Senses, and Experience",
-		"date": "2020-07-14",
-        "added": "(Lost to time.)",
-        "known": "(Lost to time.)"
+        "fixed": "Preview Window would add (blind beyond this radius) to all Senses\nNegative numbers able to be input for Abilities, Speed, Senses, and Experience",
+	"date": "2020-07-14",
+        "added": "",
+        "known": ""
     },
 	{
         "ver": "0.1.0.3-Alpha",
-        "fixed": "- Fixed some Github issues with Commits\r",
-		"date": "2020-07-14",
-        "added": "- .mod files SHOULD work in both FGC and FGU without the unzip/rezip workaround",
-        "known": "(Lost to time.)"
+        "fixed": "Fixed some Github issues with Commits\n",
+	"date": "2020-07-14",
+        "added": ".mod files SHOULD work in both FGC and FGU without the unzip/rezip workaround",
+        "known": ""
     },
 	{
         "ver": "0.1.0.4-Alpha",
-        "fixed": "- User Interface adjustments with textboxes",
-		"date": "2020-07-15",
-        "added": "(Lost to time.)",
-        "known": "(Lost to time.)"
+        "fixed": "User Interface adjustments with textboxes",
+	"date": "2020-07-15",
+        "added": "",
+        "known": ""
     },
 	{
         "ver": "0.1.0.5-Alpha",
-        "fixed": "- Multiple instances of the same window opening by clicking an option multiple times",
-		"date": "2020-07-15",
-        "added": "(Lost to time.)",
-        "known": "(Lost to time.)"
+        "fixed": "Multiple instances of the same window opening by clicking an option multiple times",
+	"date": "2020-07-15",
+        "added": "",
+        "known": ""
     },
 	{
         "ver": "0.1.0.6-Alpha",
-        "fixed": "- Spaces in NPC Name breaking FMP at Create Module",
-		"date": "2020-07-18",
-        "added": "(Lost to time.)",
-        "known": "(Lost to time.)"
+        "fixed": "Spaces in NPC Name breaking FMP at Create Module",
+	"date": "2020-07-18",
+        "added": "",
+        "known": ""
     },
 	{
         "ver": "0.1.0.7-Alpha",
         "date": "2020-07-29",
-        "fixed": "(Lost to time.)",
-        "added": "- NPC Tokens\r- Thumbnails\r- Engineer Suite Importer",
-        "known": "- Image tab not yet functional\r- Description tab not yet functional"
+        "fixed": "",
+        "added": "NPC Tokens\nThumbnails\nEngineer Suite Importer",
+        "known": "Image tab not yet functional\nDescription tab not yet functional"
     },
 	{
         "ver": "0.1.0.8-Alpha",
-		"date": "2020-08-03",
-        "fixed": "- Multiple issues with the Engineer Suite Importer\r- Issue with Preview NPC Window not showing Spellcasting section\r- Commas in NPC Name don't break application",
+	"date": "2020-08-03",
+        "fixed": "Multiple issues with the Engineer Suite Importer\nIssue with Preview NPC Window not showing Spellcasting section\nCommas in NPC Name don't break application",
         "added": "GM Only and Locked Records now functional",
-        "known": "- Image tab not yet functional\r- Description tab not yet functional"
+        "known": "Image tab not yet functional\nDescription tab not yet functional"
     },
 	{
         "ver": "0.1.0.9-Alpha",
-		"date": "2020-08-03",
-        "fixed": "- Spellcasting Section is now Two-Way Binding in Preview NPC window",
+	"date": "2020-08-03",
+        "fixed": "Spellcasting Section is now Two-Way Binding in Preview NPC window",
         "added": "",
-        "known": "- Reactions, Legendary Actions, and Lair Actions header don't hide in Preview NPC window when empty"
+        "known": "Reactions, Legendary Actions, and Lair Actions header don't hide in Preview NPC window when empty"
     }
 ]
