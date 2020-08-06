@@ -25,7 +25,13 @@
         </x:Array>
     </UserControl.Resources>
     <Grid>
-        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="620">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="600" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Menu x:Name="Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="620" Grid.Row="0">
             <MenuItem Header="_File">
                 <MenuItem Header="_New NPC" Click="NewNPC_Click"/>
                 <MenuItem Header="_Open NPC" Click="LoadNPCOption_Click"/>
@@ -67,7 +73,7 @@
                 <MenuItem Header="_Buy me a coffee" Visibility="Collapsed" />
             </MenuItem>
         </Menu>
-        <TabControl HorizontalAlignment="Left" Height="605" Margin="0,22,0,0" VerticalAlignment="Top" Width="617">
+        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="617" Grid.Row="1">
             <TabItem Header="Base Stats">
                 <Grid Background="#FFE5E5E5">
                     <BaseStatsUserControl:BaseStatsUC x:Name="BaseStatsUserControl" />
@@ -114,8 +120,8 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
-            <Button Content="Import Text" Click="ImportText_Click" IsEnabled="True" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3">
+            <Button Content="Import Text" Click="ImportText_Click" IsEnabled="False" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
                     Select this button to import your NPC from a PDF, text file, or webpage
@@ -166,9 +172,29 @@
                 </Button.ToolTip>
             </Button>
         </StackPanel>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30">
-            <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top"/>
-            <ComboBox Name="FGCategoryComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="150"/>
-        </StackPanel>
+
+        <Grid Grid.Row="2" Background="#FFE5E5E5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+            <ComboBox x:Name="FGCategoryComboBox" DisplayMemberPath="Name" SelectionChanged="FGCategoryComboBox_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="1"/>
+            <Button x:Name="PrevNPCInCategory_Button" Content="Prev NPC" Grid.Row="0" Grid.Column="2" Margin="5" Grid.RowSpan="2" Click="PrevNPCInCategory_Button_Click"/>
+            <Button x:Name="NextNPCInCategory_Button" Content="Next NPC" Grid.Row="0" Grid.Column="3" Margin="5" Grid.RowSpan="2" Click="NextNPCInCategory_Button_Click"/>
+            <Label Content="Selected NPC:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="0"/>
+            <ComboBox x:Name="CategorySelectedNPCComboBox" DisplayMemberPath="NPCName" SelectionChanged="CategorySelectedNPCComboBox_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="4" Grid.Row="1"/>
+        </Grid>
+        <!--<StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="2">
+            <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <ComboBox Name="FGCategoryComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
+        </StackPanel>-->
     </Grid>
 </UserControl>
