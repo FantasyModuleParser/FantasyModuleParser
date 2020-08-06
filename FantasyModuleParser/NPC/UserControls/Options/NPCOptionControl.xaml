@@ -186,7 +186,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Label Content="FG Category:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
-            <ComboBox x:Name="FGCategoryComboBox" DisplayMemberPath="Name" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="1"/>
+            <ComboBox x:Name="FGCategoryComboBox" DisplayMemberPath="Name" SelectionChanged="FGCategoryComboBox_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="1"/>
             <Button x:Name="PrevNPCInCategory_Button" Content="Prev NPC" Grid.Row="0" Grid.Column="2" Margin="5" Grid.RowSpan="2" Click="PrevNPCInCategory_Button_Click"/>
             <Button x:Name="NextNPCInCategory_Button" Content="Next NPC" Grid.Row="0" Grid.Column="3" Margin="5" Grid.RowSpan="2" Click="NextNPCInCategory_Button_Click"/>
             <Label Content="Selected NPC:" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="0"/>

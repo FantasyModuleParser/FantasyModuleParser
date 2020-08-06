@@ -33,6 +33,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			InitializeComponent();
 			npcController = new NPCController();
 			npcOptionControlViewModel = new NPCOptionControlViewModel();
+			
 			DataContext = npcOptionControlViewModel;
 		}
 		private void openfolder(string strPath, string strFolder)
@@ -179,8 +180,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		public void Refresh()
 		{
 			npcOptionControlViewModel.Refresh();
-			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
-			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
+			if(FGCategoryComboBox.SelectedItem == null)
+			{
+				FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
+				FGCategoryComboBox.SelectedIndex = 0;
+			}
+
 			CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
 			DataContext = npcOptionControlViewModel;
 		}
@@ -240,5 +245,11 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			npcController.UpdateNPCModel(selectedNPCModel);
 			RefreshUserControls();
 		}
-    }
+
+		private void FGCategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			categoryIndex = 0;
+			Refresh();
+		}
+	}
 }
