@@ -1,16 +1,12 @@
-﻿using System;
+﻿using FantasyModuleParser.Main.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace FantasyModuleParser.Main
 {
@@ -29,6 +25,24 @@ namespace FantasyModuleParser.Main
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        public string uri = "https://program.fantasymoduleparser.tech/PATRONS.json";
+        public void run()
+        {
+            List<PatronModel> patrons = JsonConvert.DeserializeObject<List<PatronModel>>(Get(uri));
+            Console.WriteLine("Length of Patrons: " + patrons.Count);
+        }
+        public string Get(string uri)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
         }
     }
 }
