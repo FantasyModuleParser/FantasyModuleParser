@@ -165,8 +165,9 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			}
 
 			ModuleService moduleService = new ModuleService();
-			try { 
+			try {
 				moduleService.AddNPCToCategory(npcController.GetNPCModel(), (FGCategoryComboBox.SelectedItem as CategoryModel).Name);
+				Refresh();
 				MessageBox.Show("NPC has been added to the project");
 			}
 			catch (Exception exception)
