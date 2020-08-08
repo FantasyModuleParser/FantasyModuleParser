@@ -153,9 +153,9 @@ namespace FantasyModuleParser.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon es2_logo1 {
+        internal static System.Drawing.Icon es2_logo2 {
             get {
-                object obj = ResourceManager.GetObject("es2_logo1", resourceCulture);
+                object obj = ResourceManager.GetObject("es2_logo2", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

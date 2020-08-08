@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,12 @@ namespace FantasyModuleParser.Main
     /// </summary>
     public partial class Supporters : Window
     {
+        private SupportersViewModel viewModel;
         public Supporters()
         {
             InitializeComponent();
+            viewModel = new SupportersViewModel();
+            DataContext = viewModel;
 
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
