@@ -452,6 +452,7 @@
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\ViewModels\ActionOverviewUserControlViewModel.cs" />
     <Compile Include="NPC\ViewModels\InnateSpellcastingViewModel.cs" />
     <Compile Include="NPC\ViewModels\NPCOptionControlViewModel.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
