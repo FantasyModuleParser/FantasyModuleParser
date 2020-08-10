@@ -113,6 +113,7 @@ namespace FantasyModuleParser.NPC
         private bool _MarkedSpellsCheck;
         private string _MarkedSpells;
         #endregion
+        private string _NPCImage;
         #endregion
         #region Public Variables
         public string NPCName { get; set; }
@@ -190,7 +191,6 @@ namespace FantasyModuleParser.NPC
         public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
         public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
         public ObservableCollection<LanguageModel> UserLanguages { get; set; }
-        #endregion
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
@@ -239,12 +239,12 @@ namespace FantasyModuleParser.NPC
         public string MarkedSpells { get { return _MarkedSpells; } set { Set(ref _MarkedSpells, value); } }
         public string Description { get; set; }
         public string NonID { get; set; }
-        public string NPCImage { get; set; }
+        public string NPCImage { get { return _NPCImage; } set { Set(ref _NPCImage, value); } }
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
         public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
         public ObservableCollection<ActionModelBase> Reactions { get; } = new ObservableCollection<ActionModelBase>();
-
+        #endregion
         public NPCModel()
         {
         }
