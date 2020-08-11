@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.NPC.Views;
 using System;
@@ -237,6 +238,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			InnateCastingUserControl.Refresh();
 			ResistanceUserControl.Refresh();
 			ActionOverviewUserControl.Refresh();
+			ImageUserControl.Refresh();
 		}
 
         private void CategorySelectedNPCComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

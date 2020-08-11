@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using FantasyModuleParser.NPC.Controllers;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,9 +27,18 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
     /// </summary>
     public partial class ImageUC : UserControl
     {
+        #region Controllers
+        public NPCController npcController { get; set; }
+        #endregion
         public ImageUC()
         {
             InitializeComponent();
+            npcController = new NPCController();
+            DataContext = npcController.GetNPCModel();
+        }
+        public void Refresh()
+        {
+            DataContext = npcController.GetNPCModel();
         }
         private void strNPCImage_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -39,12 +49,12 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFileName = openFileDialog.FileName;
-                strNPCImage.Text = selectedFileName;
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(selectedFileName);
                 bitmap.EndInit();
                 ImageBox.Source = bitmap;
+                strNPCImage.Text = selectedFileName;
             }
         }
 

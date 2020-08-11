@@ -116,7 +116,7 @@
             </TabItem>
             <TabItem Header="Image">
                 <Grid Background="#FFE5E5E5">
-                    <ImageUserControl:ImageUC />
+                    <ImageUserControl:ImageUC x:Name="ImageUserControl"/>
                 </Grid>
             </TabItem>
         </TabControl>
