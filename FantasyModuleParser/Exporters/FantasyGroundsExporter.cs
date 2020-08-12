@@ -194,7 +194,7 @@ namespace FantasyModuleParser.Exporters
                     xmlWriter.WriteAttributeString("name", categoryModel.Name);
                     xmlWriter.WriteAttributeString("baseicon", "0");
                     xmlWriter.WriteAttributeString("decalicon", "0");
-                    foreach (NPCModel npcModel in FatNPCList)
+                    foreach (NPCModel npcModel in categoryModel.NPCModels)
                     {
                         if (npcModel.NPCImage != null && npcModel.NPCImage.Length > 0)
                         {
@@ -204,14 +204,8 @@ namespace FantasyModuleParser.Exporters
                             xmlWriter.WriteStartElement("bitmap");
                             xmlWriter.WriteString("images\\" + NPCNameToXMLFormat(npcModel) + ".jpg");
                             xmlWriter.WriteEndElement();
-                            xmlWriter.WriteStartElement("locked");
-                            xmlWriter.WriteAttributeString("type", "number");
-                            xmlWriter.WriteValue(moduleModel.IsLockedRecords);
-                            xmlWriter.WriteEndElement();
-                            xmlWriter.WriteStartElement("name");
-                            xmlWriter.WriteAttributeString("type", "string");
-                            xmlWriter.WriteString(npcModel.NPCName);
-                            xmlWriter.WriteEndElement();
+							WriteLocked(xmlWriter, npcModel);
+							WriteName(xmlWriter, npcModel);
                             xmlWriter.WriteStartElement("nonid_name");
                             xmlWriter.WriteAttributeString("type", "string");
                             xmlWriter.WriteString(npcModel.NPCName);

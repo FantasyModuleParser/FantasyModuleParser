@@ -39,6 +39,12 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         public void Refresh()
         {
             DataContext = npcController.GetNPCModel();
+
+            NPCModel npcModel = (DataContext as NPCModel);
+            if(npcModel.NPCImage != null && npcModel.NPCImage.Trim().Length != 0)
+            {
+                _displayBitmapImage(npcModel);
+            }
         }
         private void strNPCImage_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -49,13 +55,20 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFileName = openFileDialog.FileName;
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(selectedFileName);
-                bitmap.EndInit();
-                ImageBox.Source = bitmap;
+                (DataContext as NPCModel).NPCImage = selectedFileName;
+                _displayBitmapImage(DataContext as NPCModel);
                 strNPCImage.Text = selectedFileName;
+                
             }
+        }
+
+        private void _displayBitmapImage(NPCModel npcModel)
+        {
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(npcModel.NPCImage);
+            bitmap.EndInit();
+            ImageBox.Source = bitmap;
         }
 
         private void clearImage_Click(object sender, RoutedEventArgs e)
