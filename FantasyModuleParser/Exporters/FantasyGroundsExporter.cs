@@ -204,14 +204,8 @@ namespace FantasyModuleParser.Exporters
                             xmlWriter.WriteStartElement("bitmap");
                             xmlWriter.WriteString("images\\" + NPCNameToXMLFormat(npcModel) + ".jpg");
                             xmlWriter.WriteEndElement();
-                            xmlWriter.WriteStartElement("locked");
-                            xmlWriter.WriteAttributeString("type", "number");
-                            xmlWriter.WriteValue(moduleModel.IsLockedRecords);
-                            xmlWriter.WriteEndElement();
-                            xmlWriter.WriteStartElement("name");
-                            xmlWriter.WriteAttributeString("type", "string");
-                            xmlWriter.WriteString(npcModel.NPCName);
-                            xmlWriter.WriteEndElement();
+							WriteLocked(xmlWriter, npcModel);
+							WriteName(xmlWriter, npcModel);
                             xmlWriter.WriteStartElement("nonid_name");
                             xmlWriter.WriteAttributeString("type", "string");
                             xmlWriter.WriteString(npcModel.NPCName);

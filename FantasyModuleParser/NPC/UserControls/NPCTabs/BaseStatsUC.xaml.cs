@@ -178,8 +178,9 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		private void strNPCToken_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-			openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+			openFileDialog.InitialDirectory = "c:\\";
+			openFileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
+			openFileDialog.RestoreDirectory = true;
 			if (openFileDialog.ShowDialog() == true)
 				strNPCToken.Text = openFileDialog.FileName;
 		}
