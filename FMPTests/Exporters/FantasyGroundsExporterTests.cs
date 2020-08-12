@@ -112,7 +112,7 @@ namespace FantasyModuleParser.Exporters.Tests
             Assert.AreEqual(XmlPrettyPrint(expected), XmlPrettyPrint(xmlContent));
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void Create_Module_MultipleCategories_ImageTest()
         {
             // * Initialize Test Data
