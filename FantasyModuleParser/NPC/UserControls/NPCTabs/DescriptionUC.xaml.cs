@@ -1,19 +1,9 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
@@ -35,33 +25,41 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 
         private void ValidateXML(object sender, RoutedEventArgs e)
         {
-            TextRange range;
+            Console.WriteLine(textEditor.Text);
+            //TextRange range;
 
-            range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
+            //range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
 
-            var finalString = "";
 
-            using (var rtfMemoryStream = new MemoryStream())
-            {
-                range.Save(rtfMemoryStream, DataFormats.Xaml);
-                rtfMemoryStream.Seek(0, SeekOrigin.Begin);
-                using (var rtfStreamReader = new StreamReader(rtfMemoryStream))
-                {
-                    finalString = rtfStreamReader.ReadToEnd();
-                    Console.WriteLine(finalString);
-                }
-            }
+            //var finalString = "";
+
+            //using (var rtfMemoryStream = new MemoryStream())
+            //{
+            //    range.Save(rtfMemoryStream, DataFormats.Xaml);
+            //    rtfMemoryStream.Seek(0, SeekOrigin.Begin);
+            //    using (var rtfStreamReader = new StreamReader(rtfMemoryStream))
+            //    {
+            //        finalString = rtfStreamReader.ReadToEnd();
+            //        Console.WriteLine(finalString);
+            //    }
+            //}
         }
         public void Refresh()
         {
-            descriptionRTB.Document.Blocks.Clear();
+            //descriptionRTB.Document.Blocks.Clear();
+            
             //descriptionRTB.AppendText(npcController.GetNPCModel().Description);
         }
 
         private void descriptionRTB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextRange range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
-            npcController.GetNPCModel().Description = range.Text;
+            //TextRange range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
+            npcController.GetNPCModel().Description = textEditor.Text;
+        }
+
+        private void textEditor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

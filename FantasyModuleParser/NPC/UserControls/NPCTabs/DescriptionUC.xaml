@@ -10,13 +10,22 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="270,465,0,0" VerticalAlignment="Top" Width="160"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="440,465,0,0" VerticalAlignment="Top" Width="165"/>
         <StackPanel Orientation="Vertical">
-            <RichTextBox Name="descriptionRTB" TextChanged="descriptionRTB_TextChanged" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
+            <avalonEdit:TextEditor
+                xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                Name="textEditor"
+                TextChanged="textEditor_TextChanged"
+                SyntaxHighlighting="C#"
+                FontFamily="Consolas"
+                FontSize="10pt"
+                Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
+            </avalonEdit:TextEditor>
+            <!--<RichTextBox Name="descriptionRTB" TextChanged="descriptionRTB_TextChanged" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.ToolTip>
                     <TextBlock>
                         This box contains the formatted descriptive text that will be added to your NPC.
                     </TextBlock>
                 </RichTextBox.ToolTip>
-            </RichTextBox>
+            </RichTextBox>-->
             <StackPanel Orientation="Horizontal">
                 <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/Bold.png" />
