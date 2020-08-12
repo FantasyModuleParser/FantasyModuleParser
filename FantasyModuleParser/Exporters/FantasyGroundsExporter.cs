@@ -194,7 +194,7 @@ namespace FantasyModuleParser.Exporters
                     xmlWriter.WriteAttributeString("name", categoryModel.Name);
                     xmlWriter.WriteAttributeString("baseicon", "0");
                     xmlWriter.WriteAttributeString("decalicon", "0");
-                    foreach (NPCModel npcModel in FatNPCList)
+                    foreach (NPCModel npcModel in categoryModel.NPCModels)
                     {
                         if (npcModel.NPCImage != null && npcModel.NPCImage.Length > 0)
                         {

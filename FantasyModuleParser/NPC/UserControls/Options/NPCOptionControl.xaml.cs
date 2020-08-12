@@ -185,9 +185,10 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			{
 				FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
 				FGCategoryComboBox.SelectedIndex = 0;
-			}
-
-			CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
+			} 
+			else
+				CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
+			
 			DataContext = npcOptionControlViewModel;
 		}
 
