@@ -185,7 +185,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteComment("Written by Theodore Story, Darkpool, and Dusk (c) 2020");
 
 				xmlWriter.WriteStartElement("root");
-				xmlWriter.WriteAttributeString("version", "3.1");
+				xmlWriter.WriteAttributeString("version", "4.0");
                 #region Image XML
                 xmlWriter.WriteStartElement("image");
                 foreach (CategoryModel categoryModel in moduleModel.Categories)
@@ -308,6 +308,31 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString(categoryModel.Name);
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteStartElement("index");
+					foreach (NPCModel npcModel in categoryModel.NPCModels)
+                    {
+						if (npcModel.NPCImage != null && npcModel.NPCImage.Length > 0)
+						{
+							xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
+							xmlWriter.WriteStartElement("link");
+							xmlWriter.WriteAttributeString("type", "windowreference");
+							xmlWriter.WriteStartElement("class");
+							xmlWriter.WriteString("imagewindow");
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteStartElement("recordname");
+							xmlWriter.WriteString("image." + NPCNameToXMLFormat(npcModel) + "@" + moduleModel.Name);
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteStartElement("description");
+							xmlWriter.WriteStartElement("field");
+							xmlWriter.WriteString("name");
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteStartElement("source");
+							xmlWriter.WriteAttributeString("type", "string");
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement();
+						}
+					}
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteEndElement();
 				}
@@ -404,38 +429,53 @@ namespace FantasyModuleParser.Exporters
                 // For the Blank DB XML unit test, need to check if any NPCs exist
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0 && moduleModel.Categories[0].NPCModels.Count > 0)
 				{
-					xmlWriter.WriteStartElement("library");                      // Open <library>
-					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel));  // Open <Module Name>
+					xmlWriter.WriteStartElement("library");              
+					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); 
 
-					xmlWriter.WriteStartElement("name");                         // Open <name>
-					xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
-					xmlWriter.WriteString(WriteLibraryNameUpperCase(moduleModel) + " Reference Library");        // Write "Library Name Reference Library"
-					xmlWriter.WriteEndElement();								// Close </name>
+					xmlWriter.WriteStartElement("name");                   
+					xmlWriter.WriteAttributeString("type", "string");          
+					xmlWriter.WriteString(WriteLibraryNameUpperCase(moduleModel) + " Reference Library");   
+					xmlWriter.WriteEndElement();						
 
-					xmlWriter.WriteStartElement("categoryname");                 // Open <categoryname>
-					xmlWriter.WriteAttributeString("type", "string");            // Add type="string"
-					xmlWriter.WriteString(moduleModel.Category);                 // Write "Category Name"
-					xmlWriter.WriteEndElement();                                 // Close </categoryname>
+					xmlWriter.WriteStartElement("categoryname");          
+					xmlWriter.WriteAttributeString("type", "string");     
+					xmlWriter.WriteString(moduleModel.Category);             
+					xmlWriter.WriteEndElement();                        
 					                                
-					xmlWriter.WriteStartElement("entries");                      // Open <entries>
-					xmlWriter.WriteStartElement("r01monsters");                  // Open <r01monsters>
-					xmlWriter.WriteStartElement("librarylink");                  // Open <librarylink>
-					xmlWriter.WriteAttributeString("type", "windowreference");   // Add type="windowreference"
-					xmlWriter.WriteStartElement("class");                        // Open <class>
-					xmlWriter.WriteString("referenceindex");					// Write "referenceindexs"
-					xmlWriter.WriteEndElement();                                 // Close </class>
-					xmlWriter.WriteStartElement("recordname");                   // Open <recordname>
-					xmlWriter.WriteString("reference.npclists.npcs");            // Write "reference.npclists.npcs"
-					xmlWriter.WriteEndElement();                                 // Close </recordname>
-					xmlWriter.WriteEndElement();                                 // Close </librarylink>
-					xmlWriter.WriteStartElement("name");                         // Open <name>
-					xmlWriter.WriteAttributeString("type", "string");            // Add type=string
-					xmlWriter.WriteString("NPCs");                               // Write "NPCs"
-					xmlWriter.WriteEndElement();                                 // Close </name>
-					xmlWriter.WriteEndElement();                                 // Close </r01monsters>
-					xmlWriter.WriteEndElement();                                 // Close </entries>
-					xmlWriter.WriteEndElement();                                 // Close </Module Name>
-					xmlWriter.WriteEndElement();                                 // Close </library>
+					xmlWriter.WriteStartElement("entries");                 
+					xmlWriter.WriteStartElement("r01images");
+					xmlWriter.WriteStartElement("librarylink");               
+					xmlWriter.WriteAttributeString("type", "windowreference"); 
+					xmlWriter.WriteStartElement("class");              
+					xmlWriter.WriteString("reference_colindex");          
+					xmlWriter.WriteEndElement();                            
+					xmlWriter.WriteStartElement("recordname");           
+					xmlWriter.WriteString("reference.imagelists.bycategory@" + moduleModel.Name);    
+					xmlWriter.WriteEndElement();     
+					xmlWriter.WriteEndElement();  
+					xmlWriter.WriteStartElement("name");      
+					xmlWriter.WriteAttributeString("type", "string");  
+					xmlWriter.WriteString("Images");        
+					xmlWriter.WriteEndElement();            
+					xmlWriter.WriteEndElement();
+					xmlWriter.WriteStartElement("r02monsters");                  
+					xmlWriter.WriteStartElement("librarylink");        
+					xmlWriter.WriteAttributeString("type", "windowreference");
+					xmlWriter.WriteStartElement("class");         
+					xmlWriter.WriteString("reference_colindex");			
+					xmlWriter.WriteEndElement();                                 
+					xmlWriter.WriteStartElement("recordname");                
+					xmlWriter.WriteString("reference.npclists.npcs@" + moduleModel.Name);     
+					xmlWriter.WriteEndElement();                       
+					xmlWriter.WriteEndElement();                            
+					xmlWriter.WriteStartElement("name");                  
+					xmlWriter.WriteAttributeString("type", "string");          
+					xmlWriter.WriteString("NPCs");                             
+					xmlWriter.WriteEndElement();                            
+					xmlWriter.WriteEndElement();                             
+					xmlWriter.WriteEndElement();                                 
+					xmlWriter.WriteEndElement();                            
+					xmlWriter.WriteEndElement();                            
 				}
 				#endregion
 				xmlWriter.WriteEndElement(); // Closes </root>
