@@ -134,7 +134,7 @@ namespace FantasyModuleParser.Exporters
 
 			foreach (NPCModel npcModel in FatNPCList)
             {
-				if (npcModel.NPCToken != null && npcModel.NPCToken.Length > 0)
+				if (!string.IsNullOrEmpty(npcModel.NPCToken))
                 {
 					string Filename = NPCNameToXMLFormat(npcModel) + "_token.png";
 					string NPCTokenFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "tokens", Filename);
@@ -156,7 +156,7 @@ namespace FantasyModuleParser.Exporters
 
 			foreach (NPCModel npcModel in FatNPCList)
 			{
-				if (npcModel.NPCImage != null && npcModel.NPCImage.Length > 0)
+				if (!string.IsNullOrEmpty(npcModel.NPCToken))
 				{
 					string Filename = NPCNameToXMLFormat(npcModel) + ".jpg";
 					string NPCImageFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "images", Filename);
@@ -196,7 +196,7 @@ namespace FantasyModuleParser.Exporters
                     xmlWriter.WriteAttributeString("decalicon", "0");
                     foreach (NPCModel npcModel in categoryModel.NPCModels)
                     {
-                        if (npcModel.NPCImage != null && npcModel.NPCImage.Length > 0)
+                        if (!string.IsNullOrEmpty(npcModel.NPCImage))
                         {
                             xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
                             xmlWriter.WriteStartElement("image");
@@ -310,7 +310,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteStartElement("index");
 					foreach (NPCModel npcModel in categoryModel.NPCModels)
                     {
-						if (npcModel.NPCImage != null && npcModel.NPCImage.Length > 0)
+						if (!string.IsNullOrEmpty(npcModel.NPCImage))
 						{
 							xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
 							xmlWriter.WriteStartElement("link");
