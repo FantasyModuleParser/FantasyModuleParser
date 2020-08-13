@@ -1099,6 +1099,5 @@ namespace FMPTests.Importer.NPC
             return npcModel;
         }
         #endregion
-
     }
 }

@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace FantasyModuleParser.Importer.NPC.Tests
 {
@@ -28,8 +29,9 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
         {
+
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(@embeddedResourcePath))
-            using (StreamReader reader = new StreamReader(stream))
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
             {
                 return reader.ReadToEnd();
             }
@@ -272,7 +274,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             }
             NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
             AssertSelectableActionModelList(expectedDamageImmunityModelList, actualNPCModel.DamageImmunityModelList);
-            
+
         }
 
         [TestMethod()]
@@ -612,7 +614,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
             WeaponAttack actualWeaponAttack = (WeaponAttack)actualNPCModel.NPCActions[1];
 
-            AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack); 
+            AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack);
         }
 
         [TestMethod]
@@ -631,8 +633,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.IsVersatile = false;
             expectedWeaponAttack.ToHit = 6;
             expectedWeaponAttack.Reach = 5;
-            expectedWeaponAttack.WeaponRangeShort = 120; 
-            expectedWeaponAttack.WeaponRangeLong = 600;  
+            expectedWeaponAttack.WeaponRangeShort = 120;
+            expectedWeaponAttack.WeaponRangeLong = 600;
             expectedWeaponAttack.TargetType = TargetType.target;
             expectedWeaponAttack.PrimaryDamage = new DamageProperty(2, DieType.D8, 3, DamageType.Slashing);
             expectedWeaponAttack.SecondaryDamage = null;
@@ -660,14 +662,14 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.IsVersatile = false;
             expectedWeaponAttack.ToHit = 5;
             expectedWeaponAttack.Reach = 10;
-            expectedWeaponAttack.WeaponRangeShort = 50; 
+            expectedWeaponAttack.WeaponRangeShort = 50;
             expectedWeaponAttack.WeaponRangeLong = 60;  // ??????  Default maybe?
             expectedWeaponAttack.TargetType = TargetType.creature;
             expectedWeaponAttack.PrimaryDamage = new DamageProperty(2, DieType.D8, 2, DamageType.Fire);
             expectedWeaponAttack.SecondaryDamage = null;
             expectedWeaponAttack.OtherText = "";
 
-            
+
 
             AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack);
         }
@@ -696,7 +698,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.SecondaryDamage = new DamageProperty(6, DieType.D10, -4, DamageType.Acid);
             expectedWeaponAttack.OtherText = "";
 
-            
+
 
             AssertValidWeaponAttack(expectedWeaponAttack, actualWeaponAttack);
         }
@@ -805,8 +807,80 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("False Appearance", actualNPCModel.Traits[1].ActionName);
             Assert.AreEqual("The clay sphinx is incapacitated while in the area of an antimagic field. If targeted by dispel magic, the clay sphinx must succeed on a Constitution saving throw against the caster's spell save DC or fall unconscious for 1 minute.", actualNPCModel.Traits[0].ActionDescription);
             Assert.AreEqual("While the clay sphinx remains motionless, it is indistinguishable from a clay statue.", actualNPCModel.Traits[1].ActionDescription);
-           
         }
 
+
+        /// <summary>
+        /// Test is to verify that the Innate Spellcasting DC is imported when a spell attack bonus is not provided (i.e.  (spell save DC 14).)
+        /// </summary>
+        [TestMethod()]
+        public void Import_Brazcamel_YoungAdultBrassDragon_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.NPC_YADragon.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.AreEqual(14, actualNPCModel.InnateSpellSaveDC);
+
+        }
+
+        /// <summary>
+        /// Test is to check that the special weapon resistance / immunity defaults to "No Special Weapon" when not defined on import
+        /// </summary>
+        [TestMethod()]
+        public void Import_GiantEmberScarabBeetle_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.GiantFireBeetle.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            // Checking to ensure that the Special Weapon Immunity & Resistance is set to "No special weapon immunity / resistance" respectively
+            NPCController controller = new NPCController();
+            List<SelectableActionModel> expectedSpecialWeaponImmunityList = controller.GetSelectableActionModelList(typeof(WeaponImmunity));
+            expectedSpecialWeaponImmunityList.First(item => item.ActionName.Equals(WeaponImmunity.NoSpecial.ToString(), StringComparison.Ordinal)).Selected = true;
+            AssertSelectableActionModelList(expectedSpecialWeaponImmunityList, actualNPCModel.SpecialWeaponImmunityModelList);
+
+            List<SelectableActionModel> expectedSpecialWeaponResistanceList = controller.GetSelectableActionModelList(typeof(WeaponResistance));
+            expectedSpecialWeaponResistanceList.First(item => item.ActionName.Equals(WeaponResistance.NoSpecial.ToString(), StringComparison.Ordinal)).Selected = true;
+            AssertSelectableActionModelList(expectedSpecialWeaponResistanceList, actualNPCModel.SpecialWeaponResistanceModelList);
+        }
+
+        /// <summary>
+        /// Test is to check that spellcaster level (5th) is properly imported
+        /// </summary>
+        [TestMethod()]
+        public void Import_TheMummyPriest_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.Ankhotep_The_Mummy_Priest.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.AreEqual("5th", actualNPCModel.SpellcastingCasterLevel);
+
+            // Need to validate the Flavor text for Rotting Fist attack
+            Assert.AreEqual(2, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
+            Assert.AreEqual(true, (actualNPCModel.NPCActions[0] as WeaponAttack).OtherTextCheck);
+            Assert.AreEqual(". If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. A cursed target can't regain hit points, and its maximum hit points decrease by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust.\\rThe curse lasts until removed by the remove curse spell or other magic.",
+                (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
+        }
+
+        /// <summary>
+        /// Test is to test that an action's flavor text is being imported correctly
+        /// </summary>
+        [TestMethod()]
+        public void Import_GiantSandSpider_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.Giant_Sand_Spider.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.AreEqual(1, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
+
+            Assert.AreEqual(true, (actualNPCModel.NPCActions[0] as WeaponAttack).OtherTextCheck);
+            Assert.AreEqual(", and the target must make a DC 11 Constitution saving throw, taking 13 (3d8) poison damage on a failed save, or half as much on a successful one. If the poison reduces the target to 0 hit points, the target is stable but poisoned for 1 hour. Even after regaining hit points, the target is paralyzed while it retains the poisoned condition",
+                (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
+        }
     }
 }

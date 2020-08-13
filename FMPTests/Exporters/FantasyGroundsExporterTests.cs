@@ -112,6 +112,63 @@ namespace FantasyModuleParser.Exporters.Tests
             Assert.AreEqual(XmlPrettyPrint(expected), XmlPrettyPrint(xmlContent));
         }
 
+        //[TestMethod]
+        public void Create_Module_MultipleCategories_ImageTest()
+        {
+            // * Initialize Test Data
+
+            string[] mage1PathParams = new string[]
+            {
+                Directory.GetCurrentDirectory(),
+                "Resources",
+                "Mage1.json"
+            };
+
+            NPCController npcController = new NPCController();
+            // Make a whole bunch-o-copies of the Mage1.json, and change the NPCImage string value for each appropriately
+            NPCModel[] npcModels = new NPCModel[] {
+                npcController.Load(Path.Combine(mage1PathParams)),
+                npcController.Load(Path.Combine(mage1PathParams)),
+                npcController.Load(Path.Combine(mage1PathParams)),
+                npcController.Load(Path.Combine(mage1PathParams)),
+                npcController.Load(Path.Combine(mage1PathParams))
+            };
+
+            npcModels[1].NPCName = "Mage2";
+            npcModels[2].NPCName = "Mage3";
+            npcModels[3].NPCName = "Mage4";
+            npcModels[4].NPCName = "Mage5";
+
+            npcModels[1].NPCImage = @"C:\Users\darkpool\AppData\Roaming\NPC Engineer\Saved NPC Files\MonsterManual_DEV\Displacer Beast.jpg";
+            npcModels[2].NPCImage = @"C:\Users\darkpool\AppData\Roaming\NPC Engineer\Saved NPC Files\MonsterManual_DEV\Shambling Mound.jpg";
+            npcModels[3].NPCImage = @"C:\Users\darkpool\AppData\Roaming\NPC Engineer\Saved NPC Files\MonsterManual_DEV\Wood Woad.jpg";
+            npcModels[4].NPCImage = @"C:\Users\darkpool\AppData\Roaming\NPC Engineer\Saved NPC Files\MonsterManual_DEV\Displacer Beast.jpg";
+
+            // Setup the ModuleModel data
+            // Module Path = Windows -> MyDocuments -> FantasyModuleParser_UnitTests
+            // Module Name = IntegrationTest_Mage1
+
+            ModuleModel moduleModel = new ModuleModel();
+            moduleModel.Name = "IntegrationTest_MultipleCategories";
+            moduleModel.Author = "Automated MS Test v2";
+            moduleModel.Category = "Automated";
+            moduleModel.ModulePath =
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
+
+            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
+            moduleModel.Categories.Add(new CategoryModel() { Name = "MyNPCs" });
+            moduleModel.Categories.Add(new CategoryModel() { Name = "Fey Creatures" });
+            moduleModel.Categories[0].NPCModels.Add(npcModels[0]);
+            moduleModel.Categories[0].NPCModels.Add(npcModels[1]);
+            moduleModel.Categories[1].NPCModels.Add(npcModels[2]);
+            moduleModel.Categories[1].NPCModels.Add(npcModels[3]);
+            moduleModel.Categories[2].NPCModels.Add(npcModels[4]);
+
+            // And finally, for the actual integration test run
+            exporter.CreateModule(moduleModel);
+        }
+
         private string XmlPrettyPrint(string input)
         {
             XDocument xDocument = new XDocument(input);

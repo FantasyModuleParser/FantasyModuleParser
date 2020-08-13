@@ -1,20 +1,15 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections;
+﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Action.Enums;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.Models.Action.Enums;
-using Newtonsoft.Json;
 
 namespace FantasyModuleParser.NPC.Controllers
 {
-	public class NPCController
+    public class NPCController
 	{
 		private static NPCModel _npcModel;
 		public NPCModel GetNPCModel()
@@ -66,6 +61,11 @@ namespace FantasyModuleParser.NPC.Controllers
 			return _npcModel;
 		}
 
+		public void UpdateNPCModel(NPCModel npcModel)
+        {
+			_npcModel = npcModel;
+        }
+
 		public NPCModel InitializeNPCModel()
 		{
 			NPCModel npcModel = new NPCModel();
@@ -78,6 +78,10 @@ namespace FantasyModuleParser.NPC.Controllers
 			npcModel.SpecialWeaponDmgImmunityModelList = GetSelectableActionModelList(typeof(DamageType));
 			npcModel.SpecialWeaponResistanceModelList = GetSelectableActionModelList(typeof(WeaponResistance));
 			npcModel.SpecialWeaponDmgResistanceModelList = GetSelectableActionModelList(typeof(DamageType));
+
+			// For SpecialWeaponDmgResistance & Immunity lists, make the default selected to "No special weapon immunity / resistance", which is the first in each list
+			npcModel.SpecialWeaponImmunityModelList.First().Selected = true;
+			npcModel.SpecialWeaponResistanceModelList.First().Selected = true;
 
 			// Setup Langauges for passing Unit Tests
 			npcModel.StandardLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();

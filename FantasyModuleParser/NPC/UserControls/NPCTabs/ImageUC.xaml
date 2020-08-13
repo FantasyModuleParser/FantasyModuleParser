@@ -71,16 +71,14 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         <Label Content="NPC Image:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"/>
-        <TextBox Name="strNPCImage" Text="{Binding NPCImage}" MouseDoubleClick="strNPCImage_MouseDoubleClick" Padding="5,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="15">
+        <TextBox Name="strNPCImage" Text="{Binding Path=NPCImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="strNPCImage_MouseDoubleClick" Padding="5,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="15">
             <TextBox.ToolTip>
                 <TextBlock>
                     Double click to select the file location to the JPG image used for the NPC.
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Button Name="btn_SelectNPCImage" BorderBrush="Black" BorderThickness="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.Row="3" Grid.RowSpan="18" Grid.Column="4" Grid.ColumnSpan="21">
-            <Image />
-        </Button>
+        <Image Name="ImageBox" Source="{Binding Path=NPCImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.RowSpan="18" Grid.Column="4" Grid.ColumnSpan="21"  />
         <CheckBox Content="Add NPC Link to Description" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Row="22" Grid.Column="1" Grid.ColumnSpan="27">
             <CheckBox.ToolTip>
                 <TextBlock>
@@ -90,7 +88,7 @@
                 </TextBlock>
             </CheckBox.ToolTip>
         </CheckBox>
-        <Button Content="Clear Image" Padding="15,0,15,0" Grid.Row="1" Grid.Column="22" Grid.ColumnSpan="6">
+        <Button Content="Clear Image" Padding="15,0,15,0" Grid.Row="1" Grid.Column="22" Grid.ColumnSpan="6" Click="clearImage_Click">
             <Button.ToolTip>
                 <TextBlock>
                     Clear the image file.

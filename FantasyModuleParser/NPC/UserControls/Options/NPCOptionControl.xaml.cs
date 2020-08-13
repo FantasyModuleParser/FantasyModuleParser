@@ -1,20 +1,14 @@
 ﻿using FantasyModuleParser.Main;
-using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action.Enums;
-using FantasyModuleParser.NPC.Views;
-using FantasyModuleParser.NPC.UserControls.NPCTabs;
-using System;
-using System.Collections;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using static FantasyModuleParser.Extensions.EnumerationExtension;
-using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.UserControls.NPCTabs;
+using FantasyModuleParser.NPC.ViewModels;
+using FantasyModuleParser.NPC.Views;
+using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace FantasyModuleParser.NPC.UserControls.Options
 {
@@ -33,12 +27,14 @@ namespace FantasyModuleParser.NPC.UserControls.Options
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 		string installFolder = "FMP/NPC";
 		private bool _isViewStatblockWindowOpen = false;
+		private int categoryIndex = 0;
 		#endregion
 		public NPCOptionControl()
 		{
 			InitializeComponent();
 			npcController = new NPCController();
 			npcOptionControlViewModel = new NPCOptionControlViewModel();
+			
 			DataContext = npcOptionControlViewModel;
 		}
 		private void openfolder(string strPath, string strFolder)
@@ -89,7 +85,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void ImportTextWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 			(DataContext as NPCOptionControlViewModel).Refresh();
-			refreshNPCUserControls();
+			RefreshUserControls();
 		}
 
         private void FGListOptions_Click(object sender, RoutedEventArgs e)
@@ -113,7 +109,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			npcController.ClearNPCModel();
 			//DataContext = npcController.GetNPCModel();
 			(DataContext as NPCOptionControlViewModel).Refresh();
-			refreshNPCUserControls();
+			RefreshUserControls();
 		}
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
@@ -136,7 +132,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// TODO:  Get the active tab the user is on
 				// As the assumption here is the User is on the Base Stats tab while loading
 				// a NPC File
-				refreshNPCUserControls();
+				RefreshUserControls();
 			}
 		}
 
@@ -171,8 +167,9 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			}
 
 			ModuleService moduleService = new ModuleService();
-			try { 
+			try {
 				moduleService.AddNPCToCategory(npcController.GetNPCModel(), (FGCategoryComboBox.SelectedItem as CategoryModel).Name);
+				Refresh();
 				MessageBox.Show("NPC has been added to the project");
 			}
 			catch (Exception exception)
@@ -184,13 +181,56 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		public void Refresh()
 		{
 			npcOptionControlViewModel.Refresh();
-			FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
-			FGCategoryComboBox.SelectedIndex = FGCategoryComboBox.Items.Count - 1;
+			if(FGCategoryComboBox.SelectedItem == null)
+			{
+				FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
+				FGCategoryComboBox.SelectedIndex = 0;
+			} 
+			else
+				CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
+			
 			DataContext = npcOptionControlViewModel;
 		}
 
-		private void refreshNPCUserControls()
-		{
+        private void PrevNPCInCategory_Button_Click(object sender, RoutedEventArgs e)
+        {
+			CategoryModel categoryModel = FGCategoryComboBox.SelectedItem as CategoryModel;
+			if (categoryModel != null)
+			{
+				if (categoryIndex == 0)
+					categoryIndex = categoryModel.NPCModels.Count - 1;
+				else
+					categoryIndex--;
+
+				// By updating the selected Item here, it will invoke CategorySelectedNPCComboBox_SelectionChanged event 
+				// because the CategorySelectedNPCComboBox selected item has changed
+				CategorySelectedNPCComboBox.SelectedItem = categoryModel.NPCModels[categoryIndex];
+			}
+			RefreshUserControls();
+
+		}
+
+        private void NextNPCInCategory_Button_Click(object sender, RoutedEventArgs e)
+        {
+			CategoryModel categoryModel = FGCategoryComboBox.SelectedItem as CategoryModel;
+			if (categoryModel != null)
+			{
+				if (categoryIndex == categoryModel.NPCModels.Count - 1)
+					categoryIndex = 0;
+				else
+					categoryIndex++;
+
+				// By updating the selected Item here, it will invoke CategorySelectedNPCComboBox_SelectionChanged event 
+				// because the CategorySelectedNPCComboBox selected item has changed
+				CategorySelectedNPCComboBox.SelectedItem = categoryModel.NPCModels[categoryIndex];
+			}
+			RefreshUserControls();
+		}
+
+		//TODO:  As a gut feeling, I *think* we do not need to force a refresh of the relevant UserControls
+		// I do not have any concrete way of addressing this (and may even be an anti-pattern for MVVM)
+		private void RefreshUserControls()
+        {
 			npcOptionControlViewModel.Refresh();
 			BaseStatsUserControl.Refresh();
 			SkillsUserControl.Refresh();
@@ -199,7 +239,20 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			InnateCastingUserControl.Refresh();
 			ResistanceUserControl.Refresh();
 			ActionOverviewUserControl.Refresh();
-			DescriptionUserControl.Refresh();
+			ImageUserControl.Refresh();
+		}
+
+        private void CategorySelectedNPCComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			NPCModel selectedNPCModel = CategorySelectedNPCComboBox.SelectedItem as NPCModel;
+			npcController.UpdateNPCModel(selectedNPCModel);
+			RefreshUserControls();
+		}
+
+		private void FGCategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			categoryIndex = 0;
+			Refresh();
 		}
 	}
 }
