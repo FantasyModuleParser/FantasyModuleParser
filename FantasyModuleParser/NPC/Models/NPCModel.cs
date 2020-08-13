@@ -112,7 +112,10 @@ namespace FantasyModuleParser.NPC
         private string _NinthLevelSpellList;
         private bool _MarkedSpellsCheck;
         private string _MarkedSpells;
+        private string _NPCImage;
+        private string _npcToken;
         #endregion
+
         #endregion
         #region Public Variables
         public string NPCName { get; set; }
@@ -157,7 +160,7 @@ namespace FantasyModuleParser.NPC
         public int PassivePerception { get { return _passivePerception; } set { Set(ref _passivePerception, value); } }
         public string ChallengeRating { get { return _challengeRating; } set { Set(ref _challengeRating, value); } }
         public int XP { get { return _xp; } set { Set(ref _xp, value); } }
-        public string NPCToken { get; set; }
+        public string NPCToken { get { return _npcToken; } set { Set(ref _npcToken, value); } }
         public List<SelectableActionModel> DamageResistanceModelList { get; set; }
         public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
         public List<SelectableActionModel> DamageImmunityModelList { get; set; }
@@ -190,7 +193,6 @@ namespace FantasyModuleParser.NPC
         public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
         public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
         public ObservableCollection<LanguageModel> UserLanguages { get; set; }
-        #endregion
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
@@ -239,12 +241,12 @@ namespace FantasyModuleParser.NPC
         public string MarkedSpells { get { return _MarkedSpells; } set { Set(ref _MarkedSpells, value); } }
         public string Description { get; set; }
         public string NonID { get; set; }
-        public string NPCImage { get; set; }
+        public string NPCImage { get { return _NPCImage; } set { Set(ref _NPCImage, value); } }
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
         public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
         public ObservableCollection<ActionModelBase> Reactions { get; } = new ObservableCollection<ActionModelBase>();
-
+        #endregion
         public NPCModel()
         {
         }

@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.NPC.Views;
 using System;
@@ -184,9 +185,10 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			{
 				FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
 				FGCategoryComboBox.SelectedIndex = 0;
-			}
-
-			CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
+			} 
+			else
+				CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
+			
 			DataContext = npcOptionControlViewModel;
 		}
 
@@ -237,6 +239,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			InnateCastingUserControl.Refresh();
 			ResistanceUserControl.Refresh();
 			ActionOverviewUserControl.Refresh();
+			ImageUserControl.Refresh();
 		}
 
         private void CategorySelectedNPCComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser"
         mc:Ignorable="d"
-        Title="Project Management" Height="580" Width="820" ResizeMode="NoResize" Icon="/Resources/es2_logo.ico"
-        Closing="Window_Closing">
+        Title="Project Management" Height="580" Width="820" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico" Closing="Window_Closing">
     <Window.Resources>
         <Style TargetType="Label" x:Key="LabelHeader">
             <Setter Property="FontWeight" Value="Bold"/>
