@@ -31,7 +31,7 @@
             </Path.Data>
         </Path>
         <Label Content="Written by Theodore Story, Darkpool, and LordDusk" Padding="0" HorizontalContentAlignment="Center" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <Label Content="Released 2 August 2020" Padding="0" HorizontalContentAlignment="Center" Grid.Row="5" Grid.ColumnSpan="2" Height="17" VerticalAlignment="Top"/>
+        <Label Content="Released 12 August 2020" Padding="0" HorizontalContentAlignment="Center" Grid.Row="5" Grid.ColumnSpan="2" Height="17" VerticalAlignment="Top"/>
         <Button Content="OK" Padding="0" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Click="ESExit_Click" Grid.Row="7" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
