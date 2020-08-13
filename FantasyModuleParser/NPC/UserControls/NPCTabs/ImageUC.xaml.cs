@@ -41,7 +41,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             DataContext = npcController.GetNPCModel();
 
             NPCModel npcModel = (DataContext as NPCModel);
-            if(npcModel.NPCImage != null && npcModel.NPCImage.Trim().Length != 0)
+            if(!string.IsNullOrEmpty(npcModel.NPCImage))
             {
                 _displayBitmapImage(npcModel);
             }
