@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.ViewModels;
 using System;
 using System.IO;
 using System.Windows;
@@ -18,14 +19,13 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         public DescriptionUC()
         {
             InitializeComponent();
-            npcController = new NPCController();
             //var npcModel = ((App)Application.Current).NpcModelObject;
-            DataContext = npcController.GetNPCModel();
+            //DataContext = new DescriptionUCViewModel();
         }
 
         private void ValidateXML(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(textEditor.Text);
+            //Console.WriteLine(textEditor.Text);
             //TextRange range;
 
             //range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
@@ -47,14 +47,17 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         public void Refresh()
         {
             //descriptionRTB.Document.Blocks.Clear();
-            
+
             //descriptionRTB.AppendText(npcController.GetNPCModel().Description);
+            (DataContext as DescriptionUCViewModel).Refresh();
         }
 
         private void descriptionRTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             //TextRange range = new TextRange(descriptionRTB.Document.ContentStart, descriptionRTB.Document.ContentEnd);
-            npcController.GetNPCModel().Description = textEditor.Text;
+            //npcController.GetNPCModel().Description = textEditor.Text;
+            
+            (DataContext as DescriptionUCViewModel).UpdateNPCDescription(textEditor.Text);
         }
 
         private void textEditor_TextChanged(object sender, EventArgs e)

@@ -17,11 +17,13 @@ namespace FantasyModuleParser.NPC.ViewModels
         private ModuleService _moduleService;
         public ModuleModel ModuleModel { get; set; }
         public ObservableCollection<CategoryModel> ViewModelCategories { get; set; }
+        public DescriptionUCViewModel DescriptionUCViewModel { get; set; }
         public NPCOptionControlViewModel()
         {
             _moduleService = new ModuleService();
             ModuleModel = _moduleService.GetModuleModel();
             ViewModelCategories = ModuleModel.Categories;
+            DescriptionUCViewModel = new DescriptionUCViewModel();
         }
         public void Refresh()
         {
