@@ -11,18 +11,21 @@ namespace FantasyModuleParser.NPC.ViewModels
     public class DescriptionUCViewModel : ViewModelBase
     {
         private string _description;
+        private NPCModel _npcModel;
         public string Description { 
             get 
-            { return this._description; } 
+            { return this._npcModel.Description; } 
             set 
-            { 
+            {
+                this._npcModel.Description = value;
                 RaisePropertyChanged(nameof(Description)); 
-                this._description = value; } 
+            } 
         }
         private NPCController npcController;
         public DescriptionUCViewModel()
         {
             npcController = new NPCController();
+            _npcModel = npcController.GetNPCModel();
         }
 
         public void ValidateXML()
@@ -31,12 +34,8 @@ namespace FantasyModuleParser.NPC.ViewModels
         }
         public void Refresh()
         {
-            Description = npcController.GetNPCModel().Description;
-        }
-
-        public void UpdateNPCDescription(string description)
-        {
-            npcController.GetNPCModel().Description = description;
+            _npcModel = npcController.GetNPCModel();
+            RaisePropertyChanged(nameof(Description));
         }
     }
 }
