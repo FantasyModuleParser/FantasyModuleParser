@@ -121,7 +121,7 @@
             </TabItem>
         </TabControl>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3">
-            <Button Content="Import Text" Click="ImportText_Click" IsEnabled="False" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
+            <Button Content="Import Text" Click="ImportText_Click" IsEnabled="True" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="90">
                 <Button.ToolTip>
                     <TextBlock>
                     Select this button to import your NPC from a PDF, text file, or webpage
