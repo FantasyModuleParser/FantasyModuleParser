@@ -54,7 +54,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 
 			// May be breaking MVVM Design, as the ViewModel is directly modifying View UI components
 			// Marks the NPC Token field in a red border IF the NPCToken path is set and the file does not exist
-			if(!String.IsNullOrEmpty((DataContext as NPCModel).NPCToken) && !File.Exists((DataContext as NPCModel).NPCToken))
+			if(!string.IsNullOrEmpty((DataContext as NPCModel).NPCToken) && !File.Exists((DataContext as NPCModel).NPCToken))
 			{
 				strNPCToken.BorderBrush = System.Windows.Media.Brushes.Red;
 				strNPCToken.BorderThickness = new Thickness(2);
