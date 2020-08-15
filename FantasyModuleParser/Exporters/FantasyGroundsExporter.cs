@@ -1061,8 +1061,7 @@ namespace FantasyModuleParser.Exporters
 			if (hpArray.Length == 2)
             {
 				hpDieBreakdown = "(" + hpArray[1];
-			}
-				
+			}	
 
 			xmlWriter.WriteStartElement("hd"); // Open <hd>
 			xmlWriter.WriteAttributeString("type", "string"); // Add type=string
@@ -1070,7 +1069,10 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteString(hpDieBreakdown); // Write HP formula
 			}
-            else { xmlWriter.WriteString(""); }
+            else 
+			{ 
+				xmlWriter.WriteString(""); 
+			}
 			xmlWriter.WriteEndElement(); // Close </hd>
 			xmlWriter.WriteStartElement("hp"); // Open <hp>
 			xmlWriter.WriteAttributeString("type", "number"); // Add type=number
