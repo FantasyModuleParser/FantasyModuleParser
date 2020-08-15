@@ -1468,7 +1468,10 @@ namespace FantasyModuleParser.Exporters
 				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility);
 				}
-				else { MessageBox.Show("Please fill in the Innate Spellcasting Ability"); }
+				else 
+				{ 
+					MessageBox.Show("Please fill in the Innate Spellcasting Ability"); 
+				}
 				if (npcModel.InnateSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.InnateSpellSaveDC);
@@ -1521,12 +1524,18 @@ namespace FantasyModuleParser.Exporters
 				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " is a " + npcModel.SpellcastingCasterLevel + "-level spellcaster. ");
 				}
-				else { MessageBox.Show("Please fill in the Spellcasting Level"); }
+				else 
+				{ 
+					MessageBox.Show("Please fill in the Spellcasting Level"); 
+				}
 				if (!string.IsNullOrEmpty(npcModel.SCSpellcastingAbility))
                 {
 					stringBuilder.Append("Its spellcasting ability is " + npcModel.SCSpellcastingAbility);
 				}
-				else { MessageBox.Show("Please fill in the Spellcasting Ability"); }
+				else 
+				{ 
+					MessageBox.Show("Please fill in the Spellcasting Ability"); 
+				}
 				if (npcModel.SpellcastingSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.SpellcastingSpellSaveDC);
@@ -1542,7 +1551,10 @@ namespace FantasyModuleParser.Exporters
                 {
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following " + npcModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
 				}
-				else { stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following spells prepared:"); }
+				else 
+				{ 
+					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following spells prepared:"); 
+				}
 				if (npcModel.CantripSpellList != null)
 					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpells.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
 				if (npcModel.FirstLevelSpellList != null)
