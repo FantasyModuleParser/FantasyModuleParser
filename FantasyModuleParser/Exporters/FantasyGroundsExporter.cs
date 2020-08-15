@@ -123,7 +123,8 @@ namespace FantasyModuleParser.Exporters
 			}
 			else
 			{
-				File.Copy(moduleModel.ThumbnailPath, NewThumbnailFileName(moduleModel));
+				if(File.Exists(@moduleModel.ThumbnailPath))
+					File.Copy(moduleModel.ThumbnailPath, NewThumbnailFileName(moduleModel));
 			}
 		}
 
