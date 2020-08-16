@@ -435,7 +435,7 @@ namespace FantasyModuleParser.Exporters
 
 					xmlWriter.WriteStartElement("name");                   
 					xmlWriter.WriteAttributeString("type", "string");          
-					xmlWriter.WriteString(WriteLibraryNameUpperCase(moduleModel) + " Reference Library");   
+					xmlWriter.WriteString(moduleModel.Name + " Reference Library");   
 					xmlWriter.WriteEndElement();						
 
 					xmlWriter.WriteStartElement("categoryname");          
@@ -547,11 +547,6 @@ namespace FantasyModuleParser.Exporters
 		private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
 		{
 			string libname = moduleModel.Name.ToLower();
-			return libname.Replace(" ", "");
-		}
-		private string WriteLibraryNameUpperCase(ModuleModel moduleModel)
-		{
-			string libname = moduleModel.Name;
 			return libname.Replace(" ", "");
 		}
 		private string CategoryNameToXML(CategoryModel categoryModel)
