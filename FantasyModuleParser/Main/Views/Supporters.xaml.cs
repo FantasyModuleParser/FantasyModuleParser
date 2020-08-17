@@ -17,6 +17,7 @@ namespace FantasyModuleParser.Main
     public partial class Supporters : Window
     {
         private SupportersViewModel viewModel;
+        
         public Supporters()
         {
             InitializeComponent();
@@ -29,24 +30,6 @@ namespace FantasyModuleParser.Main
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-        public string uri = "https://program.fantasymoduleparser.tech/PATRONS.json";
-        public void run()
-        {
-            List<PatronModel> patrons = JsonConvert.DeserializeObject<List<PatronModel>>(Get(uri));
-            Console.WriteLine("Length of Patrons: " + patrons.Count);
-        }
-        public string Get(string uri)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
         }
     }
 }

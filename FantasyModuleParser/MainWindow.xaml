@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:FantasyModuleParser"
     xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
     mc:Ignorable="d"
-    Title="Fantasy Module Parser" Height="760" Width="850" ResizeMode="NoResize" Icon="Resources/es2_logo.ico">
-    <Grid Background="#FFE5E5E5">
+    Title="Fantasy Module Parser" Height="760" Width="850" ResizeMode="NoResize">
+<Grid Background="#FFE5E5E5">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
             <MenuItem Header="_Options">
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ManageProject" />
