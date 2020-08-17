@@ -272,6 +272,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Main\Views\Changelog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\Views\ProjectManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -426,11 +430,15 @@
     </Compile>
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPC.cs" />
     <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
+    <Compile Include="Main\ViewModels\ChangelogViewModel.cs" />
     <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
     <Compile Include="Main\ViewModels\SupportersViewModel.cs" />
     <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\Changelog.xaml.cs">
+      <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\ProjectManagement.xaml.cs">
       <DependentUpon>ProjectManagement.xaml</DependentUpon>
