@@ -157,7 +157,7 @@ namespace FantasyModuleParser.Exporters
 
 			foreach (NPCModel npcModel in FatNPCList)
 			{
-				if (!string.IsNullOrEmpty(npcModel.NPCToken))
+				if (!string.IsNullOrEmpty(npcModel.NPCImage))
 				{
 					string Filename = NPCNameToXMLFormat(npcModel) + ".jpg";
 					string NPCImageFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "images", Filename);
