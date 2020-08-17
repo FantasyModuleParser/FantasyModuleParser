@@ -463,7 +463,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteStartElement("librarylink");        
 					xmlWriter.WriteAttributeString("type", "windowreference");
 					xmlWriter.WriteStartElement("class");         
-					xmlWriter.WriteString("reference_colindex");			
+					xmlWriter.WriteString("referenceindex");			
 					xmlWriter.WriteEndElement();                                 
 					xmlWriter.WriteStartElement("recordname");                
 					xmlWriter.WriteString("reference.npclists.npcs@" + moduleModel.Name);     
