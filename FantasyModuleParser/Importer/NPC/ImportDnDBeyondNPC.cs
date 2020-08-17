@@ -26,8 +26,7 @@ namespace FantasyModuleParser.Importer.NPC
         private bool continueTraitFlag = false,
             continueActionFlag = false,
             continueReactionFlag = false,
-            continueLegendaryActionFlag = false,
-            continueLairActionFlag = false;
+            continueLegendaryActionFlag = false;
         /// <summary>
         /// Parses & Imports data from DnD Beyond website
         /// </summary>
@@ -103,80 +102,21 @@ namespace FantasyModuleParser.Importer.NPC
                     resetContinueFlags();
                     ParseSpellCastingAttributes(parsedNPCModel, line);
                 }
-                if (line.StartsWith("ACTIONS"))
+                if (line.StartsWith("Actions"))
                 {
                     resetContinueFlags();
                     continueActionFlag = true;
                 }
-                if (line.StartsWith("REACTIONS"))
+                if (line.StartsWith("Reactions"))
                 {
                     resetContinueFlags();
                     continueReactionFlag = true;
                 }
-                if (line.StartsWith("LEGENDARY ACTIONS"))
+                if (line.StartsWith("Legendary Actions"))
                 {
                     resetContinueFlags();
                     continueLegendaryActionFlag = true;
                 }
-                if (line.StartsWith("LAIR ACTIONS"))
-                {
-                    resetContinueFlags();
-                    continueLairActionFlag = true;
-                }
-                if (line.StartsWith("***Part 2***"))
-                {
-                    resetContinueFlags();
-                }
-
-                // Parsing through ***Part 3***
-                if (line.StartsWith("NPCgender:"))
-                {
-                    parsedNPCModel.NPCGender = line.Substring(11);
-                }
-                if (line.StartsWith("NPCunique:"))
-                {
-                    parsedNPCModel.Unique = line.Equals("NPCunique: 1", StringComparison.Ordinal);
-                }
-                if (line.StartsWith("NPCpropername:"))
-                {
-                    parsedNPCModel.NPCNamed = line.Equals("NPCpropername: 1", StringComparison.Ordinal);
-                }
-                if (line.StartsWith("NPCimagePath:"))
-                {
-                    parsedNPCModel.NPCImage = line.Substring(14);
-                }
-                if (line.StartsWith("NPCTokenPath:"))
-                {
-                    parsedNPCModel.NPCToken = line.Substring(13);
-                }
-                if (line.StartsWith("LAction"))
-                {
-                    // Get the lair action number
-                    int lairActionIndex = int.Parse(line.Split(':')[0].Substring(7), CultureInfo.CurrentCulture);
-
-                    // Need to check to see if Lair Action is even populated (there is a chance data isn't saved from ES v1)
-                    if (parsedNPCModel.LairActions.Count >= lairActionIndex)
-                        parsedNPCModel.LairActions[lairActionIndex - 1].ActionName = line.Split(':')[1].Trim();
-                }
-
-
-                // Process any 'continue' flags accordingly here
-                if (continueTraitFlag)
-                    ParseTraits(parsedNPCModel, line);
-
-                if (continueActionFlag && !line.Equals("ACTIONS"))
-                    ParseStandardAction(parsedNPCModel, line);
-
-                if (continueReactionFlag && !line.Equals("REACTIONS"))
-                    ParseReaction(parsedNPCModel, line);
-
-                if (continueLegendaryActionFlag && !line.Equals("LEGENDARY ACTIONS"))
-                    ParseLegendaryAction(parsedNPCModel, line);
-
-                if (continueLairActionFlag && !line.Equals("LAIR ACTIONS"))
-                    ParseLairAction(parsedNPCModel, line);
-
-                lineNumber++;
             }
 
             return parsedNPCModel;
@@ -190,7 +130,6 @@ namespace FantasyModuleParser.Importer.NPC
             continueActionFlag = false;
             continueReactionFlag = false;
             continueLegendaryActionFlag = false;
-            continueLairActionFlag = false;
         }
 
         /// <summary>
@@ -297,7 +236,8 @@ namespace FantasyModuleParser.Importer.NPC
         {
             if(statAttributeStrength.StartsWith("STR"))
             {
-                
+                string[] splitAttributes = statAttributeStrength.Split('\n');
+                npcModel.AttributeStr = int.Parse(splitAttributes[]);
             }
         }
         /// <summary>
@@ -1158,25 +1098,6 @@ namespace FantasyModuleParser.Importer.NPC
             legendaryActionModel.ActionDescription = stringBuilder.ToString().Trim();
 
             npcModel.LegendaryActions.Add(legendaryActionModel);
-        }
-
-        /// <summary>
-        /// This is an odd one, as the Lair description is laid out in ***Part 1***, but the 
-        /// names are in ***Part 3***
-        /// </summary>
-        /// <example>
-        /// All the options of the lair:
-        /// </example>
-        public void ParseLairAction(NPCModel npcModel, string lairAction)
-        {
-            if (lairAction.Trim().Length <= 0)
-                return;
-
-            LairAction lairActionModel = new LairAction();
-            lairActionModel.ActionName = npcModel.LairActions.Count.ToString();
-            lairActionModel.ActionDescription = lairAction;
-
-            npcModel.LairActions.Add(lairActionModel);
         }
     }
 }
