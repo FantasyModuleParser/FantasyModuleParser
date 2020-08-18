@@ -112,8 +112,10 @@ namespace FantasyModuleParser.NPC
         private string _NinthLevelSpellList;
         private bool _MarkedSpellsCheck;
         private string _MarkedSpells;
-        #endregion
         private string _NPCImage;
+        private string _npcToken;
+        #endregion
+
         #endregion
         #region Public Variables
         public string NPCName { get; set; }
@@ -158,7 +160,7 @@ namespace FantasyModuleParser.NPC
         public int PassivePerception { get { return _passivePerception; } set { Set(ref _passivePerception, value); } }
         public string ChallengeRating { get { return _challengeRating; } set { Set(ref _challengeRating, value); } }
         public int XP { get { return _xp; } set { Set(ref _xp, value); } }
-        public string NPCToken { get; set; }
+        public string NPCToken { get { return _npcToken; } set { Set(ref _npcToken, value); } }
         public List<SelectableActionModel> DamageResistanceModelList { get; set; }
         public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
         public List<SelectableActionModel> DamageImmunityModelList { get; set; }

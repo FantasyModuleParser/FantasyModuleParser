@@ -1,22 +1,10 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using UserControl = System.Windows.Controls.UserControl;
 
@@ -64,11 +52,23 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 
         private void _displayBitmapImage(NPCModel npcModel)
         {
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(npcModel.NPCImage);
-            bitmap.EndInit();
-            ImageBox.Source = bitmap;
+            if (File.Exists(npcModel.NPCImage)) { 
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(npcModel.NPCImage);
+                bitmap.EndInit();
+                ImageBox.Source = bitmap;
+                strNPCImage.ClearValue(TextBox.BorderBrushProperty);
+                strNPCImage.ClearValue(TextBox.BorderThicknessProperty);
+            } 
+            else
+            {
+                // This likely breaks MVVM, as I think the ViewModel should not be aware of any specific UI components in the View
+                // and that the View UI compoenents should be interacted through Bindings... but what do I know!
+                strNPCImage.BorderBrush = System.Windows.Media.Brushes.Red;
+                strNPCImage.BorderThickness = new Thickness(2);
+                Keyboard.ClearFocus();
+            }
         }
 
         private void clearImage_Click(object sender, RoutedEventArgs e)

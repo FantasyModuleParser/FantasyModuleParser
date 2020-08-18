@@ -21,6 +21,7 @@ using FantasyModuleParser.Main;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.UserControls.Options;
+using FantasyModuleParser.Main.Views;
 
 namespace FantasyModuleParser
 {
@@ -103,6 +104,9 @@ namespace FantasyModuleParser
                     break;
                 case "Supporters":
                     new Supporters().ShowDialog();
+                    break;
+                case "Changelog":
+                    new Changelog().ShowDialog();
                     break;
                 case "Exit":
                     Close();
