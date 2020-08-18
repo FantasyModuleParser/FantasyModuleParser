@@ -24,7 +24,7 @@ namespace FantasyModuleParser.Main.ViewModels
         public void run()
         {
             List<ChangelogModel> ChangeLogs = JsonConvert.DeserializeObject<List<ChangelogModel>>(Get(uri));
-            ChangelogList = ChangeLogs.Where(x => x.vernumber >= 5 ).ToList();
+            ChangelogList = ChangeLogs.Skip(Math.Max(0, ChangeLogs.Count() - 5)).ToList();
         }
         public string Get(string uri)
         {

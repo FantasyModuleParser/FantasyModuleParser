@@ -22,29 +22,44 @@
         <Label Content="Former Patrons" FontSize="16px" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
         <Label Content="Level One Patrons" FontSize="16px" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
         <Label Content="Level Two Patrons" FontSize="16px" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
-        <ScrollViewer Margin="5,0,5,0" Grid.Column="3" Grid.Row="1">
+        <ScrollViewer Margin="5,0,5,0" Grid.Column="3" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <ItemsControl Name="LevelZeroPatronsItemsControl" ItemsSource="{Binding LevelZeroPatronList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding name}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding name}" Padding="0,5,0,0"/>
+                            <TextBlock Text="(" Padding="0,5,0,0"/>
+                            <TextBlock Text="{Binding length}" Padding="0,5,0,0"/>
+                            <TextBlock Text=")" Padding="0,5,0,0"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <ScrollViewer Margin="5,0,5,0" Grid.Column="1" Grid.Row="1">
+        <ScrollViewer Margin="5,0,5,0" Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <ItemsControl Name="LevelOnePatronsItemsControl" ItemsSource="{Binding LevelOnePatronList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding name}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding name}" Padding="0,5,0,0"/>
+                            <TextBlock Text="(" Padding="0,5,0,0"/>
+                            <TextBlock Text="{Binding length}" Padding="0,5,0,0"/>
+                            <TextBlock Text=")" Padding="0,5,0,0"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <ScrollViewer Margin="5,0,5,0" Grid.Column="2" Grid.Row="1">
+        <ScrollViewer Margin="5,0,5,0" Grid.Column="2" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <ItemsControl Name="LevelTwoPatronsItemsControl" ItemsSource="{Binding LevelTwoPatronList}" Grid.Column="1" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding name}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding name}" Padding="0,5,0,0"/>
+                            <TextBlock Text=" (" Padding="0,5,0,0"/>
+                            <TextBlock Text="{Binding length}" Padding="0,5,0,0"/>
+                            <TextBlock Text=")" Padding="0,5,0,0"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

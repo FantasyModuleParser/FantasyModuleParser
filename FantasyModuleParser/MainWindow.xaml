@@ -40,6 +40,7 @@
             <MenuItem Header="_Information">
                 <MenuItem Header="_About Fantasy Module Parser" Click="Menu_Click" Name="About"/>
                 <MenuItem Header="_Fantasy Module Parser Supporters" Click="Menu_Click" Name="Supporters" />
+                <MenuItem Header="_Fantasy Module Parser Changelog" Click="Menu_Click" Name="Changelog" />
                 <MenuItem Header="_Quickstart Guide" Visibility="Collapsed" />
                 <MenuItem Header="_Links in Fantasy Grounds" Visibility="Collapsed" />
                 <Separator />

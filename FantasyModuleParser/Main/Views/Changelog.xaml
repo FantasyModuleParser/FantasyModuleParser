@@ -5,16 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.Main.Views"
         mc:Ignorable="d"
-        Title="Updates to Fantasy Module Parser (Changelog)" Height="300" Width="560" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
+        Title="Updates to Fantasy Module Parser (Changelog)" Height="330" Width="560" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
     <Grid Background="#FFE5E5E5">
-        <ScrollViewer Margin="5,0,5,0" Grid.Column="3" Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="535" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="220" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Label Content="Fantasy Module Parser Changelog" HorizontalAlignment="Center" FontSize="14px" FontWeight="Bold" Grid.Column="1" Grid.Row="1"/>
+        <ScrollViewer Margin="5,0,5,0" Grid.Column="1" Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <ItemsControl Name="ChangeLogItemsControl" ItemsSource="{Binding ChangelogList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding ver}" />
+                        <StackPanel>
+                            <TextBlock Text="{Binding ver}" FontWeight="Bold" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Release Date: " FontStyle="Italic" />
+                                <TextBlock Text="{Binding date}" />
+                            </StackPanel>
+                            <TextBlock Text="Bugfixes" FontStyle="Italic" />
+                            <TextBlock Text="{Binding fix}" />
+                            <TextBlock Text="Added Features" FontStyle="Italic" />
+                            <TextBlock Text="{Binding added}" />
+                            <TextBlock Text="Known Issues" FontStyle="Italic" />
+                            <TextBlock Text="{Binding known}" />
+                            <TextBlock Text="" />
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Button Content="Close"  Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ESExit_Click"/>
+        </Grid>
     </Grid>
 </Window>
