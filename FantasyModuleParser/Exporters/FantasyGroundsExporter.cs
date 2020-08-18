@@ -38,12 +38,12 @@ namespace FantasyModuleParser.Exporters
 
 		public void CreateModule(ModuleModel moduleModel)
 		{
-			if (moduleModel.ModulePath == null || moduleModel.ModulePath.Length == 0)
+			if (string.IsNullOrEmpty(moduleModel.ModulePath))
 			{
 				throw new ApplicationException("No Module Path has been set");
 			}
 
-			if (moduleModel.Name == null || moduleModel.Name.Length == 0)
+			if (string.IsNullOrEmpty(moduleModel.Name))
 			{
 				throw new ApplicationException("No Module Name has been set");
 			}
@@ -54,7 +54,7 @@ namespace FantasyModuleParser.Exporters
 			Directory.CreateDirectory(moduleFolderPath);
 
 			// Save Thumbnail to Module Folder
-			if (moduleModel.ThumbnailPath != null && moduleModel.ThumbnailPath.Length != 0)
+			if (!string.IsNullOrEmpty(moduleModel.ThumbnailPath))
             {
 				SaveThumbnailImage(moduleModel);
 
@@ -495,7 +495,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("reference_colindex");                // Write "reference_colindex"
 			xmlWriter.WriteEndElement();                                // Close </class>
 			xmlWriter.WriteStartElement("recordname");                  // Open <recordname>
-			if (moduleModel.IsLockedRecords == true)
+			if (moduleModel.IsLockedRecords)
             {
 				xmlWriter.WriteString(listId + "@" + moduleModel.Name);             // Write "reference.npclist.bytype"
 			}

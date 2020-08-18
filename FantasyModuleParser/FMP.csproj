@@ -394,6 +394,7 @@
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
     <Compile Include="Importer\NPC\IImportNPC.cs" />
+    <Compile Include="Importer\NPC\ImportDnDBeyondNPC.cs" />
     <Compile Include="Importer\Utils\ImportCommonUtils.cs" />
     <Compile Include="Main\Models\CategoryModel.cs" />
     <Compile Include="Main\Models\ChangelogModel.cs" />
