@@ -123,7 +123,8 @@ namespace FantasyModuleParser.Exporters
 			}
 			else
 			{
-				File.Copy(moduleModel.ThumbnailPath, NewThumbnailFileName(moduleModel));
+				if(File.Exists(@moduleModel.ThumbnailPath))
+					File.Copy(moduleModel.ThumbnailPath, NewThumbnailFileName(moduleModel));
 			}
 		}
 
@@ -156,7 +157,7 @@ namespace FantasyModuleParser.Exporters
 
 			foreach (NPCModel npcModel in FatNPCList)
 			{
-				if (!string.IsNullOrEmpty(npcModel.NPCToken))
+				if (!string.IsNullOrEmpty(npcModel.NPCImage))
 				{
 					string Filename = NPCNameToXMLFormat(npcModel) + ".jpg";
 					string NPCImageFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "images", Filename);
@@ -434,7 +435,7 @@ namespace FantasyModuleParser.Exporters
 
 					xmlWriter.WriteStartElement("name");                   
 					xmlWriter.WriteAttributeString("type", "string");          
-					xmlWriter.WriteString(WriteLibraryNameUpperCase(moduleModel) + " Reference Library");   
+					xmlWriter.WriteString(moduleModel.Name + " Reference Library");   
 					xmlWriter.WriteEndElement();						
 
 					xmlWriter.WriteStartElement("categoryname");          
@@ -462,7 +463,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteStartElement("librarylink");        
 					xmlWriter.WriteAttributeString("type", "windowreference");
 					xmlWriter.WriteStartElement("class");         
-					xmlWriter.WriteString("reference_colindex");			
+					xmlWriter.WriteString("referenceindex");			
 					xmlWriter.WriteEndElement();                                 
 					xmlWriter.WriteStartElement("recordname");                
 					xmlWriter.WriteString("reference.npclists.npcs@" + moduleModel.Name);     
@@ -546,11 +547,6 @@ namespace FantasyModuleParser.Exporters
 		private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
 		{
 			string libname = moduleModel.Name.ToLower();
-			return libname.Replace(" ", "");
-		}
-		private string WriteLibraryNameUpperCase(ModuleModel moduleModel)
-		{
-			string libname = moduleModel.Name;
 			return libname.Replace(" ", "");
 		}
 		private string CategoryNameToXML(CategoryModel categoryModel)
@@ -1056,11 +1052,22 @@ namespace FantasyModuleParser.Exporters
 			}
 			string[] hpArray = npcModel.HP.Split('(');
 			string hpValue = hpArray[0].Trim(); // Removes any whitespace
-			string hpDieBreakdown = "(" + hpArray[1];
+			string hpDieBreakdown = "";
+			if (hpArray.Length == 2)
+            {
+				hpDieBreakdown = "(" + hpArray[1];
+			}	
 
 			xmlWriter.WriteStartElement("hd"); // Open <hd>
 			xmlWriter.WriteAttributeString("type", "string"); // Add type=string
-			xmlWriter.WriteString(hpDieBreakdown); // Write HP formula
+			if (hpArray.Length == 2)
+			{
+				xmlWriter.WriteString(hpDieBreakdown); // Write HP formula
+			}
+            else 
+			{ 
+				xmlWriter.WriteString(""); 
+			}
 			xmlWriter.WriteEndElement(); // Close </hd>
 			xmlWriter.WriteStartElement("hp"); // Open <hp>
 			xmlWriter.WriteAttributeString("type", "number"); // Add type=number
@@ -1454,7 +1461,14 @@ namespace FantasyModuleParser.Exporters
 			if (innateName.Length > 0)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.Append("The " + npcModel.NPCName.ToLower() + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility);
+				if (!string.IsNullOrEmpty(npcModel.InnateSpellcastingAbility))
+				{
+					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility);
+				}
+				else 
+				{ 
+					MessageBox.Show("Please fill in the Innate Spellcasting Ability"); 
+				}
 				if (npcModel.InnateSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.InnateSpellSaveDC);
@@ -1503,8 +1517,22 @@ namespace FantasyModuleParser.Exporters
 			if (spellcastingName.Length > 0)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " is a " + npcModel.SpellcastingCasterLevel + "-level spellcaster. ");
-				stringBuilder.Append("Its spellcasting ability is " + npcModel.SCSpellcastingAbility);
+				if (!string.IsNullOrEmpty(npcModel.SpellcastingCasterLevel))
+				{
+					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " is a " + npcModel.SpellcastingCasterLevel + "-level spellcaster. ");
+				}
+				else 
+				{ 
+					MessageBox.Show("Please fill in the Spellcasting Level"); 
+				}
+				if (!string.IsNullOrEmpty(npcModel.SCSpellcastingAbility))
+                {
+					stringBuilder.Append("Its spellcasting ability is " + npcModel.SCSpellcastingAbility);
+				}
+				else 
+				{ 
+					MessageBox.Show("Please fill in the Spellcasting Ability"); 
+				}
 				if (npcModel.SpellcastingSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.SpellcastingSpellSaveDC);
@@ -1516,8 +1544,16 @@ namespace FantasyModuleParser.Exporters
 				}
 
 				stringBuilder.Append(". ");
-				stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following " + npcModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
-				stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpells.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
+				if (!string.IsNullOrEmpty(npcModel.SpellcastingSpellClass))
+                {
+					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following " + npcModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
+				}
+				else 
+				{ 
+					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following spells prepared:"); 
+				}
+				if (npcModel.CantripSpellList != null)
+					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpells.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
 				if (npcModel.FirstLevelSpellList != null)
 					stringBuilder.Append("\\r1st level (" + npcModel.FirstLevelSpells.ToLower() + "): " + npcModel.FirstLevelSpellList.ToLower());
 				if (npcModel.SecondLevelSpellList != null)
