@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace FantasyModuleParser.NPC.ViewModels
 {
     public class DescriptionUCViewModel : ViewModelBase
     {
         private NPCModel _npcModel;
+        
         public string Description { 
             get 
             { return this._npcModel.Description; } 
@@ -22,6 +24,21 @@ namespace FantasyModuleParser.NPC.ViewModels
                 RaisePropertyChanged(nameof(Description)); 
             } 
         }
+
+        private FlowDocument _markdownDocument;
+        public FlowDocument MarkdownDocument
+        {
+            get
+            {
+                return this._markdownDocument;
+            }
+            set
+            {
+                this._markdownDocument = value;
+                RaisePropertyChanged(nameof(Description));
+            }
+        }
+
         private NPCController npcController;
         public DescriptionUCViewModel()
         {

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:markdig="clr-namespace:Markdig;assembly=Markdig"
              xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
@@ -10,9 +11,18 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="270,465,0,0" VerticalAlignment="Top" Width="160"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="440,465,0,0" VerticalAlignment="Top" Width="165"/>
         <StackPanel Orientation="Vertical">
-            <TextBox Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
+            <Grid Width="590" Height="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="MarkdownTextBox" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         TextChanged="TextBox_TextChanged" Grid.Column="0" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+
+                <FlowDocumentScrollViewer x:Name="MarkdownViewer" Grid.Column="2" />
+            </Grid>
             
-            </TextBox>
             <!--<RichTextBox Name="descriptionRTB" TextChanged="descriptionRTB_TextChanged" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.ToolTip>
                     <TextBlock>
