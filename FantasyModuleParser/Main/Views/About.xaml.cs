@@ -26,7 +26,7 @@ namespace FantasyModuleParser.Main
             InitializeComponent();
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
-            versionlabel.Content = "v" + System.Windows.Forms.Application.ProductVersion + "-Alpha";
+            versionlabel.Content = "v" + System.Windows.Forms.Application.ProductVersion + "a";
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
