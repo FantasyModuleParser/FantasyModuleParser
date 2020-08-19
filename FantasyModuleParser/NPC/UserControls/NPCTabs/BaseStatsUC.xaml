@@ -166,7 +166,7 @@
         </ComboBox>
         <Label Content="Type:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="12" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="4" />
         <ComboBox Name="strType" Padding="5,0,0,0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21" TabIndex="3">
-            <ComboBoxItem>abberation</ComboBoxItem>
+            <ComboBoxItem>aberration</ComboBoxItem>
             <ComboBoxItem>beast</ComboBoxItem>
             <ComboBoxItem>celestial</ComboBoxItem>
             <ComboBoxItem>construct</ComboBoxItem>
