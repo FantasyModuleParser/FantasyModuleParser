@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -10,6 +12,7 @@ using System.Xaml;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.ViewModels;
 using Markdig;
+using Markdig.Syntax;
 using Markdig.Wpf;
 using XamlReader = System.Windows.Markup.XamlReader;
 

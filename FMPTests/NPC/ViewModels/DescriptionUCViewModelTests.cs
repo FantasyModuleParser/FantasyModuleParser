@@ -16,9 +16,10 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
         }
 
         [TestMethod()]
-        [DataRow("#Description", "<h>Description</h>")]
-        [DataRow("**Bold**", "<b>Bold</b>")]
-        [DataRow("*Italized*", "<i>Italized</i>")]
+        [DataRow("# Description", "<h>Description</h>")]
+        [DataRow(@"**Bold**", "<p><b>Bold</b></p>")]
+        [DataRow(@"*Italized*", "<p><i>Italized</i></p>")]
+        [DataRow(@"***Bold And Italized***", "<p><i><b>Bold And Italized</b></i></p>")]
         public void ValidateXMLTest(string actualContent, string expectedContent)
         {
             string transformedActualContent = viewModel.ValidateXML(actualContent);
