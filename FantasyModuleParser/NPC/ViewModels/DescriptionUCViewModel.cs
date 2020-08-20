@@ -100,6 +100,8 @@ namespace FantasyModuleParser.NPC.ViewModels
             input = tagReplace(input, "strong", "b");
             input = tagReplace(input, "em", "i");
             input = tagReplace(input, "h1", "h");
+            input = tagReplace(input, "code", "frame");
+            input = tagReplace(input, "ul", "list");
 
             return input;
         }
