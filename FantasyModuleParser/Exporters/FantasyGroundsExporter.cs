@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using System;
@@ -1392,9 +1393,10 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void WriteText(XmlWriter xmlWriter, NPCModel npcModel)
 		{
+			NPCController npcController = new NPCController();
 			xmlWriter.WriteStartElement("text"); // Open <text>
 			xmlWriter.WriteAttributeString("type", "formattedtext"); // Add type=formattedtext
-			xmlWriter.WriteString("Edit this later");
+			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(npcModel.Description));
 			xmlWriter.WriteEndElement(); // Close </text>
 		}
 		private void WriteToken(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
@@ -1628,6 +1630,7 @@ namespace FantasyModuleParser.Exporters
 
 			return document;
 		}
+
 		public sealed class StringWriterWithEncoding : StringWriter
 		{
 			private readonly Encoding encoding;

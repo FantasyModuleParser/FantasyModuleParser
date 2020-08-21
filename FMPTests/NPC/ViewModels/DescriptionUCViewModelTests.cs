@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Xml.Linq;
 
 namespace FantasyModuleParser.NPC.ViewModels.Tests
 {
@@ -27,11 +28,12 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
               <li>Item 2</li>
               </list>")]
         [DataRow("```Chatbox Text```", "<p><frame>Chatbox Text</frame></p>")]
+        [DataRow(@"++Underline Text Format++", "<p><u>Underline Text Format</u></p>")]
         public void ValidateXMLTest(string actualContent, string expectedContent)
         {
             string transformedActualContent = viewModel.ValidateXML(actualContent);
 
-            Assert.AreEqual(expectedContent, transformedActualContent);
+            Assert.AreEqual(XmlPrettyPrint(expectedContent.Trim()), XmlPrettyPrint(transformedActualContent.Trim()));
         }
         [TestMethod]
         public void Validate_ValidateXML_IntegrationTest_1()
@@ -48,7 +50,7 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
                 " These terrestrial manifestations of loathsome alien agendas are known as core spawn," +
                 " and they are as varied in their physiology as they are horrific.";
 
-            string expected = "<h>Core Spawn Crawler</h>\r\n" +
+            string expected = "<text><h>Core Spawn Crawler</h>\r\n" +
                 "<p>The smallest and most numerous of the core spawn," +
                 " these eyeless creatures scurry through the subterranean darkness with the help of their four irregular," +
                 " gangly arms and hooked prehensile tails." +
@@ -58,11 +60,13 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
                 "\r\n<p>The Elder Evils assault the multiverse in strange and calamitous ways." +
                 " Sometimes they breach the Material Plane by exploiting the unfathomable energy and darkness found in the world's depths." +
                 " These terrestrial manifestations of loathsome alien agendas are known as core spawn," +
-                " and they are as varied in their physiology as they are horrific.</p>";
+                " and they are as varied in their physiology as they are horrific.</p></text>";
 
             string transformedActualContent = viewModel.ValidateXML(data);
 
-            Assert.AreEqual(expected, transformedActualContent);
+            // A singular header XML tag is needed for validation
+            transformedActualContent = "<text>" + transformedActualContent + "</text>";
+            Assert.AreEqual(XmlPrettyPrint(expected), XmlPrettyPrint(transformedActualContent));
         }
 
         [TestMethod()]
@@ -74,8 +78,9 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
             string expectedDataContent = GetEmbeddedResourceFileContent(expectedFileDataPath);
 
             string transformedActualContent = viewModel.ValidateXML(actualDataContent);
-
-            Assert.AreEqual(expectedDataContent, transformedActualContent);
+            // A singular header XML tag is needed for validation
+            transformedActualContent = "<text>" + transformedActualContent + "</text>";
+            Assert.AreEqual(XmlPrettyPrint(expectedDataContent), XmlPrettyPrint(transformedActualContent));
         }
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
@@ -86,6 +91,12 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
             {
                 return reader.ReadToEnd();
             }
+        }
+
+        private string XmlPrettyPrint(string input)
+        {
+            XDocument xDocument = XDocument.Parse(input);
+            return xDocument.ToString();
         }
     }
 }

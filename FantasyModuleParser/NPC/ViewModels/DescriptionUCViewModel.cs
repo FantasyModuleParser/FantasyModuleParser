@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.ViewModel;
 using Markdig;
+using Markdig.Wpf;
 using Microsoft.Toolkit.Parsers.Markdown;
 using Microsoft.Toolkit.Parsers.Markdown.Blocks;
 using Microsoft.Toolkit.Parsers.Markdown.Inlines;
@@ -16,7 +17,6 @@ namespace FantasyModuleParser.NPC.ViewModels
     public class DescriptionUCViewModel : ViewModelBase
     {
         private NPCModel _npcModel;
-        
         public string Description { 
             get 
             { return this._npcModel.Description; } 
@@ -62,37 +62,14 @@ namespace FantasyModuleParser.NPC.ViewModels
         }
         public String ValidateXML(String inputMarkdownText)
         {
-            //MarkdownDocument markdownDocument = new MarkdownDocument();
-            //markdownDocument.Parse(inputMarkdownText);
+            return npcController.GenerateFantasyGroundsDescriptionXML(inputMarkdownText);
+        }
 
-
-            //StringBuilder output = new StringBuilder();
-            //foreach (var element in markdownDocument.Blocks)
-            //{
-            //    if (element is HeaderBlock header)
-            //    {
-            //        //Console.WriteLine($"Header: {header.ToString()}");
-            //        if (header.HeaderLevel == 1)
-            //            output.Append("<h>").Append(header.ToString().Trim()).Append("</h>");
-            //    }
-
-            //    if (element is ParagraphBlock paragraph)
-            //    {
-            //        if(paragraph.Type == MarkdownBlockType.Paragraph)
-            //        {
-            //            foreach(MarkdownInline inlineElements in paragraph.Inlines)
-            //            {
-            //            }
-            //        }
-            //        Console.WriteLine($"Paragraph: {paragraph.ToString()}");
-            //    }
-            //}
-
-            var result = Markdown.ToHtml(inputMarkdownText);
-
-            StringBuilder output = new StringBuilder();
-            output.Append(_replaceHtmlTagsToFGCompliance(result).Trim());
-            return output.ToString();
+        private static MarkdownPipeline BuildPipeline()
+        {
+            return new MarkdownPipelineBuilder()
+                .UseSupportedExtensions()
+                .Build();
         }
 
         private string _replaceHtmlTagsToFGCompliance(string input)
@@ -102,6 +79,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             input = tagReplace(input, "h1", "h");
             input = tagReplace(input, "code", "frame");
             input = tagReplace(input, "ul", "list");
+            input = tagReplace(input, "ins", "u");
 
             return input;
         }
