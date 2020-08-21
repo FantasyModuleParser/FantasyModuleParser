@@ -139,12 +139,16 @@ namespace FantasyModuleParser.Importer.NPC
                     continueTraitFlag = true;
                     continue;
                 }
-                //if (line.StartsWith("Trait", StringComparison.Ordinal))
-                //{
-                //    resetContinueFlags();
-                //    continueTraitFlag = true;
-                //    ParseTraits(parsedNPCModel, line.Substring(5)); // Removes the term 'Trait' from the parse method
-                //}
+                if (continueTraitFlag)
+                {
+                    if (line.Equals("Actions"))
+                    {
+                        resetContinueFlags();
+                        continue;
+                    }
+                    ParseTraits(parsedNPCModel, line);
+                    continue;
+                }
                 if (line.StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
