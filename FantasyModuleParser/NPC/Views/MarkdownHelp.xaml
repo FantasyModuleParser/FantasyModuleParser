@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC.Views"
         mc:Ignorable="d"
-        Title="Markdown Help" Height="275" Width="450" ResizeMode="NoResize">
+        Title="Markdown Help" Height="300" Width="450" ResizeMode="NoResize">
     <Grid Height="300" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
@@ -21,11 +21,20 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.Column="1">
             <TextBlock Text="Markdown Help" FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center"/>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230" />
+                <ColumnDefinition Width="180" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="# Header" Grid.Column="0"/>
+            <TextBlock Text="Header" FontSize="16px" FontWeight="Bold" Grid.Column="1" />
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="230" />
                 <ColumnDefinition Width="180" />
@@ -33,7 +42,7 @@
             <TextBlock Text="*Italicized*" Grid.Column="0"/>
             <TextBlock Text="Italicized" FontStyle="Italic" Grid.Column="1" />
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="230" />
                 <ColumnDefinition Width="180" />
@@ -41,7 +50,7 @@
             <TextBlock Text="**Bold**" Grid.Row="1" Grid.Column="0"/>
             <TextBlock Text="Bold" FontWeight="Bold" Grid.Row="1" Grid.Column="1"/>
         </Grid>
-        <Grid Grid.Row="3" Grid.Column="1">
+        <Grid Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="230" />
                 <ColumnDefinition Width="180" />
@@ -49,7 +58,7 @@
             <TextBlock Text="***Bold and Italicized***" Grid.Row="1" Grid.Column="0"/>
             <TextBlock Text="Bold and Italicized" FontWeight="Bold" FontStyle="Italic" Grid.Row="1" Grid.Column="1"/>
         </Grid>
-        <Grid Grid.Row="4" Grid.Column="1">
+        <Grid Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="230" />
                 <ColumnDefinition Width="180" />
@@ -57,7 +66,7 @@
             <TextBlock Text="++Underline++" Grid.Row="1" Grid.Column="0"/>
             <TextBlock Text="Underline" TextDecorations="Underline" Grid.Row="1" Grid.Column="1"/>
         </Grid>
-        <Grid Grid.Row="5" Grid.Column="1">
+        <Grid Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="230" />
                 <ColumnDefinition Width="180" />
@@ -65,21 +74,21 @@
             <TextBlock Text="***++Bold, Italicized, and Underline++***" Grid.Row="1" Grid.Column="0"/>
             <TextBlock Text="Bold, Italicized, and Underline" FontWeight="Bold" FontStyle="Italic" TextDecorations="Underline" Grid.Row="1" Grid.Column="1"/>
         </Grid>
-        <Grid Grid.Row="6" Grid.Column="1">
+        <Grid Grid.Row="7" Grid.Column="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="230" />
                 <ColumnDefinition Width="180" />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="`Chat Box`" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock Text="```Chat Box```" Grid.Row="1" Grid.Column="0"/>
             <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1">
                 <TextBlock Text="Chat Box" />
             </Border>
         </Grid>
-        <Grid Grid.Row="7" Grid.Column="1">
+        <Grid Grid.Row="8" Grid.Column="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="410" />
             </Grid.ColumnDefinitions>
-            <Button Content="Close" Margin="0,5,0,0" Width="100" Click="Close_Click" />
+            <Button Content="Close" Margin="0" Width="100" Click="Close_Click" />
         </Grid>
     </Grid>
     
