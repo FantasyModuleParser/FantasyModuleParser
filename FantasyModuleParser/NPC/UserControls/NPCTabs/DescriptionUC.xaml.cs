@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Xaml;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.ViewModels;
+using FantasyModuleParser.NPC.Views;
 using Markdig;
 using Markdig.Syntax;
 using Markdig.Wpf;
@@ -26,6 +27,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         #region Controllers
         public NPCController npcController { get; set; }
         #endregion
+        #region Variables
+        private bool _isMarkdownHelpWindowOpen = false;
+        #endregion
+
         public DescriptionUC()
         {
             InitializeComponent();
@@ -54,6 +59,21 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
                     }
                 }
             }
+        }
+        private void MarkdownHelp_Click(object sender, RoutedEventArgs e)
+        {
+            if (!_isMarkdownHelpWindowOpen)
+            {
+                _isMarkdownHelpWindowOpen = true;
+                MarkdownHelp markdownHelp = new MarkdownHelp();
+                markdownHelp.Closing += MarkdownHelp_Closing;
+                markdownHelp.Show();
+            }
+        }
+
+        private void MarkdownHelp_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _isMarkdownHelpWindowOpen = false;
         }
 
         private static MarkdownPipeline BuildPipeline()
