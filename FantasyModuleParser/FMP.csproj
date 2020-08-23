@@ -380,6 +380,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\Views\MarkdownHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\Views\PreviewNPC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -520,6 +524,9 @@
     <Compile Include="NPC\ViewModels\ResistanceUserControlViewModel.cs" />
     <Compile Include="NPC\Views\DiceFunction.xaml.cs">
       <DependentUpon>DiceFunction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\Views\MarkdownHelp.xaml.cs">
+      <DependentUpon>MarkdownHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
       <DependentUpon>PreviewNPC.xaml</DependentUpon>
