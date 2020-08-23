@@ -28,6 +28,7 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
               <li>Item 2</li>
               </list>")]
         [DataRow("```Chatbox Text```", "<p><frame>Chatbox Text</frame></p>")]
+        [DataRow("`Single tick chatbox`", "<p><frame>Single tick chatbox</frame></p>")]
         [DataRow(@"++Underline Text Format++", "<p><u>Underline Text Format</u></p>")]
         public void ValidateXMLTest(string actualContent, string expectedContent)
         {
