@@ -51,6 +51,19 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		public void Refresh()
 		{
 			DataContext = npcController.GetNPCModel();
+
+			// May be breaking MVVM Design, as the ViewModel is directly modifying View UI components
+			// Marks the NPC Token field in a red border IF the NPCToken path is set and the file does not exist
+			if(!string.IsNullOrEmpty((DataContext as NPCModel).NPCToken) && !File.Exists((DataContext as NPCModel).NPCToken))
+			{
+				strNPCToken.BorderBrush = System.Windows.Media.Brushes.Red;
+				strNPCToken.BorderThickness = new Thickness(2);
+			} else
+			{
+				// If the NPC Token path links to the given file, remove the border thickness value
+				strNPCToken.ClearValue(TextBox.BorderBrushProperty);
+				strNPCToken.ClearValue(TextBox.BorderThicknessProperty);
+			}
 		}
 
 		#region BaseStatChange
@@ -181,8 +194,12 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			openFileDialog.InitialDirectory = "c:\\";
 			openFileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
 			openFileDialog.RestoreDirectory = true;
-			if (openFileDialog.ShowDialog() == true)
+			if (openFileDialog.ShowDialog() == true) 
+			{ 
 				strNPCToken.Text = openFileDialog.FileName;
+				// If the NPC Token path links to the given file, remove the border thickness value
+				strNPCToken.BorderThickness = new Thickness(0);
+			}
 		}
     }
 }
