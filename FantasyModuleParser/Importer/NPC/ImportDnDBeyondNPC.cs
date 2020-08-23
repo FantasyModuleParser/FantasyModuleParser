@@ -149,6 +149,13 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseTraits(parsedNPCModel, line);
                     continue;
                 }
+
+                if (continueLegendaryActionFlag)
+                {
+                    ParseLegendaryAction(parsedNPCModel, line);
+                    continue;
+                }
+
                 if (line.StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
@@ -175,7 +182,7 @@ namespace FantasyModuleParser.Importer.NPC
                 {
                     resetContinueFlags();
                     continueLegendaryActionFlag = true;
-                    ParseLegendaryAction(parsedNPCModel, line);
+                    //ParseLegendaryAction(parsedNPCModel, line);
                 }
                 lineNumber++;
             }
@@ -767,6 +774,9 @@ namespace FantasyModuleParser.Importer.NPC
             if (npcModel.Traits == null)
                 npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
 
+            if (String.IsNullOrEmpty(traits))
+                return;
+
             string[] traitArray = traits.Split('.');
             ActionModelBase traitModel = new ActionModelBase();
             traitModel.ActionName = traitArray[0];
@@ -1173,6 +1183,9 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseLegendaryAction(NPCModel npcModel, string legendaryAction)
         {
+            if (String.IsNullOrEmpty(legendaryAction))
+                return;
+
             string[] legenaryActionArray = legendaryAction.Split('.');
             LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
             legendaryActionModel.ActionName = legenaryActionArray[0];

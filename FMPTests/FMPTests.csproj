@@ -58,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Exporters\FantasyGroundsExporterTests.cs" />
+    <Compile Include="Importer\NPC\ImportDnDBeyondNPCFileTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCLineParserTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCFileTests.cs" />
     <Compile Include="Importer\Utils\ImportCommonUtilsTests.cs" />
@@ -67,6 +68,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Aboleth.txt" />
     <Content Include="Resources\Mage1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
