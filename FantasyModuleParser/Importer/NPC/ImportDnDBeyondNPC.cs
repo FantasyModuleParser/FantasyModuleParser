@@ -29,10 +29,10 @@ namespace FantasyModuleParser.Importer.NPC
             continueIntelligenceFlag = false,
             continueWisdomFlag = false,
             continueCharismaFlag = false,
-            continueTraitFlag = false,
-            continueActionFlag = false,
-            continueReactionFlag = false,
-            continueLegendaryActionFlag = false;
+            continueTraitsFlag = false,
+            continueActionsFlag = false,
+            continueReactionsFlag = false,
+            continueLegendaryActionsFlag = false;
         /// <summary>
         /// Parses & Imports data from DnD Beyond website
         /// </summary>
@@ -136,21 +136,22 @@ namespace FantasyModuleParser.Importer.NPC
                 if (line.StartsWith("Challenge", StringComparison.Ordinal))
                 {
                     ParseChallengeRatingAndXP(parsedNPCModel, line);
-                    continueTraitFlag = true;
+                    continueTraitsFlag = true;
                     continue;
                 }
-                if (continueTraitFlag)
+                if (continueTraitsFlag)
                 {
                     if (line.Equals("Actions"))
                     {
                         resetContinueFlags();
+                        continueActionsFlag = true;
                         continue;
                     }
                     ParseTraits(parsedNPCModel, line);
                     continue;
                 }
 
-                if (continueLegendaryActionFlag)
+                if (continueLegendaryActionsFlag)
                 {
                     ParseLegendaryAction(parsedNPCModel, line);
                     continue;
@@ -166,22 +167,22 @@ namespace FantasyModuleParser.Importer.NPC
                     resetContinueFlags();
                     ParseSpellCastingAttributes(parsedNPCModel, line);
                 }
-                if (line.StartsWith("Actions"))
+                if (continueActionsFlag == true)
                 {
                     resetContinueFlags();
-                    continueActionFlag = true;
+                    continueActionsFlag = true;
                     ParseStandardAction(parsedNPCModel, line);
                 }
                 if (line.StartsWith("Reactions"))
                 {
                     resetContinueFlags();
-                    continueReactionFlag = true;
+                    continueReactionsFlag = true;
                     ParseReaction(parsedNPCModel, line);
                 }
                 if (line.StartsWith("Legendary Actions"))
                 {
                     resetContinueFlags();
-                    continueLegendaryActionFlag = true;
+                    continueLegendaryActionsFlag = true;
                     //ParseLegendaryAction(parsedNPCModel, line);
                 }
                 lineNumber++;
@@ -200,10 +201,10 @@ namespace FantasyModuleParser.Importer.NPC
             continueIntelligenceFlag = false;
             continueWisdomFlag = false;
             continueCharismaFlag = false;
-            continueTraitFlag = false;
-            continueActionFlag = false;
-            continueReactionFlag = false;
-            continueLegendaryActionFlag = false;
+            continueTraitsFlag = false;
+            continueActionsFlag = false;
+            continueReactionsFlag = false;
+            continueLegendaryActionsFlag = false;
         }
 
         /// <summary>
@@ -304,6 +305,21 @@ namespace FantasyModuleParser.Importer.NPC
             }
         }
 
+        /// <summary>
+        /// STR 
+        /// 10 (+0)
+        /// DEX
+        /// 11 (+0)
+        /// CON
+        /// 12 (+1)
+        /// INT 
+        /// 13 (+1)
+        /// WIS
+        /// 14 (+2)
+        /// CHA
+        /// 15 (+2)'
+        /// </summary>
+
         public void ParseStatAttributeStrength(NPCModel npcModel, string statAttributeStrength)
         {
             string[] splitAttributes = statAttributeStrength.Split('(');
@@ -334,23 +350,7 @@ namespace FantasyModuleParser.Importer.NPC
             string[] splitAttributes = statAttributeCharisma.Split('(');
             npcModel.AttributeCon = int.Parse(splitAttributes[0]);
         }
-        /// <summary>
-        /// 'STR DEX CON INT WIS CHA 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)'
-        /// </summary>
-        public void ParseStatAttributes(NPCModel npcModel, string statAttributes)
-        {
-            if (statAttributes.StartsWith("STR DEX CON INT WIS CHA"))
-            {
-                string[] splitAttributes = statAttributes.Split(' ');
-                npcModel.AttributeStr = int.Parse(splitAttributes[6], CultureInfo.CurrentCulture);
-                npcModel.AttributeDex = int.Parse(splitAttributes[8], CultureInfo.CurrentCulture);
-                npcModel.AttributeCon = int.Parse(splitAttributes[10], CultureInfo.CurrentCulture);
-                npcModel.AttributeInt = int.Parse(splitAttributes[12], CultureInfo.CurrentCulture);
-                npcModel.AttributeWis = int.Parse(splitAttributes[14], CultureInfo.CurrentCulture);
-                npcModel.AttributeCha = int.Parse(splitAttributes[16], CultureInfo.CurrentCulture);
-            }
-        }
-
+        
         /// <summary>
         /// 'Saving Throws Str +1, Dex +2, Con +3, Int +0, Wis +5, Cha +6'
         /// </summary>
@@ -736,7 +736,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (languageTrimmed.Contains("telepathy"))
                 {
                     npcModel.Telepathy = true;
-                    npcModel.TelepathyRange = languageTrimmed.Split(' ')[1] + " " + languageTrimmed[2];
+                    npcModel.TelepathyRange = languageTrimmed.Split(' ')[1] + " " + languageTrimmed.Split(' ')[2];
                     continue;
                 }
 
