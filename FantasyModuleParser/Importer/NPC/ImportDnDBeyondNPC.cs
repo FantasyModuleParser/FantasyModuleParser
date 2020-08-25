@@ -1013,7 +1013,7 @@ namespace FantasyModuleParser.Importer.NPC
             standardActionArray = standardAction.Split('.');
             for (int idx = 1; idx < standardActionArray.Length; idx++)
             {
-                stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(". ");
             }
             otherActionModel.ActionName = standardActionArray[0];
             otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
