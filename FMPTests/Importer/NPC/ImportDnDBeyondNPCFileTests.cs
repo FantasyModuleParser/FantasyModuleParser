@@ -126,12 +126,45 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(typeof(OtherAction), standardAction.GetType());
 
             OtherAction standardOtherAction = standardAction as OtherAction;
-            Assert.AreEqual("Enslave (3/day)", standardOtherAction.ActionName);
+            Assert.AreEqual("Enslave (3/Day)", standardOtherAction.ActionName);
             Assert.AreEqual(
 @"The aboleth targets one creature it can see within 30 feet of it. The target must succeed on a DC 14 Wisdom saving throw or be magically charmed by the aboleth until the aboleth dies or until it is on a different plane of existence from the target. The charmed target is under the aboleth's control and can't take reactions, and the aboleth and the target can communicate telepathically with each other over any distance.
 
 Whenever the charmed target takes damage, the target can repeat the saving throw. On a success, the effect ends. No more than once every 24 hours, the target can also repeat the saving throw when it is at least 1 mile away from the aboleth.",
                     standardOtherAction.ActionDescription);
+        }
+        [TestMethod]
+        public void Test_Validate_Aboleth_LegendaryAction_Count()
+        {
+            Assert.AreEqual(4, actualNPCModel.LegendaryActions.Count);
+        }
+        [TestMethod]
+        public void Test_Validate_Aboleth_LegendaryAction_Options()
+        {
+            LegendaryActionModel legendaryAction = actualNPCModel.LegendaryActions[0];
+            Assert.AreEqual("Options", legendaryAction.ActionName);
+            Assert.AreEqual("The aboleth can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time and only at the end of another creature's turn. The aboleth regains spent legendary actions at the start of its turn.", legendaryAction.ActionDescription);
+        }
+        [TestMethod]
+        public void Test_Validate_Aboleth_LegendaryAction_Detect()
+        {
+            LegendaryActionModel legendaryAction = actualNPCModel.LegendaryActions[1];
+            Assert.AreEqual("Detect", legendaryAction.ActionName);
+            Assert.AreEqual("The aboleth makes a Wisdom (Perception) check.", legendaryAction.ActionDescription);
+        }
+        [TestMethod]
+        public void Test_Validate_Aboleth_LegendaryAction_Tail_Swipe()
+        {
+            LegendaryActionModel legendaryAction = actualNPCModel.LegendaryActions[2];
+            Assert.AreEqual("Tail Swipe", legendaryAction.ActionName);
+            Assert.AreEqual("The aboleth makes one tail attack.", legendaryAction.ActionDescription);
+        }
+        [TestMethod]
+        public void Test_Validate_Aboleth_LegendaryAction_Psychic_Drain()
+        {
+            LegendaryActionModel legendaryAction = actualNPCModel.LegendaryActions[3];
+            Assert.AreEqual("Psychic Drain (Costs 2 Actions)", legendaryAction.ActionName);
+            Assert.AreEqual("One creature charmed by the aboleth takes 10 (3d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes.", legendaryAction.ActionDescription);
         }
     }
 }

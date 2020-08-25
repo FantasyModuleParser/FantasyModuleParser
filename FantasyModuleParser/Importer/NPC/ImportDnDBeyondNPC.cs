@@ -151,12 +151,6 @@ namespace FantasyModuleParser.Importer.NPC
                     continue;
                 }
 
-                if (continueLegendaryActionsFlag)
-                {
-                    ParseLegendaryAction(parsedNPCModel, line);
-                    continue;
-                }
-
                 if (line.StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
@@ -167,23 +161,37 @@ namespace FantasyModuleParser.Importer.NPC
                     resetContinueFlags();
                     ParseSpellCastingAttributes(parsedNPCModel, line);
                 }
-                if (continueActionsFlag == true)
+                if (continueActionsFlag)
                 {
                     resetContinueFlags();
+                    if (line.Equals("Reactions"))
+                    {
+                        continueReactionsFlag = true;
+                        continue;
+                    }
+                    if (line.Equals("Legendary Actions"))
+                    {
+                        continueLegendaryActionsFlag = true;
+                        continue;
+                    }
                     continueActionsFlag = true;
                     ParseStandardAction(parsedNPCModel, line);
                 }
-                if (line.StartsWith("Reactions"))
+                if (continueReactionsFlag)
                 {
                     resetContinueFlags();
+                    if (line.Equals("Legendary Actions"))
+                    {
+                        continueLegendaryActionsFlag = true;
+                        continue;
+                    }
                     continueReactionsFlag = true;
                     ParseReaction(parsedNPCModel, line);
                 }
-                if (line.StartsWith("Legendary Actions"))
+                if (continueLegendaryActionsFlag)
                 {
-                    resetContinueFlags();
-                    continueLegendaryActionsFlag = true;
-                    //ParseLegendaryAction(parsedNPCModel, line);
+                    ParseLegendaryAction(parsedNPCModel, line);
+                    continue;
                 }
                 lineNumber++;
             }
@@ -343,12 +351,12 @@ namespace FantasyModuleParser.Importer.NPC
         public void ParseStatAttributeWisdom(NPCModel npcModel, string statAttributeWisdom)
         {
             string[] splitAttributes = statAttributeWisdom.Split('(');
-            npcModel.AttributeCon = int.Parse(splitAttributes[0]);
+            npcModel.AttributeWis = int.Parse(splitAttributes[0]);
         }
         public void ParseStatAttributeCharisma(NPCModel npcModel, string statAttributeCharisma)
         {
             string[] splitAttributes = statAttributeCharisma.Split('(');
-            npcModel.AttributeCon = int.Parse(splitAttributes[0]);
+            npcModel.AttributeCha = int.Parse(splitAttributes[0]);
         }
         
         /// <summary>
@@ -1185,14 +1193,20 @@ namespace FantasyModuleParser.Importer.NPC
         {
             if (String.IsNullOrEmpty(legendaryAction))
                 return;
-
-            string[] legenaryActionArray = legendaryAction.Split('.');
             LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
-            legendaryActionModel.ActionName = legenaryActionArray[0];
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int idx = 1; idx < legenaryActionArray.Length; idx++)
+            if (legendaryAction.Contains("choosing from the options below"))
             {
-                stringBuilder.Append(legenaryActionArray[idx]).Append(".");
+                legendaryActionModel.ActionName = "Options";
+                legendaryActionModel.ActionDescription = legendaryAction;
+                npcModel.LegendaryActions.Add(legendaryActionModel);
+                return;
+            }
+            string[] legendaryActionArray = legendaryAction.Split('.');
+            legendaryActionModel.ActionName = legendaryActionArray[0];
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int idx = 1; idx < legendaryActionArray.Length; idx++)
+            {
+                stringBuilder.Append(legendaryActionArray[idx]).Append(".");
             }
             stringBuilder.Remove(stringBuilder.Length - 1, 1);
             legendaryActionModel.ActionDescription = stringBuilder.ToString().Trim();
