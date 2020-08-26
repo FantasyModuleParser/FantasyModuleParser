@@ -1001,8 +1001,21 @@ namespace FantasyModuleParser.Importer.NPC
                 return;
             }
 
-            // if not Multiattack or standard action, then it's an OtherAction
-            ParseOtherAction(npcModel, standardAction);
+            // Special Case;  If the string has more than 5 words, and none of those 5 words has a period character,
+            //  then append the line to the previously created Action's Description as a new line
+            string[] standardActionArray = standardAction.Split(' ');
+            for(int idx = 0; idx < 5; idx++)
+            {
+                if (standardActionArray[idx].Contains("."))
+                {
+                    // if not Multiattack or standard action, then it's an OtherAction
+                    ParseOtherAction(npcModel, standardAction);
+                    return;
+                }
+            }
+
+            ActionModelBase actionModelBase = npcModel.NPCActions.Last();
+            actionModelBase.ActionDescription = actionModelBase.ActionDescription + "\n\n" + standardAction;
         }
 
         private static string[] ParseOtherAction(NPCModel npcModel, string standardAction)
@@ -1016,7 +1029,7 @@ namespace FantasyModuleParser.Importer.NPC
                 stringBuilder.Append(standardActionArray[idx].Trim()).Append(". ");
             }
             otherActionModel.ActionName = standardActionArray[0];
-            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
+            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 2, 2).ToString();
             npcModel.NPCActions.Add(otherActionModel);
             return standardActionArray;
         }
@@ -1134,7 +1147,7 @@ namespace FantasyModuleParser.Importer.NPC
                 else
                 {
                     weaponAttackModel.OtherTextCheck = true;
-                    weaponAttackModel.OtherText = damagePropertyData.Substring(regexMatchLength);
+                    weaponAttackModel.OtherText = damagePropertyData.Substring(regexMatchLength + 2);
                 }
             }
         }
