@@ -1134,7 +1134,7 @@ namespace FantasyModuleParser.Importer.NPC
                 else
                 {
                     weaponAttackModel.OtherTextCheck = true;
-                    weaponAttackModel.OtherText = damagePropertyData.Substring(regexMatchLength);
+                    weaponAttackModel.OtherText = damagePropertyData.Substring(regexMatchLength + 2);
                 }
             }
         }
