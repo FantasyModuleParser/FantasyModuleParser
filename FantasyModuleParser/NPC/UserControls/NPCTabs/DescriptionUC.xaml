@@ -31,7 +31,7 @@
                 </RichTextBox.ToolTip>
             </RichTextBox>-->
             <StackPanel Orientation="Horizontal">
-                <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btn_bold_Click">
                     <Image Source="/Resources/Bold.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -39,7 +39,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Click="btn_italics_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/italic.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -47,7 +47,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Click="btn_underline_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/underline.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -55,7 +55,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden">
                     <Image Source="/Resources/undo.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -63,7 +63,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden">
                     <Image Source="/Resources/redo.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -71,7 +71,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="Clear Text" Padding="0" Margin="50,5,0,0" Height="20" Width="70">
+                <Button Content="Clear Text" Padding="0" Margin="50,5,0,0" Height="20" Width="70" Click="btn_ClearText_Click">
                     <Button.ToolTip>
                         <TextBlock>
                             Clear all text from the window above.
@@ -87,7 +87,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="Validate XML" Padding="0" Margin="10,5,0,0" Height="20" Width="75" Click="ValidateXML">
+                <Button Content="Validate XML" Padding="0" Margin="10,5,0,0" Height="20" Width="75" Click="ValidateXML" IsEnabled="False">
                     <Button.ToolTip>
                         <TextBlock>
                             This will display the above text in the format that Fantasy Grounds will see.
@@ -98,7 +98,7 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Click="btn_header_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/Header.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -106,7 +106,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Click="btn_text_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/Text Color.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -114,7 +114,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Click="btn_chatbox_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/Speech Bubble With Dots.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -124,7 +124,7 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Click="btn_bullet_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/Bulleted List.png" />
                     <Button.ToolTip>
                         <TextBlock>
@@ -132,7 +132,6 @@
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>
-                <Button Content="Paste Text" Padding="0" Margin="221,5,0,0" Height="20" Width="70" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -147,15 +146,15 @@
                 </TextBox>
                 <StackPanel Orientation="Vertical">
                     <Label FontWeight="Bold" Foreground="Gray" Content="Elements" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <CheckBox Content="Add Descriptive Text" IsChecked="True" Margin="40,5,0,0"/>
-                    <CheckBox Content="Add Title" IsChecked="True" Margin="40,0,0,0" />
-                    <CheckBox Content="Include Spell List" Margin="40,0,0,0" />
+                    <CheckBox Content="Add Descriptive Text" IsChecked="True" Margin="40,5,0,0" IsEnabled="False"/>
+                    <CheckBox Content="Add Title" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
+                    <CheckBox Content="Include Spell List" Margin="40,0,0,0" IsEnabled="False"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Label FontWeight="Bold" Foreground="Gray" Content="Paste Edits" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <CheckBox Content="Apply Common Fixes" IsChecked="True" Margin="40,5,0,0"/>
-                    <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" />
-                    <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" />
+                    <CheckBox Content="Apply Common Fixes" IsChecked="True" Margin="40,5,0,0" IsEnabled="False"/>
+                    <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" IsEnabled="False" />
+                    <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

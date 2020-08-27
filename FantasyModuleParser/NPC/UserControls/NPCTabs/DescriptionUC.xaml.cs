@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Xaml;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.ViewModels;
@@ -34,6 +35,22 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         public DescriptionUC()
         {
             InitializeComponent();
+            PreviewKeyDown += DescriptionUC_PreviewKeyDown;
+        }
+
+        private void DescriptionUC_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                if(e.Key == Key.B)
+                    btn_bold_Click(sender, e);
+                if (e.Key == Key.I)
+                    btn_italics_Click(sender, e);
+                if (e.Key == Key.U)
+                    btn_underline_Click(sender, e);
+            }
+
+            // If the return key is pressed AND the 
         }
 
         private void ValidateXML(object sender, RoutedEventArgs e)
@@ -94,6 +111,59 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
                 }
                 return base.TryGetCompatibleXamlNamespace(xamlNamespace, out compatibleNamespace);
             }
+        }
+
+        private void btn_bold_Click(object sender, RoutedEventArgs e)
+        {
+            applySelectedTextMarkdownMod("**");
+        }
+
+        private void btn_italics_Click(object sender, RoutedEventArgs e)
+        {
+            applySelectedTextMarkdownMod("*");
+        }
+
+        private void btn_underline_Click(object sender, RoutedEventArgs e)
+        {
+            applySelectedTextMarkdownMod("++");
+        }
+
+        private void btn_header_Click(object sender, RoutedEventArgs e)
+        {
+            applySelectedTextMarkdownMod("# ", " #");
+        }
+
+        private void btn_text_Click(object sender, RoutedEventArgs e)
+        {
+           // I think this is supposed to reset all mods?
+        }
+
+        private void btn_chatbox_Click(object sender, RoutedEventArgs e)
+        {
+            applySelectedTextMarkdownMod("`");
+        }
+
+        private void applySelectedTextMarkdownMod(String markdownMod)
+        {
+            applySelectedTextMarkdownMod(markdownMod, markdownMod);
+        }
+        private void applySelectedTextMarkdownMod(String markdownMod, String markdownModSuffix)
+        {
+            String selectedText = MarkdownTextBox.SelectedText;
+            if (!String.IsNullOrEmpty(selectedText))
+            { 
+                MarkdownTextBox.SelectedText = markdownMod + selectedText + markdownModSuffix;
+            }
+        }
+
+        private void btn_bullet_Click(object sender, RoutedEventArgs e)
+        {
+            applySelectedTextMarkdownMod("* ", "");
+        }
+
+        private void btn_ClearText_Click(object sender, RoutedEventArgs e)
+        {
+            MarkdownTextBox.Text = "";
         }
     }
 }
