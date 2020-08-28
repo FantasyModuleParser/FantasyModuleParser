@@ -691,7 +691,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (languageTrimmed.Contains("telepathy"))
                 {
                     npcModel.Telepathy = true;
-                    npcModel.TelepathyRange = languageTrimmed.Split(' ')[1];
+                    npcModel.TelepathyRange = languageTrimmed.Split(' ')[1] + " " + languageTrimmed.Split(' ')[2];
                     continue;
                 }
 
@@ -955,10 +955,10 @@ namespace FantasyModuleParser.Importer.NPC
             standardActionArray = standardAction.Split('.');
             for (int idx = 1; idx < standardActionArray.Length; idx++)
             {
-                stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(". ");
             }
             otherActionModel.ActionName = standardActionArray[0];
-            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
+            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 2, 2).ToString();
             npcModel.NPCActions.Add(otherActionModel);
             return standardActionArray;
         }
@@ -1089,9 +1089,9 @@ namespace FantasyModuleParser.Importer.NPC
             standardActionArray = standardAction.Split('.');
             for (int idx = 1; idx < standardActionArray.Length; idx++)
             {
-                stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(". ");
             }
-            multiattackModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
+            multiattackModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 2, 2).ToString();
             npcModel.NPCActions.Add(multiattackModel);
             return standardActionArray;
         }
@@ -1114,18 +1114,25 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseReaction(NPCModel npcModel, string reaction)
         {
-            string[] reactionArray = reaction.Split('.');
-            ActionModelBase reactionModel = new ActionModelBase();
-            reactionModel.ActionName = reactionArray[0];
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int idx = 1; idx < reactionArray.Length; idx++)
+            if (string.IsNullOrEmpty(reaction))
             {
-                stringBuilder.Append(reactionArray[idx]).Append(".");
-            }
-            stringBuilder.Remove(stringBuilder.Length - 1, 1);
-            reactionModel.ActionDescription = stringBuilder.ToString().Trim();
 
-            npcModel.Reactions.Add(reactionModel);
+            }
+            else
+            {
+                string[] reactionArray = reaction.Split('.');
+                ActionModelBase reactionModel = new ActionModelBase();
+                reactionModel.ActionName = reactionArray[0];
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int idx = 1; idx < reactionArray.Length; idx++)
+                {
+                    stringBuilder.Append(reactionArray[idx]).Append(".");
+                }
+                stringBuilder.Remove(stringBuilder.Length - 1, 1);
+                reactionModel.ActionDescription = stringBuilder.ToString().Trim();
+
+                npcModel.Reactions.Add(reactionModel);
+            }
         }
 
         /// <summary>
@@ -1133,18 +1140,26 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseLegendaryAction(NPCModel npcModel, string legendaryAction)
         {
-            string[] legenaryActionArray = legendaryAction.Split('.');
-            LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
-            legendaryActionModel.ActionName = legenaryActionArray[0];
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int idx = 1; idx < legenaryActionArray.Length; idx++)
+            if (string.IsNullOrEmpty(legendaryAction))
             {
-                stringBuilder.Append(legenaryActionArray[idx]).Append(".");
-            }
-            stringBuilder.Remove(stringBuilder.Length - 1, 1);
-            legendaryActionModel.ActionDescription = stringBuilder.ToString().Trim();
 
-            npcModel.LegendaryActions.Add(legendaryActionModel);
+            }
+            else
+            {
+                string[] legendaryActionArray = legendaryAction.Split('.');
+                LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
+                legendaryActionModel.ActionName = legendaryActionArray[0];
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int idx = 1; idx < legendaryActionArray.Length; idx++)
+                {
+                    stringBuilder.Append(legendaryActionArray[idx]).Append(".");
+                }
+                stringBuilder.Remove(stringBuilder.Length - 1, 1);
+                legendaryActionModel.ActionDescription = stringBuilder.ToString().Trim();
+
+                npcModel.LegendaryActions.Add(legendaryActionModel);
+            }
+            
         }
 
         /// <summary>

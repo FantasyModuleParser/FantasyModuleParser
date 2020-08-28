@@ -111,7 +111,7 @@
             </TabItem>
             <TabItem Header="Description">
                 <Grid Background="#FFE5E5E5">
-                    <DescriptionUserControl:DescriptionUC />
+                    <DescriptionUserControl:DescriptionUC x:Name="DescriptionUserControl" DataContext="{Binding Path=DescriptionUCViewModel}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Image">

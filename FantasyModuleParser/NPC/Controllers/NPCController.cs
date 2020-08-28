@@ -1,11 +1,14 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
+using Markdig;
+using Markdig.Wpf;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace FantasyModuleParser.NPC.Controllers
 {
@@ -90,6 +93,46 @@ namespace FantasyModuleParser.NPC.Controllers
 			npcModel.UserLanguages = new System.Collections.ObjectModel.ObservableCollection<Models.Skills.LanguageModel>();
 
 			return npcModel;
+		}
+
+		// Need to decide if this lives with NPCController or FantasyGroundsExporter,
+		//	as the function is used in DescriptionUC
+		public string GenerateFantasyGroundsDescriptionXML(String descriptionText)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			if (!String.IsNullOrEmpty(descriptionText)) 
+			{ 
+				var result = Markdig.Markdown.ToHtml(descriptionText, BuildPipeline());
+
+				stringBuilder.Append(_replaceHtmlTagsToFGCompliance(result).Trim());
+				
+			}
+			return stringBuilder.ToString();
+		}
+
+		private static MarkdownPipeline BuildPipeline()
+		{
+			return new MarkdownPipelineBuilder()
+				.UseSupportedExtensions()
+				.Build();
+		}
+		private string _replaceHtmlTagsToFGCompliance(string input)
+		{
+			input = tagReplace(input, "strong", "b");
+			input = tagReplace(input, "em", "i");
+			input = tagReplace(input, "h1", "h");
+			input = tagReplace(input, "code", "frame");
+			input = tagReplace(input, "ul", "list");
+			input = tagReplace(input, "ins", "u");
+
+			return input;
+		}
+
+		private string tagReplace(string input, string existingTag, string newTag)
+		{
+			input = input.Replace("<" + existingTag + ">", "<" + newTag + ">");
+			input = input.Replace("</" + existingTag + ">", "</" + newTag + ">");
+			return input;
 		}
 
 		private string GetDescription(Type EnumType, object enumValue)
