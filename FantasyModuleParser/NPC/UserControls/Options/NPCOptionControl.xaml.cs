@@ -240,6 +240,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			ResistanceUserControl.Refresh();
 			ActionOverviewUserControl.Refresh();
 			ImageUserControl.Refresh();
+			DescriptionUserControl.Refresh();
 		}
 
         private void CategorySelectedNPCComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

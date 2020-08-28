@@ -1,36 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FantasyModuleParser.Main
+namespace FantasyModuleParser.NPC.Views
 {
     /// <summary>
-    /// Interaction logic for About.xaml
+    /// Interaction logic for MarkdownHelp.xaml
     /// </summary>
-    public partial class About : Window
+    public partial class MarkdownHelp : Window
     {
-        public About()
+        public MarkdownHelp()
         {
             InitializeComponent();
-            // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
-            versionlabel.Content = "v" + System.Windows.Forms.Application.ProductVersion;
         }
-        private void ESExit_Click(object sender, RoutedEventArgs e)
+       
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
