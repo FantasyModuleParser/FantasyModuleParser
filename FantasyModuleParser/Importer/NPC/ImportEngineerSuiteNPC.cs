@@ -955,10 +955,10 @@ namespace FantasyModuleParser.Importer.NPC
             standardActionArray = standardAction.Split('.');
             for (int idx = 1; idx < standardActionArray.Length; idx++)
             {
-                stringBuilder.Append(standardActionArray[idx].Trim()).Append(". ");
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
             }
             otherActionModel.ActionName = standardActionArray[0];
-            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 2, 2).ToString();
+            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
             npcModel.NPCActions.Add(otherActionModel);
             return standardActionArray;
         }
@@ -1083,15 +1083,16 @@ namespace FantasyModuleParser.Importer.NPC
 
         private static string[] ParseMultiattackAction(NPCModel npcModel, string standardAction)
         {
+            const string delimiter = ".";
             StringBuilder stringBuilder = new StringBuilder();
             string[] standardActionArray;
             Multiattack multiattackModel = new Multiattack();
             standardActionArray = standardAction.Split('.');
             for (int idx = 1; idx < standardActionArray.Length; idx++)
             {
-                stringBuilder.Append(standardActionArray[idx].Trim()).Append(". ");
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(delimiter);
             }
-            multiattackModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 2, 2).ToString();
+            multiattackModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - delimiter.Length, delimiter.Length).ToString();
             npcModel.NPCActions.Add(multiattackModel);
             return standardActionArray;
         }
