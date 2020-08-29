@@ -43,14 +43,14 @@ using System.Windows;
 
 // Version information for an assembly consists of the following four values:
 //
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
+//      Full Version (NPC 100% functional w/ no bugs)
+//      Alpha Version (1) / Beta Version (2)
+//      New Features
+//      Hotfix
 //
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.5")]
-[assembly: AssemblyFileVersion("0.1.5")]
+[assembly: AssemblyVersion("0.1.5.1")]
+[assembly: AssemblyFileVersion("0.1.5.1")]
 [assembly: NeutralResourcesLanguage("en-US")]
