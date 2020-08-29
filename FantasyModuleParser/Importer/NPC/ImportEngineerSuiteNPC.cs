@@ -691,7 +691,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (languageTrimmed.Contains("telepathy"))
                 {
                     npcModel.Telepathy = true;
-                    npcModel.TelepathyRange = languageTrimmed.Split(' ')[1] + " " + languageTrimmed.Split(' ')[2];
+                    npcModel.TelepathyRange = languageTrimmed.Replace("telepathy ", "");
                     continue;
                 }
 
