@@ -440,12 +440,12 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     else
                     {
-                        isStr = savingThrowWord.Equals("Str", StringComparison.Ordinal);
-                        isDex = savingThrowWord.Equals("Dex", StringComparison.Ordinal);
-                        isCon = savingThrowWord.Equals("Con", StringComparison.Ordinal);
-                        isInt = savingThrowWord.Equals("Int", StringComparison.Ordinal);
-                        isWis = savingThrowWord.Equals("Wis", StringComparison.Ordinal);
-                        isCha = savingThrowWord.Equals("Cha", StringComparison.Ordinal);
+                        isStr = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("STR", StringComparison.Ordinal);
+                        isDex = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("DEX", StringComparison.Ordinal);
+                        isCon = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("CON", StringComparison.Ordinal);
+                        isInt = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("INT", StringComparison.Ordinal);
+                        isWis = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("WIS", StringComparison.Ordinal);
+                        isCha = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("CHA", StringComparison.Ordinal);
                         attributeIdentified = true;
                     }
                 }
