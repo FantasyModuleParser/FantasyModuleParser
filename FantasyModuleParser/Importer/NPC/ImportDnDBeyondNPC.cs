@@ -46,6 +46,7 @@ namespace FantasyModuleParser.Importer.NPC
             StringReader stringReader = new StringReader(importTextContent);
             string line = "";
             int lineNumber = 1;
+            resetContinueFlags();
             while ((line = stringReader.ReadLine()) != null)
             {
                 if (lineNumber == 1)
@@ -151,6 +152,8 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     if (line.StartsWith("Innate Spellcasting"))
                     {
+                        resetContinueFlags();
+                        continueInnateSpellcastingFlag = true;
                         ParseInnateSpellCastingAttributes(parsedNPCModel, line);
                         continue;
                     }
@@ -163,11 +166,22 @@ namespace FantasyModuleParser.Importer.NPC
                     continue;
                 }
 
+                if (continueInnateSpellcastingFlag)
+                {
+                    if (line.Equals("Actions"))
+                    {
+                        resetContinueFlags();
+                        continueActionsFlag = true;
+                        continue;
+                    }
+                    ParseInnateSpellCastingAttributes(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
-                    continueTraitsFlag = true;
-                    ParseInnateSpellCastingAttributes(parsedNPCModel, line);
+                    continueInnateSpellcastingFlag = true;
+                    continue;
                 }
                 if (line.StartsWith("Spellcasting"))
                 {
@@ -858,7 +872,10 @@ namespace FantasyModuleParser.Importer.NPC
                 // Component Text
                 int preComponentText = innateSpellcastingAttributes.IndexOf("following spells,", StringComparison.Ordinal);
                 int postComponentText = innateSpellcastingAttributes.IndexOf(":\\r", StringComparison.Ordinal);
-                npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18, postComponentText - preComponentText - 18);
+                if(postComponentText == -1)
+                    npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18);
+                else
+                    npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18, postComponentText - preComponentText - 18);
 
                 string[] innateSpellcastingAttributesArray = innateSpellcastingAttributes.Split(new string[] { "\\r" }, StringSplitOptions.RemoveEmptyEntries);
                 for (int arrayIndex = 1; arrayIndex < innateSpellcastingAttributesArray.Length; arrayIndex++)

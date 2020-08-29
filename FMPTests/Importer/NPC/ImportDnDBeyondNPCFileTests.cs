@@ -4,6 +4,7 @@ using FantasyModuleParser.NPC.Models.Action.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -174,6 +175,59 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             LegendaryActionModel legendaryAction = actualNPCModel.LegendaryActions[3];
             Assert.AreEqual("Psychic Drain (Costs 2 Actions)", legendaryAction.ActionName);
             Assert.AreEqual("One creature charmed by the aboleth takes 10 (3d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes.", legendaryAction.ActionDescription);
+        }
+
+        [TestMethod]
+        public void Test_Validate_Deva_LoadFile()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
+        }
+        [TestMethod]
+        public void Test_Validate_Deva_BaseStats()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
+            Assert.AreEqual(18, actualNPCModel.AttributeStr);
+            Assert.AreEqual(18, actualNPCModel.AttributeDex);
+            Assert.AreEqual(18, actualNPCModel.AttributeCon);
+            Assert.AreEqual(17, actualNPCModel.AttributeInt);
+            Assert.AreEqual(20, actualNPCModel.AttributeWis);
+            Assert.AreEqual(20, actualNPCModel.AttributeCha);
+        }
+        [TestMethod]
+        public void Test_Validate_Deva_SavingThrows()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
+            Assert.AreEqual(9, actualNPCModel.SavingThrowWis);
+            Assert.AreEqual(9, actualNPCModel.SavingThrowCha);
+        }
+        [TestMethod]
+        public void Test_Validate_Deva_Skills()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
+            Assert.AreEqual(9, actualNPCModel.Insight);
+            Assert.AreEqual(9, actualNPCModel.Perception);
+        }
+        [TestMethod]
+        public void Test_Validate_Deva_DamageResistance()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
+            Assert.AreEqual(13, actualNPCModel.DamageResistanceModelList.Count);
+            Assert.IsTrue(actualNPCModel.DamageResistanceModelList.FirstOrDefault(x => x.ActionName.Equals("Radiant")).Selected);
+        }
+        [TestMethod]
+        public void Test_Validate_Deva_InnateSpellCasting()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
+            Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
+            Assert.AreEqual("Charisma", actualNPCModel.InnateSpellcastingAbility);
+            Assert.AreEqual(17, actualNPCModel.InnateSpellSaveDC);
+            Assert.AreEqual("requiring only verbal components:", actualNPCModel.ComponentText);
+            Assert.AreEqual("detect evil and good", actualNPCModel.InnateAtWill);
+            Assert.AreEqual("", actualNPCModel.FivePerDay);
+            Assert.AreEqual("", actualNPCModel.FourPerDay);
+            Assert.AreEqual("", actualNPCModel.ThreePerDay);
+            Assert.AreEqual("", actualNPCModel.TwoPerDay);
+            Assert.AreEqual("commune, raise dead", actualNPCModel.OnePerDay);
         }
     }
 }
