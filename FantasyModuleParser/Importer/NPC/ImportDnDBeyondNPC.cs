@@ -46,6 +46,7 @@ namespace FantasyModuleParser.Importer.NPC
             StringReader stringReader = new StringReader(importTextContent);
             string line = "";
             int lineNumber = 1;
+            resetContinueFlags();
             while ((line = stringReader.ReadLine()) != null)
             {
                 if (lineNumber == 1)
@@ -151,6 +152,8 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     if (line.StartsWith("Innate Spellcasting"))
                     {
+                        resetContinueFlags();
+                        continueInnateSpellcastingFlag = true;
                         ParseInnateSpellCastingAttributes(parsedNPCModel, line);
                         continue;
                     }
@@ -163,11 +166,22 @@ namespace FantasyModuleParser.Importer.NPC
                     continue;
                 }
 
+                if (continueInnateSpellcastingFlag)
+                {
+                    if (line.Equals("Actions"))
+                    {
+                        resetContinueFlags();
+                        continueActionsFlag = true;
+                        continue;
+                    }
+                    ParseInnateSpellCastingAttributes(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
-                    continueTraitsFlag = true;
-                    ParseInnateSpellCastingAttributes(parsedNPCModel, line);
+                    continueInnateSpellcastingFlag = true;
+                    continue;
                 }
                 if (line.StartsWith("Spellcasting"))
                 {
@@ -426,12 +440,12 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     else
                     {
-                        isStr = savingThrowWord.Equals("Str", StringComparison.Ordinal);
-                        isDex = savingThrowWord.Equals("Dex", StringComparison.Ordinal);
-                        isCon = savingThrowWord.Equals("Con", StringComparison.Ordinal);
-                        isInt = savingThrowWord.Equals("Int", StringComparison.Ordinal);
-                        isWis = savingThrowWord.Equals("Wis", StringComparison.Ordinal);
-                        isCha = savingThrowWord.Equals("Cha", StringComparison.Ordinal);
+                        isStr = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("STR", StringComparison.Ordinal);
+                        isDex = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("DEX", StringComparison.Ordinal);
+                        isCon = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("CON", StringComparison.Ordinal);
+                        isInt = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("INT", StringComparison.Ordinal);
+                        isWis = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("WIS", StringComparison.Ordinal);
+                        isCha = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("CHA", StringComparison.Ordinal);
                         attributeIdentified = true;
                     }
                 }
@@ -858,7 +872,10 @@ namespace FantasyModuleParser.Importer.NPC
                 // Component Text
                 int preComponentText = innateSpellcastingAttributes.IndexOf("following spells,", StringComparison.Ordinal);
                 int postComponentText = innateSpellcastingAttributes.IndexOf(":\\r", StringComparison.Ordinal);
-                npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18, postComponentText - preComponentText - 18);
+                if(postComponentText == -1)
+                    npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18);
+                else
+                    npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18, postComponentText - preComponentText - 18);
 
                 string[] innateSpellcastingAttributesArray = innateSpellcastingAttributes.Split(new string[] { "\\r" }, StringSplitOptions.RemoveEmptyEntries);
                 for (int arrayIndex = 1; arrayIndex < innateSpellcastingAttributesArray.Length; arrayIndex++)
@@ -877,7 +894,22 @@ namespace FantasyModuleParser.Importer.NPC
                     if (innerData.StartsWith("1/day each:", StringComparison.Ordinal))
                         npcModel.OnePerDay = innerData.Substring(12);
                 }
-
+            }
+            else
+            {
+                // For DnD Beyond, Innate spell castings are on separate lines (ES NPC was all on the same line)
+                if (innateSpellcastingAttributes.StartsWith("At will:", StringComparison.Ordinal))
+                    npcModel.InnateAtWill = innateSpellcastingAttributes.Substring(9);
+                if (innateSpellcastingAttributes.StartsWith("5/day each:", StringComparison.Ordinal))
+                    npcModel.FivePerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("4/day each:", StringComparison.Ordinal))
+                    npcModel.FourPerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("3/day each:", StringComparison.Ordinal))
+                    npcModel.ThreePerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("2/day each:", StringComparison.Ordinal))
+                    npcModel.TwoPerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("1/day each:", StringComparison.Ordinal))
+                    npcModel.OnePerDay = innateSpellcastingAttributes.Substring(12);
             }
         }
 
