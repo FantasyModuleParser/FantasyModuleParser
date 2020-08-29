@@ -223,10 +223,10 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(17, actualNPCModel.InnateSpellSaveDC);
             Assert.AreEqual("requiring only verbal components:", actualNPCModel.ComponentText);
             Assert.AreEqual("detect evil and good", actualNPCModel.InnateAtWill);
-            Assert.AreEqual("", actualNPCModel.FivePerDay);
-            Assert.AreEqual("", actualNPCModel.FourPerDay);
-            Assert.AreEqual("", actualNPCModel.ThreePerDay);
-            Assert.AreEqual("", actualNPCModel.TwoPerDay);
+            Assert.AreEqual(null, actualNPCModel.FivePerDay);
+            Assert.AreEqual(null, actualNPCModel.FourPerDay);
+            Assert.AreEqual(null, actualNPCModel.ThreePerDay);
+            Assert.AreEqual(null, actualNPCModel.TwoPerDay);
             Assert.AreEqual("commune, raise dead", actualNPCModel.OnePerDay);
         }
     }

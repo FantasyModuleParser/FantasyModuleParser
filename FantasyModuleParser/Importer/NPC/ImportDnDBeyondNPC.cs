@@ -894,7 +894,22 @@ namespace FantasyModuleParser.Importer.NPC
                     if (innerData.StartsWith("1/day each:", StringComparison.Ordinal))
                         npcModel.OnePerDay = innerData.Substring(12);
                 }
-
+            }
+            else
+            {
+                // For DnD Beyond, Innate spell castings are on separate lines (ES NPC was all on the same line)
+                if (innateSpellcastingAttributes.StartsWith("At will:", StringComparison.Ordinal))
+                    npcModel.InnateAtWill = innateSpellcastingAttributes.Substring(9);
+                if (innateSpellcastingAttributes.StartsWith("5/day each:", StringComparison.Ordinal))
+                    npcModel.FivePerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("4/day each:", StringComparison.Ordinal))
+                    npcModel.FourPerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("3/day each:", StringComparison.Ordinal))
+                    npcModel.ThreePerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("2/day each:", StringComparison.Ordinal))
+                    npcModel.TwoPerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("1/day each:", StringComparison.Ordinal))
+                    npcModel.OnePerDay = innateSpellcastingAttributes.Substring(12);
             }
         }
 
