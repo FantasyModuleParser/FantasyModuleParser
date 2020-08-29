@@ -22,7 +22,7 @@
         <TextBox x:Name="ImportTextBox" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap" AcceptsReturn="True"/>
         <ComboBox x:Name="ImportSelector" Grid.Row="2" Grid.Column="1" Width="200" Height="25" HorizontalAlignment="Right" Margin="5">
             <ComboBoxItem IsSelected="True">Engineer Suite v1 (NPC)</ComboBoxItem>
-            <ComboBoxItem>DnD Beyond</ComboBoxItem>
+            <ComboBoxItem>DnD Beyond (NPC)</ComboBoxItem>
         </ComboBox>
 
         <Grid Grid.Row="3" Grid.Column="1">

@@ -30,6 +30,8 @@ namespace FantasyModuleParser.Importer.NPC
             continueWisdomFlag = false,
             continueCharismaFlag = false,
             continueTraitsFlag = false,
+            continueInnateSpellcastingFlag = false,
+            continueSpellcastingFlag = false,
             continueActionsFlag = false,
             continueReactionsFlag = false,
             continueLegendaryActionsFlag = false;
@@ -51,7 +53,7 @@ namespace FantasyModuleParser.Importer.NPC
                     // Line number one indicates the NPC name
                     parsedNPCModel.NPCName = line;
                 }
-                if (lineNumber == 2)
+                if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
                 {
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
@@ -147,6 +149,16 @@ namespace FantasyModuleParser.Importer.NPC
                         continueActionsFlag = true;
                         continue;
                     }
+                    if (line.StartsWith("Innate Spellcasting"))
+                    {
+                        ParseInnateSpellCastingAttributes(parsedNPCModel, line);
+                        continue;
+                    }
+                    if (line.StartsWith("Spellcasting"))
+                    {
+                        ParseSpellCastingAttributes(parsedNPCModel, line);
+                        continue;
+                    }
                     ParseTraits(parsedNPCModel, line);
                     continue;
                 }
@@ -154,6 +166,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (line.StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
+                    continueTraitsFlag = true;
                     ParseInnateSpellCastingAttributes(parsedNPCModel, line);
                 }
                 if (line.StartsWith("Spellcasting"))
@@ -210,6 +223,8 @@ namespace FantasyModuleParser.Importer.NPC
             continueWisdomFlag = false;
             continueCharismaFlag = false;
             continueTraitsFlag = false;
+            continueInnateSpellcastingFlag = false;
+            continueSpellcastingFlag = false;
             continueActionsFlag = false;
             continueReactionsFlag = false;
             continueLegendaryActionsFlag = false;
@@ -782,7 +797,7 @@ namespace FantasyModuleParser.Importer.NPC
             if (npcModel.Traits == null)
                 npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
 
-            if (String.IsNullOrEmpty(traits))
+            if (string.IsNullOrEmpty(traits))
                 return;
 
             string[] traitArray = traits.Split('.');
@@ -1026,10 +1041,10 @@ namespace FantasyModuleParser.Importer.NPC
             standardActionArray = standardAction.Split('.');
             for (int idx = 1; idx < standardActionArray.Length; idx++)
             {
-                stringBuilder.Append(standardActionArray[idx].Trim()).Append(". ");
+                stringBuilder.Append(standardActionArray[idx].Trim()).Append(".");
             }
             otherActionModel.ActionName = standardActionArray[0];
-            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 2, 2).ToString();
+            otherActionModel.ActionDescription = stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString();
             npcModel.NPCActions.Add(otherActionModel);
             return standardActionArray;
         }
