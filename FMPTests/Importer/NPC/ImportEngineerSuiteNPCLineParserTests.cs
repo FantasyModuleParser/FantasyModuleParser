@@ -649,15 +649,19 @@ namespace FMPTests.Importer.NPC
 
         private static IEnumerable<object[]> LanguagesData()
         {
-            yield return new object[] { generateNPCModel_Languages("Common", null, null, null), "Languages Common" };
-            yield return new object[] { generateNPCModel_Languages("Common, Dwarvish", null, null, null), "Languages Common, Dwarvish" };
-            yield return new object[] { generateNPCModel_Languages(null, "Abyssal", null, null), "Languages Abyssal" };
-            yield return new object[] { generateNPCModel_Languages(null, "Abyssal, Auran", null, null), "Languages Abyssal, Auran" };
-            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror", null), "Languages Hook Horror" };
-            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror, Gnoll", null), "Languages Hook Horror, Gnoll" };
-            yield return new object[] { generateNPCModel_Languages("Common", "Abyssal", "Hook Horror", null), "Languages Hook Horror, Common, Abyssal" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, null), "Languages Common" };
+            yield return new object[] { generateNPCModel_Languages("Common, Dwarvish", null, null, null, null), "Languages Common, Dwarvish" };
+            yield return new object[] { generateNPCModel_Languages(null, "Abyssal", null, null, null), "Languages Abyssal" };
+            yield return new object[] { generateNPCModel_Languages(null, "Abyssal, Auran", null, null, null), "Languages Abyssal, Auran" };
+            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror", null, null), "Languages Hook Horror" };
+            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror, Gnoll", null, null), "Languages Hook Horror, Gnoll" };
+            yield return new object[] { generateNPCModel_Languages("Common", "Abyssal", "Hook Horror", null, null), "Languages Hook Horror, Common, Abyssal" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "90"), "Languages Common, telepathy 90" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "120 ft."), "Languages Common, telepathy 120 ft." };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "60 ft"), "Languages Common, telepathy 60 ft" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "30 yd."), "Languages Common, telepathy 30 yd." };
         }
-        private static NPCModel generateNPCModel_Languages(string standard, string exotic, string monster, string user)
+        private static NPCModel generateNPCModel_Languages(string standard, string exotic, string monster, string user, string telepathyRange)
         {
             // Custom Controller for handling Languages
             LanguageController languageController = new LanguageController();
@@ -678,6 +682,12 @@ namespace FMPTests.Importer.NPC
             if(monster != null)
                 foreach (string lang in monster.Split(','))
                     npcModel.MonstrousLanguages.First(item => item.Language.Equals(lang.Trim())).Selected = true;
+
+            if(telepathyRange != null)
+            {
+                npcModel.Telepathy = true;
+                npcModel.TelepathyRange = telepathyRange;
+            }
 
             return npcModel;
         }
