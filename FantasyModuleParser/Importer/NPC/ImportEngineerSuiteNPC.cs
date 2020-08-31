@@ -987,14 +987,14 @@ namespace FantasyModuleParser.Importer.NPC
                 }
                 if (weaponDescriptionData.Contains("range"))
                 {
-                    if (weaponAttackModel.WeaponType.Equals(WeaponType.SA) || weaponAttackModel.WeaponType.Equals(WeaponType.WA))
+                    if (weaponAttackModel.WeaponType.Equals(WeaponType.SA))
                     {
                         weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[6], CultureInfo.CurrentCulture);
                     }
                     else
                     {
-                        weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[0], CultureInfo.CurrentCulture);
-                        weaponAttackModel.WeaponRangeLong = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[1], CultureInfo.CurrentCulture);
+                        weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[6].Split('/')[0], CultureInfo.CurrentCulture);
+                        weaponAttackModel.WeaponRangeLong = int.Parse(weaponDescriptionData.Split(' ')[6].Split('/')[1], CultureInfo.CurrentCulture);
                     }
                 }
                 if (weaponDescriptionData.Contains("one target"))

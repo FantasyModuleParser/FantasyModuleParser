@@ -92,7 +92,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Resources\DnDBeyond\Aboleth.txt" />
-    <Content Include="Resources\DnDBeyond\Aarakocra.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Aarakocra.txt" />
     <EmbeddedResource Include="Resources\DnDBeyond\Deva.txt" />
     <Content Include="Resources\Mage1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
