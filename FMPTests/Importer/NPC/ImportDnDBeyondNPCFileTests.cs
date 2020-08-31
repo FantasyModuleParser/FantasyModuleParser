@@ -275,5 +275,33 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(2, actualWeaponAttack.PrimaryDamage.Bonus);
             Assert.AreEqual(DamageType.Piercing, actualWeaponAttack.PrimaryDamage.DamageType);
         }
+        [TestMethod]
+        public void Test_Validate_Bullywug_Spear()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Bullywug");
+            ActionModelBase standardAction = actualNPCModel.NPCActions[2];
+            Assert.AreEqual(typeof(WeaponAttack), standardAction.GetType());
+
+            WeaponAttack actualWeaponAttack = standardAction as WeaponAttack;
+            Assert.AreEqual("Spear", actualWeaponAttack.ActionName);
+            Assert.AreEqual(WeaponType.WA, actualWeaponAttack.WeaponType);
+            Assert.AreEqual(3, actualWeaponAttack.ToHit);
+            Assert.AreEqual(5, actualWeaponAttack.Reach);
+            Assert.AreEqual(20, actualWeaponAttack.WeaponRangeShort);
+            Assert.AreEqual(60, actualWeaponAttack.WeaponRangeLong);
+            Assert.AreEqual(TargetType.target, actualWeaponAttack.TargetType);
+
+            Assert.AreEqual(1, actualWeaponAttack.PrimaryDamage.NumOfDice);
+            Assert.AreEqual(DieType.D6, actualWeaponAttack.PrimaryDamage.DieType);
+            Assert.AreEqual(1, actualWeaponAttack.PrimaryDamage.Bonus);
+            Assert.AreEqual(DamageType.Piercing, actualWeaponAttack.PrimaryDamage.DamageType);
+            Assert.AreEqual(1, actualWeaponAttack.SecondaryDamage.NumOfDice);
+            Assert.AreEqual(DieType.D8, actualWeaponAttack.SecondaryDamage.DieType);
+            Assert.AreEqual(1, actualWeaponAttack.SecondaryDamage.Bonus);
+            Assert.AreEqual(DamageType.Piercing, actualWeaponAttack.SecondaryDamage.DamageType);
+            Assert.AreEqual(true, actualWeaponAttack.IsVersatile);
+            Assert.AreEqual(true, actualWeaponAttack.OtherTextCheck);
+            Assert.AreEqual("if used with two hands to make a melee attack", actualWeaponAttack.OtherText);
+        }
     }
 }
