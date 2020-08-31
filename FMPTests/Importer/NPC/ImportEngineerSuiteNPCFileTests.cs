@@ -433,7 +433,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
 
             Assert.AreEqual(true, actualNPCModel.Telepathy);
-            Assert.AreEqual("90", actualNPCModel.TelepathyRange);
+            Assert.AreEqual("90 ft.", actualNPCModel.TelepathyRange);
         }
 
         #endregion
