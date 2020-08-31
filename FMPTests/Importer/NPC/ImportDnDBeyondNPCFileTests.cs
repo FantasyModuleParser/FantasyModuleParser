@@ -229,5 +229,30 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(null, actualNPCModel.TwoPerDay);
             Assert.AreEqual("commune, raise dead", actualNPCModel.OnePerDay);
         }
+        [TestMethod]
+        public void Test_Validate_Aarakocra_Actions()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Aarakocra");
+            Assert.AreEqual(2, actualNPCModel.NPCActions.Count);
+        }
+        [TestMethod]
+        public void Test_Validate_Aarakocra_Talons()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Aarakocra");
+            ActionModelBase standardAction = actualNPCModel.NPCActions[0];
+            Assert.AreEqual(typeof(WeaponAttack), standardAction.GetType());
+
+            WeaponAttack actualWeaponAttack = standardAction as WeaponAttack;
+            Assert.AreEqual("Talon", actualWeaponAttack.ActionName);
+            Assert.AreEqual(WeaponType.MWA, actualWeaponAttack.WeaponType);
+            Assert.AreEqual(4, actualWeaponAttack.ToHit);
+            Assert.AreEqual(5, actualWeaponAttack.Reach);
+            Assert.AreEqual(TargetType.target, actualWeaponAttack.TargetType);
+
+            Assert.AreEqual(1, actualWeaponAttack.PrimaryDamage.NumOfDice);
+            Assert.AreEqual(DieType.D4, actualWeaponAttack.PrimaryDamage.DieType);
+            Assert.AreEqual(2, actualWeaponAttack.PrimaryDamage.Bonus);
+            Assert.AreEqual(DamageType.Slashing, actualWeaponAttack.PrimaryDamage.DamageType);
+        }
     }
 }
