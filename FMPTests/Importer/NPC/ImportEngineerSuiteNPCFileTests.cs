@@ -610,7 +610,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.TargetType = TargetType.target;
             expectedWeaponAttack.PrimaryDamage = new DamageProperty(1, DieType.D6, 0, DamageType.Lightning);
             expectedWeaponAttack.SecondaryDamage = new DamageProperty(1, DieType.D8, 0, DamageType.Lightning); ;
-            expectedWeaponAttack.OtherText = "";
+            expectedWeaponAttack.OtherText = null;
 
             WeaponAttack actualWeaponAttack = (WeaponAttack)actualNPCModel.NPCActions[1];
 

@@ -993,8 +993,8 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     else
                     {
-                        weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[6].Split('/')[0], CultureInfo.CurrentCulture);
-                        weaponAttackModel.WeaponRangeLong = int.Parse(weaponDescriptionData.Split(' ')[6].Split('/')[1], CultureInfo.CurrentCulture);
+                        weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[0], CultureInfo.CurrentCulture);
+                        weaponAttackModel.WeaponRangeLong = int.Parse(weaponDescriptionData.Split(' ')[2].Split('/')[1], CultureInfo.CurrentCulture);
                     }
                 }
                 if (weaponDescriptionData.Contains("one target"))
@@ -1020,7 +1020,7 @@ namespace FantasyModuleParser.Importer.NPC
         {
             Regex PrimarySecondaryDamageRegex = new Regex(@".*damage plus.*damage");
             Regex PrimaryOnlyDamageRegex = new Regex(@".*?damage");
-            Regex PrimaryWithVersatileRegex = new Regex(@".*damage or.*if used with two hands");
+            Regex PrimaryWithVersatileRegex = new Regex(@".*?if used with two hands.*");
             string damagePropertyData = weaponDescription.Substring(weaponDescription.IndexOf("Hit: ", StringComparison.Ordinal) + 4);
             string flavorText = "";
             // This is the versatile weapon check

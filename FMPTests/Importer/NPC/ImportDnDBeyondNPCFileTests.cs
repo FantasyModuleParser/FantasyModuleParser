@@ -296,8 +296,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(1, actualWeaponAttack.PrimaryDamage.Bonus);
             Assert.AreEqual(DamageType.Piercing, actualWeaponAttack.PrimaryDamage.DamageType);
             Assert.AreEqual(true, actualWeaponAttack.IsVersatile);
-            Assert.AreEqual(true, actualWeaponAttack.OtherTextCheck);
-            Assert.AreEqual("or 5 (1d8 + 1) piercing damage if used with two hands to make a melee attack.", actualWeaponAttack.OtherText);
+            Assert.AreEqual(false, actualWeaponAttack.OtherTextCheck);
+            Assert.AreEqual(null, actualWeaponAttack.OtherText);
         }
     }
 }
