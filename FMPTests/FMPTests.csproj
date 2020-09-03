@@ -95,6 +95,7 @@
     <EmbeddedResource Include="Resources\DnDBeyond\Aarakocra.txt" />
     <EmbeddedResource Include="Resources\DnDBeyond\Deva.txt" />
     <EmbeddedResource Include="Resources\DnDBeyond\Bullywug.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Cambion.txt" />
     <Content Include="Resources\Mage1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

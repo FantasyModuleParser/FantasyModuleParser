@@ -1109,6 +1109,10 @@ namespace FantasyModuleParser.Importer.NPC
                     {
                         weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[6], CultureInfo.CurrentCulture);
                     }
+                    else if (weaponAttackModel.WeaponType.Equals(WeaponType.RSA))
+                    {
+                        weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[2], CultureInfo.CurrentCulture);
+                    }
                     else
                     {
                         weaponAttackModel.WeaponRangeShort = int.Parse(weaponDescriptionData.Split(' ')[6].Split('/')[0], CultureInfo.CurrentCulture);

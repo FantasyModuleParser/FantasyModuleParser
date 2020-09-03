@@ -299,5 +299,29 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(false, actualWeaponAttack.OtherTextCheck);
             Assert.AreEqual(null, actualWeaponAttack.OtherText);
         }
+        [TestMethod]
+        public void Test_Validate_Cambion_Spear()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Cambion");
+            ActionModelBase standardAction = actualNPCModel.NPCActions[1];
+            Assert.AreEqual(typeof(WeaponAttack), standardAction.GetType());
+
+            WeaponAttack actualWeaponAttack = standardAction as WeaponAttack;
+            Assert.AreEqual("Spear", actualWeaponAttack.ActionName);
+            Assert.AreEqual(WeaponType.WA, actualWeaponAttack.WeaponType);
+            Assert.AreEqual(7, actualWeaponAttack.ToHit);
+            Assert.AreEqual(5, actualWeaponAttack.Reach);
+            Assert.AreEqual(20, actualWeaponAttack.WeaponRangeShort);
+            Assert.AreEqual(60, actualWeaponAttack.WeaponRangeLong);
+            Assert.AreEqual(TargetType.target, actualWeaponAttack.TargetType);
+
+            Assert.AreEqual(1, actualWeaponAttack.PrimaryDamage.NumOfDice);
+            Assert.AreEqual(DieType.D6, actualWeaponAttack.PrimaryDamage.DieType);
+            Assert.AreEqual(4, actualWeaponAttack.PrimaryDamage.Bonus);
+            Assert.AreEqual(DamageType.Piercing, actualWeaponAttack.PrimaryDamage.DamageType);
+            Assert.AreEqual(true, actualWeaponAttack.IsVersatile);
+            Assert.AreEqual(false, actualWeaponAttack.OtherTextCheck);
+            Assert.AreEqual(null, actualWeaponAttack.OtherText);
+        }
     }
 }
