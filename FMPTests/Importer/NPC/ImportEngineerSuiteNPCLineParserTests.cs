@@ -915,7 +915,7 @@ namespace FMPTests.Importer.NPC
             yield return new object[] { generateNPCModel_WeaponAction("All Specialstat Dagger", WeaponType.MWA,
                 0, 5, 30, 60, TargetType.target, true, true, true, true, true,
                 new DamageProperty(){Bonus = 0, DamageType = DamageType.Lightning, DieType = DieType.D6, NumOfDice = 1 },
-                new DamageProperty(){Bonus = 0, DamageType = DamageType.Lightning, DieType = DieType.D8, NumOfDice = 1 }), 
+                null), 
                 "All Specialstat Dagger. Melee Weapon Attack: +0 to hit, reach 5 ft., one target. " +
                 "Hit: 3 (1d6) lightning, silver, adamantine, cold-forged iron, magic damage " +
                 "or 4 (1d8) lightning, silver, adamantine, cold-forged iron, magic damage if used with two hands." };
@@ -934,6 +934,11 @@ namespace FMPTests.Importer.NPC
                 new DamageProperty(){Bonus = 0, DamageType = DamageType.Piercing, DieType = DieType.D6, NumOfDice = 1 },
                 new DamageProperty(){Bonus = -4, DamageType = DamageType.Acid, DieType = DieType.D10, NumOfDice = 6 }),
                 "Bonus Damage Dagger. Melee Spell Attack: +5 to hit, reach 10 ft., one target. Hit: 3 (1d6) piercing damage plus 29 (6d10 - 4) acid damage." };
+            yield return new object[] { generateNPCModel_WeaponAction("Spear", WeaponType.WA,
+                7, 5, 20, 60, TargetType.target, false, false, false, false, true,
+                new DamageProperty(){Bonus = 4, DamageType = DamageType.Piercing, DieType = DieType.D6, NumOfDice = 1 },
+                new DamageProperty(){Bonus = 0, DamageType = DamageType.Fire, DieType = DieType.D6, NumOfDice = 1 }),
+                "Spear. Melee or Ranged Weapon Attack: +7 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 7 (1d6 + 4) piercing damage, or 8 (1d8 + 4) piercing damage if used with two hands to make a melee attack, plus 3 (1d6) fire damage." };
         }
         private static NPCModel generateNPCModel_WeaponAction(string actionName, WeaponType weaponType, int toHit, int reach,
             int weaponShortRange, int weaponLongRange,
