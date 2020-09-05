@@ -3,6 +3,7 @@ using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
+using FantasyModuleParser.NPC.Models.Skills;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,440 @@ namespace FantasyModuleParser.Importer.NPC
     {
         private ImportCommonUtils importCommonUtils = new ImportCommonUtils();
         public abstract NPCModel ImportTextToNPCModel(string importTextContent);
+
+        /// <summary>
+        /// 'Tiny beast (devil), lawful neutral'
+        /// </summary>
+        public void ParseSizeAndAlignment(NPCModel npcModel, string sizeAndAlignment)
+        {
+            string[] npcCharacteristics = sizeAndAlignment.Split(' ');
+            npcModel.Size = npcCharacteristics[0];
+            string tag = npcCharacteristics[1].ToLower();
+            if (tag.EndsWith(","))
+                npcModel.NPCType = tag.Substring(0, tag.Length - 1);
+            else
+                npcModel.NPCType = npcCharacteristics[1].ToLower();
+
+            if (npcCharacteristics[2].Contains("("))
+            {
+                // includes removing the comma character at the end
+                npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
+            }
+
+            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
+                if (npcCharacteristics.Length > 4)
+                    npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+                else
+                    npcModel.Alignment = npcCharacteristics[3];
+            else
+                if (npcCharacteristics.Length > 3)
+                npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
+            else
+                npcModel.Alignment = npcCharacteristics[2];
+        }
+
+        /// <summary>
+        /// 'Armor Class 16 (Natural Armor)'
+        /// </summary>
+        public void ParseArmorClass(NPCModel npcModel, string armorClass)
+        {
+            if (armorClass.StartsWith("Armor Class ", StringComparison.Ordinal))
+            {
+                npcModel.AC = armorClass.Substring(12);
+            }
+        }
+
+        /// <summary>
+        /// 'Hit Points 90 (10d8 + 44)'
+        /// </summary>
+        public void ParseHitPoints(NPCModel npcModel, string hitPoints)
+        {
+            if (hitPoints.StartsWith("Hit Points"))
+            {
+                npcModel.HP = hitPoints.Substring(11);
+            }
+        }
+
+        /// <summary>
+        /// 'Speed 10 ft., burrow 20 ft., climb 30 ft., fly 40 ft. (hover), swim 50 ft.'
+        /// </summary>S
+        public void ParseSpeedAttributes(NPCModel npcModel, string speedAttributes)
+        {
+            if (speedAttributes == null || speedAttributes.Length == 0)
+            {
+                npcModel.Speed = 0;
+                npcModel.Burrow = 0;
+                npcModel.Climb = 0;
+                npcModel.Fly = 0;
+                npcModel.Hover = false;
+                npcModel.Swim = 0;
+                return;
+            }
+            foreach (string speedAttribute in speedAttributes.Split(','))
+            {
+                var trimmedSpeedAttribute = speedAttribute.Trim().ToLower(CultureInfo.CurrentCulture);
+                if (trimmedSpeedAttribute.StartsWith("speed ", StringComparison.Ordinal))
+                {
+                    npcModel.Speed = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
+                }
+                if (trimmedSpeedAttribute.StartsWith("burrow ", StringComparison.Ordinal))
+                {
+                    npcModel.Burrow = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
+                }
+                if (trimmedSpeedAttribute.StartsWith("climb ", StringComparison.Ordinal))
+                {
+                    npcModel.Climb = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
+                }
+                if (trimmedSpeedAttribute.StartsWith("fly ", StringComparison.Ordinal))
+                {
+                    npcModel.Fly = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
+                }
+                if (trimmedSpeedAttribute.Contains("(hover)"))
+                {
+                    npcModel.Hover = true;
+                }
+                if (trimmedSpeedAttribute.StartsWith("swim ", StringComparison.Ordinal))
+                {
+                    npcModel.Swim = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 'Saving Throws Str +1, Dex +2, Con +3, Int +0, Wis +5, Cha +6'
+        /// </summary>
+        public void ParseSavingThrows(NPCModel npcModel, string savingThrows)
+        {
+            if (savingThrows.StartsWith("Saving Throws"))
+            {
+                string[] splitSavingThrows = savingThrows.Split(' ');
+                bool isStr = false, isDex = false, isCon = false, isInt = false, isWis = false, isCha = false;
+                bool attributeIdentified = false;
+                foreach (string savingThrowWord in splitSavingThrows)
+                {
+                    if (savingThrowWord.Equals("Saving", StringComparison.Ordinal) || savingThrowWord.Equals("Throws", StringComparison.Ordinal))
+                        continue;
+
+                    if (attributeIdentified)
+                    {
+                        if (isStr)
+                        {
+                            npcModel.SavingThrowStr = parseAttributeStringToInt(savingThrowWord);
+                            npcModel.SavingThrowStrBool = npcModel.SavingThrowStr == 0;
+                        }
+                        if (isDex)
+                        {
+                            npcModel.SavingThrowDex = parseAttributeStringToInt(savingThrowWord);
+                            npcModel.SavingThrowDexBool = npcModel.SavingThrowDex == 0;
+                        }
+                        if (isCon)
+                        {
+                            npcModel.SavingThrowCon = parseAttributeStringToInt(savingThrowWord);
+                            npcModel.SavingThrowConBool = npcModel.SavingThrowCon == 0;
+                        }
+                        if (isInt)
+                        {
+                            npcModel.SavingThrowInt = parseAttributeStringToInt(savingThrowWord);
+                            npcModel.SavingThrowIntBool = npcModel.SavingThrowInt == 0;
+                        }
+                        if (isWis)
+                        {
+                            npcModel.SavingThrowWis = parseAttributeStringToInt(savingThrowWord);
+                            npcModel.SavingThrowWisBool = npcModel.SavingThrowWis == 0;
+                        }
+                        if (isCha)
+                        {
+                            npcModel.SavingThrowCha = parseAttributeStringToInt(savingThrowWord);
+                            npcModel.SavingThrowChaBool = npcModel.SavingThrowCha == 0;
+                        }
+
+                        attributeIdentified = false; // Reset for next attribute check
+                    }
+                    else
+                    {
+                        isStr = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("STR", StringComparison.Ordinal);
+                        isDex = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("DEX", StringComparison.Ordinal);
+                        isCon = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("CON", StringComparison.Ordinal);
+                        isInt = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("INT", StringComparison.Ordinal);
+                        isWis = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("WIS", StringComparison.Ordinal);
+                        isCha = savingThrowWord.ToUpper(CultureInfo.CurrentCulture).Equals("CHA", StringComparison.Ordinal);
+                        attributeIdentified = true;
+                    }
+                }
+
+            }
+        }
+
+        public int parseAttributeStringToInt(string savingThrowValue)
+        {
+            if (savingThrowValue.Length == 0 || savingThrowValue.Trim().Length == 0)
+                return 0;
+            savingThrowValue = savingThrowValue.Replace('+', ' ');
+            savingThrowValue = savingThrowValue.Replace(',', ' ');
+            string savingThrowValueSubstring = savingThrowValue.Trim();
+            return int.Parse(savingThrowValueSubstring, CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9,
+        ///  Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
+        /// </summary>
+        public void ParseSkillAttributes(NPCModel npcModel, string skillAttributes)
+        {
+            int columnIndex = 0;
+            string[] skillAttributeArray = skillAttributes.Split(' ');
+            foreach (string skillAttributeValue in skillAttributeArray)
+            {
+                switch (skillAttributeValue)
+                {
+                    case "Acrobatics":
+                        npcModel.Acrobatics = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Animal":
+                        npcModel.AnimalHandling = parseAttributeStringToInt(skillAttributeArray[columnIndex + 2]);
+                        break;
+                    case "Arcana":
+                        npcModel.Arcana = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Athletics":
+                        npcModel.Athletics = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Deception":
+                        npcModel.Deception = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "History":
+                        npcModel.History = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Insight":
+                        npcModel.Insight = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Intimidation":
+                        npcModel.Intimidation = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Investigation":
+                        npcModel.Investigation = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Medicine":
+                        npcModel.Medicine = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Nature":
+                        npcModel.Nature = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Perception":
+                        npcModel.Perception = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Performance":
+                        npcModel.Performance = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Persuasion":
+                        npcModel.Persuasion = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Religion":
+                        npcModel.Religion = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Sleight":
+                        npcModel.SleightOfHand = parseAttributeStringToInt(skillAttributeArray[columnIndex + 3]);
+                        break;
+                    case "Stealth":
+                        npcModel.Stealth = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Survival":
+                        npcModel.Survival = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    default:
+                        break;
+                }
+                columnIndex++;
+            }
+        }
+
+        /// <summary>
+        /// 'Damage Vulnerabilities acid, fire, lightning, poison, radiant; bludgeoning and slashing'
+        /// </summary>
+        public void ParseDamageVulnerabilities(NPCModel npcModel, string damageVulnerabilites)
+        {
+            if (damageVulnerabilites.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
+            {
+                npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList(damageVulnerabilites);
+            }
+            else
+            {
+                // Populate with all options deselected
+                npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList("");
+            }
+        }
+
+        private List<SelectableActionModel> parseDamageTypeStringToList(string damageTypes)
+        {
+            NPCController npcController = new NPCController();
+            List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(DamageType));
+            if (damageTypes.Length == 0)
+                return selectableActionModels;
+
+            foreach (string damageTypeValue in damageTypes.Split(' '))
+            {
+                string damageTypeValueTrimmed = damageTypeValue.Replace(',', ' ').Replace(';', ' ').Trim();
+                SelectableActionModel damageTypeModel = selectableActionModels.FirstOrDefault(item => item.ActionDescription.Equals(damageTypeValueTrimmed));
+                if (damageTypeModel != null)
+                    damageTypeModel.Selected = true;
+            }
+
+
+            return selectableActionModels;
+        }
+
+        /// <summary>
+        /// 'Condition Immunities blinded, frightened, invisible, paralyzed, prone, restrained'
+        /// </summary>
+        public void ParseConditionImmunities(NPCModel npcModel, string conditionImmunities)
+        {
+            NPCController npcController = new NPCController();
+            List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(ConditionType));
+
+            if (conditionImmunities.Trim().Length != 0 && conditionImmunities.StartsWith("Condition Immunities", StringComparison.Ordinal))
+                foreach (string conditionImmunityTypeValue in conditionImmunities.Split(' '))
+                {
+                    string conditionImmunityTypeValueTrimmed = conditionImmunityTypeValue.Replace(',', ' ').Replace(';', ' ').Trim();
+                    SelectableActionModel conditionImmunityTypeModel = selectableActionModels.FirstOrDefault(item => item.ActionDescription.Equals(conditionImmunityTypeValueTrimmed));
+                    if (conditionImmunityTypeModel != null)
+                        conditionImmunityTypeModel.Selected = true;
+                }
+
+            npcModel.ConditionImmunityModelList = selectableActionModels;
+        }
+
+        /// <summary>
+        /// 'Senses blindsight 60 ft. (blind beyond this radius), darkvision 70 ft., tremorsense 80 ft., truesight 90 ft., passive Perception 22'
+        /// </summary>
+        public void ParseVisionAttributes(NPCModel npcModel, string visionAttributes)
+        {
+            if (visionAttributes != null && visionAttributes.StartsWith("Senses", StringComparison.Ordinal))
+            {
+                if (visionAttributes.Contains("blind beyond this radius"))
+                    npcModel.BlindBeyond = true;
+
+                string[] visionAttributeArray = visionAttributes.Split(' ');
+                int arrayIndex = 0;
+                foreach (string attribute in visionAttributeArray)
+                {
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("blindsight", StringComparison.Ordinal))
+                    {
+                        npcModel.Blindsight = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("darkvision", StringComparison.Ordinal))
+                    {
+                        npcModel.Darkvision = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("tremorsense", StringComparison.Ordinal))
+                    {
+                        npcModel.Tremorsense = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("truesight", StringComparison.Ordinal))
+                    {
+                        npcModel.Truesight = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("perception", StringComparison.Ordinal))
+                    {
+                        npcModel.PassivePerception = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                    }
+                    arrayIndex++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 'Languages Aarakocra, Bullywug, Celestial, Common, Draconic, Elvish, Gnomish, Grell, Halfling, Ice toad, Infernal, Modron, Slaad, Sylvan, Thieves' cant, Thri-kreen, Umber hulk, telepathy 90'
+        /// </summary>
+        public void ParseLanguages(NPCModel npcModel, string languages)
+        {
+            LanguageController languageController = new LanguageController();
+
+            npcModel.StandardLanguages = languageController.GenerateStandardLanguages();
+            npcModel.ExoticLanguages = languageController.GenerateExoticLanguages();
+            npcModel.MonstrousLanguages = languageController.GenerateMonsterLanguages();
+            npcModel.UserLanguages = new System.Collections.ObjectModel.ObservableCollection<LanguageModel>();
+
+            string languageStringTrimmed = languages.Remove(0, 9); // Removes the 'Languages' word
+            foreach (string language in languageStringTrimmed.Split(','))
+            {
+                string languageTrimmed = language.Trim().ToLower();
+                LanguageModel standardLanguage = npcModel.StandardLanguages.FirstOrDefault(item => item.Language.ToLower().Equals(languageTrimmed));
+                if (standardLanguage != null)
+                {
+                    standardLanguage.Selected = true;
+                    continue;
+                }
+
+                LanguageModel exoticLanguage = npcModel.ExoticLanguages.FirstOrDefault(item => item.Language.ToLower().Equals(languageTrimmed));
+                if (exoticLanguage != null)
+                {
+                    exoticLanguage.Selected = true;
+                    continue;
+                }
+                LanguageModel monstrousLanguage = npcModel.MonstrousLanguages.FirstOrDefault(item => item.Language.ToLower().Equals(languageTrimmed));
+                if (monstrousLanguage != null)
+                {
+                    monstrousLanguage.Selected = true;
+                    continue;
+                }
+
+                if (languageTrimmed.Contains("telepathy"))
+                {
+                    npcModel.Telepathy = true;
+                    npcModel.TelepathyRange = languageTrimmed.Replace("telepathy ", "");
+                    continue;
+                }
+
+                // At this point, any other hits would be considered an User Language
+
+                npcModel.UserLanguages.Add(new LanguageModel()
+                {
+                    Language = language.Trim(),
+                    Selected = true
+                });
+            }
+
+        }
+
+        /// <summary>
+        /// 'Challenge 8 (3,900 XP)'
+        /// </summary>
+        public void ParseChallengeRatingAndXP(NPCModel npcModel, string challengeRatingAndXP)
+        {
+            if (challengeRatingAndXP != null && challengeRatingAndXP.StartsWith("Challenge"))
+            {
+                string[] splitArray = challengeRatingAndXP.Split(' ');
+                npcModel.ChallengeRating = splitArray[1];
+                string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(').ToArray());
+                npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
+            }
+
+        }
+
+        /// <summary>
+        /// 'Trait Number 1. Some trait goes here for flavor Anger. This NPC gets angry very, very easily Unit Test. Unit Test the third'
+        /// </summary>
+        public void ParseTraits(NPCModel npcModel, string traits)
+        {
+            if (npcModel.Traits == null)
+                npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
+
+            if (string.IsNullOrEmpty(traits))
+                return;
+
+            string[] traitArray = traits.Split('.');
+            ActionModelBase traitModel = new ActionModelBase();
+            traitModel.ActionName = traitArray[0];
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int idx = 1; idx < traitArray.Length; idx++)
+            {
+                stringBuilder.Append(traitArray[idx]).Append(".");
+            }
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            traitModel.ActionDescription = stringBuilder.ToString().Trim();
+
+            npcModel.Traits.Add(traitModel);
+        }
 
         /// <summary>
         /// 'Multiattack. .This creature makes 3 attacks.'
@@ -226,16 +661,6 @@ namespace FantasyModuleParser.Importer.NPC
             return standardActionArray;
         }
 
-        private int parseAttributeStringToInt(string savingThrowValue)
-        {
-            if (savingThrowValue.Length == 0 || savingThrowValue.Trim().Length == 0)
-                return 0;
-            savingThrowValue = savingThrowValue.Replace('+', ' ');
-            savingThrowValue = savingThrowValue.Replace(',', ' ');
-            string savingThrowValueSubstring = savingThrowValue.Trim();
-            return int.Parse(savingThrowValueSubstring, CultureInfo.CurrentCulture);
-        }
-
         private string GetDescription(Type EnumType, object enumValue)
         {
             var descriptionAttribute = EnumType
@@ -358,25 +783,6 @@ namespace FantasyModuleParser.Importer.NPC
             return selectableActionModels;
         }
         #endregion
-        private List<SelectableActionModel> parseDamageTypeStringToList(string damageTypes)
-        {
-            NPCController npcController = new NPCController();
-            List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(DamageType));
-            if (damageTypes.Length == 0)
-                return selectableActionModels;
-
-            foreach (string damageTypeValue in damageTypes.Split(' '))
-            {
-                string damageTypeValueTrimmed = damageTypeValue.Replace(',', ' ').Replace(';', ' ').Trim();
-                SelectableActionModel damageTypeModel = 
-                    selectableActionModels.FirstOrDefault(
-                            item => item.ActionDescription.ToLower().Equals(damageTypeValueTrimmed.ToLower())
-                        );
-                if (damageTypeModel != null)
-                    damageTypeModel.Selected = true;
-            }
-            return selectableActionModels;
-        }
 
     }
 }
