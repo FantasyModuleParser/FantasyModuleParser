@@ -213,6 +213,10 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
             Assert.AreEqual(13, actualNPCModel.DamageResistanceModelList.Count);
             Assert.IsTrue(actualNPCModel.DamageResistanceModelList.FirstOrDefault(x => x.ActionName.Equals("Radiant")).Selected);
+            Assert.IsTrue(actualNPCModel.DamageResistanceModelList.FirstOrDefault(x => x.ActionName.Equals("Bludgeoning")).Selected);
+            Assert.IsTrue(actualNPCModel.DamageResistanceModelList.FirstOrDefault(x => x.ActionName.Equals("Piercing")).Selected);
+            Assert.IsTrue(actualNPCModel.DamageResistanceModelList.FirstOrDefault(x => x.ActionName.Equals("Slashing")).Selected);
+            Assert.IsTrue(actualNPCModel.SpecialWeaponResistanceModelList.FirstOrDefault(x => x.ActionName.Equals(WeaponResistance.Nonmagical.ToString())).Selected);
         }
         [TestMethod]
         public void Test_Validate_Deva_InnateSpellCasting()
