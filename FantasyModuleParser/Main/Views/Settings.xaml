@@ -15,7 +15,7 @@
         Title="Fantasy Module Parser Settings" Height="440" Width="700" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
     <Grid Background="#FFE5E5E5">
         <TabControl Height="350" Width="660" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TabItem Header="Suite">
+            <TabItem Header="FMP">
                 <Grid Background="#FFE5E5E5">
                     <SuiteSettingsUserControl:SuiteSettingsUC HorizontalAlignment="Center" Width="660"/>
                 </Grid>

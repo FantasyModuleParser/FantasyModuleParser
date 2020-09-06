@@ -10,6 +10,7 @@ namespace FantasyModuleParser.NPC
     public partial class ImportText : Window
     {
         private IImportNPC importNPCService;
+        private IImportNPC importDnDBeyondNPC;
         public ImportText()
         {
             InitializeComponent();
@@ -22,9 +23,13 @@ namespace FantasyModuleParser.NPC
         private void ImportTextAndReturnButton_Click(object sender, RoutedEventArgs e)
         {
             importNPCService = new ImportEngineerSuiteNPC();
+            importDnDBeyondNPC = new ImportDnDBeyondNPC();
             NPCController npcController = new NPCController();
 
-            npcController.LoadNPCModel(importNPCService.ImportTextToNPCModel(ImportTextBox.Text));
+            if(ImportSelector.SelectedIndex == 0)
+                npcController.LoadNPCModel(importNPCService.ImportTextToNPCModel(ImportTextBox.Text));
+            if (ImportSelector.SelectedIndex == 1)
+                npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(ImportTextBox.Text));
             this.Visibility = Visibility.Hidden;
         }
     }
