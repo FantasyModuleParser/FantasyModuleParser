@@ -291,7 +291,9 @@ namespace FantasyModuleParser.Importer.NPC
             foreach (string damageTypeValue in damageTypes.Split(' '))
             {
                 string damageTypeValueTrimmed = damageTypeValue.Replace(',', ' ').Replace(';', ' ').Trim();
-                SelectableActionModel damageTypeModel = selectableActionModels.FirstOrDefault(item => item.ActionDescription.Equals(damageTypeValueTrimmed));
+                SelectableActionModel damageTypeModel = selectableActionModels.FirstOrDefault(
+                    item => item.ActionDescription.ToLower(CultureInfo.CurrentCulture).Equals(damageTypeValueTrimmed.ToLower(CultureInfo.CurrentCulture))
+                    );
                 if (damageTypeModel != null)
                     damageTypeModel.Selected = true;
             }
