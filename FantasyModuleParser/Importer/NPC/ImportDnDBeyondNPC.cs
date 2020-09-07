@@ -23,20 +23,21 @@ namespace FantasyModuleParser.Importer.NPC
             importCommonUtils = new ImportCommonUtils();
         }
 
-        private bool continueStrengthFlag = false,
-            continueDexterityFlag = false,
-            continueConstitutionFlag = false,
-            continueIntelligenceFlag = false,
-            continueWisdomFlag = false,
-            continueCharismaFlag = false,
-            continueTraitsFlag = false,
-            continueInnateSpellcastingFlag = false,
-            continueSpellcastingFlag = false,
-            continueActionsFlag = false,
-            continueReactionsFlag = false,
-            continueLegendaryActionsFlag = false;
+        private bool continueStrengthFlag = false;
+        private bool continueDexterityFlag = false;
+        private bool continueConstitutionFlag = false;
+        private bool continueIntelligenceFlag = false;
+        private bool continueWisdomFlag = false;
+        private bool continueCharismaFlag = false;
+        private bool continueTraitsFlag = false;
+        private bool continueInnateSpellcastingFlag = false;
+        private bool continueSpellcastingFlag = false;
+        private bool continueActionsFlag = false;
+        private bool continueReactionsFlag = false;
+        private bool continueLegendaryActionsFlag = false;
+
         /// <summary>
-        /// Parses & Imports data from DnD Beyond website
+        /// Parses and Imports data from DnD Beyond website
         /// </summary>
         /// <param name="importTextContent">The file content of an *.npc file created by the NPC Engineer module in Engineer Suite</param>
         /// <returns></returns>
@@ -66,56 +67,53 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseHitPoints(parsedNPCModel, line);
                 if (line.StartsWith("Speed", StringComparison.Ordinal))
                     ParseSpeedAttributes(parsedNPCModel, line);
-                if (line.Equals("STR"))
+                switch (line)
                 {
-                    continueStrengthFlag = true;
+                    case "STR":
+                        continueStrengthFlag = true;
+                        break;
+                    case "DEX":
+                        continueDexterityFlag = true;
+                        break;
+                    case "CON":
+                        continueConstitutionFlag = true;
+                        break;
+                    case "INT":
+                        continueIntelligenceFlag = true;
+                        break;
+                    case "WIS":
+                        continueWisdomFlag = true;
+                        break;
+                    case "CHA":
+                        continueCharismaFlag = true;
+                        break;
                 }
-                if (continueStrengthFlag == true && !line.Equals("STR"))
+                while (continueStrengthFlag == true && !line.Equals("STR"))
                 {
                     ParseStatAttributeStrength(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                if (line.Equals("DEX"))
-                {
-                    continueDexterityFlag = true;
-                }
-                if (continueDexterityFlag == true && !line.Equals("DEX"))
+                while (continueDexterityFlag == true && !line.Equals("DEX"))
                 {
                     ParseStatAttributeDexterity(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                if (line.Equals("CON"))
-                {
-                    continueConstitutionFlag = true;
-                }
-                if (continueConstitutionFlag == true && !line.Equals("CON"))
+                while (continueConstitutionFlag == true && !line.Equals("CON"))
                 {
                     ParseStatAttributeConstitution(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                if (line.Equals("INT"))
-                {
-                    continueIntelligenceFlag = true;
-                }
-                if (continueIntelligenceFlag == true && !line.Equals("INT"))
+                while (continueIntelligenceFlag == true && !line.Equals("INT"))
                 {
                     ParseStatAttributeIntelligence(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                if (line.Equals("WIS"))
-                {
-                    continueWisdomFlag = true;
-                }
-                if (continueWisdomFlag == true && !line.Equals("WIS"))
+                while (continueWisdomFlag == true && !line.Equals("WIS"))
                 {
                     ParseStatAttributeWisdom(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                if (line.Equals("CHA"))
-                {
-                    continueCharismaFlag = true;
-                }
-                if (continueCharismaFlag == true && !line.Equals("CHA"))
+                while (continueCharismaFlag == true && !line.Equals("CHA"))
                 {
                     ParseStatAttributeCharisma(parsedNPCModel, line);
                     resetContinueFlags();
@@ -326,9 +324,7 @@ namespace FantasyModuleParser.Importer.NPC
                     foreach (String subpart in spellSaveAndAttackData.Split(' '))
                     {
                         if (subpart.Contains(","))
-                        {
                             npcModel.InnateSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
-                        }
                         if (subpart.Contains('+') || subpart.Contains('-'))
                             npcModel.InnateSpellHitBonus = parseAttributeStringToInt(subpart);
                     }
