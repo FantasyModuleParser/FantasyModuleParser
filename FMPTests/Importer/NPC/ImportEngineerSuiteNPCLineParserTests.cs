@@ -649,15 +649,19 @@ namespace FMPTests.Importer.NPC
 
         private static IEnumerable<object[]> LanguagesData()
         {
-            yield return new object[] { generateNPCModel_Languages("Common", null, null, null), "Languages Common" };
-            yield return new object[] { generateNPCModel_Languages("Common, Dwarvish", null, null, null), "Languages Common, Dwarvish" };
-            yield return new object[] { generateNPCModel_Languages(null, "Abyssal", null, null), "Languages Abyssal" };
-            yield return new object[] { generateNPCModel_Languages(null, "Abyssal, Auran", null, null), "Languages Abyssal, Auran" };
-            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror", null), "Languages Hook Horror" };
-            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror, Gnoll", null), "Languages Hook Horror, Gnoll" };
-            yield return new object[] { generateNPCModel_Languages("Common", "Abyssal", "Hook Horror", null), "Languages Hook Horror, Common, Abyssal" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, null), "Languages Common" };
+            yield return new object[] { generateNPCModel_Languages("Common, Dwarvish", null, null, null, null), "Languages Common, Dwarvish" };
+            yield return new object[] { generateNPCModel_Languages(null, "Abyssal", null, null, null), "Languages Abyssal" };
+            yield return new object[] { generateNPCModel_Languages(null, "Abyssal, Auran", null, null, null), "Languages Abyssal, Auran" };
+            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror", null, null), "Languages Hook Horror" };
+            yield return new object[] { generateNPCModel_Languages(null, null, "Hook Horror, Gnoll", null, null), "Languages Hook Horror, Gnoll" };
+            yield return new object[] { generateNPCModel_Languages("Common", "Abyssal", "Hook Horror", null, null), "Languages Hook Horror, Common, Abyssal" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "90"), "Languages Common, telepathy 90" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "120 ft."), "Languages Common, telepathy 120 ft." };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "60 ft"), "Languages Common, telepathy 60 ft" };
+            yield return new object[] { generateNPCModel_Languages("Common", null, null, null, "30 yd."), "Languages Common, telepathy 30 yd." };
         }
-        private static NPCModel generateNPCModel_Languages(string standard, string exotic, string monster, string user)
+        private static NPCModel generateNPCModel_Languages(string standard, string exotic, string monster, string user, string telepathyRange)
         {
             // Custom Controller for handling Languages
             LanguageController languageController = new LanguageController();
@@ -678,6 +682,12 @@ namespace FMPTests.Importer.NPC
             if(monster != null)
                 foreach (string lang in monster.Split(','))
                     npcModel.MonstrousLanguages.First(item => item.Language.Equals(lang.Trim())).Selected = true;
+
+            if(telepathyRange != null)
+            {
+                npcModel.Telepathy = true;
+                npcModel.TelepathyRange = telepathyRange;
+            }
 
             return npcModel;
         }
@@ -905,7 +915,7 @@ namespace FMPTests.Importer.NPC
             yield return new object[] { generateNPCModel_WeaponAction("All Specialstat Dagger", WeaponType.MWA,
                 0, 5, 30, 60, TargetType.target, true, true, true, true, true,
                 new DamageProperty(){Bonus = 0, DamageType = DamageType.Lightning, DieType = DieType.D6, NumOfDice = 1 },
-                new DamageProperty(){Bonus = 0, DamageType = DamageType.Lightning, DieType = DieType.D8, NumOfDice = 1 }), 
+                null), 
                 "All Specialstat Dagger. Melee Weapon Attack: +0 to hit, reach 5 ft., one target. " +
                 "Hit: 3 (1d6) lightning, silver, adamantine, cold-forged iron, magic damage " +
                 "or 4 (1d8) lightning, silver, adamantine, cold-forged iron, magic damage if used with two hands." };
@@ -924,6 +934,11 @@ namespace FMPTests.Importer.NPC
                 new DamageProperty(){Bonus = 0, DamageType = DamageType.Piercing, DieType = DieType.D6, NumOfDice = 1 },
                 new DamageProperty(){Bonus = -4, DamageType = DamageType.Acid, DieType = DieType.D10, NumOfDice = 6 }),
                 "Bonus Damage Dagger. Melee Spell Attack: +5 to hit, reach 10 ft., one target. Hit: 3 (1d6) piercing damage plus 29 (6d10 - 4) acid damage." };
+            yield return new object[] { generateNPCModel_WeaponAction("Spear", WeaponType.WA,
+                7, 5, 20, 60, TargetType.target, false, false, false, false, true,
+                new DamageProperty(){Bonus = 4, DamageType = DamageType.Piercing, DieType = DieType.D6, NumOfDice = 1 },
+                new DamageProperty(){Bonus = 0, DamageType = DamageType.Fire, DieType = DieType.D6, NumOfDice = 1 }),
+                "Spear. Melee or Ranged Weapon Attack: +7 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 7 (1d6 + 4) piercing damage, or 8 (1d8 + 4) piercing damage if used with two hands to make a melee attack, plus 3 (1d6) fire damage." };
         }
         private static NPCModel generateNPCModel_WeaponAction(string actionName, WeaponType weaponType, int toHit, int reach,
             int weaponShortRange, int weaponLongRange,

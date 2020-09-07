@@ -433,7 +433,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
 
             Assert.AreEqual(true, actualNPCModel.Telepathy);
-            Assert.AreEqual("90", actualNPCModel.TelepathyRange);
+            Assert.AreEqual("90 ft.", actualNPCModel.TelepathyRange);
         }
 
         #endregion
@@ -609,8 +609,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.WeaponRangeLong = 60;  // Default
             expectedWeaponAttack.TargetType = TargetType.target;
             expectedWeaponAttack.PrimaryDamage = new DamageProperty(1, DieType.D6, 0, DamageType.Lightning);
-            expectedWeaponAttack.SecondaryDamage = new DamageProperty(1, DieType.D8, 0, DamageType.Lightning); ;
-            expectedWeaponAttack.OtherText = "";
+            expectedWeaponAttack.SecondaryDamage = null;
+            expectedWeaponAttack.OtherText = null;
 
             WeaponAttack actualWeaponAttack = (WeaponAttack)actualNPCModel.NPCActions[1];
 
@@ -696,7 +696,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             expectedWeaponAttack.TargetType = TargetType.target;
             expectedWeaponAttack.PrimaryDamage = new DamageProperty(1, DieType.D6, 0, DamageType.Piercing);
             expectedWeaponAttack.SecondaryDamage = new DamageProperty(6, DieType.D10, -4, DamageType.Acid);
-            expectedWeaponAttack.OtherText = "";
+            expectedWeaponAttack.OtherTextCheck = false;
+            expectedWeaponAttack.OtherText = null;
 
 
 
@@ -861,7 +862,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(2, actualNPCModel.NPCActions.Count);
             Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
             Assert.AreEqual(true, (actualNPCModel.NPCActions[0] as WeaponAttack).OtherTextCheck);
-            Assert.AreEqual(". If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. A cursed target can't regain hit points, and its maximum hit points decrease by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust.\\rThe curse lasts until removed by the remove curse spell or other magic.",
+            Assert.AreEqual(" If the target is a creature, it must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot. A cursed target can't regain hit points, and its maximum hit points decrease by 10 (3d6) for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust.\\rThe curse lasts until removed by the remove curse spell or other magic.",
                 (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
         }
 

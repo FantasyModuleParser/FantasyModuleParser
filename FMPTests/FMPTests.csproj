@@ -78,6 +78,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Exporters\FantasyGroundsExporterTests.cs" />
+    <Compile Include="Importer\NPC\ImportDnDBeyondNPCFileTests.cs" />
+    <Compile Include="Importer\NPC\ImportDnDBeyondNPCLineTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCLineParserTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCFileTests.cs" />
     <Compile Include="Importer\Utils\ImportCommonUtilsTests.cs" />
@@ -90,6 +92,13 @@
     <EmbeddedResource Include="Resources\MarkdownDescriptions\ExpectedResult\AncestralBarbarianExpected.txt" />
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Aboleth.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Aarakocra.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Deva.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Bullywug.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Cambion.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\Chuul.txt" />
+    <EmbeddedResource Include="Resources\DnDBeyond\GuardianNaga.txt" />
     <Content Include="Resources\Mage1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

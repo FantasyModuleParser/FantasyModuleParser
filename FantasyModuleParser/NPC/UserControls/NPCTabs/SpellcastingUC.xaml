@@ -137,7 +137,7 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="Cantrips" Padding="0" Margin="15,7,0,0" />
                 <ComboBox Name="strCantripSpells" Text="{Binding Path=CantripSpells, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="60" Padding="0" Margin="30,5,0,0" HorizontalContentAlignment="Center" TabIndex="10">
-                    <ComboBoxItem IsSelected="True">At will</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">at will</ComboBoxItem>
                     <ComboBoxItem>1 slot</ComboBoxItem>
                     <ComboBoxItem>2 slots</ComboBoxItem>
                     <ComboBoxItem>3 slots</ComboBoxItem>
