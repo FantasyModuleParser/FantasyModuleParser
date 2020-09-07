@@ -337,6 +337,55 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         {
             actualNPCModel = LoadEngineerSuiteTestNPCFile("GuardianNaga");
         }
+
+        [TestMethod]
+        public void Test_Validate_GuardianNaga_Spellcasting()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("GuardianNaga");
+            Assert.AreEqual("11th", actualNPCModel.SpellcastingCasterLevel);
+            Assert.AreEqual("Wisdom", actualNPCModel.SCSpellcastingAbility);
+            Assert.AreEqual(16, actualNPCModel.SpellcastingSpellSaveDC);
+            Assert.AreEqual(8, actualNPCModel.SpellcastingSpellHitBonus);
+            Assert.AreEqual("Cleric", actualNPCModel.SpellcastingSpellClass);
+            Assert.AreEqual("", actualNPCModel.FlavorText);
+
+            Assert.AreEqual("at will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("mending, sacred flame, thaumaturgy", actualNPCModel.CantripSpellList);
+
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("command, cure wounds, shield of faith", actualNPCModel.FirstLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.SecondLevelSpells, actualNPCModel.SecondLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.SecondLevelSpellList, actualNPCModel.SecondLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.ThirdLevelSpells, actualNPCModel.ThirdLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.ThirdLevelSpellList, actualNPCModel.ThirdLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.FourthLevelSpells, actualNPCModel.FourthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.FourthLevelSpellList, actualNPCModel.FourthLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.FifthLevelSpells, actualNPCModel.FifthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.FifthLevelSpellList, actualNPCModel.FifthLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.SixthLevelSpells, actualNPCModel.SixthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.SixthLevelSpellList, actualNPCModel.SixthLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.SeventhLevelSpells, actualNPCModel.SeventhLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.SeventhLevelSpellList, actualNPCModel.SeventhLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.EighthLevelSpells, actualNPCModel.EighthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.EighthLevelSpellList, actualNPCModel.EighthLevelSpellList);
+
+            //Assert.AreEqual(expectedNPCModel.NinthLevelSpells, actualNPCModel.NinthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.NinthLevelSpellList, actualNPCModel.NinthLevelSpellList);
+        }
+
+        [TestMethod]
+        public void Test_Validate_GuardianNaga_StandardActions()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("GuardianNaga");
+            Assert.AreEqual(2, actualNPCModel.NPCActions.Count);
+        }
         #endregion
     }
 }

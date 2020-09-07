@@ -40,7 +40,7 @@ namespace FMPTests.Importer.NPC
                 "Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)." +
                 " V1_npc_all has the following Sorcerer spells prepared:"};
             yield return new object[] {
-                generateNPCModel_Spellcasting("11th", "Wisdom", 16, 8, "cleric", ""),
+                generateNPCModel_Spellcasting("11th", "Wisdom", 16, 8, "Cleric", ""),
                 "Spellcasting. The naga is an 11th-level spellcaster. Its spellcasting ability is Wisdom (spell save DC 16, +8 to hit with spell attacks), and it needs only verbal components to cast its spells. It has the following cleric spells prepared:"};
 
         }
