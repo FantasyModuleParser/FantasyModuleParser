@@ -383,34 +383,34 @@ namespace FantasyModuleParser.Importer.NPC
         /// <summary>
         /// 'Multiattack. .This creature makes 3 attacks.'
         /// </summary>
-        public void ParseStandardAction(NPCModel npcModel, string standardAction)
-        {
-            // Don't deal w/ an empty string.
-            if (standardAction.Length == 0 || standardAction.Trim().Length == 0)
-                return;
+        //public void ParseStandardAction(NPCModel npcModel, string standardAction)
+        //{
+        //    // Don't deal w/ an empty string.
+        //    if (standardAction.Length == 0 || standardAction.Trim().Length == 0)
+        //        return;
 
             
-            if (standardAction.StartsWith(Multiattack.LocalActionName))
-            {
-                ParseMultiattackAction(npcModel, standardAction);
-                return;
-            }
+        //    if (standardAction.StartsWith(Multiattack.LocalActionName))
+        //    {
+        //        ParseMultiattackAction(npcModel, standardAction);
+        //        return;
+        //    }
 
-            // For any standard action, it will contain one of the following from the WeaponType enum description
-            if (standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA)) ||
-                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MWA)) ||
-                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RSA)) ||
-                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RWA)) ||
-                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.SA)) ||
-                standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.WA)))
-            {
-                ParseWeaponAttackAction(npcModel, standardAction);
-                return;
-            }
+        //    // For any standard action, it will contain one of the following from the WeaponType enum description
+        //    if (standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MSA)) ||
+        //        standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.MWA)) ||
+        //        standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RSA)) ||
+        //        standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.RWA)) ||
+        //        standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.SA)) ||
+        //        standardAction.Contains(GetDescription(typeof(WeaponType), WeaponType.WA)))
+        //    {
+        //        ParseWeaponAttackAction(npcModel, standardAction);
+        //        return;
+        //    }
 
-            // if not Multiattack or standard action, then it's an OtherAction
-            ParseOtherAction(npcModel, standardAction);
-        }
+        //    // if not Multiattack or standard action, then it's an OtherAction
+        //    ParseOtherAction(npcModel, standardAction);
+        //}
 
         private static string[] ParseOtherAction(NPCModel npcModel, string standardAction)
         {

@@ -177,6 +177,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("One creature charmed by the aboleth takes 10 (3d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes.", legendaryAction.ActionDescription);
         }
 
+        #region Deva
         [TestMethod]
         public void Test_Validate_Deva_LoadFile()
         {
@@ -233,6 +234,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(null, actualNPCModel.TwoPerDay);
             Assert.AreEqual("commune, raise dead", actualNPCModel.OnePerDay);
         }
+        #endregion
         [TestMethod]
         public void Test_Validate_Aarakocra_Actions()
         {
@@ -327,5 +329,14 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(false, actualWeaponAttack.OtherTextCheck);
             Assert.AreEqual(null, actualWeaponAttack.OtherText);
         }
+
+
+        #region Guardian Naga
+        [TestMethod]
+        public void Test_Validate_GuardianNaga_LoadFile()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("GuardianNaga");
+        }
+        #endregion
     }
 }

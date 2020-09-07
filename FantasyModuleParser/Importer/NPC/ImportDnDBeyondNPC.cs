@@ -159,6 +159,8 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     if (line.StartsWith("Spellcasting"))
                     {
+                        resetContinueFlags();
+                        continueSpellcastingFlag = true;
                         ParseSpellCastingAttributes(parsedNPCModel, line);
                         continue;
                     }
@@ -395,7 +397,7 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.SCSpellcastingAbility = spellCastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
 
                 // Spell Save DC & Attack Bonus
-                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
+                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks)", StringComparison.Ordinal);
                 string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
                 foreach (string subpart in spellSaveAndAttackData.Split(' '))
                 {
