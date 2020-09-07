@@ -419,9 +419,9 @@ namespace FantasyModuleParser.Importer.NPC
             //throw new NotImplementedException();
         }
 
-        private void ParseSpellLevelAndList(String spellAttributes, NPCModel npcModel)
+        private void ParseSpellLevelAndList(string spellAttributes, NPCModel npcModel)
         {
-            foreach (String spellData in spellAttributes.Split(new string[] { "\\r" }, StringSplitOptions.None))
+            foreach (string spellData in spellAttributes.Split(new string[] { "\\r" }, StringSplitOptions.None))
             {
                 string[] spellDataArray = spellData.Split(' ');
                 switch (spellDataArray[0])
