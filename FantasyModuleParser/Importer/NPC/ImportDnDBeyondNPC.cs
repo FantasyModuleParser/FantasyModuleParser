@@ -396,8 +396,8 @@ namespace FantasyModuleParser.Importer.NPC
 
                 // Spell Save DC & Attack Bonus
                 int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
-                String spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
-                foreach (String subpart in spellSaveAndAttackData.Split(' '))
+                string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                foreach (string subpart in spellSaveAndAttackData.Split(' '))
                 {
                     if (subpart.Contains(","))
                     {
