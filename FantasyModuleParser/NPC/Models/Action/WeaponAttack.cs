@@ -95,7 +95,7 @@ namespace FantasyModuleParser.NPC.Models.Action
 			stringBuilder.Append(" ft., " + TargetType.GetDescription() + ". Hit: ");
 			if (PrimaryDamage.NumOfDice > 0)
 			{
-				stringBuilder.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription() + ")");
+				stringBuilder.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
 			}
 			
 			AddPrimaryDamageToStringBuilder(stringBuilder);
@@ -131,6 +131,7 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(ToHit + " to hit, range " + WeaponRangeShort + "/" + WeaponRangeLong + " ft., " + TargetType.GetDescription() + ". Hit: " + PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription() + ")");
 
 				AddPrimaryDamageToStringBuilder(stringBuilder);
+				stringBuilder.Append(") ");
 
 				if (AddSecondDamage)
 				{
@@ -149,12 +150,13 @@ namespace FantasyModuleParser.NPC.Models.Action
 		{
 			if (PrimaryDamage.Bonus > 0 && PrimaryDamage.NumOfDice > 0)
 			{
-				stringBuilder.Append(" + " + PrimaryDamage.Bonus + ") ");
+				stringBuilder.Append(" + " + PrimaryDamage.Bonus);
 			}
 			else if (PrimaryDamage.Bonus < 0 || PrimaryDamage.NumOfDice == 0)
 			{
-				stringBuilder.Append(" " + PrimaryDamage.Bonus + " ");
+				stringBuilder.Append(" " + PrimaryDamage.Bonus);
 			}
+			stringBuilder.Append(") ");
 			stringBuilder.Append(PrimaryDamage.DamageType.GetDescription().ToLower() + " damage");
 		}
 

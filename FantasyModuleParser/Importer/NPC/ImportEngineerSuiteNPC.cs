@@ -292,8 +292,8 @@ namespace FantasyModuleParser.Importer.NPC
 
                 // Spell Save DC & Attack Bonus
                 int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
-                String spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
-                foreach(String subpart in spellSaveAndAttackData.Split(' '))
+                string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                foreach(string subpart in spellSaveAndAttackData.Split(' '))
                 {
                     if (subpart.Contains(","))
                     {
@@ -317,13 +317,13 @@ namespace FantasyModuleParser.Importer.NPC
 
         private void ParseSpellLevelAndList(String spellAttributes, NPCModel npcModel)
         {
-            foreach(String spellData in spellAttributes.Split(new string[] { "\\r" }, StringSplitOptions.None))
+            foreach(string spellData in spellAttributes.Split(new string[] { "\\r" }, StringSplitOptions.None))
             {
                 string[] spellDataArray = spellData.Split(' ');
                 switch (spellDataArray[0])
                 {
                     case "Cantrips":
-                        npcModel.CantripSpells = (spellDataArray[1] + " " + spellDataArray[2]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.CantripSpells = (spellDataArray[1] + " " + spellDataArray[2]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').ToLower().Trim();
                         npcModel.CantripSpellList = appendSpellList(spellDataArray, 3);
                         break;
                     case "1st":
