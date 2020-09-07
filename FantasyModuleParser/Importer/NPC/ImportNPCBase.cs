@@ -33,10 +33,8 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.NPCType = npcCharacteristics[1].ToLower();
 
             if (npcCharacteristics[2].Contains("("))
-            {
                 // includes removing the comma character at the end
                 npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
-            }
 
             if (npcModel.Tag != null && npcModel.Tag.Length > 0)
                 if (npcCharacteristics.Length > 4)
@@ -67,9 +65,7 @@ namespace FantasyModuleParser.Importer.NPC
         public void ParseHitPoints(NPCModel npcModel, string hitPoints)
         {
             if (hitPoints.StartsWith("Hit Points"))
-            {
                 npcModel.HP = hitPoints.Substring(11);
-            }
         }
 
         /// <summary>
@@ -91,29 +87,17 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 var trimmedSpeedAttribute = speedAttribute.Trim().ToLower(CultureInfo.CurrentCulture);
                 if (trimmedSpeedAttribute.StartsWith("speed ", StringComparison.Ordinal))
-                {
                     npcModel.Speed = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
-                }
                 if (trimmedSpeedAttribute.StartsWith("burrow ", StringComparison.Ordinal))
-                {
                     npcModel.Burrow = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
-                }
                 if (trimmedSpeedAttribute.StartsWith("climb ", StringComparison.Ordinal))
-                {
                     npcModel.Climb = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
-                }
                 if (trimmedSpeedAttribute.StartsWith("fly ", StringComparison.Ordinal))
-                {
                     npcModel.Fly = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
-                }
                 if (trimmedSpeedAttribute.Contains("(hover)"))
-                {
                     npcModel.Hover = true;
-                }
                 if (trimmedSpeedAttribute.StartsWith("swim ", StringComparison.Ordinal))
-                {
                     npcModel.Swim = int.Parse(trimmedSpeedAttribute.Split(' ')[1], CultureInfo.CurrentCulture);
-                }
             }
         }
 
@@ -271,14 +255,10 @@ namespace FantasyModuleParser.Importer.NPC
         public void ParseDamageVulnerabilities(NPCModel npcModel, string damageVulnerabilites)
         {
             if (damageVulnerabilites.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
-            {
                 npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList(damageVulnerabilites);
-            }
             else
-            {
                 // Populate with all options deselected
                 npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList("");
-            }
         }
 
         private List<SelectableActionModel> parseDamageTypeStringToList(string damageTypes)
@@ -337,25 +317,15 @@ namespace FantasyModuleParser.Importer.NPC
                 foreach (string attribute in visionAttributeArray)
                 {
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("blindsight", StringComparison.Ordinal))
-                    {
                         npcModel.Blindsight = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
-                    }
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("darkvision", StringComparison.Ordinal))
-                    {
                         npcModel.Darkvision = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
-                    }
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("tremorsense", StringComparison.Ordinal))
-                    {
                         npcModel.Tremorsense = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
-                    }
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("truesight", StringComparison.Ordinal))
-                    {
                         npcModel.Truesight = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
-                    }
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("perception", StringComparison.Ordinal))
-                    {
                         npcModel.PassivePerception = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
-                    }
                     arrayIndex++;
                 }
             }
@@ -531,13 +501,9 @@ namespace FantasyModuleParser.Importer.NPC
             foreach (string weaponDescriptionData in weaponDescriptionDataSplit)
             {
                 if (weaponDescriptionData.Contains("to hit"))
-                {
                     weaponAttackModel.ToHit = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[0]);
-                }
                 if (weaponDescriptionData.Contains("reach"))
-                {
                     weaponAttackModel.Reach = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[2]);
-                }
                 if (weaponDescriptionData.Contains("range"))
                 {
                     int rangeIndex = weaponDescriptionData.IndexOf("range ", StringComparison.Ordinal);
@@ -555,13 +521,9 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                 }
                 if (weaponDescriptionData.Contains("one target"))
-                {
                     weaponAttackModel.TargetType = TargetType.target;
-                }
                 if (weaponDescriptionData.Contains("one creature"))
-                {
                     weaponAttackModel.TargetType = TargetType.creature;
-                }
             }
 
             ParseWeaponAttackDamageText(weaponAttackModel, weaponDescription);
@@ -625,9 +587,7 @@ namespace FantasyModuleParser.Importer.NPC
             int regexMatchLength = regex.Match(damagePropertyData).Value.Length;
             Regex PrimaryWithVersatileRegex = new Regex(@".*?if used with two hands.*");
             if (PrimaryWithVersatileRegex.IsMatch(damagePropertyData))
-            {
                 regexMatchLength = PrimaryWithVersatileRegex.Match(damagePropertyData).Value.Length;
-            }
             if (damagePropertyData.Length != regexMatchLength)
             {
                 // in the case that the last character is a period, just ignore flavor text
