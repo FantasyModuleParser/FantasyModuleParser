@@ -35,14 +35,14 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         private NPCModel LoadPDFTestNPCFile()
         {
-            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.aarakocra_brave.txt");
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.aarakocra_brave.txt");
             return _iImportNPC.ImportTextToNPCModel(fileContent);
         }
 
         [TestMethod()]
         public void Import_AarakocraBrave_Test()
         {
-            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.aarakocra_brave.txt");
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.aarakocra_brave.txt");
 
             NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
             Assert.AreEqual("Aarakocra Brave", actualNPCModel.NPCName);
