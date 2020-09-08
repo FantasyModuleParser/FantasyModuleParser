@@ -536,9 +536,14 @@
     <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
       <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Spells\Enums\CastingType.cs" />
+    <Compile Include="Spells\Enums\DurationType.cs" />
+    <Compile Include="Spells\Enums\DurationUnit.cs" />
+    <Compile Include="Spells\Enums\RangeType.cs" />
     <Compile Include="Spells\Enums\SpellLevel.cs" />
-    <Compile Include="Spells\Spell_Option.xaml.cs">
-      <DependentUpon>Spell_Option.xaml</DependentUpon>
+    <Compile Include="Spells\Enums\SpellSchool.cs" />
+    <Compile Include="Spells\SpellOptionControl.xaml.cs">
+      <DependentUpon>SpellOptionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
@@ -591,7 +596,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Spells\Spell_Option.xaml">
+    <Page Include="Spells\SpellOptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
