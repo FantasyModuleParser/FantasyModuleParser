@@ -82,6 +82,7 @@
     <Compile Include="Importer\NPC\ImportDnDBeyondNPCLineTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCLineParserTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCFileTests.cs" />
+    <Compile Include="Importer\NPC\ImportPDFNPCFileTests.cs" />
     <Compile Include="Importer\Utils\ImportCommonUtilsTests.cs" />
     <Compile Include="NPC\ViewModels\DescriptionUCViewModelTests.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModelTests.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="UserControls\MarkdownTestExample.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\PDF\aarakocra_brave.txt" />
     <EmbeddedResource Include="Resources\MarkdownDescriptions\ExpectedResult\AncestralBarbarianExpected.txt" />
     <None Include="app.config" />
     <None Include="packages.config" />

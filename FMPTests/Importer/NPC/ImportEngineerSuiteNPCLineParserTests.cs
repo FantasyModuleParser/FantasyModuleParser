@@ -771,7 +771,7 @@ namespace FMPTests.Importer.NPC
         {
             yield return new object[] { 
                 generateNPCModel_Spellcasting("18th", "Constitution", 8, 12, "Sorcerer", "", 
-                "At will", "Cantrips1",
+                "at will", "Cantrips1",
                 "9 slots", "Spell 1st", "8 slots", "Spell 2nd",
                 "7 slots", "Spell 3rd", "6 slots", "Spell 4th",
                 "5 slots", "Spell 5th", "4 slots", "Spell 6th",
@@ -779,7 +779,7 @@ namespace FMPTests.Importer.NPC
                 "1 slot", "Spell 9th", "*Spell 2nd"),
                 "Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)." +
                 " V1_npc_all has the following Sorcerer spells prepared:" +
-                "\\rCantrips (At will): Cantrips1" +
+                "\\rCantrips (at will): Cantrips1" +
                 "\\r1st level (9 slots): Spell 1st" +
                 "\\r2nd level (8 slots): Spell 2nd" +
                 "\\r3rd level (7 slots): Spell 3rd" +

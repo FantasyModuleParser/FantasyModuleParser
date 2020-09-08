@@ -2,22 +2,20 @@
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FantasyModuleParser.Importer.NPC
 {
-    public class ImportDnDBeyondNPC : ImportNPCBase
+    public class ImportPDFNPC : ImportESNPCBase
     {
-        public ImportDnDBeyondNPC()
+        public ImportPDFNPC()
         {
             importCommonUtils = new ImportCommonUtils();
         }
-
-        /// <summary>
-        /// Parses and Imports data from DnD Beyond website
-        /// </summary>
-        /// <param name="importTextContent">The file content of an *.npc file created by the NPC Engineer module in Engineer Suite</param>
-        /// <returns></returns>
         public override NPCModel ImportTextToNPCModel(string importTextContent)
         {
             NPCModel parsedNPCModel = new NPCController().InitializeNPCModel();
@@ -44,57 +42,8 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseHitPoints(parsedNPCModel, line);
                 if (line.StartsWith("Speed", StringComparison.Ordinal))
                     ParseSpeedAttributes(parsedNPCModel, line);
-                switch (line)
-                {
-                    case "STR":
-                        continueStrengthFlag = true;
-                        break;
-                    case "DEX":
-                        continueDexterityFlag = true;
-                        break;
-                    case "CON":
-                        continueConstitutionFlag = true;
-                        break;
-                    case "INT":
-                        continueIntelligenceFlag = true;
-                        break;
-                    case "WIS":
-                        continueWisdomFlag = true;
-                        break;
-                    case "CHA":
-                        continueCharismaFlag = true;
-                        break;
-                }
-                while (continueStrengthFlag == true && !line.Equals("STR"))
-                {
-                    ParseStatAttributeStrength(parsedNPCModel, line);
-                    resetContinueFlags();
-                }
-                while (continueDexterityFlag == true && !line.Equals("DEX"))
-                {
-                    ParseStatAttributeDexterity(parsedNPCModel, line);
-                    resetContinueFlags();
-                }
-                while (continueConstitutionFlag == true && !line.Equals("CON"))
-                {
-                    ParseStatAttributeConstitution(parsedNPCModel, line);
-                    resetContinueFlags();
-                }
-                while (continueIntelligenceFlag == true && !line.Equals("INT"))
-                {
-                    ParseStatAttributeIntelligence(parsedNPCModel, line);
-                    resetContinueFlags();
-                }
-                while (continueWisdomFlag == true && !line.Equals("WIS"))
-                {
-                    ParseStatAttributeWisdom(parsedNPCModel, line);
-                    resetContinueFlags();
-                }
-                while (continueCharismaFlag == true && !line.Equals("CHA"))
-                {
-                    ParseStatAttributeCharisma(parsedNPCModel, line);
-                    resetContinueFlags();
-                }
+                if (line.StartsWith("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
+                    ParseStatAttributes(parsedNPCModel, line);
                 if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
                     ParseSavingThrows(parsedNPCModel, line);
                 if (line.StartsWith("Skills", StringComparison.Ordinal))
@@ -205,7 +154,6 @@ namespace FantasyModuleParser.Importer.NPC
                 }
                 lineNumber++;
             }
-
             return parsedNPCModel;
         }
     }
