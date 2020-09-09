@@ -1,8 +1,10 @@
 ﻿using FantasyModuleParser.Importer.Utils;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,8 +44,16 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseHitPoints(parsedNPCModel, line);
                 if (line.StartsWith("Speed", StringComparison.Ordinal))
                     ParseSpeedAttributes(parsedNPCModel, line);
-                if (line.StartsWith("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
+                if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
+                {
+                    continueBaseStatsFlag = true;
+                    continue;
+                }
+                if (continueBaseStatsFlag)
+                {
                     ParseStatAttributes(parsedNPCModel, line);
+                    resetContinueFlags();
+                }
                 if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
                     ParseSavingThrows(parsedNPCModel, line);
                 if (line.StartsWith("Skills", StringComparison.Ordinal))
@@ -155,6 +165,53 @@ namespace FantasyModuleParser.Importer.NPC
                 lineNumber++;
             }
             return parsedNPCModel;
+        }
+
+        /// <summary>
+        /// 'STR DEX CON INT WIS CHA 
+        /// 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)'
+        /// </summary>
+        private void ParseStatAttributes(NPCModel npcModel, string statAttributes)
+        {
+            string[] splitAttributes = statAttributes.Split(' ');
+            npcModel.AttributeStr = int.Parse(splitAttributes[0], CultureInfo.CurrentCulture);
+            npcModel.AttributeDex = int.Parse(splitAttributes[2], CultureInfo.CurrentCulture);
+            npcModel.AttributeCon = int.Parse(splitAttributes[4], CultureInfo.CurrentCulture);
+            npcModel.AttributeInt = int.Parse(splitAttributes[6], CultureInfo.CurrentCulture);
+            npcModel.AttributeWis = int.Parse(splitAttributes[8], CultureInfo.CurrentCulture);
+            npcModel.AttributeCha = int.Parse(splitAttributes[10], CultureInfo.CurrentCulture);
+        }
+
+        public void ParseTraits(NPCModel npcModel, string traits)
+        {
+            if (npcModel.Traits == null)
+                npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
+
+            if (string.IsNullOrEmpty(traits))
+                return;
+
+            string[] traitArrayBySpace = traits.Split(' ');
+            for (int idx = 0; idx < 5; idx++)
+            {
+                if (traitArrayBySpace.Contains("."))
+                {
+                    string[] traitArray = traits.Split('.');
+                    ActionModelBase traitModel = new ActionModelBase();
+                    traitModel.ActionName = traitArray[0];
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int idy = 1; idy < traitArray.Length; idy++)
+                    {
+                        stringBuilder.Append(traitArray[idy]).Append(".");
+                    }
+                    stringBuilder.Remove(stringBuilder.Length - 1, 1);
+                    traitModel.ActionDescription = stringBuilder.ToString().Trim();
+                    npcModel.Traits.Add(traitModel);
+                    return;
+                }
+            }
+            // If no period was detected in the first 5 words, 
+            ActionModelBase traitModel = npcModel.Traits.Last();
+            traitModel.ActionDescription = traitModel.ActionDescription + "\n\n" + traits;
         }
     }
 }

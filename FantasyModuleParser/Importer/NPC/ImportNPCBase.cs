@@ -28,6 +28,7 @@ namespace FantasyModuleParser.Importer.NPC
         public bool continueIntelligenceFlag = false;
         public bool continueWisdomFlag = false;
         public bool continueCharismaFlag = false;
+        public bool continueBaseStatsFlag = false;
         public bool continueTraitsFlag = false;
         public bool continueInnateSpellcastingFlag = false;
         public bool continueSpellcastingFlag = false;
@@ -47,6 +48,7 @@ namespace FantasyModuleParser.Importer.NPC
             continueIntelligenceFlag = false;
             continueWisdomFlag = false;
             continueCharismaFlag = false;
+            continueBaseStatsFlag = false;
             continueTraitsFlag = false;
             continueInnateSpellcastingFlag = false;
             continueSpellcastingFlag = false;
