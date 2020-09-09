@@ -18,10 +18,45 @@ namespace FantasyModuleParser.Importer.NPC
         {
             importCommonUtils = new ImportCommonUtils();
         }
+
+        // This method should be run first to format the incoming NPC data
+        // to be usable by the importer
+        private string FormatNPCTextData(string importTextContent)
+        {
+            StringBuilder formattedTextContent = new StringBuilder();
+            StringReader stringReader = new StringReader(importTextContent);
+            string line = "";
+            bool afterChallengeLine = false;
+            while ((line = stringReader.ReadLine()) != null)
+            {
+                if (afterChallengeLine)
+                {
+                    formattedTextContent.Append(line);
+                    if (line.EndsWith("one target.") || line.EndsWith("one creature."))
+                        continue;
+                    if (line.EndsWith("."))
+                        formattedTextContent.Append(" \n");
+                    else if (line.Equals("Actions"))
+                        formattedTextContent.Append("\n");
+                    else
+                        formattedTextContent.Append(" ");
+                } 
+                else
+                {
+                    if (line.StartsWith("Challenge "))
+                        afterChallengeLine = true;
+
+                    formattedTextContent.Append(line).Append("\n");
+                }
+                
+            }
+            return formattedTextContent.ToString();
+        }
+
         public override NPCModel ImportTextToNPCModel(string importTextContent)
         {
             NPCModel parsedNPCModel = new NPCController().InitializeNPCModel();
-            StringReader stringReader = new StringReader(importTextContent);
+            StringReader stringReader = new StringReader(FormatNPCTextData(importTextContent));
             string line = "";
             int lineNumber = 1;
             resetContinueFlags();
@@ -184,6 +219,7 @@ namespace FantasyModuleParser.Importer.NPC
 
         public void ParseTraits(NPCModel npcModel, string traits)
         {
+            ActionModelBase traitModel = null;
             if (npcModel.Traits == null)
                 npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
 
@@ -193,10 +229,10 @@ namespace FantasyModuleParser.Importer.NPC
             string[] traitArrayBySpace = traits.Split(' ');
             for (int idx = 0; idx < 5; idx++)
             {
-                if (traitArrayBySpace.Contains("."))
+                if (traitArrayBySpace[idx].Contains("."))
                 {
                     string[] traitArray = traits.Split('.');
-                    ActionModelBase traitModel = new ActionModelBase();
+                    traitModel = new ActionModelBase();
                     traitModel.ActionName = traitArray[0];
                     StringBuilder stringBuilder = new StringBuilder();
                     for (int idy = 1; idy < traitArray.Length; idy++)
@@ -209,8 +245,8 @@ namespace FantasyModuleParser.Importer.NPC
                     return;
                 }
             }
-            // If no period was detected in the first 5 words, 
-            ActionModelBase traitModel = npcModel.Traits.Last();
+            // If no period was detected in the first 5 words,
+            traitModel = npcModel.Traits.Last();
             traitModel.ActionDescription = traitModel.ActionDescription + "\n\n" + traits;
         }
     }
