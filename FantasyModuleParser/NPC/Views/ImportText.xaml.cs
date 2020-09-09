@@ -9,8 +9,9 @@ namespace FantasyModuleParser.NPC
     /// </summary>
     public partial class ImportText : Window
     {
-        private IImportNPC importNPCService;
+        private IImportNPC importESNPC;
         private IImportNPC importDnDBeyondNPC;
+        private IImportNPC importPDFNPC;
         public ImportText()
         {
             InitializeComponent();
@@ -22,14 +23,23 @@ namespace FantasyModuleParser.NPC
 
         private void ImportTextAndReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            importNPCService = new ImportEngineerSuiteNPC();
+            importESNPC = new ImportEngineerSuiteNPC();
             importDnDBeyondNPC = new ImportDnDBeyondNPC();
+            importPDFNPC = new ImportPDFNPC();
             NPCController npcController = new NPCController();
 
-            if(ImportSelector.SelectedIndex == 0)
-                npcController.LoadNPCModel(importNPCService.ImportTextToNPCModel(ImportTextBox.Text));
-            if (ImportSelector.SelectedIndex == 1)
-                npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(ImportTextBox.Text));
+            switch(ImportSelector.SelectedIndex)
+            {
+                case 0:
+                    npcController.LoadNPCModel(importPDFNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    break;
+                case 1:
+                    npcController.LoadNPCModel(importESNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    break;
+                case 2:
+                    npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    break;
+            }
             this.Visibility = Visibility.Hidden;
         }
     }

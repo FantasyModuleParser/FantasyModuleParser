@@ -90,6 +90,7 @@
     <Compile Include="UserControls\MarkdownTestExample.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\PDF\aarakocra_talon_of_syranita.txt" />
     <EmbeddedResource Include="Resources\PDF\aarakocra_brave.txt" />
     <EmbeddedResource Include="Resources\MarkdownDescriptions\ExpectedResult\AncestralBarbarianExpected.txt" />
     <None Include="app.config" />
