@@ -36,6 +36,8 @@ namespace FantasyModuleParser.Importer.NPC
                         continue;
                     if (line.EndsWith("."))
                         formattedTextContent.Append(" \n");
+                    else if (line.EndsWith("prepared:"))
+                        formattedTextContent.Append("\\r");
                     else if (line.Equals("Actions"))
                         formattedTextContent.Append("\n");
                     else
@@ -63,16 +65,11 @@ namespace FantasyModuleParser.Importer.NPC
             while ((line = stringReader.ReadLine()) != null)
             {
                 if (lineNumber == 1)
-                {
                     // Line number one indicates the NPC name
                     parsedNPCModel.NPCName = line;
-                }
                 if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
-                {
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
-                }
-
                 if (line.StartsWith("Armor Class", StringComparison.Ordinal))
                     ParseArmorClass(parsedNPCModel, line);
                 if (line.StartsWith("Hit Points", StringComparison.Ordinal))
