@@ -101,7 +101,6 @@ namespace FantasyModuleParser.Importer.NPC
                 else if (afterActionsLine)
                 {
                     formattedTextContent.Append(line);
-                    MessageBox.Show(formattedTextContent.ToString());
                     if (line.EndsWith("one target.") || line.EndsWith("one creature."))
                         continue;
                     if (line.EndsWith("."))
