@@ -139,8 +139,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(2, actualNPCModel.Traits.Count);
             Assert.AreEqual("Dive Attack", actualNPCModel.Traits[0].ActionName);
             Assert.AreEqual("Fury of Syranita", actualNPCModel.Traits[1].ActionName);
-            Assert.AreEqual("If the aarakocra is flying and dives at least 30 feet straight toward a target and then hits it with a melee weapon attack, the attack deals an extra 7(2d6) damage to the target.", actualNPCModel.Traits[0].ActionDescription);
-            Assert.AreEqual("As a bonus action, the aarakocra can expend a spell slot to cause its melee or ranged weapon attacks to magically deal an extra 13(3d8) lightning or thunder damage to a target on a hit.This benefit lasts until the end of the turn.If the aarakora expends a spell slot of 2nd level or higher, the extra damage increases by 1d8 for each level above 1st (maximum 6d8).", actualNPCModel.Traits[1].ActionDescription);
+            Assert.AreEqual("If the aarakocra is flying and dives at least 30 feet straight toward a target and then hits it with a melee weapon attack, the attack deals an extra 7 (2d6) damage to the target.", actualNPCModel.Traits[0].ActionDescription);
+            Assert.AreEqual("As a bonus action, the aarakocra can expend a spell slot to cause its melee or ranged weapon attacks to magically deal an extra 13 (3d8) lightning or thunder damage to a target on a hit. This benefit lasts until the end of the turn. If the aarakora expends a spell slot of 2nd level or higher, the extra damage increases by 1d8 for each level above 1st (maximum 6d8).", actualNPCModel.Traits[1].ActionDescription);
 
             // Action
             Assert.AreEqual(3, actualNPCModel.NPCActions.Count);

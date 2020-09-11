@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FantasyModuleParser.Importer.NPC
 {
@@ -16,6 +17,7 @@ namespace FantasyModuleParser.Importer.NPC
     {
         #region Format NPC Text Data Flags
         private bool afterChallengeLine = false;
+        private bool afterInnateSpellcastingLine = false;
         private bool afterSpellcastingLine = false;
         private bool afterActionsLine = false;
         #endregion
@@ -41,13 +43,17 @@ namespace FantasyModuleParser.Importer.NPC
                         continue;
                     if (line.EndsWith("."))
                         formattedTextContent.Append(" \n");
-                    else if (line.EndsWith("prepared:"))
-                        formattedTextContent.Append("\\r");
                     else if (line.Equals("Actions"))
                     { 
                         formattedTextContent.Append("\n");
                         ResetFormatNPCTextDataFlags();
                         afterActionsLine = true;
+                    }
+                    else if (line.StartsWith("Innate Spellcasting. "))
+                    {
+                        formattedTextContent.Append(" ");
+                        ResetFormatNPCTextDataFlags();
+                        afterInnateSpellcastingLine = true;
                     }
                     else if (line.StartsWith("Spellcasting. ")) 
                     {
@@ -57,7 +63,27 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     else
                         formattedTextContent.Append(" ");
-                } 
+                }
+                else if (afterInnateSpellcastingLine)
+                {
+                    formattedTextContent.Append(line);
+                    if (line.Equals("Actions"))
+                    {
+                        formattedTextContent.Append("\n");
+                        ResetFormatNPCTextDataFlags();
+                        afterActionsLine = true;
+                    }
+                    else if (line.StartsWith("Spellcasting. "))
+                    {
+                        formattedTextContent.Append("\n");
+                        ResetFormatNPCTextDataFlags();
+                        afterSpellcastingLine = true;
+                    }
+                    else if (line.EndsWith(":"))
+                        formattedTextContent.Append("\n");
+                    else
+                        formattedTextContent.Append(" ");
+                }
                 else if (afterSpellcastingLine)
                 {
                     formattedTextContent.Append(line);
@@ -68,19 +94,18 @@ namespace FantasyModuleParser.Importer.NPC
                         afterActionsLine = true;
                     }
                     else if (line.EndsWith("prepared:"))
-                        formattedTextContent.Append("\n");
+                        formattedTextContent.Append("\\r");
                     else
                         formattedTextContent.Append(" ");
                 }
                 else if (afterActionsLine)
                 {
                     formattedTextContent.Append(line);
+                    MessageBox.Show(formattedTextContent.ToString());
                     if (line.EndsWith("one target.") || line.EndsWith("one creature."))
                         continue;
                     if (line.EndsWith("."))
                         formattedTextContent.Append(" \n");
-                    else if (line.EndsWith("prepared:"))
-                        formattedTextContent.Append("\\r");
                     else if (line.Equals("Actions"))
                         formattedTextContent.Append("\n");
                     else
@@ -101,6 +126,7 @@ namespace FantasyModuleParser.Importer.NPC
         private void ResetFormatNPCTextDataFlags()
         {
             afterChallengeLine = false;
+            afterInnateSpellcastingLine = false;
             afterSpellcastingLine = false;
             afterActionsLine = false;
         }
