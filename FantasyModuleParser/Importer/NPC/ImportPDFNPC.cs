@@ -14,6 +14,11 @@ namespace FantasyModuleParser.Importer.NPC
 {
     public class ImportPDFNPC : ImportESNPCBase
     {
+        #region Format NPC Text Data Flags
+        private bool afterChallengeLine = false;
+        private bool afterSpellcastingLine = false;
+        private bool afterActionsLine = false;
+        #endregion
         public ImportPDFNPC()
         {
             importCommonUtils = new ImportCommonUtils();
@@ -26,7 +31,7 @@ namespace FantasyModuleParser.Importer.NPC
             StringBuilder formattedTextContent = new StringBuilder();
             StringReader stringReader = new StringReader(importTextContent);
             string line = "";
-            bool afterChallengeLine = false;
+            ResetFormatNPCTextDataFlags();
             while ((line = stringReader.ReadLine()) != null)
             {
                 if (afterChallengeLine)
@@ -39,10 +44,48 @@ namespace FantasyModuleParser.Importer.NPC
                     else if (line.EndsWith("prepared:"))
                         formattedTextContent.Append("\\r");
                     else if (line.Equals("Actions"))
+                    { 
                         formattedTextContent.Append("\n");
+                        ResetFormatNPCTextDataFlags();
+                        afterActionsLine = true;
+                    }
+                    else if (line.StartsWith("Spellcasting. ")) 
+                    {
+                        formattedTextContent.Append(" ");
+                        ResetFormatNPCTextDataFlags();
+                        afterSpellcastingLine = true;
+                    }
                     else
                         formattedTextContent.Append(" ");
                 } 
+                else if (afterSpellcastingLine)
+                {
+                    formattedTextContent.Append(line);
+                    if (line.Equals("Actions"))
+                    {
+                        formattedTextContent.Append("\n");
+                        ResetFormatNPCTextDataFlags();
+                        afterActionsLine = true;
+                    }
+                    else if (line.EndsWith("prepared:"))
+                        formattedTextContent.Append("\n");
+                    else
+                        formattedTextContent.Append(" ");
+                }
+                else if (afterActionsLine)
+                {
+                    formattedTextContent.Append(line);
+                    if (line.EndsWith("one target.") || line.EndsWith("one creature."))
+                        continue;
+                    if (line.EndsWith("."))
+                        formattedTextContent.Append(" \n");
+                    else if (line.EndsWith("prepared:"))
+                        formattedTextContent.Append("\\r");
+                    else if (line.Equals("Actions"))
+                        formattedTextContent.Append("\n");
+                    else
+                        formattedTextContent.Append(" ");
+                }
                 else
                 {
                     if (line.StartsWith("Challenge "))
@@ -55,10 +98,18 @@ namespace FantasyModuleParser.Importer.NPC
             return formattedTextContent.ToString();
         }
 
+        private void ResetFormatNPCTextDataFlags()
+        {
+            afterChallengeLine = false;
+            afterSpellcastingLine = false;
+            afterActionsLine = false;
+        }
+
         public override NPCModel ImportTextToNPCModel(string importTextContent)
         {
             NPCModel parsedNPCModel = new NPCController().InitializeNPCModel();
-            StringReader stringReader = new StringReader(FormatNPCTextData(importTextContent));
+            string formattedNPCTextData = FormatNPCTextData(importTextContent);
+            StringReader stringReader = new StringReader(formattedNPCTextData);
             string line = "";
             int lineNumber = 1;
             resetContinueFlags();
