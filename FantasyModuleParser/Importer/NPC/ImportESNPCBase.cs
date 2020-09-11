@@ -145,7 +145,7 @@ namespace FantasyModuleParser.Importer.NPC
                         break;
                     case "1st":
                         npcModel.FirstLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
-                        npcModel.FirstLevelSpellList = appendSpellList(spellDataArray, 4);
+                        npcModel.FirstLevelSpellList = appendSpellList(spellDataArray, 4).TrimEnd();
                         break;
                     case "2nd":
                         npcModel.SecondLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();

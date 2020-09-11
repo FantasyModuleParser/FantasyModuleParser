@@ -43,31 +43,9 @@ namespace FantasyModuleParser.Importer.NPC
                         continue;
                     if (line.EndsWith("."))
                         formattedTextContent.Append(" \n");
+                    else if (line.EndsWith("prepared:"))
+                        formattedTextContent.Append("\\r");
                     else if (line.Equals("Actions"))
-                    { 
-                        formattedTextContent.Append("\n");
-                        ResetFormatNPCTextDataFlags();
-                        afterActionsLine = true;
-                    }
-                    else if (line.StartsWith("Innate Spellcasting. "))
-                    {
-                        formattedTextContent.Append(" ");
-                        ResetFormatNPCTextDataFlags();
-                        afterInnateSpellcastingLine = true;
-                    }
-                    else if (line.StartsWith("Spellcasting. ")) 
-                    {
-                        formattedTextContent.Append(" ");
-                        ResetFormatNPCTextDataFlags();
-                        afterSpellcastingLine = true;
-                    }
-                    else
-                        formattedTextContent.Append(" ");
-                }
-                else if (afterInnateSpellcastingLine)
-                {
-                    formattedTextContent.Append(line);
-                    if (line.Equals("Actions"))
                     {
                         formattedTextContent.Append("\n");
                         ResetFormatNPCTextDataFlags();
@@ -75,28 +53,34 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     else if (line.StartsWith("Spellcasting. "))
                     {
-                        formattedTextContent.Append("\n");
+                        formattedTextContent.Append(" ");
                         ResetFormatNPCTextDataFlags();
                         afterSpellcastingLine = true;
                     }
-                    else if (line.EndsWith(":"))
-                        formattedTextContent.Append("\n");
                     else
                         formattedTextContent.Append(" ");
                 }
                 else if (afterSpellcastingLine)
                 {
-                    formattedTextContent.Append(line);
+
                     if (line.Equals("Actions"))
                     {
-                        formattedTextContent.Append("\n");
+                        formattedTextContent.Append("\n").Append(line).Append("\n");
                         ResetFormatNPCTextDataFlags();
                         afterActionsLine = true;
                     }
                     else if (line.EndsWith("prepared:"))
-                        formattedTextContent.Append("\\r");
+                        formattedTextContent.Append(line);
+                    else if (line.StartsWith("Cantrips") || line.StartsWith("1st level")
+                        || line.StartsWith("2nd level") || line.StartsWith("3rd level")
+                        || line.StartsWith("4th level") || line.StartsWith("5th level")
+                        || line.StartsWith("6th level") || line.StartsWith("7th level")
+                        || line.StartsWith("8th level") || line.StartsWith("9th level"))
+                    {
+                        formattedTextContent.Append("\\r").Append(line);
+                    }
                     else
-                        formattedTextContent.Append(" ");
+                        formattedTextContent.Append(" ").Append(line).Append(" ");
                 }
                 else if (afterActionsLine)
                 {
@@ -105,8 +89,10 @@ namespace FantasyModuleParser.Importer.NPC
                         continue;
                     if (line.EndsWith("."))
                         formattedTextContent.Append(" \n");
-                    else if (line.Equals("Actions"))
-                        formattedTextContent.Append("\n");
+                    else if (line.EndsWith("prepared:"))
+                        formattedTextContent.Append("\\r");
+                    //else if (line.Equals("Actions"))
+                    //    formattedTextContent.Append("\n");
                     else
                         formattedTextContent.Append(" ");
                 }
@@ -117,7 +103,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                     formattedTextContent.Append(line).Append("\n");
                 }
-                
+
             }
             return formattedTextContent.ToString();
         }

@@ -91,8 +91,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Talon", actualNPCModel.NPCActions[1].ActionName);
             Assert.AreEqual("Javelin", actualNPCModel.NPCActions[2].ActionName);
             Assert.AreEqual("The aarakocra makes three melee attacks: one with its javelin and two with its talons, or two ranged attacks.", actualNPCModel.NPCActions[0].ActionDescription);
-            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) slashing damage. ", actualNPCModel.NPCActions[1].ActionDescription);
-            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) piercing damage. Or Ranged Weapon Attack: +6 to hit, range 30/120 ft., one target. Hit: 7 (1d6) + 4) piercing damage)  ", actualNPCModel.NPCActions[2].ActionDescription);
+            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) slashing damage.", actualNPCModel.NPCActions[1].ActionDescription);
+            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) piercing damage. Or Ranged Weapon Attack: +6 to hit, range 30/120 ft., one target. Hit: 7 (1d6 + 4) piercing damage.", actualNPCModel.NPCActions[2].ActionDescription);
         }
 
         [TestMethod()]
@@ -142,14 +142,27 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("If the aarakocra is flying and dives at least 30 feet straight toward a target and then hits it with a melee weapon attack, the attack deals an extra 7 (2d6) damage to the target.", actualNPCModel.Traits[0].ActionDescription);
             Assert.AreEqual("As a bonus action, the aarakocra can expend a spell slot to cause its melee or ranged weapon attacks to magically deal an extra 13 (3d8) lightning or thunder damage to a target on a hit. This benefit lasts until the end of the turn. If the aarakora expends a spell slot of 2nd level or higher, the extra damage increases by 1d8 for each level above 1st (maximum 6d8).", actualNPCModel.Traits[1].ActionDescription);
 
+            // Spellcasting
+            Assert.AreEqual("at will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("light, mending, resistance, spare the dying", actualNPCModel.CantripSpellList);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("guiding bolt, healing word, protection from evil and good", actualNPCModel.FirstLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("augury, hold person, zone of truth", actualNPCModel.SecondLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("beacon of hope, call lightning, mass healing word", actualNPCModel.ThirdLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual("freedom of movement, ice storm", actualNPCModel.FourthLevelSpellList);
+            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual("conjure (air) elemental", actualNPCModel.FifthLevelSpellList);
             // Action
             Assert.AreEqual(3, actualNPCModel.NPCActions.Count);
             Assert.AreEqual("Multiattack", actualNPCModel.NPCActions[0].ActionName);
             Assert.AreEqual("Talon", actualNPCModel.NPCActions[1].ActionName);
             Assert.AreEqual("Javelin", actualNPCModel.NPCActions[2].ActionName);
-            Assert.AreEqual("The aarakocra makes three melee attacks: one with its javelin and two with its talons, or two ranged attacks.", actualNPCModel.NPCActions[0].ActionDescription);
-            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) slashing damage. ", actualNPCModel.NPCActions[1].ActionDescription);
-            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) piercing damage. Or Ranged Weapon Attack: +6 to hit, range 30/120 ft., one target. Hit: 7 (1d6) + 4) piercing damage)  ", actualNPCModel.NPCActions[2].ActionDescription);
+            Assert.AreEqual("The aarakocra makes two melee attacks or two ranged attacks.", actualNPCModel.NPCActions[0].ActionDescription);
+            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 5 (1d4 + 3) slashing damage.", actualNPCModel.NPCActions[1].ActionDescription);
+            Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) piercing damage. Or Ranged Weapon Attack: +6 to hit, range 30/120 ft., one target. Hit: 6 (1d6 + 3) piercing damage.", actualNPCModel.NPCActions[2].ActionDescription);
         }
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
         {
