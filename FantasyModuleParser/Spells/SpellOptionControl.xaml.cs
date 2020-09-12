@@ -17,9 +17,9 @@ namespace FantasyModuleParser.Spells
     /// <summary>
     /// Interaction logic for Spell_Option.xaml
     /// </summary>
-    public partial class Spell_Option : Window
+    public partial class SpellOptionControl : UserControl
     {
-        public Spell_Option()
+        public SpellOptionControl()
         {
             InitializeComponent();
         }
