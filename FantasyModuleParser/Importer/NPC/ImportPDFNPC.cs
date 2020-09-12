@@ -53,7 +53,7 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     else if (line.StartsWith("Innate Spellcasting"))
                     {
-                        formattedTextContent.Append(" ");
+                        //formattedTextContent.Append(" ");
                         ResetFormatNPCTextDataFlags();
                         afterInnateSpellcastingLine = true;
                     }
@@ -121,8 +121,13 @@ namespace FantasyModuleParser.Importer.NPC
                         formattedTextContent.Append(" \n");
                     else if (line.EndsWith("prepared:"))
                         formattedTextContent.Append("\\r");
-                    //else if (line.Equals("Actions"))
-                    //    formattedTextContent.Append("\n");
+                    else if (line.Equals("Legendary Actions"))
+                    { 
+                        formattedTextContent.Append("\n");
+
+                        // In order to use the Engineer Suite Parser, the first Legendary Actions line is expected to begin with Options: 
+                        formattedTextContent.Append("Options. ");
+                    }
                     else
                         formattedTextContent.Append(" ");
                 }

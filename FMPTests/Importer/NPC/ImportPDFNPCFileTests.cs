@@ -23,7 +23,6 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Initialize()
         {
             _iImportNPC = new ImportPDFNPC();
-            actualNPCModel = LoadPDFTestNPCFile();
         }
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
@@ -45,8 +44,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Import_AarakocraBrave_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.aarakocra_brave.txt");
-
             NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
             Assert.AreEqual("Aarakocra Brave", actualNPCModel.NPCName);
             Assert.AreEqual("Medium", actualNPCModel.Size);
             Assert.AreEqual("humanoid", actualNPCModel.NPCType);
@@ -100,8 +99,8 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Import_AarakocraTalonOfSyranita_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.aarakocra_talon_of_syranita.txt");
-
             NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
             Assert.AreEqual("Aarakocra Talon of Syranita", actualNPCModel.NPCName);
             Assert.AreEqual("Medium", actualNPCModel.Size);
             Assert.AreEqual("humanoid", actualNPCModel.NPCType);
@@ -170,6 +169,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Import_AbolethOverseer_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.aboleth_overseer.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
 
             // Valideate Innate Spellcasting (Psionics)
             Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
@@ -181,6 +181,14 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("phantasmal killer, project image", actualNPCModel.TwoPerDay);
             Assert.AreEqual("mirage arcane, psychic scream, weird, plane shift (self only)", actualNPCModel.OnePerDay);
 
+            // Validate Standard Actions
+            Assert.AreEqual(5, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual("Multiattack", actualNPCModel.NPCActions[0].ActionName);
+            Assert.AreEqual("Tentacle", actualNPCModel.NPCActions[1].ActionName);
+            Assert.AreEqual("Tail", actualNPCModel.NPCActions[2].ActionName);
+            Assert.AreEqual("Enslave (3/Day)", actualNPCModel.NPCActions[3].ActionName);
+            Assert.AreEqual("Fling", actualNPCModel.NPCActions[4].ActionName);
+
             // Validate Legendary Actions
             Assert.AreEqual(5, actualNPCModel.LegendaryActions.Count);
             Assert.AreEqual("Options", actualNPCModel.LegendaryActions[0].ActionName);
@@ -188,10 +196,10 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Tail Swipe", actualNPCModel.LegendaryActions[2].ActionName);
             Assert.AreEqual("Psychic Drain (Costs 2 Actions)", actualNPCModel.LegendaryActions[3].ActionName);
             Assert.AreEqual("Cast a Spell (Costs 3 Actions)", actualNPCModel.LegendaryActions[4].ActionName);
-            Assert.AreEqual("The aboleth can take 3 legendary actions, choosing from the options below.Only one legendary action option can be used at a time and only at the end of another creature's turn. The aboleth regains spent legendary actions at the start of its turn.", actualNPCModel.LegendaryActions[0].ActionDescription);
+            Assert.AreEqual("The aboleth can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time and only at the end of another creature's turn. The aboleth regains spent legendary actions at the start of its turn.", actualNPCModel.LegendaryActions[0].ActionDescription);
             Assert.AreEqual("The aboleth uses its Enslave feature.", actualNPCModel.LegendaryActions[1].ActionDescription);
             Assert.AreEqual("The aboleth makes one tail attack.", actualNPCModel.LegendaryActions[2].ActionDescription);
-            Assert.AreEqual("One creature charmed by the aboleth takes 28(8d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes.", actualNPCModel.LegendaryActions[3].ActionDescription);
+            Assert.AreEqual("One creature charmed by the aboleth takes 28 (8d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes.", actualNPCModel.LegendaryActions[3].ActionDescription);
             Assert.AreEqual("The aboleth casts a spell from its list of innate spells, using a spell slot as normal.", actualNPCModel.LegendaryActions[4].ActionDescription);
         }
 
@@ -199,6 +207,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Import_AnimatedWoodStatue_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.animated_wood_statue.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
 
             // Validate Senses
             Assert.AreEqual(60, actualNPCModel.Blindsight);
@@ -217,6 +226,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Import_AzerPriestOfTheFlame_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.azer_priest_of_the_flame.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
 
             // Validate Reactions
             Assert.AreEqual(1, actualNPCModel.Reactions.Count);
@@ -227,6 +237,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Import_DevaShaitan_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.deva_shaitan.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
 
             // Validate Damage Resistances
 
@@ -236,6 +247,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         public void Import_GreaterCouatl_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.greater_couatl.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
 
             // Valideate Innate Spellcasting
             Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);

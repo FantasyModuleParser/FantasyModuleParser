@@ -36,6 +36,8 @@ namespace FantasyModuleParser.Importer.NPC
             if (innateSpellcastingAttributes.StartsWith("Innate Spellcasting"))
             {
                 npcModel.InnateSpellcastingSection = true;
+                if (innateSpellcastingAttributes.StartsWith("Innate Spellcasting (Psionics)"))
+                    npcModel.Psionics = true;
                 // Innate Spellcasting Ability
                 int abilityIsIndex = innateSpellcastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
                 int spellSaveDCIndex = innateSpellcastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
@@ -75,17 +77,17 @@ namespace FantasyModuleParser.Importer.NPC
                 {
                     string innerData = innateSpellcastingAttributesArray[arrayIndex];
                     if (innerData.StartsWith("At will:", StringComparison.Ordinal))
-                        npcModel.InnateAtWill = innerData.Substring(9);
+                        npcModel.InnateAtWill = innerData.Substring(9).TrimEnd();
                     if (innerData.StartsWith("5/day each:", StringComparison.Ordinal))
-                        npcModel.FivePerDay = innerData.Substring(12);
+                        npcModel.FivePerDay = innerData.Substring(12).TrimEnd();
                     if (innerData.StartsWith("4/day each:", StringComparison.Ordinal))
-                        npcModel.FourPerDay = innerData.Substring(12);
+                        npcModel.FourPerDay = innerData.Substring(12).TrimEnd();
                     if (innerData.StartsWith("3/day each:", StringComparison.Ordinal))
-                        npcModel.ThreePerDay = innerData.Substring(12);
+                        npcModel.ThreePerDay = innerData.Substring(12).TrimEnd();
                     if (innerData.StartsWith("2/day each:", StringComparison.Ordinal))
-                        npcModel.TwoPerDay = innerData.Substring(12);
+                        npcModel.TwoPerDay = innerData.Substring(12).TrimEnd();
                     if (innerData.StartsWith("1/day each:", StringComparison.Ordinal))
-                        npcModel.OnePerDay = innerData.Substring(12);
+                        npcModel.OnePerDay = innerData.Substring(12).TrimEnd();
                 }
             }
         }
