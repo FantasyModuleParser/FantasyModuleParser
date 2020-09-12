@@ -20,6 +20,7 @@ namespace FantasyModuleParser.Importer.NPC
         private bool afterInnateSpellcastingLine = false;
         private bool afterSpellcastingLine = false;
         private bool afterActionsLine = false;
+        private bool afterSensesLine = false;
         #endregion
         public ImportPDFNPC()
         {
@@ -36,6 +37,17 @@ namespace FantasyModuleParser.Importer.NPC
             ResetFormatNPCTextDataFlags();
             while ((line = stringReader.ReadLine()) != null)
             {
+                if (afterSensesLine)
+                {
+                    formattedTextContent.Append(line);
+                    if (line.StartsWith("Languages"))
+                    {
+                        ResetFormatNPCTextDataFlags();
+                        formattedTextContent.Append("\n");
+                    }
+                    else
+                        formattedTextContent.Append(" ");
+                }
                 if (afterChallengeLine)
                 {
                     formattedTextContent.Append(line);
@@ -135,6 +147,13 @@ namespace FantasyModuleParser.Importer.NPC
                 {
                     if (line.StartsWith("Challenge "))
                         afterChallengeLine = true;
+                    if (line.StartsWith("Senses"))
+                    {
+                        afterSensesLine = true;
+                        formattedTextContent.Append(line).Append(" ");
+                        continue;
+                    }
+                        
 
                     formattedTextContent.Append(line).Append("\n");
                 }
@@ -145,6 +164,7 @@ namespace FantasyModuleParser.Importer.NPC
 
         private void ResetFormatNPCTextDataFlags()
         {
+            afterSensesLine = false;
             afterChallengeLine = false;
             afterInnateSpellcastingLine = false;
             afterSpellcastingLine = false;
