@@ -231,7 +231,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             // Validate Reactions
             Assert.AreEqual(1, actualNPCModel.Reactions.Count);
             Assert.AreEqual("Fiery Retribution (3/day)", actualNPCModel.Reactions[0].ActionName);
-            Assert.AreEqual("When a creature within 5 feet of the azer hits the azer with an attack, and the azer can see the creature, the azer can force the creature to make a DC 14 Dexterity saving throw. The creature takes 13(3d8) fire damage on a failed saving throw, and half as much damage on a successful one.", actualNPCModel.Reactions[0].ActionDescription);
+            Assert.AreEqual("When a creature within 5 feet of the azer hits the azer with an attack, and the azer can see the creature, the azer can force the creature to make a DC 14 Dexterity saving throw. The creature takes 13 (3d8) fire damage on a failed saving throw, and half as much damage on a successful one.", actualNPCModel.Reactions[0].ActionDescription);
         }
         [TestMethod()]
         public void Import_DevaShaitan_Test()

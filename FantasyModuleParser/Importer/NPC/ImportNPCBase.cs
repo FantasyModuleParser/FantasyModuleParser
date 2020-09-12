@@ -475,7 +475,7 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 string[] splitArray = challengeRatingAndXP.Split(' ');
                 npcModel.ChallengeRating = splitArray[1];
-                string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(').ToArray());
+                string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(' && c != ')').ToArray());
                 npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
             }
 

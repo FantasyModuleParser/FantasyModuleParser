@@ -409,6 +409,8 @@
     <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
     <Compile Include="Extensions\EnumerationExtension.cs" />
+    <Compile Include="Importer\NPC\IFormatContentService.cs" />
+    <Compile Include="Importer\NPC\FormatPDFService.cs" />
     <Compile Include="Importer\NPC\IImportNPC.cs" />
     <Compile Include="Importer\NPC\ImportDnDBeyondNPC.cs" />
     <Compile Include="Importer\NPC\ImportESNPCBase.cs" />

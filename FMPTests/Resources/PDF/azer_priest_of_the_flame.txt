@@ -30,7 +30,7 @@ Cantrips (at will): mending, resistance, sacred flame
 Actions
 Multiattack. The azer makes two melee attacks.
 Warhammer. Melee Weapon Attack: +5 to hit, reach 5 ft., one target.
-Hit: 6 (ld8 + 2) bludgeoning damage, or 7 (1d10 + 2) bludgeoning
+Hit: 6 (1d8 + 2) bludgeoning damage, or 7 (1d10 + 2) bludgeoning
 damage if used with two hands to make a melee attack, plus 7 (2d6)
 fire damage.
 Reactions
