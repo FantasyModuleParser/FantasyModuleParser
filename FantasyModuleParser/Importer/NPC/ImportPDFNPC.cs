@@ -51,6 +51,12 @@ namespace FantasyModuleParser.Importer.NPC
                         ResetFormatNPCTextDataFlags();
                         afterActionsLine = true;
                     }
+                    else if (line.StartsWith("Innate Spellcasting"))
+                    {
+                        formattedTextContent.Append(" ");
+                        ResetFormatNPCTextDataFlags();
+                        afterInnateSpellcastingLine = true;
+                    }
                     else if (line.StartsWith("Spellcasting. "))
                     {
                         formattedTextContent.Append(" ");
@@ -60,9 +66,33 @@ namespace FantasyModuleParser.Importer.NPC
                     else
                         formattedTextContent.Append(" ");
                 }
+                else if (afterInnateSpellcastingLine)
+                {
+                    if (line.StartsWith("Spellcasting. "))
+                    {
+                        formattedTextContent.Append("\n").Append(line);
+                        ResetFormatNPCTextDataFlags();
+                        afterSpellcastingLine = true;
+                    }
+                    if (line.Equals("Actions"))
+                    {
+                        formattedTextContent.Append("\n").Append(line).Append("\n");
+                        ResetFormatNPCTextDataFlags();
+                        afterActionsLine = true;
+                    }
+                    else if (line.EndsWith(":"))
+                        formattedTextContent.Append(line);
+                    else if (line.StartsWith("At will") || line.StartsWith("5/day each:")
+                        || line.StartsWith("4/day each:") || line.StartsWith("3/day each:")
+                        || line.StartsWith("2/day each:") || line.StartsWith("1/day each:"))
+                    {
+                        formattedTextContent.Append("\\r").Append(line);
+                    }
+                    else
+                        formattedTextContent.Append(" ").Append(line).Append(" ");
+                }
                 else if (afterSpellcastingLine)
                 {
-
                     if (line.Equals("Actions"))
                     {
                         formattedTextContent.Append("\n").Append(line).Append("\n");

@@ -1,0 +1,76 @@
+﻿Greater Couatl
+Large Celestial, Lawful Good
+Armor Class 20 (natural armor)
+Hit Points 200 (19d10 + 95)
+Speed 40 ft., fly 90 ft.
+STR DEX CON INT WIS CHA
+20 (+5) 20 (+5) 21 (+5) 20 (+5) 22 (+6) 20 (+5)
+Saving Throws Con +10, Wis +11, Cha +10
+Damage Resistances radiant
+Damage Immunities psychic; bludgeoning, piercing, and slashing
+from nonmagical weapons
+Condition Immunities petrified
+Senses truesight 120 ft., passive Perception 16
+Languages all, telepathy 120 ft.
+Challenge 15 (13,000)
+Innate Spellcasting. The greater couatl's spellcasting ability is
+Charisma (spell save DC 18). It can innately cast the following
+spells, requiring only verbal components:
+At will: detect evil and good, detect magic, detect thoughts
+3/day each: bless, create food and water, cure wounds, lesser
+restoration, protection from poison, sanctuary, shield
+2/day each: dawn, dream, greater restoration, scrying
+1/day each: divine word, resurrection, temple of the gods
+Ethereal Jaunt. As a bonus action, the greater couatl can magically
+shift from the Material Plane to the Ethereal Plane, or vice versa.
+Flyby. The greater couatl doesn't provoke an opportunity attack
+when it flies out of an enemy's reach.
+Magic Weapons. The greater couatl's weapon attacks are magical.
+Shielded Mind. The greater couatl is immune to scrying and to any
+effect that would sense its emotions, read its thoughts, or detect its
+location.
+Twist Free. The greater couatl automatically makes its saving
+throws against paralysis and being restrained at the end of its turn
+as long as it is not unconscious.
+Actions
+Multiattack. The greater couatl makes two attacks: one with its bite
+and one to constrict.
+Bite. Melee Weapon Attack: +10 to hit, reach 5 ft., one creature.
+Hit: 12 (2d6 + 5) piercing damage and the target must succeed on
+a DC 18 Constitution saving throw or be poisoned for 24 hours.
+Until this poison ends, the target is unconscious. Another creature
+can use an action to shake the target awake.
+Constrict. Melee Weapon Attack: +10 to hit, reach 10 ft., one
+Large or smaller creature. Hit: 16 (2d10 + 5) bludgeoning
+damage, and the target is grappled (escape DC 15). Until this
+grapple ends, the target is restrained, and the greater couatl can't
+constrict another target.
+Change Shape. The greater couatl magically polymorphs into
+a humanoid or beast that has a challenge rating equal to or less
+than its own, or back into its true form. It reverts to its true form
+if it dies. Any equipment it is wearing or carrying is absorbed or
+borne by the new form (the greater couatl's choice).
+In a new form, the greater couatl retains its game statistics and
+ability to speak, but its AC, movement modes, Strength, Dexterity,
+and other actions are replaced by those of the new form, and
+it gains any statistics and capabilities (except class features,
+legendary actions, and lair actions) that the new form has but that
+it lacks. If the new form has a bite attack, the greater couatl can
+use its bite in that form.
+Legendary Actions
+The greater couatl can take 3 legendary actions, choosing from
+the options below. Only one legendary action option can be used
+at a time and only at the end of another creature's turn. The
+greater couatl regains spent legendary actions at the start of its
+turn.
+Bite. The greater couatl makes a bite attack.
+Teleport. The greater couatl teleports up to 60 feet to an
+unoccupied space it can see.
+Cast a Spell (Costs 2 Actions). The greater couatl casts a spell
+from its list of innate spells, using a spell slot as normal.
+Radiant Burst (Costs 3 Actions). The greater couatl emits a
+burst of radiant energy. All allies within 20 feet of the greater
+couatl regain 18 (3d8) hit points. All other creatures within 20 feet
+must succeed on a DC 18 Dexterity saving throw, taking 18 (3d8)
+radiant damage on a failed save, or half as much on a successful
+one.

@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Importer.NPC;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -164,6 +165,93 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 5 (1d4 + 3) slashing damage.", actualNPCModel.NPCActions[1].ActionDescription);
             Assert.AreEqual("Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) piercing damage. Or Ranged Weapon Attack: +6 to hit, range 30/120 ft., one target. Hit: 6 (1d6 + 3) piercing damage.", actualNPCModel.NPCActions[2].ActionDescription);
         }
+
+        [TestMethod()]
+        public void Import_AbolethOverseer_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.aboleth_overseer.txt");
+
+            // Valideate Innate Spellcasting (Psionics)
+            Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
+            Assert.AreEqual(true, actualNPCModel.Psionics);
+            Assert.AreEqual("Intelligence", actualNPCModel.InnateSpellcastingAbility);
+            Assert.AreEqual(19, actualNPCModel.InnateSpellSaveDC);
+            Assert.AreEqual("hypnotic pattern, invisibility, phantasmal force", actualNPCModel.InnateAtWill);
+            Assert.AreEqual("hallucinatory terrain, major image", actualNPCModel.ThreePerDay);
+            Assert.AreEqual("phantasmal killer, project image", actualNPCModel.TwoPerDay);
+            Assert.AreEqual("mirage arcane, psychic scream, weird, plane shift (self only)", actualNPCModel.OnePerDay);
+
+            // Validate Legendary Actions
+            Assert.AreEqual(5, actualNPCModel.LegendaryActions.Count);
+            Assert.AreEqual("Options", actualNPCModel.LegendaryActions[0].ActionName);
+            Assert.AreEqual("Enslave", actualNPCModel.LegendaryActions[1].ActionName);
+            Assert.AreEqual("Tail Swipe", actualNPCModel.LegendaryActions[2].ActionName);
+            Assert.AreEqual("Psychic Drain (Costs 2 Actions)", actualNPCModel.LegendaryActions[3].ActionName);
+            Assert.AreEqual("Cast a Spell (Costs 3 Actions)", actualNPCModel.LegendaryActions[4].ActionName);
+            Assert.AreEqual("The aboleth can take 3 legendary actions, choosing from the options below.Only one legendary action option can be used at a time and only at the end of another creature's turn. The aboleth regains spent legendary actions at the start of its turn.", actualNPCModel.LegendaryActions[0].ActionDescription);
+            Assert.AreEqual("The aboleth uses its Enslave feature.", actualNPCModel.LegendaryActions[1].ActionDescription);
+            Assert.AreEqual("The aboleth makes one tail attack.", actualNPCModel.LegendaryActions[2].ActionDescription);
+            Assert.AreEqual("One creature charmed by the aboleth takes 28(8d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes.", actualNPCModel.LegendaryActions[3].ActionDescription);
+            Assert.AreEqual("The aboleth casts a spell from its list of innate spells, using a spell slot as normal.", actualNPCModel.LegendaryActions[4].ActionDescription);
+        }
+
+        [TestMethod()]
+        public void Import_AnimatedWoodStatue_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.animated_wood_statue.txt");
+
+            // Validate Senses
+            Assert.AreEqual(60, actualNPCModel.Blindsight);
+            Assert.AreEqual(true, actualNPCModel.BlindBeyond);
+            Assert.AreEqual(6, actualNPCModel.PassivePerception);
+
+            // Validate Damage Immunity
+
+            // Validate Traits
+            Assert.AreEqual(2, actualNPCModel.Traits.Count);
+            // Validate Actions
+            Assert.AreEqual(2, actualNPCModel.NPCActions.Count);
+        }
+
+        [TestMethod()]
+        public void Import_AzerPriestOfTheFlame_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.azer_priest_of_the_flame.txt");
+
+            // Validate Reactions
+            Assert.AreEqual(1, actualNPCModel.Reactions.Count);
+            Assert.AreEqual("Fiery Retribution (3/day)", actualNPCModel.Reactions[0].ActionName);
+            Assert.AreEqual("When a creature within 5 feet of the azer hits the azer with an attack, and the azer can see the creature, the azer can force the creature to make a DC 14 Dexterity saving throw. The creature takes 13(3d8) fire damage on a failed saving throw, and half as much damage on a successful one.", actualNPCModel.Reactions[0].ActionDescription);
+        }
+        [TestMethod()]
+        public void Import_DevaShaitan_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.deva_shaitan.txt");
+
+            // Validate Damage Resistances
+
+        }
+
+        [TestMethod()]
+        public void Import_GreaterCouatl_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.greater_couatl.txt");
+
+            // Valideate Innate Spellcasting
+            Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
+            Assert.AreEqual(false, actualNPCModel.Psionics);
+            Assert.AreEqual("Charisma", actualNPCModel.InnateSpellcastingAbility);
+            Assert.AreEqual(18, actualNPCModel.InnateSpellSaveDC);
+            Assert.AreEqual("detect evil and good, detect magic, detect thoughts", actualNPCModel.InnateAtWill);
+            Assert.AreEqual("bless, create food and water, cure wounds, lesser restoration, protection from poison, sanctuary, shield", actualNPCModel.ThreePerDay);
+            Assert.AreEqual("dawn, dream, greater restoration, scrying", actualNPCModel.TwoPerDay);
+            Assert.AreEqual("divine word, resurrection, temple of the gods", actualNPCModel.OnePerDay);
+
+            // Validate Traits
+            Assert.AreEqual(5, actualNPCModel.Traits.Count);
+
+        }
+
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
         {
             Assert.AreEqual(expected.Count, actual.Count);
