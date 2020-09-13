@@ -327,6 +327,48 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(5, actualNPCModel.LegendaryActions.Count);
         }
 
+        [TestMethod()]
+        public void Import_SwarmOfCrawlingClaws_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.swarm_of_crawling_claws.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Validate Traits
+            Assert.AreEqual(2, actualNPCModel.Traits.Count);
+
+            // Validate Actions
+            Assert.AreEqual(1, actualNPCModel.NPCActions.Count);
+        }
+
+        [TestMethod()]
+        public void Import_UltimateTyrant_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.ultimate_tyrant.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Valideate Innate Spellcasting
+            Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
+            Assert.AreEqual(true, actualNPCModel.Psionics);
+            Assert.AreEqual("Intelligence", actualNPCModel.InnateSpellcastingAbility);
+            Assert.AreEqual(20, actualNPCModel.InnateSpellSaveDC);
+            Assert.AreEqual("darkness, detect magic, detect thoughts, see invisibility", actualNPCModel.InnateAtWill);
+            Assert.AreEqual("banishment, dispel magic, stoneskin", actualNPCModel.ThreePerDay);
+            Assert.AreEqual("globe of invulnerability, wall of force, move earth", actualNPCModel.TwoPerDay);
+            Assert.AreEqual("Abi-dalzim’s horrid wilting, power word stun", actualNPCModel.OnePerDay);
+
+            // Validate Traits
+            Assert.AreEqual(1, actualNPCModel.Traits.Count);
+
+            // Validate Actions
+            Assert.AreEqual(13, actualNPCModel.NPCActions.Count);
+
+            // Validate Legendary Actions
+            Assert.AreEqual(6, actualNPCModel.LegendaryActions.Count);
+
+            // Validate Reactions
+            Assert.AreEqual(1, actualNPCModel.Reactions.Count);
+        }
+
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
         {
             Assert.AreEqual(expected.Count, actual.Count);
