@@ -293,7 +293,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(3, actualNPCModel.Traits.Count);
 
             // Validate Actions
-            Assert.AreEqual(6, actualNPCModel.Traits.Count);
+            Assert.AreEqual(6, actualNPCModel.NPCActions.Count);
 
             // Validate Legendary Actions
             Assert.AreEqual(5, actualNPCModel.LegendaryActions.Count);
@@ -301,6 +301,32 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             // Validate Reactions
             Assert.AreEqual(1, actualNPCModel.Reactions.Count);
         }
+
+        [TestMethod()]
+        public void Import_NalfeshneeCaptain_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.nalfeshnee_captain.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Valideate Innate Spellcasting
+            Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
+            Assert.AreEqual(false, actualNPCModel.Psionics);
+            Assert.AreEqual("Intelligence", actualNPCModel.InnateSpellcastingAbility);
+            Assert.AreEqual(17, actualNPCModel.InnateSpellSaveDC);
+            Assert.AreEqual("detect magic", actualNPCModel.InnateAtWill);
+            Assert.AreEqual("call lightning, dispel magic, polymorph (self only), slow", actualNPCModel.ThreePerDay);
+            Assert.AreEqual("feeblemind", actualNPCModel.OnePerDay);
+
+            // Validate Traits
+            Assert.AreEqual(1, actualNPCModel.Traits.Count);
+
+            // Validate Actions
+            Assert.AreEqual(3, actualNPCModel.NPCActions.Count);
+
+            // Validate Legendary Actions
+            Assert.AreEqual(5, actualNPCModel.LegendaryActions.Count);
+        }
+
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
         {
             Assert.AreEqual(expected.Count, actual.Count);

@@ -90,6 +90,7 @@
     <Compile Include="UserControls\MarkdownTestExample.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\PDF\nalfeshnee_captain.txt" />
     <EmbeddedResource Include="Resources\PDF\marilith_general.txt" />
     <EmbeddedResource Include="Resources\PDF\swarm_of_crawling_claws.txt" />
     <EmbeddedResource Include="Resources\PDF\greater_couatl.txt" />
