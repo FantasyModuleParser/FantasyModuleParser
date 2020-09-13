@@ -3,6 +3,11 @@ using System.Text;
 
 namespace FantasyModuleParser.Importer.NPC
 {
+    enum ImportNPCState
+    {
+        NO_STATE,CHALLENGE,INNATE_SPELLCASTING,INNATE_SPELLCASTING_SELECTION,SPELLCASTING,ACTIONS,
+        DAMAGE_RESIST,DAMAGE_IMMUNITY,SENSES,TRAITS,REACTIONS
+    }
     public class FormatPDFService : IFormatContentService
     {
         private bool afterChallengeLine = false;
@@ -10,6 +15,7 @@ namespace FantasyModuleParser.Importer.NPC
         private bool afterSpellcastingLine = false;
         private bool afterActionsLine = false;
         private bool afterSensesLine = false;
+        private bool afterDamageResistanceLine = false;
         private bool afterDamageImmunityLine = false;
         private bool afterTraitLine = false;
         private bool afterReactionsLine = false;
@@ -19,180 +25,233 @@ namespace FantasyModuleParser.Importer.NPC
             StringBuilder formattedTextContent = new StringBuilder();
             StringReader stringReader = new StringReader(importTextContent);
             string line = "";
-            ResetFormatNPCTextDataFlags();
+
+            ImportNPCState importNPCState = ImportNPCState.NO_STATE;
+
             while ((line = stringReader.ReadLine()) != null)
             {
-                if (afterSensesLine)
-                {
-                    formattedTextContent.Append(line);
-                    if (line.StartsWith("Languages"))
-                    {
-                        ResetFormatNPCTextDataFlags();
-                        formattedTextContent.Append("\n");
-                    }
-                    else
-                        formattedTextContent.Append(" ");
-                }
-                if (afterDamageImmunityLine)
-                {
-                    formattedTextContent.Append(line);
-                    if (line.StartsWith("Condition Immunities"))
-                    {
-                        ResetFormatNPCTextDataFlags();
-                        formattedTextContent.Append("\n");
-                    }
-                    else if (line.StartsWith("Senses"))
-                    {
-                        ResetFormatNPCTextDataFlags();
-                        formattedTextContent.Append("\n");
-                    }
-                    else if (line.StartsWith("Languages"))
-                    {
-                        ResetFormatNPCTextDataFlags();
-                        formattedTextContent.Append("\n");
-                    }
-                    else
-                        formattedTextContent.Append(" ");
 
-                }
-                if (afterChallengeLine)
+                switch (importNPCState)
                 {
-                    formattedTextContent.Append(line);
-                    if (line.EndsWith("one target.") || line.EndsWith("one creature."))
-                        continue;
-                    if (line.EndsWith("."))
-                        formattedTextContent.Append(" \n");
-                    else if (line.EndsWith("prepared:"))
-                        formattedTextContent.Append("\\r");
-                    else if (line.Equals("Actions"))
-                    {
-                        formattedTextContent.Append("\n");
-                        ResetFormatNPCTextDataFlags();
-                        afterActionsLine = true;
-                    }
-                    else if (line.StartsWith("Innate Spellcasting"))
-                    {
-                        //formattedTextContent.Append(" ");
-                        ResetFormatNPCTextDataFlags();
-                        afterInnateSpellcastingLine = true;
-                    }
-                    else if (line.StartsWith("Spellcasting. "))
-                    {
-                        formattedTextContent.Append(" ");
-                        ResetFormatNPCTextDataFlags();
-                        afterSpellcastingLine = true;
-                    }
-                    else
-                        formattedTextContent.Append(" ");
-                }
-                else if (afterInnateSpellcastingLine)
-                {
-                    if (line.StartsWith("Spellcasting. "))
-                    {
-                        formattedTextContent.Append("\n").Append(line);
-                        ResetFormatNPCTextDataFlags();
-                        afterSpellcastingLine = true;
-                    }
-                    if (line.Equals("Actions"))
-                    {
-                        formattedTextContent.Append("\n").Append(line).Append("\n");
-                        ResetFormatNPCTextDataFlags();
-                        afterActionsLine = true;
-                    }
-                    else if (line.EndsWith(":"))
-                        formattedTextContent.Append(line);
-                    else if (line.StartsWith("At will") || line.StartsWith("5/day each:")
-                        || line.StartsWith("4/day each:") || line.StartsWith("3/day each:")
-                        || line.StartsWith("2/day each:") || line.StartsWith("1/day each:"))
-                    {
-                        formattedTextContent.Append("\\r").Append(line);
-                    }
-                    else if (checkIfLineMaybeTrait(line))
-                    {
+                    case ImportNPCState.SENSES:
+                        if (line.StartsWith("Languages"))
+                        {
+                            formattedTextContent.Append("\n").Append(line);
+                            importNPCState = ImportNPCState.NO_STATE;
+                        }
+                        else
+                            formattedTextContent.Append(line).Append(" ");
+                        break;
+                    case ImportNPCState.DAMAGE_RESIST:
+                        {
+                            if (line.StartsWith("Condition Immunities"))
+                            {
+                                importNPCState = ImportNPCState.NO_STATE;
+                                formattedTextContent.Append("\n").Append(line);
+                            }
+                            else if (line.StartsWith("Senses"))
+                            {
+                                importNPCState = ImportNPCState.SENSES;
+                                formattedTextContent.Append("\n").Append(line);
+                            }
+                            else
+                                formattedTextContent.Append(line).Append(" ");
+                        }
+                        break;
+                    case ImportNPCState.DAMAGE_IMMUNITY:
+                        { 
+                            formattedTextContent.Append(line);
+                            if (line.StartsWith("Condition Immunities"))
+                            {
+                                importNPCState = ImportNPCState.NO_STATE;
+                                formattedTextContent.Append("\n");
+                            }
+                            else if (line.StartsWith("Senses"))
+                            {
+                                importNPCState = ImportNPCState.NO_STATE;
+                                formattedTextContent.Append("\n");
+                            }
+                            else if (line.StartsWith("Languages"))
+                            {
+                                importNPCState = ImportNPCState.NO_STATE;
+                                formattedTextContent.Append("\n");
+                            }
+                            else
+                                formattedTextContent.Append(" ");
+                        }
+                        break;
+                    case ImportNPCState.CHALLENGE:
+                        { 
+                            formattedTextContent.Append(line);
+                            if (line.EndsWith("one target.") || line.EndsWith("one creature."))
+                                continue;
+                            if (line.EndsWith("."))
+                                formattedTextContent.Append(" \n");
+                            else if (line.EndsWith("prepared:"))
+                                formattedTextContent.Append("\\r");
+                            else if (line.Equals("Actions"))
+                            {
+                                formattedTextContent.Append("\n");
+                                importNPCState = ImportNPCState.ACTIONS;
+                            }
+                            else if (line.StartsWith("Innate Spellcasting"))
+                            {
+                                importNPCState = ImportNPCState.INNATE_SPELLCASTING;
+                            }
+                            else if (line.StartsWith("Spellcasting. "))
+                            {
+                                formattedTextContent.Append(" ");
+                                importNPCState = ImportNPCState.SPELLCASTING;
+                            }
+                            else
+                                formattedTextContent.Append(" ");
+                        }
+                        break;
+                    case ImportNPCState.INNATE_SPELLCASTING:
+                        { 
+                            if (line.StartsWith("Spellcasting. "))
+                            {
+                                formattedTextContent.Append("\n").Append(line);
+                                importNPCState = ImportNPCState.SPELLCASTING;
+                            }
+                            if (line.Equals("Actions"))
+                            {
+                                formattedTextContent.Append("\n").Append(line).Append("\n");
+                                importNPCState = ImportNPCState.ACTIONS;
+                            }
+                            else if (line.EndsWith(":"))
+                                formattedTextContent.Append(line);
+                            else if (line.StartsWith("At will") || line.StartsWith("5/day each:")
+                                || line.StartsWith("4/day each:") || line.StartsWith("3/day each:")
+                                || line.StartsWith("2/day each:") || line.StartsWith("1/day each:"))
+                            {
+                                formattedTextContent.Append("\\r").Append(line);
+                                importNPCState = ImportNPCState.INNATE_SPELLCASTING_SELECTION;
+                            }
+                            else
+                                formattedTextContent.Append(" ").Append(line).Append(" ");
+                        }
+                        break;
+                    case ImportNPCState.INNATE_SPELLCASTING_SELECTION:
+                        {
+                            if (checkIfLineMaybeTrait(line))
+                            {
+                                formattedTextContent.Append("\n").Append(line);
+                                importNPCState = ImportNPCState.TRAITS;
+                            }
+                            else if (line.StartsWith("At will") || line.StartsWith("5/day each:")
+                                || line.StartsWith("4/day each:") || line.StartsWith("3/day each:")
+                                || line.StartsWith("2/day each:") || line.StartsWith("1/day each:"))
+                                formattedTextContent.Append("\\r").Append(line);
+                            else if (line.Equals("Actions"))
+                            {
+                                formattedTextContent.Append("\n").Append(line).Append("\n");
+                                importNPCState = ImportNPCState.ACTIONS;
+                            }
+                            else
+                                formattedTextContent.Append(" ").Append(line);
+                        }
+                        break;
+                    case ImportNPCState.SPELLCASTING:
+                        {
+                            if (line.Equals("Actions"))
+                            {
+                                formattedTextContent.Append("\n").Append(line).Append("\n");
+                                importNPCState = ImportNPCState.ACTIONS;
+                            }
+                            else if (line.EndsWith("prepared:"))
+                                formattedTextContent.Append(line);
+                            else if (line.StartsWith("Cantrips") || line.StartsWith("1st level")
+                                || line.StartsWith("2nd level") || line.StartsWith("3rd level")
+                                || line.StartsWith("4th level") || line.StartsWith("5th level")
+                                || line.StartsWith("6th level") || line.StartsWith("7th level")
+                                || line.StartsWith("8th level") || line.StartsWith("9th level"))
+                            {
+                                formattedTextContent.Append("\\r").Append(line);
+                            }
+                            else
+                                formattedTextContent.Append(" ").Append(line).Append(" ");
+                        }
+                        break;
+                    case ImportNPCState.TRAITS:
+                        {
+                            if (line.Equals("Actions"))
+                            {
+                                formattedTextContent.Append("\n").Append(line).Append("\n");
+                                importNPCState = ImportNPCState.ACTIONS;
+                            }
+                            else if (checkIfLineMaybeTrait(line))
+                            {
+                                formattedTextContent.Append("\n").Append(line);
+                            }
+                            else
+                                formattedTextContent.Append(" ").Append(line);
+                        }
+                        break;
+                    case ImportNPCState.ACTIONS:
+                        {
+                            formattedTextContent.Append(line);
+                            if (line.EndsWith("one target.") || line.EndsWith("one creature."))
+                                continue;
+                            if (line.EndsWith("."))
+                                formattedTextContent.Append(" \n");
+                            else if (line.EndsWith("prepared:"))
+                                formattedTextContent.Append("\\r");
+                            else if (line.Equals("Legendary Actions"))
+                            {
+                                formattedTextContent.Append("\n");
 
-                    }
-                    else
-                        formattedTextContent.Append(" ").Append(line).Append(" ");
+                                // In order to use the Engineer Suite Parser, the first Legendary Actions line is expected to begin with Options: 
+                                formattedTextContent.Append("Options. ");
+                            }
+                            else if (line.Equals("Reactions"))
+                            {
+                                importNPCState = ImportNPCState.REACTIONS;
+                            }
+                            else
+                                formattedTextContent.Append(" ");
+                        }
+                        break;
+                    case ImportNPCState.REACTIONS:
+                        {
+                            if (checkIfLineMaybeTrait(line))
+                                formattedTextContent.Append("\n").Append(line).Append(" ");
+                            else
+                                formattedTextContent.Append(line).Append(" ");
+                        }
+                        break;
+                    case ImportNPCState.NO_STATE:
+                        { 
+                            if (line.StartsWith("Challenge "))
+                            {
+                                importNPCState = ImportNPCState.CHALLENGE;
+                                formattedTextContent.Append("\n").Append(line).Append("\n");
+                                continue;
+                            }
+                            if (line.StartsWith("Senses"))
+                            {
+                                importNPCState = ImportNPCState.SENSES;
+                                formattedTextContent.Append("\n").Append(line).Append(" ");
+                                continue;
+                            }
+                            if (line.StartsWith("Damage Immunities"))
+                            {
+                                importNPCState = ImportNPCState.DAMAGE_IMMUNITY;
+                                formattedTextContent.Append(line).Append(" ");
+                                continue;
+                            }
+                            if (line.StartsWith("Damage Resistance"))
+                            {
+                                importNPCState = ImportNPCState.DAMAGE_RESIST;
+                                formattedTextContent.Append(line).Append(" ");
+                                continue;
+                            }
+                            formattedTextContent.Append(line).Append("\n");
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                else if (afterSpellcastingLine)
-                {
-                    if (line.Equals("Actions"))
-                    {
-                        formattedTextContent.Append("\n").Append(line).Append("\n");
-                        ResetFormatNPCTextDataFlags();
-                        afterActionsLine = true;
-                    }
-                    else if (line.EndsWith("prepared:"))
-                        formattedTextContent.Append(line);
-                    else if (line.StartsWith("Cantrips") || line.StartsWith("1st level")
-                        || line.StartsWith("2nd level") || line.StartsWith("3rd level")
-                        || line.StartsWith("4th level") || line.StartsWith("5th level")
-                        || line.StartsWith("6th level") || line.StartsWith("7th level")
-                        || line.StartsWith("8th level") || line.StartsWith("9th level"))
-                    {
-                        formattedTextContent.Append("\\r").Append(line);
-                    }
-                    else
-                        formattedTextContent.Append(" ").Append(line).Append(" ");
-                }
-                else if (afterTraitLine)
-                {
-
-                }
-                else if (afterActionsLine)
-                {
-                    formattedTextContent.Append(line);
-                    if (line.EndsWith("one target.") || line.EndsWith("one creature."))
-                        continue;
-                    if (line.EndsWith("."))
-                        formattedTextContent.Append(" \n");
-                    else if (line.EndsWith("prepared:"))
-                        formattedTextContent.Append("\\r");
-                    else if (line.Equals("Legendary Actions"))
-                    {
-                        formattedTextContent.Append("\n");
-
-                        // In order to use the Engineer Suite Parser, the first Legendary Actions line is expected to begin with Options: 
-                        formattedTextContent.Append("Options. ");
-                    }
-                    else if (line.Equals("Reactions"))
-                    {
-                        ResetFormatNPCTextDataFlags();
-                        afterReactionsLine = true;
-                        continue;
-                    }
-                    else
-                        formattedTextContent.Append(" ");
-                }
-                else if (afterReactionsLine)
-                {
-                    if (checkIfLineMaybeTrait(line))
-                        formattedTextContent.Append("\n").Append(line).Append(" ");
-                    else
-                        formattedTextContent.Append(line).Append(" ");
-                }
-                else
-                {
-                    if (line.StartsWith("Challenge "))
-                        afterChallengeLine = true;
-                    if (line.StartsWith("Senses"))
-                    {
-                        afterSensesLine = true;
-                        formattedTextContent.Append(line).Append(" ");
-                        continue;
-                    }
-                    if (line.StartsWith("Damage Immunities"))
-                    {
-                        afterDamageImmunityLine = true;
-                        ResetFormatNPCTextDataFlags();
-                        formattedTextContent.Append(line).Append(" ");
-                        continue;
-                    }
-
-
-                    formattedTextContent.Append(line).Append("\n");
-                }
-
             }
             return formattedTextContent.ToString();
         }

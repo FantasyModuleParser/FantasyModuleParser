@@ -31,7 +31,7 @@ Actions
 Multiattack. The deva makes two mace attacks. It can use Life
 Drain in place of one mace attack.
 Mace. Melee Weapon Attack: +9 to hit, reach 5 ft., one target.
-Hit: 8 (ld6 + 5) bludgeoning damage plus 18 (4d8) necrotic damage.
+Hit: 8 (1d6 + 5) bludgeoning damage plus 18 (4d8) necrotic damage.
 Life Drain (3/day). Melee Weapon Attack: +9 to hit, reach 5 ft.,
 one creature. Hit: 20 (4d8 + 2) necrotic damage. The target must
 succeed on a DC 16 Constitution saving throw or its hit point
