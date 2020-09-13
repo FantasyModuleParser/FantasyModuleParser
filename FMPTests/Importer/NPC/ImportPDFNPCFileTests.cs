@@ -274,6 +274,33 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Twist Free", actualNPCModel.Traits[4].ActionName);
         }
 
+        [TestMethod()]
+        public void Import_MarilithGeneral_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.marilith_general.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Valideate Innate Spellcasting
+            Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
+            Assert.AreEqual(false, actualNPCModel.Psionics);
+            Assert.AreEqual("Charisma", actualNPCModel.InnateSpellcastingAbility);
+            Assert.AreEqual(19, actualNPCModel.InnateSpellSaveDC);
+            Assert.AreEqual("detect magic", actualNPCModel.InnateAtWill);
+            Assert.AreEqual("fly, polymorph (self only), telekinesis", actualNPCModel.ThreePerDay);
+            Assert.AreEqual("blade barrier, project image", actualNPCModel.OnePerDay);
+
+            // Validate Traits
+            Assert.AreEqual(3, actualNPCModel.Traits.Count);
+
+            // Validate Actions
+            Assert.AreEqual(6, actualNPCModel.Traits.Count);
+
+            // Validate Legendary Actions
+            Assert.AreEqual(5, actualNPCModel.LegendaryActions.Count);
+
+            // Validate Reactions
+            Assert.AreEqual(1, actualNPCModel.Reactions.Count);
+        }
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
         {
             Assert.AreEqual(expected.Count, actual.Count);
