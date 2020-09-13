@@ -162,6 +162,14 @@ namespace FantasyModuleParser.Importer.NPC
                         continueActionsFlag = true;
                         continue;
                     }
+                    // If the line contains a period, then it means there are additional traits to be included
+                    if (line.Contains("."))
+                    {
+                        resetContinueFlags();
+                        continueTraitsFlag = true;
+                        ParseTraits(parsedNPCModel, line);
+                        continue;
+                    }
                     ParseInnateSpellCastingAttributes(parsedNPCModel, line);
                 }
 

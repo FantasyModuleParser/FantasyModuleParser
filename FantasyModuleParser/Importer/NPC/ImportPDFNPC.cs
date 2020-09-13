@@ -83,8 +83,8 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     if (line.StartsWith("Innate Spellcasting"))
                     {
-                        resetContinueFlags();
-                        continueInnateSpellcastingFlag = true;
+                        //resetContinueFlags();
+                        //continueInnateSpellcastingFlag = true;
                         ParseInnateSpellCastingAttributes(parsedNPCModel, line);
                         continue;
                     }

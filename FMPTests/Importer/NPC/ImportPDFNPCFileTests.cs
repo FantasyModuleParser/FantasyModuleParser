@@ -72,7 +72,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(15, actualNPCModel.PassivePerception);
 
             // Validate Languages
-            Skills_ExoticLanguages(actualNPCModel);
+            Skills_Aarakocra_ExoticLanguages(actualNPCModel);
 
             // Validate Challenge Rating
             Assert.AreEqual("3", actualNPCModel.ChallengeRating);
@@ -129,7 +129,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(19, actualNPCModel.PassivePerception);
 
             // Validate Languages
-            Skills_ExoticLanguages(actualNPCModel);
+            Skills_Aarakocra_ExoticLanguages(actualNPCModel);
 
             // Validate Challenge Rating
             Assert.AreEqual("6", actualNPCModel.ChallengeRating);
@@ -241,6 +241,12 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
             // Validate Damage Resistances
 
+
+            // Validate Traits
+            Assert.AreEqual(3, actualNPCModel.Traits.Count);
+            Assert.AreEqual("Fiendish Weapons", actualNPCModel.Traits[0].ActionName);
+            Assert.AreEqual("Shadow Stealth", actualNPCModel.Traits[1].ActionName);
+            Assert.AreEqual("Shadow Step", actualNPCModel.Traits[2].ActionName);
         }
 
         [TestMethod()]
@@ -261,7 +267,11 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
             // Validate Traits
             Assert.AreEqual(5, actualNPCModel.Traits.Count);
-
+            Assert.AreEqual("Ethereal Jaunt", actualNPCModel.Traits[0].ActionName);
+            Assert.AreEqual("Flyby", actualNPCModel.Traits[1].ActionName);
+            Assert.AreEqual("Magic Weapons", actualNPCModel.Traits[2].ActionName);
+            Assert.AreEqual("Shielded Mind", actualNPCModel.Traits[3].ActionName);
+            Assert.AreEqual("Twist Free", actualNPCModel.Traits[4].ActionName);
         }
 
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
@@ -281,7 +291,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             }
         }
 
-        public void Skills_ExoticLanguages(NPCModel actualNPCModel)
+        public void Skills_Aarakocra_ExoticLanguages(NPCModel actualNPCModel)
         {
             ObservableCollection<LanguageModel> expectedLanguages = new LanguageController().GenerateExoticLanguages();
 

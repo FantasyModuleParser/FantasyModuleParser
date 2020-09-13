@@ -10,16 +10,7 @@ namespace FantasyModuleParser.Importer.NPC
     }
     public class FormatPDFService : IFormatContentService
     {
-        private bool afterChallengeLine = false;
-        private bool afterInnateSpellcastingLine = false;
-        private bool afterSpellcastingLine = false;
-        private bool afterActionsLine = false;
-        private bool afterSensesLine = false;
-        private bool afterDamageResistanceLine = false;
-        private bool afterDamageImmunityLine = false;
-        private bool afterTraitLine = false;
-        private bool afterReactionsLine = false;
-
+        
         public string FormatImportContent(string importTextContent)
         {
             StringBuilder formattedTextContent = new StringBuilder();
@@ -206,6 +197,7 @@ namespace FantasyModuleParser.Importer.NPC
                             }
                             else if (line.Equals("Reactions"))
                             {
+                                formattedTextContent.Append("\n");
                                 importNPCState = ImportNPCState.REACTIONS;
                             }
                             else
@@ -262,23 +254,15 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 if (idx >= strArray.Length)
                     return false;
+
+                // The logic behind this is Trait Names are typically capitialized (e.g. Flyby., Shadow Step.)
+                // If the string found contains a period AND is lowercase, then it's very likely it's not a new trait (e.g. lowered., location.)
                 if (strArray[idx].EndsWith("."))
-                    return true;
+                    return !strArray[idx].ToLower().Equals(strArray[idx]);
+                
 
             }
             return false;
-        }
-
-        private void ResetFormatNPCTextDataFlags()
-        {
-            afterSensesLine = false;
-            afterDamageImmunityLine = false;
-            afterChallengeLine = false;
-            afterInnateSpellcastingLine = false;
-            afterSpellcastingLine = false;
-            afterActionsLine = false;
-            afterTraitLine = false;
-            afterReactionsLine = false;
         }
     }
 }
