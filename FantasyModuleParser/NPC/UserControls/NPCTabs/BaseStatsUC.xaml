@@ -201,6 +201,7 @@
             <ComboBoxItem>(any race)</ComboBoxItem>
             <ComboBoxItem>(bullywug)</ComboBoxItem>
             <ComboBoxItem>(demon)</ComboBoxItem>
+            <ComboBoxItem>(demon, shapechanger)</ComboBoxItem>
             <ComboBoxItem>(derro)</ComboBoxItem>
             <ComboBoxItem>(devil)</ComboBoxItem>
             <ComboBoxItem>(dragonborn)</ComboBoxItem>

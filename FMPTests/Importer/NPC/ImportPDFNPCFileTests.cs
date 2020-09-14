@@ -356,7 +356,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.ultimate_tyrant.txt");
             NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
 
-            // Valideate Innate Spellcasting
+            // Validate Innate Spellcasting
             Assert.AreEqual(true, actualNPCModel.InnateSpellcastingSection);
             Assert.AreEqual(true, actualNPCModel.Psionics);
             Assert.AreEqual("Intelligence", actualNPCModel.InnateSpellcastingAbility);
@@ -377,6 +377,20 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
             // Validate Reactions
             Assert.AreEqual(1, actualNPCModel.Reactions.Count);
+        }
+
+        [TestMethod()]
+        public void Import_YochlolElder_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.yochlol_elder.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Validate Information
+            Assert.AreEqual("Yochlol Elder", actualNPCModel.NPCName);
+            Assert.AreEqual("Large", actualNPCModel.Size);
+            Assert.AreEqual("fiend", actualNPCModel.NPCType);
+            Assert.AreEqual("(demon, shapechanger)", actualNPCModel.Tag);
+            Assert.AreEqual("choatic evil", actualNPCModel.Alignment);
         }
 
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
