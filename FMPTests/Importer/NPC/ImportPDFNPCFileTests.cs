@@ -321,7 +321,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(1, actualNPCModel.Traits.Count);
 
             // Validate Actions
-            Assert.AreEqual(3, actualNPCModel.NPCActions.Count);
+            Assert.AreEqual(6, actualNPCModel.NPCActions.Count);
 
             // Validate Legendary Actions
             Assert.AreEqual(5, actualNPCModel.LegendaryActions.Count);

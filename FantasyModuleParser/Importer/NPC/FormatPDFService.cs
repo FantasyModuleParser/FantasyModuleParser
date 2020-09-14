@@ -130,9 +130,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line);
                                 importNPCState = ImportNPCState.TRAITS;
                             }
-                            else if (line.StartsWith("At will") || line.StartsWith("5/day each:")
-                                || line.StartsWith("4/day each:") || line.StartsWith("3/day each:")
-                                || line.StartsWith("2/day each:") || line.StartsWith("1/day each:"))
+                            else if (line.StartsWith("At will") || line.StartsWith("5/day")
+                                || line.StartsWith("4/day") || line.StartsWith("3/day")
+                                || line.StartsWith("2/day") || line.StartsWith("1/day"))
                                 formattedTextContent.Append("\\r").Append(line);
                             else if (line.Equals("Actions"))
                             {
@@ -184,7 +184,8 @@ namespace FantasyModuleParser.Importer.NPC
                             formattedTextContent.Append(line);
                             if (line.EndsWith("one target.") || line.EndsWith("one creature."))
                                 continue;
-                            if (line.EndsWith("."))
+                            // The ':' character is a result from the ultimate_tyrant parsing
+                            if (line.EndsWith(".") || (line.EndsWith(":") && !line.EndsWith("Hit:")))
                                 formattedTextContent.Append(" \n");
                             else if (line.EndsWith("prepared:"))
                                 formattedTextContent.Append("\\r");

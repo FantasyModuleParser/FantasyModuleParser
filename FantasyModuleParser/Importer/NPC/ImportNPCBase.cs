@@ -728,7 +728,7 @@ namespace FantasyModuleParser.Importer.NPC
             // Special Case;  If the string has more than 5 words, and none of those 5 words has a period character,
             //  then append the line to the previously created Action's Description as a new line
             string[] standardActionArray = standardAction.Split(' ');
-            for (int idx = 0; idx < 5; idx++)
+            for (int idx = 0; idx < 9; idx++)
             {
                 if (standardActionArray[idx].Contains("."))
                 {

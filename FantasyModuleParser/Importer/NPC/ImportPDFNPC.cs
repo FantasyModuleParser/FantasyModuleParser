@@ -109,24 +109,6 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     ParseSpellCastingAttributes(parsedNPCModel, line);
                 }
-
-                // if (continueInnateSpellcastingFlag)
-                // {
-                    // if (line.Equals("Actions"))
-                    // {
-                    //     resetContinueFlags();
-                    //     continueActionsFlag = true;
-                    //     continue;
-                    // }
-                    // ParseInnateSpellCastingAttributes(parsedNPCModel, line);
-                // }
-
-                // if (line.StartsWith("Innate Spellcasting"))
-                // {
-                    // resetContinueFlags();
-                    // continueInnateSpellcastingFlag = true;
-                    // continue;
-                // }
                 if (continueActionsFlag)
                 {
                     resetContinueFlags();
