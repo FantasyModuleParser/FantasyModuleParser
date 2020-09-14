@@ -98,11 +98,21 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 
 			NPCModel npcModel = npcController.GetNPCModel();
-			string savePath = Path.Combine(installPath, installFolder, npcModel.NPCName + ".json");
+			string saveDirectory = Path.Combine(installPath, installFolder);
+			string savePath = Path.Combine(saveDirectory, npcModel.NPCName + ".json");
 
 			((App)Application.Current).NpcModel = npcModel;
-			npcController.Save(savePath, npcModel);
-
+			if (Directory.Exists(saveDirectory))
+            {
+				npcController.Save(savePath, npcModel);
+				MessageBox.Show("NPC Saved Successfully");
+			}
+			else
+            {
+				Directory.CreateDirectory(saveDirectory);
+				npcController.Save(savePath, npcModel);
+				MessageBox.Show("NPC Saved Successfully");
+			}
 		}
 		private void NewNPC_Click(object sender, RoutedEventArgs e)
 		{
