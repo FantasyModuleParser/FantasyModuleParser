@@ -2,6 +2,7 @@
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Models.Skills;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -292,6 +293,15 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             // Validate Traits
             Assert.AreEqual(3, actualNPCModel.Traits.Count);
 
+            //Validate Damage Resistances
+            AssertDamageResistances(actualNPCModel, new string[] { "cold","fire","lightning","bludgeoning","piercing","slashing" });
+
+            //Validate Damage Immunities
+            AssertDamageImmunities(actualNPCModel, new string[] { "poison" });
+
+            // Validate Condition Immunities
+            AssertConditionImmunities(actualNPCModel, new string[] { "poisoned" });
+
             // Validate Actions
             Assert.AreEqual(6, actualNPCModel.NPCActions.Count);
 
@@ -400,6 +410,70 @@ namespace FantasyModuleParser.Importer.NPC.Tests
                 }
             }
             AssertLanguageModelList(expectedLanguages, actualNPCModel.ExoticLanguages);
+        }
+
+        private void AssertSelectableActionModelList(List<SelectableActionModel> expected, List<SelectableActionModel> actual)
+        {
+            Assert.AreEqual(expected.Count, actual.Count);
+
+            // Sort both lists by ActionName so that the following loop will guarantee to work
+            expected.Sort((x, y) => x.ActionName.CompareTo(y.ActionName));
+            actual.Sort((x, y) => x.ActionName.CompareTo(y.ActionName));
+            for (int idx = 0; idx < expected.Count; idx++)
+            {
+                Assert.AreEqual(expected[idx].ActionName, actual[idx].ActionName);
+                Assert.AreEqual(expected[idx].Selected, actual[idx].Selected);
+            }
+        }
+        public void AssertDamageImmunities(NPCModel actualNPCModel, string[] selectedDamageImmunities)
+        {
+            NPCController controller = new NPCController();
+            List<SelectableActionModel> expectedDamageImmunities = controller.GetSelectableActionModelList(typeof(DamageType));
+
+            foreach (SelectableActionModel selectableActionModel in expectedDamageImmunities)
+            {
+                selectableActionModel.Selected = selectedDamageImmunities.Contains(selectableActionModel.ActionName.ToLower());
+            }
+
+            AssertSelectableActionModelList(expectedDamageImmunities, actualNPCModel.DamageImmunityModelList);
+        }
+        public void AssertDamageResistances(NPCModel actualNPCModel, string[] selectedDamageResistances)
+        {
+            NPCController controller = new NPCController();
+            List<SelectableActionModel> expectedDamageResistances = controller.GetSelectableActionModelList(typeof(DamageType));
+
+            foreach (SelectableActionModel selectableActionModel in expectedDamageResistances)
+            {
+                selectableActionModel.Selected = selectedDamageResistances.Contains(selectableActionModel.ActionName.ToLower());
+            }
+
+            AssertSelectableActionModelList(expectedDamageResistances, actualNPCModel.DamageResistanceModelList);
+        }
+
+        public void AssertDamageVulnerabilities(NPCModel actualNPCModel, string[] selectedDamageVulnerabilities)
+        {
+            NPCController controller = new NPCController();
+            List<SelectableActionModel> expectedDamageVulnerabilities = controller.GetSelectableActionModelList(typeof(DamageType));
+
+            foreach (SelectableActionModel selectableActionModel in expectedDamageVulnerabilities)
+            {
+                selectableActionModel.Selected = selectedDamageVulnerabilities.Contains(selectableActionModel.ActionName.ToLower());
+            }
+
+            AssertSelectableActionModelList(expectedDamageVulnerabilities, actualNPCModel.DamageVulnerabilityModelList);
+        }
+
+        public void AssertConditionImmunities(NPCModel actualNPCModel, string[] selectedConditionImmunities)
+        {
+            NPCController controller = new NPCController();
+            List<SelectableActionModel> expectedConditionImmunities = controller.GetSelectableActionModelList(typeof(ConditionType));
+
+            foreach (SelectableActionModel selectableActionModel in expectedConditionImmunities)
+            {
+                selectableActionModel.Selected = selectedConditionImmunities.Contains(selectableActionModel.ActionName.ToLower());
+            }
+
+            AssertSelectableActionModelList(expectedConditionImmunities, actualNPCModel.ConditionImmunityModelList);
         }
 
     }

@@ -40,6 +40,11 @@ namespace FantasyModuleParser.Importer.NPC
                                 importNPCState = ImportNPCState.NO_STATE;
                                 formattedTextContent.Append("\n").Append(line);
                             }
+                            else if (line.StartsWith("Damage Immunities"))
+                            {
+                                importNPCState = ImportNPCState.DAMAGE_IMMUNITY;
+                                formattedTextContent.Append("\n").Append(line);
+                            }
                             else if (line.StartsWith("Senses"))
                             {
                                 importNPCState = ImportNPCState.SENSES;
@@ -51,24 +56,23 @@ namespace FantasyModuleParser.Importer.NPC
                         break;
                     case ImportNPCState.DAMAGE_IMMUNITY:
                         { 
-                            formattedTextContent.Append(line);
                             if (line.StartsWith("Condition Immunities"))
                             {
                                 importNPCState = ImportNPCState.NO_STATE;
-                                formattedTextContent.Append("\n");
+                                formattedTextContent.Append("\n").Append(line);
                             }
                             else if (line.StartsWith("Senses"))
                             {
                                 importNPCState = ImportNPCState.NO_STATE;
-                                formattedTextContent.Append("\n");
+                                formattedTextContent.Append("\n").Append(line);
                             }
                             else if (line.StartsWith("Languages"))
                             {
                                 importNPCState = ImportNPCState.NO_STATE;
-                                formattedTextContent.Append("\n");
+                                formattedTextContent.Append("\n").Append(line);
                             }
                             else
-                                formattedTextContent.Append(" ");
+                                formattedTextContent.Append(line).Append(" ");
                         }
                         break;
                     case ImportNPCState.CHALLENGE:
