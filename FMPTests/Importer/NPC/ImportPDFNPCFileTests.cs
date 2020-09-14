@@ -390,7 +390,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Large", actualNPCModel.Size);
             Assert.AreEqual("fiend", actualNPCModel.NPCType);
             Assert.AreEqual("(demon, shapechanger)", actualNPCModel.Tag);
-            Assert.AreEqual("choatic evil", actualNPCModel.Alignment);
+            Assert.AreEqual("chaotic evil", actualNPCModel.Alignment);
         }
 
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)

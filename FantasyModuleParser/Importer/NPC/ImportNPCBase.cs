@@ -71,20 +71,24 @@ namespace FantasyModuleParser.Importer.NPC
             else
                 npcModel.NPCType = npcCharacteristics[1].ToLower();
 
-            if (npcCharacteristics[2].Contains("("))
+            if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
                 // includes removing the comma character at the end
                 npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
-
-            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
-                if (npcCharacteristics.Length > 4)
-                    npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
-                else
-                    npcModel.Alignment = npcCharacteristics[3];
-            else
-                if (npcCharacteristics.Length > 3)
+            else if (npcCharacteristics.Length > 3)
                 npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
             else
                 npcModel.Alignment = npcCharacteristics[2];
+
+            if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
+                npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
+            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
+                if (npcCharacteristics.Length > 4)
+                    if (npcModel.Tag.Contains(","))
+                        npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
+                    else
+                        npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+                else
+                    npcModel.Alignment = npcCharacteristics[3];
         }
 
         /// <summary>
@@ -607,16 +611,25 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.SCSpellcastingAbility = spellCastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
 
                 // Spell Save DC & Attack Bonus
-                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks)", StringComparison.Ordinal);
-                string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
-                foreach (string subpart in spellSaveAndAttackData.Split(' '))
+                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
+                if (spellAttacksIndex != -1)
                 {
-                    if (subpart.Contains(","))
+                    string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                    foreach (string subpart in spellSaveAndAttackData.Split(' '))
                     {
-                        npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                        if (subpart.Contains(","))
+                        {
+                            npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                        }
+                        if (subpart.Contains('+') || subpart.Contains('-'))
+                            npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
                     }
-                    if (subpart.Contains('+') || subpart.Contains('-'))
-                        npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
+                }
+                else
+                {
+                    string spellCastingSaveDCString = spellCastingAttributes.Substring(spellSaveDCIndex);
+                    spellCastingSaveDCString = spellCastingSaveDCString.Substring(0, spellCastingSaveDCString.IndexOf(").", StringComparison.Ordinal));
+                    npcModel.SpellcastingSpellSaveDC = int.Parse(spellCastingSaveDCString.Substring("(spell save DC ".Length), CultureInfo.CurrentCulture);
                 }
 
                 // Spell Class
