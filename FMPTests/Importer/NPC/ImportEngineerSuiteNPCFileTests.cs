@@ -29,7 +29,6 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
         {
-
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(@embeddedResourcePath))
             using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
             {
@@ -520,7 +519,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         {
             NPCModel actualNPCModel = LoadEngineerSuiteTestNPCFile();
 
-            Assert.AreEqual("At will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("at will", actualNPCModel.CantripSpells);
             Assert.AreEqual("Cantrips1", actualNPCModel.CantripSpellList);
             Assert.AreEqual("9 slots", actualNPCModel.FirstLevelSpells);
             Assert.AreEqual("Spell 1st", actualNPCModel.FirstLevelSpellList);

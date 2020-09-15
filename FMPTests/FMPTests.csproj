@@ -82,6 +82,7 @@
     <Compile Include="Importer\NPC\ImportDnDBeyondNPCLineTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCLineParserTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCFileTests.cs" />
+    <Compile Include="Importer\NPC\ImportPDFNPCFileTests.cs" />
     <Compile Include="Importer\Utils\ImportCommonUtilsTests.cs" />
     <Compile Include="NPC\ViewModels\DescriptionUCViewModelTests.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModelTests.cs" />
@@ -89,6 +90,20 @@
     <Compile Include="UserControls\MarkdownTestExample.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\PDF\drider_sorcerer.txt" />
+    <EmbeddedResource Include="Resources\PDF\drider_cavestalker.txt" />
+    <EmbeddedResource Include="Resources\PDF\yochlol_elder.txt" />
+    <EmbeddedResource Include="Resources\PDF\nalfeshnee_captain.txt" />
+    <EmbeddedResource Include="Resources\PDF\marilith_general.txt" />
+    <EmbeddedResource Include="Resources\PDF\swarm_of_crawling_claws.txt" />
+    <EmbeddedResource Include="Resources\PDF\greater_couatl.txt" />
+    <EmbeddedResource Include="Resources\PDF\ultimate_tyrant.txt" />
+    <EmbeddedResource Include="Resources\PDF\azer_priest_of_the_flame.txt" />
+    <EmbeddedResource Include="Resources\PDF\animated_wood_statue.txt" />
+    <EmbeddedResource Include="Resources\PDF\deva_shaitan.txt" />
+    <EmbeddedResource Include="Resources\PDF\aboleth_overseer.txt" />
+    <EmbeddedResource Include="Resources\PDF\aarakocra_talon_of_syranita.txt" />
+    <EmbeddedResource Include="Resources\PDF\aarakocra_brave.txt" />
     <EmbeddedResource Include="Resources\MarkdownDescriptions\ExpectedResult\AncestralBarbarianExpected.txt" />
     <None Include="app.config" />
     <None Include="packages.config" />

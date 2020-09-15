@@ -1,0 +1,106 @@
+﻿Ultimate Tyrant
+Huge aberration, lawful evil
+Armor Class 20 (natural armor)
+Hit Points 313 (25d12 + 150)
+Speed 0 ft., fly 20 ft. (hover)
+STR DEX CON INT WIS CHA
+14 (+2) 14 (+2) 22 (+6) 21 (+5) 19 (+4) 21 (+5)
+Saving Throws Int +12, Wis +11, Cha +12
+Skills Perception +11
+Damage Resistances poison
+Condition Immunities prone
+Senses darkvision 120 ft., passive Perception 28
+Languages Deep Speech, Undercommon
+Challenge 22 (41,000 XP)
+Antimagic Cone. The ultimate tyrant's central eye creates an area of
+antimagic, as in the anti magic field spell, in a 150-foot cone. At the
+start of each of its turns, the ultimate tyrant decides which way the
+cone faces and whether the cone is active. The area works against
+the ultimate tyrant's own eye rays.
+Innate Spellcasting (Psionics). The ultimate tyrant's innate
+spellcasting ability is Intelligence (spell save DC 20). As long as
+the ultimate tyrant's antimagic cone is inactive, the ultimate tyrant
+can innately cast the following spells, without providing material
+components:
+At will: darkness, detect magic, detect thoughts, see invisibility
+3/day each: banishment, dispel magic, stoneskin
+2/day each: globe of invulnerability, wall of force, move earth
+1/day each: Abi-dalzim’s horrid wilting, power word stun
+Actions
+Bite. Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 20
+(4d8 + 2) piercing damage.
+Command Beholders. The ultimate tyrant targets up to 4 beholders
+within 60 feet that can see and hear the ultimate tyrant. The target
+uses its reaction to make one bite or eye ray attack.
+Eye Rays. The ultimate tyrant shoots four of the following magical
+eye rays at random (reroll duplicates), choosing one to four targets it
+can see within 120 feet of it:
+1. Charm Ray. The targeted creature must succeed on a DC 20
+Wisdom saving throw or be charmed by the ultimate tyrant for 1
+hour, or until the ultimate tyrant harms the creature.
+2. Paralyzing Ray. The targeted creature must succeed on a DC 20
+Constitution saving throw or be paralyzed for 1 minute. The target
+can repeat the saving throw at the end of each of its turns, ending the
+effect on itself on a success.
+3. Fear Ray. The targeted creature must succeed on a DC 20
+Wisdom saving throw or be frightened for 1 minute. The target can
+repeat the saving throw at the end of each of its turns, ending the
+effect on itself on a success.
+4. Slowing Ray. The targeted creature must succeed on a DC 20
+Dexterity saving throw. On a failed save, the target's speed is halved
+for 1 minute. In addition, the creature can't take reactions, and it
+can take either an action or a bonus action on its turn, not bofh. The
+creature can repeat the saving throw at the end of each of its turns,
+ending the effect on itself on a success.
+5. Enervation Ray. The targeted creature must succeed on a DC
+20 Constitution saving throw, taking 36 (8d8) necrotic damage on a
+failed save, or half as much damage on a successful one.
+6. Telekinetic Ray. If the target is a creature, it must succeed on a
+DC 20 Strength saving throw or the ultimate tyrant moves it up to 30
+feet in any direction. It is restrained by the ray's telekinetic grip until
+the start of the ultimate tyrant's next turn or until the ultimate tyrant
+is incapacitated. If the target is an object weighing 300 pounds or
+less that isn't being worn or carried, it is moved up to 30 feet in any
+direction. The ultimate tyrant can also exert fine control on objects
+with this ray, such as manipulating a simple tool or opening a door or
+a container.
+7. Sleep Ray. The targeted creature must succeed on a DC 20
+Wisdom saving throw or fall asleep and remain unconscious for 1
+minute. The target awakens if it takes damage or another creature
+takes an action to wake it. This ray has no effect on constructs and
+undead.
+8. Petrification Ray. The targeted creature must succeed on a DC
+20 Dexterity saving throw. On a failed save, the creature begins to
+turn to stone and is restrained. It must repeat the saving throw at
+the end of its next turn. On a success, the effect ends. On a failure,
+the creature is petrified until freed by the greater restoration spell or
+other magic.
+9. Disintegration Ray. If the target is a creature, it must succeed on
+a DC 20 Dexterity saving throw or take 45 (10d8) force damage. If
+this damage reduces the creature to 0 hit points, its body becomes a
+pile of fine gray dust. If the target is a Large or smaller nonmagical
+object or creation of magical force, it is di sintegrated without a
+saving throw. If the target is a Huge or larger object or creation of
+magical force, this ray disintegrates a 10-foot cube of it.
+10. Death Ray. The targeted creature must succeed on a DC 20
+Dexterity saving throw or take 55 (10d10) necrotic damage. The
+target dies if the ray reduces it to 0 hit points.
+Legendary Actions
+The ultimate tyrant can take 3 legendary actions, using the options
+listed below. It can take only one legendary action at a time and only
+at the end of another creature's turn. The ultimate tyrant regains
+spent legendary actions at the start of its turn.
+Antimagic Cone. The ultimate tyrant turns which way the cone faces
+and whether the cone is active.
+Command Beholders. The ultimate tyrant targets up to 2 beholders
+within 60 feet that can see and hear the ultimate tyrant. The target
+uses its reaction to make one bite or eye ray attack.
+Eye Ray. The ultimate tyrant uses one random eye ray.
+Cast a Spell (Costs 2 Actions). The ultimate tyrant casts a spell
+from its list of innate spells, using a spell slot as normal.
+Eye Frenzy (Costs 3 Actions). The ultimate tyrant uses three
+random eye rays.
+Reactions
+Redirect Antimagic Cone. When the ultimate tyrant sees a creature
+within 150 feet cast a spell, the ultimate tyrant activates its antimagic
+cone and points it at the creature.

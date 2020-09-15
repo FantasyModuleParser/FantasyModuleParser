@@ -128,13 +128,14 @@ namespace FantasyModuleParser.NPC.Models.Action
 			}
 			if (WeaponType == WeaponType.WA && PrimaryDamage.NumOfDice > 0)
 			{
-				stringBuilder.Append(ToHit + " to hit, range " + WeaponRangeShort + "/" + WeaponRangeLong + " ft., " + TargetType.GetDescription() + ". Hit: " + PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription() + ")");
+				stringBuilder.Append(ToHit + " to hit, range " + WeaponRangeShort + "/" + WeaponRangeLong + " ft., " + TargetType.GetDescription() + ". Hit: " + PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
 
 				AddPrimaryDamageToStringBuilder(stringBuilder);
-				stringBuilder.Append(") ");
+				stringBuilder.Append(".");
 
 				if (AddSecondDamage)
 				{
+					stringBuilder.Append(" ");
 					AddSecondaryDamageToStringBuilder(stringBuilder, SecondaryDamageTotal);
 					stringBuilder.Append(".");
 				}
@@ -142,7 +143,7 @@ namespace FantasyModuleParser.NPC.Models.Action
 			}
 
 			if (OtherTextCheck) stringBuilder.Append(" " + OtherText);
-			ActionDescription = stringBuilder.ToString();
+			ActionDescription = stringBuilder.ToString().TrimEnd();
 			return ActionDescription;
 		}
 
