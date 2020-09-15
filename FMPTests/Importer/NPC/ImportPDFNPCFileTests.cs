@@ -242,7 +242,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(14, actualNPCModel.SpellcastingSpellSaveDC);
             Assert.AreEqual(6, actualNPCModel.SpellcastingSpellHitBonus);
             Assert.AreEqual("Cleric", actualNPCModel.SpellcastingSpellClass);
-            Assert.IsNull(actualNPCModel.FlavorText);
+            Assert.AreEqual("", actualNPCModel.FlavorText);
 
             Assert.AreEqual("at will", actualNPCModel.CantripSpells);
             Assert.AreEqual("mending, resistance, sacred flame", actualNPCModel.CantripSpellList);

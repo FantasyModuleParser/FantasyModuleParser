@@ -113,6 +113,10 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line).Append("\n");
                                 importNPCState = ImportNPCState.ACTIONS;
                             }
+                            else if (line.StartsWith("Spellcasting. "))
+                            {
+                                importNPCState = ImportNPCState.SPELLCASTING;
+                            }
                             else if (line.EndsWith(":"))
                                 formattedTextContent.Append(line);
                             else if (line.StartsWith("At will") || line.StartsWith("5/day each:")
@@ -128,7 +132,12 @@ namespace FantasyModuleParser.Importer.NPC
                         break;
                     case ImportNPCState.INNATE_SPELLCASTING_SELECTION:
                         {
-                            if (checkIfLineMaybeTrait(line))
+                            if (line.StartsWith("Spellcasting. "))
+                            {
+                                formattedTextContent.Append("\n").Append(line);
+                                importNPCState = ImportNPCState.SPELLCASTING;
+                            }
+                            else if (checkIfLineMaybeTrait(line))
                             {
                                 formattedTextContent.Append("\n").Append(line);
                                 importNPCState = ImportNPCState.TRAITS;
