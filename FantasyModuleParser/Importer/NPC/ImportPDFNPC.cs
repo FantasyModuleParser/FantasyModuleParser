@@ -91,7 +91,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueTraitsFlag)
                 {
-                    if (line.Equals("Actions"))
+                    if (line.Equals("Actions") || line.Equals("ACTIONS"))
                     {
                         resetContinueFlags();
                         continueActionsFlag = true;
@@ -117,7 +117,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueSpellcastingFlag)
                 {
-                    if (line.Equals("Actions"))
+                    if (line.Equals("Actions") || line.Equals("ACTIONS"))
                     {
                         resetContinueFlags();
                         continueActionsFlag = true;
@@ -129,12 +129,12 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueActionsFlag)
                 {
                     resetContinueFlags();
-                    if (line.Equals("Reactions"))
+                    if (line.Equals("Reactions") || line.Equals("REACTIONS"))
                     {
                         continueReactionsFlag = true;
                         continue;
                     }
-                    if (line.Equals("Legendary Actions"))
+                    if (line.Equals("Legendary Actions") || line.Equals("LEGENDARY ACTIONS"))
                     {
                         continueLegendaryActionsFlag = true;
                         continue;
@@ -146,7 +146,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueReactionsFlag)
                 {
                     resetContinueFlags();
-                    if (line.Equals("Legendary Actions"))
+                    if (line.Equals("Legendary Actions") || line.Equals("LEGENDARY ACTIONS"))
                     {
                         continueLegendaryActionsFlag = true;
                         continue;
@@ -157,7 +157,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueLegendaryActionsFlag)
                 {
-                    if (line.Equals("Reactions"))
+                    if (line.Equals("Reactions") || line.Equals("REACTIONS"))
                     {
                         resetContinueFlags();
                         continueReactionsFlag = true;
@@ -198,7 +198,7 @@ namespace FantasyModuleParser.Importer.NPC
             string[] traitArrayBySpace = traits.Split(' ');
             for (int idx = 0; idx < 5; idx++)
             {
-                if (traitArrayBySpace[idx].Contains("."))
+                if (traitArrayBySpace[idx].Contains(".") && traitArrayBySpace[idx].Equals(traitArrayBySpace[idx].ToLower()))
                 {
                     string[] traitArray = traits.Split('.');
                     traitModel = new ActionModelBase();
