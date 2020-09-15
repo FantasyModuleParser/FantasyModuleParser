@@ -95,7 +95,6 @@ namespace FantasyModuleParser.Importer.NPC
                             }
                             else if (line.StartsWith("Spellcasting. "))
                             {
-                                formattedTextContent.Append(" ");
                                 importNPCState = ImportNPCState.SPELLCASTING;
                             }
                             else

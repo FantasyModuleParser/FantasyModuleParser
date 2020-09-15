@@ -137,7 +137,8 @@ namespace FantasyModuleParser.Importer.NPC
                 int hasTheFollowingIndex = spellCastingAttributes.IndexOf("has the following ");
                 int spellsPreparedIndex = spellCastingAttributes.IndexOf(" spells prepared:");
                 npcModel.SpellcastingSpellClass = spellCastingAttributes.Substring(hasTheFollowingIndex + 18, spellsPreparedIndex - hasTheFollowingIndex - 18);
-                npcModel.SpellcastingSpellClass = ("" + npcModel.SpellcastingSpellClass[0]).ToUpper() + npcModel.SpellcastingSpellClass.Substring(1);
+                if(npcModel.SpellcastingSpellClass.Length > 0)
+                    npcModel.SpellcastingSpellClass = ("" + npcModel.SpellcastingSpellClass[0]).ToUpper() + npcModel.SpellcastingSpellClass.Substring(1);
                 npcModel.FlavorText = "";
 
                 // Parse through all the spell slots, based on the phrase "\r"

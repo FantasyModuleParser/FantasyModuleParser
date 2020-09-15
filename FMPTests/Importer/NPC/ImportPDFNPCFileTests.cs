@@ -233,6 +233,35 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(1, actualNPCModel.Reactions.Count);
             Assert.AreEqual("Fiery Retribution (3/day)", actualNPCModel.Reactions[0].ActionName);
             Assert.AreEqual("When a creature within 5 feet of the azer hits the azer with an attack, and the azer can see the creature, the azer can force the creature to make a DC 14 Dexterity saving throw. The creature takes 13 (3d8) fire damage on a failed saving throw, and half as much damage on a successful one.", actualNPCModel.Reactions[0].ActionDescription);
+
+            // Validate Spellcasting
+            Assert.IsTrue(actualNPCModel.SpellcastingSection);
+
+            Assert.AreEqual("9th", actualNPCModel.SpellcastingCasterLevel);
+            Assert.AreEqual("Wisdom", actualNPCModel.SCSpellcastingAbility);
+            Assert.AreEqual(14, actualNPCModel.SpellcastingSpellSaveDC);
+            Assert.AreEqual(6, actualNPCModel.SpellcastingSpellHitBonus);
+            Assert.AreEqual("Cleric", actualNPCModel.SpellcastingSpellClass);
+            Assert.IsNull(actualNPCModel.FlavorText);
+
+            Assert.AreEqual("at will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("mending, resistance, sacred flame", actualNPCModel.CantripSpellList);
+
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("command, healing word", actualNPCModel.FirstLevelSpellList);
+
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("aid, hold person, lesser restoration", actualNPCModel.SecondLevelSpellList);
+
+            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("dispel magic, glyph of warding, meld into stone", actualNPCModel.ThirdLevelSpellList);
+
+            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual("banishment, freedom of movement, stone shape", actualNPCModel.FourthLevelSpellList);
+
+            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual("flame strike", actualNPCModel.FifthLevelSpellList);
+
         }
         [TestMethod()]
         public void Import_DevaShaitan_Test()

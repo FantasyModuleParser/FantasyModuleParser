@@ -611,25 +611,16 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.SCSpellcastingAbility = spellCastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
 
                 // Spell Save DC & Attack Bonus
-                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
-                if (spellAttacksIndex != -1)
+                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks)", StringComparison.Ordinal);
+                string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                foreach (string subpart in spellSaveAndAttackData.Split(' '))
                 {
-                    string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
-                    foreach (string subpart in spellSaveAndAttackData.Split(' '))
+                    if (subpart.Contains(","))
                     {
-                        if (subpart.Contains(","))
-                        {
-                            npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
-                        }
-                        if (subpart.Contains('+') || subpart.Contains('-'))
-                            npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
+                        npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
                     }
-                }
-                else
-                {
-                    string spellCastingSaveDCString = spellCastingAttributes.Substring(spellSaveDCIndex);
-                    spellCastingSaveDCString = spellCastingSaveDCString.Substring(0, spellCastingSaveDCString.IndexOf(").", StringComparison.Ordinal));
-                    npcModel.SpellcastingSpellSaveDC = int.Parse(spellCastingSaveDCString.Substring("(spell save DC ".Length), CultureInfo.CurrentCulture);
+                    if (subpart.Contains('+') || subpart.Contains('-'))
+                        npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
                 }
 
                 // Spell Class
@@ -1033,7 +1024,7 @@ namespace FantasyModuleParser.Importer.NPC
             NPCController npcController = new NPCController();
             List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(WeaponImmunity));
             damageTypes = damageTypes.ToLower(CultureInfo.CurrentCulture);
-            if(damageTypes.Contains("nonmagical weapons") || damageTypes.Contains("nonmagical attacks"))
+            if (damageTypes.Contains("nonmagical weapons") || damageTypes.Contains("nonmagical attacks"))
             {
                 if (damageTypes.Contains("that aren't silvered"))
                     selectableActionModels
