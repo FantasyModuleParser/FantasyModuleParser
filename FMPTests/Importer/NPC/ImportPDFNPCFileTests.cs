@@ -280,6 +280,63 @@ namespace FantasyModuleParser.Importer.NPC.Tests
         }
 
         [TestMethod()]
+        public void Import_DriderCavestalker_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.drider_cavestalker.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Validate Information
+            Assert.AreEqual("Drider Cavestalker", actualNPCModel.NPCName);
+            Assert.AreEqual("Large", actualNPCModel.Size);
+            Assert.AreEqual("monstrosity", actualNPCModel.NPCType);
+            Assert.AreEqual("chaotic evil", actualNPCModel.Alignment);
+
+            // Validate Spellcasting
+            Assert.AreEqual(true, actualNPCModel.SpellcastingSection);
+            Assert.AreEqual("9th", actualNPCModel.SpellcastingCasterLevel);
+            Assert.AreEqual("Wisdom", actualNPCModel.SCSpellcastingAbility);
+            Assert.AreEqual(13, actualNPCModel.SpellcastingSpellSaveDC);
+            Assert.AreEqual("Ranger", actualNPCModel.SpellcastingSpellClass);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("ensnaring strike, hunter's mark", actualNPCModel.FirstLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("cordon of arrows, spike growth", actualNPCModel.SecondLevelSpellList);
+            Assert.AreEqual("2 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("conjure barrage, lightning arrow", actualNPCModel.ThirdLevelSpellList);
+        }
+
+        [TestMethod()]
+        public void Import_DriderSorcerer_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.drider_sorcerer.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Validate Information
+            Assert.AreEqual("Drider Sorcerer", actualNPCModel.NPCName);
+            Assert.AreEqual("Large", actualNPCModel.Size);
+            Assert.AreEqual("monstrosity", actualNPCModel.NPCType);
+            Assert.AreEqual("chaotic evil", actualNPCModel.Alignment);
+
+            // Validate Spellcasting
+            Assert.AreEqual(true, actualNPCModel.SpellcastingSection);
+            Assert.AreEqual("9th", actualNPCModel.SpellcastingCasterLevel);
+            Assert.AreEqual("Charisma", actualNPCModel.SCSpellcastingAbility);
+            Assert.AreEqual(15, actualNPCModel.SpellcastingSpellSaveDC);
+            Assert.AreEqual(7, actualNPCModel.SpellcastingSpellHitBonus);
+            Assert.AreEqual("Sorcerer", actualNPCModel.SpellcastingSpellClass);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("charm person, detect magic", actualNPCModel.FirstLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("invisibility, web", actualNPCModel.SecondLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("dispel magic, lightning bolt, suggestion", actualNPCModel.ThirdLevelSpellList);
+            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual("confusion, greater invisibility", actualNPCModel.FourthLevelSpellList);
+            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual("cone of cold", actualNPCModel.FifthLevelSpellList);
+        }
+
+        [TestMethod()]
         public void Import_GreaterCouatl_Test()
         {
             string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.greater_couatl.txt");
