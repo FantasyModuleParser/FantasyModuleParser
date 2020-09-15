@@ -5,8 +5,17 @@ namespace FantasyModuleParser.Importer.NPC
 {
     enum ImportNPCState
     {
-        NO_STATE,CHALLENGE,INNATE_SPELLCASTING,INNATE_SPELLCASTING_SELECTION,SPELLCASTING,ACTIONS,
-        DAMAGE_RESIST,DAMAGE_IMMUNITY,SENSES,TRAITS,REACTIONS
+        NO_STATE,
+        CHALLENGE,
+        INNATE_SPELLCASTING,
+        INNATE_SPELLCASTING_SELECTION,
+        SPELLCASTING,
+        ACTIONS,
+        DAMAGE_RESIST,
+        DAMAGE_IMMUNITY,
+        SENSES,
+        TRAITS,
+        REACTIONS
     }
     public class FormatPDFService : IFormatContentService
     {
@@ -25,13 +34,18 @@ namespace FantasyModuleParser.Importer.NPC
                 switch (importNPCState)
                 {
                     case ImportNPCState.SENSES:
-                        if (line.StartsWith("Languages"))
                         {
-                            formattedTextContent.Append("\n").Append(line);
-                            importNPCState = ImportNPCState.NO_STATE;
+                            if (line.StartsWith("Languages"))
+                            {
+                                formattedTextContent.Append("\n").Append(line);
+                                importNPCState = ImportNPCState.NO_STATE;
+                            }
+                            else
+                            {
+                                formattedTextContent.Append(line).Append(" ");
+
+                            }
                         }
-                        else
-                            formattedTextContent.Append(line).Append(" ");
                         break;
                     case ImportNPCState.DAMAGE_RESIST:
                         {
@@ -51,7 +65,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line);
                             }
                             else
+                            {
                                 formattedTextContent.Append(line).Append(" ");
+                            }
                         }
                         break;
                     case ImportNPCState.DAMAGE_IMMUNITY:
@@ -72,18 +88,26 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line);
                             }
                             else
+                            {
                                 formattedTextContent.Append(line).Append(" ");
+                            } 
                         }
                         break;
                     case ImportNPCState.CHALLENGE:
                         { 
                             formattedTextContent.Append(line);
                             if (line.EndsWith("one target.") || line.EndsWith("one creature."))
+                            {
                                 continue;
+                            }
                             if (line.EndsWith("."))
+                            {
                                 formattedTextContent.Append(" \n");
+                            }
                             else if (line.EndsWith("prepared:"))
+                            {
                                 formattedTextContent.Append("\\r");
+                            }
                             else if (line.Equals("Actions"))
                             {
                                 formattedTextContent.Append("\n");
@@ -98,7 +122,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 importNPCState = ImportNPCState.SPELLCASTING;
                             }
                             else
+                            {
                                 formattedTextContent.Append(" ");
+                            } 
                         }
                         break;
                     case ImportNPCState.INNATE_SPELLCASTING:
@@ -118,7 +144,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 importNPCState = ImportNPCState.SPELLCASTING;
                             }
                             else if (line.EndsWith(":"))
+                            {
                                 formattedTextContent.Append(line);
+                            }
                             else if (line.StartsWith("At will") || line.StartsWith("5/day each:")
                                 || line.StartsWith("4/day each:") || line.StartsWith("3/day each:")
                                 || line.StartsWith("2/day each:") || line.StartsWith("1/day each:"))
@@ -127,7 +155,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 importNPCState = ImportNPCState.INNATE_SPELLCASTING_SELECTION;
                             }
                             else
+                            {
                                 formattedTextContent.Append(" ").Append(line).Append(" ");
+                            }
                         }
                         break;
                     case ImportNPCState.INNATE_SPELLCASTING_SELECTION:
@@ -152,7 +182,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 importNPCState = ImportNPCState.ACTIONS;
                             }
                             else
+                            {
                                 formattedTextContent.Append(" ").Append(line);
+                            }
                         }
                         break;
                     case ImportNPCState.SPELLCASTING:
@@ -168,7 +200,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 importNPCState = ImportNPCState.TRAITS;
                             }
                             else if (line.EndsWith("prepared:"))
+                            {
                                 formattedTextContent.Append(line);
+                            }
                             else if (line.StartsWith("Cantrips") || line.StartsWith("1st level")
                                 || line.StartsWith("2nd level") || line.StartsWith("3rd level")
                                 || line.StartsWith("4th level") || line.StartsWith("5th level")
@@ -178,7 +212,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\\r").Append(line);
                             }
                             else
+                            {
                                 formattedTextContent.Append(" ").Append(line).Append(" ");
+                            }
                         }
                         break;
                     case ImportNPCState.TRAITS:
@@ -193,19 +229,27 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line);
                             }
                             else
+                            {
                                 formattedTextContent.Append(" ").Append(line);
+                            }
                         }
                         break;
                     case ImportNPCState.ACTIONS:
                         {
                             formattedTextContent.Append(line);
                             if (line.EndsWith("one target.") || line.EndsWith("one creature."))
+                            {
                                 continue;
+                            }
                             // The ':' character is a result from the ultimate_tyrant parsing
                             if (line.EndsWith(".") || (line.EndsWith(":") && !line.EndsWith("Hit:")))
+                            {
                                 formattedTextContent.Append(" \n");
+                            }
                             else if (line.EndsWith("prepared:"))
+                            {
                                 formattedTextContent.Append("\\r");
+                            }
                             else if (line.Equals("Legendary Actions"))
                             {
                                 formattedTextContent.Append("\n");
@@ -219,7 +263,9 @@ namespace FantasyModuleParser.Importer.NPC
                                 importNPCState = ImportNPCState.REACTIONS;
                             }
                             else
+                            {
                                 formattedTextContent.Append(" ");
+                            }
                         }
                         break;
                     case ImportNPCState.REACTIONS:

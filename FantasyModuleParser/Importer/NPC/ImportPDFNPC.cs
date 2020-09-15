@@ -32,47 +32,63 @@ namespace FantasyModuleParser.Importer.NPC
                 if (lineNumber == 1)
                     // Line number one indicates the NPC name
                     parsedNPCModel.NPCName = line;
+
                 if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
+
                 if (line.StartsWith("Armor Class", StringComparison.Ordinal))
                     ParseArmorClass(parsedNPCModel, line);
+
                 if (line.StartsWith("Hit Points", StringComparison.Ordinal))
                     ParseHitPoints(parsedNPCModel, line);
+
                 if (line.StartsWith("Speed", StringComparison.Ordinal))
                     ParseSpeedAttributes(parsedNPCModel, line);
+
                 if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
                 {
                     continueBaseStatsFlag = true;
                     continue;
                 }
+
                 if (continueBaseStatsFlag)
                 {
                     ParseStatAttributes(parsedNPCModel, line);
                     resetContinueFlags();
                 }
+
                 if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
                     ParseSavingThrows(parsedNPCModel, line);
+
                 if (line.StartsWith("Skills", StringComparison.Ordinal))
                     ParseSkillAttributes(parsedNPCModel, line);
+
                 if (line.StartsWith("Damage Resistances", StringComparison.Ordinal))
                     ParseDamageResistances(parsedNPCModel, line);
+
                 if (line.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
                     ParseDamageVulnerabilities(parsedNPCModel, line);
+
                 if (line.StartsWith("Damage Immunities", StringComparison.Ordinal))
                     ParseDamageImmunities(parsedNPCModel, line);
+
                 if (line.StartsWith("Condition Immunities", StringComparison.Ordinal))
                     ParseConditionImmunities(parsedNPCModel, line);
+
                 if (line.StartsWith("Senses", StringComparison.Ordinal))
                     ParseVisionAttributes(parsedNPCModel, line);
+
                 if (line.StartsWith("Languages", StringComparison.Ordinal))
                     ParseLanguages(parsedNPCModel, line);
+
                 if (line.StartsWith("Challenge", StringComparison.Ordinal))
                 {
                     ParseChallengeRatingAndXP(parsedNPCModel, line);
                     continueTraitsFlag = true;
                     continue;
                 }
+
                 if (continueTraitsFlag)
                 {
                     if (line.Equals("Actions"))
@@ -109,6 +125,7 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                     ParseSpellCastingAttributes(parsedNPCModel, line);
                 }
+
                 if (continueActionsFlag)
                 {
                     resetContinueFlags();
@@ -125,6 +142,7 @@ namespace FantasyModuleParser.Importer.NPC
                     continueActionsFlag = true;
                     ParseStandardAction(parsedNPCModel, line);
                 }
+
                 if (continueReactionsFlag)
                 {
                     resetContinueFlags();
@@ -136,6 +154,7 @@ namespace FantasyModuleParser.Importer.NPC
                     continueReactionsFlag = true;
                     ParseReaction(parsedNPCModel, line);
                 }
+
                 if (continueLegendaryActionsFlag)
                 {
                     if (line.Equals("Reactions"))
