@@ -162,6 +162,11 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line).Append("\n");
                                 importNPCState = ImportNPCState.ACTIONS;
                             }
+                            else if (checkIfLineMaybeTrait(line))
+                            {
+                                formattedTextContent.Append("\n").Append(line);
+                                importNPCState = ImportNPCState.TRAITS;
+                            }
                             else if (line.EndsWith("prepared:"))
                                 formattedTextContent.Append(line);
                             else if (line.StartsWith("Cantrips") || line.StartsWith("1st level")
