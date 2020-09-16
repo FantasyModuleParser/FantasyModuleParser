@@ -263,6 +263,34 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("flame strike", actualNPCModel.FifthLevelSpellList);
 
         }
+
+        [TestMethod()]
+        public void Import_BrotherOx_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.brother_ox.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            // Validate Traits
+            Assert.AreEqual(8, actualNPCModel.Traits.Count);
+            Assert.AreEqual("Bovine Passivism", actualNPCModel.Traits[0].ActionName);
+            Assert.AreEqual("Charge", actualNPCModel.Traits[1].ActionName);
+            Assert.AreEqual("Legendary Resistance (2/Day)", actualNPCModel.Traits[2].ActionName);
+            Assert.AreEqual("Magic Resistance", actualNPCModel.Traits[3].ActionName);
+            Assert.AreEqual("Magic Weapons", actualNPCModel.Traits[4].ActionName);
+            Assert.AreEqual("Rejuvenation", actualNPCModel.Traits[5].ActionName);
+            Assert.AreEqual("Shapechanger", actualNPCModel.Traits[6].ActionName);
+            Assert.AreEqual("Speak with Bovines", actualNPCModel.Traits[7].ActionName);
+
+            // Validate Actions
+            Assert.AreEqual(4, actualNPCModel.NPCActions.Count);
+
+            // Validate Reactions
+            Assert.AreEqual(1, actualNPCModel.Reactions.Count);
+
+            // Validate Legendary Actions
+            Assert.AreEqual(4, actualNPCModel.LegendaryActions.Count);
+        }
+
         [TestMethod()]
         public void Import_DevaShaitan_Test()
         {
