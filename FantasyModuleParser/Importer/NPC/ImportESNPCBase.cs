@@ -91,6 +91,18 @@ namespace FantasyModuleParser.Importer.NPC
                     if (innerData.StartsWith("1/day", StringComparison.Ordinal))
                         npcModel.OnePerDay = innerData.Substring(6 + eachIndexModifier).TrimEnd();
                 }
+
+                // Per Anton & Trivishta unit tests, the gender is parsed here
+                if (innateSpellcastingAttributes.Contains(" His "))
+                    npcModel.NPCGender = "male";
+                if (innateSpellcastingAttributes.Contains(" Her "))
+                    npcModel.NPCGender = "female";
+
+                // Per Anton & Trivishta unit tests, the Name boolean value is determined here
+                // true == "Spellcasting. Trivishta ...."
+                // false == "Spellcasting. The trivishta ..."
+
+                npcModel.NPCNamed = !innateSpellcastingAttributes.Split(' ')[2].Equals("The");
             }
         }
 
