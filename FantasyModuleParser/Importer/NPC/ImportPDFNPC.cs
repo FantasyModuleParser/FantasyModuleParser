@@ -91,7 +91,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueTraitsFlag)
                 {
-                    if (line.Equals("Actions") || line.Equals("ACTIONS"))
+                    if (line.ToLower().Equals("actions"))
                     {
                         resetContinueFlags();
                         continueActionsFlag = true;
@@ -117,7 +117,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueSpellcastingFlag)
                 {
-                    if (line.Equals("Actions") || line.Equals("ACTIONS"))
+                    if (line.ToLower().Equals("actions"))
                     {
                         resetContinueFlags();
                         continueActionsFlag = true;
@@ -129,12 +129,12 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueActionsFlag)
                 {
                     resetContinueFlags();
-                    if (line.Equals("Reactions") || line.Equals("REACTIONS"))
+                    if (line.ToLower().Equals("reactions"))
                     {
                         continueReactionsFlag = true;
                         continue;
                     }
-                    if (line.Equals("Legendary Actions") || line.Equals("LEGENDARY ACTIONS"))
+                    if (line.ToLower().Equals("legendary actions"))
                     {
                         continueLegendaryActionsFlag = true;
                         continue;
@@ -146,7 +146,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueReactionsFlag)
                 {
                     resetContinueFlags();
-                    if (line.Equals("Legendary Actions") || line.Equals("LEGENDARY ACTIONS"))
+                    if (line.ToLower().Equals("legendary actions"))
                     {
                         continueLegendaryActionsFlag = true;
                         continue;
@@ -157,7 +157,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueLegendaryActionsFlag)
                 {
-                    if (line.Equals("Reactions") || line.Equals("REACTIONS"))
+                    if (line.ToLower().Equals("reactions"))
                     {
                         resetContinueFlags();
                         continueReactionsFlag = true;
@@ -186,37 +186,37 @@ namespace FantasyModuleParser.Importer.NPC
             npcModel.AttributeCha = int.Parse(splitAttributes[10], CultureInfo.CurrentCulture);
         }
 
-        public void ParseTraits(NPCModel npcModel, string traits)
-        {
-            ActionModelBase traitModel = null;
-            if (npcModel.Traits == null)
-                npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
+        //public void ParseTraits(NPCModel npcModel, string traits)
+        //{
+        //    ActionModelBase traitModel = null;
+        //    if (npcModel.Traits == null)
+        //        npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
 
-            if (string.IsNullOrEmpty(traits))
-                return;
+        //    if (string.IsNullOrEmpty(traits))
+        //        return;
 
-            string[] traitArrayBySpace = traits.Split(' ');
-            for (int idx = 0; idx < 5; idx++)
-            {
-                if (traitArrayBySpace[idx].Contains(".") && traitArrayBySpace[idx].Equals(traitArrayBySpace[idx].ToLower()))
-                {
-                    string[] traitArray = traits.Split('.');
-                    traitModel = new ActionModelBase();
-                    traitModel.ActionName = traitArray[0];
-                    StringBuilder stringBuilder = new StringBuilder();
-                    for (int idy = 1; idy < traitArray.Length; idy++)
-                    {
-                        stringBuilder.Append(traitArray[idy]).Append(".");
-                    }
-                    stringBuilder.Remove(stringBuilder.Length - 1, 1);
-                    traitModel.ActionDescription = stringBuilder.ToString().Trim();
-                    npcModel.Traits.Add(traitModel);
-                    return;
-                }
-            }
-            // If no period was detected in the first 5 words,
-            traitModel = npcModel.Traits.Last();
-            traitModel.ActionDescription = traitModel.ActionDescription + "\n\n" + traits;
-        }
+        //    string[] traitArrayBySpace = traits.Split(' ');
+        //    for (int idx = 0; idx < 5; idx++)
+        //    {
+        //        if (traitArrayBySpace[idx].Contains("."))
+        //        {
+        //            string[] traitArray = traits.Split('.');
+        //            traitModel = new ActionModelBase();
+        //            traitModel.ActionName = traitArray[0];
+        //            StringBuilder stringBuilder = new StringBuilder();
+        //            for (int idy = 1; idy < traitArray.Length; idy++)
+        //            {
+        //                stringBuilder.Append(traitArray[idy]).Append(".");
+        //            }
+        //            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+        //            traitModel.ActionDescription = stringBuilder.ToString().Trim();
+        //            npcModel.Traits.Add(traitModel);
+        //            return;
+        //        }
+        //    }
+        //    // If no period was detected in the first 5 words,
+        //    traitModel = npcModel.Traits.Last();
+        //    traitModel.ActionDescription = traitModel.ActionDescription + "\n\n" + traits;
+        //}
     }
 }

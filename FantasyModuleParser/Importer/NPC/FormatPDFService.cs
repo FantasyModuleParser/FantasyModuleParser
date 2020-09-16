@@ -108,7 +108,7 @@ namespace FantasyModuleParser.Importer.NPC
                             {
                                 formattedTextContent.Append("\\r");
                             }
-                            else if (line.Equals("Actions"))
+                            else if (line.ToLower().Equals("actions"))
                             {
                                 formattedTextContent.Append("\n");
                                 importNPCState = ImportNPCState.ACTIONS;
@@ -134,7 +134,7 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line);
                                 importNPCState = ImportNPCState.SPELLCASTING;
                             }
-                            if (line.Equals("Actions"))
+                            if (line.ToLower().Equals("actions"))
                             {
                                 formattedTextContent.Append("\n").Append(line).Append("\n");
                                 importNPCState = ImportNPCState.ACTIONS;
@@ -176,7 +176,7 @@ namespace FantasyModuleParser.Importer.NPC
                                 || line.StartsWith("4/day") || line.StartsWith("3/day")
                                 || line.StartsWith("2/day") || line.StartsWith("1/day"))
                                 formattedTextContent.Append("\\r").Append(line);
-                            else if (line.Equals("Actions"))
+                            else if (line.ToLower().Equals("actions"))
                             {
                                 formattedTextContent.Append("\n").Append(line).Append("\n");
                                 importNPCState = ImportNPCState.ACTIONS;
@@ -189,7 +189,7 @@ namespace FantasyModuleParser.Importer.NPC
                         break;
                     case ImportNPCState.SPELLCASTING:
                         {
-                            if (line.Equals("Actions"))
+                            if (line.ToLower().Equals("actions"))
                             {
                                 formattedTextContent.Append("\n").Append(line).Append("\n");
                                 importNPCState = ImportNPCState.ACTIONS;
@@ -219,7 +219,7 @@ namespace FantasyModuleParser.Importer.NPC
                         break;
                     case ImportNPCState.TRAITS:
                         {
-                            if (line.Equals("Actions"))
+                            if (line.ToLower().Equals("actions"))
                             {
                                 formattedTextContent.Append("\n").Append(line).Append("\n");
                                 importNPCState = ImportNPCState.ACTIONS;
@@ -250,14 +250,14 @@ namespace FantasyModuleParser.Importer.NPC
                             {
                                 formattedTextContent.Append("\\r");
                             }
-                            else if (line.Equals("Legendary Actions"))
+                            else if (line.ToLower().Equals("legendary actions"))
                             {
                                 formattedTextContent.Append("\n");
 
                                 // In order to use the Engineer Suite Parser, the first Legendary Actions line is expected to begin with Options: 
                                 formattedTextContent.Append("Options. ");
                             }
-                            else if (line.Equals("Reactions"))
+                            else if (line.ToLower().Equals("reactions"))
                             {
                                 formattedTextContent.Append("\n");
                                 importNPCState = ImportNPCState.REACTIONS;
@@ -272,6 +272,13 @@ namespace FantasyModuleParser.Importer.NPC
                         {
                             if (checkIfLineMaybeTrait(line))
                                 formattedTextContent.Append("\n").Append(line).Append(" ");
+                            else if (line.ToLower().Equals("legendary actions"))
+                            {
+                                formattedTextContent.Append("\n").Append(line).Append("\n");
+
+                                // In order to use the Engineer Suite Parser, the first Legendary Actions line is expected to begin with Options: 
+                                formattedTextContent.Append("Options. ");
+                            }
                             else
                                 formattedTextContent.Append(line).Append(" ");
                         }

@@ -279,7 +279,7 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Magic Weapons", actualNPCModel.Traits[4].ActionName);
             Assert.AreEqual("Rejuvenation", actualNPCModel.Traits[5].ActionName);
             Assert.AreEqual("Shapechanger", actualNPCModel.Traits[6].ActionName);
-            Assert.AreEqual("Speak with Bovines", actualNPCModel.Traits[6].ActionName);
+            Assert.AreEqual("Speak with Bovines", actualNPCModel.Traits[7].ActionName);
 
             // Validate Actions
             Assert.AreEqual(4, actualNPCModel.NPCActions.Count);
