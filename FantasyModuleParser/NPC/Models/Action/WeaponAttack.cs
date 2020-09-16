@@ -51,9 +51,33 @@ namespace FantasyModuleParser.NPC.Models.Action
 			StringBuilder stringBuilder = new StringBuilder();
 			int PrimaryDamageTotal = PrimaryDamage.NumOfDice * ((int)PrimaryDamage.DieType + 1) / 2 + PrimaryDamage.Bonus;
 			int SecondaryDamageTotal = 0;
+			int VersatileDamageDieType = 0;
+			int VersatileDamageTotal = PrimaryDamage.NumOfDice * (VersatileDamageDieType + 1) / 2 + PrimaryDamage.Bonus;
 			if (SecondaryDamage != null)
 				SecondaryDamageTotal = SecondaryDamage.NumOfDice * ((int)SecondaryDamage.DieType + 1) / 2 + SecondaryDamage.Bonus;
 			
+			if (IsVersatile)
+            {
+				switch((int)PrimaryDamage.DieType)
+                {
+					case 4:
+						VersatileDamageDieType = 6;
+						break;
+					case 6:
+						VersatileDamageDieType = 8;
+						break;
+					case 8:
+						VersatileDamageDieType = 10;
+						break;
+					case 10:
+						VersatileDamageDieType = 12;
+						break;
+					case 12:
+						VersatileDamageDieType = 20;
+						break;
+				}
+			}
+
 			if (WeaponType == WeaponType.WA)
 			{
 				stringBuilder.Append("Melee Weapon Attack: ");
@@ -158,7 +182,16 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(" " + PrimaryDamage.Bonus);
 			}
 			stringBuilder.Append(") ");
-			stringBuilder.Append(PrimaryDamage.DamageType.GetDescription().ToLower() + " damage");
+			stringBuilder.Append(PrimaryDamage.DamageType.GetDescription().ToLower());
+			if (IsSilver)
+				stringBuilder.Append(", silver");
+			if (IsAdamantine)
+				stringBuilder.Append(", adamantine");
+			if (IsColdForgedIron)
+				stringBuilder.Append(", cold-forged iron");
+			if (IsMagic)
+				stringBuilder.Append(", magic");
+			stringBuilder.Append(" damage");
 		}
 
 		private void ToHitStringBuilder(StringBuilder stringBuilder)
@@ -189,6 +222,10 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(") ");
 			}
 			stringBuilder.Append(SecondaryDamage.DamageType.GetDescription().ToLower() + " damage");
+		}
+		private void AddVersatileDamageToStringBuilder(StringBuilder stringBuilder, int VersatileDamageTotal)
+		{
+			stringBuilder.Append(" or " + VersatileDamageTotal);
 		}
 	}
 }
