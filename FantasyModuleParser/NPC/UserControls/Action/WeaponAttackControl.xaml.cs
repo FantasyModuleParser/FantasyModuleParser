@@ -54,10 +54,37 @@ namespace FantasyModuleParser.NPC.UserControls.Action
         }
         private void AddBonusDmg_Checked(object sender, RoutedEventArgs e)
         {
-            SecondaryDamageNumOfDice.IsReadOnly = false;
-            SecondaryDamageDieType.IsEnabled = true;
-            SecondaryDamageBonus.IsReadOnly = false;
-            SecondaryDamageType.IsEnabled = true;
+            SecondaryDamageNumOfDice.Visibility = Visibility.Visible;
+            SecondaryDamageDieType.Visibility = Visibility.Visible;
+            SecondaryDamagePlus.Visibility = Visibility.Visible;
+            SecondaryDamageBonus.Visibility = Visibility.Visible;
+            SecondaryDamageType.Visibility = Visibility.Visible;
+        }
+        private void AddBonusDmg_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SecondaryDamageNumOfDice.Visibility = Visibility.Hidden;
+            SecondaryDamageDieType.Visibility = Visibility.Hidden;
+            SecondaryDamagePlus.Visibility = Visibility.Hidden;
+            SecondaryDamageBonus.Visibility = Visibility.Hidden;
+            SecondaryDamageType.Visibility = Visibility.Hidden;
+        }
+        private void AddVersatileDmg_Checked(object sender, RoutedEventArgs e)
+        {
+            VersatileDamageCheckbox.IsChecked = true;
+            VersatileDamageNumOfDice.Visibility = Visibility.Visible;
+            VersatileDamageDieType.Visibility = Visibility.Visible;
+            VersatileDamagePlus.Visibility = Visibility.Visible;
+            VersatileDamageBonus.Visibility = Visibility.Visible;
+            VersatileDamageType.Visibility = Visibility.Visible;
+        }
+        private void AddVersatileDmg_Unchecked(object sender, RoutedEventArgs e)
+        {
+            VersatileDamageCheckbox.IsChecked = false;
+            VersatileDamageNumOfDice.Visibility = Visibility.Hidden;
+            VersatileDamageDieType.Visibility = Visibility.Hidden;
+            VersatileDamagePlus.Visibility = Visibility.Hidden;
+            VersatileDamageBonus.Visibility = Visibility.Hidden;
+            VersatileDamageType.Visibility = Visibility.Hidden;
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {

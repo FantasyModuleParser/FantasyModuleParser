@@ -7,7 +7,7 @@
              xmlns:enums="clr-namespace:FantasyModuleParser.NPC.Models.Action.Enums"
              xmlns:ActionModel="clr-namespace:FantasyModuleParser.NPC.Models.Action"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="430">
+             d:DesignHeight="430" d:DesignWidth="430">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -20,9 +20,11 @@
             <RowDefinition Height="5" />
             <RowDefinition Height="20" />
             <RowDefinition Height="5" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="5" />
             <RowDefinition Height="40" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="5" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
@@ -59,10 +61,10 @@
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="24" />
+                    <RowDefinition Height="18" />
+                    <RowDefinition Height="18" />
+                    <RowDefinition Height="18" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -93,8 +95,8 @@
                         <ColumnDefinition Width="80" />
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="1">
-                        <CheckBox x:Name="WA_IsVersatile" IsChecked="{Binding Path=IsVersatile}" Content="Versatile" Padding="5,0,0,0" VerticalAlignment="Center"/>
+                    <Grid Grid.Column="0">
+                        <CheckBox x:Name="WA_IsVersatile" Checked="AddVersatileDmg_Checked" Unchecked="AddVersatileDmg_Unchecked" IsChecked="{Binding Path=IsVersatile}" Content="Versatile" Margin="5,0,0,0" Padding="5,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -105,7 +107,7 @@
                 <ColumnDefinition Width="120" />
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
-            <Label Content="Weapon Range" Padding="0" HorizontalAlignment="Center" Grid.Column="1" />
+            <Label Content="Weapon Range" Padding="0" Margin="0,3,0,0" HorizontalAlignment="Center" Grid.Column="1" />
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -176,14 +178,30 @@
                 <ColumnDefinition Width="60" />
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <CheckBox Content="Add Bonus Dmg" Padding="5,0,0,0" Checked="AddBonusDmg_Checked" IsChecked="{Binding Path=AddSecondDamage}" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="0" />
-            <TextBox Name="SecondaryDamageNumOfDice" Text="{Binding Path=SecondaryDamage.NumOfDice}" Padding="0" Margin="5,0,5,0" Grid.Column="1" IsReadOnly="True" PreviewTextInput="PositiveNumberValidationTextBox" />
-            <ComboBox Name="SecondaryDamageDieType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DieType}}}" SelectedValue="{Binding Path=SecondaryDamage.DieType}" SelectedValuePath="Value" DisplayMemberPath="Description" Padding="0" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2" IsEnabled="False" />
-            <Label Content="+" Padding="0" HorizontalAlignment="Center" Grid.Column="3" Margin="7,0,6,0" />
-            <TextBox Name="SecondaryDamageBonus" Text="{Binding Path=SecondaryDamage.Bonus}" Padding="0" Margin="5,0,5,0" Grid.Column="4" IsReadOnly="True" PreviewTextInput="NumberValidationTextBox"/>
-            <ComboBox Name="SecondaryDamageType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=SecondaryDamage.DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Padding="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="5,1,5,0" Grid.Column="5" IsEnabled="False" />
+            <CheckBox Content="Add Bonus Dmg" Padding="5,0,0,0" Checked="AddBonusDmg_Checked" Unchecked="AddBonusDmg_Unchecked"  IsChecked="{Binding Path=AddSecondDamage}" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="0" />
+            <TextBox Name="SecondaryDamageNumOfDice" Text="{Binding Path=SecondaryDamage.NumOfDice}" Padding="0" Margin="5,0,5,0" Grid.Column="1" Visibility="Hidden"  PreviewTextInput="PositiveNumberValidationTextBox" />
+            <ComboBox Name="SecondaryDamageDieType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DieType}}}" SelectedValue="{Binding Path=SecondaryDamage.DieType}" SelectedValuePath="Value" DisplayMemberPath="Description" Padding="0" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2" Visibility="Hidden"  />
+            <Label Name="SecondaryDamagePlus" Content="+" Padding="0" HorizontalAlignment="Center" Grid.Column="3" Margin="7,0,6,0" Visibility="Hidden" />
+            <TextBox Name="SecondaryDamageBonus" Text="{Binding Path=SecondaryDamage.Bonus}" Padding="0" Margin="5,0,5,0" Grid.Column="4" PreviewTextInput="NumberValidationTextBox" Visibility="Hidden" />
+            <ComboBox Name="SecondaryDamageType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=SecondaryDamage.DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Padding="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="5,1,5,0" Grid.Column="5" Visibility="Hidden" />
         </Grid>
         <Grid Grid.Row="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Name="VersatileDamageCheckbox" Content="Add Vers. Dmg" Padding="5,0,0,0" Checked="AddVersatileDmg_Checked" Unchecked="AddVersatileDmg_Unchecked"  IsChecked="{Binding Path=AddVersatileDamage}" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="0" />
+            <TextBox Name="VersatileDamageNumOfDice" Text="{Binding Path=VersatileDamage.NumOfDice}" Padding="0" Margin="5,0,5,0" Grid.Column="1" Visibility="Hidden"  PreviewTextInput="PositiveNumberValidationTextBox" />
+            <ComboBox Name="VersatileDamageDieType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DieType}}}" SelectedValue="{Binding Path=VersatileDamage.DieType}" SelectedValuePath="Value" DisplayMemberPath="Description" Padding="0" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2" Visibility="Hidden"  />
+            <Label Name="VersatileDamagePlus" Content="+" Padding="0" HorizontalAlignment="Center" Grid.Column="3" Margin="7,0,6,0" Visibility="Hidden" />
+            <TextBox Name="VersatileDamageBonus" Text="{Binding Path=VersatileDamage.Bonus}" Padding="0" Margin="5,0,5,0" Grid.Column="4" PreviewTextInput="NumberValidationTextBox" Visibility="Hidden" />
+            <ComboBox Name="VersatileDamageType" ItemsSource="{Binding Source={my:Enumeration {x:Type enums:DamageType}}}" SelectedValue="{Binding Path=VersatileDamage.DamageType}" SelectedValuePath="Value" DisplayMemberPath="Description" Padding="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="5,1,5,0" Grid.Column="5" Visibility="Hidden" />
+        </Grid>
+        <Grid Grid.Row="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="110" />
                 <ColumnDefinition Width="310" />
@@ -191,14 +209,14 @@
             <CheckBox Content="Other Text" Padding="5,0,0,0" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Checked="OtherText_Checked" IsChecked="{Binding Path=OtherTextCheck}"  Grid.Column="0" />
             <TextBox Name="OtherText_Text" Text="{Binding Path=OtherText}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Margin="5,0,0,0" Grid.Column="1" IsReadOnly="True"/>
         </Grid>
-        <Grid Grid.Row="12">
+        <Grid Grid.Row="14">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="400" />
             </Grid.ColumnDefinitions>
             <TextBox Name="WA_Description" Text="{Binding Path=ActionDescription}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="0" Grid.Row="30" Grid.Column="1" Grid.ColumnSpan="37" IsReadOnly="True"/>
         </Grid>
-        <Grid Grid.Row="14">
+        <Grid Grid.Row="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="110" />
                 <ColumnDefinition Width="100" />
