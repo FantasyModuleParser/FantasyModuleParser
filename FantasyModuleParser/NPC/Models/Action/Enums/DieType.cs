@@ -4,6 +4,8 @@ namespace FantasyModuleParser.NPC.Models.Action.Enums
 {
 	public enum DieType
 	{
+		[Description("d0")]
+		D0 = 0,
 		[Description("d4")]
 		D4 = 4,
 		[Description("d6")]
