@@ -91,6 +91,18 @@ namespace FantasyModuleParser.Importer.NPC
                     if (innerData.StartsWith("1/day", StringComparison.Ordinal))
                         npcModel.OnePerDay = innerData.Substring(6 + eachIndexModifier).TrimEnd();
                 }
+
+                // Per Anton & Trivishta unit tests, the gender is parsed here
+                if (innateSpellcastingAttributes.Contains(" His "))
+                    npcModel.NPCGender = "male";
+                if (innateSpellcastingAttributes.Contains(" Her "))
+                    npcModel.NPCGender = "female";
+
+                // Per Anton & Trivishta unit tests, the Name boolean value is determined here
+                // true == "Spellcasting. Trivishta ...."
+                // false == "Spellcasting. The trivishta ..."
+
+                npcModel.NPCNamed = !innateSpellcastingAttributes.Split(' ')[2].Equals("The");
             }
         }
 
@@ -134,15 +146,32 @@ namespace FantasyModuleParser.Importer.NPC
                 }
 
                 // Spell Class
-                int hasTheFollowingIndex = spellCastingAttributes.IndexOf("has the following ");
-                int spellsPreparedIndex = spellCastingAttributes.IndexOf(" spells prepared:");
-                npcModel.SpellcastingSpellClass = spellCastingAttributes.Substring(hasTheFollowingIndex + 18, spellsPreparedIndex - hasTheFollowingIndex - 18);
-                if(npcModel.SpellcastingSpellClass.Length > 0)
+                int hasTheFollowingIndex = spellCastingAttributes.IndexOf("the following ");
+                int spellsPreparedIndex = spellCastingAttributes.IndexOf(" spells ");
+                if((spellsPreparedIndex - hasTheFollowingIndex - 14) > 0)
+                    npcModel.SpellcastingSpellClass = spellCastingAttributes.Substring(hasTheFollowingIndex + 14, spellsPreparedIndex - hasTheFollowingIndex - 14);
+                if(npcModel.SpellcastingSpellClass != null && npcModel.SpellcastingSpellClass.Length > 0)
                     npcModel.SpellcastingSpellClass = ("" + npcModel.SpellcastingSpellClass[0]).ToUpper() + npcModel.SpellcastingSpellClass.Substring(1);
-                npcModel.FlavorText = "";
 
+                if (spellCastingAttributes.IndexOf(" spells prepared:") == -1)
+                    npcModel.FlavorText = spellCastingAttributes.Substring(spellsPreparedIndex + 8, spellCastingAttributes.IndexOf(":\\r") - (spellsPreparedIndex + 8));
+                else
+                    npcModel.FlavorText = "";
                 // Parse through all the spell slots, based on the phrase "\r"
                 ParseSpellLevelAndList(spellCastingAttributes, npcModel);
+
+                // Per Anton & Trivishta unit tests, the gender is parsed here
+                if (spellCastingAttributes.Contains(" His "))
+                    npcModel.NPCGender = "male";
+                if (spellCastingAttributes.Contains(" Her "))
+                    npcModel.NPCGender = "female";
+
+                // Per Anton & Trivishta unit tests, the Name boolean value is determined here
+                // true == "Spellcasting. Trivishta ...."
+                // false == "Spellcasting. The trivishta ..."
+
+                npcModel.NPCNamed = !spellCastingAttributes.Split(' ')[1].Equals("The");
+
             }
             //throw new NotImplementedException();
         }

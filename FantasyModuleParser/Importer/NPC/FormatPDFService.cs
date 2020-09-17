@@ -199,10 +199,6 @@ namespace FantasyModuleParser.Importer.NPC
                                 formattedTextContent.Append("\n").Append(line);
                                 importNPCState = ImportNPCState.TRAITS;
                             }
-                            else if (line.EndsWith("prepared:"))
-                            {
-                                formattedTextContent.Append(line);
-                            }
                             else if (line.StartsWith("Cantrips") || line.StartsWith("1st level")
                                 || line.StartsWith("2nd level") || line.StartsWith("3rd level")
                                 || line.StartsWith("4th level") || line.StartsWith("5th level")
@@ -213,7 +209,7 @@ namespace FantasyModuleParser.Importer.NPC
                             }
                             else
                             {
-                                formattedTextContent.Append(" ").Append(line).Append(" ");
+                                formattedTextContent.Append(" ").Append(line);
                             }
                         }
                         break;

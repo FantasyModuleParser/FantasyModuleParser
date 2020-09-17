@@ -506,6 +506,39 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("(demon, shapechanger)", actualNPCModel.Tag);
             Assert.AreEqual("chaotic evil", actualNPCModel.Alignment);
         }
+        [TestMethod()]
+        public void Import_TivishtaTrikinta_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.tivishta_trikinta.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.IsTrue(actualNPCModel.NPCNamed);
+
+            // Validate Senses
+
+            Assert.AreEqual(60, actualNPCModel.Darkvision);
+
+            // Validate Spellcasting
+
+            Assert.IsTrue(actualNPCModel.SpellcastingSection);
+
+            Assert.AreEqual("(spells marked * are from Deep Magic 3: Void Magic)", actualNPCModel.FlavorText);
+
+        }
+        [TestMethod()]
+        public void Import_AntonValcrist_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.anton_valcrist.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.IsTrue(actualNPCModel.NPCNamed);
+
+            // Validate Spellcasting
+            Assert.IsTrue(actualNPCModel.SpellcastingSection);
+
+            Assert.AreEqual("(spells marked * are from Deep Magic 3: Void Magic)", actualNPCModel.FlavorText);
+        }
+
 
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
         {
