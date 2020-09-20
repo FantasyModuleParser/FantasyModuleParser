@@ -165,7 +165,7 @@
             </ComboBox.ToolTip>
         </ComboBox>
         <Label Content="Type:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="12" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="4" />
-        <ComboBox Name="strType" Padding="5,0,0,0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21" TabIndex="3">
+        <ComboBox Name="strType" IsEditable="True" Padding="5,0,0,0" Text="{Binding Path=NPCType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" Grid.RowSpan="2" Grid.Column="11" Grid.ColumnSpan="21" TabIndex="3">
             <ComboBoxItem>aberration</ComboBoxItem>
             <ComboBoxItem>beast</ComboBoxItem>
             <ComboBoxItem>celestial</ComboBoxItem>
@@ -178,7 +178,7 @@
             <ComboBoxItem>humanoid</ComboBoxItem>
             <ComboBoxItem>monstrosity</ComboBoxItem>
             <ComboBoxItem>ooze</ComboBoxItem>
-            <ComboBoxItem>plants</ComboBoxItem>
+            <ComboBoxItem>plant</ComboBoxItem>
             <ComboBoxItem>undead</ComboBoxItem>
             <ComboBoxItem>swarm of tiny abberations</ComboBoxItem>
             <ComboBoxItem>swarm of tiny beasts</ComboBoxItem>

@@ -70,7 +70,11 @@ namespace FantasyModuleParser.Main.Services
             if (npcModel == null)
                 throw new InvalidDataException("NPC Model data object is null");
             if(npcModel.NPCName == null || npcModel.NPCName.Length == 0)
-                throw new InvalidDataException("NPC Model name is empty!");
+                throw new InvalidDataException("NPC name is empty!");
+            if (npcModel.ChallengeRating == null || npcModel.ChallengeRating.Length == 0)
+                throw new InvalidDataException("No Challenge Rating has been set for NPC.");
+            if (npcModel.NPCType == null || npcModel.NPCType.Length == 0)
+                throw new InvalidDataException("NPC must have a specified type.");
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
