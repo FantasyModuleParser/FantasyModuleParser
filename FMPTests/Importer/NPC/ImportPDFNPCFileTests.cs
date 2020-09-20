@@ -539,6 +539,19 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("(spells marked * are from Deep Magic 3: Void Magic)", actualNPCModel.FlavorText);
         }
 
+        [TestMethod()]
+        public void Import_Agnibarra_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.PDF.agnibarra.txt");
+            NPCModel actualNPCModel = _iImportNPC.ImportTextToNPCModel(fileContent);
+
+            Assert.AreEqual("AGNIBARRA", actualNPCModel.NPCName);
+            Assert.AreEqual("Small", actualNPCModel.Size);
+            Assert.AreEqual("monstrosity", actualNPCModel.NPCType);
+            Assert.AreEqual("chaotic neutral", actualNPCModel.Alignment);
+            Assert.AreEqual("12", actualNPCModel.AC);
+        }
+
 
         private void AssertLanguageModelList(ObservableCollection<LanguageModel> expected, ObservableCollection<LanguageModel> actual)
         {

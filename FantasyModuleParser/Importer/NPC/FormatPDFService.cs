@@ -80,7 +80,7 @@ namespace FantasyModuleParser.Importer.NPC
                             else if (line.StartsWith("Senses"))
                             {
                                 importNPCState = ImportNPCState.NO_STATE;
-                                formattedTextContent.Append("\n").Append(line);
+                                formattedTextContent.Append("\n").Append(line).Append("\n");
                             }
                             else if (line.StartsWith("Languages"))
                             {
