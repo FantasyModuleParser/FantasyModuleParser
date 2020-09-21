@@ -429,8 +429,10 @@
     <Compile Include="Main\Models\ChangelogModel.cs" />
     <Compile Include="Main\Models\FMPConfigurationModel.cs" />
     <Compile Include="Main\Models\PatronModel.cs" />
+    <Compile Include="Main\Models\SettingsModel.cs" />
     <Compile Include="Main\Services\FMPConfigurationService.cs" />
     <Compile Include="Main\Services\ModuleService.cs" />
+    <Compile Include="Main\Services\SettingsService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
       <DependentUpon>CategoriesUC.xaml</DependentUpon>
     </Compile>
