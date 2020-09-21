@@ -24,5 +24,20 @@ namespace FantasyModuleParser.Main.UserControls.Settings
         {
             InitializeComponent();
         }
+
+        private void MainDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ProjectDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void NPCDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
