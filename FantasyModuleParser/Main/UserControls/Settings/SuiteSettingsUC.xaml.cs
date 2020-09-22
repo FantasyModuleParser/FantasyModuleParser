@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using FantasyModuleParser.Main.ViewModels;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace FantasyModuleParser.Main.UserControls.Settings
@@ -29,12 +30,14 @@ namespace FantasyModuleParser.Main.UserControls.Settings
 
         private void ProjectDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultProjectFolder(); // <-- Needs some input here
         }
 
         private void NPCDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultNPCFolder(); // <-- Needs some input here
         }
     }
 }
