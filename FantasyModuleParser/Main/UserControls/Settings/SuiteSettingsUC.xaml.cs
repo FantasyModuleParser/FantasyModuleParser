@@ -21,7 +21,7 @@ namespace FantasyModuleParser.Main.UserControls.Settings
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string sSelectedPath = folderBrowserDialog.SelectedPath;
-                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+                SettingsViewModel viewModel = DataContext as SettingsViewModel;
                 viewModel.SettingsModel.MainFolderLocation = sSelectedPath;
                 MainDefaultFolder.Text = sSelectedPath;
             }
