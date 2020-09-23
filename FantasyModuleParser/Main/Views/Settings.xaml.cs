@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using FantasyModuleParser.Main.ViewModels;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FantasyModuleParser.Main
@@ -11,7 +12,7 @@ namespace FantasyModuleParser.Main
         public Settings()
         {
             InitializeComponent();
-
+            DataContext = new SettingsViewModel();
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
         }

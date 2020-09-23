@@ -25,27 +25,27 @@
                     <NPCSettingsUserControl:NPCSettingsUC HorizontalAlignment="Center" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Spells">
+            <TabItem Header="Spells" Visibility="Collapsed">
                 <Grid Background="#FFE5E5E5">
                     <SpellSettingsUserControl:SpellSettingsUC HorizontalAlignment="Center" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Tables">
+            <TabItem Header="Tables" Visibility="Collapsed">
                 <Grid Background="#FFE5E5E5">
                     <TablesSettingsUserControl:TablesSettingsUC HorizontalAlignment="Center" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Equipment">
+            <TabItem Header="Equipment" Visibility="Collapsed">
                 <Grid Background="#FFE5E5E5">
                     <EquipmentSettingsUserControl:EquipmentSettingsUC HorizontalAlignment="Center" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Artifacts">
+            <TabItem Header="Artifacts" Visibility="Collapsed">
                 <Grid Background="#FFE5E5E5">
                     <ArtifactSettingsUserControl:ArtifactsSettingsUC HorizontalAlignment="Center" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Parcels">
+            <TabItem Header="Parcels" Visibility="Collapsed">
                 <Grid Background="#FFE5E5E5">
                     <ParcelSettingsUserControl:ParcelSettingsUC HorizontalAlignment="Center" />
                 </Grid>

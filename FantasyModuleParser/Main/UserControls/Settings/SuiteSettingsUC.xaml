@@ -2,8 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="660">
     <Grid>
@@ -54,7 +53,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Main:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="MainDefaultFolder" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"/>
+            <TextBox Name="MainDefaultFolder" Text="{Binding Path=SettingsModel.MainFolderLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"/>
             <CheckBox Content="Reload last project on startup" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
                 Grid.Column="5" />
         </Grid>

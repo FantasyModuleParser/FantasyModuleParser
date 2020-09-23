@@ -1,5 +1,7 @@
 ﻿using FantasyModuleParser.Main.ViewModels;
-using System.Windows.Forms;
+using System;
+using System.IO;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace FantasyModuleParser.Main.UserControls.Settings
@@ -7,25 +9,20 @@ namespace FantasyModuleParser.Main.UserControls.Settings
     /// <summary>
     /// Interaction logic for SuiteSettingsUC.xaml
     /// </summary>
-    public partial class SuiteSettingsUC : System.Windows.Controls.UserControl
+    public partial class SuiteSettingsUC : UserControl
     {
         public SuiteSettingsUC()
         {
             InitializeComponent();
+            MainDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
+            ProjectDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
+            NPCDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/NPC");
         }
 
         private void MainDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Select the default Main Folder";
-
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                string sSelectedPath = folderBrowserDialog.SelectedPath;
-                SettingsViewModel viewModel = DataContext as SettingsViewModel;
-                viewModel.SettingsModel.MainFolderLocation = sSelectedPath;
-                MainDefaultFolder.Text = sSelectedPath;
-            }
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultMainFolder();
         }
 
         private void ProjectDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -198,6 +198,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -464,6 +465,7 @@
     <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
     <Compile Include="Main\ViewModels\ChangelogViewModel.cs" />
     <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
+    <Compile Include="Main\ViewModels\SettingsViewModel.cs" />
     <Compile Include="Main\ViewModels\SupportersViewModel.cs" />
     <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
