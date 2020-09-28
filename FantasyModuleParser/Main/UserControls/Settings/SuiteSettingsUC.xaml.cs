@@ -16,11 +16,9 @@ namespace FantasyModuleParser.Main.UserControls.Settings
             DataContext = new SettingsViewModel();
 
             InitializeComponent();
-            //MainDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
-            ProjectDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
-            NPCDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/NPC");
-
-            
+            MainDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
+            ProjectDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP\\Projects");
+            NPCDefaultFolder.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP\\NPC");  
         }
 
         private void MainDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
