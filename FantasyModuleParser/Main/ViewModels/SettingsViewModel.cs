@@ -25,7 +25,11 @@ namespace FantasyModuleParser.Main.ViewModels
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string sSelectedPath = folderBrowserDialog.SelectedPath;
-                SettingsModel.MainFolderLocation = sSelectedPath;
+                this.SettingsModel.MainFolderLocation = @sSelectedPath;
+
+                // Need to call this on the Model to tell the UserControl using this as a DataContext
+                // to say "Hey, UserControl!  The 'SettingsModel' object has changed, and you should refresh yourself!
+                RaisePropertyChanged("SettingsModel"); 
             }
         }
         public void ChangeDefaultProjectFolder()
