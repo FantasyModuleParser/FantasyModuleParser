@@ -68,7 +68,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Project:" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox Name="ProjectDefaultFolder" MouseDoubleClick="ProjectDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="5" Grid.Column="2" />
+            <TextBox Name="ProjectDefaultFolder" Text="{Binding Path=SettingsModel.ProjectFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ProjectDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="5" Grid.Column="2" />
             <CheckBox Content="Select default GUI on startup" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="7">
@@ -82,7 +82,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="NPC:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox Name="NPCDefaultFolder" MouseDoubleClick="NPCDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
+            <TextBox Name="NPCDefaultFolder" Text="{Binding Path=SettingsModel.NPCFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="NPCDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
             <ComboBox IsEnabled="False" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="200" Grid.Column="5" >
                 <ComboBoxItem IsSelected="True">NPC Options</ComboBoxItem>
                 <ComboBoxItem>Spell Options</ComboBoxItem>
