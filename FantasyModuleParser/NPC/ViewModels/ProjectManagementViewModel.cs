@@ -1,12 +1,7 @@
 ﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyModuleParser.NPC.ViewModels
 {
@@ -14,6 +9,18 @@ namespace FantasyModuleParser.NPC.ViewModels
     {
         private ModuleService moduleService;
         private SettingsService settingsService;
+        private string _fullModulePath;
+        public string FullModulePath { 
+            get
+            {
+                return this._fullModulePath;
+            }
+            set
+            {
+                this._fullModulePath = value;
+                RaisePropertyChanged(nameof(FullModulePath));
+            }
+        }
         public SettingsModel SettingsModel { get; set; }
         public ModuleModel ModuleModel { get; set; }
         public ProjectManagementViewModel()
@@ -21,7 +28,12 @@ namespace FantasyModuleParser.NPC.ViewModels
             moduleService = new ModuleService();
             settingsService = new SettingsService();
             ModuleModel = moduleService.GetModuleModel();
-            SettingsModel = settingsService.GetSettingsModel();
+            SettingsModel = settingsService.Load();
+
+            UpdateFullModulePath();
+
+            RaisePropertyChanged(nameof(ModuleModel));
+            RaisePropertyChanged(nameof(SettingsModel));
         }
 
         public void UpdateModule()
@@ -33,7 +45,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             moduleService.UpdateModuleModel(new ModuleModel());
             ModuleModel = moduleService.GetModuleModel();
-            RaisePropertyChanged("NewModuleModelChange");
+            RaisePropertyChanged(nameof(ModuleModel));
         }
 
         public void SaveModule(string folderPath, ModuleModel moduleModel)
@@ -54,7 +66,15 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             moduleService.Load(filePath);
             ModuleModel = moduleService.GetModuleModel();
-            RaisePropertyChanged("ModuleModel");
+            RaisePropertyChanged(nameof(ModuleModel));
         }
+
+        public void UpdateFullModulePath()
+        {
+            FullModulePath = SettingsModel.FGModuleFolderLocation;
+            if(!string.IsNullOrEmpty(ModuleModel.ModFilename))
+                FullModulePath = SettingsModel.FGModuleFolderLocation + "\\" + ModuleModel.ModFilename + ".mod";
+        }
+
     }
 }

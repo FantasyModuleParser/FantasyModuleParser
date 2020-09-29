@@ -1,8 +1,5 @@
-﻿using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.Main.Services;
-using FantasyModuleParser.NPC.ViewModels;
+﻿using FantasyModuleParser.NPC.ViewModels;
 using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -121,6 +118,11 @@ namespace FantasyModuleParser.Main
             {
                 handler(this, e);
             }
+        }
+
+        private void ModuleModFilename_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            (DataContext as ProjectManagementViewModel).UpdateFullModulePath();
         }
     }
 }

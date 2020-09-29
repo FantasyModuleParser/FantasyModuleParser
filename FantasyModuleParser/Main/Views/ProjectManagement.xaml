@@ -77,7 +77,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Module Filename:" Margin="35,3,0,0" Padding="0"/>
-                    <TextBox x:Name="ModuleModFilename" Text="{Binding Path=ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
+                    <TextBox x:Name="ModuleModFilename" Text="{Binding Path=ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,3,0,0" Padding="0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content=".mod" FontSize="8" Padding="0" Margin="314,0,0,0" />
@@ -96,7 +96,7 @@
                     <CheckBox Content="Add Module Name to Path" Padding="0" FontSize="8" Margin="120,20,0,0" VerticalContentAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=SettingsModel.FGModuleDefaultFolder, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" IsEnabled="False" Padding="0" Width="300" Margin="30,5,0,0"/>
+                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" IsEnabled="False" Padding="0" Width="300" Margin="30,5,0,0"/>
                 </StackPanel>
                 <!--
                 Module filepaths are not required unless we save off images to 

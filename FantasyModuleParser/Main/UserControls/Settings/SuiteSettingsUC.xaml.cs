@@ -13,7 +13,6 @@ namespace FantasyModuleParser.Main.UserControls.Settings
     {
         public SuiteSettingsUC()
         {
-            DataContext = new SettingsViewModel();
             InitializeComponent(); 
         }
 
