@@ -5,14 +5,21 @@ using System.IO;
 
 namespace FantasyModuleParser.Main.Services
 {
-    class SettingsService
+    public class SettingsService
     {
         private string settingsConfigurationFilePath;
         private const string settingsConfigurationFileName = "fmp.config";
+        private static SettingsModel settingsModel;
 
         public SettingsService()
         {
             settingsConfigurationFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
+            if (settingsModel == null)
+                settingsModel = new SettingsModel();
+        }
+        public SettingsModel GetSettingsModel()
+        {
+            return settingsModel;
         }
         public void Save(SettingsModel configurationModel)
         {
@@ -44,7 +51,13 @@ namespace FantasyModuleParser.Main.Services
                 SettingsModel settingsModel = new SettingsModel();
                 settingsModel.MainFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
                 settingsModel.ProjectFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Projects");
-                settingsModel.NPCFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "NPC");
+                settingsModel.NPCFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "NPCs");
+                settingsModel.SpellFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Spells");
+                settingsModel.EquipmentFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Equipment");
+                settingsModel.ArtifactFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Artifacts");
+                settingsModel.TableFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Tables");
+                settingsModel.ParcelFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Parcles");
+                settingsModel.FGModuleFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "modules");
                 return settingsModel;
             }
         }

@@ -30,20 +30,6 @@ namespace FantasyModuleParser.Main
             Close();
         }
 
-        private void OpenModuleFilePath(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Select where the Folder and Module file will be stored";
-
-            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string sSelectedPath = folderBrowserDialog.SelectedPath;
-                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
-                viewModel.ModuleModel.ModulePath = sSelectedPath;
-                ModulePathTB.Text = sSelectedPath;
-            }
-        }
-
         private void OpenThumbnailFilePath(object sender, MouseButtonEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();

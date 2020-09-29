@@ -17,9 +17,7 @@ namespace FantasyModuleParser.Main.Services
         public ModuleService()
         {
             if(moduleModel == null)
-            {
                 moduleModel = new ModuleModel();
-            }
         }
 
         public ModuleModel GetModuleModel()

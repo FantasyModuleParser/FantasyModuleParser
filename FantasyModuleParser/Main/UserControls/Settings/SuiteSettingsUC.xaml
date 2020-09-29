@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="660">
+             d:DesignHeight="360" d:DesignWidth="660">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -27,10 +27,13 @@
             <RowDefinition Height="23" />
             <RowDefinition Height="5" />
             <RowDefinition Height="23" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="23" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="23" />
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="5,0,5,5" Width="335" Height="270" Grid.Row="1" Grid.RowSpan="19"/>
-        <Border BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="345,0,5,5" Width="300" Height="270" Grid.Row="1" Grid.RowSpan="19"/>
+        <Border BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="5,0,5,5" Width="335" Height="300" Grid.Row="1" Grid.RowSpan="22"/>
+        <Border BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" Margin="345,0,5,5" Width="300" Height="300" Grid.Row="1" Grid.RowSpan="22"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10" />
@@ -54,7 +57,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Main:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
             <TextBox Name="MainDefaultFolder" Text="{Binding Path=SettingsModel.MainFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"/>
-            <CheckBox Content="Reload last project on startup" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
+            <CheckBox Content="Reload last project on startup" Visibility="Hidden" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
                 Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="5">
@@ -69,7 +72,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Project:" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
             <TextBox Name="ProjectDefaultFolder" Text="{Binding Path=SettingsModel.ProjectFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ProjectDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="5" Grid.Column="2" />
-            <CheckBox Content="Select default GUI on startup" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" Grid.Column="5" />
+            <CheckBox Content="Select default GUI on startup" Visibility="Hidden" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
@@ -83,7 +86,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="NPC:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
             <TextBox Name="NPCDefaultFolder" Text="{Binding Path=SettingsModel.NPCFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="NPCDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
-            <ComboBox IsEnabled="False" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="200" Grid.Column="5" >
+            <ComboBox Visibility="Hidden" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="200" Grid.Column="5" >
                 <ComboBoxItem IsSelected="True">NPC Options</ComboBoxItem>
                 <ComboBoxItem>Spell Options</ComboBoxItem>
                 <ComboBoxItem>Story Options</ComboBoxItem>
@@ -101,7 +104,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Spell:" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="SpellDefaultFolder" IsEnabled="False" Padding="0" Grid.Column="2" />
+            <TextBox Name="SpellDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.SpellFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="SpellDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
         </Grid>
         <Grid Grid.Row="11">
             <Grid.ColumnDefinitions>
@@ -115,9 +118,9 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Equipment:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="EquipmentDefaultFolder" IsEnabled="False" Padding="0" Grid.Column="2"  />
-            <CheckBox Content="Tooltip Timeout (seconds)" IsChecked="True" VerticalAlignment="Center" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5" />
-            <ComboBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0" Padding="0" Grid.Column="6">
+            <TextBox Name="EquipmentDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.EquipmentFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="EquipmentDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"  />
+            <CheckBox Content="Tooltip Timeout (seconds)" IsChecked="True" Visibility="Hidden" VerticalAlignment="Center" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5" />
+            <ComboBox HorizontalContentAlignment="Center" Visibility="Hidden" VerticalContentAlignment="Center" Margin="0" Padding="0" Grid.Column="6">
                 <ComboBoxItem>1</ComboBoxItem>
                 <ComboBoxItem>2</ComboBoxItem>
                 <ComboBoxItem IsSelected="True">3</ComboBoxItem>
@@ -141,8 +144,8 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Artifact:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="ArtifactDefaultFolder" IsEnabled="False" Padding="0" Grid.Column="2"  />
-            <CheckBox Content="Use Windows Toast notifications" IsChecked="True" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5"/>
+            <TextBox Name="ArtifactDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.ArtifactFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ArtifactDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"  />
+            <CheckBox Content="Use Windows Toast notifications" IsChecked="True" Visibility="Hidden" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5"/>
         </Grid>
         <Grid Grid.Row="15">
             <Grid.ColumnDefinitions>
@@ -155,8 +158,8 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Tables:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="TablesDefaultFolder" IsEnabled="False" Padding="0" Grid.Column="2" />
-            <CheckBox Content="Use helper GUI for links" IsChecked="True" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5" />
+            <TextBox Name="TablesDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.TableFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="TablesDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
+            <CheckBox Content="Use helper GUI for links" IsChecked="True" Visibility="Hidden" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="17">
             <Grid.ColumnDefinitions>
@@ -169,7 +172,20 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Parcels:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="ParcelsDefaultFolder" IsEnabled="False" Padding="0" Grid.Row="17" Grid.Column="2" />
+            <TextBox Name="ParcelsDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.ParcelFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ParcelsDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="17" Grid.Column="2" />
+        </Grid>
+        <Grid Grid.Row="19">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="230" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="295" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Module:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
+            <TextBox Name="FGModuleDefaultFolder" Text="{Binding Path=SettingsModel.FGModuleFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="FGModuleDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
         </Grid>
     </Grid>
 </UserControl>

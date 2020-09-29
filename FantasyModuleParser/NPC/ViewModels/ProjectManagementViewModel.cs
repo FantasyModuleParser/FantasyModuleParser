@@ -13,11 +13,15 @@ namespace FantasyModuleParser.NPC.ViewModels
     public class ProjectManagementViewModel : ViewModelBase
     {
         private ModuleService moduleService;
+        private SettingsService settingsService;
+        public SettingsModel SettingsModel { get; set; }
         public ModuleModel ModuleModel { get; set; }
         public ProjectManagementViewModel()
         {
             moduleService = new ModuleService();
+            settingsService = new SettingsService();
             ModuleModel = moduleService.GetModuleModel();
+            SettingsModel = settingsService.GetSettingsModel();
         }
 
         public void UpdateModule()
