@@ -542,9 +542,11 @@
     <Compile Include="Spells\Enums\RangeType.cs" />
     <Compile Include="Spells\Enums\SpellLevel.cs" />
     <Compile Include="Spells\Enums\SpellSchool.cs" />
+    <Compile Include="Spells\Models\SpellModel.cs" />
     <Compile Include="Spells\SpellOptionControl.xaml.cs">
       <DependentUpon>SpellOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
