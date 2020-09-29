@@ -71,9 +71,10 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public void UpdateFullModulePath()
         {
-            FullModulePath = SettingsModel.FGModuleFolderLocation;
             if(!string.IsNullOrEmpty(ModuleModel.ModFilename))
                 FullModulePath = SettingsModel.FGModuleFolderLocation + "\\" + ModuleModel.ModFilename + ".mod";
+            else
+                FullModulePath = SettingsModel.FGModuleFolderLocation;
         }
 
     }
