@@ -4,7 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.Spells"
+             xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:spellEnum="clr-namespace:FantasyModuleParser.Spells.Enums"
+             xmlns:model="clr-namespace:FantasyModuleParser.Spells.Models"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
         mc:Ignorable="d" d:DesignHeight="700" d:DesignWidth="620">
+    <UserControl.DataContext>
+        <viewModel:SpellViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -27,7 +34,7 @@
                 <ColumnDefinition Width="322" />
             </Grid.ColumnDefinitions>
             <Label Content="Spell Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Text="{Binding SpellModel.SpellName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -38,10 +45,10 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Spell Level:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <ComboBox VerticalAlignment="Center" Grid.Column="1"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SpellLevel}}}" SelectedValue="{Binding SpellModel.SpellLevel}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Spell School:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox VerticalAlignment="Center" Grid.Column="3"/>
-            <CheckBox Content="Ritual" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" />
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SpellSchool}}}" SelectedValue="{Binding SpellModel.SpellSchool}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3"/>
+            <CheckBox IsChecked="{Binding SpellModel.IsRitual}" Content="Ritual" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" />
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -49,15 +56,15 @@
                 <ColumnDefinition Width="150" />
                 <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Casting Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
             <TextBox VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="3"/>
+            <TextBox Text="{Binding SpellModel.CastingTime}" VerticalAlignment="Center" Grid.Column="3"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4"/>
-            <ComboBox VerticalAlignment="Center" Grid.Column="5"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="5"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -78,9 +85,9 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Range:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Text="{Binding SpellModel.Range}" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox VerticalAlignment="Center" Grid.Column="3" />
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
             <Label Content="Distance:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Grid.Column="4" />
             <TextBox VerticalAlignment="Center" IsEnabled="False" Grid.Column="5" />
         </Grid>
@@ -92,21 +99,22 @@
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
             <Label Content="Components:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <CheckBox Content="V" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="1"/>
-            <CheckBox Content="S" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="2"/>
-            <CheckBox Content="M" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="3"/>
+            <CheckBox IsChecked="{Binding SpellModel.IsVerbalComponent}" Content="V" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="1"/>
+            <CheckBox IsChecked="{Binding SpellModel.IsSomaticComponent}" Content="S" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="2"/>
+            <CheckBox IsChecked="{Binding SpellModel.IsMaterialComponent}" Content="M" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="3"/>
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="13" />
+                <ColumnDefinition Width="138"/>
                 <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="193" />
             </Grid.ColumnDefinitions>
-            <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="1"/>
-            <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox VerticalAlignment="Center" Grid.Column="3"/>
+            <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0" Margin="0,8,0,7"/>
+            <TextBox VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,7,0,6"/>
+            <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="3" Margin="0,8,0,7"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="4" Margin="0,4,0,5"/>
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>
@@ -116,9 +124,9 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Text="{Binding SpellModel.DurationTime}" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Unit:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox VerticalAlignment="Center" Grid.Column="3"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationUnit}}}" SelectedValue="{Binding Path=SpellModel.DurationUnit}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3"/>
         </Grid>
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
@@ -128,7 +136,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Cast by:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" Padding="0,0,5,0" Grid.Column="0"/>
             <Button Content="Select" VerticalAlignment="Top" Margin="0,5,0,0" Grid.Column="1"/>
-            <TextBox VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="50" VerticalScrollBarVisibility="Visible" Grid.Column="2"/>
+            <TextBox Text="{Binding SpellModel.CastBy}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="50" VerticalScrollBarVisibility="Visible" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="10">
             <Grid.ColumnDefinitions>
@@ -193,8 +201,8 @@
             </Grid.ColumnDefinitions>
             <Button Content="Import Text" VerticalAlignment="Center" Grid.Column="1" />
             <Label Content="Category" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" />
-            <ComboBox VerticalAlignment="Center" Grid.Column="3" />
-            <Button Content="Save Spell" VerticalAlignment="Center" Margin="5" Grid.Column="4" />
+            <ComboBox ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name" VerticalAlignment="Center" Grid.Column="3" />
+            <Button Content="Save Spell" Click="SaveSpellButton_Click" VerticalAlignment="Center" Margin="5" Grid.Column="4" />
             <Button Content="Add to Project" VerticalAlignment="Center" Margin="5" Grid.Column="5" />
         </Grid>
     </Grid>

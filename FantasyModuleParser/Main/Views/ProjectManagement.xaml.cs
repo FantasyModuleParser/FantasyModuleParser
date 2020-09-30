@@ -30,7 +30,7 @@ namespace FantasyModuleParser.Main
         private void OpenThumbnailFilePath(object sender, MouseButtonEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.InitialDirectory = (DataContext as ProjectManagementViewModel).SettingsModel.MainFolderLocation;
             openFileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == true)
@@ -80,7 +80,7 @@ namespace FantasyModuleParser.Main
         {
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-            openFileDlg.InitialDirectory = "c:\\";
+            openFileDlg.InitialDirectory = (DataContext as ProjectManagementViewModel).SettingsModel.MainFolderLocation;
             openFileDlg.Filter = "Project files (*.fmp)|*.fmp|All files (*.*)|*.*";
             openFileDlg.RestoreDirectory = true;
 
