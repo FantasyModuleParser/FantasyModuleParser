@@ -13,11 +13,11 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string FullModulePath { 
             get
             {
-                return this._fullModulePath;
+                return _fullModulePath;
             }
             set
             {
-                this._fullModulePath = value;
+                _fullModulePath = value;
                 RaisePropertyChanged(nameof(FullModulePath));
             }
         }
