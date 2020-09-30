@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using FantasyModuleParser.Main.ViewModels;
+using System;
+using System.IO;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.Main.UserControls.Settings
 {
@@ -22,7 +13,61 @@ namespace FantasyModuleParser.Main.UserControls.Settings
     {
         public SuiteSettingsUC()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+        }
+
+        private void MainDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultMainFolder();
+        }
+
+        private void ProjectDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultProjectFolder(); // <-- Needs some input here
+        }
+
+        private void NPCDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultNPCFolder(); // <-- Needs some input here
+        }
+
+        private void SpellDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultSpellFolder(); // <-- Needs some input here
+        }
+
+        private void EquipmentDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultEquipmentFolder(); // <-- Needs some input here
+        }
+
+        private void ArtifactDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultArtifactsFolder(); // <-- Needs some input here
+        }
+
+        private void TablesDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultTablesFolder(); // <-- Needs some input here
+        }
+
+        private void ParcelsDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultParcelsFolder(); // <-- Needs some input here
+        }
+
+        private void FGModuleDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultFGModuleFolder(); // <-- Needs some input here
         }
     }
 }

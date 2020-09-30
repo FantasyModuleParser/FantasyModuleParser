@@ -21,7 +21,7 @@ namespace FantasyModuleParser
 
         void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            string errorMessage = string.Format("An unhandled exception occurred: {0}\r================\r{1}", e.Exception.Message, e.Exception.StackTrace);
+            string errorMessage = string.Format("An unhandled exception occurred: {0}\r=========================\r\r Restarting Fantasy Module Parser may be required.\n\nIf still unresolved, please let developers know in the Discord server.", e.Exception.Message);
             
             // This is purely for quick debugging errors that a user can copy & Paste.
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -45,7 +45,15 @@ namespace FantasyModuleParser.Importer.Utils
         private int getNumOfDice(string damagePropertyData)
         {
             string numOfDiceData = damagePropertyData.Substring(0, damagePropertyData.IndexOf('d'));
-            return int.Parse(numOfDiceData, CultureInfo.CurrentCulture);
+            try
+            {
+                return int.Parse(numOfDiceData, CultureInfo.CurrentCulture);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Failed to parse the following snippet :: " + damagePropertyData, e);
+            }
+            
         }
 
         private DieType getDieType(string damagePropertyData)

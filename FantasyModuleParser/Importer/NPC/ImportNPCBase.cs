@@ -16,8 +16,47 @@ namespace FantasyModuleParser.Importer.NPC
 {
     public abstract class ImportNPCBase : IImportNPC
     {
-        private ImportCommonUtils importCommonUtils = new ImportCommonUtils();
+        public ImportCommonUtils importCommonUtils = new ImportCommonUtils();
         public abstract NPCModel ImportTextToNPCModel(string importTextContent);
+
+        /// <summary>
+        /// Declares all the 'continue' flags used in Importers
+        /// </summary>
+        public bool continueStrengthFlag = false;
+        public bool continueDexterityFlag = false;
+        public bool continueConstitutionFlag = false;
+        public bool continueIntelligenceFlag = false;
+        public bool continueWisdomFlag = false;
+        public bool continueCharismaFlag = false;
+        public bool continueBaseStatsFlag = false;
+        public bool continueTraitsFlag = false;
+        public bool continueInnateSpellcastingFlag = false;
+        public bool continueSpellcastingFlag = false;
+        public bool continueActionsFlag = false;
+        public bool continueReactionsFlag = false;
+        public bool continueLegendaryActionsFlag = false;
+        public bool continueLairActionsFlag = false;
+
+        /// <summary>
+        /// Resets all 'continue' flags to false;  Used in ImportTextToNPCModel for run-on lines (e.g. Traits, Actions, etc...)
+        /// </summary>
+        public void resetContinueFlags()
+        {
+            continueStrengthFlag = false;
+            continueDexterityFlag = false;
+            continueConstitutionFlag = false;
+            continueIntelligenceFlag = false;
+            continueWisdomFlag = false;
+            continueCharismaFlag = false;
+            continueBaseStatsFlag = false;
+            continueTraitsFlag = false;
+            continueInnateSpellcastingFlag = false;
+            continueSpellcastingFlag = false;
+            continueActionsFlag = false;
+            continueReactionsFlag = false;
+            continueLegendaryActionsFlag = false;
+            continueLairActionsFlag = false;
+        }
 
         /// <summary>
         /// 'Tiny beast (devil), lawful neutral'
@@ -32,20 +71,24 @@ namespace FantasyModuleParser.Importer.NPC
             else
                 npcModel.NPCType = npcCharacteristics[1].ToLower();
 
-            if (npcCharacteristics[2].Contains("("))
+            if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
                 // includes removing the comma character at the end
                 npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
-
-            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
-                if (npcCharacteristics.Length > 4)
-                    npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
-                else
-                    npcModel.Alignment = npcCharacteristics[3];
-            else
-                if (npcCharacteristics.Length > 3)
+            else if (npcCharacteristics.Length > 3)
                 npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
             else
                 npcModel.Alignment = npcCharacteristics[2];
+
+            if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
+                npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
+            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
+                if (npcCharacteristics.Length > 4)
+                    if (npcModel.Tag.Contains(","))
+                        npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
+                    else
+                        npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+                else
+                    npcModel.Alignment = npcCharacteristics[3];
         }
 
         /// <summary>
@@ -66,6 +109,51 @@ namespace FantasyModuleParser.Importer.NPC
         {
             if (hitPoints.StartsWith("Hit Points"))
                 npcModel.HP = hitPoints.Substring(11);
+        }
+
+        /// <summary>
+        /// STR 
+        /// 10 (+0)
+        /// DEX
+        /// 11 (+0)
+        /// CON
+        /// 12 (+1)
+        /// INT 
+        /// 13 (+1)
+        /// WIS
+        /// 14 (+2)
+        /// CHA
+        /// 15 (+2)'
+        /// </summary>
+        public void ParseStatAttributeStrength(NPCModel npcModel, string statAttributeStrength)
+        {
+            string[] splitAttributes = statAttributeStrength.Split('(');
+            npcModel.AttributeStr = int.Parse(splitAttributes[0]);
+        }
+        public void ParseStatAttributeDexterity(NPCModel npcModel, string statAttributeDexterity)
+        {
+            string[] splitAttributes = statAttributeDexterity.Split('(');
+            npcModel.AttributeDex = int.Parse(splitAttributes[0]);
+        }
+        public void ParseStatAttributeConstitution(NPCModel npcModel, string statAttributeConstitution)
+        {
+            string[] splitAttributes = statAttributeConstitution.Split('(');
+            npcModel.AttributeCon = int.Parse(splitAttributes[0]);
+        }
+        public void ParseStatAttributeIntelligence(NPCModel npcModel, string statAttributeIntelligence)
+        {
+            string[] splitAttributes = statAttributeIntelligence.Split('(');
+            npcModel.AttributeInt = int.Parse(splitAttributes[0]);
+        }
+        public void ParseStatAttributeWisdom(NPCModel npcModel, string statAttributeWisdom)
+        {
+            string[] splitAttributes = statAttributeWisdom.Split('(');
+            npcModel.AttributeWis = int.Parse(splitAttributes[0]);
+        }
+        public void ParseStatAttributeCharisma(NPCModel npcModel, string statAttributeCharisma)
+        {
+            string[] splitAttributes = statAttributeCharisma.Split('(');
+            npcModel.AttributeCha = int.Parse(splitAttributes[0]);
         }
 
         /// <summary>
@@ -277,8 +365,6 @@ namespace FantasyModuleParser.Importer.NPC
                 if (damageTypeModel != null)
                     damageTypeModel.Selected = true;
             }
-
-
             return selectableActionModels;
         }
 
@@ -298,7 +384,6 @@ namespace FantasyModuleParser.Importer.NPC
                     if (conditionImmunityTypeModel != null)
                         conditionImmunityTypeModel.Selected = true;
                 }
-
             npcModel.ConditionImmunityModelList = selectableActionModels;
         }
 
@@ -319,7 +404,7 @@ namespace FantasyModuleParser.Importer.NPC
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("blindsight", StringComparison.Ordinal))
                         npcModel.Blindsight = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("darkvision", StringComparison.Ordinal))
-                        npcModel.Darkvision = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
+                        npcModel.Darkvision = int.Parse(visionAttributeArray[arrayIndex + 1].Replace("ft.,",""), CultureInfo.CurrentCulture);
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("tremorsense", StringComparison.Ordinal))
                         npcModel.Tremorsense = int.Parse(visionAttributeArray[arrayIndex + 1], CultureInfo.CurrentCulture);
                     if (attribute.ToLower(CultureInfo.CurrentCulture).Equals("truesight", StringComparison.Ordinal))
@@ -394,7 +479,7 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 string[] splitArray = challengeRatingAndXP.Split(' ');
                 npcModel.ChallengeRating = splitArray[1];
-                string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(').ToArray());
+                string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(' && c != ')').ToArray());
                 npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
             }
 
@@ -423,6 +508,197 @@ namespace FantasyModuleParser.Importer.NPC
             traitModel.ActionDescription = stringBuilder.ToString().Trim();
 
             npcModel.Traits.Add(traitModel);
+        }
+
+        /// <summary>
+        /// Innate Spellcasting. V1_npc_all's innate spellcasting ability is Wisdom (spell save DC 8, +30 to hit with spell attacks). He can innately cast the following spells, requiring no material components:\rAt will: Super Cantrips\r5/day each: Daylight\r4/day each: False Life\r3/day each: Hunger\r2/day each: Breakfast, Lunch, Dinner\r1/day each: Nom Noms
+        /// </summary>
+        /// <param name="npcModel"></param>
+        /// <param name="innateSpellcastingAttributes"></param>
+        public void ParseInnateSpellCastingAttributes(NPCModel npcModel, string innateSpellcastingAttributes)
+        {
+            if (innateSpellcastingAttributes.StartsWith("Innate Spellcasting"))
+            {
+                npcModel.InnateSpellcastingSection = true;
+                // Innate Spellcasting Ability
+                int abilityIsIndex = innateSpellcastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
+                int spellSaveDCIndex = innateSpellcastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
+                // 24 is the string length to "spellcasting ability is "
+                npcModel.InnateSpellcastingAbility = innateSpellcastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
+
+                // Spell Save DC & Attack Bonus
+                int spellAttacksIndex = innateSpellcastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
+
+                // If no spell attack bonus is available, spellAttacksIndex equals -1
+                if (spellAttacksIndex != -1)
+                {
+                    string spellSaveAndAttackData = innateSpellcastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                    foreach (string subpart in spellSaveAndAttackData.Split(' '))
+                    {
+                        if (subpart.Contains(","))
+                            npcModel.InnateSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                        if (subpart.Contains('+') || subpart.Contains('-'))
+                            npcModel.InnateSpellHitBonus = parseAttributeStringToInt(subpart);
+                    }
+                }
+                else
+                {
+                    // Process only the Save DC
+                    string innateSpellcastingSaveDCString = innateSpellcastingAttributes.Substring(spellSaveDCIndex);
+                    innateSpellcastingSaveDCString = innateSpellcastingSaveDCString.Substring(0, innateSpellcastingSaveDCString.IndexOf(").", StringComparison.Ordinal));
+                    npcModel.InnateSpellSaveDC = int.Parse(innateSpellcastingSaveDCString.Substring("(spell save DC ".Length), CultureInfo.CurrentCulture);
+                }
+
+                // Component Text
+                int preComponentText = innateSpellcastingAttributes.IndexOf("following spells,", StringComparison.Ordinal);
+                int postComponentText = innateSpellcastingAttributes.IndexOf(":\\r", StringComparison.Ordinal);
+                if (postComponentText == -1)
+                    npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18);
+                else
+                    npcModel.ComponentText = innateSpellcastingAttributes.Substring(preComponentText + 18, postComponentText - preComponentText - 18);
+
+                string[] innateSpellcastingAttributesArray = innateSpellcastingAttributes.Split(new string[] { "\\r" }, StringSplitOptions.RemoveEmptyEntries);
+                for (int arrayIndex = 1; arrayIndex < innateSpellcastingAttributesArray.Length; arrayIndex++)
+                {
+                    string innerData = innateSpellcastingAttributesArray[arrayIndex];
+                    if (innerData.StartsWith("At will:", StringComparison.Ordinal))
+                        npcModel.InnateAtWill = innerData.Substring(9);
+                    if (innerData.StartsWith("5/day each:", StringComparison.Ordinal))
+                        npcModel.FivePerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("4/day each:", StringComparison.Ordinal))
+                        npcModel.FourPerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("3/day each:", StringComparison.Ordinal))
+                        npcModel.ThreePerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("2/day each:", StringComparison.Ordinal))
+                        npcModel.TwoPerDay = innerData.Substring(12);
+                    if (innerData.StartsWith("1/day each:", StringComparison.Ordinal))
+                        npcModel.OnePerDay = innerData.Substring(12);
+                }
+            }
+            else
+            {
+                // For DnD Beyond, Innate spell castings are on separate lines (ES NPC was all on the same line)
+                if (innateSpellcastingAttributes.StartsWith("At will:", StringComparison.Ordinal))
+                    npcModel.InnateAtWill = innateSpellcastingAttributes.Substring(9);
+                if (innateSpellcastingAttributes.StartsWith("5/day each:", StringComparison.Ordinal))
+                    npcModel.FivePerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("4/day each:", StringComparison.Ordinal))
+                    npcModel.FourPerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("3/day each:", StringComparison.Ordinal))
+                    npcModel.ThreePerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("2/day each:", StringComparison.Ordinal))
+                    npcModel.TwoPerDay = innateSpellcastingAttributes.Substring(12);
+                if (innateSpellcastingAttributes.StartsWith("1/day each:", StringComparison.Ordinal))
+                    npcModel.OnePerDay = innateSpellcastingAttributes.Substring(12);
+            }
+        }
+
+        /// <summary>
+        /// 'Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks). V1_npc_all has the following Sorcerer spells prepared:\rCantrips (At will): Cantrips1\r1st level (9 slots): Spell 1st\r2nd level (8 slots): Spell 2nd\r3rd level (7 slots): Spell 3rd\r4th level (6 slots): Spell 4th\r5th level (5 slots): Spell 5th\r6th level (4 slots): Spell 6th\r7th level (3 slots): Spell 7th\r8th level (2 slots): Spell 8th\r9th level (1 slot): Spell 9th\r*Spell 2nd'
+        /// </summary>
+        public void ParseSpellCastingAttributes(NPCModel npcModel, string spellCastingAttributes)
+        {
+            if (spellCastingAttributes.StartsWith("Spellcasting"))
+            {
+                npcModel.SpellcastingSection = true;
+                // Start with getting spellcaster level
+                npcModel.SpellcastingCasterLevel = spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4).Trim();
+
+                // Spellcasting Ability
+                int abilityIsIndex = spellCastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
+                int spellSaveDCIndex = spellCastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
+                // 24 is the string length to "spellcasting ability is "
+                npcModel.SCSpellcastingAbility = spellCastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
+
+                // Spell Save DC & Attack Bonus
+                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks)", StringComparison.Ordinal);
+                string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+                foreach (string subpart in spellSaveAndAttackData.Split(' '))
+                {
+                    if (subpart.Contains(","))
+                    {
+                        npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                    }
+                    if (subpart.Contains('+') || subpart.Contains('-'))
+                        npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
+                }
+
+                // Spell Class
+                int hasTheFollowingIndex = spellCastingAttributes.IndexOf("has the following ");
+                int spellsPreparedIndex = spellCastingAttributes.IndexOf(" spells prepared:");
+                npcModel.SpellcastingSpellClass = spellCastingAttributes.Substring(hasTheFollowingIndex + 18, spellsPreparedIndex - hasTheFollowingIndex - 18);
+                // Fixes a scenario where the DnD Beyond description uses a full lowercase spell class (e.g. cleric).  Needs to be first letter uppercase
+                // e.g. Cleric
+                npcModel.SpellcastingSpellClass = ("" + npcModel.SpellcastingSpellClass[0]).ToUpper() + npcModel.SpellcastingSpellClass.Substring(1);
+                npcModel.FlavorText = "";
+
+            }
+            else
+                ParseSpellLevelAndList(spellCastingAttributes, npcModel);
+            //throw new NotImplementedException();
+        }
+
+        private void ParseSpellLevelAndList(string spellAttributes, NPCModel npcModel)
+        {
+            string[] spellDataArray = spellAttributes.Split(' ');
+            switch (spellDataArray[0])
+            {
+                case "Cantrips":
+                    npcModel.CantripSpells = (spellDataArray[1] + " " + spellDataArray[2]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.CantripSpellList = appendSpellList(spellDataArray, 3);
+                    break;
+                case "1st":
+                    npcModel.FirstLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.FirstLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "2nd":
+                    npcModel.SecondLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.SecondLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "3rd":
+                    npcModel.ThirdLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.ThirdLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "4th":
+                    npcModel.FourthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.FourthLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "5th":
+                    npcModel.FifthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.FifthLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "6th":
+                    npcModel.SixthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.SixthLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "7th":
+                    npcModel.SeventhLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.SeventhLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "8th":
+                    npcModel.EighthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.EighthLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                case "9th":
+                    npcModel.NinthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                    npcModel.NinthLevelSpellList = appendSpellList(spellDataArray, 4);
+                    break;
+                default:
+                    if (!spellAttributes.Contains("spellcasting ability is"))
+                        npcModel.MarkedSpells = appendSpellList(spellDataArray, 0);
+                    break;
+            }
+        }
+
+        public string appendSpellList(string[] spellDataArray, int startIndex)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int index = startIndex; index < spellDataArray.Length; index++)
+            {
+                stringBuilder.Append(spellDataArray[index]).Append(" ");
+            }
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            return stringBuilder.ToString();
         }
 
         /// <summary>
@@ -456,7 +732,7 @@ namespace FantasyModuleParser.Importer.NPC
             // Special Case;  If the string has more than 5 words, and none of those 5 words has a period character,
             //  then append the line to the previously created Action's Description as a new line
             string[] standardActionArray = standardAction.Split(' ');
-            for (int idx = 0; idx < 5; idx++)
+            for (int idx = 0; idx < 9; idx++)
             {
                 if (standardActionArray[idx].Contains("."))
                 {
@@ -542,19 +818,6 @@ namespace FantasyModuleParser.Importer.NPC
             Regex PrimaryWithVersatileRegex = new Regex(@".*?if used with two hands.*");
             string damagePropertyData = weaponDescription.Substring(weaponDescription.IndexOf("Hit: ", StringComparison.Ordinal) + 4);
             string flavorText = "";
-            // This is the versatile weapon check
-            //if (PrimaryWithVersatileRegex.IsMatch(damagePropertyData))
-            //{
-            //    string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
-            //    weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
-            //    weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
-            //    weaponAttackModel.IsVersatile = true;
-
-            //    // Parse out any flavor text
-            //    ParseWeaponAttackFlavorText(weaponAttackModel, damagePropertyData, PrimaryWithVersatileRegex);
-            //}
-            //// Check for a secondary damage type
-            //else 
             if (PrimarySecondaryDamageRegex.IsMatch(damagePropertyData))
             {
                 string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
@@ -569,7 +832,6 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyData);
                 weaponAttackModel.SecondaryDamage = null;
-                //weaponAttackModel.IsVersatile = false;
                 // Parse out any flavor text
                 ParseWeaponAttackFlavorText(weaponAttackModel, damagePropertyData, PrimaryOnlyDamageRegex);
             }
@@ -636,6 +898,50 @@ namespace FantasyModuleParser.Importer.NPC
                 : enumValue.ToString();
         }
 
+        /// <summary>
+        /// 'Parry. You know what it does.. NINJA DODGE.'
+        /// </summary>
+        public void ParseReaction(NPCModel npcModel, string reaction)
+        {
+            string[] reactionArray = reaction.Split('.');
+            ActionModelBase reactionModel = new ActionModelBase();
+            reactionModel.ActionName = reactionArray[0];
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int idx = 1; idx < reactionArray.Length; idx++)
+            {
+                stringBuilder.Append(reactionArray[idx]).Append(".");
+            }
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            reactionModel.ActionDescription = stringBuilder.ToString().Trim();
+            npcModel.Reactions.Add(reactionModel);
+        }
+
+        /// <summary>
+        /// 'Options. This creature has 5 legendary actions.'
+        /// </summary>
+        public void ParseLegendaryAction(NPCModel npcModel, string legendaryAction)
+        {
+            if (string.IsNullOrEmpty(legendaryAction))
+                return;
+            LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
+            if (legendaryAction.Contains("choosing from the options below"))
+            {
+                legendaryActionModel.ActionName = "Options";
+                legendaryActionModel.ActionDescription = legendaryAction;
+                npcModel.LegendaryActions.Add(legendaryActionModel);
+                return;
+            }
+            string[] legendaryActionArray = legendaryAction.Split('.');
+            legendaryActionModel.ActionName = legendaryActionArray[0];
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int idx = 1; idx < legendaryActionArray.Length; idx++)
+            {
+                stringBuilder.Append(legendaryActionArray[idx]).Append(".");
+            }
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            legendaryActionModel.ActionDescription = stringBuilder.ToString().Trim();
+            npcModel.LegendaryActions.Add(legendaryActionModel);
+        }
 
         #region Damage Resistance Parsing
         /// <summary>
@@ -718,7 +1024,7 @@ namespace FantasyModuleParser.Importer.NPC
             NPCController npcController = new NPCController();
             List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(WeaponImmunity));
             damageTypes = damageTypes.ToLower(CultureInfo.CurrentCulture);
-            if(damageTypes.Contains("nonmagical weapons") || damageTypes.Contains("nonmagical attacks"))
+            if (damageTypes.Contains("nonmagical weapons") || damageTypes.Contains("nonmagical attacks"))
             {
                 if (damageTypes.Contains("that aren't silvered"))
                     selectableActionModels

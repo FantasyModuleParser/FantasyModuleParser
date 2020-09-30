@@ -1,8 +1,5 @@
-﻿using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.Main.Services;
-using FantasyModuleParser.NPC.ViewModels;
+﻿using FantasyModuleParser.NPC.ViewModels;
 using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -28,20 +25,6 @@ namespace FantasyModuleParser.Main
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void OpenModuleFilePath(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Select where the Folder and Module file will be stored";
-
-            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string sSelectedPath = folderBrowserDialog.SelectedPath;
-                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
-                viewModel.ModuleModel.ModulePath = sSelectedPath;
-                ModulePathTB.Text = sSelectedPath;
-            }
         }
 
         private void OpenThumbnailFilePath(object sender, MouseButtonEventArgs e)
@@ -135,6 +118,11 @@ namespace FantasyModuleParser.Main
             {
                 handler(this, e);
             }
+        }
+
+        private void ModuleModFilename_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            (DataContext as ProjectManagementViewModel).UpdateFullModulePath();
         }
     }
 }

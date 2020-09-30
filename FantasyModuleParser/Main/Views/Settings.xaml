@@ -14,46 +14,64 @@
         mc:Ignorable="d"
         Title="Fantasy Module Parser Settings" Height="440" Width="700" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
     <Grid Background="#FFE5E5E5">
-        <TabControl Height="350" Width="660" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TabItem Header="FMP">
-                <Grid Background="#FFE5E5E5">
-                    <SuiteSettingsUserControl:SuiteSettingsUC HorizontalAlignment="Center" Width="660"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="NPCs">
-                <Grid Background="#FFE5E5E5">
-                    <NPCSettingsUserControl:NPCSettingsUC HorizontalAlignment="Center" />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Spells">
-                <Grid Background="#FFE5E5E5">
-                    <SpellSettingsUserControl:SpellSettingsUC HorizontalAlignment="Center" />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Tables">
-                <Grid Background="#FFE5E5E5">
-                    <TablesSettingsUserControl:TablesSettingsUC HorizontalAlignment="Center" />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Equipment">
-                <Grid Background="#FFE5E5E5">
-                    <EquipmentSettingsUserControl:EquipmentSettingsUC HorizontalAlignment="Center" />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Artifacts">
-                <Grid Background="#FFE5E5E5">
-                    <ArtifactSettingsUserControl:ArtifactsSettingsUC HorizontalAlignment="Center" />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Parcels">
-                <Grid Background="#FFE5E5E5">
-                    <ParcelSettingsUserControl:ParcelSettingsUC HorizontalAlignment="Center" />
-                </Grid>
-            </TabItem>
-        </TabControl>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="Cancel" HorizontalAlignment="Left" Click="Cancel_Click" VerticalAlignment="Bottom" Width="100" Margin="400,0,0,15"/>
-            <Button Content="Accept" HorizontalAlignment="Left" Click="Accept_Click" VerticalAlignment="Bottom" Width="100" Margin="10,0,0,15"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="350" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="24" />
+        </Grid.RowDefinitions>
+        <Grid Row="1">
+            <TabControl Width="660" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TabItem Header="FMP">
+                    <Grid Background="#FFE5E5E5">
+                        <SuiteSettingsUserControl:SuiteSettingsUC HorizontalAlignment="Center" Width="660"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="NPCs">
+                    <Grid Background="#FFE5E5E5">
+                        <NPCSettingsUserControl:NPCSettingsUC HorizontalAlignment="Center" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Spells" Visibility="Collapsed">
+                    <Grid Background="#FFE5E5E5">
+                        <SpellSettingsUserControl:SpellSettingsUC HorizontalAlignment="Center" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Tables" Visibility="Collapsed">
+                    <Grid Background="#FFE5E5E5">
+                        <TablesSettingsUserControl:TablesSettingsUC HorizontalAlignment="Center" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Equipment" Visibility="Collapsed">
+                    <Grid Background="#FFE5E5E5">
+                        <EquipmentSettingsUserControl:EquipmentSettingsUC HorizontalAlignment="Center" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Artifacts" Visibility="Collapsed">
+                    <Grid Background="#FFE5E5E5">
+                        <ArtifactSettingsUserControl:ArtifactsSettingsUC HorizontalAlignment="Center" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Parcels" Visibility="Collapsed">
+                    <Grid Background="#FFE5E5E5">
+                        <ParcelSettingsUserControl:ParcelSettingsUC HorizontalAlignment="Center" />
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <Button Content="Cancel" Click="Cancel_Click" Grid.Column="1"/>
+            <Button Content="Save" Click="Save_Click" Grid.Column="3" />
+            <Button Content="Save and Close" Click="Accept_Click" Grid.Column="5" />
+        </Grid>
     </Grid>
 </Window>

@@ -234,6 +234,18 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(null, actualNPCModel.TwoPerDay);
             Assert.AreEqual("commune, raise dead", actualNPCModel.OnePerDay);
         }
+        [TestMethod]
+        public void Test_Validate_Deva_Traits()
+        {
+            actualNPCModel = LoadEngineerSuiteTestNPCFile("Deva");
+            Assert.AreEqual(2, actualNPCModel.Traits.Count);
+            Assert.AreEqual("Angelic Weapons", actualNPCModel.Traits[0].ActionName);
+            Assert.AreEqual("Magic Resistance", actualNPCModel.Traits[1].ActionName);
+
+            Assert.AreEqual("The deva's weapon attacks are magical. When the deva hits with any weapon, the weapon deals an extra 4d8 radiant damage (included in the attack).", actualNPCModel.Traits[0].ActionDescription);
+            Assert.AreEqual("The deva has advantage on saving throws against spells and other magical effects.", actualNPCModel.Traits[1].ActionDescription);
+        }
+
         #endregion
         [TestMethod]
         public void Test_Validate_Aarakocra_Actions()

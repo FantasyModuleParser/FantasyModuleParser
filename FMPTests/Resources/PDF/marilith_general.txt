@@ -1,0 +1,76 @@
+﻿Marilith General
+Large fiend (demon), chaotic evil
+Armor Class 19 (natural armor)
+Hit Points 210 (20d10 + 100)
+Speed 40 ft.
+STR DEX CON INT WIS CHA
+20 (+5) 20 (+5) 20 (+5) 18 (+4) 16 (+3) 20 (+5)
+Saving Throws Str +11, Con +11, Wis +9, Cha +11
+Damage Resistances cold, fire, lightning; bludgeoning, piercing,
+and slashing from nonmagical weapons
+Damage Immunities poison
+Condition Immunities poisoned
+Senses truesight 120 ft., passive Perception 13
+Languages Abyssal, telepathy 120 ft.
+Challenge 18 (20,000 XP)
+Innate Spellcasting. The marilith's innate spellcasting ability is
+Charisma (spell save DC 19). The marilith can innately cast the
+following spells, without providing material components:
+At will: detect magic
+3/day each: fly, polymorph (self only), telekinesis
+1/day each: blade barrier, project image
+Magic Resistance. The demon has advantage on saving throws
+against spells and other magical effects.
+Magic Weapons. The marilith's weapon attacks are magical.
+Reactive. The marilith can take one reaction on every turn in a
+combat.
+Actions
+Multiattack. The marilith makes seven attacks: six with its
+longswords and one with its tail.
+Longsword. Melee Weapon Attack: +11 to hit, reach 10 ft., one
+target. Hit: 13 (2d8 + 5) slashing damage plus 3 (1d6) poison
+damage.
+Tail. Melee Weapon Attack: +11 to hit, reach 10 ft., one creature.
+Hit: 16 (2d10 + 5) bludgeoning damage. If the target is Medium or
+smaller, it is grappled (escape DC 15). Until this grapple ends, the
+target is restrained, the marilith can automatically hit the target with
+its tail, and the marilith can't make tail attacks.
+Bladestorm (Recharges 5-6). The marilith moves up to its walking
+speed and targets each creature within 5 feet of it during its
+movement. Each target must succeed on a DC 19 Dexterity saving
+throw or take 43 (6d12 +5) slashing damage plus 21 (6d6) poison
+damage. The marilith's movement during this action will not provoke
+opportunity attacks.
+Ruthless Command (Recharges after a Short or Long Rest). For
+1 minute, the marilith can issue a telepathic command whenever
+a nonhostile creature that it can see within 30 feet of it makes an
+attack roll. The creature takes 1d8 psychic damage and can add a
+d12 to its roll provided it can understand the marilith. A creature
+can benefit from only one ruthless command die at a time. This
+effect ends if the marilith is incapacitated.
+Teleport. The marilith magically teleports, along with any equipment
+it is wearing or carrying, up to 120 feet to an unoccupied space it
+can see.
+Legendary Actions
+The marilith can take three legendary actions, choosing from the
+options below. Only one legendary action option can be used at a
+time and only at the end of another creature's turn. The marilith
+regains spent legendary actions at the start of its turn.
+Command. The marilith targets one ally it can see within 30 feet of
+it. If the target can see and hear the marilith, the target can make
+one weapon attack as a reaction and gains advantage on the attack
+roll.
+Longsword. The marilith makes a longsword attack.
+Teleport (Costs 2 Actions). The marilith magically teleports, along
+with any equipment it is wearing or carrying, up to 120 feet to an
+unoccupied space it can see.
+Tail Swipe (Costs 3 Actions). Each creature within 10 feet of the
+marilith must succeed on a DC 19 Strength saving throw, taking
+20 (3d10 + 4) bludgeoning damage and is knocked prone on a
+failed save, or half as much damage and isn't knocked prone on a
+successful one. The marilith can't use Tail Swipe if it has a creature
+grappled with its tail.
+Reactions
+Parry. The marilith adds 6 to its AC against one melee attack that
+would hit it. To do so, the marilith must see the attacker and be
+wielding a melee weapon.

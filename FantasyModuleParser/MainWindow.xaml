@@ -14,7 +14,7 @@
                 <MenuItem Header="_Create Module" Click="CreateModule_Click"/>
                 <Separator />
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
-                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Collapsed"/>
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Visible"/>
                 <Separator />
                 <MenuItem Header="_Exit" Click="Menu_Click" Name="Exit" />
             </MenuItem>
