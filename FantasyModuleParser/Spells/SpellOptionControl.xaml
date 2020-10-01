@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="322" />
             </Grid.ColumnDefinitions>
             <Label Content="Spell Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Text="{Binding SpellModel.SpellName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Text="{Binding SpellModel.SpellName}" VerticalAlignment="Center" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -64,7 +64,7 @@
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
             <TextBox Text="{Binding SpellModel.CastingTime}" VerticalAlignment="Center" Grid.Column="3"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="5"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="CastingType_SelectionChanged" VerticalAlignment="Center" Grid.Column="5"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -73,7 +73,7 @@
                 <ColumnDefinition Width="218" />
             </Grid.ColumnDefinitions>
             <Label Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox VerticalAlignment="Center" IsEnabled="False" Grid.Column="2"/>
+            <TextBox x:Name="ReactionDescription" VerticalAlignment="Center" IsEnabled="False" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
@@ -114,7 +114,7 @@
             <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0" Margin="0,8,0,7"/>
             <TextBox VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,7,0,6"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="3" Margin="0,8,0,7"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="4" Margin="0,4,0,5"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="DurationSelectionEnabled_ComboboxChanged" VerticalAlignment="Center" Grid.Column="4" Margin="0,4,0,5"/>
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>
@@ -124,9 +124,9 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Text="{Binding SpellModel.DurationTime}" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox x:Name="DurationTime" Text="{Binding SpellModel.DurationTime}" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Unit:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationUnit}}}" SelectedValue="{Binding Path=SpellModel.DurationUnit}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3"/>
+            <ComboBox x:Name="DurationUnit" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationUnit}}}" SelectedValue="{Binding Path=SpellModel.DurationUnit}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3"/>
         </Grid>
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
@@ -144,7 +144,7 @@
                 <ColumnDefinition Width="415" />
             </Grid.ColumnDefinitions>
             <Label Content="Information:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="170" VerticalScrollBarVisibility="Visible" Grid.Column="1"/>
+            <TextBox Text="{Binding SpellModel.Description}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="170" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="11">
             <Grid.ColumnDefinitions>

@@ -10,6 +10,7 @@ namespace FantasyModuleParser.Spells.Models
         public bool IsRitual { get; set; }
         public string CastingTime { get; set; }
         public CastingType CastingType { get; set; }
+        public string ReactionDescription { get; set; }
         public string Range { get; set; }
         public RangeType RangeType { get; set; }
         public bool IsVerbalComponent { get; set; }

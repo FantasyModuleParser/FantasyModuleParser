@@ -60,7 +60,7 @@ namespace FantasyModuleParser.Spells.ViewModels
         public void Save()
         {
             if (!string.IsNullOrWhiteSpace(SpellModel.SpellName)) { 
-                using (StreamWriter file = File.CreateText(_settingsModel.FGModuleFolderLocation + @"\" + SpellModel.SpellName + ".spl"))
+                using (StreamWriter file = File.CreateText(_settingsModel.SpellFolderLocation + @"\" + SpellModel.SpellName + ".spl"))
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     serializer.Formatting = Formatting.Indented;
