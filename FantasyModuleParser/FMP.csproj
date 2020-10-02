@@ -309,6 +309,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\Description\DescriptionOverviewUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -497,6 +513,18 @@
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
     <Compile Include="Main\Models\ModuleModel.cs" />
     <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
+    <Compile Include="NPC\UserControls\Description\DescriptionOverviewUC.xaml.cs">
+      <DependentUpon>DescriptionOverviewUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml.cs">
+      <DependentUpon>LegendaryActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml.cs">
+      <DependentUpon>LegendaryActionOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml.cs">
+      <DependentUpon>LegendaryActionOverviewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
     </Compile>
@@ -644,6 +672,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include=".gitignore" />
+    <None Include="CHANGELOG.json" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -656,6 +686,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="es2_logo_Jsv_icon.ico" />
+    <Resource Include="es2_logo.ico" />
     <Content Include="Resources\artifactengineer_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
