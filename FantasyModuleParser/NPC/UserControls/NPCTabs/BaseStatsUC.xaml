@@ -356,7 +356,7 @@
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="195" />
+                <ColumnDefinition Width="130" />
             </Grid.ColumnDefinitions>
             <Label Content="Armor Class:" Style="{StaticResource informationLabel}" Grid.Column="1" />
             <TextBox Name="strAC" Text="{Binding Path=AC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource statsTextbox}" Grid.Column="3" TabIndex="6">

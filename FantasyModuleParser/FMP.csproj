@@ -41,8 +41,8 @@
     <MinimumRequiredVersion>0.1.0.4</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>0.2.0.4</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.2.1.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -580,6 +580,17 @@
     <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
       <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Spells\Enums\CastingType.cs" />
+    <Compile Include="Spells\Enums\DurationType.cs" />
+    <Compile Include="Spells\Enums\DurationUnit.cs" />
+    <Compile Include="Spells\Enums\RangeType.cs" />
+    <Compile Include="Spells\Enums\SpellLevel.cs" />
+    <Compile Include="Spells\Enums\SpellSchool.cs" />
+    <Compile Include="Spells\Models\SpellModel.cs" />
+    <Compile Include="Spells\SpellOptionControl.xaml.cs">
+      <DependentUpon>SpellOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
@@ -631,6 +642,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Spells\SpellOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NPC\Views\Action\Reaction\Reactions.xaml.cs">
@@ -657,6 +672,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include=".gitignore" />
+    <None Include="CHANGELOG.json" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -669,6 +686,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="es2_logo_Jsv_icon.ico" />
+    <Resource Include="es2_logo.ico" />
     <Content Include="Resources\artifactengineer_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -125,6 +125,13 @@ namespace FantasyModuleParser
             {
                 stackNPC.Visibility = Visibility.Visible;
                 stackMain.Visibility = Visibility.Hidden;
+                stackSpells.Visibility = Visibility.Hidden;
+            }
+            if (optionSpells.IsSelected == true)
+            {
+                stackNPC.Visibility = Visibility.Hidden;
+                stackMain.Visibility = Visibility.Hidden;
+                stackSpells.Visibility = Visibility.Visible;
             }
         }
 
