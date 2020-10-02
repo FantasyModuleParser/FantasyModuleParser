@@ -1,5 +1,7 @@
-﻿using FantasyModuleParser.NPC.ViewModels;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.NPC.ViewModels;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -80,7 +82,7 @@ namespace FantasyModuleParser.Main
         {
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-            openFileDlg.InitialDirectory = (DataContext as ProjectManagementViewModel).SettingsModel.MainFolderLocation;
+            openFileDlg.InitialDirectory = (DataContext as ProjectManagementViewModel).SettingsModel.ProjectFolderLocation;
             openFileDlg.Filter = "Project files (*.fmp)|*.fmp|All files (*.*)|*.*";
             openFileDlg.RestoreDirectory = true;
 
