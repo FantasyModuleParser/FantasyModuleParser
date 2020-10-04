@@ -28,9 +28,6 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding name}" Padding="0,5,0,0"/>
-                            <TextBlock Text="(" Padding="0,5,0,0"/>
-                            <TextBlock Text="{Binding length}" Padding="0,5,0,0"/>
-                            <TextBlock Text=")" Padding="0,5,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -42,9 +39,6 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding name}" Padding="0,5,0,0"/>
-                            <TextBlock Text="(" Padding="0,5,0,0"/>
-                            <TextBlock Text="{Binding length}" Padding="0,5,0,0"/>
-                            <TextBlock Text=")" Padding="0,5,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -56,9 +50,6 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding name}" Padding="0,5,0,0"/>
-                            <TextBlock Text=" (" Padding="0,5,0,0"/>
-                            <TextBlock Text="{Binding length}" Padding="0,5,0,0"/>
-                            <TextBlock Text=")" Padding="0,5,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
