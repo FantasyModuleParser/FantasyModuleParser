@@ -49,7 +49,7 @@
         </Menu>
         <StackPanel Orientation="Vertical" Width="200" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0">
             <Label Content="Options" FontSize="16" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Center"></Label>
-            <ListBox>
+            <ListBox SelectionChanged="ListBox_SelectionChanged">
                 <ListBoxItem IsEnabled="False">Add Backgrounds</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Classes</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Encounters</ListBoxItem>
@@ -59,14 +59,14 @@
                 <ListBoxItem IsEnabled="False">Add Images</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Image Grids</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Image Pins</ListBoxItem>
-                <ListBoxItem Name="optionNPC" Selected="listBoxItem_Selected">Add NPCs / Monsters</ListBoxItem>
+                <ListBoxItem IsEnabled="True" Name="optionNPC">Add NPCs / Monsters</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Parcels</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Pregenerated Characters</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Quests</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Reference Manual</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Skills</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Stories</ListBoxItem>
-                <ListBoxItem IsEnabled="False" Name="optionSpells" Selected="listBoxItem_Selected">Add Spells</ListBoxItem>
+                <ListBoxItem IsEnabled="True" Name="optionSpells">Add Spells</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>

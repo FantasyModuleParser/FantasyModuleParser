@@ -119,22 +119,6 @@ namespace FantasyModuleParser
             npcOptionUserControl.Refresh();
         }
 
-        private void listBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            if (optionNPC.IsSelected == true)
-            {
-                stackNPC.Visibility = Visibility.Visible;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Hidden;
-            }
-            if (optionSpells.IsSelected == true)
-            {
-                stackNPC.Visibility = Visibility.Hidden;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Visible;
-            }
-        }
-
         private void CreateModule_Click(object sender, RoutedEventArgs e)
         {
             // TODO:  This is a prime example of how Dependency Injection would be 
@@ -158,6 +142,28 @@ namespace FantasyModuleParser
         {
             base.OnClosed(e);
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch((e.AddedItems[0] as ListBoxItem).Name)
+            {
+                case "optionSpells":
+                    HideMainWindowUserControls();
+                    stackSpells.Visibility = Visibility.Visible;
+                    break;
+                case "optionNPC":
+                    HideMainWindowUserControls();
+                    stackNPC.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        private void HideMainWindowUserControls()
+        {
+            stackNPC.Visibility = Visibility.Hidden;
+            stackMain.Visibility = Visibility.Hidden;
+            stackSpells.Visibility = Visibility.Hidden;
         }
     }
 }
