@@ -25,7 +25,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
         #endregion
         #region Variables
         string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-		string installFolder = "FMP/NPC";
+		string installFolder = "FMP\\NPC";
 		private bool _isViewStatblockWindowOpen = false;
 		private int categoryIndex = 0;
 		#endregion
@@ -125,6 +125,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 			// Create OpenFileDialog
 			Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+			openFileDlg.InitialDirectory = Path.Combine(installPath, installFolder);
 
 			// Launch OpenFileDialog by calling ShowDialog method
 			Nullable<bool> result = openFileDlg.ShowDialog();
