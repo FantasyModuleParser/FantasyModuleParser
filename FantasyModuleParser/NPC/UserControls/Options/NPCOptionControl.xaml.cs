@@ -24,8 +24,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private NPCOptionControlViewModel npcOptionControlViewModel;
         #endregion
         #region Variables
-        string installPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-		string installFolder = "FMP/NPC";
 		private bool _isViewStatblockWindowOpen = false;
 		private int categoryIndex = 0;
 		private SettingsService settingsService;
@@ -99,7 +97,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 
 			NPCModel npcModel = npcController.GetNPCModel();
-			string saveDirectory = Path.Combine(installPath, installFolder);
+			string saveDirectory = settingsService.Load().NPCFolderLocation;
 			string savePath = Path.Combine(saveDirectory, npcModel.NPCName + ".json");
 
 			((App)Application.Current).NpcModel = npcModel;
