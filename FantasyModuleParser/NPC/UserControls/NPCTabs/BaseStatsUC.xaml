@@ -10,6 +10,7 @@
         <Style TargetType="ComboBox" x:Key="comboBox">
             <Setter Property="FontSize" Value="10px"/>
             <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="Label" x:Key="informationHeader">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -35,11 +36,19 @@
             <Setter Property="FontSize" Value="10px" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
+        <Style TargetType="TextBox" x:Key="savingTextbox">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="FontSize" Value="10px" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
         <Style TargetType="TextBox" x:Key="hpTextbox">
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="5,0,0,0" />
             <Setter Property="FontSize" Value="10px" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            
             <EventSetter Event="MouseDoubleClick" Handler="DiceRoller_Click" />
         </Style>
         <Style TargetType="TextBox" x:Key="positiveNumberTextbox">
@@ -627,12 +636,12 @@
                                 <ColumnDefinition Width="45" />
                             </Grid.ColumnDefinitions>
                             <Label Content="STR" Style="{StaticResource informationLabel}" Grid.Column="0" />
-                            <TextBox Name="strSaveStr" Text="{Binding Path=SavingThrowStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource statsTextbox}" Grid.Column="2" TabIndex="23">
+                            <TextBox Name="strSaveStr" Text="{Binding Path=SavingThrowStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource savingTextbox}" Grid.Column="2" TabIndex="23">
                                 <TextBox.ToolTip>
                                     <TextBlock>
 				                        Enter the NPC's saving throw bonus for strength saves.
 				                        <LineBreak />
-				                        <Italic>Positive Values must be entered without the plus sign.</Italic>
+				                        <Italic>Positive Values must be entered without the plus  sign.</Italic>
 				                        <LineBreak />
 				                        <Italic>E.g. +2 is entered as 2.</Italic>
                                     </TextBlock>
@@ -655,7 +664,7 @@
                                 <ColumnDefinition Width="45" />
                             </Grid.ColumnDefinitions>
                             <Label Content="DEX" Style="{StaticResource informationLabel}" Grid.Column="0" />
-                            <TextBox Name="strSaveDex" Text="{Binding Path=SavingThrowDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource statsTextbox}" Grid.Column="2" TabIndex="25">
+                            <TextBox Name="strSaveDex" Text="{Binding Path=SavingThrowDex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource savingTextbox}" Grid.Column="2" TabIndex="25">
                                 <TextBox.ToolTip>
                                     <TextBlock>
 					                    Enter the NPC's saving throw bonus for dexterity saves.
@@ -683,7 +692,7 @@
                                 <ColumnDefinition Width="45" />
                             </Grid.ColumnDefinitions>
                             <Label Content="CON" Style="{StaticResource informationLabel}" Grid.Column="0" />
-                            <TextBox Name="strSaveCon" Text="{Binding Path=SavingThrowCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource statsTextbox}" Grid.Column="2" TabIndex="27">
+                            <TextBox Name="strSaveCon" Text="{Binding Path=SavingThrowCon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource savingTextbox}" Grid.Column="2" TabIndex="27">
                                 <TextBox.ToolTip>
                                     <TextBlock>
 					                    Enter the NPC's saving throw bonus for constitution saves.
@@ -711,7 +720,7 @@
                                 <ColumnDefinition Width="45" />
                             </Grid.ColumnDefinitions>
                             <Label Content="INT" Style="{StaticResource informationLabel}" Grid.Column="0" />
-                            <TextBox Name="strSaveInt" Text="{Binding Path=SavingThrowInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource statsTextbox}" Grid.Column="2" TabIndex="29">
+                            <TextBox Name="strSaveInt" Text="{Binding Path=SavingThrowInt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource savingTextbox}" Grid.Column="2" TabIndex="29">
                                 <TextBox.ToolTip>
                                     <TextBlock>
 					                    Enter the NPC's saving throw bonus for intelligence saves.
@@ -739,7 +748,7 @@
                                 <ColumnDefinition Width="45" />
                             </Grid.ColumnDefinitions>
                             <Label Content="WIS" Style="{StaticResource informationLabel}" Grid.Column="0" />
-                            <TextBox Name="strSaveWis" Text="{Binding Path=SavingThrowWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource statsTextbox}" Grid.Column="2" TabIndex="31">
+                            <TextBox Name="strSaveWis" Text="{Binding Path=SavingThrowWis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource savingTextbox}" Grid.Column="2" TabIndex="31">
                                 <TextBox.ToolTip>
                                     <TextBlock>
 					                    Enter the NPC's saving throw bonus for wisdom saves.
@@ -767,7 +776,7 @@
                                 <ColumnDefinition Width="45" />
                             </Grid.ColumnDefinitions>
                             <Label Content="CHA" Style="{StaticResource informationLabel}" Grid.Column="0" />
-                            <TextBox Name="strSaveCha" Text="{Binding Path=SavingThrowCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource statsTextbox}" Grid.Column="2" TabIndex="33">
+                            <TextBox Name="strSaveCha" Text="{Binding Path=SavingThrowCha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource savingTextbox}" Grid.Column="2" TabIndex="33">
                                 <TextBox.ToolTip>
                                     <TextBlock>
 					                    Enter the NPC's saving throw bonus for charisma saves.
