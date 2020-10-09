@@ -28,13 +28,14 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		string installFolder = "FMP/NPC";
 		private bool _isViewStatblockWindowOpen = false;
 		private int categoryIndex = 0;
+		private SettingsService settingsService;
 		#endregion
 		public NPCOptionControl()
 		{
 			InitializeComponent();
 			npcController = new NPCController();
 			npcOptionControlViewModel = new NPCOptionControlViewModel();
-			
+			settingsService = new SettingsService();
 			DataContext = npcOptionControlViewModel;
 		}
 		private void openfolder(string strPath, string strFolder)
@@ -124,15 +125,18 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private void LoadNPCOption_Click(object sender, RoutedEventArgs e)
 		{
 			// Create OpenFileDialog
-			Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+			Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+
+			openFileDialog.InitialDirectory = settingsService.Load().NPCFolderLocation;
+			openFileDialog.Filter = "Image files (*.json;*.npc)|*.json;*.npc|All files (*.*)|*.*";
 
 			// Launch OpenFileDialog by calling ShowDialog method
-			Nullable<bool> result = openFileDlg.ShowDialog();
+			Nullable<bool> result = openFileDialog.ShowDialog();
 			// Get the selected file name and display in a TextBox.
 			// Load content of file in a TextBlock
 			if (result == true)
 			{
-				npcController.Load(openFileDlg.FileName);
+				npcController.Load(openFileDialog.FileName);
 				NPCModel npcModel = npcController.GetNPCModel();
 
 				//Refresh all the data on the UI
