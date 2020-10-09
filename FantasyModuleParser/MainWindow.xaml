@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:FantasyModuleParser"
     xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
+    xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
     mc:Ignorable="d"
     Title="Fantasy Module Parser" Height="760" Width="850" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
     <Grid Background="#FFE5E5E5">
@@ -14,7 +14,7 @@
                 <MenuItem Header="_Create Module" Click="CreateModule_Click"/>
                 <Separator />
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
-                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Collapsed"/>
+                <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Visible"/>
                 <Separator />
                 <MenuItem Header="_Exit" Click="Menu_Click" Name="Exit" />
             </MenuItem>
@@ -66,12 +66,15 @@
                 <ListBoxItem IsEnabled="False">Add Reference Manual</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Skills</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Stories</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Spells</ListBoxItem>
+                <ListBoxItem IsEnabled="False" Name="optionSpells" Selected="listBoxItem_Selected">Add Spells</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
         <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Collapsed">
             <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700" />
+        </StackPanel>
+        <StackPanel Name="stackSpells" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Collapsed">
+            <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" />
         </StackPanel>
         <StackPanel Name="stackMain" Margin="215,50,0,0">
             <Image Source="/Resources/es2_logo.png" Width="400" Height="400"/>

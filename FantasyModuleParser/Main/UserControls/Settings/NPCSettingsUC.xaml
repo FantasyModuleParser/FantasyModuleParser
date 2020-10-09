@@ -6,56 +6,85 @@
              xmlns:local="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="660">
+    <UserControl.Resources>
+        <Style TargetType="Label" x:Key="labelHeader">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14px" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="CheckBox" x:Key="basicCheckbox">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="IsChecked" Value="False" />
+            <Setter Property="IsEnabled" Value="False" />
+        </Style>
+        <Style TargetType="Label" x:Key="artworkLabel">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontSize" Value="10px" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="artworkTextbox">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="30"/>
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="310" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="320" />
+            <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="16" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="16" />
-            <RowDefinition Height="16" />
-            <RowDefinition Height="16" />
-        </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="5,5,5,5" Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="0" Grid.RowSpan="14"/>
-        <Label Content="NPC Options Settings" Foreground="Gray" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
-        <CheckBox Content="Rename image and token files and copy to NPC folder" IsChecked="True" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8"/>
-        <CheckBox Content="Save NPCs in a Project subfolder" IsChecked="True" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <CheckBox Content="Reload last edited item on NPC Engineer launch" IsChecked="True" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="7"/>
-        <CheckBox Content="'Add Descriptive Text' on by default" IsChecked="True" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="6"/>
-        <CheckBox Content="'Add Title' on by default" IsChecked="True" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <CheckBox Content="'Add Image Link' on by default" IsChecked="True" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <CheckBox Content="'Include Spell List' on by default" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Label Content="Leading text for artwork in Reference Manual page:" VerticalAlignment="Center" Padding="5,0,0,0" FontSize="8" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <TextBox Text="Artwork by" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <Button BorderThickness="0" Width="15" Height="15" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Grid.Column="5" Grid.Row="10">
-            <Image Source="/Resources/undo.png" />
-        </Button>
-        <Label Content="'Save Fight Club XML' routine written and kindly" Padding="0" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="7"/>
-        <Label Content="'submitted by Zamrod" Padding="0" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3"/>
-        <Image Source="/Resources/npce_logo.png" Width="200" Height="200" Grid.Row="1" Grid.RowSpan="12" Grid.Column="10" Grid.ColumnSpan="4"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="310" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="20"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Label Content="NPC Options Settings" Style="{StaticResource labelHeader}" Grid.Row="1" />
+            <CheckBox Content="Reload last edited item on NPC Engineer launch" Style="{StaticResource basicCheckbox}"  Grid.Row="3"/>
+            <CheckBox Content="'Add Descriptive Text' on by default" Style="{StaticResource basicCheckbox}" Grid.Row="5"  />
+            <CheckBox Content="'Add Title' on by default" Style="{StaticResource basicCheckbox}" Grid.Row="7" />
+            <CheckBox Content="'Add Image Link' on by default" Style="{StaticResource basicCheckbox}" Grid.Row="9" />
+            <CheckBox Content="'Include Spell List' on by default" Style="{StaticResource basicCheckbox}" Grid.Row="11" />
+            <Label Content="Leading text for artwork in Reference Manual page:" Style="{StaticResource artworkLabel}" Grid.Row="13" />
+            <TextBox Text="Artwork by" Style="{StaticResource artworkTextbox}" Grid.Row="15" />
+        </Grid>
+        <Grid Grid.Column="3">
+            <Image Source="/Resources/npce_logo.png" Width="200" Height="200" />
+        </Grid>
     </Grid>
 </UserControl>

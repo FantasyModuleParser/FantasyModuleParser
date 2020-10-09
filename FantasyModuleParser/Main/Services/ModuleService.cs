@@ -2,12 +2,8 @@
 using FantasyModuleParser.NPC;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyModuleParser.Main.Services
 {
@@ -18,12 +14,12 @@ namespace FantasyModuleParser.Main.Services
     {
         // Static module to be shared for any class using ModuleService
         private static ModuleModel moduleModel;
+        private SettingsService settingsService;
         public ModuleService()
         {
             if(moduleModel == null)
-            {
                 moduleModel = new ModuleModel();
-            }
+            settingsService = new SettingsService();
         }
 
         public ModuleModel GetModuleModel()
@@ -70,7 +66,11 @@ namespace FantasyModuleParser.Main.Services
             if (npcModel == null)
                 throw new InvalidDataException("NPC Model data object is null");
             if(npcModel.NPCName == null || npcModel.NPCName.Length == 0)
-                throw new InvalidDataException("NPC Model name is empty!");
+                throw new InvalidDataException("NPC name is empty!");
+            if (npcModel.ChallengeRating == null || npcModel.ChallengeRating.Length == 0)
+                throw new InvalidDataException("No Challenge Rating has been set for NPC.");
+            if (npcModel.NPCType == null || npcModel.NPCType.Length == 0)
+                throw new InvalidDataException("NPC must have a specified type.");
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
@@ -80,7 +80,7 @@ namespace FantasyModuleParser.Main.Services
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
             }
 
-            string appendedFileName = moduleModel.SaveFilePath + "\\" + moduleModel.ModFilename + ".fmp";
+            string appendedFileName = settingsService.Load().ProjectFolderLocation + moduleModel.ModFilename + ".fmp";
             Save(appendedFileName, moduleModel);
         }
     }

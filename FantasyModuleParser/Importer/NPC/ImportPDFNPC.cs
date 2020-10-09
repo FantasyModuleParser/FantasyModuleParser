@@ -185,38 +185,5 @@ namespace FantasyModuleParser.Importer.NPC
             npcModel.AttributeWis = int.Parse(splitAttributes[8], CultureInfo.CurrentCulture);
             npcModel.AttributeCha = int.Parse(splitAttributes[10], CultureInfo.CurrentCulture);
         }
-
-        //public void ParseTraits(NPCModel npcModel, string traits)
-        //{
-        //    ActionModelBase traitModel = null;
-        //    if (npcModel.Traits == null)
-        //        npcModel.Traits = new System.Collections.ObjectModel.ObservableCollection<ActionModelBase>();
-
-        //    if (string.IsNullOrEmpty(traits))
-        //        return;
-
-        //    string[] traitArrayBySpace = traits.Split(' ');
-        //    for (int idx = 0; idx < 5; idx++)
-        //    {
-        //        if (traitArrayBySpace[idx].Contains("."))
-        //        {
-        //            string[] traitArray = traits.Split('.');
-        //            traitModel = new ActionModelBase();
-        //            traitModel.ActionName = traitArray[0];
-        //            StringBuilder stringBuilder = new StringBuilder();
-        //            for (int idy = 1; idy < traitArray.Length; idy++)
-        //            {
-        //                stringBuilder.Append(traitArray[idy]).Append(".");
-        //            }
-        //            stringBuilder.Remove(stringBuilder.Length - 1, 1);
-        //            traitModel.ActionDescription = stringBuilder.ToString().Trim();
-        //            npcModel.Traits.Add(traitModel);
-        //            return;
-        //        }
-        //    }
-        //    // If no period was detected in the first 5 words,
-        //    traitModel = npcModel.Traits.Last();
-        //    traitModel.ActionDescription = traitModel.ActionDescription + "\n\n" + traits;
-        //}
     }
 }

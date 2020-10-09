@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.Main.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.Main
 {
@@ -19,20 +11,29 @@ namespace FantasyModuleParser.Main
     /// </summary>
     public partial class Settings : Window
     {
+        private SettingsService settingsService;
         public Settings()
         {
             InitializeComponent();
-
+            DataContext = new SettingsViewModel();
+            settingsService = new SettingsService();
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
         }
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            SettingsViewModel settingsViewModel = DataContext as SettingsViewModel;
+            settingsService.Save(settingsViewModel.SettingsModel);
+            Close();
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
+        }
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsViewModel settingsViewModel = DataContext as SettingsViewModel;
+            settingsService.Save(settingsViewModel.SettingsModel);
         }
     }
 }

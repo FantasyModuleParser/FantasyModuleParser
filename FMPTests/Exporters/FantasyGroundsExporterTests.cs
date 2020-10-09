@@ -28,7 +28,7 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.Name = "Test Module";
             moduleModel.Author = "Fredska";
             moduleModel.Category = "Supplement";
-            moduleModel.ModulePath = "Path\\To\\Everything";
+            //moduleModel.ModulePath = "Path\\To\\Everything";
 
             moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();;
             moduleModel.Categories.Add(new CategoryModel() { Name = "Supplement" });
@@ -75,8 +75,8 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.Name = "IntegrationTest_Mage1";
             moduleModel.Author = "Automated MS Test v2";
             moduleModel.Category = "Automated";
-            moduleModel.ModulePath = 
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
+            //moduleModel.ModulePath = 
+            //    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
             moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();
             moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
@@ -152,8 +152,8 @@ namespace FantasyModuleParser.Exporters.Tests
             moduleModel.Name = "IntegrationTest_MultipleCategories";
             moduleModel.Author = "Automated MS Test v2";
             moduleModel.Category = "Automated";
-            moduleModel.ModulePath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
+            //moduleModel.ModulePath =
+            //    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
             moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();
             moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });

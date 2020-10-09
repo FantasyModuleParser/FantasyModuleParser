@@ -2,7 +2,7 @@
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModels;
 using System;
-using System.Reflection;
+using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -15,6 +15,7 @@ namespace FantasyModuleParser.Main
     public partial class ProjectManagement : Window
     {
         private ProjectManagementViewModel projectManagementViewModel;
+        private SettingsService settingsService;
         public ProjectManagement()
         {
             InitializeComponent();
@@ -24,30 +25,17 @@ namespace FantasyModuleParser.Main
 
             projectManagementViewModel = new ProjectManagementViewModel();
             DataContext = projectManagementViewModel;
+            settingsService = new SettingsService();
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void OpenModuleFilePath(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Select where the Folder and Module file will be stored";
-
-            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string sSelectedPath = folderBrowserDialog.SelectedPath;
-                ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
-                viewModel.ModuleModel.ModulePath = sSelectedPath;
-                ModulePathTB.Text = sSelectedPath;
-            }
-        }
-
         private void OpenThumbnailFilePath(object sender, MouseButtonEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.InitialDirectory = (DataContext as ProjectManagementViewModel).SettingsModel.MainFolderLocation;
             openFileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == true)
@@ -69,10 +57,10 @@ namespace FantasyModuleParser.Main
         private void SaveModule_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
-            if (viewModel.ModuleModel.SaveFilePath == null || viewModel.ModuleModel.SaveFilePath.Length <= 0)
-                SaveToModule_Click(sender, e);
-            else
-                viewModel.SaveModule(viewModel.ModuleModel.SaveFilePath, viewModel.ModuleModel);
+            //if (viewModel.ModuleModel.SaveFilePath == null || viewModel.ModuleModel.SaveFilePath.Length <= 0)
+            //    SaveToModule_Click(sender, e);
+            //else
+            viewModel.SaveModule(settingsService.Load().ProjectFolderLocation, viewModel.ModuleModel);
         }
         private void SaveModuleAndClose_Click(object sender, RoutedEventArgs e)
         {
@@ -97,7 +85,7 @@ namespace FantasyModuleParser.Main
         {
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-            openFileDlg.InitialDirectory = "c:\\";
+            openFileDlg.InitialDirectory = (DataContext as ProjectManagementViewModel).SettingsModel.ProjectFolderLocation;
             openFileDlg.Filter = "Project files (*.fmp)|*.fmp|All files (*.*)|*.*";
             openFileDlg.RestoreDirectory = true;
 
@@ -135,6 +123,11 @@ namespace FantasyModuleParser.Main
             {
                 handler(this, e);
             }
+        }
+
+        private void ModuleModFilename_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            (DataContext as ProjectManagementViewModel).UpdateFullModulePath();
         }
     }
 }

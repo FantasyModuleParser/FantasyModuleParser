@@ -41,8 +41,8 @@
     <MinimumRequiredVersion>0.1.0.4</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>0.2.0.4</ApplicationVersion>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>0.2.0.6</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -198,6 +198,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -307,6 +308,22 @@
     <Page Include="Main\Views\Supporters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NPC\UserControls\Description\DescriptionOverviewUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml">
       <SubType>Designer</SubType>
@@ -429,8 +446,10 @@
     <Compile Include="Main\Models\ChangelogModel.cs" />
     <Compile Include="Main\Models\FMPConfigurationModel.cs" />
     <Compile Include="Main\Models\PatronModel.cs" />
+    <Compile Include="Main\Models\SettingsModel.cs" />
     <Compile Include="Main\Services\FMPConfigurationService.cs" />
     <Compile Include="Main\Services\ModuleService.cs" />
+    <Compile Include="Main\Services\SettingsService.cs" />
     <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
       <DependentUpon>CategoriesUC.xaml</DependentUpon>
     </Compile>
@@ -462,6 +481,7 @@
     <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
     <Compile Include="Main\ViewModels\ChangelogViewModel.cs" />
     <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
+    <Compile Include="Main\ViewModels\SettingsViewModel.cs" />
     <Compile Include="Main\ViewModels\SupportersViewModel.cs" />
     <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
     <Compile Include="Main\Views\About.xaml.cs">
@@ -493,6 +513,18 @@
     <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
     <Compile Include="Main\Models\ModuleModel.cs" />
     <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
+    <Compile Include="NPC\UserControls\Description\DescriptionOverviewUC.xaml.cs">
+      <DependentUpon>DescriptionOverviewUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml.cs">
+      <DependentUpon>LegendaryActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml.cs">
+      <DependentUpon>LegendaryActionOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml.cs">
+      <DependentUpon>LegendaryActionOverviewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
     </Compile>
@@ -548,6 +580,20 @@
     <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
       <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\Views\ViewLegendaryAction.xaml.cs">
+      <DependentUpon>ViewLegendaryAction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Spells\Enums\CastingType.cs" />
+    <Compile Include="Spells\Enums\DurationType.cs" />
+    <Compile Include="Spells\Enums\DurationUnit.cs" />
+    <Compile Include="Spells\Enums\RangeType.cs" />
+    <Compile Include="Spells\Enums\SpellLevel.cs" />
+    <Compile Include="Spells\Enums\SpellSchool.cs" />
+    <Compile Include="Spells\Models\SpellModel.cs" />
+    <Compile Include="Spells\SpellOptionControl.xaml.cs">
+      <DependentUpon>SpellOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
@@ -599,6 +645,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\Views\ViewLegendaryAction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Spells\SpellOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NPC\Views\Action\Reaction\Reactions.xaml.cs">
@@ -625,6 +679,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include=".gitignore" />
+    <None Include="CHANGELOG.json" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -637,6 +693,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="es2_logo_Jsv_icon.ico" />
+    <Resource Include="es2_logo.ico" />
     <Content Include="Resources\artifactengineer_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

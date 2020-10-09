@@ -90,6 +90,8 @@
     <Compile Include="UserControls\MarkdownTestExample.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\PDF\abyssal_harvester.txt" />
+    <EmbeddedResource Include="Resources\PDF\agnibarra.txt" />
     <EmbeddedResource Include="Resources\PDF\tivishta_trikinta.txt" />
     <EmbeddedResource Include="Resources\PDF\anton_valcrist.txt" />
     <EmbeddedResource Include="Resources\PDF\brother_ox.txt" />
