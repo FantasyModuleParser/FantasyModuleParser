@@ -17,6 +17,14 @@
             <Setter Property="Padding" Value="0" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style TargetType="TextBox" x:Key="ModulePath">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="FontSize" Value="10px" />
+        </Style>
         <Style TargetType="Label" x:Key="LabelStandardDisabled">
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0" />
@@ -145,7 +153,7 @@
                     <Label Content="Module Path" Padding="0" />
                 </Grid>
                 <Grid Grid.Row="17">
-                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" IsEnabled="False" Padding="0" Width="340" />
+                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Style="{StaticResource ModulePath}" IsEnabled="False" Padding="0" Width="340" />
                 </Grid>
                 <Label Content="Use the options under File to manage your project" Padding="0" Grid.Row="19"/>
                 <Label Content="1. 'New Project' resets all fields" Padding="0" Grid.Row="20"/>
