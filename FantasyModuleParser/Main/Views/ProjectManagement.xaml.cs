@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModels;
 using System;
 using System.IO;
@@ -14,6 +15,7 @@ namespace FantasyModuleParser.Main
     public partial class ProjectManagement : Window
     {
         private ProjectManagementViewModel projectManagementViewModel;
+        private SettingsService settingsService;
         public ProjectManagement()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace FantasyModuleParser.Main
 
             projectManagementViewModel = new ProjectManagementViewModel();
             DataContext = projectManagementViewModel;
+            settingsService = new SettingsService();
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
@@ -54,10 +57,10 @@ namespace FantasyModuleParser.Main
         private void SaveModule_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
-            if (viewModel.ModuleModel.SaveFilePath == null || viewModel.ModuleModel.SaveFilePath.Length <= 0)
-                SaveToModule_Click(sender, e);
-            else
-                viewModel.SaveModule(viewModel.ModuleModel.SaveFilePath, viewModel.ModuleModel);
+            //if (viewModel.ModuleModel.SaveFilePath == null || viewModel.ModuleModel.SaveFilePath.Length <= 0)
+            //    SaveToModule_Click(sender, e);
+            //else
+            viewModel.SaveModule(settingsService.Load().ProjectFolderLocation, viewModel.ModuleModel);
         }
         private void SaveModuleAndClose_Click(object sender, RoutedEventArgs e)
         {

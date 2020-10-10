@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
@@ -10,12 +11,9 @@ using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
-using System.Xml.Linq;
 
 namespace FantasyModuleParser.Exporters
 {
@@ -23,6 +21,12 @@ namespace FantasyModuleParser.Exporters
 	{
 		string Immunity;
 		string Resistance;
+		private SettingsService settingsService;
+
+		public FantasyGroundsExporter()
+		{
+			settingsService = new SettingsService();
+		}
 
 		public string DatabaseXML(ModuleModel moduleModel)
         {
@@ -39,7 +43,7 @@ namespace FantasyModuleParser.Exporters
 
 		public void CreateModule(ModuleModel moduleModel)
 		{
-			if (string.IsNullOrEmpty(moduleModel.ModulePath))
+			if (string.IsNullOrEmpty(settingsService.Load().ProjectFolderLocation))
 			{
 				throw new ApplicationException("No Module Path has been set");
 			}
@@ -49,7 +53,7 @@ namespace FantasyModuleParser.Exporters
 				throw new ApplicationException("No Module Name has been set");
 			}
 
-			string moduleFolderPath = Path.Combine(moduleModel.ModulePath, moduleModel.Name);
+			string moduleFolderPath = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name);
 
 			// Create the folder all content will go into based on the Module name
 			Directory.CreateDirectory(moduleFolderPath);
@@ -83,11 +87,11 @@ namespace FantasyModuleParser.Exporters
 			// Zipping up the folder contents and naming to *.mod
 
 			// First need to check if the file exists;  If so, delete it
-			if (File.Exists(@Path.Combine(moduleModel.ModulePath, moduleModel.Name + ".mod")))
+			if (File.Exists(@Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod")))
 			{
-				File.Delete(@Path.Combine(moduleModel.ModulePath, moduleModel.Name + ".mod"));
+				File.Delete(@Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod"));
 			}
-			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(moduleModel.ModulePath, moduleModel.Name + ".mod"));
+			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod"));
 		}
 
 		/// <summary>
@@ -111,7 +115,7 @@ namespace FantasyModuleParser.Exporters
 
 		private string NewThumbnailFileName(ModuleModel moduleModel)
         {
-			string ThumbnailFilename = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "thumbnail.png");
+			string ThumbnailFilename = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "thumbnail.png");
 			return ThumbnailFilename;
 
 		}
@@ -139,8 +143,8 @@ namespace FantasyModuleParser.Exporters
 				if (!string.IsNullOrEmpty(npcModel.NPCToken))
                 {
 					string Filename = NPCNameToXMLFormat(npcModel) + "_token.png";
-					string NPCTokenFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "tokens", Filename);
-					string NPCTokenDirectory = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "tokens");
+					string NPCTokenFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "tokens", Filename);
+					string NPCTokenDirectory = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "tokens");
 					if (Directory.Exists(NPCTokenDirectory))
                     {
 						if (File.Exists(NPCTokenFileName))
@@ -161,8 +165,8 @@ namespace FantasyModuleParser.Exporters
 				if (!string.IsNullOrEmpty(npcModel.NPCImage))
 				{
 					string Filename = NPCNameToXMLFormat(npcModel) + ".jpg";
-					string NPCImageFileName = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "images", Filename);
-					string NPCImageDirectory = Path.Combine(moduleModel.ModulePath, moduleModel.Name, "images");
+					string NPCImageFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "images", Filename);
+					string NPCImageDirectory = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "images");
 					if (Directory.Exists(NPCImageDirectory))
 					{
 						if (File.Exists(NPCImageFileName))

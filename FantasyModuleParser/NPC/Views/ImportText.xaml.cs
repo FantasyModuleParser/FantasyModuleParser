@@ -15,7 +15,10 @@ namespace FantasyModuleParser.NPC
         public ImportText()
         {
             InitializeComponent();
+            ImportTextBox.Focus();
+            ImportTextBox.Select(0,0);
         }
+
         private void ESExit_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;

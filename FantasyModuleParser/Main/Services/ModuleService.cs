@@ -14,10 +14,12 @@ namespace FantasyModuleParser.Main.Services
     {
         // Static module to be shared for any class using ModuleService
         private static ModuleModel moduleModel;
+        private SettingsService settingsService;
         public ModuleService()
         {
             if(moduleModel == null)
                 moduleModel = new ModuleModel();
+            settingsService = new SettingsService();
         }
 
         public ModuleModel GetModuleModel()
@@ -78,7 +80,7 @@ namespace FantasyModuleParser.Main.Services
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
             }
 
-            string appendedFileName = moduleModel.SaveFilePath + "\\" + moduleModel.ModFilename + ".fmp";
+            string appendedFileName = settingsService.Load().ProjectFolderLocation + moduleModel.ModFilename + ".fmp";
             Save(appendedFileName, moduleModel);
         }
     }
