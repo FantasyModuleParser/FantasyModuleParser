@@ -373,6 +373,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\UserControls\ViewNPCStatBlockUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NPC\Views\Action\EditAction\Actions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -560,6 +564,9 @@
     </Compile>
     <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
       <DependentUpon>NPCOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\ViewNPCStatBlockUC.xaml.cs">
+      <DependentUpon>ViewNPCStatBlockUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\ViewModels\ActionOverviewUserControlViewModel.cs" />
     <Compile Include="NPC\ViewModels\DescriptionUCViewModel.cs" />

@@ -6,9 +6,19 @@
     xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
     xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
     mc:Ignorable="d"
-    Title="Fantasy Module Parser" Height="760" Width="850" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
+    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
     <Grid Background="#FFE5E5E5">
-        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="800" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="620" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="450" />
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="0">
             <MenuItem Header="_Options">
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ManageProject" />
                 <MenuItem Header="_Create Module" Click="CreateModule_Click"/>
@@ -47,7 +57,7 @@
                 <MenuItem Header="_Buy me a coffee" Visibility="Collapsed" />
             </MenuItem>
         </Menu>
-        <StackPanel Orientation="Vertical" Width="200" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
             <Label Content="Options" FontSize="16" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Center"></Label>
             <ListBox>
                 <ListBoxItem IsEnabled="False">Add Backgrounds</ListBoxItem>
@@ -70,14 +80,17 @@
                 <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
-        <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Collapsed">
-            <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700" />
+        <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+            <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel" />
         </StackPanel>
-        <StackPanel Name="stackSpells" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,20,0,0" Visibility="Collapsed">
-            <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" />
+        <StackPanel Name="stackSpells" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+            <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel"/>
         </StackPanel>
-        <StackPanel Name="stackMain" Margin="215,50,0,0">
+        <StackPanel Name="stackMain" Grid.Row="1" Grid.Column="1" Visibility="Visible">
             <Image Source="/Resources/es2_logo.png" Width="400" Height="400"/>
         </StackPanel>
+        <WrapPanel x:Name="ViewStatBlockPanel" Grid.Column="3" Grid.Row="1" Orientation="Vertical" >
+            
+        </WrapPanel>
     </Grid>
 </Window>

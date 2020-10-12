@@ -22,6 +22,8 @@ using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Main.Views;
+using FantasyModuleParser.NPC.UserControls;
+using FantasyModuleParser.Spells;
 
 namespace FantasyModuleParser
 {
@@ -31,6 +33,7 @@ namespace FantasyModuleParser
 
     public partial class MainWindow : Window
     {
+        private bool isViewStatBlockVisible = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -158,6 +161,31 @@ namespace FantasyModuleParser
         {
             base.OnClosed(e);
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
+        {
+            ViewStatBlockPanel.Children.Clear();
+            isViewStatBlockVisible = !isViewStatBlockVisible;
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(NPCOptionControl):
+                    // Shrink / Grow the main window based on the ViewStatBlock
+                    this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
+
+                    if (isViewStatBlockVisible)
+                        ViewStatBlockPanel.Children.Add(new ViewNPCStatBlockUC());
+                    break;
+                case nameof(SpellOptionControl):
+                    // TODO:  Create the Stat Block for Spells and add it here (uncomment the break when doing so)
+                    //break;
+                default:
+                    // Reset the width to the default of 810
+                    this.Width = 810;
+                    break;
+            }
+            
         }
     }
 }
