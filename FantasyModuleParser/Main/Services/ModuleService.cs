@@ -74,9 +74,11 @@ namespace FantasyModuleParser.Main.Services
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            if (npcModel.NPCImage.StartsWith("file:///"))
+                throw new InvalidDataException("Remove the file:/// from the NPC Image path.");
             else
-            { 
-                if( categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
+            {
+                if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
             }
 
