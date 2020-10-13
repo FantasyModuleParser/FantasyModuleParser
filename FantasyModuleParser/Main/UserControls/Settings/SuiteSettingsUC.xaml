@@ -57,7 +57,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Main:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
             <TextBox Name="MainDefaultFolder" Text="{Binding Path=SettingsModel.MainFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"/>
-            <CheckBox Content="Reload last project on startup" Visibility="Hidden" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
+            <CheckBox Content="Persistent Preview Windows" IsChecked="{Binding Path=SettingsModel.PersistentWindow, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
                 Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="5">

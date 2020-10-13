@@ -28,6 +28,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private int categoryIndex = 0;
 		private SettingsService settingsService;
 		#endregion
+
+		public event EventHandler OnViewStatBlock;
 		public NPCOptionControl()
 		{
 			InitializeComponent();
@@ -150,13 +152,18 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
 		{
-			if (!_isViewStatblockWindowOpen)
-			{
-				_isViewStatblockWindowOpen = true;
-				PreviewNPC previewNPC = new PreviewNPC();
-				previewNPC.Closing += PreviewNPC_Closing;
-				previewNPC.Show();
-			}
+			OnViewStatBlock.Invoke(this, EventArgs.Empty);
+
+			// If we want a setting that allows the Preview NPC Stat Block to be a floating window,
+			// then this code snippet below should be uncommented.
+
+			//if (!_isViewStatblockWindowOpen)
+			//{
+			//	_isViewStatblockWindowOpen = true;
+			//	PreviewNPC previewNPC = new PreviewNPC();
+			//	previewNPC.Closing += PreviewNPC_Closing;
+			//	previewNPC.Show();
+			//}
 		}
 
 		private void PreviewNPC_Closing(object sender, System.ComponentModel.CancelEventArgs e)

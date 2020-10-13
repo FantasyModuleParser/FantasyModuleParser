@@ -22,6 +22,8 @@ using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Main.Views;
+using FantasyModuleParser.NPC.UserControls;
+using FantasyModuleParser.Spells;
 
 namespace FantasyModuleParser
 {
@@ -31,6 +33,7 @@ namespace FantasyModuleParser
 
     public partial class MainWindow : Window
     {
+        private bool isViewStatBlockVisible = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -144,26 +147,29 @@ namespace FantasyModuleParser
             System.Windows.Application.Current.Shutdown();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {
-            switch((e.AddedItems[0] as ListBoxItem).Name)
+            ViewStatBlockPanel.Children.Clear();
+            isViewStatBlockVisible = !isViewStatBlockVisible;
+
+            switch (sender.GetType().Name)
             {
-                case "optionSpells":
-                    HideMainWindowUserControls();
-                    stackSpells.Visibility = Visibility.Visible;
+                case nameof(NPCOptionControl):
+                    // Shrink / Grow the main window based on the ViewStatBlock
+                    this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
+
+                    if (isViewStatBlockVisible)
+                        ViewStatBlockPanel.Children.Add(new ViewNPCStatBlockUC());
                     break;
-                case "optionNPC":
-                    HideMainWindowUserControls();
-                    stackNPC.Visibility = Visibility.Visible;
+                case nameof(SpellOptionControl):
+                    // TODO:  Create the Stat Block for Spells and add it here (uncomment the break when doing so)
+                    //break;
+                default:
+                    // Reset the width to the default of 810
+                    this.Width = 810;
                     break;
             }
-        }
-
-        private void HideMainWindowUserControls()
-        {
-            stackNPC.Visibility = Visibility.Hidden;
-            stackMain.Visibility = Visibility.Hidden;
-            stackSpells.Visibility = Visibility.Hidden;
+            
         }
     }
 }
