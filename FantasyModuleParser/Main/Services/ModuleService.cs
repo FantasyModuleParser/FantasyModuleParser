@@ -76,6 +76,8 @@ namespace FantasyModuleParser.Main.Services
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
             if (npcModel.NPCImage.StartsWith("file:///"))
                 throw new InvalidDataException("Remove the file:/// from the NPC Image path and Add to Project again.");
+            if (npcModel.Alignment == null)
+                throw new InvalidDataException("Select an alignment for the NPC and add to project again.")
             else
             {
                 if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
