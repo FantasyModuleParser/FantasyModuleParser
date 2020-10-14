@@ -29,17 +29,17 @@
                 <MenuItem Header="_Exit" Click="Menu_Click" Name="Exit" />
             </MenuItem>
             <MenuItem Header="_Directories">
-                <MenuItem Header="_View AppData folder" Click="AppData_Click" />
-                <MenuItem Header="_View Projects folder" Click="Projects_Click" />
+                <MenuItem Header="_View AppData folder" Click="Directory_Click" Name="AppData" />
+                <MenuItem Header="_View Projects folder" Click="Directory_Click" Name="Projects" />
                 <Separator />
-                <MenuItem Header="_View Artifacts folder" Click="Artifacts_Click" />
-                <MenuItem Header="_View Equipment folder" Click="Equipment_Click" />
-                <MenuItem Header="_View NPCs folder" Click="NPC_Click" />
-                <MenuItem Header="_View Parcels folder" Click="Parcel_Click" />
-                <MenuItem Header="_View Spells folder" Click="Spell_Click" />
-                <MenuItem Header="_View Tables folder" Click="Table_Click" />
+                <MenuItem Header="_View Artifacts folder" Click="Directory_Click" Name="Artifacts" />
+                <MenuItem Header="_View Equipment folder" Click="Directory_Click" Name="Equipment" />
+                <MenuItem Header="_View NPCs folder" Click="Directory_Click" Name="NPCs" />
+                <MenuItem Header="_View Parcels folder" Click="Directory_Click" Name="Parcels" />
+                <MenuItem Header="_View Spells folder" Click="Directory_Click" Name="Spells" />
+                <MenuItem Header="_View Tables folder" Click="Directory_Click" Name="Tables" />
                 <Separator />
-                <MenuItem Header="_View Fantasy Grounds folder" Click="FG_Click" />
+                <MenuItem Header="_View Fantasy Grounds module folder" Click="Directory_Click" Name="FGModules" />
                 <MenuItem Header="_View Fantasy Module Parser systems folder" />
             </MenuItem>
             <MenuItem Header="_Backup" Visibility="Collapsed" >
