@@ -27,7 +27,10 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private bool _isViewStatblockWindowOpen = false;
 		private int categoryIndex = 0;
 		private SettingsService settingsService;
+		private SettingsModel settingsModel;
 		#endregion
+
+		public event EventHandler OnViewStatBlock;
 		public NPCOptionControl()
 		{
 			InitializeComponent();
@@ -149,13 +152,22 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
-		{
-			if (!_isViewStatblockWindowOpen)
-			{
-				_isViewStatblockWindowOpen = true;
-				PreviewNPC previewNPC = new PreviewNPC();
-				previewNPC.Closing += PreviewNPC_Closing;
-				previewNPC.Show();
+		{ 
+			settingsModel = settingsService.Load();
+
+			if (!settingsModel.PersistentWindow)
+            {
+				if (!_isViewStatblockWindowOpen)
+				{
+					_isViewStatblockWindowOpen = true;
+					PreviewNPC previewNPC = new PreviewNPC();
+					previewNPC.Closing += PreviewNPC_Closing;
+					previewNPC.Show();
+				}
+			}
+			else
+            {
+				OnViewStatBlock.Invoke(this, EventArgs.Empty);
 			}
 		}
 
@@ -188,7 +200,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			}
 			catch (Exception exception)
 			{
-				MessageBox.Show("Error detected while adding NPC to button :: " + exception.Message);
+				MessageBox.Show("Error detected while adding NPC to Project :: " + exception.Message);
 			}
 		}
 

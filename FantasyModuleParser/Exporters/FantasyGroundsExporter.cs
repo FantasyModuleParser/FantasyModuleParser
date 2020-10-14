@@ -43,7 +43,7 @@ namespace FantasyModuleParser.Exporters
 
 		public void CreateModule(ModuleModel moduleModel)
 		{
-			if (string.IsNullOrEmpty(settingsService.Load().ProjectFolderLocation))
+			if (string.IsNullOrEmpty(settingsService.Load().FGModuleFolderLocation))
 			{
 				throw new ApplicationException("No Module Path has been set");
 			}
@@ -53,7 +53,7 @@ namespace FantasyModuleParser.Exporters
 				throw new ApplicationException("No Module Name has been set");
 			}
 
-			string moduleFolderPath = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name);
+			string moduleFolderPath = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name);
 
 			// Create the folder all content will go into based on the Module name
 			Directory.CreateDirectory(moduleFolderPath);

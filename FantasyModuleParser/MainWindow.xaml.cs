@@ -22,6 +22,10 @@ using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Main.Views;
+using FantasyModuleParser.NPC.UserControls;
+using FantasyModuleParser.Spells;
+using FantasyModuleParser.Main.Models;
+using Microsoft.Win32;
 
 namespace FantasyModuleParser
 {
@@ -31,51 +35,89 @@ namespace FantasyModuleParser
 
     public partial class MainWindow : Window
     {
+        private bool isViewStatBlockVisible = false;
+        private SettingsModel settingsModel;
+        private SettingsService settingsService;
+        
+
         public MainWindow()
         {
             InitializeComponent();
+            settingsService = new SettingsService();
         }
-        private void OpenFolder(string strPath, string strFolder)
+
+        private void Directory_Click(object sender, RoutedEventArgs e)
         {
-            var fPath = System.IO.Path.Combine(strPath, strFolder);
-            System.IO.Directory.CreateDirectory(fPath);
-            System.Diagnostics.Process.Start(fPath);
-        }
-        private void AppData_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
-        }
-        private void Projects_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Projects");
-        }
-        private void Artifacts_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Artifacts");
-        }
-        private void Equipment_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Equipment");
-        }
-        private void NPC_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/NPC");
-        }
-        private void Parcel_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Parcel");
-        }
-        private void Spell_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Spell");
-        }
-        private void Table_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP/Table");
-        }
-        private void FG_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFolder(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds");
+            var menuitem = (MenuItem)sender;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            settingsModel = settingsService.Load();
+            switch (menuitem.Name)
+            {
+                case "AppData":
+                    if (!Directory.Exists(settingsModel.MainFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.MainFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.MainFolderLocation;
+                    break;
+                case "Projects":
+                    if (!Directory.Exists(settingsModel.ProjectFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.ProjectFolderLocation;
+                    break;
+                case "Artifacts":
+                    if (!Directory.Exists(settingsModel.ArtifactFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.ArtifactFolderLocation;
+                    break;
+                case "Equipment":
+                    if (!Directory.Exists(settingsModel.EquipmentFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.EquipmentFolderLocation;
+                    break;
+                case "NPCs":
+                    if (!Directory.Exists(settingsModel.NPCFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.NPCFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.NPCFolderLocation;
+                    break;
+                case "Parcels":
+                    if (!Directory.Exists(settingsModel.ParcelFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.ParcelFolderLocation;
+                    break;
+                case "Spells":
+                    if (!Directory.Exists(settingsModel.SpellFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.SpellFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.SpellFolderLocation;
+                    break;
+                case "Tables":
+                    if (!Directory.Exists(settingsModel.TableFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.TableFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.TableFolderLocation;
+                    break;
+                case "FGModules":
+                    if (!Directory.Exists(settingsModel.FGModuleFolderLocation))
+                    {
+                        Directory.CreateDirectory(settingsModel.FGModuleFolderLocation);
+                    }
+                    openFileDialog.InitialDirectory = settingsModel.FGModuleFolderLocation;
+                    break;
+            }
+            openFileDialog.ShowDialog();
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
@@ -158,6 +200,31 @@ namespace FantasyModuleParser
         {
             base.OnClosed(e);
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
+        {
+            ViewStatBlockPanel.Children.Clear();
+            isViewStatBlockVisible = !isViewStatBlockVisible;
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(NPCOptionControl):
+                    // Shrink / Grow the main window based on the ViewStatBlock
+                    this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
+
+                    if (isViewStatBlockVisible)
+                        ViewStatBlockPanel.Children.Add(new ViewNPCStatBlockUC());
+                    break;
+                case nameof(SpellOptionControl):
+                    // TODO:  Create the Stat Block for Spells and add it here (uncomment the break when doing so)
+                    //break;
+                default:
+                    // Reset the width to the default of 810
+                    this.Width = 810;
+                    break;
+            }
+            
         }
     }
 }

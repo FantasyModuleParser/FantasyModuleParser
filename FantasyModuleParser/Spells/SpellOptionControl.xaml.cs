@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Spells.ViewModels;
+using System;
 using System.Windows.Controls;
 
 namespace FantasyModuleParser.Spells
@@ -8,6 +9,7 @@ namespace FantasyModuleParser.Spells
     /// </summary>
     public partial class SpellOptionControl : UserControl
     {
+        public event EventHandler OnViewStatBlock;
         public SpellOptionControl()
         {
             InitializeComponent();
@@ -35,6 +37,11 @@ namespace FantasyModuleParser.Spells
         {
             if (ReactionDescription != null)
                 ReactionDescription.IsEnabled = (DataContext as SpellViewModel).SpellModel.CastingType == Enums.CastingType.Reaction;
+        }
+
+        private void ViewStatBlock_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            OnViewStatBlock.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -23,6 +23,45 @@
             <Setter Property="Foreground" Value="Gray" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style TargetType="TextBox" x:Key="InformationText">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="12px" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="ModuleFilenameText">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="12px" />
+            <EventSetter Event="TextChanged" Handler="ModuleModFilename_TextChanged" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="ThumbnailFileText">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="12px" />
+            <EventSetter Event="MouseDoubleClick" Handler="OpenThumbnailFilePath" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="ModulePathText">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="340" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="10px" />
+            <Setter Property="IsEnabled" Value="False" />
+        </Style>
         <Style TargetType="CheckBox" x:Key="CheckboxParser">
             <Setter Property="Margin" Value="30,0,0,0" />
             <Setter Property="Padding" Value="0" />
@@ -94,7 +133,7 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Title:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleName" Text="{Binding Path=ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleName" Text="{Binding Path=ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
@@ -102,7 +141,7 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Category:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleCategory" Text="{Binding Path=ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleCategory" Style="{StaticResource InformationText}" Text="{Binding Path=ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="7">
                     <Grid.ColumnDefinitions>
@@ -110,16 +149,16 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Author:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleAuthor" Text="{Binding Path=ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleAuthor" Text="{Binding Path=ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="9">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="98" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Filename:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleModFilename" Text="{Binding Path=ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleModFilename" Text="{Binding Path=ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Style="{StaticResource InformationText}" Grid.Column="1"/>
                     <Label Content=".mod" FontSize="8" VerticalAlignment="Center" Padding="0" Grid.Column="2"/>
                 </Grid>
                 <Grid Grid.Row="11">
@@ -128,7 +167,7 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Thumbnail Filename:" Padding="0" Grid.Column="0" />
-                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding Path=ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" MouseDoubleClick="OpenThumbnailFilePath" Padding="0" Grid.Column="1" />
+                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding Path=ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource ThumbnailFileText}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="13">
                     <Grid.ColumnDefinitions>
@@ -145,7 +184,7 @@
                     <Label Content="Module Path" Padding="0" />
                 </Grid>
                 <Grid Grid.Row="17">
-                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" IsEnabled="False" Padding="0" Width="340" />
+                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Style="{StaticResource ModulePathText}" />
                 </Grid>
                 <Label Content="Use the options under File to manage your project" Padding="0" Grid.Row="19"/>
                 <Label Content="1. 'New Project' resets all fields" Padding="0" Grid.Row="20"/>

@@ -79,7 +79,7 @@
             </TextBox.ToolTip>
         </TextBox>
         <Image Name="ImageBox" Source="{Binding Path=NPCImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.RowSpan="18" Grid.Column="4" Grid.ColumnSpan="21"  />
-        <CheckBox Content="Add NPC Link to Description" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Row="22" Grid.Column="1" Grid.ColumnSpan="27">
+        <CheckBox Content="Add NPC Link to Description" IsEnabled="False" Foreground="Gray"  HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Row="22" Grid.Column="1" Grid.ColumnSpan="27">
             <CheckBox.ToolTip>
                 <TextBlock>
                     Add the markup and link for an image with the NPC's name.
@@ -95,8 +95,8 @@
                 </TextBlock>
             </Button.ToolTip>
         </Button>
-        <Label Content="Artist Name:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.Column="4" Grid.ColumnSpan="4"/>
-        <TextBox Padding="5,0,0,0" Grid.Row="24" Grid.Column="9" Grid.ColumnSpan="16">
+        <Label Content="Artist Name:" Foreground="Gray" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.Column="4" Grid.ColumnSpan="4"/>
+        <TextBox Padding="5,0,0,0" IsEnabled="False" Grid.Row="24" Grid.Column="9" Grid.ColumnSpan="16">
             <TextBox.ToolTip>
                 <TextBlock>
                      Enter the artist's name here.
@@ -105,8 +105,8 @@
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
-        <Label Content="Artist Link:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="26" Grid.Column="4" Grid.ColumnSpan="4"/>
-        <TextBox Padding="5,0,0,0" Grid.Row="26" Grid.Column="9" Grid.ColumnSpan="16">
+        <Label Content="Artist Link:" Foreground="Gray" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="26" Grid.Column="4" Grid.ColumnSpan="4"/>
+        <TextBox Padding="5,0,0,0" IsEnabled="False" Grid.Row="26" Grid.Column="9" Grid.ColumnSpan="16">
             <TextBox.ToolTip>
                 <TextBlock>
                     Enter the artist's email address or web address here.

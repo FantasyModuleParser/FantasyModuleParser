@@ -120,11 +120,11 @@ namespace FantasyModuleParser.NPC.Models.Action
 					AddSecondaryDamageToStringBuilder(stringBuilder, SecondaryDamageTotal);
 					AddVersatileDamageToStringBuilder(stringBuilder, VersatileDamageTotal);
 				}
-				else if (AddVersatileDamage && AddSecondDamage == false)
+				else if (AddVersatileDamage && !AddSecondDamage)
 				{
 					AddVersatileDamageToStringBuilder(stringBuilder, VersatileDamageTotal);
 				}
-				else if (AddSecondDamage && AddVersatileDamage == true)
+				else if (AddSecondDamage && !AddVersatileDamage)
 				{
 					AddSecondaryDamageToStringBuilder(stringBuilder, SecondaryDamageTotal);
 				}
