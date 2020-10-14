@@ -119,30 +119,6 @@ namespace FantasyModuleParser
             }
             openFileDialog.ShowDialog();
         }
-        private void Projects_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void Artifacts_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void Equipment_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void NPC_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void Parcel_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void Spell_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void Table_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void FG_Click(object sender, RoutedEventArgs e)
-        {
-        }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagement projectManagement = null;
