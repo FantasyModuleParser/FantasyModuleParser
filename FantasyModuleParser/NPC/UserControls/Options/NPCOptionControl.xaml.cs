@@ -27,6 +27,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		private bool _isViewStatblockWindowOpen = false;
 		private int categoryIndex = 0;
 		private SettingsService settingsService;
+		private SettingsModel settingsModel;
 		#endregion
 
 		public event EventHandler OnViewStatBlock;
@@ -151,19 +152,23 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		}
 
 		private void PreviewNPC_Click(object sender, RoutedEventArgs e)
-		{
-			OnViewStatBlock.Invoke(this, EventArgs.Empty);
+		{ 
+			settingsModel = settingsService.Load();
 
-			// If we want a setting that allows the Preview NPC Stat Block to be a floating window,
-			// then this code snippet below should be uncommented.
-
-			//if (!_isViewStatblockWindowOpen)
-			//{
-			//	_isViewStatblockWindowOpen = true;
-			//	PreviewNPC previewNPC = new PreviewNPC();
-			//	previewNPC.Closing += PreviewNPC_Closing;
-			//	previewNPC.Show();
-			//}
+			if (!settingsModel.PersistentWindow)
+            {
+				if (!_isViewStatblockWindowOpen)
+				{
+					_isViewStatblockWindowOpen = true;
+					PreviewNPC previewNPC = new PreviewNPC();
+					previewNPC.Closing += PreviewNPC_Closing;
+					previewNPC.Show();
+				}
+			}
+			else
+            {
+				OnViewStatBlock.Invoke(this, EventArgs.Empty);
+			}
 		}
 
 		private void PreviewNPC_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -195,7 +200,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			}
 			catch (Exception exception)
 			{
-				MessageBox.Show("Error detected while adding NPC to button :: " + exception.Message);
+				MessageBox.Show("Error detected while adding NPC to Project :: " + exception.Message);
 			}
 		}
 
