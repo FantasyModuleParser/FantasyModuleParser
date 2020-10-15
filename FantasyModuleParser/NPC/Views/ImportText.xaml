@@ -24,7 +24,6 @@
             <ComboBoxItem IsSelected="True">PDF (NPC)</ComboBoxItem>
             <ComboBoxItem>Engineer Suite v1 (NPC)</ComboBoxItem>
             <ComboBoxItem>DnD Beyond (NPC)</ComboBoxItem>
-            <ComboBoxItem>5e Tools (NPC)</ComboBoxItem>
         </ComboBox>
 
         <Grid Grid.Row="3" Grid.Column="1">

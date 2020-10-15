@@ -31,7 +31,6 @@ namespace FantasyModuleParser.NPC
             importESNPC = new ImportEngineerSuiteNPC();
             importDnDBeyondNPC = new ImportDnDBeyondNPC();
             importPDFNPC = new ImportPDFNPC();
-            import5eToolsNPC = new Import5eToolsNPC();
             NPCController npcController = new NPCController();
 
             switch(ImportSelector.SelectedIndex)
@@ -44,9 +43,6 @@ namespace FantasyModuleParser.NPC
                     break;
                 case 2:
                     npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(ImportTextBox.Text));
-                    break;
-                case 3:
-                    npcController.LoadNPCModel(import5eToolsNPC.ImportTextToNPCModel(ImportTextBox.Text));
                     break;
             }
             this.Visibility = Visibility.Hidden;
