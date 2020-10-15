@@ -41,8 +41,8 @@
     <MinimumRequiredVersion>0.1.0.4</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>0.2.0.7</ApplicationVersion>
+    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationVersion>0.2.0.8</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -441,6 +441,7 @@
     <Compile Include="Importer\NPC\IFormatContentService.cs" />
     <Compile Include="Importer\NPC\FormatPDFService.cs" />
     <Compile Include="Importer\NPC\IImportNPC.cs" />
+    <Compile Include="Importer\NPC\Import5eToolsNPC.cs" />
     <Compile Include="Importer\NPC\ImportDnDBeyondNPC.cs" />
     <Compile Include="Importer\NPC\ImportESNPCBase.cs" />
     <Compile Include="Importer\NPC\ImportNPCBase.cs" />
