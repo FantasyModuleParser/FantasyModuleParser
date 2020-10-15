@@ -59,7 +59,7 @@
         </Menu>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
             <Label Content="Options" FontSize="16" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Center"></Label>
-            <ListBox SelectionChanged="ListBox_SelectionChanged">
+            <ListBox SelectionChanged="listBoxItem_Selected">
                 <ListBoxItem IsEnabled="False">Add Backgrounds</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Classes</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Encounters</ListBoxItem>

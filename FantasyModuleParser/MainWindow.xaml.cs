@@ -24,6 +24,7 @@ using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Main.Views;
 using FantasyModuleParser.NPC.UserControls;
 using FantasyModuleParser.Spells;
+using FantasyModuleParser.Spells.ViewModels;
 
 namespace FantasyModuleParser
 {
@@ -120,6 +121,7 @@ namespace FantasyModuleParser
         private void ProjectManagement_OnCloseWindowAction(object sender, EventArgs e)
         {
             npcOptionUserControl.Refresh();
+            (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
         }
 
         private void CreateModule_Click(object sender, RoutedEventArgs e)
@@ -146,7 +148,21 @@ namespace FantasyModuleParser
             base.OnClosed(e);
             System.Windows.Application.Current.Shutdown();
         }
-
+        private void listBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            if (optionNPC.IsSelected == true)
+            {
+                stackNPC.Visibility = Visibility.Visible;
+                stackMain.Visibility = Visibility.Hidden;
+                stackSpells.Visibility = Visibility.Hidden;
+            }
+            if (optionSpells.IsSelected == true)
+            {
+                stackNPC.Visibility = Visibility.Hidden;
+                stackMain.Visibility = Visibility.Hidden;
+                stackSpells.Visibility = Visibility.Visible;
+            }
+        }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {
             ViewStatBlockPanel.Children.Clear();

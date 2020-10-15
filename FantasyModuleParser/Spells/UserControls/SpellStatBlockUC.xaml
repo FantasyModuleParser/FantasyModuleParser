@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="FantasyModuleParser.Spells.UserControls.SpellStatBlockUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
+             xmlns:model="clr-namespace:FantasyModuleParser.Spells.Models"
+             xmlns:local="clr-namespace:FantasyModuleParser.Spells.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="450">
+    <UserControl.DataContext>
+        <viewModel:SpellViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <!-- This static resource array is used to display data as it would be presented to the user.  
+                Otherwise, I need to start the program, open an NPC, navigate to the tab and see the results. -->
+        <!-- To utilize this snippet, change this line:  
+                    <<<<<< ItemsSource="{Binding Path=LairActions}" 
+                to this:
+                    >>>>>> ItemsSource="{StaticResource LairActionList}" 
+        -->
+        <model:SpellModel x:Key="TestSpellModel" x:Name="TestSpellModel" 
+                          SpellName="Test Spell Name"
+                          SpellLevel="Third" 
+                          IsRitual="True" />
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical"  DataContext="{StaticResource TestSpellModel}">
+                <Label Content="{Binding SpellName}" FontSize="16" FontWeight="Bold"/>
+                <Label Content="{Binding SpellLevel}" FontSize="12" FontWeight="Bold" FontStyle="Italic"/>
+                <Label Content="{Binding IsRitual}">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsRitual}" Value="False"/>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

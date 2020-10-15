@@ -597,8 +597,13 @@
     <Compile Include="Spells\Enums\SpellLevel.cs" />
     <Compile Include="Spells\Enums\SpellSchool.cs" />
     <Compile Include="Spells\Models\SpellModel.cs" />
+    <Compile Include="Spells\Services\ISpellService.cs" />
+    <Compile Include="Spells\Services\SpellService.cs" />
     <Compile Include="Spells\SpellOptionControl.xaml.cs">
       <DependentUpon>SpellOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Spells\UserControls\SpellStatBlockUC.xaml.cs">
+      <DependentUpon>SpellStatBlockUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
@@ -657,6 +662,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Spells\SpellOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Spells\UserControls\SpellStatBlockUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

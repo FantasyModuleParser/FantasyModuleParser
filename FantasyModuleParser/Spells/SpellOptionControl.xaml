@@ -8,13 +8,33 @@
              xmlns:spellEnum="clr-namespace:FantasyModuleParser.Spells.Enums"
              xmlns:model="clr-namespace:FantasyModuleParser.Spells.Models"
              xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
-        mc:Ignorable="d" d:DesignHeight="700" d:DesignWidth="620">
+        mc:Ignorable="d" d:DesignHeight="700" d:DesignWidth="620" Loaded="SpellOptionControl_Loaded">
     <UserControl.DataContext>
         <viewModel:SpellViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="standardButton">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="ComboBox" x:Key="standardComboBox">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="standardTextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" x:Key="TooltipButton">
+            <Setter Property="ToolTipService.InitialShowDelay" Value="50" />
+            <Setter Property="ToolTipService.ShowDuration" Value="5000" />
+            <Setter Property="ToolTipService.BetweenShowDelay" Value="10000" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
@@ -26,9 +46,21 @@
             <RowDefinition Height="60" />
             <RowDefinition Height="180" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="NewSpellButton" Content="NS" Grid.Column="1" Style="{StaticResource TooltipButton}" ToolTip="Create New Spell" />
+            <Button x:Name="LoadSpellButton" Content="LS" Grid.Column="2" Style="{StaticResource TooltipButton}" ToolTip="Load Spell" Click="LoadSpellButton_Click"/>
+            <Button x:Name="SaveSpellButton" Content="SS" Grid.Column="3" Style="{StaticResource TooltipButton}" ToolTip="Save Spell" />
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
@@ -61,11 +93,11 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Casting Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox VerticalAlignment="Center" Grid.Column="1" IsReadOnly="True"/>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
             <TextBox Text="{Binding SpellModel.CastingTime}" VerticalAlignment="Center" Grid.Column="3"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="CastingType_SelectionChanged" VerticalAlignment="Center" Grid.Column="5"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="CastingType_SelectionChanged" Style="{StaticResource standardComboBox}" Grid.Column="5"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -113,9 +145,9 @@
                 <ColumnDefinition Width="193" />
             </Grid.ColumnDefinitions>
             <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0" Margin="0,8,0,7"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,7,0,6"/>
+            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource standardTextBox}" />
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="3" Margin="0,8,0,7"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="DurationSelectionEnabled_ComboboxChanged" VerticalAlignment="Center" Grid.Column="4" Margin="0,4,0,5"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="DurationSelectionEnabled_ComboboxChanged" Grid.Column="4" Style="{StaticResource standardComboBox}"/>
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>
@@ -127,7 +159,7 @@
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
             <TextBox x:Name="DurationTime" Text="{Binding SpellModel.DurationTime}" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Unit:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox x:Name="DurationUnit" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationUnit}}}" SelectedValue="{Binding Path=SpellModel.DurationUnit}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3"/>
+            <ComboBox x:Name="DurationUnit" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationUnit}}}" SelectedValue="{Binding Path=SpellModel.DurationUnit}" SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="3" Style="{StaticResource standardComboBox}"/>
         </Grid>
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
@@ -193,25 +225,37 @@
         </Grid>
         <Grid Grid.Row="12">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="75" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
-            <Button Content="View Stat Block" VerticalAlignment="Center" Grid.Column="1" Click="ViewStatBlock_Click" />
-            <Label Content="Category" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" />
-            <ComboBox ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name" VerticalAlignment="Center" Grid.Column="3" />
-            <Button Content="Save Spell" Click="SaveSpellButton_Click" VerticalAlignment="Center" Margin="5" Grid.Column="4" />
-            <Button Content="Add to Project" VerticalAlignment="Center" Margin="5" Grid.Column="5" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Content="FG Category" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" />
+            <Label Content="Selected Spell" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" />
+
+            <!-- Second internal row -->
+            <ComboBox Name="FGCategoryComboBox" ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name"
+                      IsSynchronizedWithCurrentItem="True"
+        SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" SelectionChanged="CategoryCB_SelectionChange"/>
+            <Button Content="Prev Spell" Grid.Column="1" Grid.Row="1" Style="{StaticResource standardButton}" />
+            <Button Content="Next Spell" Grid.Column="2" Grid.Row="1" Style="{StaticResource standardButton}" />
+            <ComboBox ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name" Grid.Column="3" Grid.Row="1" Style="{StaticResource standardComboBox}" />
         </Grid>
         <Grid Grid.Row="13">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Content="Import Text" VerticalAlignment="Center" Grid.Column="1" />
+            <Button Content="Import Text" Grid.Column="0" Style="{StaticResource standardButton}" />
+            <Button Content="View Stat Block" Grid.Column="1" Style="{StaticResource standardButton}" Click="ViewStatBlock_Click"  />
+            <Button Content="Save Spell" Grid.Column="2"  Style="{StaticResource standardButton}" Click="SaveSpellButton_Click"/>
+            <Button Content="Add to Project" Grid.Column="3"  Style="{StaticResource standardButton}" Click="AddToProjectButton_Click" />
         </Grid>
     </Grid>
 </UserControl>
