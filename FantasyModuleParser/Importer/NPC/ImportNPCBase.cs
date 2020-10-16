@@ -830,6 +830,7 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
                 weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
+                weaponAttackModel.AddSecondDamage = true;
                 weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
 
 
