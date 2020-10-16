@@ -4,6 +4,7 @@ using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
+using FantasyModuleParser.Spells.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -113,6 +114,19 @@ namespace FantasyModuleParser.Exporters
 			return FatNPCList;
 		}
 
+		private List<SpellModel> GenerateFatSpellList(ModuleModel moduleModel)
+        {
+			List<SpellModel> FatSpellList = new List<SpellModel>();
+			foreach (CategoryModel category in moduleModel.Categories)
+            {
+				foreach (SpellModel spellModel in category.SpellModels)
+                {
+					FatSpellList.Add(spellModel);
+                }
+            }
+			return FatSpellList;
+        }
+
 		private string NewThumbnailFileName(ModuleModel moduleModel)
         {
 			string ThumbnailFilename = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "thumbnail.png");
@@ -136,7 +150,9 @@ namespace FantasyModuleParser.Exporters
 		public string GenerateDBXmlFile(ModuleModel moduleModel)
 		{
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);
+			List<SpellModel> FatSpellList = GenerateFatSpellList(moduleModel);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 
 			foreach (NPCModel npcModel in FatNPCList)
             {
@@ -278,28 +294,39 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); // Close </npcdata>
                 #endregion
                 #region Spell Data
-                //	xmlWriter.WriteStartElement("spelldata");           
-                //	xmlWriter.WriteString(" ");                      
-                //	xmlWriter.WriteEndElement();
-                #endregion
-                #region Equipment Data
-                //	xmlWriter.WriteStartElement("equipmentdata");      
-                //	xmlWriter.WriteAttributeString("static", "true"); 
-                //	xmlWriter.WriteString(" ");                        
-                //	xmlWriter.WriteEndElement();
-                #endregion
-                #region Equipment Lists
-                //	xmlWriter.WriteStartElement("equipmentlists");   
-                //	xmlWriter.WriteStartElement("equipment");           
-                //	xmlWriter.WriteStartElement("name");              
-                //	xmlWriter.WriteAttributeString("type", "string");   
-                //	xmlWriter.WriteString("Equipment");                
-                //	xmlWriter.WriteEndElement();                       
-                //	xmlWriter.WriteEndElement();
-                //	xmlWriter.WriteEndElement();
-                #endregion
-                #region Image Lists
-                xmlWriter.WriteStartElement("imagelists");
+                xmlWriter.WriteStartElement("spelldata");
+				foreach (CategoryModel categoryModel in moduleModel.Categories)
+				{
+					xmlWriter.WriteStartElement("category");
+					xmlWriter.WriteAttributeString("name", categoryModel.Name);
+					xmlWriter.WriteAttributeString("baseicon", "0");
+					xmlWriter.WriteAttributeString("decalicon", "0");
+					xmlWriter.WriteEndElement();
+
+					foreach (SpellModel spellModel in FatSpellList)
+					{
+
+					}
+				}
+				#endregion
+				#region Equipment Data
+				//	xmlWriter.WriteStartElement("equipmentdata");      
+				//	xmlWriter.WriteAttributeString("static", "true"); 
+				//	xmlWriter.WriteString(" ");                        
+				//	xmlWriter.WriteEndElement();
+				#endregion
+				#region Equipment Lists
+						//	xmlWriter.WriteStartElement("equipmentlists");   
+						//	xmlWriter.WriteStartElement("equipment");           
+						//	xmlWriter.WriteStartElement("name");              
+						//	xmlWriter.WriteAttributeString("type", "string");   
+						//	xmlWriter.WriteString("Equipment");                
+						//	xmlWriter.WriteEndElement();                       
+						//	xmlWriter.WriteEndElement();
+						//	xmlWriter.WriteEndElement();
+						#endregion
+				#region Image Lists
+						xmlWriter.WriteStartElement("imagelists");
 				xmlWriter.WriteStartElement("bycategory");
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteAttributeString("type", "string");
