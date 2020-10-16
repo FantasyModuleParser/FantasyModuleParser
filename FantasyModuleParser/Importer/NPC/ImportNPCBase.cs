@@ -732,7 +732,8 @@ namespace FantasyModuleParser.Importer.NPC
             // Special Case;  If the string has more than 5 words, and none of those 5 words has a period character,
             //  then append the line to the previously created Action's Description as a new line
             string[] standardActionArray = standardAction.Split(' ');
-            for (int idx = 0; idx < 9; idx++)
+            int indexRange = standardActionArray.Length > 9 ? 9 : standardActionArray.Length;
+            for (int idx = 0; idx < indexRange; idx++)
             {
                 if (standardActionArray[idx].Contains("."))
                 {
@@ -744,6 +745,13 @@ namespace FantasyModuleParser.Importer.NPC
 
             ActionModelBase actionModelBase = npcModel.NPCActions.Last();
             actionModelBase.ActionDescription = actionModelBase.ActionDescription + "\n\n" + standardAction;
+        }
+
+        public ActionModelBase ParseStandardAction(string standardAction)
+        {
+            NPCModel blankNPCModel = new NPCModel();
+            ParseStandardAction(blankNPCModel, standardAction);
+            return blankNPCModel.NPCActions[0];
         }
 
         private static string[] ParseOtherAction(NPCModel npcModel, string standardAction)
