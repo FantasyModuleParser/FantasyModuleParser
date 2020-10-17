@@ -130,11 +130,15 @@
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
             <Label Content="Components:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
             <CheckBox IsChecked="{Binding SpellModel.IsVerbalComponent}" Content="V" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="1"/>
             <CheckBox IsChecked="{Binding SpellModel.IsSomaticComponent}" Content="S" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="2"/>
             <CheckBox IsChecked="{Binding SpellModel.IsMaterialComponent}" Content="M" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="3"/>
+            <Label Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4" />
+            <TextBox Text="{Binding SpellModel.ComponentText}" Height="20" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
