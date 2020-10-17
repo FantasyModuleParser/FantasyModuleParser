@@ -226,7 +226,7 @@ namespace FantasyModuleParser.Exporters
                             xmlWriter.WriteStartElement("bitmap");
                             xmlWriter.WriteString("images\\" + NPCNameToXMLFormat(npcModel) + ".jpg");
                             xmlWriter.WriteEndElement();
-							WriteLocked(xmlWriter, npcModel);
+							WriteLocked(xmlWriter);
 							WriteName(xmlWriter, npcModel);
                             xmlWriter.WriteStartElement("nonid_name");
                             xmlWriter.WriteAttributeString("type", "string");
@@ -261,7 +261,7 @@ namespace FantasyModuleParser.Exporters
 				foreach (NPCModel npcModel in FatNPCList)
 				{
 					xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel)); // Open <npcModel.NPCName>
-					WriteLocked(xmlWriter, npcModel);
+					WriteLocked(xmlWriter);
                     WriteAbilities(xmlWriter, npcModel);
                     WriteAC(xmlWriter, npcModel);
                     WriteActions(xmlWriter, npcModel);
@@ -305,7 +305,12 @@ namespace FantasyModuleParser.Exporters
 
 					foreach (SpellModel spellModel in FatSpellList)
 					{
-
+						xmlWriter.WriteStartElement(SpellNameToXMLFormat(spellModel));
+						WriteLocked(xmlWriter);
+						WriteSpellName(xmlWriter, spellModel);
+						WriteSpellDescription(xmlWriter, spellModel);
+						WriteSpellLevel(xmlWriter, spellModel);
+						xmlWriter.WriteEndElement();
 					}
 				}
 				#endregion
@@ -540,6 +545,31 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 		}
+		private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
+		{
+			string libname = moduleModel.Name.ToLower();
+			return libname.Replace(" ", "");
+		}
+		private string CategoryNameToXML(CategoryModel categoryModel)
+        {
+			string categoryName = categoryModel.Name;
+			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "_").Replace("'", "_").ToLower();
+        }
+		#endregion
+		#region Common Methods
+		private void WriteLocked(XmlWriter xmlWriter)
+		{
+			ModuleModel moduleModel = new ModuleModel();
+			string lockedRecords = "0";
+			if (moduleModel.IsLockedRecords)
+				lockedRecords = "1";
+			xmlWriter.WriteStartElement("locked");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(lockedRecords.ToString());
+			xmlWriter.WriteEndElement();
+		}
+		#endregion
+		#region NPC Methods for Reference Manual
 		private void NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			foreach (NPCModel npc in NPCList)
@@ -552,13 +582,13 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("recordname");
 				if (moduleModel.IsLockedRecords)
-                {
+				{
 					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
 				}
-				else 
+				else
 				{
 					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc));
-				}	
+				}
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteStartElement("field");
@@ -572,16 +602,6 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();
 			}
 		}
-		private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
-		{
-			string libname = moduleModel.Name.ToLower();
-			return libname.Replace(" ", "");
-		}
-		private string CategoryNameToXML(CategoryModel categoryModel)
-        {
-			string categoryName = categoryModel.Name;
-			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "_").Replace("'", "_").ToLower();
-        }
 		public void CreateReferenceByFirstLetter(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
@@ -663,13 +683,6 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 		}
-		private string NPCNameToXMLFormat(NPCModel npcModel)
-		{
-			string name = npcModel.NPCName.ToLower();
-			return name.Replace(" ", "_").Replace(",", "");
-		}
-        #endregion
-
         public void SortNPCListByCategory(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, CategoryModel categoryModel, List<NPCModel> NPCList)
         {
             NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
@@ -680,7 +693,6 @@ namespace FantasyModuleParser.Exporters
                 ProcessNPCListByCategoryLetter(xmlWriter, npcModel, moduleModel, actualLetter, npcList);
             }
         }
-
         private void ProcessNPCListByCategoryLetter(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, string actualLetter, List<NPCModel> NPCList)
         {
             xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
@@ -703,20 +715,12 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteEndElement();
             xmlWriter.WriteEndElement();
         }
-        #region NPC Methods
-        private void WriteLocked(XmlWriter xmlWriter, NPCModel npcModel)
+		#endregion
+		#region NPC Methods
+		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
-			ModuleModel moduleModel = new ModuleModel();
-			string lockedRecords = "0";
-			if (moduleModel.IsLockedRecords)
-			{
-				lockedRecords = "1";
-			}
-
-			xmlWriter.WriteStartElement("locked");
-			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteString(lockedRecords.ToString());
-			xmlWriter.WriteEndElement();
+			string name = npcModel.NPCName.ToLower();
+			return name.Replace(" ", "_").Replace(",", "");
 		}
 		private void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
@@ -1590,6 +1594,34 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("xp");
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(npcModel.XP);
+			xmlWriter.WriteEndElement();
+		}
+		#endregion
+		#region Spell Methods
+		private string SpellNameToXMLFormat(SpellModel spellModel)
+		{
+			string name = spellModel.SpellName.ToLower();
+			return name.Replace(" ", "_").Replace(",", "");
+		}
+		private void WriteSpellName(XmlWriter xmlWriter, SpellModel spellModel)
+		{
+			xmlWriter.WriteStartElement("name");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(spellModel.SpellName);
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteSpellDescription(XmlWriter xmlWriter, SpellModel spellModel)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "formattedtext");
+			xmlWriter.WriteString(spellModel.Description);
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteSpellLevel(XmlWriter xmlWriter, SpellModel spellModel)
+		{
+			xmlWriter.WriteStartElement("level");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(spellModel.SpellLevel);
 			xmlWriter.WriteEndElement();
 		}
 		#endregion
