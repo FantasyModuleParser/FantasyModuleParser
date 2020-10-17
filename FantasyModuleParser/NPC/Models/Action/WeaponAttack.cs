@@ -211,9 +211,9 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(" plus " + SecondaryDamageTotal + " (" + SecondaryDamage.NumOfDice + SecondaryDamage.DieType.GetDescription());
 
 				if (SecondaryDamage.Bonus > 0)
-					stringBuilder.Append(" + ");
+					stringBuilder.Append(" + ").Append(SecondaryDamage.Bonus);
 				else if (SecondaryDamage.Bonus < 0)
-					stringBuilder.Append(SecondaryDamage.Bonus);
+					stringBuilder.Append(" ").Append(SecondaryDamage.Bonus);
 
 				stringBuilder.Append(") ");
 			}

@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using FantasyModuleParser.Importer.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.UserControls.Action;
-using FantasyModuleParser.NPC.ViewModel;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace FantasyModuleParser.NPC
 {
@@ -74,6 +66,15 @@ namespace FantasyModuleParser.NPC
                 var action = (sender as OverviewControl).DataContext;
                 if (action is ActionModelBase)
                 {
+                    // Darkpool:  This statement is to patch older beta saves, where NewsoftJson wrote the class type
+                    // for specific actions as an ActionModelBase class instead of the intended class (e.g. Multiattack, WeaponAction, OtherAction).
+                    // The workaround is to append the known ActionName. ActionDescription and use our importers to generate the correct class
+                    if(!(action is Multiattack) && !(action is WeaponAttack) && !(action is OtherAction))
+                    {
+                        ImportNPCBase importNPCBase = new ImportPDFNPC();
+                        action = importNPCBase.ParseStandardAction((action as ActionModelBase).ActionName + ". " + (action as ActionModelBase).ActionDescription);
+                    }
+
                     // The curse of the Pass-by-reference strikes again.. hence need for deep clone :(
                     if (action is Multiattack)
                     {
