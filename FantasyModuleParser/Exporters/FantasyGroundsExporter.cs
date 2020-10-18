@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Extensions;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
@@ -310,6 +311,12 @@ namespace FantasyModuleParser.Exporters
 						WriteSpellName(xmlWriter, spellModel);
 						WriteSpellDescription(xmlWriter, spellModel);
 						WriteSpellLevel(xmlWriter, spellModel);
+						WriteSpellSchool(xmlWriter, spellModel);
+						WriteSpellSource(xmlWriter, spellModel);
+						WriteCastingTime(xmlWriter, spellModel);
+						WriteSpellRange(xmlWriter, spellModel);
+						WriteSpellDuration(xmlWriter, spellModel);
+						WriteSpellComponents(xmlWriter, spellModel);
 						xmlWriter.WriteEndElement();
 					}
 				}
@@ -1621,9 +1628,90 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("level");
 			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteString(spellModel.SpellLevel);
+			xmlWriter.WriteValue(spellModel.SpellLevel);
 			xmlWriter.WriteEndElement();
 		}
+		private void WriteSpellSchool(XmlWriter xmlWriter, SpellModel spellModel)
+		{
+			xmlWriter.WriteStartElement("school");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteValue(spellModel.SpellSchool);
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteSpellSource(XmlWriter xmlWriter, SpellModel spellModel)
+		{
+			xmlWriter.WriteStartElement("source");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(spellModel.CastBy);
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteCastingTime(XmlWriter xmlWriter, SpellModel spellModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append(spellModel.CastingTime + " " + spellModel.CastingType.GetDescription());
+
+			xmlWriter.WriteStartElement("castingtime");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(stringBuilder.ToString());
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteSpellRange(XmlWriter xmlWriter, SpellModel spellModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append(spellModel.CastingTime + " " + spellModel.CastingType.GetDescription());
+
+			xmlWriter.WriteStartElement("castingtime");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(stringBuilder.ToString());
+			xmlWriter.WriteEndElement();
+		}
+
+		private void WriteSpellDuration(XmlWriter xmlWriter, SpellModel spellModel)
+        {
+			xmlWriter.WriteStartElement("duration");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(spellModel.DurationText);
+			xmlWriter.WriteEndElement();
+        }
+		private void WriteSpellComponents(XmlWriter xmlWriter, SpellModel spellModel)
+        {
+			StringBuilder stringBuilder = new StringBuilder();
+			if (spellModel.IsVerbalComponent)
+            {
+				stringBuilder.Append("V");
+				if (spellModel.IsSomaticComponent)
+                {
+					stringBuilder.Append(", S");
+					if (spellModel.IsMaterialComponent)
+						stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+				}
+				else if (spellModel.IsMaterialComponent)
+					stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+			}
+			else if (!spellModel.IsVerbalComponent && spellModel.IsSomaticComponent)
+			{
+				stringBuilder.Append("S");
+				if (spellModel.IsMaterialComponent)
+					stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+			}
+			else if (!spellModel.IsVerbalComponent && !spellModel.IsSomaticComponent && spellModel.IsMaterialComponent)
+				stringBuilder.Append("M (" + spellModel.ComponentText + ")");
+
+			xmlWriter.WriteStartElement("components");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(stringBuilder.ToString());
+			xmlWriter.WriteEndElement();
+        }
+		private void WriteSpellRitual(XmlWriter xmlWriter, SpellModel spellModel)
+        {
+			xmlWriter.WriteStartElement("ritual");
+			xmlWriter.WriteAttributeString("type", "number");
+			if (spellModel.IsRitual)
+				xmlWriter.WriteString("1");
+			else
+				xmlWriter.WriteString("0");
+			xmlWriter.WriteEndElement();
+        }
 		#endregion
 		public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
 		{

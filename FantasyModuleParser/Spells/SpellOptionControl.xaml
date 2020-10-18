@@ -149,7 +149,7 @@
                 <ColumnDefinition Width="193" />
             </Grid.ColumnDefinitions>
             <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0" Margin="0,8,0,7"/>
-            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource standardTextBox}" />
+            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource standardTextBox}" Text="{Binding SpellModel.DurationText}" IsReadOnly="True" />
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="3" Margin="0,8,0,7"/>
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="DurationSelectionEnabled_ComboboxChanged" Grid.Column="4" Style="{StaticResource standardComboBox}"/>
         </Grid>

@@ -17,6 +17,7 @@ namespace FantasyModuleParser.Spells.Models
         public bool IsSomaticComponent { get; set; }
         public bool IsMaterialComponent { get; set; }
         public string ComponentText { get; set; }
+        public string DurationText { get; set; }
         public int DurationTime { get; set; }
         public DurationType DurationType { get; set; }
         public DurationUnit DurationUnit { get; set; }
