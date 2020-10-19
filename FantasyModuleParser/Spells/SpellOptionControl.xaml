@@ -93,11 +93,11 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Casting Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox VerticalAlignment="Center" Grid.Column="1" IsReadOnly="True"/>
+            <Label Name="CastingDisplayValue" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <TextBox Text="{Binding SpellModel.CastingTime}" VerticalAlignment="Center" Grid.Column="3"/>
+            <TextBox x:Name="CastingTimeTB" Text="{Binding SpellModel.CastingTime, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="3" TextChanged="Casting_Changed" IsEnabled="False"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="CastingType_SelectionChanged" Style="{StaticResource standardComboBox}" Grid.Column="5"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="Casting_Changed" Style="{StaticResource standardComboBox}" Grid.Column="5"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -105,7 +105,7 @@
                 <ColumnDefinition Width="75" />
                 <ColumnDefinition Width="218" />
             </Grid.ColumnDefinitions>
-            <Label Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Padding="0,0,5,0" Grid.Column="1"/>
+            <Label Name="CastingDescriptionLabel" Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Padding="0,0,5,0" Grid.Column="1"/>
             <TextBox x:Name="ReactionDescription" VerticalAlignment="Center" IsEnabled="False" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="5">
@@ -118,11 +118,11 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Range:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Text="{Binding SpellModel.Range}" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Name="RangeDisplayValue" IsReadOnly="True" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
-            <Label Content="Distance:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Grid.Column="4" />
-            <TextBox VerticalAlignment="Center" IsEnabled="False" Grid.Column="5" />
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType}" SelectedValuePath="Value" SelectionChanged="RangeComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
+            <Label Name="RangeDistanceLabel" Content="Distance:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Grid.Column="4" />
+            <TextBox x:Name="RangeValueTB" Text="{Binding SpellModel.Range, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" IsEnabled="False" Grid.Column="5" TextChanged="RangeComboBox_SelectionChanged" />
         </Grid>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>

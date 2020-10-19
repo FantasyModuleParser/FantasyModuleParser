@@ -6,6 +6,7 @@ using FantasyModuleParser.Main.Views;
 using FantasyModuleParser.NPC.UserControls;
 using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Spells;
+using FantasyModuleParser.Spells.UserControls;
 using FantasyModuleParser.Spells.ViewModels;
 using Microsoft.Win32;
 using System;
@@ -203,7 +204,12 @@ namespace FantasyModuleParser
                     break;
                 case nameof(SpellOptionControl):
                     // TODO:  Create the Stat Block for Spells and add it here (uncomment the break when doing so)
-                    //break;
+                    this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
+
+                    if (isViewStatBlockVisible)
+                        ViewStatBlockPanel.Children.Add(new SpellStatBlockUC());
+                    break;
+                //break;
                 default:
                     // Reset the width to the default of 810
                     this.Width = 810;
