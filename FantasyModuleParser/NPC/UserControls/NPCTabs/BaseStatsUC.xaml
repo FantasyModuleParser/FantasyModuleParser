@@ -264,12 +264,14 @@
                 <ComboBoxItem>(dragonborn)</ComboBoxItem>
                 <ComboBoxItem>(dwarf)</ComboBoxItem>
                 <ComboBoxItem>(elf)</ComboBoxItem>
+                <ComboBoxItem>(firbolg)</ComboBoxItem>
                 <ComboBoxItem>(firenewt)</ComboBoxItem>
                 <ComboBoxItem>(genasi)</ComboBoxItem>
                 <ComboBoxItem>(gith)</ComboBoxItem>
                 <ComboBoxItem>(gnoll)</ComboBoxItem>
                 <ComboBoxItem>(gnome)</ComboBoxItem>
                 <ComboBoxItem>(goblinoid)</ComboBoxItem>
+                <ComboBoxItem>(goliath)</ComboBoxItem>
                 <ComboBoxItem>(grimlock)</ComboBoxItem>
                 <ComboBoxItem>(grung)</ComboBoxItem>
                 <ComboBoxItem>(half-elf)</ComboBoxItem>
@@ -286,6 +288,8 @@
                 <ComboBoxItem>(ratfolk)</ComboBoxItem>
                 <ComboBoxItem>(sahuagin)</ComboBoxItem>
                 <ComboBoxItem>(shapechanger)</ComboBoxItem>
+                <ComboBoxItem>(shifter)</ComboBoxItem>
+                <ComboBoxItem>(tabaxi)</ComboBoxItem>
                 <ComboBoxItem>(thri-kreen)</ComboBoxItem>
                 <ComboBoxItem>(tiefling)</ComboBoxItem>
                 <ComboBoxItem>(titan)</ComboBoxItem>
