@@ -86,7 +86,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Button Grid.Row="5" Content="Accept and Close" Width="100" HorizontalAlignment="Right" Height="20" Margin="7"/>
+            <Button Grid.Row="5" Content="Close" Click="Close_Click" Width="100" HorizontalAlignment="Right" Height="20" Margin="7"/>
         </Grid>
     </Grid>
 </Window>
