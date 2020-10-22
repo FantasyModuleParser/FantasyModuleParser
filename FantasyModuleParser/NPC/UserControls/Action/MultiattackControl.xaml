@@ -33,6 +33,5 @@
         <Grid Grid.Row="5">
             <Button Content="Add" Width="75" Padding="0" Click="AddButton_Click" Grid.Column="1" HorizontalAlignment="Center"/>
         </Grid>
-        
     </Grid>
 </UserControl>
