@@ -29,7 +29,6 @@ namespace FantasyModuleParser.Exporters
 		{
 			settingsService = new SettingsService();
 		}
-
 		public string DatabaseXML(ModuleModel moduleModel)
         {
 			string xmlRecord;
@@ -42,7 +41,6 @@ namespace FantasyModuleParser.Exporters
 				return xmlRecord = "client.xml";
             }
         }
-
 		public void CreateModule(ModuleModel moduleModel)
 		{
 			if (string.IsNullOrEmpty(settingsService.Load().FGModuleFolderLocation))
@@ -95,12 +93,9 @@ namespace FantasyModuleParser.Exporters
 			}
 			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod"));
 		}
-
 		/// <summary>
-		/// Generates a List of all NPCs across all Categories in one List<NPCModel> object.  Used for Reference Manual material
+		/// Generates a List of all NPCs across all Categories in one List<NPCModel> object.  Used for Reference Manual material.
 		/// </summary>
-		/// <param name="moduleModel"></param>
-		/// <returns></returns>
 		private List<NPCModel> GenerateFatNPCList(ModuleModel moduleModel)
 		{
 			List<NPCModel> FatNPCList = new List<NPCModel>();
@@ -114,7 +109,9 @@ namespace FantasyModuleParser.Exporters
 			}
 			return FatNPCList;
 		}
-
+		/// <summary>
+		/// Generates a List of all Spells across all Categories in one List<SpellModel> object. Used for Reference Manual material.
+		/// </summary>
 		private List<SpellModel> GenerateFatSpellList(ModuleModel moduleModel)
         {
 			List<SpellModel> FatSpellList = new List<SpellModel>();
@@ -127,13 +124,20 @@ namespace FantasyModuleParser.Exporters
             }
 			return FatSpellList;
         }
-
+		/// <summary>
+		/// Renames the selected thumbnail image to thumbnail.png
+		/// </summary>
 		private string NewThumbnailFileName(ModuleModel moduleModel)
         {
 			string ThumbnailFilename = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "thumbnail.png");
 			return ThumbnailFilename;
 
 		}
+		/// <summary>
+		/// Checks whether a thumbnail image exists. 
+		/// If the thumbnail image already exists, deletes and copies thumbnail image from PC location to module folder.
+		/// Otherwise, copies thumbnail image from PC location to module folder.
+		/// </summary>
 		private void SaveThumbnailImage(ModuleModel moduleModel)
         {
 			if (File.Exists(@Path.Combine(NewThumbnailFileName(moduleModel))))
@@ -147,14 +151,19 @@ namespace FantasyModuleParser.Exporters
 					File.Copy(moduleModel.ThumbnailPath, NewThumbnailFileName(moduleModel));
 			}
 		}
-
+		/// <summary>
+		/// Generates database file for use in Fantasy Grounds.
+		/// Currently covers NPCs and Spells.
+		/// </summary>
 		public string GenerateDBXmlFile(ModuleModel moduleModel)
 		{
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = GenerateFatSpellList(moduleModel);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
-
+			/// <summary>
+			///  Names all token images to match the NPC name
+			/// </summary>
 			foreach (NPCModel npcModel in FatNPCList)
             {
 				if (!string.IsNullOrEmpty(npcModel.NPCToken))
@@ -176,7 +185,9 @@ namespace FantasyModuleParser.Exporters
 					File.Copy(npcModel.NPCToken, NPCTokenFileName);
 				}
             }
-
+			/// <summary>
+			/// Names all images to match NPC name
+			/// </summary>
 			foreach (NPCModel npcModel in FatNPCList)
 			{
 				if (!string.IsNullOrEmpty(npcModel.NPCImage))
@@ -338,7 +349,7 @@ namespace FantasyModuleParser.Exporters
 						//	xmlWriter.WriteEndElement();
 						#endregion
 				#region Image Lists
-						xmlWriter.WriteStartElement("imagelists");
+				xmlWriter.WriteStartElement("imagelists");
 				xmlWriter.WriteStartElement("bycategory");
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteAttributeString("type", "string");
@@ -423,6 +434,27 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("groups");
 				CreateReferenceByType(xmlWriter, moduleModel, FatNPCList);
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+				#endregion
+				#region Spell Lists
+				xmlWriter.WriteStartElement("spelllists");
+				xmlWriter.WriteStartElement("spells");
+				xmlWriter.WriteStartElement("name");
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString("Spells");
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("index");
+				WriteIDLinkList(xmlWriter, moduleModel, "id001", "reference.spelllists._index_", "(Index)");
+				WriteIDLinkList(xmlWriter, moduleModel, "id002", "reference.spelllists.bard", "Bard");
+				WriteIDLinkList(xmlWriter, moduleModel, "id003", "reference.spelllists.cleric", "Cleric");
+				WriteIDLinkList(xmlWriter, moduleModel, "id004", "reference.spelllists.druid", "Druid");
+				WriteIDLinkList(xmlWriter, moduleModel, "id005", "reference.spelllists.paladin", "Paladin");
+				WriteIDLinkList(xmlWriter, moduleModel, "id006", "reference.spelllists.ranger", "Ranger");
+				WriteIDLinkList(xmlWriter, moduleModel, "id007", "reference.spelllists.sorcerer", "Sorcerer");
+				WriteIDLinkList(xmlWriter, moduleModel, "id008", "reference.spelllists.warlock", "Warlock");
+				WriteIDLinkList(xmlWriter, moduleModel, "id009", "reference.spelllists.wizard", "Wizard");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
@@ -1713,6 +1745,9 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
         }
 		#endregion
+		/// <summary>
+		/// Generates the Definition file used in Fantasy Grounds modules
+		/// </summary>
 		public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
 		{
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
@@ -1739,6 +1774,9 @@ namespace FantasyModuleParser.Exporters
 				return sw.ToString();
 			}
 		}
+		/// <summary>
+		/// XML Writer settings used to generate modules
+		/// </summary>
 		private XmlWriterSettings GetXmlWriterSettings()
 		{
 			XmlWriterSettings settings = new XmlWriterSettings
