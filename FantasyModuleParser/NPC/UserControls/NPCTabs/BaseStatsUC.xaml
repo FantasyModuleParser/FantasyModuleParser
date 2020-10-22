@@ -253,7 +253,7 @@
                 <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
             <Label Content="Tag:" Style="{StaticResource informationLabel}" Grid.Column="1" />
-            <ComboBox Name="strTag" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource comboBox}" Grid.Column="3" TabIndex="4">
+            <ComboBox Name="strTag" IsEditable="True" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource comboBox}" Grid.Column="3" TabIndex="4">
                 <ComboBoxItem>(aarakocra)</ComboBoxItem>
                 <ComboBoxItem>(any race)</ComboBoxItem>
                 <ComboBoxItem>(bullywug)</ComboBoxItem>
