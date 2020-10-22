@@ -37,8 +37,8 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
@@ -67,7 +67,7 @@
                 <ColumnDefinition Width="322" />
             </Grid.ColumnDefinitions>
             <Label Content="Spell Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Text="{Binding SpellModel.SpellName}" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Text="{Binding SpellModel.SpellName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -89,24 +89,32 @@
                 <ColumnDefinition Width="150" />
                 <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="175" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
             <Label Content="Casting Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <Label Name="CastingDisplayValue" VerticalAlignment="Center" Grid.Column="1"/>
+            <!--<Label Name="CastingDisplayValue" VerticalAlignment="Center" Grid.Column="1" Grid.RowSpan="2" />-->
+            <TextBlock Name="CastingDisplayValue" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" TextWrapping="WrapWithOverflow"/>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
             <TextBox x:Name="CastingTimeTB" Text="{Binding SpellModel.CastingTime, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="3" TextChanged="Casting_Changed" IsEnabled="False"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4"/>
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="Casting_Changed" Style="{StaticResource standardComboBox}" Grid.Column="5"/>
+            
+            <Label Name="CastingDescriptionLabel" Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Grid.Column="2" Grid.Row="1" />
+            <TextBox x:Name="ReactionDescription" Text="{Binding SpellModel.ReactionDescription, UpdateSourceTrigger=PropertyChanged}" TextChanged="Casting_Changed" VerticalAlignment="Center" IsEnabled="False" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3"  />
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="6" />
+                <ColumnDefinition Width="245"/>
                 <ColumnDefinition Width="75" />
                 <ColumnDefinition Width="218" />
             </Grid.ColumnDefinitions>
-            <Label Name="CastingDescriptionLabel" Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox x:Name="ReactionDescription" VerticalAlignment="Center" IsEnabled="False" Grid.Column="2"/>
+
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
@@ -138,7 +146,7 @@
             <CheckBox IsChecked="{Binding SpellModel.IsSomaticComponent}" Content="S" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="2"/>
             <CheckBox IsChecked="{Binding SpellModel.IsMaterialComponent}" Content="M" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="3"/>
             <Label Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4" />
-            <TextBox Text="{Binding SpellModel.ComponentText}" Height="20" Grid.Column="5" />
+            <TextBox Text="{Binding SpellModel.ComponentText}" Height="20" Grid.Column="5" IsEnabled="{Binding SpellModel.IsMaterialComponent}" />
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
