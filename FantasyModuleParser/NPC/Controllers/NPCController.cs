@@ -97,7 +97,7 @@ namespace FantasyModuleParser.NPC.Controllers
 
 		// Need to decide if this lives with NPCController or FantasyGroundsExporter,
 		//	as the function is used in DescriptionUC
-		public string GenerateFantasyGroundsDescriptionXML(String descriptionText)
+		public string GenerateFantasyGroundsDescriptionXML(string descriptionText)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			if (!String.IsNullOrEmpty(descriptionText)) 

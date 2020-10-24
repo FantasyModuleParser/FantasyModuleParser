@@ -8,7 +8,7 @@
         xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Lair Actions" Height="400" Width="1010" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
+        Title="Add or Edit NPC Lair Actions" Height="400" Width="1010" ResizeMode="NoResize" Icon="../../../../Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="550" Margin="5,5,0,0" />
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="425" Margin="560,50,0,0"/>

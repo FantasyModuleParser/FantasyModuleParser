@@ -7,7 +7,7 @@
         xmlns:model="clr-namespace:FantasyModuleParser.NPC.Models.Action"
         xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Legendary Actions" Height="410" Width="760" Icon="/Resources/npce_logo.ico">
+        Title="Add or Edit NPC Legendary Actions" Height="410" Width="760" Icon="../../../../Resources/npce_logo.ico">
     <Window.Resources>
         <!-- To use this static array, swap the <ItemControl line with this:
             
