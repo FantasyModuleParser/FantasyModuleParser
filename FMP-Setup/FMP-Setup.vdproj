@@ -442,12 +442,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5C8B3C979C29A97A199E5EDD543BB41B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_233379470DD24A04A4141085E8674D47"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -619,6 +613,12 @@
         "OwnerKey" = "8:_029850C2608FEC4FF26ADE434DA7088C"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5C8B3C979C29A97A199E5EDD543BB41B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -637,6 +637,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -653,6 +661,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -1732,13 +1756,13 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_0FD16AEFD93F4017801481CCADE97F09"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_22F455518D504165962FE19F8AE24931"
                     {
                     "Name" = "8:Fantasy Module Parser"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_15CB50D3D9194E2FA0A7C7D43881713F"
+                    "Property" = "8:_A4E903A44D5340B79902AD30398F5165"
                         "Folders"
                         {
                         }
@@ -1773,7 +1797,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
         "ProductCode" = "8:{FD49EFB7-FAD4-4195-8BF7-56C4D53A7A9D}"
-        "PackageCode" = "8:{44A9F813-8A51-42D2-BEC8-D54843730CB0}"
+        "PackageCode" = "8:{488E41B0-2E8E-4EBB-9F37-F224789E690E}"
         "UpgradeCode" = "8:{EDFC0078-E4F8-4998-8BE5-0E44FA81F75D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1902,14 +1926,14 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_233379470DD24A04A4141085E8674D47"
-            "Folder" = "8:_0FD16AEFD93F4017801481CCADE97F09"
+            "Folder" = "8:_22F455518D504165962FE19F8AE24931"
             "WorkingFolder" = "8:_0C28280B120747AB801C69E5A36FE914"
             "Icon" = "8:_4371EED8D4C74798BEAF2EFD49190B05"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_31CDDAC6343348B29F37EDD740C10430"
             {
-            "Name" = "8:Shortcut to Primary output from FMP (Active)"
+            "Name" = "8:Fantasy Module Parser"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1930,7 +1954,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_7C0FE654AAF14A768526E73D65B87F31"
-            "Folder" = "8:_0FD16AEFD93F4017801481CCADE97F09"
+            "Folder" = "8:_22F455518D504165962FE19F8AE24931"
             "WorkingFolder" = "8:_5DFE3058A1BB48AEA94B83C603D8B12F"
             "Icon" = "8:_4371EED8D4C74798BEAF2EFD49190B05"
             "Feature" = "8:"
