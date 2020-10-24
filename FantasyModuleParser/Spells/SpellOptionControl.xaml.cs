@@ -13,6 +13,7 @@ namespace FantasyModuleParser.Spells
     public partial class SpellOptionControl : UserControl
     {
         public event EventHandler OnViewStatBlock;
+        public event EventHandler OnViewStatUpdate;
         public SpellOptionControl()
         {
             InitializeComponent();
@@ -62,11 +63,15 @@ namespace FantasyModuleParser.Spells
             }
 
             if (spellModel.CastingType != Enums.CastingType.None)
-                CastingDisplayValue.Content = spellModel.CastingTime + " "
+                CastingDisplayValue.Text = spellModel.CastingTime + " "
                 + spellModel.CastingType.GetDescription()
-                + (spellModel.CastingTime > 1 ? "s" : "");
+                + (spellModel.CastingTime > 1 ? "s" : "")
+                + (String.IsNullOrWhiteSpace(spellModel.ReactionDescription)? "" : ", " + spellModel.ReactionDescription);
             else
-                CastingDisplayValue.Content = "";
+                CastingDisplayValue.Text = "";
+
+            //if(OnViewStatUpdate != null)
+            //    OnViewStatUpdate.Invoke(this, EventArgs.Empty);
         }
 
         private bool IsSpellModelNull() { return (DataContext as SpellViewModel).SpellModel == null; }

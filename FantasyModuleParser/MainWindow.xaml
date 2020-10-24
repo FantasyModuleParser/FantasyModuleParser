@@ -84,7 +84,7 @@
             <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel" />
         </StackPanel>
         <StackPanel Name="stackSpells" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
-            <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel"/>
+            <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel" OnViewStatUpdate="event_UpdateViewStatBlockPanel"/>
         </StackPanel>
         <StackPanel Name="stackMain" Grid.Row="1" Grid.Column="1" Visibility="Visible">
             <Image Source="/Resources/es2_logo.png" Width="400" Height="400"/>

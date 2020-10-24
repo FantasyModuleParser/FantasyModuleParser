@@ -25,12 +25,15 @@ namespace FantasyModuleParser
         private bool isViewStatBlockVisible = false;
         private SettingsModel settingsModel;
         private SettingsService settingsService;
-        
+        private NPCOptionControl npcOptionControl;
+        private SpellStatBlockUC spellStatBlockUC;
+        private SpellViewModel spellViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
             settingsService = new SettingsService();
+            spellStatBlockUC = new SpellStatBlockUC();
         }
 
         private void Directory_Click(object sender, RoutedEventArgs e)
@@ -186,6 +189,8 @@ namespace FantasyModuleParser
                 stackNPC.Visibility = Visibility.Hidden;
                 stackMain.Visibility = Visibility.Hidden;
                 stackSpells.Visibility = Visibility.Visible;
+                spellViewModel = spellOptionUserControl.DataContext as SpellViewModel;
+                spellStatBlockUC.DataContext = spellViewModel;
             }
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
@@ -207,7 +212,7 @@ namespace FantasyModuleParser
                     this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
 
                     if (isViewStatBlockVisible)
-                        ViewStatBlockPanel.Children.Add(new SpellStatBlockUC());
+                        ViewStatBlockPanel.Children.Add(spellStatBlockUC);
                     break;
                 //break;
                 default:
@@ -215,7 +220,12 @@ namespace FantasyModuleParser
                     this.Width = 810;
                     break;
             }
-            
+        }
+
+        private void event_UpdateViewStatBlockPanel(object sender, EventArgs eventArgs)
+        {
+            SpellViewModel spellViewModel = spellStatBlockUC.DataContext as SpellViewModel;
+            spellViewModel.Refresh();
         }
     }
 }
