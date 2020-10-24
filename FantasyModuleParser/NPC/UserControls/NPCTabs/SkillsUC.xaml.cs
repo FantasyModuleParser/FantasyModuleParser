@@ -27,7 +27,6 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             InitializeComponent();
             npcController = new NPCController();
             languageController = new LanguageController();
-            //var npcModel = ((App)Application.Current).NpcModelObject;
             var npcModel = npcController.GetNPCModel();
             npcModel = initializeLanguageSelection(npcModel);
             DataContext = npcController.GetNPCModel();

@@ -35,7 +35,7 @@ namespace FantasyModuleParser.NPC
             DataContext = this;
         }
 
-        private void ESExit_Click(object sender, RoutedEventArgs e)
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

@@ -44,6 +44,18 @@ namespace FantasyModuleParser
         {
             InitializeComponent();
             settingsService = new SettingsService();
+            settingsModel = settingsService.Load();
+            if(!Directory.Exists(settingsModel.MainFolderLocation))
+            {
+                Directory.CreateDirectory(settingsModel.MainFolderLocation);
+                Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
+                Directory.CreateDirectory(settingsModel.NPCFolderLocation);
+                Directory.CreateDirectory(settingsModel.SpellFolderLocation);
+                Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
+                Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
+                Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
+                Directory.CreateDirectory(settingsModel.TableFolderLocation);
+            }
         }
 
         private void Directory_Click(object sender, RoutedEventArgs e)

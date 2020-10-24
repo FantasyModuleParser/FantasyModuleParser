@@ -8,7 +8,7 @@ namespace FantasyModuleParser.Main.Services
     public class FMPConfigurationService
     {
         private string configurationFilePath;
-        private const string configurationFileName = "config.json";
+        private const string configurationFileName = "languages.json";
         public FMPConfigurationService()
         {
             configurationFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
@@ -16,6 +16,9 @@ namespace FantasyModuleParser.Main.Services
 
         public void Save(FMPConfigurationModel configurationModel)
         {
+            if (File.Exists(Path.Combine(configurationFilePath, "config.json")))
+                File.Delete(Path.Combine(configurationFilePath, "config.json"));
+
             Save(configurationModel, Path.Combine(configurationFilePath, configurationFileName));
         }
 
