@@ -590,6 +590,9 @@
     <Compile Include="NPC\Views\ViewLegendaryAction.xaml.cs">
       <DependentUpon>ViewLegendaryAction.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Spells\CastByWindow.xaml.cs">
+      <DependentUpon>CastByWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spells\Enums\CastingType.cs" />
     <Compile Include="Spells\Enums\DurationType.cs" />
     <Compile Include="Spells\Enums\DurationUnit.cs" />
@@ -660,6 +663,10 @@
     <Page Include="NPC\Views\ViewLegendaryAction.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Spells\CastByWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Spells\SpellOptionControl.xaml">
       <SubType>Designer</SubType>
