@@ -42,5 +42,20 @@ namespace FantasyModuleParser.Main
         {
             Close();
         }
+
+        public event EventHandler OnCloseWindowAction;
+        protected virtual void OnCloseWindowEvent(EventArgs e)
+        {
+            EventHandler handler = OnCloseWindowAction;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            OnCloseWindowEvent(EventArgs.Empty);
+        }
     }
 }

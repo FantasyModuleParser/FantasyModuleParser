@@ -9,7 +9,7 @@
         xmlns:LanguagesUserControl="clr-namespace:FantasyModuleParser.Main.UserControls"
         mc:Ignorable="d"
         Title="Fantasy Module Parser Configuration" Height="345" Width="410" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="280"/>

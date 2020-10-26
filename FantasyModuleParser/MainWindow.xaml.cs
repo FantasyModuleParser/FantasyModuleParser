@@ -134,6 +134,7 @@ namespace FantasyModuleParser
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagement projectManagement = null;
+            FMPConfigurationView fMPConfigurationView = null;
             var menuitem = (MenuItem)sender;
             switch (menuitem.Name)
             {
@@ -141,7 +142,9 @@ namespace FantasyModuleParser
                     new About().ShowDialog();
                     break;
                 case "ManageCategories":
-                    new FMPConfigurationView().ShowDialog();
+                    fMPConfigurationView = new FMPConfigurationView();
+                    fMPConfigurationView.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
+                    fMPConfigurationView.Show();
                     break;
                 case "ManageProject":
                     projectManagement = new ProjectManagement();
