@@ -81,12 +81,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4371EED8D4C74798BEAF2EFD49190B05"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_48F1334F5B87412D5D1859F05CF98E24"
         "OwnerKey" = "8:_7B38173114E925D5F3FE92EC2DCFB0EB"
         "MsmSig" = "8:_UNDEFINED"
@@ -143,6 +137,12 @@
         {
         "MsmKey" = "8:_4A8AA62380BC8E5212322E590904B4CA"
         "OwnerKey" = "8:_233379470DD24A04A4141085E8674D47"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D61E942761C471EA0803611AD5A680D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -644,6 +644,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -892,26 +900,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4371EED8D4C74798BEAF2EFD49190B05"
-            {
-            "SourcePath" = "8:..\\FantasyModuleParser\\es2_logo_Jsv_icon.ico"
-            "TargetName" = "8:es2_logo_Jsv_icon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_959C1169D41C4521B02AC821E4703576"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_48F1334F5B87412D5D1859F05CF98E24"
             {
             "AssemblyRegister" = "3:1"
@@ -972,6 +960,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D61E942761C471EA0803611AD5A680D"
+            {
+            "SourcePath" = "8:D:\\Downloads\\FMP-Logo.ico"
+            "TargetName" = "8:FMP-Logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_959C1169D41C4521B02AC821E4703576"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4E34B82712A23338FA00D560903B69C1"
@@ -1928,7 +1936,7 @@
             "Target" = "8:_233379470DD24A04A4141085E8674D47"
             "Folder" = "8:_22F455518D504165962FE19F8AE24931"
             "WorkingFolder" = "8:_0C28280B120747AB801C69E5A36FE914"
-            "Icon" = "8:_4371EED8D4C74798BEAF2EFD49190B05"
+            "Icon" = "8:_4D61E942761C471EA0803611AD5A680D"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_31CDDAC6343348B29F37EDD740C10430"
@@ -1942,7 +1950,7 @@
             "Target" = "8:_233379470DD24A04A4141085E8674D47"
             "Folder" = "8:_0E0C0430DD884A8B8939D8829604F395"
             "WorkingFolder" = "8:_0C28280B120747AB801C69E5A36FE914"
-            "Icon" = "8:_4371EED8D4C74798BEAF2EFD49190B05"
+            "Icon" = "8:_4D61E942761C471EA0803611AD5A680D"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5901AE4BC0C34D099B69E88D80FA0F98"
@@ -1956,7 +1964,7 @@
             "Target" = "8:_7C0FE654AAF14A768526E73D65B87F31"
             "Folder" = "8:_22F455518D504165962FE19F8AE24931"
             "WorkingFolder" = "8:_5DFE3058A1BB48AEA94B83C603D8B12F"
-            "Icon" = "8:_4371EED8D4C74798BEAF2EFD49190B05"
+            "Icon" = "8:_4D61E942761C471EA0803611AD5A680D"
             "Feature" = "8:"
             }
         }

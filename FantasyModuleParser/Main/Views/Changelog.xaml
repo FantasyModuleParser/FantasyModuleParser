@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.Main.Views"
         mc:Ignorable="d"
-        Title="Updates to Fantasy Module Parser (Changelog)" Height="330" Width="560" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
+        Title="Updates to Fantasy Module Parser (Changelog)" Height="330" Width="560" ResizeMode="NoResize">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />

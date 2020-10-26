@@ -137,7 +137,8 @@
     <ApplicationIcon>es2_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>es2_logo_Jsv_icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -568,6 +569,11 @@
     <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
       <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Spells\Enums\CastingType.cs" />
     <Compile Include="Spells\Enums\DurationType.cs" />
     <Compile Include="Spells\Enums\DurationUnit.cs" />
@@ -645,11 +651,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -657,8 +658,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include=".gitignore" />
     <None Include="CHANGELOG.json" />
@@ -673,8 +674,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="es2_logo_Jsv_icon.ico" />
-    <Resource Include="es2_logo.ico" />
+    <Resource Include="FMP-Logo-400.png" />
     <Content Include="Resources\artifactengineer_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -687,12 +687,10 @@
     <Content Include="Resources\equipmentengineer_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\es2_logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\es2_logo_Jsv_icon.ico" />
+    <None Include="Resources\FMP-Logo.ico" />
+    <Resource Include="Resources\FMP-Logo-400.png" />
     <Content Include="Resources\Grim_Press_Banner.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

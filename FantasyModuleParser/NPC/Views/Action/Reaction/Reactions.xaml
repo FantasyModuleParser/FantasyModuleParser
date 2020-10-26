@@ -7,7 +7,7 @@
         xmlns:model="clr-namespace:FantasyModuleParser.NPC.Models.Action"
         xmlns:overviewUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Action"
         mc:Ignorable="d"
-        Title="Add or Edit NPC Reactions" Height="410" Width="630" ResizeMode="NoResize" Icon="../../../../Resources/npce_logo.ico">
+        Title="Add or Edit NPC Reactions" Height="410" Width="630" ResizeMode="NoResize">
     <Window.Resources>
         <x:Array x:Key="StaticReactionList" Type="model:ActionModelBase">
             <model:ActionModelBase ActionID="0" ActionName="Reaction 0" ActionDescription="Reaction 0 Description" />

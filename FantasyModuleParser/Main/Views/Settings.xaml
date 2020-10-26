@@ -12,7 +12,7 @@
         xmlns:ArtifactSettingsUserControl="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
         xmlns:ParcelSettingsUserControl="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
         mc:Ignorable="d"
-        Title="Fantasy Module Parser Settings" Height="440" Width="700" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
+        Title="Fantasy Module Parser Settings" Height="440" Width="700" ResizeMode="NoResize">
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
