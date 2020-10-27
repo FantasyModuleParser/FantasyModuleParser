@@ -626,7 +626,7 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void ProcessNPCListByType(XmlWriter xmlWriter, ModuleModel moduleModel, string actualType, List<NPCModel> NPCList)
 		{
-			xmlWriter.WriteStartElement("type_" + actualType);
+			xmlWriter.WriteStartElement("type_" + NPCTypeToXMLFormat(actualType));
 			xmlWriter.WriteStartElement("description");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(actualType);
@@ -641,9 +641,14 @@ namespace FantasyModuleParser.Exporters
 			string name = npcModel.NPCName.ToLower();
 			return name.Replace(" ", "_").Replace(",", "");
 		}
-        #endregion
+		private string NPCTypeToXMLFormat(string actualType)
+		{
+			string npcType = actualType.ToLower();
+			return npcType.Replace(" ", "");
+		}
+		#endregion
 
-        public void SortNPCListByCategory(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, CategoryModel categoryModel, List<NPCModel> NPCList)
+		public void SortNPCListByCategory(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, CategoryModel categoryModel, List<NPCModel> NPCList)
         {
             NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
             var AlphabetList = NPCList.GroupBy(x => x.NPCName.ToUpper()[0]).Select(x => x.ToList()).ToList();

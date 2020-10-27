@@ -28,7 +28,7 @@ namespace FantasyModuleParser.Main.ViewModels
             if (newUserLanguage != null && newUserLanguage.Length > 0) {
                 // Check for any duplicates
                 LanguageModel userLanguageModel = 
-                    FMPConfigurationModel.UserLanguages.FirstOrDefault(item => item.Language.Equals(newUserLanguage));
+                    FMPConfigurationModel.UserLanguages.FirstOrDefault(item => item.Language.ToLower().Equals(newUserLanguage.ToLower()));
                 if(userLanguageModel == null) { 
                     FMPConfigurationModel.UserLanguages.Add(new LanguageModel() { Language = newUserLanguage });
                     fmpConfigurationService.Save(FMPConfigurationModel);

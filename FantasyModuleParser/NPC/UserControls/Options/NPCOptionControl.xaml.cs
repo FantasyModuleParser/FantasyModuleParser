@@ -214,7 +214,9 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			} 
 			else
 				CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
-			
+
+			// Refresh only the Skills UC because of the User languages section being updated
+			SkillsUserControl.Refresh();
 			DataContext = npcOptionControlViewModel;
 		}
 
