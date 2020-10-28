@@ -6,8 +6,8 @@
     xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
     xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
     mc:Ignorable="d"
-    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize">
-    <Grid Background="#FFE5E5E5">
+    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
+<Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="800" />
