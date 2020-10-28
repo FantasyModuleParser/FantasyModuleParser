@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.NPC.Models.Action;
+﻿using FantasyModuleParser.Converters;
+using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Models.Skills;
 using Markdig;
@@ -39,32 +40,10 @@ namespace FantasyModuleParser.NPC.Controllers
 				JsonSerializer serializer = new JsonSerializer();
 				serializer.Formatting = Formatting.Indented;
 				serializer.TypeNameHandling = TypeNameHandling.Objects;
+				serializer.Converters.Add(new SelectableActionModelConverter());
+				serializer.Converters.Add(new LanguageModelConverter());
 				serializer.Serialize(file, npcModel);
-
-				//Uncomment this line to get the "ideal" filesize
-				//serializer.Serialize(file, TrimNPCModelData(npcModel));
 			}
-		}
-
-		private NPCModel TrimNPCModelData(NPCModel initialNpcModel)
-		{
-			NPCModel npcModel = CommonMethod.CloneJson(initialNpcModel);
-
-			// The quickest way is trimming all Collections where if the Selected flag is set,
-			// remove all entries where the flag is false.
-			// Pertains to Languages, Damage Resist, Damage Immunities, Condition Immunities
-
-			npcModel.StandardLanguages = new ObservableCollection<LanguageModel>( npcModel.StandardLanguages.Where(item => item.Selected).ToList());
-			npcModel.ExoticLanguages = new ObservableCollection<LanguageModel>(npcModel.ExoticLanguages.Where(item => item.Selected).ToList());
-			npcModel.MonstrousLanguages = new ObservableCollection<LanguageModel>(npcModel.MonstrousLanguages.Where(item => item.Selected).ToList());
-			npcModel.UserLanguages = new ObservableCollection<LanguageModel>(npcModel.UserLanguages.Where(item => item.Selected).ToList());
-
-			npcModel.DamageImmunityModelList = npcModel.DamageImmunityModelList.Where(item => item.Selected).ToList();
-			npcModel.DamageResistanceModelList = npcModel.DamageResistanceModelList.Where(item => item.Selected).ToList();
-			npcModel.DamageVulnerabilityModelList = npcModel.DamageVulnerabilityModelList.Where(item => item.Selected).ToList();
-			npcModel.ConditionImmunityModelList = npcModel.ConditionImmunityModelList.Where(item => item.Selected).ToList();
-
-			return npcModel;
 		}
 
 		public event EventHandler LoadNpcModelAction;

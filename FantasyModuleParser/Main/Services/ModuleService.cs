@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Converters;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using Newtonsoft.Json;
 using System;
@@ -37,6 +38,8 @@ namespace FantasyModuleParser.Main.Services
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
+                serializer.Converters.Add(new SelectableActionModelConverter());
+                serializer.Converters.Add(new LanguageModelConverter());
                 serializer.Serialize(file, moduleModel);
             }
         }
