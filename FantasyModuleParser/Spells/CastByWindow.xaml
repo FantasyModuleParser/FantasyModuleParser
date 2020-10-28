@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.Spells"
         mc:Ignorable="d"
-        Title="Select Classes or Archetypes" Height="450" Width="800">
+        Title="Select Classes or Archetypes" Height="500" Width="800">
     <Window.Resources>
         <Style TargetType="Label" x:Key="Header">
             <Setter Property="Padding" Value="0" />
             <Setter Property="FontSize" Value="14px" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
         <Style TargetType="ListBoxItem" x:Key="Selections">
             <Setter Property="FontSize" Value="10px" />
@@ -18,7 +19,7 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="336" />
+            <RowDefinition Height="460" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -39,7 +40,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="300" />
+                    <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Character Class" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox Grid.Row="3" >
@@ -63,7 +64,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="300" />
+                    <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Divine Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox Grid.Row="3" >
@@ -92,6 +93,83 @@
                     <ListBoxItem Content="Druid Underdark Circle" Style="{StaticResource Selections}" />
                 </ListBox>
             </Grid>
+            <Grid Grid.Column="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Arcane Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox Grid.Row="3" >
+                    <ListBoxItem Content="Artificer (Alchemist)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Artificer (Artillerist)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Divine Soul)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Draconic Bloodline)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Shadow Magic)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Storm Sorcery)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Wild Magic)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Archfey)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Celestial)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Fiend)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Great One)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Hexblade)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Undying)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Abjuration)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Bladesinging)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Conjuration)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Divination)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Enchantment)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Evocation)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Illusion)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Invention)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Necromancy)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Transmutation)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (War Magic)" Style="{StaticResource Selections}" />
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Other Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox Grid.Row="3" >
+                    <ListBoxItem Content="Arcane Trickster" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Glamour" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Lore" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Swords" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Valor" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Whispers" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Eldritch Knight" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Conquest" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Devotion" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Redemption" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of the Ancients" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of the Crown" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Vengeance" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oathbreaker" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Beast Master" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Gloom Stalker" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Horizon Walker" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Hunter" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Monster Slayer" Style="{StaticResource Selections}" />
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="9">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
+            <ListBox Grid.Row="3" >
+                
+            </ListBox>
         </Grid>
+    </Grid>
     </Grid>
 </Window>
