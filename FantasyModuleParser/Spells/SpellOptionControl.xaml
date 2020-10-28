@@ -180,7 +180,7 @@
                 <ColumnDefinition Width="340" />
             </Grid.ColumnDefinitions>
             <Label Content="Cast by:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" Padding="0,0,5,0" Grid.Column="0"/>
-            <Button Content="Select" VerticalAlignment="Top" Margin="0,5,0,0" Grid.Column="1"/>
+            <Button Content="Select" VerticalAlignment="Top" Margin="0,5,0,0" Click="SelectCasters_Click" Grid.Column="1"/>
             <TextBox Text="{Binding SpellModel.CastBy}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="50" VerticalScrollBarVisibility="Visible" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="10">

@@ -117,5 +117,10 @@ namespace FantasyModuleParser.Spells
 
             RangeDistanceLabel.IsEnabled = RangeValueTB.IsEnabled;
         }
+
+        private void SelectCasters_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            new CastByWindow().ShowDialog();
+        }
     }
 }

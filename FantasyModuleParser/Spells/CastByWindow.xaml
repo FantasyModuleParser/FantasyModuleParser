@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.Spells"
         mc:Ignorable="d"
-        Title="Select Classes or Archetypes" Height="500" Width="800">
+        Title="Select Classes or Archetypes" Height="550" Width="800">
     <Window.Resources>
         <Style TargetType="Label" x:Key="Header">
             <Setter Property="Padding" Value="0" />
@@ -20,6 +20,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="460" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="24" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -166,10 +168,21 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
-            <ListBox Grid.Row="3" >
-                
-            </ListBox>
+                <ListBox Grid.Row="3" >
+
+                </ListBox>
+            </Grid>
         </Grid>
-    </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="315" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="315" />
+            </Grid.ColumnDefinitions>
+            <Button Content="Save" Grid.Column="1" />
+            <Button Content="Close" Grid.Column="3"/>
+        </Grid>    
     </Grid>
 </Window>
