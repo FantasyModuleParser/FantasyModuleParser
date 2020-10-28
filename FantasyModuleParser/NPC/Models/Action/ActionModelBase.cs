@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -40,7 +41,8 @@ namespace FantasyModuleParser.NPC.Models.Action
                 RaisePropertyChanged("ActionDescription");
             }
         }
-
+        [DefaultValue(0)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int ActionID
         {
             get { return _actionId; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace FantasyModuleParser.NPC.Models.Action
 {
     public class SelectableActionModel : ActionModelBase
     {
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool Selected { get; set; }
 
         public SelectableActionModel()
