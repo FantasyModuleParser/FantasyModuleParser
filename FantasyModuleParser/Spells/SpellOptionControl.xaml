@@ -255,7 +255,7 @@
         SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" SelectionChanged="CategoryCB_SelectionChange"/>
             <Button Content="Prev Spell" Grid.Column="1" Grid.Row="1" Style="{StaticResource standardButton}" />
             <Button Content="Next Spell" Grid.Column="2" Grid.Row="1" Style="{StaticResource standardButton}" />
-            <ComboBox ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name" Grid.Column="3" Grid.Row="1" Style="{StaticResource standardComboBox}" />
+            <ComboBox ItemsSource="{Binding SelectedCategoryModel.SpellModels}" DisplayMemberPath="SpellName" Grid.Column="3" Grid.Row="1" Style="{StaticResource standardComboBox}" SelectionChanged="SpellComboBox_SelectionChanged" />
         </Grid>
         <Grid Grid.Row="13">
             <Grid.ColumnDefinitions>

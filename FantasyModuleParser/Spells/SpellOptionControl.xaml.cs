@@ -88,7 +88,8 @@ namespace FantasyModuleParser.Spells
 
         private void CategoryCB_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
-
+            ComboBox comboBox = (sender as ComboBox);
+            (DataContext as SpellViewModel).SelectedCategoryModel = comboBox.SelectedItem as CategoryModel;
         }
 
         private void LoadSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -116,6 +117,12 @@ namespace FantasyModuleParser.Spells
                 RangeDisplayValue.Text = spellModel.RangeType == Enums.RangeType.None ? "" : spellModel.RangeType.GetDescription();
 
             RangeDistanceLabel.IsEnabled = RangeValueTB.IsEnabled;
+        }
+
+        private void SpellComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (sender as ComboBox);
+            (DataContext as SpellViewModel).SpellModel = comboBox.SelectedItem as SpellModel;
         }
     }
 }

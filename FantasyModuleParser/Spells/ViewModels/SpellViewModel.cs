@@ -18,6 +18,7 @@ namespace FantasyModuleParser.Spells.ViewModels
         private SpellModel _spellModel;
         private ModuleService _moduleService;
         private ModuleModel _moduleModel;
+        private CategoryModel _selectedCategoryModel;
         private ISpellService _spellService;
         public SpellModel SpellModel
         {
@@ -42,6 +43,18 @@ namespace FantasyModuleParser.Spells.ViewModels
             {
                 this._moduleModel = value;
                 RaisePropertyChanged(nameof(ModuleModel));
+            }
+        }
+        public CategoryModel SelectedCategoryModel
+        {
+            get
+            {
+                return this._selectedCategoryModel;
+            }
+            set
+            {
+                this._selectedCategoryModel = value;
+                RaisePropertyChanged(nameof(SelectedCategoryModel));
             }
         }
         public SpellViewModel()
