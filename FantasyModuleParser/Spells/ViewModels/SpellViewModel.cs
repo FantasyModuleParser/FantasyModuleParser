@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Windows;
-
 namespace FantasyModuleParser.Spells.ViewModels
 {
     public class SpellViewModel : ViewModelBase
@@ -18,6 +17,7 @@ namespace FantasyModuleParser.Spells.ViewModels
         private SpellModel _spellModel;
         private ModuleService _moduleService;
         private ModuleModel _moduleModel;
+        private CategoryModel _selectedCategoryModel;
         private ISpellService _spellService;
         public SpellModel SpellModel
         {
@@ -31,7 +31,6 @@ namespace FantasyModuleParser.Spells.ViewModels
                 RaisePropertyChanged(nameof(SpellModel));
             }
         }
-
         public ModuleModel ModuleModel
         {
             get
@@ -44,22 +43,32 @@ namespace FantasyModuleParser.Spells.ViewModels
                 RaisePropertyChanged(nameof(ModuleModel));
             }
         }
+        public CategoryModel SelectedCategoryModel
+        {
+            get
+            {
+                return this._selectedCategoryModel;
+            }
+            set
+            {
+                this._selectedCategoryModel = value;
+                RaisePropertyChanged(nameof(SelectedCategoryModel));
+            }
+        }
         public SpellViewModel()
         {
             SpellModel = new SpellModel();
             _settingsService = new SettingsService();
             _settingsModel = _settingsService.Load();
-
             _moduleService = new ModuleService();
             ModuleModel = _moduleService.GetModuleModel();
             _spellService = new SpellService();
         }
-
         public void Save()
         {
             Directory.CreateDirectory(_settingsModel.SpellFolderLocation);
-
-            if (!string.IsNullOrWhiteSpace(SpellModel.SpellName)) { 
+            if (!string.IsNullOrWhiteSpace(SpellModel.SpellName))
+            {
                 using (StreamWriter file = File.CreateText(_settingsModel.SpellFolderLocation + @"\" + SpellModel.SpellName + ".spl"))
                 {
                     JsonSerializer serializer = new JsonSerializer();
@@ -68,7 +77,6 @@ namespace FantasyModuleParser.Spells.ViewModels
                 }
             }
         }
-
         public void Save(string filePath)
         {
             using (StreamWriter file = File.CreateText(@filePath))
@@ -82,21 +90,22 @@ namespace FantasyModuleParser.Spells.ViewModels
         public void LoadSpell()
         {
             SpellModel = _spellService.Load(_settingsModel.SpellFolderLocation);
+            SpellModel loadedSpellModel = _spellService.Load(_settingsModel.SpellFolderLocation);
+            if (loadedSpellModel != null)
+                SpellModel = loadedSpellModel;
         }
 
         public void Refresh()
         {
             ModuleModel = _moduleService.GetModuleModel();
         }
-
         public void AddSpellToModule(string categoryValue)
         {
-            if(ModuleModel == null || ModuleModel.Categories == null || ModuleModel.Categories.Count == 0 || categoryValue == null)
+            if (ModuleModel == null || ModuleModel.Categories == null || ModuleModel.Categories.Count == 0 || categoryValue == null)
             {
                 MessageBox.Show("No Module Project loaded!\nPlease create / load a Module through Options -> Manage Project");
                 return;
             }
-
             try
             {
                 _moduleService.AddSpellToCategory(SpellModel, categoryValue);
@@ -104,7 +113,7 @@ namespace FantasyModuleParser.Spells.ViewModels
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Error detected while adding NPC to button :: " + exception.Message);
+                MessageBox.Show("Error detected while adding Spell to Project :: " + exception.Message);
             }
         }
     }

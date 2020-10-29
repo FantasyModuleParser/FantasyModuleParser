@@ -169,7 +169,7 @@
                 </Grid.RowDefinitions>
                 <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox Grid.Row="3" >
-
+                    <ListBoxItem Content="{Binding CustomCasters}" />
                 </ListBox>
             </Grid>
         </Grid>
@@ -182,7 +182,7 @@
                 <ColumnDefinition Width="315" />
             </Grid.ColumnDefinitions>
             <Button Content="Save" Grid.Column="1" />
-            <Button Content="Close" Grid.Column="3"/>
+            <Button Content="Close" Click="CloseWindow_Click" Grid.Column="3"/>
         </Grid>    
     </Grid>
 </Window>
