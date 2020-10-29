@@ -57,9 +57,9 @@
                 <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="5"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="NewSpellButton" Content="NS" Grid.Column="1" Style="{StaticResource TooltipButton}" ToolTip="Create New Spell" />
+            <Button x:Name="NewSpellButton" Content="NS" Grid.Column="1" Style="{StaticResource TooltipButton}" ToolTip="Create New Spell" Click="NewSpellButton_Click"/>
             <Button x:Name="LoadSpellButton" Content="LS" Grid.Column="2" Style="{StaticResource TooltipButton}" ToolTip="Load Spell" Click="LoadSpellButton_Click"/>
-            <Button x:Name="SaveSpellButton" Content="SS" Grid.Column="3" Style="{StaticResource TooltipButton}" ToolTip="Save Spell" />
+            <Button x:Name="SaveSpellButton" Content="SS" Grid.Column="3" Style="{StaticResource TooltipButton}" ToolTip="Save Spell" Click="SaveSpellButton_Click"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -253,9 +253,9 @@
             <ComboBox Name="FGCategoryComboBox" ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name"
                       IsSynchronizedWithCurrentItem="True"
         SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" SelectionChanged="CategoryCB_SelectionChange"/>
-            <Button Content="Prev Spell" Grid.Column="1" Grid.Row="1" Style="{StaticResource standardButton}" />
-            <Button Content="Next Spell" Grid.Column="2" Grid.Row="1" Style="{StaticResource standardButton}" />
-            <ComboBox ItemsSource="{Binding SelectedCategoryModel.SpellModels}" DisplayMemberPath="SpellName" Grid.Column="3" Grid.Row="1" Style="{StaticResource standardComboBox}" SelectionChanged="SpellComboBox_SelectionChanged" />
+            <Button x:Name="PrevSpellBtn" Content="Prev Spell" Grid.Column="1" Grid.Row="1" Style="{StaticResource standardButton}" Click="Button_Click"/>
+            <Button x:Name="NextSpellBtn" Content="Next Spell" Grid.Column="2" Grid.Row="1" Style="{StaticResource standardButton}" Click="Button_Click"/>
+            <ComboBox x:Name="SpellComboBox" ItemsSource="{Binding SelectedCategoryModel.SpellModels}" DisplayMemberPath="SpellName" Grid.Column="3" Grid.Row="1" Style="{StaticResource standardComboBox}" SelectionChanged="SpellComboBox_SelectionChanged" />
         </Grid>
         <Grid Grid.Row="13">
             <Grid.ColumnDefinitions>

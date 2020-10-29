@@ -94,7 +94,9 @@ namespace FantasyModuleParser.Spells.ViewModels
 
         public void LoadSpell()
         {
-            SpellModel = _spellService.Load(_settingsModel.SpellFolderLocation);
+            SpellModel loadedSpellModel = _spellService.Load(_settingsModel.SpellFolderLocation);
+            if (loadedSpellModel != null)
+                SpellModel = loadedSpellModel;
         }
 
         public void Refresh()

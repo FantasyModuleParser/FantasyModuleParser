@@ -43,6 +43,10 @@ namespace FantasyModuleParser.Spells
         private void Casting_Changed(object sender, EventArgs e)
         {
             SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            
+            if (spellModel == null)
+                return;
+            
             if (ReactionDescription != null && !IsSpellModelNull())
             { 
                 ReactionDescription.IsEnabled = spellModel.CastingType == Enums.CastingType.Reaction;
@@ -108,6 +112,10 @@ namespace FantasyModuleParser.Spells
         private void RangeComboBox_SelectionChanged(object sender, EventArgs e)
         {
             SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+
+            if (spellModel == null)
+                return;
+
             if (RangeValueTB == null)
                 return;
 
@@ -123,6 +131,53 @@ namespace FantasyModuleParser.Spells
         {
             ComboBox comboBox = (sender as ComboBox);
             (DataContext as SpellViewModel).SpellModel = comboBox.SelectedItem as SpellModel;
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SpellViewModel spellViewModel = DataContext as SpellViewModel;
+            CategoryModel categoryModel = FGCategoryComboBox.SelectedItem as CategoryModel;
+
+            // Ignore any button actions if no Spells exist for the selected Category
+            if (categoryModel.SpellModels.Count <= 0)
+                return;
+
+            int categoryIndex = SpellComboBox.SelectedIndex;
+            switch ((sender as Button).Name)
+            {
+                case nameof(PrevSpellBtn):
+                    
+                    if (categoryModel != null)
+                    {
+                        if (categoryIndex <= 0)
+                            categoryIndex = categoryModel.SpellModels.Count - 1;
+                        else
+                            categoryIndex--;
+
+                        // By updating the selected Item here, it will invoke CategorySelectedNPCComboBox_SelectionChanged event 
+                        // because the CategorySelectedNPCComboBox selected item has changed
+                        SpellComboBox.SelectedItem = categoryModel.SpellModels[categoryIndex];
+                    }
+                    break;
+                case nameof(NextSpellBtn):
+                    if (categoryModel != null)
+                    {
+                        if (categoryIndex == categoryModel.SpellModels.Count - 1)
+                            categoryIndex = 0;
+                        else
+                            categoryIndex++;
+
+                        // By updating the selected Item here, it will invoke CategorySelectedNPCComboBox_SelectionChanged event 
+                        // because the CategorySelectedNPCComboBox selected item has changed
+                        SpellComboBox.SelectedItem = categoryModel.SpellModels[categoryIndex];
+                    }
+                    break;
+            }
+        }
+
+        private void NewSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (DataContext as SpellViewModel).SpellModel = new SpellModel();
         }
     }
 }
