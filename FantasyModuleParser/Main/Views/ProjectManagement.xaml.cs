@@ -112,7 +112,7 @@ namespace FantasyModuleParser.Main
             ModuleAuthor.Text = "";
             ModuleModFilename.Text = "";
             ModuleThumbnameFilename.Text = "";
-            ModulePathTB.Text = "";
+            ModulePathTB.Text = settingsService.Load().FGModuleFolderLocation;
         }
 
         public event EventHandler OnCloseWindowAction;

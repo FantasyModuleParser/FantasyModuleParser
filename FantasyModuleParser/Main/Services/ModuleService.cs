@@ -83,7 +83,7 @@ namespace FantasyModuleParser.Main.Services
                 if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
             }
-            string appendedFileLocation = Path.Combine(settingsService.Load().ProjectFolderLocation);
+            string appendedFileLocation = settingsService.Load().ProjectFolderLocation;
             string appendedFileName = moduleModel.ModFilename + ".fmp";
             string appendedFilePath = Path.Combine(appendedFileLocation, appendedFileName);
             Save(appendedFilePath, moduleModel);
