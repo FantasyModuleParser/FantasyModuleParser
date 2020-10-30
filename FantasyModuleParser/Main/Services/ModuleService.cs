@@ -75,7 +75,7 @@ namespace FantasyModuleParser.Main.Services
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
             if (!string.IsNullOrEmpty(npcModel.NPCImage) && npcModel.NPCImage.StartsWith("file:///"))
-                throw new InvalidDataException("Remove the file:/// from the NPC Image path and Add to Project again.");
+                throw new InvalidDataException("Remove the file:/// from the NPC Image Path and try again.");
             if (npcModel.Alignment == null)
                 throw new InvalidDataException("Select an alignment for the NPC and add to project again.");
             else
@@ -83,9 +83,10 @@ namespace FantasyModuleParser.Main.Services
                 if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
             }
-
-            string appendedFileName = settingsService.Load().ProjectFolderLocation + moduleModel.ModFilename + ".fmp";
-            Save(appendedFileName, moduleModel);
+            string appendedFileLocation = Path.Combine(settingsService.Load().ProjectFolderLocation);
+            string appendedFileName = moduleModel.ModFilename + ".fmp";
+            string appendedFilePath = Path.Combine(appendedFileLocation, appendedFileName);
+            Save(appendedFilePath, moduleModel);
         }
     }
 }
