@@ -1,6 +1,10 @@
-﻿using FantasyModuleParser.NPC.ViewModels;
+﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
@@ -72,5 +76,16 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			chkOther.Visibility = Visibility.Hidden;
 			strOther.Visibility = Visibility.Hidden;
 		}
+
+		/*
+		 *        private NPCModel initializeLanguageSelection(NPCModel npcModel)
+        {
+            npcModel.StandardLanguages = initSpecificLanguageSet(languageController.GenerateStandardLanguages(), npcModel.StandardLanguages);
+            npcModel.MonstrousLanguages = initSpecificLanguageSet(languageController.GenerateMonsterLanguages(), npcModel.MonstrousLanguages);
+            npcModel.ExoticLanguages = initSpecificLanguageSet(languageController.GenerateExoticLanguages(), npcModel.ExoticLanguages);
+            npcModel.UserLanguages = initSpecificLanguageSet(languageController.GenerateUserLanguages(), npcModel.UserLanguages);
+
+            return npcModel;
+        }*/
 	}
 }
