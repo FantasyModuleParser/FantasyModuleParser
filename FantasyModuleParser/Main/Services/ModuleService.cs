@@ -1,5 +1,4 @@
-﻿using FantasyModuleParser.Converters;
-using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
 using Newtonsoft.Json;
@@ -39,8 +38,6 @@ namespace FantasyModuleParser.Main.Services
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
-                serializer.Converters.Add(new SelectableActionModelConverter());
-                serializer.Converters.Add(new LanguageModelConverter());
                 serializer.Serialize(file, moduleModel);
             }
         }
@@ -78,8 +75,8 @@ namespace FantasyModuleParser.Main.Services
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
-            if (!string.IsNullOrEmpty(npcModel.NPCImage) && npcModel.NPCImage.StartsWith("file:///"))
-                throw new InvalidDataException("Remove the file:/// from the NPC Image Path and try again.");
+            if (npcModel.NPCImage.StartsWith("file:///"))
+                throw new InvalidDataException("Remove the file:/// from the NPC Image path and Add to Project again.");
             if (npcModel.Alignment == null)
                 throw new InvalidDataException("Select an alignment for the NPC and add to project again.");
             else
@@ -87,10 +84,9 @@ namespace FantasyModuleParser.Main.Services
                 if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
             }
-            string appendedFileLocation = settingsService.Load().ProjectFolderLocation;
-            string appendedFileName = moduleModel.ModFilename + ".fmp";
-            string appendedFilePath = Path.Combine(appendedFileLocation, appendedFileName);
-            Save(appendedFilePath, moduleModel);
+
+            string appendedFileName = settingsService.Load().ProjectFolderLocation + moduleModel.ModFilename + ".fmp";
+            Save(appendedFileName, moduleModel);
         }
 
         public void AddSpellToCategory(SpellModel spellModel, string categoryValue)

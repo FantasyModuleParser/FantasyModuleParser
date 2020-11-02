@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser"
         mc:Ignorable="d"
-        Title="Fantasy Module Parser Supporters" Height="300" Width="560" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
+        Title="Fantasy Module Parser Supporters" Height="300" Width="560" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="12" />
