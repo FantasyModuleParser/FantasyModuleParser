@@ -1,10 +1,6 @@
-﻿using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FantasyModuleParser.NPC.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {

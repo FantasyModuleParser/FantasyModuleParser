@@ -1,12 +1,8 @@
-﻿using FantasyModuleParser.Commands;
-using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.Models.Skills;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace FantasyModuleParser.Main.ViewModels

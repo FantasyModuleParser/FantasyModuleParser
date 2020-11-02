@@ -1,5 +1,5 @@
-﻿using FantasyModuleParser.Commands;
-using FantasyModuleParser.Main.ViewModels;
+﻿using FantasyModuleParser.Main.ViewModels;
+using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.Models.Skills;
 using System.Windows;
 using System.Windows.Controls;

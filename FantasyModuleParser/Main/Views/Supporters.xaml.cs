@@ -1,10 +1,4 @@
-﻿using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.Main.ViewModels;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
+﻿using FantasyModuleParser.Main.ViewModels;
 using System.Windows;
 using System.Windows.Input;
 

@@ -1,8 +1,6 @@
-﻿using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.Main.Services;
+﻿using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModels;
 using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
