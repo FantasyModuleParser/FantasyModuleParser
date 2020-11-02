@@ -6,8 +6,8 @@
     xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
     xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
     mc:Ignorable="d"
-    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
-<Grid Background="#FFE5E5E5">
+    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico">
+    <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="800" />
@@ -87,7 +87,7 @@
             <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel" OnViewStatUpdate="event_UpdateViewStatBlockPanel"/>
         </StackPanel>
         <StackPanel Name="stackMain" Grid.Row="1" Grid.Column="1" Visibility="Visible">
-            <Image Source="/Resources/FMP-Logo-400.png" Width="400" Height="400"/>
+            <Image Source="/Resources/es2_logo.png" Width="400" Height="400"/>
         </StackPanel>
         <WrapPanel x:Name="ViewStatBlockPanel" Grid.Column="3" Grid.Row="1" Orientation="Vertical" >
             

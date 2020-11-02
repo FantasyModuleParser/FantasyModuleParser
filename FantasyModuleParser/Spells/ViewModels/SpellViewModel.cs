@@ -4,8 +4,9 @@ using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.Services;
 using Newtonsoft.Json;
+using System;
 using System.IO;
-
+using System.Windows;
 namespace FantasyModuleParser.Spells.ViewModels
 {
     public class SpellViewModel : ViewModelBase

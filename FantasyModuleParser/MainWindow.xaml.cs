@@ -33,19 +33,7 @@ namespace FantasyModuleParser
         {
             InitializeComponent();
             settingsService = new SettingsService();
-            settingsModel = settingsService.Load();
             spellStatBlockUC = new SpellStatBlockUC();
-            if(!Directory.Exists(settingsModel.MainFolderLocation))
-            {
-                Directory.CreateDirectory(settingsModel.MainFolderLocation);
-                Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
-                Directory.CreateDirectory(settingsModel.NPCFolderLocation);
-                Directory.CreateDirectory(settingsModel.SpellFolderLocation);
-                Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
-                Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
-                Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
-                Directory.CreateDirectory(settingsModel.TableFolderLocation);
-            }
         }
 
         private void Directory_Click(object sender, RoutedEventArgs e)
@@ -124,7 +112,6 @@ namespace FantasyModuleParser
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagement projectManagement = null;
-            FMPConfigurationView fMPConfigurationView = null;
             var menuitem = (MenuItem)sender;
             switch (menuitem.Name)
             {
@@ -132,9 +119,7 @@ namespace FantasyModuleParser
                     new About().ShowDialog();
                     break;
                 case "ManageCategories":
-                    fMPConfigurationView = new FMPConfigurationView();
-                    fMPConfigurationView.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
-                    fMPConfigurationView.Show();
+                    new FMPConfigurationView().ShowDialog();
                     break;
                 case "ManageProject":
                     projectManagement = new ProjectManagement();

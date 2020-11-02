@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 
 namespace FantasyModuleParser.NPC.Models.Action

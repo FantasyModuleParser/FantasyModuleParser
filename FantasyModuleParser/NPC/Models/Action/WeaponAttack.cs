@@ -1,9 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using FantasyModuleParser.Extensions;
+using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
-using Newtonsoft.Json;
 
 namespace FantasyModuleParser.NPC.Models.Action
 {
@@ -11,36 +16,22 @@ namespace FantasyModuleParser.NPC.Models.Action
 	public class WeaponAttack : ActionModelBase
 	{
 		public WeaponType WeaponType { get; set; }
-		[JsonProperty(DefaultValueHandling=DefaultValueHandling.IgnoreAndPopulate)]
+
 		public bool IsMagic { get; set; }
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public bool IsSilver { get; set; }
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public bool IsAdamantine { get; set; }
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public bool IsColdForgedIron { get; set; }
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public bool IsVersatile { get; set; }
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public bool AddSecondDamage { get; set; }
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public bool AddVersatileDamage { get; set; }
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public bool OtherTextCheck { get; set; }
 
 		public int ToHit { get; set; }
 		public int Reach { get; set; }
-		[DefaultValue(30)]
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public int WeaponRangeShort { get; set; }
-		[DefaultValue(60)]
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public int WeaponRangeLong { get; set; }
-		[DefaultValue(TargetType.target)]
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public TargetType TargetType { get; set; }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string OtherText { get; set; }
 
 		public DamageProperty PrimaryDamage { get; set; }
@@ -220,9 +211,9 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(" plus " + SecondaryDamageTotal + " (" + SecondaryDamage.NumOfDice + SecondaryDamage.DieType.GetDescription());
 
 				if (SecondaryDamage.Bonus > 0)
-					stringBuilder.Append(" + ").Append(SecondaryDamage.Bonus);
+					stringBuilder.Append(" + ");
 				else if (SecondaryDamage.Bonus < 0)
-					stringBuilder.Append(" ").Append(SecondaryDamage.Bonus);
+					stringBuilder.Append(SecondaryDamage.Bonus);
 
 				stringBuilder.Append(") ");
 			}

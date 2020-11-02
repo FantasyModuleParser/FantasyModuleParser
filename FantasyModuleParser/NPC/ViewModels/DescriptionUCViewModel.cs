@@ -2,7 +2,14 @@
 using FantasyModuleParser.NPC.ViewModel;
 using Markdig;
 using Markdig.Wpf;
+using Microsoft.Toolkit.Parsers.Markdown;
+using Microsoft.Toolkit.Parsers.Markdown.Blocks;
+using Microsoft.Toolkit.Parsers.Markdown.Inlines;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Documents;
 
 namespace FantasyModuleParser.NPC.ViewModels
