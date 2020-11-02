@@ -1,0 +1,188 @@
+﻿<Window x:Class="FantasyModuleParser.Spells.CastByWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FantasyModuleParser.Spells"
+        mc:Ignorable="d"
+        Title="Select Classes or Archetypes" Height="550" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key="Header">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="FontSize" Value="14px" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="ListBoxItem" x:Key="Selections">
+            <Setter Property="FontSize" Value="10px" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="460" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="24" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Character Class" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox Grid.Row="3" >
+                    <ListBoxItem Content="Artificer" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Barbarian" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Fighter" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Monk" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Rogue" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard" Style="{StaticResource Selections}" />
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Divine Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox Grid.Row="3" >
+                    <ListBoxItem Content="Cleric Arcana Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Death Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Forge Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Grave Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Knowledge Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Life Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Light Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Nature Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Tempest Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric Trickery Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Cleric War Domain" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Arctic Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Coast Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Desert Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Dream Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Forest Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Grassland Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Moon Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Mountain Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Shepherd Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Spore Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Swamp Circle" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Druid Underdark Circle" Style="{StaticResource Selections}" />
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Arcane Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox Grid.Row="3" >
+                    <ListBoxItem Content="Artificer (Alchemist)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Artificer (Artillerist)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Divine Soul)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Draconic Bloodline)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Shadow Magic)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Storm Sorcery)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Sorcerer (Wild Magic)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Archfey)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Celestial)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Fiend)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Great One)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Hexblade)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Warlock (Undying)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Abjuration)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Bladesinging)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Conjuration)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Divination)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Enchantment)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Evocation)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Illusion)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Invention)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Necromancy)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (Transmutation)" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Wizard (War Magic)" Style="{StaticResource Selections}" />
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Other Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox Grid.Row="3" >
+                    <ListBoxItem Content="Arcane Trickster" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Glamour" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Lore" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Swords" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Valor" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Bard College of Whispers" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Eldritch Knight" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Conquest" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Devotion" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Redemption" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of the Ancients" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of the Crown" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oath of Vengeance" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Paladin Oathbreaker" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Beast Master" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Gloom Stalker" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Horizon Walker" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Hunter" Style="{StaticResource Selections}" />
+                    <ListBoxItem Content="Ranger Monster Slayer" Style="{StaticResource Selections}" />
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="9">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="415" />
+                </Grid.RowDefinitions>
+                <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox Grid.Row="3" >
+                    <ListBoxItem Content="{Binding CustomCasters}" />
+                </ListBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="315" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="315" />
+            </Grid.ColumnDefinitions>
+            <Button Content="Save" Grid.Column="1" />
+            <Button Content="Close" Click="CloseWindow_Click" Grid.Column="3"/>
+        </Grid>    
+    </Grid>
+</Window>

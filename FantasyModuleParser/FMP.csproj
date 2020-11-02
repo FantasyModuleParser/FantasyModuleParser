@@ -423,7 +423,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NPC\Commands\ActionCommand.cs" />
     <Compile Include="Converters\LanguageModelConverter.cs" />
     <Compile Include="Converters\SelectableActionModelConverter.cs" />
     <Compile Include="Exporters\FantasyGroundsExporter.cs" />
@@ -496,6 +495,7 @@
     <Compile Include="Main\Views\Supporters.xaml.cs">
       <DependentUpon>Supporters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NPC\Commands\ActionCommand.cs" />
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\LanguageController.cs" />
     <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
@@ -576,6 +576,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Spells\CastByWindow.xaml.cs">
+      <DependentUpon>CastByWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spells\Enums\CastingType.cs" />
     <Compile Include="Spells\Enums\DurationType.cs" />
     <Compile Include="Spells\Enums\DurationUnit.cs" />
@@ -583,8 +586,13 @@
     <Compile Include="Spells\Enums\SpellLevel.cs" />
     <Compile Include="Spells\Enums\SpellSchool.cs" />
     <Compile Include="Spells\Models\SpellModel.cs" />
+    <Compile Include="Spells\Services\ISpellService.cs" />
+    <Compile Include="Spells\Services\SpellService.cs" />
     <Compile Include="Spells\SpellOptionControl.xaml.cs">
       <DependentUpon>SpellOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Spells\UserControls\SpellStatBlockUC.xaml.cs">
+      <DependentUpon>SpellStatBlockUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
@@ -638,7 +646,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPC\Views\ViewLegendaryAction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Spells\CastByWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Spells\SpellOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Spells\UserControls\SpellStatBlockUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,31 +7,31 @@ namespace FantasyModuleParser.Spells.Enums
 		[Description("cantrip")]
 		Cantrip = 0,
 
-		[Description("1st level")]
+		[Description("1st")]
 		First = 1,
 
-		[Description("2nd level")]
+		[Description("2nd")]
 		Second = 2,
 
-		[Description("3rd level")]
+		[Description("3rd")]
 		Third = 3,
 
-		[Description("4th level")]
+		[Description("4th")]
 		Fourth = 4,
 
-		[Description("5th level")]
+		[Description("5th")]
 		Fifth = 5,
 
-		[Description("6th level")]
+		[Description("6th")]
 		Sixth = 6,
 
-		[Description("7th level")]
+		[Description("7th")]
 		Seventh = 7,
 
-		[Description("8th level")]
+		[Description("8th")]
 		Eighth = 8,
 
-		[Description("9th level")]
+		[Description("9th")]
 		Ninth = 9,
 	}
 }

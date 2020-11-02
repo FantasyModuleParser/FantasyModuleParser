@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Converters;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.Spells.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -90,6 +91,29 @@ namespace FantasyModuleParser.Main.Services
             string appendedFileName = moduleModel.ModFilename + ".fmp";
             string appendedFilePath = Path.Combine(appendedFileLocation, appendedFileName);
             Save(appendedFilePath, moduleModel);
+        }
+
+        public void AddSpellToCategory(SpellModel spellModel, string categoryValue)
+        {
+            if (categoryValue == null || categoryValue.Length == 0)
+                throw new InvalidDataException("Category value is null;  Cannot save NPC");
+            if (spellModel == null)
+                throw new InvalidDataException(nameof(SpellModel) + " data object is null");
+            if (spellModel.SpellName == null || spellModel.SpellName.Length == 0)
+                throw new InvalidDataException("spellModel name is empty!");
+
+            CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
+            if (categoryModel == null)
+                throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            else
+            {
+                if (categoryModel.SpellModels.FirstOrDefault(x => x.SpellName.Equals(spellModel.SpellName, StringComparison.Ordinal)) == null)
+                    categoryModel.SpellModels.Add(spellModel);  // The real magic is here
+            }
+
+            
+            string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
+            Save(appendedFileName, moduleModel);
         }
     }
 }
