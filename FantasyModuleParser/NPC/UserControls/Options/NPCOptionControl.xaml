@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
-             xmlns:enums="clr-namespace:FantasyModuleParser.NPC.Models.Action.Enums"
-             xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
              xmlns:ActionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:BaseStatsUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:ResistancesUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
@@ -15,15 +12,8 @@
              xmlns:SpellcastingUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:DescriptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
              xmlns:ImageUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
-             xmlns:Model="clr-namespace:FantasyModuleParser.Main.Models"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="620" Loaded="NPCOptionControl_Loaded">
-    <UserControl.Resources>
-        <x:Array x:Key="CategoryTestList" Type="Model:CategoryModel">
-            <Model:CategoryModel Name="Test 1"/>
-            <Model:CategoryModel Name="Test 2"/>
-        </x:Array>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -63,7 +53,6 @@
                 <MenuItem Header="_Schedule Backups"/>
                 <MenuItem Header="_Perform Backup Now" />
             </MenuItem>
-
             <MenuItem Header="_Information">
                 <MenuItem Header="_About Fantasy Module Parser" Click="Menu_Click" Name="About"/>
                 <MenuItem Header="_Supporters" Click="Menu_Click" Name="Supporters" />

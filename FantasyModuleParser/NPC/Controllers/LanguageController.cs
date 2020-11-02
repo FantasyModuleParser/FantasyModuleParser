@@ -1,12 +1,7 @@
 ﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Models.Skills;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyModuleParser.NPC.Controllers
 {
@@ -63,8 +58,11 @@ namespace FantasyModuleParser.NPC.Controllers
             langs.Add(new LanguageModel("Hook Horror"));
             langs.Add(new LanguageModel("Ice Toad"));
             langs.Add(new LanguageModel("Ixitxachitl"));
+            langs.Add(new LanguageModel("Merfolk"));
+            langs.Add(new LanguageModel("Minotaur"));
             langs.Add(new LanguageModel("Modron"));
             langs.Add(new LanguageModel("Otyugh"));
+            langs.Add(new LanguageModel("Quori"));
             langs.Add(new LanguageModel("Sahuagin"));
             langs.Add(new LanguageModel("Slaad"));
             langs.Add(new LanguageModel("Sphinx"));
@@ -72,8 +70,10 @@ namespace FantasyModuleParser.NPC.Controllers
             langs.Add(new LanguageModel("Tlincali"));
             langs.Add(new LanguageModel("Troglodyte"));
             langs.Add(new LanguageModel("Umberhulk"));
+            langs.Add(new LanguageModel("Vampire"));
             langs.Add(new LanguageModel("Vegepygmy"));
             langs.Add(new LanguageModel("Yeti"));
+            langs.Add(new LanguageModel("Yuan-Ti"));
 
             return langs;
         }

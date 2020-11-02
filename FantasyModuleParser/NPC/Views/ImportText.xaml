@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC"
         mc:Ignorable="d"
-        Title="Import Text" Height="610" Width="520" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
+        Title="Import Text" Height="610" Width="520" ResizeMode="NoResize">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>

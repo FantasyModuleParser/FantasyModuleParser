@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC.Views"
         mc:Ignorable="d"
-        Title="NPC / Monster Preview" Height="700" Width="437" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
+        Title="NPC / Monster Preview" Height="700" Width="437" ResizeMode="NoResize">
     <Grid Background="#FFE5E5E5">
         <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="0" Height="625" Width="420" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical">

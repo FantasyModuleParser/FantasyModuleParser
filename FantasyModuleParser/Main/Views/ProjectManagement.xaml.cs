@@ -1,8 +1,6 @@
-﻿using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.Main.Services;
+﻿using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModels;
 using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -112,7 +110,7 @@ namespace FantasyModuleParser.Main
             ModuleAuthor.Text = "";
             ModuleModFilename.Text = "";
             ModuleThumbnameFilename.Text = "";
-            ModulePathTB.Text = "";
+            ModulePathTB.Text = settingsService.Load().FGModuleFolderLocation;
         }
 
         public event EventHandler OnCloseWindowAction;

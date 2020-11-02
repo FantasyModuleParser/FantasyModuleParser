@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyModuleParser.NPC.Models.Skills
 {
     public class LanguageModel : INotifyPropertyChanged
     {
         private bool _selected;
+        [DefaultValue(false)]
+        [JsonProperty(DefaultValueHandling=DefaultValueHandling.Ignore)]
         public bool Selected { get { return _selected; } set { Set(ref _selected, value); } }
         public string Language { get; set;  }
 

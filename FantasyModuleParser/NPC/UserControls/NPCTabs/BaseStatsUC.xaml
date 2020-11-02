@@ -253,7 +253,7 @@
                 <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
             <Label Content="Tag:" Style="{StaticResource informationLabel}" Grid.Column="1" />
-            <ComboBox Name="strTag" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource comboBox}" Grid.Column="3" TabIndex="4">
+            <ComboBox Name="strTag" IsEditable="True" Text="{Binding Path=Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource comboBox}" Grid.Column="3" TabIndex="4">
                 <ComboBoxItem>(aarakocra)</ComboBoxItem>
                 <ComboBoxItem>(any race)</ComboBoxItem>
                 <ComboBoxItem>(bullywug)</ComboBoxItem>
@@ -264,12 +264,14 @@
                 <ComboBoxItem>(dragonborn)</ComboBoxItem>
                 <ComboBoxItem>(dwarf)</ComboBoxItem>
                 <ComboBoxItem>(elf)</ComboBoxItem>
+                <ComboBoxItem>(firbolg)</ComboBoxItem>
                 <ComboBoxItem>(firenewt)</ComboBoxItem>
                 <ComboBoxItem>(genasi)</ComboBoxItem>
                 <ComboBoxItem>(gith)</ComboBoxItem>
                 <ComboBoxItem>(gnoll)</ComboBoxItem>
                 <ComboBoxItem>(gnome)</ComboBoxItem>
                 <ComboBoxItem>(goblinoid)</ComboBoxItem>
+                <ComboBoxItem>(goliath)</ComboBoxItem>
                 <ComboBoxItem>(grimlock)</ComboBoxItem>
                 <ComboBoxItem>(grung)</ComboBoxItem>
                 <ComboBoxItem>(half-elf)</ComboBoxItem>
@@ -286,9 +288,12 @@
                 <ComboBoxItem>(ratfolk)</ComboBoxItem>
                 <ComboBoxItem>(sahuagin)</ComboBoxItem>
                 <ComboBoxItem>(shapechanger)</ComboBoxItem>
+                <ComboBoxItem>(shifter)</ComboBoxItem>
+                <ComboBoxItem>(tabaxi)</ComboBoxItem>
                 <ComboBoxItem>(thri-kreen)</ComboBoxItem>
                 <ComboBoxItem>(tiefling)</ComboBoxItem>
                 <ComboBoxItem>(titan)</ComboBoxItem>
+                <ComboBoxItem>(tortle)</ComboBoxItem>
                 <ComboBoxItem>(triton)</ComboBoxItem>
                 <ComboBoxItem>(troglodyte)</ComboBoxItem>
                 <ComboBoxItem>(xvart)</ComboBoxItem>

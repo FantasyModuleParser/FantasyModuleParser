@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Project Management" Height="520" Width="820" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico" Closing="Window_Closing">
+        Title="Project Management" Height="520" Width="820" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico" Closing="Window_Closing">
     <Window.Resources>
         <Style TargetType="Label" x:Key="LabelHeader">
             <Setter Property="FontWeight" Value="Bold"/>

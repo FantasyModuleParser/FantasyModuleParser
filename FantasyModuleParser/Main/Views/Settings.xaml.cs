@@ -1,5 +1,4 @@
-﻿using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.Main.Services;
+﻿using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.Main.ViewModels;
 using System.Windows;
 using System.Windows.Input;

@@ -2,7 +2,6 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.NPC.Views;
 using System;
@@ -104,17 +103,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			string savePath = Path.Combine(saveDirectory, npcModel.NPCName + ".json");
 
 			((App)Application.Current).NpcModel = npcModel;
-			if (Directory.Exists(saveDirectory))
-            {
-				npcController.Save(savePath, npcModel);
-				MessageBox.Show("NPC Saved Successfully");
-			}
-			else
+			if (!Directory.Exists(saveDirectory))
             {
 				Directory.CreateDirectory(saveDirectory);
-				npcController.Save(savePath, npcModel);
-				MessageBox.Show("NPC Saved Successfully");
 			}
+			npcController.Save(savePath, npcModel);
+			MessageBox.Show("NPC Saved Successfully");
 		}
 		private void NewNPC_Click(object sender, RoutedEventArgs e)
 		{
@@ -214,7 +208,9 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			} 
 			else
 				CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
-			
+
+			// Refresh only the Skills UC because of the User languages section being updated
+			SkillsUserControl.Refresh();
 			DataContext = npcOptionControlViewModel;
 		}
 

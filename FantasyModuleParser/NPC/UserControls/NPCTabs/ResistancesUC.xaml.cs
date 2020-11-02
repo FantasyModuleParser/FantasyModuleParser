@@ -72,5 +72,16 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			chkOther.Visibility = Visibility.Hidden;
 			strOther.Visibility = Visibility.Hidden;
 		}
+
+		/*
+		 *        private NPCModel initializeLanguageSelection(NPCModel npcModel)
+        {
+            npcModel.StandardLanguages = initSpecificLanguageSet(languageController.GenerateStandardLanguages(), npcModel.StandardLanguages);
+            npcModel.MonstrousLanguages = initSpecificLanguageSet(languageController.GenerateMonsterLanguages(), npcModel.MonstrousLanguages);
+            npcModel.ExoticLanguages = initSpecificLanguageSet(languageController.GenerateExoticLanguages(), npcModel.ExoticLanguages);
+            npcModel.UserLanguages = initSpecificLanguageSet(languageController.GenerateUserLanguages(), npcModel.UserLanguages);
+
+            return npcModel;
+        }*/
 	}
 }

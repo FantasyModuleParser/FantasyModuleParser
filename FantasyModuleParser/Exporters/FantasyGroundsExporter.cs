@@ -53,7 +53,7 @@ namespace FantasyModuleParser.Exporters
 				throw new ApplicationException("No Module Name has been set");
 			}
 
-			string moduleFolderPath = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name);
+			string moduleFolderPath = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name);
 
 			// Create the folder all content will go into based on the Module name
 			Directory.CreateDirectory(moduleFolderPath);
@@ -87,11 +87,11 @@ namespace FantasyModuleParser.Exporters
 			// Zipping up the folder contents and naming to *.mod
 
 			// First need to check if the file exists;  If so, delete it
-			if (File.Exists(@Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod")))
+			if (File.Exists(@Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod")))
 			{
-				File.Delete(@Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod"));
+				File.Delete(@Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod"));
 			}
-			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod"));
+			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod"));
 		}
 		/// <summary>
 		/// Generates a List of all NPCs across all Categories in one List<NPCModel> object.  Used for Reference Manual material.
@@ -732,6 +732,7 @@ namespace FantasyModuleParser.Exporters
 			string npcType = actualType.ToLower();
 			return npcType.Replace(" ", "");
 		}
+
 		public void SortNPCListByCategory(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, CategoryModel categoryModel, List<NPCModel> NPCList)
         {
             NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
@@ -1826,5 +1827,3 @@ namespace FantasyModuleParser.Exporters
 		}
 	}
 }
-
-
