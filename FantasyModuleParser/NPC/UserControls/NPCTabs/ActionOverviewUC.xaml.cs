@@ -1,7 +1,4 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.ViewModels;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 

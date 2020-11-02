@@ -1,12 +1,9 @@
 ﻿using FantasyModuleParser.Importer.Utils;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action;
 using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace FantasyModuleParser.Importer.NPC
 {
