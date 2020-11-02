@@ -8,7 +8,7 @@
         xmlns:CategoriesUserControl="clr-namespace:FantasyModuleParser.Main.UserControls"
         xmlns:LanguagesUserControl="clr-namespace:FantasyModuleParser.Main.UserControls"
         mc:Ignorable="d"
-        Title="Fantasy Module Parser Configuration" Height="345" Width="410" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico"
+        Title="Fantasy Module Parser Configuration" Height="345" Width="410" ResizeMode="NoResize" Icon="/Resources/es2_logo_Jsv_icon.ico"
         Loaded="Window_Loaded">
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>

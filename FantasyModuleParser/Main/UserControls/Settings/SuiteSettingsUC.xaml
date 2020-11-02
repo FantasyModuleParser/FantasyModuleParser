@@ -56,13 +56,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Main:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="MainDefaultFolder" Text="{Binding Path=SettingsModel.MainFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="MainDefaultFolder" Text="{Binding Path=SettingsModel.MainFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"/>
             <CheckBox Content="Persistent Preview Windows" IsChecked="{Binding Path=SettingsModel.PersistentWindow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
                 Grid.Column="5" />
         </Grid>
@@ -77,13 +71,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Project:" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox Name="ProjectDefaultFolder" Text="{Binding Path=SettingsModel.ProjectFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ProjectDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="5" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="ProjectDefaultFolder" Text="{Binding Path=SettingsModel.ProjectFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ProjectDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="5" Grid.Column="2" />
             <CheckBox Content="Select default GUI on startup" Visibility="Hidden" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="7">
@@ -97,13 +85,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="NPC:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox Name="NPCDefaultFolder" Text="{Binding Path=SettingsModel.NPCFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="NPCDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="NPCDefaultFolder" Text="{Binding Path=SettingsModel.NPCFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="NPCDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
             <ComboBox Visibility="Hidden" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="200" Grid.Column="5" >
                 <ComboBoxItem IsSelected="True">NPC Options</ComboBoxItem>
                 <ComboBoxItem>Spell Options</ComboBoxItem>
@@ -122,13 +104,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Spell:" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="SpellDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.SpellFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="SpellDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="SpellDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.SpellFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="SpellDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
         </Grid>
         <Grid Grid.Row="11">
             <Grid.ColumnDefinitions>
@@ -142,13 +118,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Equipment:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="EquipmentDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.EquipmentFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="EquipmentDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="EquipmentDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.EquipmentFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="EquipmentDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"  />
             <CheckBox Content="Tooltip Timeout (seconds)" IsChecked="True" Visibility="Hidden" VerticalAlignment="Center" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5" />
             <ComboBox HorizontalContentAlignment="Center" Visibility="Hidden" VerticalContentAlignment="Center" Margin="0" Padding="0" Grid.Column="6">
                 <ComboBoxItem>1</ComboBoxItem>
@@ -174,13 +144,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Artifact:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="ArtifactDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.ArtifactFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ArtifactDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="ArtifactDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.ArtifactFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ArtifactDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"  />
             <CheckBox Content="Use Windows Toast notifications" IsChecked="True" Visibility="Hidden" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5"/>
         </Grid>
         <Grid Grid.Row="15">
@@ -194,13 +158,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Tables:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="TablesDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.TableFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="TablesDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="TablesDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.TableFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="TablesDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
             <CheckBox Content="Use helper GUI for links" IsChecked="True" Visibility="Hidden" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="17">
@@ -214,13 +172,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Parcels:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="ParcelsDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.ParcelFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ParcelsDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="17" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="ParcelsDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.ParcelFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ParcelsDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="17" Grid.Column="2" />
         </Grid>
         <Grid Grid.Row="19">
             <Grid.ColumnDefinitions>
@@ -233,13 +185,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Module:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="FGModuleDefaultFolder" Text="{Binding Path=SettingsModel.FGModuleFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="FGModuleDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
-                <TextBox.ToolTip>
-                    <TextBlock>
-                        Double click to change the default location
-                    </TextBlock>
-                </TextBox.ToolTip>
-            </TextBox>
+            <TextBox Name="FGModuleDefaultFolder" Text="{Binding Path=SettingsModel.FGModuleFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="FGModuleDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
         </Grid>
     </Grid>
 </UserControl>

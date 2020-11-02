@@ -1,8 +1,12 @@
-﻿using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Commands;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
-using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.Models.Skills;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace FantasyModuleParser.Main.ViewModels
@@ -24,7 +28,7 @@ namespace FantasyModuleParser.Main.ViewModels
             if (newUserLanguage != null && newUserLanguage.Length > 0) {
                 // Check for any duplicates
                 LanguageModel userLanguageModel = 
-                    FMPConfigurationModel.UserLanguages.FirstOrDefault(item => item.Language.ToLower().Equals(newUserLanguage.ToLower()));
+                    FMPConfigurationModel.UserLanguages.FirstOrDefault(item => item.Language.Equals(newUserLanguage));
                 if(userLanguageModel == null) { 
                     FMPConfigurationModel.UserLanguages.Add(new LanguageModel() { Language = newUserLanguage });
                     fmpConfigurationService.Save(FMPConfigurationModel);

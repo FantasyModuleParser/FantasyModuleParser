@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
+using System.Data.Linq;
 using System.Windows.Forms;
 
 namespace FantasyModuleParser.Main.ViewModels

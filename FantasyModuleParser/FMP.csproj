@@ -41,8 +41,8 @@
     <MinimumRequiredVersion>0.1.0.4</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>11</ApplicationRevision>
-    <ApplicationVersion>0.2.0.11</ApplicationVersion>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>0.2.0.7</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -67,8 +67,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>FantasyModuleParser.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -137,8 +136,7 @@
     <ApplicationIcon>es2_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>es2_logo_Jsv_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -315,6 +313,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -423,8 +433,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Converters\LanguageModelConverter.cs" />
-    <Compile Include="Converters\SelectableActionModelConverter.cs" />
+    <Compile Include="Commands\ActionCommand.cs" />
+    <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Exporters\FantasyGroundsExporter.cs" />
     <Compile Include="Exporters\IExporter.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />
@@ -432,7 +442,6 @@
     <Compile Include="Importer\NPC\IFormatContentService.cs" />
     <Compile Include="Importer\NPC\FormatPDFService.cs" />
     <Compile Include="Importer\NPC\IImportNPC.cs" />
-    <Compile Include="Importer\NPC\Import5eToolsNPC.cs" />
     <Compile Include="Importer\NPC\ImportDnDBeyondNPC.cs" />
     <Compile Include="Importer\NPC\ImportESNPCBase.cs" />
     <Compile Include="Importer\NPC\ImportNPCBase.cs" />
@@ -495,7 +504,6 @@
     <Compile Include="Main\Views\Supporters.xaml.cs">
       <DependentUpon>Supporters.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\Commands\ActionCommand.cs" />
     <Compile Include="NPC\Controllers\ActionController.cs" />
     <Compile Include="NPC\Controllers\LanguageController.cs" />
     <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
@@ -512,6 +520,15 @@
     <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
     <Compile Include="NPC\UserControls\Description\DescriptionOverviewUC.xaml.cs">
       <DependentUpon>DescriptionOverviewUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml.cs">
+      <DependentUpon>LegendaryActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml.cs">
+      <DependentUpon>LegendaryActionOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml.cs">
+      <DependentUpon>LegendaryActionOverviewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
       <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
@@ -571,10 +588,8 @@
     <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
       <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+    <Compile Include="NPC\Views\ViewLegendaryAction.xaml.cs">
+      <DependentUpon>ViewLegendaryAction.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spells\CastByWindow.xaml.cs">
       <DependentUpon>CastByWindow.xaml</DependentUpon>
@@ -673,6 +688,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -680,8 +700,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include=".gitignore" />
     <None Include="CHANGELOG.json" />
@@ -696,7 +716,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FMP-Logo-400.png" />
+    <Resource Include="es2_logo_Jsv_icon.ico" />
+    <Resource Include="es2_logo.ico" />
     <Content Include="Resources\artifactengineer_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -709,14 +730,12 @@
     <Content Include="Resources\equipmentengineer_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\es2_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\FMP-Logo.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\FMP-Logo-400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Resources\es2_logo_Jsv_icon.ico" />
     <Content Include="Resources\Grim_Press_Banner.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -740,9 +759,9 @@
     <Content Include="Resources\projectengineer_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Redo.png">
+    <Content Include="Resources\Redo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\refmanengineer_logo.png">
@@ -751,9 +770,9 @@
     <Content Include="Resources\refmanengineer_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Speech Bubble With Dots.png">
+    <Content Include="Resources\Speech Bubble With Dots.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\spellengineer_logo.png">
@@ -770,64 +789,64 @@
     <Content Include="Resources\tableengineer_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Text Color.png">
+    <Content Include="Resources\Text Color.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Underline.png">
+    <Content Include="Resources\Underline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Undo.png">
+    <Content Include="Resources\Undo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\up_arrow.png">
+    <Content Include="Resources\up_arrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Bold.png">
+    <Content Include="Resources\Bold.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Bulleted List.png">
+    <Content Include="Resources\Bulleted List.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\cancel.png">
+    <Content Include="Resources\cancel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\down_arrow.png">
+    <Content Include="Resources\down_arrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Header.png">
+    <Content Include="Resources\Header.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\istockphoto-868640314-612x612.jpg">
+    <Content Include="Resources\istockphoto-868640314-612x612.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Italic.png">
+    <Content Include="Resources\Italic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Folder.png">
+    <Content Include="Resources\Folder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

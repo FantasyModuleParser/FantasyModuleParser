@@ -12,8 +12,6 @@ namespace FantasyModuleParser.NPC
         private IImportNPC importESNPC;
         private IImportNPC importDnDBeyondNPC;
         private IImportNPC importPDFNPC;
-        private IImportNPC import5eToolsNPC;
-
         public ImportText()
         {
             InitializeComponent();
