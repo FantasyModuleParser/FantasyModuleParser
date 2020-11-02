@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.Spells"
         mc:Ignorable="d"
-        Title="Select Classes or Archetypes" Height="550" Width="800">
+        Title="Select Classes or Archetypes" Closing="Window_Closing" Height="550" Width="800">
     <Window.Resources>
         <Style TargetType="Label" x:Key="Header">
             <Setter Property="Padding" Value="0" />

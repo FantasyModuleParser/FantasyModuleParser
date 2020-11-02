@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Text;
+using System.Windows;
 
 namespace FantasyModuleParser.Spells
 {
@@ -14,6 +15,11 @@ namespace FantasyModuleParser.Spells
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
         }
     }
 }
