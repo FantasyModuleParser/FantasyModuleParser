@@ -433,7 +433,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\ActionCommand.cs" />
+    <Compile Include="NPC\Commands\ActionCommand.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Exporters\FantasyGroundsExporter.cs" />
     <Compile Include="Exporters\IExporter.cs" />

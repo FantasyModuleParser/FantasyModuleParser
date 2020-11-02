@@ -45,7 +45,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Character Class" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox Grid.Row="3" >
+                <ListBox x:Name="SpellCharacterClass" Grid.Row="3" >
                     <ListBoxItem Content="Artificer" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Barbarian" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Bard" Style="{StaticResource Selections}" />
@@ -69,7 +69,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Divine Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox Grid.Row="3" >
+                <ListBox x:Name="SpellDivineArchetypes" Grid.Row="3" >
                     <ListBoxItem Content="Cleric Arcana Domain" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Cleric Death Domain" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Cleric Forge Domain" Style="{StaticResource Selections}" />
@@ -103,7 +103,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Arcane Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox Grid.Row="3" >
+                <ListBox x:Name="SpellArcaneArchetypes" Grid.Row="3" >
                     <ListBoxItem Content="Artificer (Alchemist)" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Artificer (Artillerist)" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Sorcerer (Divine Soul)" Style="{StaticResource Selections}" />
@@ -138,7 +138,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Other Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox Grid.Row="3" >
+                <ListBox x:Name="SpellOtherArchetypes" Grid.Row="3" >
                     <ListBoxItem Content="Arcane Trickster" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Bard College of Glamour" Style="{StaticResource Selections}" />
                     <ListBoxItem Content="Bard College of Lore" Style="{StaticResource Selections}" />
@@ -168,8 +168,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox Grid.Row="3" >
-                    <ListBoxItem Content="{Binding CustomCasters}" />
+                <ListBox x:Name="SpellCustomCasters" Grid.Row="3" >
                 </ListBox>
             </Grid>
         </Grid>
