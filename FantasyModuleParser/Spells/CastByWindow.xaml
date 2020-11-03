@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FantasyModuleParser.Spells"
         xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
         mc:Ignorable="d"
-        Title="Select Classes or Archetypes" Height="550" Width="800">
+        Title="Select Classes or Archetypes" Height="580" Width="800">
     <Window.Resources>
         <Style TargetType="Label" x:Key="Header">
             <Setter Property="Padding" Value="0" />
@@ -26,7 +26,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="460" />
+            <RowDefinition Height="490" />
             <RowDefinition Height="10" />
             <RowDefinition Height="24" />
         </Grid.RowDefinitions>
@@ -49,7 +49,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="415" />
+                    <RowDefinition Height="450" />
                 </Grid.RowDefinitions>
                 <Label Content="Character Class" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox x:Name="SpellCharacterClass" ItemsSource="{Binding SpellCharacterClassItems}" Grid.Row="3" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
@@ -59,7 +59,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="415" />
+                    <RowDefinition Height="450" />
                 </Grid.RowDefinitions>
                 <Label Content="Divine Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox x:Name="SpellDivineArchetypes" Grid.Row="3" ItemsSource="{Binding SpellDivineArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
@@ -69,7 +69,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="415" />
+                    <RowDefinition Height="450" />
                 </Grid.RowDefinitions>
                 <Label Content="Arcane Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox x:Name="SpellArcaneArchetypes" Grid.Row="3" ItemsSource="{Binding SpellArcaneArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
@@ -79,7 +79,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="415" />
+                    <RowDefinition Height="450" />
                 </Grid.RowDefinitions>
                 <Label Content="Other Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox x:Name="SpellOtherArchetypes" Grid.Row="3" ItemsSource="{Binding SpellOtherArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
@@ -89,7 +89,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="415" />
+                    <RowDefinition Height="450" />
                 </Grid.RowDefinitions>
                 <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
                 <ListBox x:Name="CustomCastersClass" Grid.Row="3" ItemsSource="{Binding CustomCastersItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}"/>
@@ -98,13 +98,10 @@
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="315" />
-                <ColumnDefinition Width="75" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="160" />
                 <ColumnDefinition Width="315" />
             </Grid.ColumnDefinitions>
-            <Button Content="Save" Grid.Column="1" />
-            <Button Content="Close" Click="CloseWindow_Click" Grid.Column="3"/>
+            <Button Content="Close" Click="CloseWindow_Click" Grid.Column="1"/>
         </Grid>    
     </Grid>
 </Window>
