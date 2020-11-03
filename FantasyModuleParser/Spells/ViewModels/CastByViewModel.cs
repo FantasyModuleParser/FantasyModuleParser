@@ -1,5 +1,9 @@
-﻿using FantasyModuleParser.NPC.ViewModel;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.ViewModel;
+using FantasyModuleParser.Spells.Models;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace FantasyModuleParser.Spells.ViewModels
 {
@@ -15,8 +19,10 @@ namespace FantasyModuleParser.Spells.ViewModels
         }
         public CastByViewModel()
         {
-            customCastersItems.Add("My First Class");
-            customCastersItems.Add("My Second Class");
+            FMPConfigurationService fmpConfigurationService = new FMPConfigurationService();
+            FMPConfigurationModel fMPConfigurationModel = fmpConfigurationService.Load();
+            foreach (CustomCastersModel customCastersModel in fMPConfigurationModel.CustomCasters)
+                customCastersItems.Add(customCastersModel.Caster);
         }
         public List<string> SpellCharacterClassItems
         {
