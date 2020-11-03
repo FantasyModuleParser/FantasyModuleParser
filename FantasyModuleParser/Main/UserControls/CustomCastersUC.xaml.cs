@@ -16,8 +16,7 @@ namespace FantasyModuleParser.Main.UserControls
         public CustomCastersUC()
         {
             InitializeComponent();
-            customCastersUCViewModel = new CustomCastersUCViewModel();
-            DataContext = customCastersUCViewModel;
+            customCastersUCViewModel = (DataContext as CustomCastersUCViewModel);
             OnRemoveCustomCasterCommand = new ActionCommand(x => customCastersUCViewModel.RemoveCustomCaster(x.ToString()));
         }
         public ICommand OnRemoveCustomCasterCommand { get; set; }

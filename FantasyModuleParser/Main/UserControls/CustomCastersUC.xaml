@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Main.UserControls"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Main.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="380">
+    <UserControl.DataContext>
+        <viewModel:CustomCastersUCViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -27,7 +31,7 @@
             <Button Content="Add" Click="AddNewCustomCasterButton_Click" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="3">
-            <ListBox Height="200" Width="300" ItemsSource="{Binding Path=FMPConfigurationModel.CustomCasters}">
+            <ListBox Height="200" Width="300" ItemsSource="{Binding FMPConfigurationModel.CustomCasters}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="280">
