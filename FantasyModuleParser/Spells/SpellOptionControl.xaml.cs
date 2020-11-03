@@ -3,6 +3,7 @@ using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
 using System;
+using System.Text;
 using System.Windows.Controls;
 
 namespace FantasyModuleParser.Spells
@@ -161,7 +162,7 @@ namespace FantasyModuleParser.Spells
         }
         private void SelectCasters_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            CastByWindow castByWindow = new CastByWindow();
+            CastByWindow castByWindow = new CastByWindow((DataContext as SpellViewModel).SpellModel.CastBy);
             castByWindow.Closed += CastByWindow_Closed;
             castByWindow.ShowDialog();
         }
@@ -169,9 +170,27 @@ namespace FantasyModuleParser.Spells
         {
             if (sender is CastByWindow)
             {
+                StringBuilder stringBuilder = new StringBuilder();
                 CastByWindow castByWindow = (sender as CastByWindow);
 
                 // Now you have access to castByWindow.SpellCharacterClass.SelectedItems
+                foreach(string className in castByWindow.SpellCharacterClass.SelectedItems)
+                    stringBuilder.Append(className).Append(", ");
+                foreach (string className in castByWindow.SpellDivineArchetypes.SelectedItems)
+                    stringBuilder.Append(className).Append(", ");
+                foreach (string className in castByWindow.SpellArcaneArchetypes.SelectedItems)
+                    stringBuilder.Append(className).Append(", ");
+                foreach (string className in castByWindow.SpellOtherArchetypes.SelectedItems)
+                    stringBuilder.Append(className).Append(", ");
+                foreach (string className in castByWindow.CustomCastersClass.SelectedItems)
+                    stringBuilder.Append(className).Append(", ");
+
+
+                // Remove the last comma character
+                if (stringBuilder.Length > 2)
+                    stringBuilder.Remove(stringBuilder.Length - 2, 2);
+
+                (DataContext as SpellViewModel).UpdateCastBy(stringBuilder.ToString());
             }
         }
     }

@@ -117,5 +117,10 @@ namespace FantasyModuleParser.Spells.ViewModels
                 MessageBox.Show("Error detected while adding Spell to Project :: " + exception.Message);
             }
         }
+        public void UpdateCastBy(string classNames)
+        {
+            SpellModel.CastBy = classNames;
+            RaisePropertyChanged(nameof(SpellModel));
+        }
     }
 }

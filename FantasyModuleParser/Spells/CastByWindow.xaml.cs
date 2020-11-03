@@ -12,14 +12,24 @@ namespace FantasyModuleParser.Spells
         {
             InitializeComponent();
         }
+        public CastByWindow(string classValues)
+        {
+            InitializeComponent();
+            if(classValues != null)
+            {
+                foreach (string classValue in classValues.Split(new string[] { ", " }, System.StringSplitOptions.RemoveEmptyEntries))
+                {
+                    SpellCharacterClass.SelectedItems.Add(classValue);
+                    SpellArcaneArchetypes.SelectedItems.Add(classValue);
+                    SpellDivineArchetypes.SelectedItems.Add(classValue);
+                    SpellOtherArchetypes.SelectedItems.Add(classValue);
+                    CustomCastersClass.SelectedItems.Add(classValue);
+                }
+            }
+        }
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
         }
     }
 }
