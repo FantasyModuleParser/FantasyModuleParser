@@ -609,6 +609,7 @@
     <Compile Include="Spells\UserControls\SpellStatBlockUC.xaml.cs">
       <DependentUpon>SpellStatBlockUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Spells\ViewModels\CastByViewModel.cs" />
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />

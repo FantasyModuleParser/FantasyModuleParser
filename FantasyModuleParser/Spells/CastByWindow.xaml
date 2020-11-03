@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.Spells"
+        xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
         mc:Ignorable="d"
         Title="Select Classes or Archetypes" Closing="Window_Closing" Height="550" Width="800">
     <Window.Resources>
@@ -13,10 +14,16 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
-        <Style TargetType="ListBoxItem" x:Key="Selections">
+        <Style TargetType="TextBlock" x:Key="TextBlockSelection">
             <Setter Property="FontSize" Value="10px" />
         </Style>
+        <DataTemplate x:Key="myItemTemplate">
+            <TextBlock Text="{Binding}" Style="{StaticResource TextBlockSelection}" />
+        </DataTemplate>
     </Window.Resources>
+    <Window.DataContext>
+        <viewModel:CastByViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="460" />
@@ -45,21 +52,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Character Class" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox x:Name="SpellCharacterClass" Grid.Row="3" >
-                    <ListBoxItem Content="Artificer" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Barbarian" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Bard" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Fighter" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Monk" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Ranger" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Rogue" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Sorcerer" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Warlock" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard" Style="{StaticResource Selections}" />
-                </ListBox>
+                <ListBox x:Name="SpellCharacterClass" ItemsSource="{Binding SpellCharacterClassItems}" Grid.Row="3" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
             </Grid>
             <Grid Grid.Column="3">
                 <Grid.RowDefinitions>
@@ -69,31 +62,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Divine Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox x:Name="SpellDivineArchetypes" Grid.Row="3" >
-                    <ListBoxItem Content="Cleric Arcana Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Death Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Forge Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Grave Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Knowledge Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Life Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Light Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Nature Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Tempest Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric Trickery Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Cleric War Domain" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Arctic Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Coast Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Desert Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Dream Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Forest Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Grassland Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Moon Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Mountain Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Shepherd Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Spore Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Swamp Circle" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Druid Underdark Circle" Style="{StaticResource Selections}" />
-                </ListBox>
+                <ListBox x:Name="SpellDivineArchetypes" Grid.Row="3" ItemsSource="{Binding SpellDivineArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
             </Grid>
             <Grid Grid.Column="5">
                 <Grid.RowDefinitions>
@@ -103,32 +72,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Arcane Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox x:Name="SpellArcaneArchetypes" Grid.Row="3" >
-                    <ListBoxItem Content="Artificer (Alchemist)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Artificer (Artillerist)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Sorcerer (Divine Soul)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Sorcerer (Draconic Bloodline)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Sorcerer (Shadow Magic)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Sorcerer (Storm Sorcery)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Sorcerer (Wild Magic)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Warlock (Archfey)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Warlock (Celestial)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Warlock (Fiend)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Warlock (Great One)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Warlock (Hexblade)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Warlock (Undying)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Abjuration)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Bladesinging)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Conjuration)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Divination)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Enchantment)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Evocation)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Illusion)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Invention)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Necromancy)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (Transmutation)" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Wizard (War Magic)" Style="{StaticResource Selections}" />
-                </ListBox>
+                <ListBox x:Name="SpellArcaneArchetypes" Grid.Row="3" ItemsSource="{Binding SpellArcaneArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
             </Grid>
             <Grid Grid.Column="7">
                 <Grid.RowDefinitions>
@@ -138,27 +82,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Other Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox x:Name="SpellOtherArchetypes" Grid.Row="3" >
-                    <ListBoxItem Content="Arcane Trickster" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Bard College of Glamour" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Bard College of Lore" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Bard College of Swords" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Bard College of Valor" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Bard College of Whispers" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Eldritch Knight" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin Oath of Conquest" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin Oath of Devotion" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin Oath of Redemption" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin Oath of the Ancients" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin Oath of the Crown" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin Oath of Vengeance" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Paladin Oathbreaker" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Ranger Beast Master" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Ranger Gloom Stalker" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Ranger Horizon Walker" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Ranger Hunter" Style="{StaticResource Selections}" />
-                    <ListBoxItem Content="Ranger Monster Slayer" Style="{StaticResource Selections}" />
-                </ListBox>
+                <ListBox x:Name="SpellOtherArchetypes" Grid.Row="3" ItemsSource="{Binding SpellOtherArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
             </Grid>
             <Grid Grid.Column="9">
                 <Grid.RowDefinitions>
@@ -168,8 +92,7 @@
                     <RowDefinition Height="415" />
                 </Grid.RowDefinitions>
                 <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
-                <ListBox x:Name="SpellCustomCasters" Grid.Row="3" >
-                </ListBox>
+                <ListBox x:Name="CustomCastersClass" Grid.Row="3" ItemsSource="{Binding CustomCastersItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">

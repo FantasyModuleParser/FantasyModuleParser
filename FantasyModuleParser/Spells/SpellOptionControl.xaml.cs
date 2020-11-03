@@ -161,7 +161,18 @@ namespace FantasyModuleParser.Spells
         }
         private void SelectCasters_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new CastByWindow().ShowDialog();
+            CastByWindow castByWindow = new CastByWindow();
+            castByWindow.Closed += CastByWindow_Closed;
+            castByWindow.ShowDialog();
+        }
+        private void CastByWindow_Closed(object sender, EventArgs e)
+        {
+            if (sender is CastByWindow)
+            {
+                CastByWindow castByWindow = (sender as CastByWindow);
+
+                // Now you have access to castByWindow.SpellCharacterClass.SelectedItems
+            }
         }
     }
 }
