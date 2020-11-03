@@ -257,6 +257,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Main\UserControls\CustomCastersUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\UserControls\Settings\ArtifactsSettingsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -433,6 +437,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Main\UserControls\CustomCastersUC.xaml.cs">
+      <DependentUpon>CustomCastersUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\ViewModels\CustomCastersUCViewModel.cs" />
     <Compile Include="NPC\Commands\ActionCommand.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Exporters\FantasyGroundsExporter.cs" />
@@ -600,6 +608,7 @@
     <Compile Include="Spells\Enums\RangeType.cs" />
     <Compile Include="Spells\Enums\SpellLevel.cs" />
     <Compile Include="Spells\Enums\SpellSchool.cs" />
+    <Compile Include="Spells\Models\CustomCastersModel.cs" />
     <Compile Include="Spells\Models\SpellModel.cs" />
     <Compile Include="Spells\Services\ISpellService.cs" />
     <Compile Include="Spells\Services\SpellService.cs" />

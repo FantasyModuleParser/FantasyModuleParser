@@ -2,28 +2,28 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace FantasyModuleParser.NPC.Models.Skills
+namespace FantasyModuleParser.Spells.Models
 {
-    public class LanguageModel : INotifyPropertyChanged
+    public class CustomCastersModel : INotifyPropertyChanged
     {
         private bool _selected;
         public bool Selected { get { return _selected; } set { Set(ref _selected, value); } }
-        public string Language { get; set;  }
+        public string Caster { get; set; }
 
-        public LanguageModel()
+        public CustomCastersModel()
         {
         }
 
-        public LanguageModel(string language)
+        public CustomCastersModel(string caster)
         {
-            Language = language;
+            Caster = caster;
             Selected = false;
         }
 
-        public LanguageModel(bool selected, string language)
+        public CustomCastersModel(bool selected, string caster)
         {
             Selected = selected;
-            Language = language;
+            Caster = caster;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
