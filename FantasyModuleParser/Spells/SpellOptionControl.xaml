@@ -98,7 +98,13 @@
                     </TextBlock>
                 </ComboBox.ToolTip>
             </ComboBox>
-            <CheckBox IsChecked="{Binding SpellModel.IsRitual}" Content="Ritual" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" />
+            <CheckBox IsChecked="{Binding SpellModel.IsRitual}" Content="Ritual" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4">
+                <CheckBox.ToolTip>
+                    <TextBlock>
+                        Check this box if the spell can be cast as a Ritual
+                    </TextBlock>
+                </CheckBox.ToolTip>
+            </CheckBox>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -115,7 +121,7 @@
             </Grid.RowDefinitions>
             <Label Content="Casting Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
             <!--<Label Name="CastingDisplayValue" VerticalAlignment="Center" Grid.Column="1" Grid.RowSpan="2" />-->
-            <TextBlock Name="CastingDisplayValue" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" TextWrapping="WrapWithOverflow"/>
+            <TextBlock Name="CastingDisplayValue" Grid.Column="1" Grid.Row="0" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Margin="0" Padding="0"/>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
             <TextBox x:Name="CastingTimeTB" Text="{Binding SpellModel.CastingTime, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="3" TextChanged="Casting_Changed" IsEnabled="False"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4"/>
@@ -209,7 +215,14 @@
                 <ColumnDefinition Width="340" />
             </Grid.ColumnDefinitions>
             <Label Content="Cast by:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" Padding="0,0,5,0" Grid.Column="0"/>
-            <Button Content="Select" VerticalAlignment="Top" Margin="0,5,0,0" Click="SelectCasters_Click" Grid.Column="1"/>
+            <Button Content="Select" VerticalAlignment="Top" Margin="0,5,0,0" Click="SelectCasters_Click" Grid.Column="1">
+                <Button.ToolTip>
+                    <TextBlock>
+                        Click this button to open a new window<LineBreak />
+                        The following window selections will populate in the Textbox to the right.
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
             <TextBox Text="{Binding SpellModel.CastBy, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="50" VerticalScrollBarVisibility="Visible" Grid.Column="2" TextWrapping="Wrap"/>
         </Grid>
         <Grid Grid.Row="9">
