@@ -35,14 +35,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="70" />
-            <RowDefinition Height="0" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="52" />
+            <RowDefinition Height="52" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
             <RowDefinition Height="60" />
             <RowDefinition Height="180" />
             <RowDefinition Height="30" />
@@ -67,7 +66,13 @@
                 <ColumnDefinition Width="322" />
             </Grid.ColumnDefinitions>
             <Label Content="Spell Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Text="{Binding SpellModel.SpellName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Text="{Binding SpellModel.SpellName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="1">
+                <TextBox.ToolTip>
+                    <TextBlock>
+                        Name of the Spell
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -78,9 +83,21 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Spell Level:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SpellLevel}}}" SelectedValue="{Binding SpellModel.SpellLevel}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="1"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SpellLevel}}}" SelectedValue="{Binding SpellModel.SpellLevel}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="1">
+                <ComboBox.ToolTip>
+                    <TextBlock>
+                        Select the level of the spell
+                    </TextBlock>
+                </ComboBox.ToolTip>
+            </ComboBox>
             <Label Content="Spell School:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SpellSchool}}}" SelectedValue="{Binding SpellModel.SpellSchool}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3"/>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SpellSchool}}}" SelectedValue="{Binding SpellModel.SpellSchool}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3">
+                <ComboBox.ToolTip>
+                    <TextBlock>
+                        Select the school the spell belongs to.
+                    </TextBlock>
+                </ComboBox.ToolTip>
+            </ComboBox>
             <CheckBox IsChecked="{Binding SpellModel.IsRitual}" Content="Ritual" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4" />
         </Grid>
         <Grid Grid.Row="3">
@@ -93,8 +110,8 @@
                 <ColumnDefinition Width="175" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40" />
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="26" />
             </Grid.RowDefinitions>
             <Label Content="Casting Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
             <!--<Label Name="CastingDisplayValue" VerticalAlignment="Center" Grid.Column="1" Grid.RowSpan="2" />-->
@@ -105,7 +122,7 @@
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="Casting_Changed" Style="{StaticResource standardComboBox}" Grid.Column="5"/>
             
             <Label Name="CastingDescriptionLabel" Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Grid.Column="2" Grid.Row="1" />
-            <TextBox x:Name="ReactionDescription" Text="{Binding SpellModel.ReactionDescription, UpdateSourceTrigger=PropertyChanged}" TextChanged="Casting_Changed" VerticalAlignment="Center" IsEnabled="False" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3"  />
+            <TextBox x:Name="ReactionDescription" Text="{Binding SpellModel.ReactionDescription, UpdateSourceTrigger=PropertyChanged}" TextChanged="Casting_Changed" VerticalAlignment="Center" IsEnabled="False" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3" />
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -116,7 +133,11 @@
             </Grid.ColumnDefinitions>
 
         </Grid>
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26" />
+                <RowDefinition Height="26" />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="150" />
@@ -128,11 +149,19 @@
             <Label Content="Range:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
             <TextBox Name="RangeDisplayValue" IsReadOnly="True" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType}" SelectedValuePath="Value" SelectionChanged="RangeComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" SelectionChanged="RangeComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
             <Label Name="RangeDistanceLabel" Content="Distance:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Grid.Column="4" />
             <TextBox x:Name="RangeValueTB" Text="{Binding SpellModel.Range, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" IsEnabled="False" Grid.Column="5" TextChanged="RangeComboBox_SelectionChanged" />
+            <Label Name="RangeDescriptionLabel" Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Grid.Column="2" Grid.Row="1" />
+            <TextBox x:Name="RangeDescriptionTB" Text="{Binding SpellModel.RangeDescription, UpdateSourceTrigger=PropertyChanged}" TextChanged="RangeType_Changed" VerticalAlignment="Center" IsEnabled="False" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3">
+                <TextBox.ToolTip>
+                    <TextBlock>
+                        Include a description of the range, i.e. (15-foot cone)
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
         </Grid>
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="50" />
@@ -148,7 +177,7 @@
             <Label Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4" />
             <TextBox Text="{Binding SpellModel.ComponentText}" Height="20" Grid.Column="5" IsEnabled="{Binding SpellModel.IsMaterialComponent}" />
         </Grid>
-        <Grid Grid.Row="7">
+        <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="13" />
@@ -156,12 +185,12 @@
                 <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="193" />
             </Grid.ColumnDefinitions>
-            <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0" Margin="0,8,0,7"/>
+            <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
             <TextBox Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource standardTextBox}" Text="{Binding SpellModel.DurationText}" IsReadOnly="True" />
-            <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="3" Margin="0,8,0,7"/>
+            <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="3"/>
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="DurationSelectionEnabled_ComboboxChanged" Grid.Column="4" Style="{StaticResource standardComboBox}"/>
         </Grid>
-        <Grid Grid.Row="8">
+        <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="323" />
                 <ColumnDefinition Width="50" />
@@ -173,7 +202,7 @@
             <Label Content="Unit:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
             <ComboBox x:Name="DurationUnit" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationUnit}}}" SelectedValue="{Binding Path=SpellModel.DurationUnit}" SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="3" Style="{StaticResource standardComboBox}"/>
         </Grid>
-        <Grid Grid.Row="9">
+        <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="75" />
@@ -183,7 +212,7 @@
             <Button Content="Select" VerticalAlignment="Top" Margin="0,5,0,0" Click="SelectCasters_Click" Grid.Column="1"/>
             <TextBox Text="{Binding SpellModel.CastBy, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="50" VerticalScrollBarVisibility="Visible" Grid.Column="2" TextWrapping="Wrap"/>
         </Grid>
-        <Grid Grid.Row="10">
+        <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="415" />
@@ -191,7 +220,7 @@
             <Label Content="Information:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" Padding="0,0,5,0" Grid.Column="0"/>
             <TextBox Text="{Binding SpellModel.Description}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="170" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Grid.Column="1"/>
         </Grid>
-        <Grid Grid.Row="11">
+        <Grid Grid.Row="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="105" />
                 <ColumnDefinition Width="25" />
@@ -235,7 +264,7 @@
                 </Button.ToolTip>
             </Button>
         </Grid>
-        <Grid Grid.Row="12">
+        <Grid Grid.Row="11">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="2*" />

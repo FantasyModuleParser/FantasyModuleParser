@@ -103,9 +103,7 @@ namespace FantasyModuleParser.Exporters
 			foreach (CategoryModel category in moduleModel.Categories)
 			{
 				foreach (NPCModel npcModel in category.NPCModels)
-				{
 					FatNPCList.Add(npcModel);
-				}
 			}
 			return FatNPCList;
 		}
@@ -118,12 +116,23 @@ namespace FantasyModuleParser.Exporters
 			foreach (CategoryModel category in moduleModel.Categories)
             {
 				foreach (SpellModel spellModel in category.SpellModels)
-                {
 					FatSpellList.Add(spellModel);
-                }
             }
 			return FatSpellList;
         }
+		/// <summary>
+		/// Generates a HashSet of all the Spellcaster classes
+		/// </summary>
+		private HashSet<string> GenerateCasterList(CategoryModel categoryModel)
+		{
+			HashSet<string> UniqueCasterClass = new HashSet<string>();
+			foreach (SpellModel spell in categoryModel.SpellModels)
+			{
+				foreach (string spellcasterClass in spell.CastBy.Split(','))
+					UniqueCasterClass.Add(spellcasterClass.Trim());
+			}
+			return UniqueCasterClass;
+		}
 		/// <summary>
 		/// Renames the selected thumbnail image to thumbnail.png
 		/// </summary>
@@ -159,6 +168,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = GenerateFatSpellList(moduleModel);
+			HashSet<string> UniqueCasterClass = new HashSet<string>();
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			/// <summary>
@@ -208,6 +218,10 @@ namespace FantasyModuleParser.Exporters
 					}
 					File.Copy(npcModel.NPCImage, NPCImageFileName);
 				}
+			}
+			foreach (CategoryModel category in moduleModel.Categories)
+			{
+				GenerateCasterList(category).Select(caster => UniqueCasterClass.Add(caster));
 			}
 
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
@@ -592,7 +606,7 @@ namespace FantasyModuleParser.Exporters
 		private string CategoryNameToXML(CategoryModel categoryModel)
         {
 			string categoryName = categoryModel.Name;
-			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "_").Replace("'", "_").ToLower();
+			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
         }
 		#endregion
 		#region Common Methods
@@ -1665,14 +1679,14 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("level");
 			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteValue(spellModel.SpellLevel);
+			xmlWriter.WriteValue(spellModel.SpellLevel.GetDescription());
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteSpellSchool(XmlWriter xmlWriter, SpellModel spellModel)
 		{
 			xmlWriter.WriteStartElement("school");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteValue(spellModel.SpellSchool);
+			xmlWriter.WriteValue(spellModel.SpellSchool.GetDescription());
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteSpellSource(XmlWriter xmlWriter, SpellModel spellModel)
@@ -1682,17 +1696,17 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(spellModel.CastBy);
 			xmlWriter.WriteEndElement();
 		}
-		private void WriteCastingTime(XmlWriter xmlWriter, SpellModel spellModel)
+		private void WriteSpellRange(XmlWriter xmlWriter, SpellModel spellModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(spellModel.CastingTime + " " + spellModel.CastingType.GetDescription());
+			stringBuilder.Append(spellModel.Range + " " + spellModel.RangeType);
 
-			xmlWriter.WriteStartElement("castingtime");
+			xmlWriter.WriteStartElement("range");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(stringBuilder.ToString());
 			xmlWriter.WriteEndElement();
 		}
-		private void WriteSpellRange(XmlWriter xmlWriter, SpellModel spellModel)
+		private void WriteCastingTime(XmlWriter xmlWriter, SpellModel spellModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(spellModel.CastingTime + " " + spellModel.CastingType.GetDescription());

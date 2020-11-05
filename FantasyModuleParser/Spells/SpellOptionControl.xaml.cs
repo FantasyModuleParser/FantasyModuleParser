@@ -103,9 +103,21 @@ namespace FantasyModuleParser.Spells
                 return;
             if (RangeValueTB == null)
                 return;
+            if (RangeDescriptionTB == null)
+                return;
+            if (spellModel.RangeType == Enums.RangeType.Self)
+            {
+                RangeDescriptionTB.IsEnabled = true;
+                RangeDescriptionLabel.IsEnabled = true;
+            }
+            else
+            {
+                RangeDescriptionTB.IsEnabled = false;
+                RangeDescriptionLabel.IsEnabled = false;
+            }
 
             if (RangeValueTB.IsEnabled = (spellModel.RangeType == Enums.RangeType.Ranged))
-                RangeDisplayValue.Text = spellModel.Range + " feet";
+                RangeDisplayValue.Text = spellModel.Range + " feet"; 
             else
                 RangeDisplayValue.Text = spellModel.RangeType == Enums.RangeType.None ? "" : spellModel.RangeType.GetDescription();
             RangeDistanceLabel.IsEnabled = RangeValueTB.IsEnabled;
@@ -192,6 +204,15 @@ namespace FantasyModuleParser.Spells
 
                 (DataContext as SpellViewModel).UpdateCastBy(stringBuilder.ToString());
             }
+        }
+
+        private void RangeType_Changed(object sender, TextChangedEventArgs e)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("Self");
+            if (!string.IsNullOrEmpty(RangeDescriptionTB.Text))
+                stringBuilder.Append(" " + RangeDescriptionTB.Text);
+            RangeDisplayValue.Text = stringBuilder.ToString();
         }
     }
 }

@@ -7,19 +7,19 @@ namespace FantasyModuleParser.Spells.Enums
 		[Description("--")]
 		None = 0,
 
-		[Description("self")]
+		[Description("Self")]
 		Self = 1,
 
-		[Description("touch")]
+		[Description("Touch")]
 		Touch = 2,
 
 		[Description("ranged")]
 		Ranged = 3,
 
-		[Description("sight")]
+		[Description("Sight")]
 		Sight = 4,
 
-		[Description("unlimited")]
+		[Description("Unlimited")]
 		Unlimited = 5,
     }
 }
