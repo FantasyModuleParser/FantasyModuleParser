@@ -882,5 +882,24 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(", and the target must make a DC 11 Constitution saving throw, taking 13 (3d8) poison damage on a failed save, or half as much on a successful one. If the poison reduces the target to 0 hit points, the target is stable but poisoned for 1 hour. Even after regaining hit points, the target is paralyzed while it retains the poisoned condition",
                 (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
         }
+
+
+        /// <summary>
+        /// Some summary goes hee?
+        /// </summary>
+        [TestMethod()]
+        public void Import_Amygdala_Test()
+        {
+            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.amygdala.npc");
+
+            NPCModel actualNPCModel = _importEngineerSuiteNPC.ImportTextToNPCModel(fileContent);
+
+            //Assert.AreEqual(1, actualNPCModel.NPCActions.Count);
+            //Assert.AreEqual(typeof(WeaponAttack), actualNPCModel.NPCActions[0].GetType());
+
+            //Assert.AreEqual(true, (actualNPCModel.NPCActions[0] as WeaponAttack).OtherTextCheck);
+            //Assert.AreEqual(", and the target must make a DC 11 Constitution saving throw, taking 13 (3d8) poison damage on a failed save, or half as much on a successful one. If the poison reduces the target to 0 hit points, the target is stable but poisoned for 1 hour. Even after regaining hit points, the target is paralyzed while it retains the poisoned condition",
+            //    (actualNPCModel.NPCActions[0] as WeaponAttack).OtherText);
+        }
     }
 }
