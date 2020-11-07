@@ -11,11 +11,11 @@ namespace FMPTests_Spells.Importer
     public class ImportSpellLineParserTest
     {
 
-        private IImportSpell _importSpell;
+        private ImportSpellBase importSpellBase;
         [TestInitialize]
         public void Initialize()
         {
-            _importSpell = new ImportSpellBase();
+            importSpellBase = new ImportSpellBase();
            
         }
 
@@ -24,10 +24,9 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(SpellLevelAndSchoolData), DynamicDataSourceType.Method)]
         public void TestSpellLevelAndSchool(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = _importSpell.ImportTextToSpellModel(importData);
-            Assert.AreEqual(expectedSpellModel.SpellLevel, actualSpellModel.SpellLevel);
-            Assert.AreEqual(expectedSpellModel.SpellSchool, actualSpellModel.SpellSchool);
-            Assert.AreEqual(expectedSpellModel.IsRitual, actualSpellModel.IsRitual);
+            Assert.AreEqual(expectedSpellModel.SpellLevel, importSpellBase.ParseSpellLevel(importData));
+            Assert.AreEqual(expectedSpellModel.SpellSchool, importSpellBase.parseSpellSchool(importData));
+            Assert.AreEqual(expectedSpellModel.IsRitual, importSpellBase.checkIfRitual(importData));
         }
         
 
@@ -49,7 +48,7 @@ namespace FMPTests_Spells.Importer
             yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Evocation), "3rd-level evocation" };
             yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Illusion), "3rd-level illusion" };
             yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Necromancy), "3rd-level necromancy" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Transmutation), "3rd-level transmuation" };
+            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Transmutation), "3rd-level transmutation" };
 
             yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Abjuration, true), "3rd-level abjuration (ritual)" };
 
@@ -75,7 +74,7 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(CastingTimeData), DynamicDataSourceType.Method)]
         public void TestCastingTime(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = _importSpell.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
             Assert.AreEqual(expectedSpellModel.CastingTime, actualSpellModel.CastingTime);
             Assert.AreEqual(expectedSpellModel.CastingType, actualSpellModel.CastingType);
         }
@@ -102,7 +101,7 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(RangeData), DynamicDataSourceType.Method)]
         public void TestRange(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = _importSpell.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
             Assert.AreEqual(expectedSpellModel.Range, actualSpellModel.Range);
             Assert.AreEqual(expectedSpellModel.RangeType, actualSpellModel.RangeType);
         }
@@ -129,7 +128,7 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(ComponentData), DynamicDataSourceType.Method)]
         public void TestComponents(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = _importSpell.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
             Assert.AreEqual(expectedSpellModel.IsVerbalComponent, actualSpellModel.IsVerbalComponent);
             Assert.AreEqual(expectedSpellModel.IsSomaticComponent, actualSpellModel.IsSomaticComponent);
             Assert.AreEqual(expectedSpellModel.IsMaterialComponent, actualSpellModel.IsMaterialComponent);
@@ -159,7 +158,7 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(DurationData), DynamicDataSourceType.Method)]
         public void TestDuration(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = _importSpell.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
             Assert.AreEqual(expectedSpellModel.DurationTime, actualSpellModel.DurationTime);
             Assert.AreEqual(expectedSpellModel.DurationType, actualSpellModel.DurationType);
             Assert.AreEqual(expectedSpellModel.DurationUnit, actualSpellModel.DurationUnit);
@@ -187,7 +186,7 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(CharacterCastByData), DynamicDataSourceType.Method)]
         public void TestCastBy(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = _importSpell.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
             Assert.AreEqual(expectedSpellModel.CastBy, actualSpellModel.CastBy);
         }
         private static IEnumerable<object[]> CharacterCastByData()
