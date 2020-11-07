@@ -81,6 +81,8 @@ namespace FantasyModuleParser.Main.Services
                 throw new InvalidDataException("Remove the file:/// from the NPC Image Path and try again.");
             if (npcModel.Alignment == null)
                 throw new InvalidDataException("Select an alignment for the NPC and add to project again.");
+            if (npcModel.AC == null)
+                throw new InvalidDataException("Please add an armor class and try again.");
             else
             {
                 if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
