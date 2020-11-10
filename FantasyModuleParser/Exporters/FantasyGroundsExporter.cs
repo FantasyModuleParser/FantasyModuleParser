@@ -460,15 +460,9 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString("Spells");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("index");
-				WriteIDLinkList(xmlWriter, moduleModel, "id001", "reference.spelllists._index_", "(Index)");
-				WriteIDLinkList(xmlWriter, moduleModel, "id002", "reference.spelllists.bard", "Bard");
-				WriteIDLinkList(xmlWriter, moduleModel, "id003", "reference.spelllists.cleric", "Cleric");
-				WriteIDLinkList(xmlWriter, moduleModel, "id004", "reference.spelllists.druid", "Druid");
-				WriteIDLinkList(xmlWriter, moduleModel, "id005", "reference.spelllists.paladin", "Paladin");
-				WriteIDLinkList(xmlWriter, moduleModel, "id006", "reference.spelllists.ranger", "Ranger");
-				WriteIDLinkList(xmlWriter, moduleModel, "id007", "reference.spelllists.sorcerer", "Sorcerer");
-				WriteIDLinkList(xmlWriter, moduleModel, "id008", "reference.spelllists.warlock", "Warlock");
-				WriteIDLinkList(xmlWriter, moduleModel, "id009", "reference.spelllists.wizard", "Wizard");
+
+				/// Individual Spellcaster lists go here
+				
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
