@@ -939,6 +939,11 @@ namespace FMPTests.Importer.NPC
                 new DamageProperty(){Bonus = 4, DamageType = DamageType.Piercing, DieType = DieType.D6, NumOfDice = 1 },
                 new DamageProperty(){Bonus = 0, DamageType = DamageType.Fire, DieType = DieType.D6, NumOfDice = 1 }),
                 "Spear. Melee or Ranged Weapon Attack: +7 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 7 (1d6 + 4) piercing damage, or 8 (1d8 + 4) piercing damage if used with two hands to make a melee attack, plus 3 (1d6) fire damage." };
+            yield return new object[] { generateNPCModel_WeaponAction("Claws", WeaponType.MWA,
+                11, 15, 30, 60, TargetType.target, false, false, false, false, false,
+                new DamageProperty(){Bonus = 6, DamageType = DamageType.Slashing, DieType = DieType.D8, NumOfDice = 2 },
+                null),
+                "Claws. Melee Weapon Attack: +11 to hit, reach 15 ft., one target.Hit: 15 (2d8+6) slashing damage." };
         }
         private static NPCModel generateNPCModel_WeaponAction(string actionName, WeaponType weaponType, int toHit, int reach,
             int weaponShortRange, int weaponLongRange,

@@ -58,8 +58,31 @@ namespace FantasyModuleParser.Importer.Utils
 
         private DieType getDieType(string damagePropertyData)
         {
-            string dieTypeData = damagePropertyData.Trim().Split(' ')[0].Substring(damagePropertyData.IndexOf('d')).ToLower(CultureInfo.CurrentCulture);
-            dieTypeData = dieTypeData.Replace(')', ' ').Trim();
+            string dieTypeData = "";
+
+            int dieTypeStartIndex = damagePropertyData.IndexOf('d');
+            int dieTypeEndIndex = damagePropertyData.IndexOf('+');
+
+            // If no '+' exists, then either it's a minus symbol, or no symbol exists
+            //if(dieTypeEndIndex == -1)
+            //    dieTypeEndIndex = damagePropertyData.IndexOf('-');
+
+            //if(dieTypeEndIndex == -1)
+            //{
+            //    dieTypeData = damagePropertyData.Substring(dieTypeStartIndex, 2);
+            //    dieTypeData.Replace(')', ' ').Trim();
+            //}
+            //else
+            //{
+            //    dieTypeData = damagePropertyData.Substring(dieTypeStartIndex, 2);
+            //}
+
+            dieTypeData = damagePropertyData.Substring(dieTypeStartIndex, 3);
+            dieTypeData = dieTypeData.Replace(')', ' ').Replace('+', ' ').Replace('-', ' ').Trim();
+
+
+            //string dieTypeData = damagePropertyData.Trim().Split(' ')[0].Substring(damagePropertyData.IndexOf('d')).ToLower(CultureInfo.CurrentCulture);
+            //dieTypeData = dieTypeData.Replace(')', ' ').Trim();
             foreach (DieType dieTypeEnum in Enum.GetValues(typeof(DieType)))
             {
                 if (dieTypeData.Equals(GetDescription(typeof(DieType), dieTypeEnum), StringComparison.Ordinal))
@@ -74,14 +97,19 @@ namespace FantasyModuleParser.Importer.Utils
         {
             if ((damagePropertyData.Contains("+") || damagePropertyData.Contains("-")) && !damagePropertyData.Contains("cold-forged"))
             {
-                string bonusData1 = damagePropertyData.Substring(damagePropertyData.IndexOf(' '));
+                string bonusData1 = "";
+                if(damagePropertyData.Contains("+"))
+                    bonusData1 = damagePropertyData.Substring(damagePropertyData.IndexOf('+'));
+                else
+                    bonusData1 = damagePropertyData.Substring(damagePropertyData.IndexOf('-'));
+                //string bonusData1 = damagePropertyData.Substring(damagePropertyData.IndexOf(' '));
                 string bonusData2 = bonusData1.Substring(0, bonusData1.IndexOf(") ", StringComparison.Ordinal)).Trim();
 
                 int modifier = 1;
                 if (damagePropertyData.Contains("-"))
                     modifier = -1;
 
-                return modifier * int.Parse(bonusData2.Split(' ')[1], CultureInfo.CurrentCulture);
+                return modifier * int.Parse(bonusData2.Substring(1), CultureInfo.CurrentCulture);
             }
             else
             {
