@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="Resources\PDF\AscendingFlame.txt" />
+    <None Remove="Resources\PDF\CounterSpell.txt" />
+    <None Remove="Resources\Roll20\AcidSplash.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\PDF\AscendingFlame.txt" />
+    <EmbeddedResource Include="Resources\PDF\CounterSpell.txt" />
+    <EmbeddedResource Include="Resources\Roll20\AcidSplash.txt" />
   </ItemGroup>
 
   <ItemGroup>

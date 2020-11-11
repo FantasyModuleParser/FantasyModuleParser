@@ -74,24 +74,37 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(CastingTimeData), DynamicDataSourceType.Method)]
         public void TestCastingTime(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseCastingTime(importData, actualSpellModel);
             Assert.AreEqual(expectedSpellModel.CastingTime, actualSpellModel.CastingTime);
             Assert.AreEqual(expectedSpellModel.CastingType, actualSpellModel.CastingType);
+            Assert.AreEqual(expectedSpellModel.ReactionDescription, actualSpellModel.ReactionDescription);
         }
 
 
         private static IEnumerable<object[]> CastingTimeData()
         {
-            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Action), "1 action" };
+            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Action), "Casting Time: 1 action" };
+            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.BonusAction), "Casting Time: 1 bonus action" };
+            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Hour), "Casting Time: 1 hour" };
+            yield return new object[] { generateSpellModel_CastingTime(3, CastingType.Hour), "Casting Time: 3 hours" };
+            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Minute), "Casting Time: 1 minute" };
+            yield return new object[] { generateSpellModel_CastingTime(5, CastingType.Minute ), "Casting Time: 5 minutes" };
+            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Reaction, "where the target can suck it"), "Casting Time: 1 reaction, where the target can suck it" };
 
         }
 
         private static SpellModel generateSpellModel_CastingTime(int castingTime, CastingType castingType)
         {
+            return generateSpellModel_CastingTime(castingTime, castingType, null);
+        }
+        private static SpellModel generateSpellModel_CastingTime(int castingTime, CastingType castingType, string reactionDescription)
+        {
             SpellModel spellModel = new SpellModel()
             {
                 CastingTime = castingTime,
-                CastingType = castingType
+                CastingType = castingType,
+                ReactionDescription = reactionDescription
             };
             return spellModel;
         }
@@ -101,7 +114,8 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(RangeData), DynamicDataSourceType.Method)]
         public void TestRange(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseRange(importData, actualSpellModel);
             Assert.AreEqual(expectedSpellModel.Range, actualSpellModel.Range);
             Assert.AreEqual(expectedSpellModel.RangeType, actualSpellModel.RangeType);
         }
@@ -109,7 +123,13 @@ namespace FMPTests_Spells.Importer
 
         private static IEnumerable<object[]> RangeData()
         {
-            yield return new object[] { generateSpellModel_Range(60, RangeType.Ranged), "60 ft." };
+            yield return new object[] { generateSpellModel_Range(60, RangeType.Ranged), "Range: 60 feet" };
+            yield return new object[] { generateSpellModel_Range(90, RangeType.Ranged), "Range: 90 ft." };
+            yield return new object[] { generateSpellModel_Range(120, RangeType.Ranged), "Range: 120 ft." };
+            yield return new object[] { generateSpellModel_Range(0, RangeType.Self), "Range: self" };
+            yield return new object[] { generateSpellModel_Range(0, RangeType.Sight), "Range: sight" };
+            yield return new object[] { generateSpellModel_Range(0, RangeType.Touch), "Range: touch" };
+            yield return new object[] { generateSpellModel_Range(0, RangeType.Unlimited), "Range: unlimited" };
 
         }
 
