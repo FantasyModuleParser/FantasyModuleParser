@@ -148,7 +148,8 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(ComponentData), DynamicDataSourceType.Method)]
         public void TestComponents(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseComponents(importData, actualSpellModel);
             Assert.AreEqual(expectedSpellModel.IsVerbalComponent, actualSpellModel.IsVerbalComponent);
             Assert.AreEqual(expectedSpellModel.IsSomaticComponent, actualSpellModel.IsSomaticComponent);
             Assert.AreEqual(expectedSpellModel.IsMaterialComponent, actualSpellModel.IsMaterialComponent);
@@ -159,6 +160,12 @@ namespace FMPTests_Spells.Importer
         private static IEnumerable<object[]> ComponentData()
         {
             yield return new object[] { generateSpellModel_Components(true, true, false, null), "V, S" };
+            yield return new object[] { generateSpellModel_Components(true, false, false, null), "V" };
+            yield return new object[] { generateSpellModel_Components(false, true, false, null), "S" };
+            yield return new object[] { generateSpellModel_Components(false, false, true, "main component1"), "M (main component1)" };
+            yield return new object[] { generateSpellModel_Components(true, false, true, "main component2"), "V, M (main component2)" };
+            yield return new object[] { generateSpellModel_Components(false, true, true, "main component3"), "S, M (main component3)" };
+            yield return new object[] { generateSpellModel_Components(true, true, true, "main component4"), "V, S, M (main component4)" };
         }
 
         private static SpellModel generateSpellModel_Components(bool isVerbal, bool isSomatic, bool isMaterial, string materialComponentText)

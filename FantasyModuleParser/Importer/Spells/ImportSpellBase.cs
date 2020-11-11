@@ -52,6 +52,7 @@ namespace FantasyModuleParser.Importer.Spells
                         importStatEnum = ImportStatEnum.COMPONENTS;
                         break;
                     case ImportStatEnum.COMPONENTS:
+                        ParseComponents(importData, resultSpellModel);
                         importStatEnum = ImportStatEnum.DURATION;
                         break;
                     case ImportStatEnum.DURATION:
@@ -171,10 +172,20 @@ namespace FantasyModuleParser.Importer.Spells
 
 
         }
-        public void ParseDuration(string importData, SpellModel spellModel)
+        public void ParseComponents(string importData, SpellModel spellModel)
         {
+            string[] componentArray = importData.Split('(');
 
+            // If Material component is unselected, then componentArray will be length of 1.  Otherwise, length of 2
+            spellModel.IsVerbalComponent = componentArray[0].ToUpper(CultureInfo.CurrentCulture).Contains("V");
+            spellModel.IsSomaticComponent = componentArray[0].ToUpper(CultureInfo.CurrentCulture).Contains("S");
+            spellModel.IsMaterialComponent= componentArray[0].ToUpper(CultureInfo.CurrentCulture).Contains("M");
+
+            if(componentArray.Length == 2 && spellModel.IsMaterialComponent)
+            {
+                // Removes the leading '(' and ending ')' characters
+                spellModel.ComponentText = componentArray[1].Substring(0, componentArray[1].Length - 1);
+            }
         }
-
     }
 }
