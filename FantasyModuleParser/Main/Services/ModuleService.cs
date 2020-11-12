@@ -83,6 +83,14 @@ namespace FantasyModuleParser.Main.Services
                 throw new InvalidDataException("Select an alignment for the NPC and add to project again.");
             if (npcModel.AC == null)
                 throw new InvalidDataException("Please add an armor class and try again.");
+            if (npcModel.NPCToken == " ")
+            {
+                npcModel.NPCToken = "";
+            }
+            if (npcModel.NPCImage == " ")
+            {
+                npcModel.NPCImage = "";
+            }
             else
             {
                 if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
