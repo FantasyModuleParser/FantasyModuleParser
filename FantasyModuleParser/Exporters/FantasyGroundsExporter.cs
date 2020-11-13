@@ -482,7 +482,7 @@ namespace FantasyModuleParser.Exporters
 				#region Spell List By Class
 				foreach (string castByValue in getSortedSpellCasterList(moduleModel))
                 {
-					xmlWriter.WriteStartElement(castByValue);
+					xmlWriter.WriteStartElement(castByValue.Replace("(", "").Replace(")", "").Replace(" ", ""));
 					xmlWriter.WriteStartElement("description");
 					xmlWriter.WriteAttributeString("type", "string");
 					xmlWriter.WriteString(castByValue + " Spells");
