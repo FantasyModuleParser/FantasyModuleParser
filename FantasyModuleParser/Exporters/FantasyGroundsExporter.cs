@@ -592,6 +592,69 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 		#region Spell Methods for Reference Data XML
+		private void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel, SpellModel spellModel, List<SpellModel> SpellList)
+        {
+			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
+			var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
+			foreach (string castByValue in getSortedSpellCasterList(moduleModel))
+			{
+				xmlWriter.WriteStartElement(castByValue.Replace("(", "").Replace(")", "").Replace(" ", ""));
+				xmlWriter.WriteStartElement("description");
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString(castByValue + " Spells");
+				xmlWriter.WriteEndElement();
+				xmlWriter.WriteStartElement("groups");
+				foreach (List<SpellModel> spellList in AlphabetList)
+				{
+					if (spellModel.CastBy.Contains(castByValue))
+                    {
+						SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.GetDescription().CompareTo(spellTwo.SpellLevel));
+						var LevelList = SpellList.GroupBy(x => x.SpellLevel.GetDescription()).Select(x => x.ToList()).ToList();
+						foreach (List<SpellModel> levelList in LevelList)
+						{
+							if (spellModel.SpellLevel.GetDescription() == "cantrip")
+								xmlWriter.WriteStartElement("level0");
+							else
+								xmlWriter.WriteStartElement("level" + spellModel.SpellLevel.GetDescription().Substring(0, 1));
+							xmlWriter.WriteStartElement("description");
+							xmlWriter.WriteAttributeString("type", "string");
+							if (spellModel.SpellLevel.GetDescription() == "cantrip")
+								xmlWriter.WriteString("Cantrips");
+							else
+								xmlWriter.WriteString("Level " + spellModel.SpellLevel.GetDescription().Substring(0, 1) + " Spells");
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteStartElement("index");
+							foreach (SpellModel spellLevelList in levelList)
+                            {
+								xmlWriter.WriteStartElement(spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
+								xmlWriter.WriteStartElement("link");
+								xmlWriter.WriteAttributeString("type", "windowreference");
+								xmlWriter.WriteStartElement("class");
+								xmlWriter.WriteString("reference_spell");
+								xmlWriter.WriteEndElement();
+								xmlWriter.WriteStartElement("recordname");
+								if (moduleModel.IsLockedRecords)
+									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", "") + "@" + moduleModel.Name);
+								else
+									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
+								xmlWriter.WriteStartElement("description");
+								xmlWriter.WriteStartElement("field");
+								xmlWriter.WriteString("name");
+								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement();
+								xmlWriter.WriteStartElement("source");
+								xmlWriter.WriteString("Class " + castByValue);
+								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement();
+							}
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement();
+						}
+					}
+				}
+			}
+		}
 		private void SpellLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<SpellModel> SpellList)
 		{
 			foreach (SpellModel spell in SpellList)
