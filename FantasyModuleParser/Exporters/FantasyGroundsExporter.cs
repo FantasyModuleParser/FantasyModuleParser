@@ -488,7 +488,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString(castByValue + " Spells");
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteStartElement("groups");
-					/// Insert Sort by level
+					SpellListByClass(xmlWriter, moduleModel, spellModel, SpellList);
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteEndElement();
 				}
@@ -608,8 +608,8 @@ namespace FantasyModuleParser.Exporters
 				{
 					if (spellModel.CastBy.Contains(castByValue))
                     {
-						SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.GetDescription().CompareTo(spellTwo.SpellLevel));
-						var LevelList = SpellList.GroupBy(x => x.SpellLevel.GetDescription()).Select(x => x.ToList()).ToList();
+						spellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.GetDescription().CompareTo(spellTwo.SpellLevel));
+						var LevelList = spellList.GroupBy(x => x.SpellLevel.GetDescription()).Select(x => x.ToList()).ToList();
 						foreach (List<SpellModel> levelList in LevelList)
 						{
 							if (spellModel.SpellLevel.GetDescription() == "cantrip")
