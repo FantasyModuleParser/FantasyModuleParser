@@ -478,27 +478,27 @@ namespace FantasyModuleParser.Exporters
 				CreateSpellReferenceByFirstLetter(xmlWriter, moduleModel, FatSpellList);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
-				#endregion
-				#region Spell List By Class
-				foreach (string castByValue in getSortedSpellCasterList(moduleModel))
-                {
-					xmlWriter.WriteStartElement(castByValue.Replace("(", "").Replace(")", "").Replace(" ", ""));
-					xmlWriter.WriteStartElement("description");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString(castByValue + " Spells");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
-					SpellListByClass(xmlWriter, moduleModel, spellModel, SpellList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-				}
-				#endregion
-				#region Tables
-					//	xmlWriter.WriteStartElement("tables");      
-					//	xmlWriter.WriteString(" ");                 
-					//	xmlWriter.WriteEndElement();                
-					#endregion
-				xmlWriter.WriteEndElement(); // Close </reference>
+                #endregion
+                #region Spell List By Class
+                //foreach (string castByValue in getSortedSpellCasterList(moduleModel))
+                //            {
+                //	xmlWriter.WriteStartElement(castByValue.Replace("(", "").Replace(")", "").Replace(" ", ""));
+                //		xmlWriter.WriteStartElement("description");
+                //			xmlWriter.WriteAttributeString("type", "string");
+                //			xmlWriter.WriteString(castByValue + " Spells");
+                //		xmlWriter.WriteEndElement();
+                //		xmlWriter.WriteStartElement("groups");
+                SpellListByClass(xmlWriter, moduleModel);
+                //		xmlWriter.WriteEndElement();
+                //	xmlWriter.WriteEndElement();
+                //}
+                #endregion
+                #region Tables
+                //	xmlWriter.WriteStartElement("tables");      
+                //	xmlWriter.WriteString(" ");                 
+                //	xmlWriter.WriteEndElement();                
+                #endregion
+                xmlWriter.WriteEndElement(); // Close </reference>
                 #endregion
                 #region Reference Manual
                 xmlWriter.WriteStartElement("referencemanual");
@@ -592,10 +592,11 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 		#region Spell Methods for Reference Data XML
-		private void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel, SpellModel spellModel, List<SpellModel> SpellList)
+		private void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel)
         {
+			List<SpellModel> SpellList = getFatSpellModelList(moduleModel);
 			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
-			var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
+			//var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
 			foreach (string castByValue in getSortedSpellCasterList(moduleModel))
 			{
 				xmlWriter.WriteStartElement(castByValue.Replace("(", "").Replace(")", "").Replace(" ", ""));
@@ -604,12 +605,13 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString(castByValue + " Spells");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("groups");
-				foreach (List<SpellModel> spellList in AlphabetList)
+				SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.CompareTo(spellTwo.SpellLevel));
+				var LevelList = SpellList.GroupBy(x => x.SpellLevel.GetDescription()).Select(x => x.ToList()).ToList();
+
+				foreach (SpellModel spellModel in SpellList)
 				{
 					if (spellModel.CastBy.Contains(castByValue))
                     {
-						spellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.GetDescription().CompareTo(spellTwo.SpellLevel));
-						var LevelList = spellList.GroupBy(x => x.SpellLevel.GetDescription()).Select(x => x.ToList()).ToList();
 						foreach (List<SpellModel> levelList in LevelList)
 						{
 							if (spellModel.SpellLevel.GetDescription() == "cantrip")
@@ -739,6 +741,20 @@ namespace FantasyModuleParser.Exporters
 		{
 			return generateSpellCasterList(moduleModel).OrderBy(item => item);
 		}
+		private List<SpellModel> getFatSpellModelList(ModuleModel moduleModel)
+        {
+			List<SpellModel> spellModels = new List<SpellModel>();
+			if (moduleModel.Categories == null) return spellModels;
+			foreach (CategoryModel categoryModel in moduleModel.Categories)
+            {
+				if (categoryModel.SpellModels == null) return spellModels;
+				foreach(SpellModel spellModel in categoryModel.SpellModels)
+                {
+					spellModels.Add(spellModel);
+                }
+            }
+			return spellModels;
+        }
 		private string SpellNameToXMLFormat(SpellModel spellModel)
 		{
 			string name = spellModel.SpellName.ToLower();
