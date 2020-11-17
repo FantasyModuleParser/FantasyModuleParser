@@ -603,7 +603,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteAttributeString("type", "string");
 				xmlWriter.WriteString(castByValue + " Spells");
-				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement(); // close description
 				xmlWriter.WriteStartElement("groups");
 				SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.CompareTo(spellTwo.SpellLevel));
 				var LevelList = SpellList.GroupBy(x => x.SpellLevel.GetDescription()).Select(x => x.ToList()).ToList();
@@ -624,7 +624,7 @@ namespace FantasyModuleParser.Exporters
 								xmlWriter.WriteString("Cantrips");
 							else
 								xmlWriter.WriteString("Level " + spellModel.SpellLevel.GetDescription().Substring(0, 1) + " Spells");
-							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement(); // close description
 							xmlWriter.WriteStartElement("index");
 							foreach (SpellModel spellLevelList in levelList)
                             {
@@ -633,25 +633,26 @@ namespace FantasyModuleParser.Exporters
 								xmlWriter.WriteAttributeString("type", "windowreference");
 								xmlWriter.WriteStartElement("class");
 								xmlWriter.WriteString("reference_spell");
-								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement(); // close class
 								xmlWriter.WriteStartElement("recordname");
 								if (moduleModel.IsLockedRecords)
 									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", "") + "@" + moduleModel.Name);
 								else
 									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
+								xmlWriter.WriteEndElement(); // close recordname
 								xmlWriter.WriteStartElement("description");
 								xmlWriter.WriteStartElement("field");
 								xmlWriter.WriteString("name");
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement(); // close field
+								xmlWriter.WriteEndElement(); // close description
+								xmlWriter.WriteEndElement(); // close link
 								xmlWriter.WriteStartElement("source");
 								xmlWriter.WriteString("Class " + castByValue);
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement(); // close source
+								xmlWriter.WriteEndElement(); // close spellname
 							}
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement(); // close groups
+							xmlWriter.WriteEndElement(); // close spellclass
 						}
 					}
 				}
