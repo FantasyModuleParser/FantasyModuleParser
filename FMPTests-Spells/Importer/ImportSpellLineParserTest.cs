@@ -185,7 +185,8 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(DurationData), DynamicDataSourceType.Method)]
         public void TestDuration(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseDuration(importData, actualSpellModel);
             Assert.AreEqual(expectedSpellModel.DurationTime, actualSpellModel.DurationTime);
             Assert.AreEqual(expectedSpellModel.DurationType, actualSpellModel.DurationType);
             Assert.AreEqual(expectedSpellModel.DurationUnit, actualSpellModel.DurationUnit);
@@ -194,6 +195,12 @@ namespace FMPTests_Spells.Importer
         private static IEnumerable<object[]> DurationData()
         {
             yield return new object[] { generateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Instantaneous" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.Time, DurationUnit.None, null), "Instantaneous" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelled, DurationUnit.None, null), "Until dispelled" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelledOrTriggered, DurationUnit.None, null), "Until dispelled or triggered" };
+
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.Concentration, DurationUnit.None, null), "Instantaneous" };
+
         }
 
         private static SpellModel generateSpellModel_Duration(int durationTime, DurationType durationType, DurationUnit durationUnit, string durationText)
@@ -213,7 +220,8 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(CharacterCastByData), DynamicDataSourceType.Method)]
         public void TestCastBy(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseCastBy(importData, actualSpellModel);
             Assert.AreEqual(expectedSpellModel.CastBy, actualSpellModel.CastBy);
         }
         private static IEnumerable<object[]> CharacterCastByData()
@@ -231,7 +239,27 @@ namespace FMPTests_Spells.Importer
         }
         #endregion
         #region Description
+        [TestMethod]
+        [DynamicData(nameof(DescriptionData), DynamicDataSourceType.Method)]
+        public void TestDescription(SpellModel expectedSpellModel, string importData)
+        {
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseDescription(importData, actualSpellModel);
+            Assert.AreEqual(expectedSpellModel.Description, actualSpellModel.Description);
+        }
+        private static IEnumerable<object[]> DescriptionData()
+        {
+            yield return new object[] { generateSpellModel_Description("Cleric"), "Cleric" };
+        }
 
+        private static SpellModel generateSpellModel_Description(string description)
+        {
+            SpellModel spellModel = new SpellModel()
+            {
+                Description = description
+            };
+            return spellModel;
+        }
         #endregion
 
     }

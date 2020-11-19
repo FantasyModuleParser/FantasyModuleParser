@@ -187,5 +187,17 @@ namespace FantasyModuleParser.Importer.Spells
                 spellModel.ComponentText = componentArray[1].Substring(0, componentArray[1].Length - 1);
             }
         }
+        public void ParseDuration(string importData, SpellModel spellModel)
+        {
+
+        }
+        public void ParseCastBy(string importData, SpellModel spellModel)
+        {
+
+        }
+        public void ParseDescription(string importData, SpellModel spellModel)
+        {
+
+        }
     }
 }
