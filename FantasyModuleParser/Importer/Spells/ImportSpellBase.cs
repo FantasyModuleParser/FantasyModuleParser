@@ -56,12 +56,15 @@ namespace FantasyModuleParser.Importer.Spells
                         importStatEnum = ImportStatEnum.DURATION;
                         break;
                     case ImportStatEnum.DURATION:
+                        ParseDuration(importData, resultSpellModel);
                         importStatEnum = ImportStatEnum.CAST_BY;
                         break;
                     case ImportStatEnum.CAST_BY:
+                        ParseCastByClasses(importData, resultSpellModel);
                         importStatEnum = ImportStatEnum.DESCRIPTION;
                         break;
                     case ImportStatEnum.DESCRIPTION:
+                        resultSpellModel.Description += importData;
                         break;
                     default:
                         break;
@@ -186,6 +189,14 @@ namespace FantasyModuleParser.Importer.Spells
                 // Removes the leading '(' and ending ')' characters
                 spellModel.ComponentText = componentArray[1].Substring(0, componentArray[1].Length - 1);
             }
+        }
+        public void ParseDuration(string importData, SpellModel spellModel)
+        {
+            // Do nothing right now...
+        }
+        public void ParseCastByClasses(string importData, SpellModel spellModel)
+        {
+            spellModel.CastBy = importData.Substring(9);
         }
     }
 }

@@ -68,7 +68,6 @@ namespace FMPTests_Spells.Importer
             return spellModel;
         }
         #endregion
-
         #region Casting Time
         [TestMethod]
         [DynamicData(nameof(CastingTimeData), DynamicDataSourceType.Method)]
@@ -185,7 +184,8 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(DurationData), DynamicDataSourceType.Method)]
         public void TestDuration(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseDuration(importData, actualSpellModel);
             Assert.AreEqual(expectedSpellModel.DurationTime, actualSpellModel.DurationTime);
             Assert.AreEqual(expectedSpellModel.DurationType, actualSpellModel.DurationType);
             Assert.AreEqual(expectedSpellModel.DurationUnit, actualSpellModel.DurationUnit);
@@ -193,7 +193,12 @@ namespace FMPTests_Spells.Importer
         }
         private static IEnumerable<object[]> DurationData()
         {
-            yield return new object[] { generateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Instantaneous" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.Concentration, DurationUnit.None, null), "Duration: Up to 1 minute" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Duration: Instantaneous" };
+            yield return new object[] { generateSpellModel_Duration(10, DurationType.Time, DurationUnit.Minute, null), "Duration: 10 minutes" };
+            yield return new object[] { generateSpellModel_Duration(8, DurationType.Time, DurationUnit.Hour, null), "Duration: 8 hours" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelled, DurationUnit.None, null), "Instantaneous" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelledOrTriggered, DurationUnit.None, null), "Instantaneous" };
         }
 
         private static SpellModel generateSpellModel_Duration(int durationTime, DurationType durationType, DurationUnit durationUnit, string durationText)
@@ -213,12 +218,15 @@ namespace FMPTests_Spells.Importer
         [DynamicData(nameof(CharacterCastByData), DynamicDataSourceType.Method)]
         public void TestCastBy(SpellModel expectedSpellModel, string importData)
         {
-            SpellModel actualSpellModel = importSpellBase.ImportTextToSpellModel(importData);
+            SpellModel actualSpellModel = new SpellModel();
+            importSpellBase.ParseCastByClasses(importData, actualSpellModel);
             Assert.AreEqual(expectedSpellModel.CastBy, actualSpellModel.CastBy);
         }
         private static IEnumerable<object[]> CharacterCastByData()
         {
-            yield return new object[] { generateSpellModel_CastBy("Cleric"), "Cleric" };
+            yield return new object[] { generateSpellModel_CastBy("Sorcerer, Warlock, Wizard"), "Classes: Sorcerer, Warlock, Wizard" };
+            yield return new object[] { generateSpellModel_CastBy("Sorcerer"), "Classes: Sorcerer" };
+            yield return new object[] { generateSpellModel_CastBy("Warlock, Wizard"), "Classes: Warlock, Wizard" };
         }
 
         private static SpellModel generateSpellModel_CastBy(string characterClasses)
