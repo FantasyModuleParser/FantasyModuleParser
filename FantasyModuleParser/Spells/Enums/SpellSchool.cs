@@ -4,28 +4,28 @@ namespace FantasyModuleParser.Spells.Enums
 {
     public enum SpellSchool
     {
-		[Description("abjuration")]
+		[Description("Abjuration")]
 		Abjuration = 0,
 
-		[Description("conjuration")]
+		[Description("Conjuration")]
 		Conjuration = 1,
 
-		[Description("divination")]
+		[Description("Divination")]
 		Divination = 2,
 
-		[Description("enchantment")]
+		[Description("Enchantment")]
 		Enchantment = 3,
 
-		[Description("evocation")]
+		[Description("Evocation")]
 		Evocation = 4,
 
-		[Description("illusion")]
+		[Description("Illusion")]
 		Illusion = 5,
 
-		[Description("necromancy")]
+		[Description("Necromancy")]
 		Necromancy = 6,
 
-		[Description("transmutation")]
+		[Description("Transmutation")]
 		Transmutation = 7,
 	}
 }

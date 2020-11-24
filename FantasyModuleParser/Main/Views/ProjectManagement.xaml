@@ -250,7 +250,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Images" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
+                    <CheckBox Content="Images" IsChecked="{Binding Path=ModuleModel.IncludeImages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <Label Content="module\input\images\" Style="{StaticResource LabelStandard}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="4">
@@ -258,7 +258,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Tokens"  Style="{StaticResource CheckboxParser}" Grid.Column="0" />
+                    <CheckBox Content="Tokens" IsChecked="{Binding Path=ModuleModel.IncludeTokens, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <Label Content="module\input\tokens\" Style="{StaticResource LabelStandard}" Grid.Column="1" />
                 </Grid>
                 <Label Content="Data Section" Style="{StaticResource LabelHeader}" Grid.Row="5"/>
@@ -267,7 +267,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="NPCs/Monsters" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
+                    <CheckBox Content="NPCs/Monsters" IsChecked="{Binding Path=ModuleModel.IncludeNPCs, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <Label Content="module\input\npcs.json" Style="{StaticResource LabelStandard}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="7">
@@ -315,8 +315,8 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Spells" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\spells.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
+                    <CheckBox Content="Spells" IsChecked="{Binding Path=ModuleModel.IncludeSpells, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0"/>
+                    <Label Content="module\input\spells.json" Style="{StaticResource LabelStandard}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="13">
                     <Grid.ColumnDefinitions>
