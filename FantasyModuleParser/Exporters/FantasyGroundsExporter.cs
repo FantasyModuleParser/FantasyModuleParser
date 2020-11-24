@@ -801,7 +801,10 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("level");
 			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteValue(spellModel.SpellLevel.GetDescription());
+			if (spellModel.SpellLevel.GetDescription().Equals("cantrip"))
+				xmlWriter.WriteString("0");
+			else
+				xmlWriter.WriteValue(spellModel.SpellLevel.GetDescription()[0]);
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteSpellSchool(XmlWriter xmlWriter, SpellModel spellModel)
