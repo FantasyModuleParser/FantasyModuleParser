@@ -328,6 +328,7 @@ namespace FantasyModuleParser.Exporters
 						xmlWriter.WriteEndElement();
 					}
 				}
+				xmlWriter.WriteEndElement();
 				#endregion
 				#region Equipment Data
 				//	xmlWriter.WriteStartElement("equipmentdata");      
@@ -443,7 +444,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString("Spells");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("index");
-				WriteIDLinkList(xmlWriter, moduleModel, "id001", "reference.spelllists._index_", "(Index)");
+				WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.spelllists._index_", "(Index)");
 				int spellListId = 2;
 				foreach (string castByValue in getSortedSpellCasterList(moduleModel))
 				{
@@ -451,7 +452,7 @@ namespace FantasyModuleParser.Exporters
 					referenceId += castByValue.Replace(" ", "").Replace("(", "").Replace(")", "").ToLower();
 					if (moduleModel.IsLockedRecords)
 						referenceId += "@" + moduleModel.Name;
-					WriteIDLinkList(xmlWriter, moduleModel, "id" + spellListId.ToString("DDD"), referenceId, castByValue);
+					WriteIDLinkList(xmlWriter, moduleModel, "id-" + spellListId.ToString("D4"), referenceId, castByValue);
 
 					spellListId++;
 				}
@@ -617,13 +618,13 @@ namespace FantasyModuleParser.Exporters
 							if (spellModel.SpellLevel.GetDescription() == "cantrip")
 								xmlWriter.WriteStartElement("level0");
 							else
-								xmlWriter.WriteStartElement("level" + spellModel.SpellLevel.GetDescription().Substring(0, 1));
+								xmlWriter.WriteStartElement("level" + spellModel.SpellLevel.GetDescription()[0]);
 							xmlWriter.WriteStartElement("description");
 							xmlWriter.WriteAttributeString("type", "string");
 							if (spellModel.SpellLevel.GetDescription() == "cantrip")
 								xmlWriter.WriteString("Cantrips");
 							else
-								xmlWriter.WriteString("Level " + spellModel.SpellLevel.GetDescription().Substring(0, 1) + " Spells");
+								xmlWriter.WriteString("Level " + spellModel.SpellLevel.GetDescription()[0] + " Spells");
 							xmlWriter.WriteEndElement(); // close description
 							xmlWriter.WriteStartElement("index");
 							foreach (SpellModel spellLevelList in levelList)
@@ -651,11 +652,13 @@ namespace FantasyModuleParser.Exporters
 								xmlWriter.WriteEndElement(); // close source
 								xmlWriter.WriteEndElement(); // close spellname
 							}
-							xmlWriter.WriteEndElement(); // close groups
-							xmlWriter.WriteEndElement(); // close spellclass
+							xmlWriter.WriteEndElement(); // close index
+							xmlWriter.WriteEndElement(); // close level
 						}
 					}
 				}
+				xmlWriter.WriteEndElement(); // close groups
+				xmlWriter.WriteEndElement(); // close castByValue
 			}
 		}
 		private void SpellLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<SpellModel> SpellList)
@@ -779,7 +782,10 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("level");
 			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteValue(spellModel.SpellLevel.GetDescription());
+			if (spellModel.SpellLevel.GetDescription().Equals("cantrip"))
+				xmlWriter.WriteString("0");
+			else
+				xmlWriter.WriteValue(spellModel.SpellLevel.GetDescription()[0]);
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteSpellSchool(XmlWriter xmlWriter, SpellModel spellModel)
