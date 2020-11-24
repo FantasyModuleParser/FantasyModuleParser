@@ -142,9 +142,6 @@
   <data name="equipmentengineer_logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\equipmentengineer_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="es2_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\es2_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Grim_Press_Banner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Grim_Press_Banner.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -210,5 +207,11 @@
   </data>
   <data name="up_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\up_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FMP_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FMP-Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FMP_Logo_400" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FMP-Logo-400.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

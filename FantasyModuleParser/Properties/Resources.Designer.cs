@@ -141,11 +141,21 @@ namespace FantasyModuleParser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon FMP_Logo {
+            get {
+                object obj = ResourceManager.GetObject("FMP_Logo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap es2_logo {
+        internal static System.Drawing.Bitmap FMP_Logo_400 {
             get {
-                object obj = ResourceManager.GetObject("es2_logo", resourceCulture);
+                object obj = ResourceManager.GetObject("FMP_Logo_400", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
