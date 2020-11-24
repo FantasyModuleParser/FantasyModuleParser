@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC"
         mc:Ignorable="d"
-        Title="Change NPC Terrain Types and Origin Lore" Height="300" Width="350" ResizeMode="NoResize">
+        Title="Change NPC Terrain Types and Origin Lore" Height="300" Width="350" ResizeMode="NoResize" Icon="/Resources/npce_logo.ico">
     <Grid Background="#FFE5E5E5">
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="215" Margin="5,5,0,0" VerticalAlignment="Top" Width="150"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="175" Margin="160,5,0,0" VerticalAlignment="Top" Width="150"/>

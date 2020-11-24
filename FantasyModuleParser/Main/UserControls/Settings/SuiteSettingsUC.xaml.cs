@@ -1,4 +1,6 @@
 ﻿using FantasyModuleParser.Main.ViewModels;
+using System;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Input;
 

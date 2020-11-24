@@ -1,9 +1,12 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FantasyModuleParser.Importer.Utils
 {

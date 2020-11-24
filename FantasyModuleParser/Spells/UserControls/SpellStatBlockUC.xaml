@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="FantasyModuleParser.Spells.UserControls.SpellStatBlockUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
+             xmlns:model="clr-namespace:FantasyModuleParser.Spells.Models"
+             xmlns:local="clr-namespace:FantasyModuleParser.Spells.UserControls"
+             xmlns:converter="clr-namespace:FantasyModuleParser.Converters"
+             xmlns:spellEnum="clr-namespace:FantasyModuleParser.Spells.Enums"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="450">
+    <UserControl.DataContext>
+        <viewModel:SpellViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <!-- This static resource array is used to display data as it would be presented to the user.  
+                Otherwise, I need to start the program, open an NPC, navigate to the tab and see the results. -->
+        <!-- To utilize this snippet, change this line:  
+                    <<<<<< ItemsSource="{Binding Path=LairActions}" 
+                to this:
+                    >>>>>> ItemsSource="{StaticResource LairActionList}" 
+        -->
+        <model:SpellModel x:Key="TestSpellModel" x:Name="TestSpellModel" 
+                          SpellName="Test Spell Name"
+                          SpellLevel="Third" 
+                          IsRitual="True" />
+        <converter:EnumConverter x:Key="enumConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" DataContext="{Binding SpellModel}">
+                <Label Content="{Binding SpellName}" FontSize="16" FontWeight="Bold"/>
+                <Border  Background="Black" BorderBrush="Black" BorderThickness="2" />
+                <StackPanel x:Name="SpellLevelHeaderSP" Orientation="Horizontal">
+                    <Label Content="{Binding SpellLevel, Converter={StaticResource enumConverter}}" FontSize="12" FontWeight="Bold" FontStyle="Italic"/>
+                    <Label Content="(ritual)">
+                        <Label.Style>
+                            <Style TargetType="Label">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsRitual}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </StackPanel>
+                <StackPanel x:Name="CastingTimeDetailSP" Orientation="Horizontal">
+                    <Label Content="Casting Time: " FontWeight="Bold" />
+                    <Label Content="{Binding CastingTime}"/>
+                    <Label Content="{Binding CastingType, Converter={StaticResource enumConverter}}" />
+                    <Label Content="{Binding ReactionDescription}">
+                        <Label.Style>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CastingType}" Value="{x:Static spellEnum:CastingType.Reaction}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </StackPanel>
+                <StackPanel x:Name="RangeDetailSP" Orientation="Horizontal">
+                    <Label Content="Range: " FontWeight="Bold" />
+                    
+                    
+                </StackPanel>
+                <StackPanel x:Name="ComponentDetailSP" Orientation="Horizontal">
+                    <Label Content="Components: " FontWeight="Bold" />
+                </StackPanel>
+                <StackPanel x:Name="DurationSP" Orientation="Horizontal">
+                    <Label Content="Duration: " FontWeight="Bold" />
+                </StackPanel>
+                <StackPanel x:Name="ClassesSP" Orientation="Horizontal">
+                    <Label Content="Classes: " FontWeight="Bold" />
+                </StackPanel>
+                <StackPanel x:Name="DescriptionSP" Orientation="Horizontal">
+                    <Label Content="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -7,10 +7,10 @@ namespace FantasyModuleParser.Spells.Enums
 		[Description("--")]
 		None = 0,
 
-		[Description("concentration")]
+		[Description("Concentration")]
 		Concentration = 1,
 
-		[Description("instantaneous")]
+		[Description("Instantaneous")]
 		Instantaneous = 2,
 
 		[Description("time")]

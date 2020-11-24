@@ -1,31 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using FantasyModuleParser;
-using FantasyModuleParser.Exporters;
+﻿using FantasyModuleParser.Exporters;
 using FantasyModuleParser.Main;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
-using FantasyModuleParser.NPC;
-using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Main.Views;
 using FantasyModuleParser.NPC.UserControls;
+using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Spells;
-using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Spells.UserControls;
+using FantasyModuleParser.Spells.ViewModels;
 using Microsoft.Win32;
+using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace FantasyModuleParser
 {
@@ -38,24 +25,15 @@ namespace FantasyModuleParser
         private bool isViewStatBlockVisible = false;
         private SettingsModel settingsModel;
         private SettingsService settingsService;
-        
+        private NPCOptionControl npcOptionControl;
+        private SpellStatBlockUC spellStatBlockUC;
+        private SpellViewModel spellViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
             settingsService = new SettingsService();
-            settingsModel = settingsService.Load();
-            if(!Directory.Exists(settingsModel.MainFolderLocation))
-            {
-                Directory.CreateDirectory(settingsModel.MainFolderLocation);
-                Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
-                Directory.CreateDirectory(settingsModel.NPCFolderLocation);
-                Directory.CreateDirectory(settingsModel.SpellFolderLocation);
-                Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
-                Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
-                Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
-                Directory.CreateDirectory(settingsModel.TableFolderLocation);
-            }
+            spellStatBlockUC = new SpellStatBlockUC();
         }
 
         private void Directory_Click(object sender, RoutedEventArgs e)
@@ -134,7 +112,6 @@ namespace FantasyModuleParser
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagement projectManagement = null;
-            FMPConfigurationView fMPConfigurationView = null;
             var menuitem = (MenuItem)sender;
             switch (menuitem.Name)
             {
@@ -142,9 +119,7 @@ namespace FantasyModuleParser
                     new About().ShowDialog();
                     break;
                 case "ManageCategories":
-                    fMPConfigurationView = new FMPConfigurationView();
-                    fMPConfigurationView.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
-                    fMPConfigurationView.Show();
+                    new FMPConfigurationView().ShowDialog();
                     break;
                 case "ManageProject":
                     projectManagement = new ProjectManagement();
@@ -174,22 +149,7 @@ namespace FantasyModuleParser
         private void ProjectManagement_OnCloseWindowAction(object sender, EventArgs e)
         {
             npcOptionUserControl.Refresh();
-        }
-
-        private void listBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            if (optionNPC.IsSelected == true)
-            {
-                stackNPC.Visibility = Visibility.Visible;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Hidden;
-            }
-            if (optionSpells.IsSelected == true)
-            {
-                stackNPC.Visibility = Visibility.Hidden;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Visible;
-            }
+            (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
         }
 
         private void CreateModule_Click(object sender, RoutedEventArgs e)
@@ -216,7 +176,23 @@ namespace FantasyModuleParser
             base.OnClosed(e);
             System.Windows.Application.Current.Shutdown();
         }
-
+        private void listBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            if (optionNPC.IsSelected == true)
+            {
+                stackNPC.Visibility = Visibility.Visible;
+                stackMain.Visibility = Visibility.Hidden;
+                stackSpells.Visibility = Visibility.Hidden;
+            }
+            if (optionSpells.IsSelected == true)
+            {
+                stackNPC.Visibility = Visibility.Hidden;
+                stackMain.Visibility = Visibility.Hidden;
+                stackSpells.Visibility = Visibility.Visible;
+                spellViewModel = spellOptionUserControl.DataContext as SpellViewModel;
+                spellStatBlockUC.DataContext = spellViewModel;
+            }
+        }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {
             ViewStatBlockPanel.Children.Clear();
@@ -233,13 +209,23 @@ namespace FantasyModuleParser
                     break;
                 case nameof(SpellOptionControl):
                     // TODO:  Create the Stat Block for Spells and add it here (uncomment the break when doing so)
-                    //break;
+                    this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
+
+                    if (isViewStatBlockVisible)
+                        ViewStatBlockPanel.Children.Add(spellStatBlockUC);
+                    break;
+                //break;
                 default:
                     // Reset the width to the default of 810
                     this.Width = 810;
                     break;
             }
-            
+        }
+
+        private void event_UpdateViewStatBlockPanel(object sender, EventArgs eventArgs)
+        {
+            SpellViewModel spellViewModel = spellStatBlockUC.DataContext as SpellViewModel;
+            spellViewModel.Refresh();
         }
     }
 }

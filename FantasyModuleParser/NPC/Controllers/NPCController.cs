@@ -1,5 +1,4 @@
-﻿using FantasyModuleParser.Converters;
-using FantasyModuleParser.NPC.Models.Action;
+﻿using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using Markdig;
 using Markdig.Wpf;
@@ -38,8 +37,6 @@ namespace FantasyModuleParser.NPC.Controllers
 				JsonSerializer serializer = new JsonSerializer();
 				serializer.Formatting = Formatting.Indented;
 				serializer.TypeNameHandling = TypeNameHandling.Objects;
-				serializer.Converters.Add(new SelectableActionModelConverter());
-				serializer.Converters.Add(new LanguageModelConverter());
 				serializer.Serialize(file, npcModel);
 			}
 		}
@@ -100,7 +97,7 @@ namespace FantasyModuleParser.NPC.Controllers
 
 		// Need to decide if this lives with NPCController or FantasyGroundsExporter,
 		//	as the function is used in DescriptionUC
-		public string GenerateFantasyGroundsDescriptionXML(string descriptionText)
+		public string GenerateFantasyGroundsDescriptionXML(String descriptionText)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			if (!String.IsNullOrEmpty(descriptionText)) 

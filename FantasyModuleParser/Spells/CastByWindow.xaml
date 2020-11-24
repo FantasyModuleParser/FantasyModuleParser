@@ -1,0 +1,107 @@
+﻿<Window x:Class="FantasyModuleParser.Spells.CastByWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FantasyModuleParser.Spells"
+        xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
+        mc:Ignorable="d"
+        Title="Select Classes or Archetypes" Height="580" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key="Header">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="FontSize" Value="14px" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockSelection">
+            <Setter Property="FontSize" Value="10px" />
+        </Style>
+        <DataTemplate x:Key="myItemTemplate">
+            <TextBlock Text="{Binding}" Style="{StaticResource TextBlockSelection}" />
+        </DataTemplate>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewModel:CastByViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="490" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="24" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="450" />
+                </Grid.RowDefinitions>
+                <Label Content="Character Class" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox x:Name="SpellCharacterClass" ItemsSource="{Binding SpellCharacterClassItems}" Grid.Row="3" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
+            </Grid>
+            <Grid Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="450" />
+                </Grid.RowDefinitions>
+                <Label Content="Divine Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox x:Name="SpellDivineArchetypes" Grid.Row="3" ItemsSource="{Binding SpellDivineArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
+            </Grid>
+            <Grid Grid.Column="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="450" />
+                </Grid.RowDefinitions>
+                <Label Content="Arcane Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox x:Name="SpellArcaneArchetypes" Grid.Row="3" ItemsSource="{Binding SpellArcaneArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
+            </Grid>
+            <Grid Grid.Column="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="450" />
+                </Grid.RowDefinitions>
+                <Label Content="Other Archetypes" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox x:Name="SpellOtherArchetypes" Grid.Row="3" ItemsSource="{Binding SpellOtherArchetypesItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}" />
+            </Grid>
+            <Grid Grid.Column="9">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="450" />
+                </Grid.RowDefinitions>
+                <Label Content="Custom Casters" Style="{StaticResource Header}" Grid.Row="1" />
+                <ListBox x:Name="CustomCastersClass" Grid.Row="3" ItemsSource="{Binding CustomCastersItems}" SelectionMode="Multiple" ItemTemplate="{StaticResource myItemTemplate}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="315" />
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="315" />
+            </Grid.ColumnDefinitions>
+            <Button Content="Close" Click="CloseWindow_Click" Grid.Column="1"/>
+        </Grid>    
+    </Grid>
+</Window>
