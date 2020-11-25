@@ -1702,7 +1702,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_7244DA98BFE54EB48A4D1024903A30FC"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder][ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -1773,7 +1773,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
         "ProductCode" = "8:{C6F8A990-5E59-4315-BC2F-C8D21CA83DDF}"
-        "PackageCode" = "8:{47F5F323-D6C0-4609-8A4F-EC011A856B66}"
+        "PackageCode" = "8:{28740F86-7AA1-407D-93D2-B5D46F6A276D}"
         "UpgradeCode" = "8:{1EBA07C9-E5AE-424B-A756-93F8AFA4747F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
