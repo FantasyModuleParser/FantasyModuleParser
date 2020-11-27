@@ -56,12 +56,15 @@ namespace FantasyModuleParser.Importer.Spells
                         importStatEnum = ImportStatEnum.DURATION;
                         break;
                     case ImportStatEnum.DURATION:
+                        ParseDuration(importData, resultSpellModel);
                         importStatEnum = ImportStatEnum.CAST_BY;
                         break;
                     case ImportStatEnum.CAST_BY:
+                        ParseCastByClasses(importData, resultSpellModel);
                         importStatEnum = ImportStatEnum.DESCRIPTION;
                         break;
                     case ImportStatEnum.DESCRIPTION:
+                        resultSpellModel.Description += importData;
                         break;
                     default:
                         break;
@@ -189,15 +192,11 @@ namespace FantasyModuleParser.Importer.Spells
         }
         public void ParseDuration(string importData, SpellModel spellModel)
         {
-
+            // Do nothing right now...
         }
-        public void ParseCastBy(string importData, SpellModel spellModel)
+        public void ParseCastByClasses(string importData, SpellModel spellModel)
         {
-
-        }
-        public void ParseDescription(string importData, SpellModel spellModel)
-        {
-
+            spellModel.CastBy = importData.Substring(9);
         }
     }
 }
