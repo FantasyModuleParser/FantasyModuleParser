@@ -57,12 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1906DA62C7814D7488CECF145F67E42B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_192AFE908925ECF76E57D362857615ED"
         "OwnerKey" = "8:_238143CBB17E6E3A4F3F5FB9EF84F146"
         "MsmSig" = "8:_UNDEFINED"
@@ -393,6 +387,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B554F6D8BBB1404A80EEDC782725F543"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B6B3123197FC6F40773CFC1F07220A50"
         "OwnerKey" = "8:_CC8C9BD2E16A4778B417822662BC9F1B"
         "MsmSig" = "8:_UNDEFINED"
@@ -401,6 +401,12 @@
         {
         "MsmKey" = "8:_B93D40644A9A18CB975A5C0FD91C29A1"
         "OwnerKey" = "8:_873682D59A334CE4F3EA6DB8140B21DC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BCAD3CC82E104063BE7EE207E00715C8"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -437,12 +443,6 @@
         {
         "MsmKey" = "8:_F9F2DC408C152634F2FA4E5DC765188C"
         "OwnerKey" = "8:_CC8C9BD2E16A4778B417822662BC9F1B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_58E96F998A29026A232B70F22ABC4CD6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -619,6 +619,12 @@
         "OwnerKey" = "8:_5C543BCB7C8F40E113F3ECF8627B72A1"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_58E96F998A29026A232B70F22ABC4CD6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -637,6 +643,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -653,6 +667,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -773,26 +803,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1906DA62C7814D7488CECF145F67E42B"
-            {
-            "SourcePath" = "8:..\\FantasyModuleParser\\Resources\\FMP-Logo.ico"
-            "TargetName" = "8:FMP-Logo.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_2255A7A6B5C649E8B2351EC42309CD37"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_192AFE908925ECF76E57D362857615ED"
@@ -1559,6 +1569,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B554F6D8BBB1404A80EEDC782725F543"
+            {
+            "SourcePath" = "8:..\\FantasyModuleParser\\Resources\\FMP-Logo.ico"
+            "TargetName" = "8:FMP-Logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_2255A7A6B5C649E8B2351EC42309CD37"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B6B3123197FC6F40773CFC1F07220A50"
             {
             "AssemblyRegister" = "3:1"
@@ -1619,6 +1649,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BCAD3CC82E104063BE7EE207E00715C8"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Downloads\\uninstall_fmp_logo.ico"
+            "TargetName" = "8:uninstall_fmp_logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_2255A7A6B5C649E8B2351EC42309CD37"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F418A1EB0766292DD93F0FE3B46C8694"
@@ -1702,7 +1752,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_7244DA98BFE54EB48A4D1024903A30FC"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -1773,7 +1823,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
         "ProductCode" = "8:{C6F8A990-5E59-4315-BC2F-C8D21CA83DDF}"
-        "PackageCode" = "8:{28740F86-7AA1-407D-93D2-B5D46F6A276D}"
+        "PackageCode" = "8:{0085374C-AE91-4EF2-ADAE-2AD97BC872BD}"
         "UpgradeCode" = "8:{1EBA07C9-E5AE-424B-A756-93F8AFA4747F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1790,7 +1840,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_1906DA62C7814D7488CECF145F67E42B"
+        "ARPPRODUCTICON" = "8:_B554F6D8BBB1404A80EEDC782725F543"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1893,21 +1943,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3637C936FA084366B37C9DF500EC7AF9"
-            {
-            "Name" = "8:Fantasy Module Parser"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_CC8C9BD2E16A4778B417822662BC9F1B"
-            "Folder" = "8:_594215FB1E804CF8A7F6274230C41525"
-            "WorkingFolder" = "8:_7244DA98BFE54EB48A4D1024903A30FC"
-            "Icon" = "8:_1906DA62C7814D7488CECF145F67E42B"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DCEEADE15C2B44B781A8C9D57073984D"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3B16E161C2BE48C0B87B0334361E9B64"
             {
             "Name" = "8:Uninstall FMP"
             "Arguments" = "8:/x {C6F8A990-5E59-4315-BC2F-C8D21CA83DDF} /qr"
@@ -1918,10 +1954,24 @@
             "Target" = "8:_45A594E53C2A48AA8D9AF68EF5B219AA"
             "Folder" = "8:_594215FB1E804CF8A7F6274230C41525"
             "WorkingFolder" = "8:_98403D53C6CB418BBA78DA3603B43358"
-            "Icon" = "8:_1906DA62C7814D7488CECF145F67E42B"
+            "Icon" = "8:_BCAD3CC82E104063BE7EE207E00715C8"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E68DB084DDE6406480FFC41C295B9AFC"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_48F414B108434A97982EAA716BA24F9C"
+            {
+            "Name" = "8:Fantasy Module Parser"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_CC8C9BD2E16A4778B417822662BC9F1B"
+            "Folder" = "8:_594215FB1E804CF8A7F6274230C41525"
+            "WorkingFolder" = "8:_7244DA98BFE54EB48A4D1024903A30FC"
+            "Icon" = "8:_B554F6D8BBB1404A80EEDC782725F543"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AA1178B1A4A34CF9B12A11AB60367159"
             {
             "Name" = "8:Fantasy Module Parser"
             "Arguments" = "8:"
@@ -1932,7 +1982,7 @@
             "Target" = "8:_CC8C9BD2E16A4778B417822662BC9F1B"
             "Folder" = "8:_37F91C8E542E45BDA97262A829E251C1"
             "WorkingFolder" = "8:_7244DA98BFE54EB48A4D1024903A30FC"
-            "Icon" = "8:_1906DA62C7814D7488CECF145F67E42B"
+            "Icon" = "8:_B554F6D8BBB1404A80EEDC782725F543"
             "Feature" = "8:"
             }
         }
