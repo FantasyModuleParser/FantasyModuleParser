@@ -193,12 +193,12 @@ namespace FMPTests_Spells.Importer
         }
         private static IEnumerable<object[]> DurationData()
         {
-            yield return new object[] { generateSpellModel_Duration(0, DurationType.Concentration, DurationUnit.None, null), "Duration: Up to 1 minute" };
+            yield return new object[] { generateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 1 minute" };
             yield return new object[] { generateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Duration: Instantaneous" };
             yield return new object[] { generateSpellModel_Duration(10, DurationType.Time, DurationUnit.Minute, null), "Duration: 10 minutes" };
             yield return new object[] { generateSpellModel_Duration(8, DurationType.Time, DurationUnit.Hour, null), "Duration: 8 hours" };
-            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelled, DurationUnit.None, null), "Instantaneous" };
-            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelledOrTriggered, DurationUnit.None, null), "Instantaneous" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelled, DurationUnit.None, null), "Duration: Until dispelled" };
+            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelledOrTriggered, DurationUnit.None, null), "Duration: Until dispelled or triggered" };
         }
 
         private static SpellModel generateSpellModel_Duration(int durationTime, DurationType durationType, DurationUnit durationUnit, string durationText)

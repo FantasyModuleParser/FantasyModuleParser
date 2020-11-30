@@ -198,5 +198,10 @@ namespace FantasyModuleParser.Importer.Spells
         {
             spellModel.CastBy = importData.Substring(9);
         }
+
+        public void ParseDescription(string importData, SpellModel spellModel)
+        {
+            // Do nothing right now....
+        }
     }
 }
