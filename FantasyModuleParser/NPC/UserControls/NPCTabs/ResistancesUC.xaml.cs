@@ -1,6 +1,10 @@
-﻿using FantasyModuleParser.NPC.ViewModels;
+﻿using FantasyModuleParser.NPC.Models.Action;
+using FantasyModuleParser.NPC.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 {
@@ -8,21 +12,19 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 	/// Interaction logic for ResistancesUC.xaml
 	/// </summary>
 	public partial class ResistancesUC : UserControl
-    {
+	{
 		private ResistanceUserControlViewModel resistanceUserControlViewModel;
-        public ResistancesUC()
-        {
-            InitializeComponent();
+		public ResistancesUC()
+		{
+			InitializeComponent();
 			resistanceUserControlViewModel = new ResistanceUserControlViewModel();
 			DataContext = resistanceUserControlViewModel;
 			HeaderLabel.Visibility = Visibility.Hidden;
 		}
-
 		public void Refresh()
 		{
 			(DataContext as ResistanceUserControlViewModel).Refresh();
 		}
-
 		private void ResVulnImm_Click(object sender, RoutedEventArgs e)
 		{
 			setAllVisibilitiesToHidden();
@@ -56,9 +58,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 				strOther.Visibility = Visibility.Visible;
 				SecondHeaderLabel.Visibility = Visibility.Hidden;
 			}
-
 		}
-
 		private void setAllVisibilitiesToHidden()
 		{
 			HeaderLabel.Visibility = Visibility.Visible;
@@ -72,5 +72,15 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			chkOther.Visibility = Visibility.Hidden;
 			strOther.Visibility = Visibility.Hidden;
 		}
+
+		/*
+		 *        private NPCModel initializeLanguageSelection(NPCModel npcModel)
+        {
+            npcModel.StandardLanguages = initSpecificLanguageSet(languageController.GenerateStandardLanguages(), npcModel.StandardLanguages);
+            npcModel.MonstrousLanguages = initSpecificLanguageSet(languageController.GenerateMonsterLanguages(), npcModel.MonstrousLanguages);
+            npcModel.ExoticLanguages = initSpecificLanguageSet(languageController.GenerateExoticLanguages(), npcModel.ExoticLanguages);
+            npcModel.UserLanguages = initSpecificLanguageSet(languageController.GenerateUserLanguages(), npcModel.UserLanguages);
+            return npcModel;
+        }*/
 	}
 }

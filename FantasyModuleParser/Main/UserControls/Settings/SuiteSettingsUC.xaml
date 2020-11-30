@@ -56,9 +56,23 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Main:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="MainDefaultFolder" Text="{Binding Path=SettingsModel.MainFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2"/>
+            <TextBox Name="MainDefaultFolder" Text="{Binding Path=SettingsModel.MainFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="MainDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
+                <TextBox.ToolTip>
+                    <TextBlock>
+                        Double-click this line to change the default folder
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
             <CheckBox Content="Persistent Preview Windows" IsChecked="{Binding Path=SettingsModel.PersistentWindow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
-                Grid.Column="5" />
+                Grid.Column="5">
+                <CheckBox.ToolTip>
+                    <TextBlock>
+                        Check this box to have the Statblock window attached to the program.
+                        <LineBreak />
+                        Uncheck if you want a separate window.
+                    </TextBlock>
+                </CheckBox.ToolTip>
+            </CheckBox>
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
@@ -71,7 +85,13 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Project:" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox Name="ProjectDefaultFolder" Text="{Binding Path=SettingsModel.ProjectFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ProjectDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="5" Grid.Column="2" />
+            <TextBox Name="ProjectDefaultFolder" Text="{Binding Path=SettingsModel.ProjectFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ProjectDefaultFolder_MouseDoubleClick" Padding="0" Grid.Row="5" Grid.Column="2">
+                <TextBox.ToolTip>
+                    <TextBlock>
+                        Double-click this line to change the default folder
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
             <CheckBox Content="Select default GUI on startup" Visibility="Hidden" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="7">
@@ -85,7 +105,13 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="NPC:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1"/>
-            <TextBox Name="NPCDefaultFolder" Text="{Binding Path=SettingsModel.NPCFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="NPCDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
+            <TextBox Name="NPCDefaultFolder" Text="{Binding Path=SettingsModel.NPCFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="NPCDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
+                <TextBox.ToolTip>
+                    <TextBlock>
+                        Double-click this line to change the default folder
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
             <ComboBox Visibility="Hidden" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="200" Grid.Column="5" >
                 <ComboBoxItem IsSelected="True">NPC Options</ComboBoxItem>
                 <ComboBoxItem>Spell Options</ComboBoxItem>
@@ -185,7 +211,13 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Module:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="FGModuleDefaultFolder" Text="{Binding Path=SettingsModel.FGModuleFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="FGModuleDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
+            <TextBox Name="FGModuleDefaultFolder" Text="{Binding Path=SettingsModel.FGModuleFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="FGModuleDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2">
+                <TextBox.ToolTip>
+                    <TextBlock>
+                        Double-click this line to change the default folder
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
         </Grid>
     </Grid>
 </UserControl>
