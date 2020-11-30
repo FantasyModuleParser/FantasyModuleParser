@@ -930,14 +930,9 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("recordname");
 			if (moduleModel.IsLockedRecords)
-            {
 				xmlWriter.WriteString(listId + "@" + moduleModel.Name);
-			}
 			else
-            {
 				xmlWriter.WriteString(listId);
-
-			}
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("name");
@@ -983,13 +978,9 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("recordname");
 				if (moduleModel.IsLockedRecords)
-				{
 					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
-				}
 				else
-				{
 					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc));
-				}
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteStartElement("field");
@@ -1038,21 +1029,13 @@ namespace FantasyModuleParser.Exporters
 		private void ProcessNPCListByCR(XmlWriter xmlWriter, ModuleModel moduleModel, string actualCR, List<NPCModel> NPCList)
 		{
 			if (actualCR == "1/8")
-			{
 				xmlWriter.WriteStartElement("CR0125");
-			}
 			else if (actualCR == "1/4")
-			{
 				xmlWriter.WriteStartElement("CR025");
-			}
 			else if (actualCR == "1/2")
-			{
 				xmlWriter.WriteStartElement("CR05");
-			}
 			else
-			{
 				xmlWriter.WriteStartElement("CR" + actualCR);
-			}
 			xmlWriter.WriteStartElement("description");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("CR " + actualCR);
@@ -1317,9 +1300,7 @@ namespace FantasyModuleParser.Exporters
 				}
 			}
 			if (npcModel.ConditionOther)
-			{
 				stringBuilder.Append(npcModel.ConditionOtherText.ToLower() + ", ");
-			}
 			if (stringBuilder.Length >= 2)
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
 
@@ -1375,9 +1356,7 @@ namespace FantasyModuleParser.Exporters
 								stringBuilder.Append(specialWeaponDmgImmunity.ActionDescription).Append(", ");
 						}
 						if (stringBuilder.Length >= 2)
-						{
 							stringBuilder.Remove(stringBuilder.Length - 2, 2);
-						}
 						stringBuilder.Append(Immunity);
 					}
 				}
@@ -1399,9 +1378,7 @@ namespace FantasyModuleParser.Exporters
 						stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", ");
 				}
 			if (stringBuilder.Length >= 2)
-			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
 			stringBuilder.Append("; ");
 			if (npcModel.SpecialWeaponResistanceModelList != null)
 				foreach (SelectableActionModel specialWeaponResistance in npcModel.SpecialWeaponResistanceModelList)
@@ -1430,9 +1407,7 @@ namespace FantasyModuleParser.Exporters
 								stringBuilder.Append(specialWeaponDmgResistance.ActionDescription).Append(", ");
 						}
 						if (stringBuilder.Length >= 2)
-						{
 							stringBuilder.Remove(stringBuilder.Length - 2, 2);
-						}
 						stringBuilder.Append(Resistance);
 					}
 				}
@@ -1456,9 +1431,7 @@ namespace FantasyModuleParser.Exporters
 						stringBuilder.Append(damageVulnerabilities.ActionDescription.ToLower()).Append(", ");
 				}
 			if (stringBuilder.Length >= 2)
-			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
 			string weaponDamageVulnerabilityString = stringBuilder.ToString().Trim();
 
 			xmlWriter.WriteValue(weaponDamageVulnerabilityString);
@@ -1467,26 +1440,18 @@ namespace FantasyModuleParser.Exporters
 		private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			if (npcModel.HP == null)
-			{
 				npcModel.HP = "0 (0)";
-			}
 			string[] hpArray = npcModel.HP.Split('(');
 			string hpValue = hpArray[0].Trim();
 			string hpDieBreakdown = "";
 			if (hpArray.Length == 2)
-            {
 				hpDieBreakdown = "(" + hpArray[1];
-			}	
 			xmlWriter.WriteStartElement("hd");
 			xmlWriter.WriteAttributeString("type", "string");
 			if (hpArray.Length == 2)
-			{
 				xmlWriter.WriteString(hpDieBreakdown);
-			}
             else 
-			{ 
-				xmlWriter.WriteString(""); 
-			}
+				xmlWriter.WriteString("");
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("hp");
 			xmlWriter.WriteAttributeString("type", "number");
@@ -1542,62 +1507,46 @@ namespace FantasyModuleParser.Exporters
 				}
 			}
 			if (npcModel.Telepathy)
-			{
 				stringBuilder.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
-			}
 			if (stringBuilder.Length >= 2)
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
 			if (npcModel.LanguageOptions == "No special conditions" || npcModel.LanguageOptions == null)
-			{
 				stringBuilderOption.Append(stringBuilder);
-			}
 			else if (npcModel.LanguageOptions == "Speaks no languages")
-			{
 				stringBuilderOption.Append("-");
-			}
 			else if (npcModel.LanguageOptions == "Speaks all languages")
 			{
 				stringBuilderOption.Append("all").Append(", ");
 				if (npcModel.Telepathy)
-				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
-				}
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Can't speak; Knows selected languages")
 			{
 				stringBuilderOption.Append("understands" + stringBuilder + " but can't speak").Append(", ");
 				if (npcModel.Telepathy)
-				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
-				}
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Can't speak; Knows creator's languages")
 			{
 				stringBuilderOption.Append("understands the languages of its creator but can't speak").Append(", ");
 				if (npcModel.Telepathy)
-				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
-				}
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Can't speak; Knows languages known in life")
 			{
 				stringBuilderOption.Append("Understands all languages it spoke in life but can't speak").Append(", ");
 				if (npcModel.Telepathy)
-				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
-				}
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Alternative language text (enter below)")
 			{
 				stringBuilderOption.Append(npcModel.LanguageOptionsText.ToString().Trim()).Append(", ");
 				if (npcModel.Telepathy)
-				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
-				}
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			xmlWriter.WriteStartElement("languages");
@@ -1670,9 +1619,7 @@ namespace FantasyModuleParser.Exporters
 				stringBuilder.Append("Cha ").Append(npcModel.SavingThrowCha >= 0 ? "+" : "").Append(npcModel.SavingThrowCha).Append(", ");
 
 			if (stringBuilder.Length >= 2)
-			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
 			string savingThrowString = stringBuilder.ToString().Trim();
 
 			xmlWriter.WriteStartElement("savingthrows");
@@ -1798,9 +1745,7 @@ namespace FantasyModuleParser.Exporters
 			if (npcModel.Survival != 0)
 				stringBuilder.Append("Survival ").Append(npcModel.Survival >= 0 ? "+" : "").Append(npcModel.Survival).Append(", ");
 			if (stringBuilder.Length >= 2)
-			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
 			string skillsString = stringBuilder.ToString().Trim();
 			xmlWriter.WriteStartElement("skills");
 			xmlWriter.WriteAttributeString("type", "string");
@@ -1820,20 +1765,13 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("token");
 			xmlWriter.WriteAttributeString("type", "token");
 			if (npcModel.NPCToken == null || npcModel.NPCToken == " ")
-			{
 				xmlWriter.WriteString("");
-			}
 			else
 			{
 				if (moduleModel.IsLockedRecords == true)
-                {
 					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png@" + moduleModel.Name);
-				}
 				else
-                {
 					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png");
-
-				}
 			}
 			xmlWriter.WriteEndElement();
 		}
@@ -1862,37 +1800,25 @@ namespace FantasyModuleParser.Exporters
 				}
 			}
 			if (npcModel.Psionics)
-			{
 				innateName = "Innate Spellcasting (Psionics)";
-			}
 			else if (npcModel.InnateSpellcastingSection && !npcModel.Psionics)
-			{
 				innateName = "Innate Spellcasting";
-			}
 			if (innateName.Length > 0)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
 				if (!string.IsNullOrEmpty(npcModel.InnateSpellcastingAbility))
-				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility);
-				}
-				else 
-				{ 
-					MessageBox.Show("Please fill in the Innate Spellcasting Ability"); 
-				}
+				else
+					MessageBox.Show("Please fill in the Innate Spellcasting Ability");
 				if (npcModel.InnateSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.InnateSpellSaveDC);
 					if (npcModel.InnateSpellHitBonus != 0)
-					{
 						stringBuilder.Append("spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus);
-					}
 					stringBuilder.Append(")");
 				}
 				else if (npcModel.InnateSpellHitBonus != 0)
-				{
 					stringBuilder.Append("(spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus + ")");
-				}
 				stringBuilder.Append(". ");
 				stringBuilder.Append("It can innately cast the following spells, " + npcModel.ComponentText + ":");
 				if (npcModel.InnateAtWill != null)
@@ -1927,39 +1853,25 @@ namespace FantasyModuleParser.Exporters
 			{
 				StringBuilder stringBuilder = new StringBuilder();
 				if (!string.IsNullOrEmpty(npcModel.SpellcastingCasterLevel))
-				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " is a " + npcModel.SpellcastingCasterLevel + "-level spellcaster. ");
-				}
-				else 
-				{ 
-					MessageBox.Show("Please fill in the Spellcasting Level"); 
-				}
+				else
+					MessageBox.Show("Please fill in the Spellcasting Level");
 				if (!string.IsNullOrEmpty(npcModel.SCSpellcastingAbility))
-                {
 					stringBuilder.Append("Its spellcasting ability is " + npcModel.SCSpellcastingAbility);
-				}
-				else 
-				{ 
-					MessageBox.Show("Please fill in the Spellcasting Ability"); 
-				}
+				else
+					MessageBox.Show("Please fill in the Spellcasting Ability");
 				if (npcModel.SpellcastingSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.SpellcastingSpellSaveDC);
 					if (npcModel.SpellcastingSpellHitBonus != 0)
-					{
 						stringBuilder.Append(", spell hit bonus ").Append(npcModel.SpellcastingSpellHitBonus >= 0 ? "+" : "").Append(npcModel.SpellcastingSpellHitBonus);
-					}
 					stringBuilder.Append(")");
 				}
 				stringBuilder.Append(". ");
 				if (!string.IsNullOrEmpty(npcModel.SpellcastingSpellClass))
-                {
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following " + npcModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
-				}
-				else 
-				{ 
-					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following spells prepared:"); 
-				}
+				else
+					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following spells prepared:");
 				if (npcModel.CantripSpellList != null)
 					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpells.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
 				if (npcModel.FirstLevelSpellList != null)
