@@ -4,14 +4,10 @@ using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Views;
 using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using System;
-using System.Collections;
-using System.IO;
-using System.Linq;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using static FantasyModuleParser.Extensions.EnumerationExtension;
 using System.Text;
 using FantasyModuleParser.Extensions;
 
@@ -34,6 +30,7 @@ namespace FantasyModuleParser.NPC.Views
 
             npcController = new NPCController();
             DataContext = npcController.GetNPCModel();
+            SizeDice.SelectedValue = DieType.D6;
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
