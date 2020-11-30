@@ -41,6 +41,10 @@ namespace FantasyModuleParser.NPC.Views
         private void Average_Click(object sender, RoutedEventArgs e)
         {
             rollResult.Clear();
+            if (Bonus.Text == "" || Bonus.Text == " ")
+            {
+                Bonus.Text = "0";
+            }
             int diceResult = (int.Parse(NumDice.Text) * ((int)SizeDice.SelectedValue + 1) / 2) + int.Parse(Bonus.Text);
             int bonusHP = int.Parse(Bonus.Text);
             StringBuilder stringBuilder = new StringBuilder();
@@ -62,6 +66,10 @@ namespace FantasyModuleParser.NPC.Views
         private void Max_Click(object sender, RoutedEventArgs e)
         {
             rollResult.Clear();
+            if (Bonus.Text == "" || Bonus.Text == " ")
+            {
+                Bonus.Text = "0";
+            }
             int diceResult = int.Parse(NumDice.Text) * (int)SizeDice.SelectedValue + int.Parse(Bonus.Text);
             int bonusHP = int.Parse(Bonus.Text);
             StringBuilder stringBuilder = new StringBuilder();
@@ -87,6 +95,10 @@ namespace FantasyModuleParser.NPC.Views
         private void Roll_Click(object sender, RoutedEventArgs e)
         {
             rollResult.Clear();
+            if (Bonus.Text == "" || Bonus.Text == " ")
+            {
+                Bonus.Text = "0";
+            }
             Random rnd = new Random();
             int bonusHP = int.Parse(Bonus.Text);
             int diceResult = 0;
