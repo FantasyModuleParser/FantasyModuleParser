@@ -162,23 +162,26 @@ namespace FantasyModuleParser.Exporters
 			/// </summary>
 			foreach (NPCModel npcModel in FatNPCList)
             {
-				if (!string.IsNullOrEmpty(npcModel.NPCToken))
+				if (moduleModel.IncludeTokens)
                 {
-					string Filename = Path.GetFileName(npcModel.NPCToken);
-					string NPCTokenFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "tokens", Filename);
-					string NPCTokenDirectory = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "tokens");
-					if (Directory.Exists(NPCTokenDirectory))
-                    {
-						if (File.Exists(NPCTokenFileName))
-                        {
-							File.Delete(NPCTokenFileName);
-                        }
+					if (!string.IsNullOrEmpty(npcModel.NPCToken))
+					{
+						string Filename = Path.GetFileName(npcModel.NPCToken);
+						string NPCTokenFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "tokens", Filename);
+						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "tokens");
+						if (Directory.Exists(NPCTokenDirectory))
+						{
+							if (File.Exists(NPCTokenFileName))
+							{
+								File.Delete(NPCTokenFileName);
+							}
+						}
+						else
+						{
+							Directory.CreateDirectory(NPCTokenDirectory);
+						}
+						File.Copy(npcModel.NPCToken, NPCTokenFileName);
 					}
-					else
-                    {
-						Directory.CreateDirectory(NPCTokenDirectory);
-					}
-					File.Copy(npcModel.NPCToken, NPCTokenFileName);
 				}
             }
 			/// <summary>
@@ -186,24 +189,27 @@ namespace FantasyModuleParser.Exporters
 			/// </summary>
 			foreach (NPCModel npcModel in FatNPCList)
 			{
-				if (!string.IsNullOrEmpty(npcModel.NPCImage))
-				{
-					string Filename = Path.GetFileName(npcModel.NPCImage);
-					string NPCImageFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "images", Filename);
-					string NPCImageDirectory = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "images");
-					if (Directory.Exists(NPCImageDirectory))
+				if (moduleModel.IncludeImages)
+                {
+					if (!string.IsNullOrEmpty(npcModel.NPCImage))
 					{
-						if (File.Exists(NPCImageFileName))
+						string Filename = Path.GetFileName(npcModel.NPCImage);
+						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images", Filename);
+						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images");
+						if (Directory.Exists(NPCImageDirectory))
 						{
-							File.Delete(NPCImageFileName);
+							if (File.Exists(NPCImageFileName))
+							{
+								File.Delete(NPCImageFileName);
+							}
 						}
+						else
+						{
+							Directory.CreateDirectory(NPCImageDirectory);
+						}
+						File.Copy(npcModel.NPCImage, NPCImageFileName);
 					}
-					else
-					{
-						Directory.CreateDirectory(NPCImageDirectory);
-					}
-					File.Copy(npcModel.NPCImage, NPCImageFileName);
-				}
+				}	
 			}
 
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
@@ -1763,14 +1769,14 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("token");
 			xmlWriter.WriteAttributeString("type", "token");
-			if (npcModel.NPCToken == null || npcModel.NPCToken == " ")
+			if (npcModel.NPCToken == null || npcModel.NPCToken == " " || !moduleModel.IncludeTokens)
 				xmlWriter.WriteString("");
 			else
 			{
 				if (moduleModel.IsLockedRecords == true)
-					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png@" + moduleModel.Name);
+					xmlWriter.WriteValue("tokens" + "\\" + Path.GetFileName(npcModel.NPCToken) + "@" + moduleModel.Name);
 				else
-					xmlWriter.WriteValue("tokens" + '\\' + NPCNameToXMLFormat(npcModel) + "_token.png");
+					xmlWriter.WriteValue("tokens" + "\\" + Path.GetFileName(npcModel.NPCToken));
 			}
 			xmlWriter.WriteEndElement();
 		}
