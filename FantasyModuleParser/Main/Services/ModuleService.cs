@@ -98,7 +98,7 @@ namespace FantasyModuleParser.Main.Services
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
             }
 
-            string appendedFileName = settingsService.Load().ProjectFolderLocation + moduleModel.ModFilename + ".fmp";
+            string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
             Save(appendedFileName, moduleModel);
         }
 

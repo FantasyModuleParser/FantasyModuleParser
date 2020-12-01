@@ -62,7 +62,6 @@ namespace FantasyModuleParser.Exporters
 			if (!string.IsNullOrEmpty(moduleModel.ThumbnailPath))
             {
 				SaveThumbnailImage(moduleModel);
-
 			}
 
 			// A blank module consists of two files;  db.xml & definition.xml
@@ -87,11 +86,11 @@ namespace FantasyModuleParser.Exporters
 			// Zipping up the folder contents and naming to *.mod
 
 			// First need to check if the file exists;  If so, delete it
-			if (File.Exists(@Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod")))
+			if (File.Exists(@Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod")))
 			{
-				File.Delete(@Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod"));
+				File.Delete(@Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod"));
 			}
-			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name + ".mod"));
+			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod"));
 		}
 		/// <summary>
 		/// Generates a List of all NPCs across all Categories in one List<NPCModel> object.  Used for Reference Manual material.
@@ -165,7 +164,7 @@ namespace FantasyModuleParser.Exporters
             {
 				if (!string.IsNullOrEmpty(npcModel.NPCToken))
                 {
-					string Filename = NPCNameToXMLFormat(npcModel) + "_token.png";
+					string Filename = Path.GetFileName(npcModel.NPCToken);
 					string NPCTokenFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "tokens", Filename);
 					string NPCTokenDirectory = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "tokens");
 					if (Directory.Exists(NPCTokenDirectory))
@@ -189,7 +188,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				if (!string.IsNullOrEmpty(npcModel.NPCImage))
 				{
-					string Filename = NPCNameToXMLFormat(npcModel) + ".jpg";
+					string Filename = Path.GetFileName(npcModel.NPCImage);
 					string NPCImageFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "images", Filename);
 					string NPCImageDirectory = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "images");
 					if (Directory.Exists(NPCImageDirectory))
