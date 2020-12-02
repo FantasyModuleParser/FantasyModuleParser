@@ -192,7 +192,7 @@
                 <ColumnDefinition Width="193" />
             </Grid.ColumnDefinitions>
             <Label Content="Duration:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource standardTextBox}" Text="{Binding SpellModel.DurationText}" IsReadOnly="True" />
+            <TextBox Grid.Column="1" Grid.ColumnSpan="2" x:Name="DurationText" Style="{StaticResource standardTextBox}" Text="{Binding SpellModel.DurationText}" IsReadOnly="True" />
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="3"/>
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationType}}}" SelectedValue="{Binding SpellModel.DurationType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="DurationSelectionEnabled_ComboboxChanged" Grid.Column="4" Style="{StaticResource standardComboBox}"/>
         </Grid>
@@ -204,7 +204,7 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox x:Name="DurationTime" Text="{Binding SpellModel.DurationTime}" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox x:Name="DurationTime" Text="{Binding SpellModel.DurationTime}" TextChanged="DurationTime_TextChanged" VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Unit:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
             <ComboBox x:Name="DurationUnit" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:DurationUnit}}}" SelectedValue="{Binding Path=SpellModel.DurationUnit}" SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="3" Style="{StaticResource standardComboBox}"/>
         </Grid>

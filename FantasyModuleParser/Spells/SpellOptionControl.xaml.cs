@@ -4,6 +4,7 @@ using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
 using System;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FantasyModuleParser.Spells
@@ -29,12 +30,16 @@ namespace FantasyModuleParser.Spells
         }
         private void DurationSelectionEnabled_ComboboxChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!IsSpellModelNull())
+            if (DurationTime != null && DurationUnit != null)
             {
-                if (DurationTime != null)
-                    DurationTime.IsEnabled = (DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Time;
-                if (DurationUnit != null)
-                    DurationUnit.IsEnabled = (DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Time;
+                DurationTime.IsEnabled = (DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Time || (DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Concentration;
+                DurationUnit.IsEnabled = DurationTime.IsEnabled;
+                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Instantaneous)
+                    DurationText.Text = Enums.DurationType.Instantaneous.GetDescription();
+                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.UntilDispelled)
+                    DurationText.Text = Enums.DurationType.UntilDispelled.GetDescription();
+                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.UntilDispelledOrTriggered)
+                    DurationText.Text = Enums.DurationType.UntilDispelledOrTriggered.GetDescription();
             }
         }
 
@@ -213,6 +218,27 @@ namespace FantasyModuleParser.Spells
             if (!string.IsNullOrEmpty(RangeDescriptionTB.Text))
                 stringBuilder.Append(" " + RangeDescriptionTB.Text);
             RangeDisplayValue.Text = stringBuilder.ToString();
+        }
+
+        private void DurationTime_TextChanged(object sender, RoutedEventArgs e)
+        {
+            int numDuration;
+            if (int.TryParse(DurationTime.Text, out numDuration))
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Time)
+                {
+                    DurationText.Text = stringBuilder.Append(numDuration + " " + DurationUnit.Text).ToString();
+                    if (numDuration > 1)
+                        DurationText.Text = stringBuilder.Append("s").ToString();
+                }
+                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Concentration)
+                {
+                    DurationText.Text = stringBuilder.Append("Concentration, up to " + numDuration + " " + DurationUnit.Text).ToString();
+                    if (numDuration > 1)
+                        DurationText.Text = stringBuilder.Append("s").ToString();
+                }
+            }
         }
     }
 }
