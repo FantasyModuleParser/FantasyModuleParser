@@ -240,7 +240,7 @@ namespace FantasyModuleParser.Exporters
 								xmlWriter.WriteStartElement("image");
 								xmlWriter.WriteAttributeString("type", "image");
 								xmlWriter.WriteStartElement("bitmap");
-								xmlWriter.WriteString("images\\" + NPCNameToXMLFormat(npcModel) + ".jpg");
+                                xmlWriter.WriteString("images\\" + Path.GetFileName(npcModel.NPCImage) + "@" + moduleModel.Name);
 								xmlWriter.WriteEndElement();
 								WriteLocked(xmlWriter);
 								WriteName(xmlWriter, npcModel);
@@ -421,9 +421,9 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString("NPCs");
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteStartElement("index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter", "NPCs - Alphabetical Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel", "NPCs - Challenge Rating Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype", "NPCs - Class Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteStartElement("byletter");
@@ -466,14 +466,13 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString("Spells");
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteStartElement("index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.spelllists._index_", "(Index)");
+					WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.spelllists._index_@" + moduleModel.Name, "(Index)");
 					int spellListId = 2;
 					foreach (string castByValue in getSortedSpellCasterList(moduleModel))
 					{
 						string referenceId = "reference.spellists.";
 						referenceId += castByValue.Replace(" ", "").Replace("(", "").Replace(")", "").ToLower();
-						if (moduleModel.IsLockedRecords)
-							referenceId += "@" + moduleModel.Name;
+						referenceId += "@" + moduleModel.Name;
 						WriteIDLinkList(xmlWriter, moduleModel, "id-" + spellListId.ToString("D4"), referenceId, castByValue);
 
 						spellListId++;
@@ -982,10 +981,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString("npc");
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("recordname");
-				if (moduleModel.IsLockedRecords)
-					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
-				else
-					xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc));
+				xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("description");
 				xmlWriter.WriteStartElement("field");
@@ -1772,12 +1768,7 @@ namespace FantasyModuleParser.Exporters
 			if (npcModel.NPCToken == null || npcModel.NPCToken == " " || !moduleModel.IncludeTokens)
 				xmlWriter.WriteString("");
 			else
-			{
-				if (moduleModel.IsLockedRecords == true)
-					xmlWriter.WriteValue("tokens" + "\\" + Path.GetFileName(npcModel.NPCToken) + "@" + moduleModel.Name);
-				else
-					xmlWriter.WriteValue("tokens" + "\\" + Path.GetFileName(npcModel.NPCToken));
-			}
+				xmlWriter.WriteValue("tokens\\" + Path.GetFileName(npcModel.NPCToken) + "@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
