@@ -9,14 +9,32 @@
 
   <ItemGroup>
     <None Remove="Resources\PDF\AscendingFlame.txt" />
+    <None Remove="Resources\PDF\BookOfLostSpells\AcidSwamp.txt" />
     <None Remove="Resources\PDF\CounterSpell.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\AnimalFriendship.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\ColorSpray.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\Confusion.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\Druidcraft.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\Featherfall.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\InsectPlague.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\ScorchingRay.txt" />
+    <None Remove="Resources\PDF\HoardDragonQueen_Supplement\WaterWalk.txt" />
     <None Remove="Resources\Roll20\AcidSplash.txt" />
     <None Remove="Resources\Roll20\CircleOfDeath.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\PDF\AscendingFlame.txt" />
+    <EmbeddedResource Include="Resources\PDF\BookOfLostSpells\AcidSwamp.txt" />
     <EmbeddedResource Include="Resources\PDF\CounterSpell.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\AnimalFriendship.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\ColorSpray.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\Confusion.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\Druidcraft.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\Featherfall.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\InsectPlague.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\ScorchingRay.txt" />
+    <EmbeddedResource Include="Resources\PDF\HoardDragonQueen_Supplement\WaterWalk.txt" />
     <EmbeddedResource Include="Resources\Roll20\AcidSplash.txt" />
     <EmbeddedResource Include="Resources\Roll20\CircleOfDeath.txt" />
   </ItemGroup>

@@ -194,7 +194,14 @@ namespace FMPTests_Spells.Importer
         private static IEnumerable<object[]> DurationData()
         {
             yield return new object[] { generateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 1 minute" };
+            yield return new object[] { generateSpellModel_Duration(10, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 10 minutes" };
             yield return new object[] { generateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Duration: Instantaneous" };
+            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Round, null), "Duration: 1 round" };
+            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Minute, null), "Duration: 1 minute" };
+            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Hour, null), "Duration: 1 hour" };
+            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Day, null), "Duration: 1 day" };
+            yield return new object[] { generateSpellModel_Duration(3, DurationType.Time, DurationUnit.Round, null), "Duration: 3 rounds" };
+            yield return new object[] { generateSpellModel_Duration(6, DurationType.Time, DurationUnit.Day, null), "Duration: 6 days" };
             yield return new object[] { generateSpellModel_Duration(10, DurationType.Time, DurationUnit.Minute, null), "Duration: 10 minutes" };
             yield return new object[] { generateSpellModel_Duration(8, DurationType.Time, DurationUnit.Hour, null), "Duration: 8 hours" };
             yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelled, DurationUnit.None, null), "Duration: Until dispelled" };
@@ -239,28 +246,31 @@ namespace FMPTests_Spells.Importer
         }
         #endregion
         #region Description
+        /// <summary>
+        /// Note that the trouble with the description is that this is a multi-line event.  As a result, there is no 
+        /// one-line parser;  The importer must read every line.
+        /// New lines are created if the last character in a string is a period.
+        /// If the phrase "At Higher Levels." is at the beginning on a line, then
+        /// it should be bolded via Markdown syntax (e.g. **At Higher Levels.**)
+        /// </summary>
+        /// <param name="expectedSpellModel"></param>
+        /// <param name="importData"></param>
         [TestMethod]
         [DynamicData(nameof(DescriptionData), DynamicDataSourceType.Method)]
-        public void TestDescription(SpellModel expectedSpellModel, string importData)
+        public void TestDescription(string importData, string expectedDescription)
         {
             SpellModel actualSpellModel = new SpellModel();
-            importSpellBase.ParseDescription(importData, actualSpellModel);
-            Assert.AreEqual(expectedSpellModel.Description, actualSpellModel.Description);
+            Assert.AreEqual(expectedDescription, importSpellBase.ParseDescription(importData));
         }
         private static IEnumerable<object[]> DescriptionData()
         {
-            yield return new object[] { generateSpellModel_Description("Cleric"), "Cleric" };
-        }
-
-        private static SpellModel generateSpellModel_Description(string description)
-        {
-            SpellModel spellModel = new SpellModel()
-            {
-                Description = description
-            };
-            return spellModel;
+            yield return new object[] { 
+@"You attempt to interrupt a creature in the process of casting a spell.",
+"You attempt to interrupt a creature in the process of casting a spell.\r\n" };
+            yield return new object[] { 
+@"At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used.",
+@"**At Higher Levels**. When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used." };
         }
         #endregion
-
     }
 }

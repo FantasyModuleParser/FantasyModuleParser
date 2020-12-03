@@ -64,7 +64,19 @@ namespace FantasyModuleParser.Importer.Spells
                         importStatEnum = ImportStatEnum.DESCRIPTION;
                         break;
                     case ImportStatEnum.DESCRIPTION:
-                        resultSpellModel.Description += importData;
+                        if(importData.EndsWith(".", StringComparison.Ordinal)) 
+                        {
+                            resultSpellModel.Description += importData;
+                            resultSpellModel.Description += "\r\n";    
+                        } else if (importData.StartsWith("At Higher Levels.", StringComparison.Ordinal))
+                        {
+                            resultSpellModel.Description += "**At Higher Levels.**";
+                            resultSpellModel.Description += importData.Substring(17);
+                        }
+                        else
+                            resultSpellModel.Description += importData;
+
+
                         break;
                     default:
                         break;
@@ -192,16 +204,65 @@ namespace FantasyModuleParser.Importer.Spells
         }
         public void ParseDuration(string importData, SpellModel spellModel)
         {
-            // Do nothing right now...
+            string formattedData = importData.Substring("Duration: ".Length);
+            if(formattedData.StartsWith("Up to ", StringComparison.OrdinalIgnoreCase))
+            {
+                spellModel.DurationType = DurationType.Concentration;
+                spellModel.DurationTime = int.Parse(formattedData.Split(' ')[2]);
+                spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[3]);
+            } 
+            else if (formattedData.Equals("Instantaneous"))
+            {
+                spellModel.DurationType = DurationType.Instantaneous;
+                spellModel.DurationTime = 0;
+                spellModel.DurationUnit = DurationUnit.None;
+            }
+            else if (formattedData.Equals("Until dispelled or triggered"))
+            {
+                spellModel.DurationType = DurationType.UntilDispelledOrTriggered;
+                spellModel.DurationTime = 0;
+                spellModel.DurationUnit = DurationUnit.None;
+            }
+            else if (formattedData.Equals("Until dispelled"))
+            {
+                spellModel.DurationType = DurationType.UntilDispelled;
+                spellModel.DurationTime = 0;
+                spellModel.DurationUnit = DurationUnit.None;
+            }
+            else
+            {
+                spellModel.DurationType = DurationType.Time;
+                spellModel.DurationTime = int.Parse(formattedData.Split(' ')[0]);
+                spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[1]);
+            }
+        }
+        private DurationUnit _parseDurationUnit(string data)
+        {
+            string lowerCaseData = data.ToLower();
+            if (lowerCaseData.StartsWith("round", StringComparison.Ordinal))
+                return DurationUnit.Round;
+            if (lowerCaseData.StartsWith("minute", StringComparison.Ordinal))
+                return DurationUnit.Minute;
+            if (lowerCaseData.StartsWith("hour", StringComparison.Ordinal))
+                return DurationUnit.Hour;
+            if (lowerCaseData.StartsWith("day", StringComparison.Ordinal))
+                return DurationUnit.Day;
+            return DurationUnit.None;
         }
         public void ParseCastByClasses(string importData, SpellModel spellModel)
         {
             spellModel.CastBy = importData.Substring(9);
         }
 
-        public void ParseDescription(string importData, SpellModel spellModel)
+        public string ParseDescription(string importData)
         {
-            // Do nothing right now....
+            const string AT_HIGHER_LEVELS = "At Higher Levels";
+            if (importData.StartsWith(AT_HIGHER_LEVELS, StringComparison.Ordinal))
+                return "**" + AT_HIGHER_LEVELS + "**" + importData.Substring(AT_HIGHER_LEVELS.Length);
+            if (importData.EndsWith(".", StringComparison.Ordinal))
+                return importData + "\r\n";
+            
+            return importData;
         }
     }
 }
