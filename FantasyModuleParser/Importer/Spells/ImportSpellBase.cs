@@ -38,43 +38,43 @@ namespace FantasyModuleParser.Importer.Spells
                         importStatEnum = ImportStatEnum.LEVEL_SCHOOL;
                         break;
                     case ImportStatEnum.LEVEL_SCHOOL:
-                        resultSpellModel.SpellLevel = ParseSpellLevel(importData);
-                        resultSpellModel.SpellSchool = parseSpellSchool(importData);
-                        resultSpellModel.IsRitual = checkIfRitual(importData);
+                        resultSpellModel.SpellLevel = ParseSpellLevel(line);
+                        resultSpellModel.SpellSchool = parseSpellSchool(line);
+                        resultSpellModel.IsRitual = checkIfRitual(line);
                         importStatEnum = ImportStatEnum.CASTING_TIME;
                         break;
                     case ImportStatEnum.CASTING_TIME:
-                        ParseCastingTime(importData, resultSpellModel);
+                        ParseCastingTime(line, resultSpellModel);
                         importStatEnum = ImportStatEnum.RANGE;
                         break;
                     case ImportStatEnum.RANGE:
-                        ParseRange(importData, resultSpellModel);
+                        ParseRange(line, resultSpellModel);
                         importStatEnum = ImportStatEnum.COMPONENTS;
                         break;
                     case ImportStatEnum.COMPONENTS:
-                        ParseComponents(importData, resultSpellModel);
+                        ParseComponents(line, resultSpellModel);
                         importStatEnum = ImportStatEnum.DURATION;
                         break;
                     case ImportStatEnum.DURATION:
-                        ParseDuration(importData, resultSpellModel);
+                        ParseDuration(line, resultSpellModel);
                         importStatEnum = ImportStatEnum.CAST_BY;
                         break;
                     case ImportStatEnum.CAST_BY:
-                        ParseCastByClasses(importData, resultSpellModel);
+                        ParseCastByClasses(line, resultSpellModel);
                         importStatEnum = ImportStatEnum.DESCRIPTION;
                         break;
                     case ImportStatEnum.DESCRIPTION:
-                        if(importData.EndsWith(".", StringComparison.Ordinal)) 
+                        if(line.EndsWith(".", StringComparison.Ordinal)) 
                         {
-                            resultSpellModel.Description += importData;
+                            resultSpellModel.Description += line;
                             resultSpellModel.Description += "\r\n";    
-                        } else if (importData.StartsWith("At Higher Levels.", StringComparison.Ordinal))
+                        } else if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
                         {
                             resultSpellModel.Description += "**At Higher Levels.**";
-                            resultSpellModel.Description += importData.Substring(17);
+                            resultSpellModel.Description += line.Substring(17);
                         }
                         else
-                            resultSpellModel.Description += importData;
+                            resultSpellModel.Description += line;
 
 
                         break;

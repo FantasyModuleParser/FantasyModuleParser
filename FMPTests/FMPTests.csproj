@@ -83,6 +83,8 @@
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCLineParserTests.cs" />
     <Compile Include="Importer\NPC\ImportEngineerSuiteNPCFileTests.cs" />
     <Compile Include="Importer\NPC\ImportPDFNPCFileTests.cs" />
+    <Compile Include="Importer\Spells\ImportPDFSpellFileTests.cs" />
+    <Compile Include="Importer\Spells\ImportSpellLineParserTest.cs" />
     <Compile Include="Importer\Utils\ImportCommonUtilsTests.cs" />
     <Compile Include="NPC\ViewModels\DescriptionUCViewModelTests.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModelTests.cs" />
@@ -90,6 +92,19 @@
     <Compile Include="UserControls\MarkdownTestExample.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Spells\Roll20\CircleOfDeath.txt" />
+    <EmbeddedResource Include="Resources\Spells\Roll20\AcidSplash.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\CounterSpell.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\AscendingFlame.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\WaterWalk.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\ScorchingRay.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\InsectPlague.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\Featherfall.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\Druidcraft.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\Confusion.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\ColorSpray.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\HoardDragonQueen_Supplement\AnimalFriendship.txt" />
+    <EmbeddedResource Include="Resources\Spells\PDF\BookOfLostSpells\AcidSwamp.txt" />
     <EmbeddedResource Include="Resources\amygdala.npc" />
     <Content Include="Resources\PDF\abyssal_harvester.txt" />
     <EmbeddedResource Include="Resources\PDF\agnibarra.txt" />
