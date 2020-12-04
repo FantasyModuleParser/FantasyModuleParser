@@ -193,7 +193,7 @@ namespace FantasyModuleParser.Exporters
                 {
 					if (!string.IsNullOrEmpty(npcModel.NPCImage))
 					{
-						string Filename = Path.GetFileName(npcModel.NPCImage);
+						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "");
 						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images", Filename);
 						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images");
 						if (Directory.Exists(NPCImageDirectory))
@@ -236,19 +236,30 @@ namespace FantasyModuleParser.Exporters
 						{
 							if (!string.IsNullOrEmpty(npcModel.NPCImage))
 							{
-								xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
+								xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
 								xmlWriter.WriteStartElement("image");
 								xmlWriter.WriteAttributeString("type", "image");
 								xmlWriter.WriteStartElement("bitmap");
-                                xmlWriter.WriteString("images\\" + Path.GetFileName(npcModel.NPCImage) + "@" + moduleModel.Name);
+								xmlWriter.WriteAttributeString("type", "string");
+                                xmlWriter.WriteString("images" + "\\" + Path.GetFileName(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
+								xmlWriter.WriteEndElement();
 								xmlWriter.WriteEndElement();
 								WriteLocked(xmlWriter);
 								WriteName(xmlWriter, npcModel);
-								xmlWriter.WriteStartElement("nonid_name");
-								xmlWriter.WriteAttributeString("type", "string");
-								xmlWriter.WriteString(npcModel.NPCName);
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
+								if (!string.IsNullOrEmpty(npcModel.NonID))
+                                {
+									xmlWriter.WriteStartElement("nonid_name");
+									xmlWriter.WriteAttributeString("type", "string");
+									xmlWriter.WriteString(npcModel.NonID);
+									xmlWriter.WriteEndElement();
+								}
+								if (!string.IsNullOrEmpty(npcModel.NonID))
+                                {
+									xmlWriter.WriteStartElement("isidentified");
+									xmlWriter.WriteAttributeString("type", "number");
+									xmlWriter.WriteString("0");
+									xmlWriter.WriteEndElement();
+								}
 								xmlWriter.WriteEndElement();
 							}
 						}
@@ -382,14 +393,14 @@ namespace FantasyModuleParser.Exporters
 						{
 							if (!string.IsNullOrEmpty(npcModel.NPCImage))
 							{
-								xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
+								xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
 								xmlWriter.WriteStartElement("link");
 								xmlWriter.WriteAttributeString("type", "windowreference");
 								xmlWriter.WriteStartElement("class");
 								xmlWriter.WriteString("imagewindow");
 								xmlWriter.WriteEndElement();
 								xmlWriter.WriteStartElement("recordname");
-								xmlWriter.WriteString("image." + NPCNameToXMLFormat(npcModel) + "@" + moduleModel.Name);
+								xmlWriter.WriteString("image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
 								xmlWriter.WriteEndElement();
 								xmlWriter.WriteStartElement("description");
 								xmlWriter.WriteStartElement("field");
