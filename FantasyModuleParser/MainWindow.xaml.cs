@@ -169,6 +169,7 @@ namespace FantasyModuleParser
             // throughout the application
 
             exporter.CreateModule(moduleService.GetModuleModel());
+            MessageBox.Show("Module Created Successfully");
         }
 
         protected override void OnClosed(EventArgs e)
