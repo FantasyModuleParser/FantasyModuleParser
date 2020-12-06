@@ -1,0 +1,39 @@
+﻿<Window x:Class="FantasyModuleParser.Spells.ImportTextSpellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FantasyModuleParser.Spells"
+        xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
+        mc:Ignorable="d"
+        Title="ImportTextSpellUC" Height="610" Width="520">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="ImportTextBox" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap" AcceptsReturn="True"/>
+        <ComboBox x:Name="ImportSelector" Grid.Row="2" Grid.Column="1" Width="200" Height="25" HorizontalAlignment="Right" Margin="5">
+            <ComboBoxItem IsSelected="True">PDF (Spell)</ComboBoxItem>
+        </ComboBox>
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Import and Return" Grid.Column="1" HorizontalAlignment="Left" Click="ImportTextAndReturnButton_Click" Width="130" />
+            <Button Content="Cancel All Changes" Grid.Column="2" Width="130" HorizontalAlignment="Right" Click="ESExit_Click"/>
+        </Grid>
+    </Grid>
+</Window>

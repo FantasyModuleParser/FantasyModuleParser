@@ -326,8 +326,6 @@ namespace FantasyModuleParser.Importer.NPC
                 // If the string found contains a period AND is lowercase, then it's very likely it's not a new trait (e.g. lowered., location.)
                 if (strArray[idx].EndsWith("."))
                     return !strArray[idx].ToLower().Equals(strArray[idx]);
-                
-
             }
             return false;
         }

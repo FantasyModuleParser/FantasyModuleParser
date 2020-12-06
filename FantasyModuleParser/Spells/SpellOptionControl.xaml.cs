@@ -15,6 +15,7 @@ namespace FantasyModuleParser.Spells
     {
         public event EventHandler OnViewStatBlock;
         public event EventHandler OnViewStatUpdate;
+        private ImportTextSpellView importTextSpellView;
         public SpellOptionControl()
         {
             InitializeComponent();
@@ -22,6 +23,8 @@ namespace FantasyModuleParser.Spells
             ReactionDescription.IsEnabled = spellViewModel.SpellModel.CastingType == Enums.CastingType.Reaction;
             DurationTime.IsEnabled = spellViewModel.SpellModel.DurationType == Enums.DurationType.Time;
             DurationUnit.IsEnabled = spellViewModel.SpellModel.DurationType == Enums.DurationType.Time;
+            importTextSpellView = new ImportTextSpellView();
+            importTextSpellView.DataContext = this.DataContext;
         }
         private void SaveSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -192,6 +195,11 @@ namespace FantasyModuleParser.Spells
 
                 (DataContext as SpellViewModel).UpdateCastBy(stringBuilder.ToString());
             }
+        }
+
+        private void OpenImportSpellView_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            importTextSpellView.ShowDialog();
         }
     }
 }

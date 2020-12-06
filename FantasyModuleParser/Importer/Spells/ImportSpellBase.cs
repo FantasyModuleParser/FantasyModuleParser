@@ -60,7 +60,10 @@ namespace FantasyModuleParser.Importer.Spells
                         importStatEnum = ImportStatEnum.CAST_BY;
                         break;
                     case ImportStatEnum.CAST_BY:
-                        ParseCastByClasses(line, resultSpellModel);
+                        if (line.StartsWith("Classes:"))
+                            ParseCastByClasses(line, resultSpellModel);
+                        else
+                            resultSpellModel.Description = line; // No character class to associate with
                         importStatEnum = ImportStatEnum.DESCRIPTION;
                         break;
                     case ImportStatEnum.DESCRIPTION:

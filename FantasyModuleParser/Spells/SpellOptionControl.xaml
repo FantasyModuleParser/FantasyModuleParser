@@ -264,7 +264,7 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Content="Import Text" Grid.Column="0" Style="{StaticResource standardButton}" />
+            <Button Content="Import Text" Grid.Column="0" Style="{StaticResource standardButton}" Click="OpenImportSpellView_Click"/>
             <Button Content="View Stat Block" Grid.Column="1" Style="{StaticResource standardButton}" Click="ViewStatBlock_Click"  />
             <Button Content="Save Spell" Grid.Column="2"  Style="{StaticResource standardButton}" Click="SaveSpellButton_Click"/>
             <Button Content="Add to Project" Grid.Column="3"  Style="{StaticResource standardButton}" Click="AddToProjectButton_Click" />
