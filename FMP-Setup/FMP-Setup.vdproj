@@ -650,6 +650,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -657,7 +665,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\FMP-v02014c.msi"
+        "OutputFilename" = "8:Release\\FMP-v02014d.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -674,6 +682,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -1814,15 +1830,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
-        "ProductCode" = "8:{59223198-6E46-40FC-B942-11E7922A753B}"
-        "PackageCode" = "8:{C9E756C6-B2AC-4239-AFA3-9712DE7B0DE8}"
+        "ProductCode" = "8:{63A6BDAD-D1D1-4737-864A-1E5E465F7E4D}"
+        "PackageCode" = "8:{28D3DFDF-CA4B-4758-899E-AC054E6DC1AC}"
         "UpgradeCode" = "8:{AFDEA0AD-13E5-4525-BA36-E7A08BE22109}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Fantasy Module Parser"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1952,7 +1968,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6CC56D7D35234F6B864E81655E9D6456"
             {
             "Name" = "8:Uninstall FMP"
-            "Arguments" = "8:/x {59223198-6E46-40FC-B942-11E7922A753B} /qr"
+            "Arguments" = "8:/x {63A6BDAD-D1D1-4737-864A-1E5E465F7E4D} /qr"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
@@ -2378,7 +2394,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_89E3EC870B20448CA778A149967CD1A9"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\FantasyModuleParser.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0BA3C34B953948E8B3AECD4007A7CD92"

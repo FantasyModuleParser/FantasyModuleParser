@@ -763,9 +763,9 @@
     <EmbeddedResource Include="Resources\projectengineer_logo.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Redo.png">
+    <Resource Include="Resources\Redo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\refmanengineer_logo.png">
@@ -774,9 +774,9 @@
     <EmbeddedResource Include="Resources\refmanengineer_logo.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Speech Bubble With Dots.png">
+    <Resource Include="Resources\Speech Bubble With Dots.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\spellengineer_logo.png">
@@ -793,64 +793,64 @@
     <EmbeddedResource Include="Resources\tableengineer_logo.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Text Color.png">
+    <Resource Include="Resources\Text Color.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Underline.png">
+    <Resource Include="Resources\Underline.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Undo.png">
+    <Resource Include="Resources\Undo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\up_arrow.png">
+    <Resource Include="Resources\up_arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Bold.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Resource Include="Resources\Bold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Bulleted List.png">
+    <Resource Include="Resources\Bulleted List.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\cancel.png">
+    <Resource Include="Resources\cancel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\down_arrow.png">
+    <Resource Include="Resources\down_arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Header.png">
+    <Resource Include="Resources\Header.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\istockphoto-868640314-612x612.jpg">
+    <Resource Include="Resources\istockphoto-868640314-612x612.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Italic.png">
+    <Resource Include="Resources\Italic.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Folder.png">
+    <Resource Include="Resources\Folder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
