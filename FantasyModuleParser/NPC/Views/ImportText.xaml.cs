@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Importer.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FantasyModuleParser.NPC
 {
