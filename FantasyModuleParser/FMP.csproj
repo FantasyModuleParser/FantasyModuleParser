@@ -599,9 +599,6 @@
     <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
       <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NPC\Views\ViewLegendaryAction.xaml.cs">
-      <DependentUpon>ViewLegendaryAction.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -678,10 +675,6 @@
     <Page Include="Main\Views\FMPConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\ViewLegendaryAction.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Spells\CastByWindow.xaml">
       <SubType>Designer</SubType>
