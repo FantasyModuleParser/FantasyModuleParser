@@ -31,7 +31,7 @@ namespace FantasyModuleParser.Exporters
 
         public void CreateCampaign(ModuleModel moduleModel)
         {
-            if (string.IsNullOrEmpty(settingsService.Load().FGModuleFolderLocation))
+            if (string.IsNullOrEmpty(settingsService.Load().FGCampaignFolderLocation))
             {
                 throw new ApplicationException("No Module Path has been set");
             }
@@ -184,7 +184,6 @@ namespace FantasyModuleParser.Exporters
 								xmlWriter.WriteString("images" + "\\" + Path.GetFileName(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
 								xmlWriter.WriteEndElement();
 								xmlWriter.WriteEndElement();
-								WriteLocked(xmlWriter);
 								WriteName(xmlWriter, npcModel);
 								if (!string.IsNullOrEmpty(npcModel.NonID))
 								{
@@ -209,15 +208,10 @@ namespace FantasyModuleParser.Exporters
 					#endregion
 				}
 				#region Reference Section
-				xmlWriter.WriteStartElement("reference");
-				if (moduleModel.IsLockedRecords)
-				{
-					xmlWriter.WriteAttributeString("static", "true");
-				}
 				if (moduleModel.IncludeNPCs)
 				{
 					#region NPC Data
-					xmlWriter.WriteStartElement("npcdata");
+					xmlWriter.WriteStartElement("npc");
 
 					//Category section in the XML generation
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
@@ -231,7 +225,6 @@ namespace FantasyModuleParser.Exporters
 						foreach (NPCModel npcModel in FatNPCList)
 						{
 							xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel)); // Open <npcModel.NPCName>
-							WriteLocked(xmlWriter);
 							WriteAbilities(xmlWriter, npcModel);
 							WriteAC(xmlWriter, npcModel);
 							WriteActions(xmlWriter, npcModel);
@@ -267,7 +260,7 @@ namespace FantasyModuleParser.Exporters
 				if (moduleModel.IncludeSpells)
 				{
 					#region Spell Data
-					xmlWriter.WriteStartElement("spelldata");
+					xmlWriter.WriteStartElement("spell");
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
 						xmlWriter.WriteStartElement("category");
@@ -279,7 +272,6 @@ namespace FantasyModuleParser.Exporters
 						foreach (SpellModel spellModel in FatSpellList)
 						{
 							xmlWriter.WriteStartElement(SpellNameToXMLFormat(spellModel));
-							WriteLocked(xmlWriter);
 							WriteSpellName(xmlWriter, spellModel);
 							WriteSpellDescription(xmlWriter, spellModel);
 							WriteSpellLevel(xmlWriter, spellModel);
@@ -311,249 +303,11 @@ namespace FantasyModuleParser.Exporters
 				//	xmlWriter.WriteEndElement();
 				//	xmlWriter.WriteEndElement();
 				#endregion
-				if (moduleModel.IncludeImages)
-				{
-					#region Image Lists
-					xmlWriter.WriteStartElement("imagelists");
-					xmlWriter.WriteStartElement("bycategory");
-					xmlWriter.WriteStartElement("description");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("Images");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
-					foreach (CategoryModel categoryModel in moduleModel.Categories)
-					{
-						xmlWriter.WriteStartElement(CategoryNameToXML(categoryModel));
-						xmlWriter.WriteStartElement("description");
-						xmlWriter.WriteAttributeString("type", "string");
-						xmlWriter.WriteString(categoryModel.Name);
-						xmlWriter.WriteEndElement();
-						xmlWriter.WriteStartElement("index");
-						foreach (NPCModel npcModel in categoryModel.NPCModels)
-						{
-							if (!string.IsNullOrEmpty(npcModel.NPCImage))
-							{
-								xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
-								xmlWriter.WriteStartElement("link");
-								xmlWriter.WriteAttributeString("type", "windowreference");
-								xmlWriter.WriteStartElement("class");
-								xmlWriter.WriteString("imagewindow");
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteStartElement("recordname");
-								xmlWriter.WriteString("image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteStartElement("description");
-								xmlWriter.WriteStartElement("field");
-								xmlWriter.WriteString("name");
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteStartElement("source");
-								xmlWriter.WriteAttributeString("type", "string");
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
-							}
-						}
-						xmlWriter.WriteEndElement();
-						xmlWriter.WriteEndElement();
-					}
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					#endregion
-				}
-				if (moduleModel.IncludeNPCs)
-				{
-					#region NPC Lists
-					xmlWriter.WriteStartElement("npclists");
-					xmlWriter.WriteStartElement("npcs");
-					xmlWriter.WriteStartElement("name");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("byletter");
-					xmlWriter.WriteStartElement("description");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
-					CreateReferenceByFirstLetter(xmlWriter, moduleModel, FatNPCList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("bylevel");
-					xmlWriter.WriteStartElement("description");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
-					CreateReferenceByCR(xmlWriter, moduleModel, FatNPCList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("bytype");
-					xmlWriter.WriteStartElement("description");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
-					CreateReferenceByType(xmlWriter, moduleModel, FatNPCList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					#endregion
-				}
-				if (moduleModel.IncludeSpells)
-				{
-					#region Spell Lists
-					xmlWriter.WriteStartElement("spelllists");
-					xmlWriter.WriteStartElement("spells");
-					xmlWriter.WriteStartElement("name");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("Spells");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.spelllists._index_@" + moduleModel.Name, "(Index)");
-					int spellListId = 2;
-					foreach (string castByValue in getSortedSpellCasterList(moduleModel))
-					{
-						string referenceId = "reference.spellists.";
-						referenceId += castByValue.Replace(" ", "").Replace("(", "").Replace(")", "").ToLower();
-						referenceId += "@" + moduleModel.Name;
-						WriteIDLinkList(xmlWriter, moduleModel, "id-" + spellListId.ToString("D4"), referenceId, castByValue);
-
-						spellListId++;
-					}
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id002", "reference.spelllists.bard", "Bard");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id003", "reference.spelllists.cleric", "Cleric");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id004", "reference.spelllists.druid", "Druid");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id005", "reference.spelllists.paladin", "Paladin");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id006", "reference.spelllists.ranger", "Ranger");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id007", "reference.spelllists.sorcerer", "Sorcerer");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id008", "reference.spelllists.warlock", "Warlock");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id009", "reference.spelllists.wizard", "Wizard");
-
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-
-					#region Spell Index
-					xmlWriter.WriteStartElement("_index_");
-					xmlWriter.WriteStartElement("description");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("Spell Index");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
-					CreateSpellReferenceByFirstLetter(xmlWriter, moduleModel, FatSpellList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					#endregion
-					#region Spell List By Class
-					//foreach (string castByValue in getSortedSpellCasterList(moduleModel))
-					//            {
-					//	xmlWriter.WriteStartElement(castByValue.Replace("(", "").Replace(")", "").Replace(" ", ""));
-					//		xmlWriter.WriteStartElement("description");
-					//			xmlWriter.WriteAttributeString("type", "string");
-					//			xmlWriter.WriteString(castByValue + " Spells");
-					//		xmlWriter.WriteEndElement();
-					//		xmlWriter.WriteStartElement("groups");
-					SpellListByClass(xmlWriter, moduleModel);
-					//		xmlWriter.WriteEndElement();
-					//	xmlWriter.WriteEndElement();
-					//}
-					#endregion
-					xmlWriter.WriteEndElement(); // Close </spelllists>
-					#endregion
-				}
 				#region Tables
 				//	xmlWriter.WriteStartElement("tables");      
 				//	xmlWriter.WriteString(" ");                 
 				//	xmlWriter.WriteEndElement();                
 				#endregion
-				xmlWriter.WriteEndElement(); // Close </reference>
-				#endregion
-				#region Library
-				// For the Blank DB XML unit test, need to check if any NPCs exist
-				if (moduleModel.Categories != null && moduleModel.Categories.Count > 0)
-				{
-					xmlWriter.WriteStartElement("library");
-					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel));
-					xmlWriter.WriteStartElement("name");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString(moduleModel.Name + " Reference Library");
-					xmlWriter.WriteEndElement(); // close name						
-					xmlWriter.WriteStartElement("categoryname");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString(moduleModel.Category);
-					xmlWriter.WriteEndElement();  // close categoryname                                                        
-					xmlWriter.WriteStartElement("entries");
-					if (moduleModel.IncludeImages)
-					{
-						xmlWriter.WriteStartElement("r01images");
-						xmlWriter.WriteStartElement("librarylink");
-						xmlWriter.WriteAttributeString("type", "windowreference");
-						xmlWriter.WriteStartElement("class");
-						xmlWriter.WriteString("reference_colindex");
-						xmlWriter.WriteEndElement();  // close class                           
-						xmlWriter.WriteStartElement("recordname");
-						xmlWriter.WriteString("reference.imagelists.bycategory@" + moduleModel.Name);
-						xmlWriter.WriteEndElement();  // close recordname     
-						xmlWriter.WriteEndElement();  // close librarylink
-						xmlWriter.WriteStartElement("name");
-						xmlWriter.WriteAttributeString("type", "string");
-						xmlWriter.WriteString("Images");
-						xmlWriter.WriteEndElement();  // close name            
-						xmlWriter.WriteEndElement();  // close r01images
-					}
-					if (moduleModel.IncludeNPCs)
-					{
-						if (moduleModel.Categories[0].NPCModels.Count > 0)
-						{
-							xmlWriter.WriteStartElement("r02monsters");
-							xmlWriter.WriteStartElement("librarylink");
-							xmlWriter.WriteAttributeString("type", "windowreference");
-							xmlWriter.WriteStartElement("class");
-							xmlWriter.WriteString("referenceindex");
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteStartElement("recordname");
-							xmlWriter.WriteString("reference.npclists.npcs@" + moduleModel.Name);
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteStartElement("name");
-							xmlWriter.WriteAttributeString("type", "string");
-							xmlWriter.WriteString("NPCs");
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteEndElement();
-						}
-					}
-					if (moduleModel.IncludeSpells)
-					{
-						if (moduleModel.Categories[0].SpellModels.Count > 0)
-						{
-							xmlWriter.WriteStartElement("r03spells");
-							xmlWriter.WriteStartElement("librarylink");
-							xmlWriter.WriteAttributeString("type", "windowreference");
-							xmlWriter.WriteStartElement("class");
-							xmlWriter.WriteString("referenceindex");
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteStartElement("recordname");
-							xmlWriter.WriteString("reference.spelllists.spells@" + moduleModel.Name);
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteStartElement("name");
-							xmlWriter.WriteAttributeString("type", "string");
-							xmlWriter.WriteString("Spells");
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteEndElement();
-						}
-					}
-					xmlWriter.WriteEndElement();  // close entries                               
-					xmlWriter.WriteEndElement();  // close libraryname                         
-					xmlWriter.WriteEndElement();  // close library                          
-				}
 				#endregion
 				xmlWriter.WriteEndElement(); // Closes </root>
 				xmlWriter.WriteEndDocument();
@@ -870,19 +624,6 @@ namespace FantasyModuleParser.Exporters
 		{
 			string categoryName = categoryModel.Name;
 			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
-		}
-		#endregion
-		#region Common Methods
-		private void WriteLocked(XmlWriter xmlWriter)
-		{
-			ModuleModel moduleModel = new ModuleModel();
-			string lockedRecords = "0";
-			if (moduleModel.IsLockedRecords)
-				lockedRecords = "1";
-			xmlWriter.WriteStartElement("locked");
-			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteString(lockedRecords.ToString());
-			xmlWriter.WriteEndElement();
 		}
 		#endregion
 		#region NPC Methods for Reference Data XML
