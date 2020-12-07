@@ -5,6 +5,7 @@
         public string MainFolderLocation { get; set; }
         public string ProjectFolderLocation { get; set; }
         public string FGModuleFolderLocation { get; set; }
+        public string FGCampaignFolderLocation { get; set; }
         public string NPCFolderLocation { get; set; }
         public string SpellFolderLocation { get; set; }
         public string EquipmentFolderLocation { get; set; }

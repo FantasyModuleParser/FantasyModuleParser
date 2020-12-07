@@ -438,6 +438,8 @@
     </Compile>
     <Compile Include="Converters\LanguageModelConverter.cs" />
     <Compile Include="Converters\SelectableActionModelConverter.cs" />
+    <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
+    <Compile Include="Exporters\ICampaign.cs" />
     <Compile Include="Importer\Spells\IImportSpell.cs" />
     <Compile Include="Importer\Spells\ImportSpellBase.cs" />
     <Compile Include="Main\UserControls\CustomCastersUC.xaml.cs">

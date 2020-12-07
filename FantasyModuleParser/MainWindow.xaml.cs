@@ -172,6 +172,26 @@ namespace FantasyModuleParser
             MessageBox.Show("Module Created Successfully");
         }
 
+        private void CreateCampaign_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO:  This is a prime example of how Dependency Injection would be 
+            // amazing!  each exporter uses the interface IExporter, so the DI system
+            // could be updated based on the user's selection from somewhere else
+
+            // For now, just infer that IExporter = new FantasyGroundsExporter;
+
+            ICampaign exporter = new FantasyGroundsCampaign();
+
+            // DI would be used here to get an singleton instance of ModuleService (acting almost as a factory...)
+            ModuleService moduleService = new ModuleService();
+
+            //moduleService.GetModuleModel() refers to the static instantiation of ModuleModel, which is modified
+            // throughout the application
+
+            exporter.CreateCampaign(moduleService.GetModuleModel());
+            MessageBox.Show("Campaign Created Successfully");
+        }
+
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);

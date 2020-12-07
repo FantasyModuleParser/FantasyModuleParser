@@ -152,5 +152,20 @@ namespace FantasyModuleParser.Main.ViewModels
                 RaisePropertyChanged("SettingsModel");
             }
         }
+        public void ChangeDefaultFGCampaignFolder()
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Description = "Select the default Fantasy Grounds Module Folder";
+
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                string sSelectedPath = folderBrowserDialog.SelectedPath;
+                SettingsModel.FGCampaignFolderLocation = @sSelectedPath;
+
+                // Need to call this on the Model to tell the UserControl using this as a DataContext
+                // to say "Hey, UserControl!  The 'SettingsModel' object has changed, and you should refresh yourself!
+                RaisePropertyChanged("SettingsModel");
+            }
+        }
     }
 }
