@@ -442,6 +442,7 @@
     <Compile Include="Exporters\ICampaign.cs" />
     <Compile Include="Importer\Spells\IImportSpell.cs" />
     <Compile Include="Importer\Spells\ImportSpellBase.cs" />
+    <Compile Include="Main\Models\Enums\GUIOption.cs" />
     <Compile Include="Main\UserControls\CustomCastersUC.xaml.cs">
       <DependentUpon>CustomCastersUC.xaml</DependentUpon>
     </Compile>

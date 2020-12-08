@@ -1,7 +1,9 @@
 ﻿<UserControl x:Class="FantasyModuleParser.Main.UserControls.Settings.SuiteSettingsUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:mainEnum="clr-namespace:FantasyModuleParser.Main.Models.Enums"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="370" d:DesignWidth="660">
@@ -94,7 +96,7 @@
                     </TextBlock>
                 </TextBox.ToolTip>
             </TextBox>
-            <CheckBox Content="Select default GUI on startup" Visibility="Hidden" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" Grid.Column="5" />
+            <Label Content="Select default GUI on startup" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
@@ -114,11 +116,7 @@
                     </TextBlock>
                 </TextBox.ToolTip>
             </TextBox>
-            <ComboBox Visibility="Hidden" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="200" Grid.Column="5" >
-                <ComboBoxItem IsSelected="True">NPC Options</ComboBoxItem>
-                <ComboBoxItem>Spell Options</ComboBoxItem>
-                <ComboBoxItem>Story Options</ComboBoxItem>
-                <ComboBoxItem>Table Options</ComboBoxItem>
+            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type mainEnum:GUIOption}}}" SelectedValue="{Binding SettingsModel.DefaultGUISelection, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="200" Grid.Column="5" >
             </ComboBox>
         </Grid>
         <Grid Grid.Row="9">

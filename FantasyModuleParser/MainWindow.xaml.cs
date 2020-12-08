@@ -33,7 +33,14 @@ namespace FantasyModuleParser
         {
             InitializeComponent();
             settingsService = new SettingsService();
+            settingsModel = settingsService.Load();
             spellStatBlockUC = new SpellStatBlockUC();
+            if(settingsModel.DefaultGUISelection == "NPCOption")
+            {
+                stackNPC.Visibility = Visibility.Visible;
+                stackMain.Visibility = Visibility.Hidden;
+                stackSpells.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Directory_Click(object sender, RoutedEventArgs e)
