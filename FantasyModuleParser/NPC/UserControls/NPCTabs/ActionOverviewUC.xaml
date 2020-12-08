@@ -43,7 +43,11 @@
                         <ItemsControl Name="NpcActionList" ItemsSource="{Binding Path=NPCActions}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <overviewUserControl:OverviewControl ShowEditButton="Hidden"></overviewUserControl:OverviewControl>
+                                    <overviewUserControl:OverviewControl 
+                                        RemoveAction="OverviewControl_RemoveAction"
+                                        RaiseActionInList="OverviewControl_RaiseActionInList"
+                                        LowerActionInList="OverviewControl_LowerActionInList"
+                                        ShowEditButton="Hidden"></overviewUserControl:OverviewControl>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

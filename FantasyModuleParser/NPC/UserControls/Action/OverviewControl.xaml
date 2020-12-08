@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
 
             <Button x:Name="btn_Edit" Grid.Column="1" Height="20" Width="20"
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Edit_Click" >
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btn_Edit_Click" Visibility="{Binding ShowEditButton}">
                 <Image Source="/Resources/istockphoto-868640314-612x612.jpg" />
             </Button>
             <Button x:Name="btn_Cancel" Grid.Column="2" Height="20" Width="20"
