@@ -33,7 +33,7 @@ namespace FantasyModuleParser.Exporters
         {
             if (string.IsNullOrEmpty(settingsService.Load().FGCampaignFolderLocation))
             {
-                throw new ApplicationException("No Module Path has been set");
+                throw new ApplicationException("No Campaign folder has been set");
             }
 
             if (string.IsNullOrEmpty(moduleModel.Name))

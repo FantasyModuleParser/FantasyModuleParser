@@ -66,24 +66,24 @@ namespace FantasyModuleParser.Main.Services
         public void AddNPCToCategory(NPCModel npcModel, string categoryValue)
         {
             if (categoryValue == null || categoryValue.Length == 0)
-                throw new InvalidDataException("Category value is null;  Cannot save NPC");
+                throw new InvalidDataException("Category value is null;  Cannot save NPC.\nSelect a Category from the FG Category dropdown menu.");
             if (npcModel == null)
-                throw new InvalidDataException("NPC Model data object is null");
-            if(npcModel.NPCName == null || npcModel.NPCName.Length == 0)
-                throw new InvalidDataException("NPC name is empty!");
+                throw new InvalidDataException("NPC Model data object is null.\nYou thought you could add an NPC without creating or importing one?");
+            if (npcModel.NPCName == null || npcModel.NPCName.Length == 0)
+                throw new InvalidDataException("NPC name is empty!\nAll NPCs must have a name.");
             if (npcModel.ChallengeRating == null || npcModel.ChallengeRating.Length == 0)
-                throw new InvalidDataException("No Challenge Rating has been set for NPC.");
+                throw new InvalidDataException("No Challenge Rating has been set for NPC.\nHow do you expect to give your players experience?");
             if (npcModel.NPCType == null || npcModel.NPCType.Length == 0)
-                throw new InvalidDataException("NPC must have a specified type.");
+                throw new InvalidDataException("NPC must have a specified type.\nEven an unknown NPC has a type.");
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
             if (!string.IsNullOrEmpty(npcModel.NPCImage) && npcModel.NPCImage.StartsWith("file:///"))
                 throw new InvalidDataException("Remove the file:/// from the NPC Image path and Add to Project again.");
             if (npcModel.Alignment == null)
-                throw new InvalidDataException("Select an alignment for the NPC and add to project again.");
+                throw new InvalidDataException("Select an alignment for the NPC and add to project again.\nDoes alignment really matter in DnD anymore?\nUnforunately, Fantasy Grounds and Fantasy Module Parser requires it.");
             if (npcModel.AC == null)
-                throw new InvalidDataException("Please add an armor class and try again.");
+                throw new InvalidDataException("Please add an armor class and try again.\nHow do you expect to hit a NPC without knowing it's AC?");
             if (npcModel.NPCToken == " ")
             {
                 npcModel.NPCToken = "";
