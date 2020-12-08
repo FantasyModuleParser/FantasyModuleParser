@@ -69,5 +69,11 @@ namespace FantasyModuleParser.Main.UserControls.Settings
             SettingsViewModel viewModel = DataContext as SettingsViewModel;
             viewModel.ChangeDefaultFGModuleFolder(); // <-- Needs some input here
         }
+
+        private void FGCampaignDefaultFolder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SettingsViewModel viewModel = DataContext as SettingsViewModel;
+            viewModel.ChangeDefaultFGCampaignFolder(); // <-- Needs some input here
+        }
     }
 }

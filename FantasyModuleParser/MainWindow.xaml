@@ -22,6 +22,7 @@
             <MenuItem Header="_Options">
                 <MenuItem Header="_Manage Project" Click="Menu_Click" Name="ManageProject" />
                 <MenuItem Header="_Create Module" Click="CreateModule_Click"/>
+                <MenuItem Header="_Create Campaign" Click="CreateCampaign_Click" />
                 <Separator />
                 <MenuItem Header="_Manage Categories" Click="Menu_Click" Name="ManageCategories" />
                 <MenuItem Header="_Settings" Click="Menu_Click" Name="Settings" Visibility="Visible"/>
