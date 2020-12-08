@@ -1,7 +1,7 @@
 ﻿using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
-using FantasyModuleParser.NPC.ViewModels;
-using System.Collections.ObjectModel;
+using FantasyModuleParser.NPC.UserControls.Action;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -39,5 +39,41 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		{
 			new LegendaryActions().Show();
 		}
-	}
+
+        private void OverviewControl_RemoveAction(object sender, EventArgs e)
+        {
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    actionController.RemoveActionFromNPC(action as ActionModelBase);
+                }
+            }
+        }
+
+        private void OverviewControl_RaiseActionInList(object sender, EventArgs e)
+        {
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    actionController.RaiseActionInNPCActionList(action as ActionModelBase);
+                }
+            }
+        }
+
+        private void OverviewControl_LowerActionInList(object sender, EventArgs e)
+        {
+            if (sender is OverviewControl)
+            {
+                var action = (sender as OverviewControl).DataContext;
+                if (action is ActionModelBase)
+                {
+                    actionController.LowerActionInNPCActionsList(action as ActionModelBase);
+                }
+            }
+        }
+    }
 }
