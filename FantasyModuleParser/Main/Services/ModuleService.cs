@@ -81,14 +81,14 @@ namespace FantasyModuleParser.Main.Services
             if (!string.IsNullOrEmpty(npcModel.NPCImage) && npcModel.NPCImage.StartsWith("file:///"))
                 throw new InvalidDataException("Remove the file:/// from the NPC Image path and Add to Project again.");
             if (npcModel.Alignment == null)
-                throw new InvalidDataException("Select an alignment for the NPC and add to project again.\nDoes alignment really matter in DnD anymore?\nUnforunately, Fantasy Grounds and Fantasy Module Parser requires it.");
+                throw new InvalidDataException("Select an alignment for the NPC and add to project again.\nDoes alignment really matter in DnD anymore?");
             if (npcModel.AC == null)
                 throw new InvalidDataException("Please add an armor class and try again.\nHow do you expect to hit a NPC without knowing it's AC?");
-            if (npcModel.NPCToken == " ")
+            if (string.IsNullOrEmpty(npcModel.NPCToken))
             {
                 npcModel.NPCToken = "";
             }
-            if (npcModel.NPCImage == " ")
+            if (string.IsNullOrEmpty(npcModel.NPCImage))
             {
                 npcModel.NPCImage = "";
             }
