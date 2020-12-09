@@ -35,9 +35,11 @@ namespace FantasyModuleParser
             settingsService = new SettingsService();
             settingsModel = settingsService.Load();
             spellStatBlockUC = new SpellStatBlockUC();
-            if(settingsModel.DefaultGUISelection.Equals("NPCOption"))
+            if(settingsModel.DefaultGUISelection != null && 
+                settingsModel.DefaultGUISelection.Equals("NPCOption", StringComparison.CurrentCulture))
             {
                 ShowNPCUserControl();
+                optionNPC.IsSelected = true;
             }
         }
 
