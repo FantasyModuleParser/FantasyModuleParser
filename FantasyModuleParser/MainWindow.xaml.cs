@@ -23,6 +23,8 @@ namespace FantasyModuleParser
     public partial class MainWindow : Window
     {
         private bool isViewStatBlockVisible = false;
+        private ModuleService moduleService;
+        private ModuleModel moduleModel;
         private SettingsModel settingsModel;
         private SettingsService settingsService;
         private NPCOptionControl npcOptionControl;
@@ -32,6 +34,7 @@ namespace FantasyModuleParser
         public MainWindow()
         {
             InitializeComponent();
+            moduleService = new ModuleService();
             settingsService = new SettingsService();
             settingsModel = settingsService.Load();
             spellStatBlockUC = new SpellStatBlockUC();
@@ -40,6 +43,11 @@ namespace FantasyModuleParser
             {
                 ShowNPCUserControl();
                 optionNPC.IsSelected = true;
+            }
+            if(settingsModel.LastProject != null && settingsModel.LoadLastProject)
+            {
+                moduleService.Load(Path.Combine(settingsModel.ProjectFolderLocation, settingsModel.LastProject + ".fmp"));
+                moduleModel = moduleService.GetModuleModel();
             }
         }
 

@@ -61,6 +61,8 @@ namespace FantasyModuleParser.Main.Services
                 settingsModel.FGCampaignFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "campaigns");
                 settingsModel.PersistentWindow = true;
                 settingsModel.DefaultGUISelection = "None";
+                settingsModel.LoadLastProject = false;
+                settingsModel.LastProject = null;
                 return settingsModel;
             }
         }
