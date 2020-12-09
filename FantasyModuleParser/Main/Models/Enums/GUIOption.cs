@@ -10,13 +10,13 @@ namespace FantasyModuleParser.Main.Models.Enums
         [Description("NPC Option")]
         NPCOption = 1,
 
-        [Description("Spell Option")]
-        SpellOption = 2,
+        //[Description("Spell Option")]
+        //SpellOption = 2,
 
-        [Description("Story Option")]
-        StoryOption = 3,
+        //[Description("Story Option")]
+        //StoryOption = 3,
 
-        [Description("Table Option")]
-        TableOption = 4,
+        //[Description("Table Option")]
+        //TableOption = 4,
     }
 }
