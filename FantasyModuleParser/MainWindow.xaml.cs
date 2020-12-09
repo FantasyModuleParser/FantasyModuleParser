@@ -33,7 +33,14 @@ namespace FantasyModuleParser
         {
             InitializeComponent();
             settingsService = new SettingsService();
+            settingsModel = settingsService.Load();
             spellStatBlockUC = new SpellStatBlockUC();
+            if(settingsModel.DefaultGUISelection != null && 
+                settingsModel.DefaultGUISelection.Equals("NPCOption", StringComparison.CurrentCulture))
+            {
+                ShowNPCUserControl();
+                optionNPC.IsSelected = true;
+            }
         }
 
         private void Directory_Click(object sender, RoutedEventArgs e)
@@ -197,21 +204,29 @@ namespace FantasyModuleParser
             base.OnClosed(e);
             System.Windows.Application.Current.Shutdown();
         }
+        private void ShowNPCUserControl()
+        {
+            stackNPC.Visibility = Visibility.Visible;
+            stackMain.Visibility = Visibility.Hidden;
+            stackSpells.Visibility = Visibility.Hidden;
+        }
+        private void ShowSpellUserControl()
+        {
+            stackNPC.Visibility = Visibility.Hidden;
+            stackMain.Visibility = Visibility.Hidden;
+            stackSpells.Visibility = Visibility.Visible;
+            spellViewModel = spellOptionUserControl.DataContext as SpellViewModel;
+            spellStatBlockUC.DataContext = spellViewModel;
+        }
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-            if (optionNPC.IsSelected == true)
+            if (optionNPC.IsSelected)
             {
-                stackNPC.Visibility = Visibility.Visible;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Hidden;
+                ShowNPCUserControl();
             }
-            if (optionSpells.IsSelected == true)
+            if (optionSpells.IsSelected)
             {
-                stackNPC.Visibility = Visibility.Hidden;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Visible;
-                spellViewModel = spellOptionUserControl.DataContext as SpellViewModel;
-                spellStatBlockUC.DataContext = spellViewModel;
+                ShowSpellUserControl();
             }
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)

@@ -13,5 +13,6 @@
         public string TableFolderLocation { get; set; }
         public string ParcelFolderLocation { get; set; }
         public bool PersistentWindow { get; set; }
+        public string DefaultGUISelection { get; set; }
     }
 }
