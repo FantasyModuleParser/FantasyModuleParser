@@ -117,6 +117,10 @@ namespace FantasyModuleParser.Importer.NPC
                     continueTraitsFlag = true;
                     continue;
                 }
+                if (line.StartsWith("Proficiency Bonus", StringComparison.Ordinal))
+                {
+                    continue;
+                }
                 if (continueTraitsFlag)
                 {
                     if (line.Equals("Actions"))
