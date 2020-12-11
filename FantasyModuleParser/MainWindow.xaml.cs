@@ -8,6 +8,7 @@ using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Spells;
 using FantasyModuleParser.Spells.UserControls;
 using FantasyModuleParser.Spells.ViewModels;
+using log4net;
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -29,9 +30,12 @@ namespace FantasyModuleParser
         private SpellStatBlockUC spellStatBlockUC;
         private SpellViewModel spellViewModel;
 
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public MainWindow()
         {
             InitializeComponent();
+            log4net.Config.XmlConfigurator.Configure();
             settingsService = new SettingsService();
             settingsModel = settingsService.Load();
             spellStatBlockUC = new SpellStatBlockUC();
@@ -51,71 +55,45 @@ namespace FantasyModuleParser
             switch (menuitem.Name)
             {
                 case "AppData":
-                    if (!Directory.Exists(settingsModel.MainFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.MainFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.MainFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.MainFolderLocation);
                     break;
                 case "Projects":
-                    if (!Directory.Exists(settingsModel.ProjectFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.ProjectFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.ProjectFolderLocation);
                     break;
                 case "Artifacts":
-                    if (!Directory.Exists(settingsModel.ArtifactFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.ArtifactFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.ArtifactFolderLocation);
                     break;
                 case "Equipment":
-                    if (!Directory.Exists(settingsModel.EquipmentFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.EquipmentFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.EquipmentFolderLocation);
                     break;
                 case "NPCs":
-                    if (!Directory.Exists(settingsModel.NPCFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.NPCFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.NPCFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.NPCFolderLocation);
                     break;
                 case "Parcels":
-                    if (!Directory.Exists(settingsModel.ParcelFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.ParcelFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.ParcelFolderLocation);
                     break;
                 case "Spells":
-                    if (!Directory.Exists(settingsModel.SpellFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.SpellFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.SpellFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.SpellFolderLocation);
                     break;
                 case "Tables":
-                    if (!Directory.Exists(settingsModel.TableFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.TableFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.TableFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.TableFolderLocation);
                     break;
                 case "FGModules":
-                    if (!Directory.Exists(settingsModel.FGModuleFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.FGModuleFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.FGModuleFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.FGModuleFolderLocation);
                     break;
             }
             openFileDialog.ShowDialog();
         }
+        private string CheckAndCreateDirectory(string folderLocation)
+        {
+            if (!Directory.Exists(folderLocation))
+            {
+                log.Debug("Folder location is non-existant;  Creating folder :: " + folderLocation);
+                Directory.CreateDirectory(folderLocation);
+            }
+            return folderLocation;
+        }
+
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagement projectManagement = null;
@@ -202,6 +180,8 @@ namespace FantasyModuleParser
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
+            log.Info("=====  Fantasy Module Parser closed  ======");
+            log.Info("=============  Logging Ended  =============");
             System.Windows.Application.Current.Shutdown();
         }
         private void ShowNPCUserControl()

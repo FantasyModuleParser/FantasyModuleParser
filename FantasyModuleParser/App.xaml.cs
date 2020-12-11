@@ -1,5 +1,11 @@
-﻿using FantasyModuleParser.NPC;
+﻿using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
+using log4net;
+using log4net.Appender;
+using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace FantasyModuleParser
@@ -10,6 +16,7 @@ namespace FantasyModuleParser
     public partial class App : Application
     {
         public NPCModel NpcModel { get; set; }
+        private SettingsService settingService;
 
         public App()
         {
@@ -27,6 +34,22 @@ namespace FantasyModuleParser
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             
             e.Handled = true;
+        }
+
+        private static readonly ILog log = LogManager.GetLogger(typeof(App));
+        protected override void OnStartup(StartupEventArgs e) 
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            RollingFileAppender fileAppender = LogManager.GetRepository()
+                .GetAppenders().First(appender => appender is RollingFileAppender) as RollingFileAppender;
+
+            //TODO:  Create option to change Log folder location
+            fileAppender.File = Path.Combine(new SettingsService().Load().MainFolderLocation, "logs", "fantasyModuleParser.log");
+            
+            //TODO: Create option to change logging level
+
+            log.Info("        =============  Started Logging  =============        ");
+            base.OnStartup(e);
         }
     }
 }
