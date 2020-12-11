@@ -1,8 +1,10 @@
-﻿using FantasyModuleParser.Main.Services;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using log4net;
 using log4net.Appender;
+using log4net.Core;
 using System;
 using System.IO;
 using System.Linq;
@@ -16,7 +18,6 @@ namespace FantasyModuleParser
     public partial class App : Application
     {
         public NPCModel NpcModel { get; set; }
-        private SettingsService settingService;
 
         public App()
         {
@@ -32,7 +33,8 @@ namespace FantasyModuleParser
             
             // This is purely for quick debugging errors that a user can copy & Paste.
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            
+
+            log.Error("Unexpected Error :: " + e.Exception.Message);
             e.Handled = true;
         }
 
@@ -43,10 +45,20 @@ namespace FantasyModuleParser
             RollingFileAppender fileAppender = LogManager.GetRepository()
                 .GetAppenders().First(appender => appender is RollingFileAppender) as RollingFileAppender;
 
+            SettingsService settingService = new SettingsService();
+            SettingsModel settingsModel = settingService.Load();
+
+            string logFolderPath = settingsModel.LogFolderLocation;
+
+            if(String.IsNullOrEmpty(logFolderPath))
+            {
+                logFolderPath = Path.Combine(new SettingsService().Load().MainFolderLocation, "logs");
+            }
             //TODO:  Create option to change Log folder location
-            fileAppender.File = Path.Combine(new SettingsService().Load().MainFolderLocation, "logs", "fantasyModuleParser.log");
-            
-            //TODO: Create option to change logging level
+            fileAppender.File = Path.Combine(logFolderPath, "fantasyModuleParser.log");
+
+            // Update the logging level to what's defined in the config
+            settingService.ChangeLogLevel(settingsModel);
 
             log.Info("        =============  Started Logging  =============        ");
             base.OnStartup(e);

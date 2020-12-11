@@ -272,6 +272,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Main\UserControls\Settings\LogSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\UserControls\Settings\NPCSettingsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -449,6 +453,9 @@
     <Compile Include="Main\Models\Enums\GUIOption.cs" />
     <Compile Include="Main\UserControls\CustomCastersUC.xaml.cs">
       <DependentUpon>CustomCastersUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\LogSettingsUC.xaml.cs">
+      <DependentUpon>LogSettingsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\ViewModels\CustomCastersUCViewModel.cs" />
     <Compile Include="NPC\Commands\ActionCommand.cs" />
