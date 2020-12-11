@@ -29,16 +29,15 @@ namespace FantasyModuleParser.Exporters
 		{
 			settingsService = new SettingsService();
 		}
-		public string DatabaseXML(ModuleModel moduleModel)
+		private static string DatabaseXML(ModuleModel moduleModel)
         {
-			string xmlRecord;
 			if (moduleModel.IsGMOnly)
             {
-				return xmlRecord = "db.xml";
+				return "db.xml";
             }
 			else
             {
-				return xmlRecord = "client.xml";
+				return "client.xml";
             }
         }
 		public void CreateModule(ModuleModel moduleModel)

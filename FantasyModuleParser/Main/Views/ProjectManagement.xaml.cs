@@ -14,11 +14,7 @@ namespace FantasyModuleParser.Main
     /// </summary>
     public partial class ProjectManagement : Window
     {
-        private ProjectManagementViewModel projectManagementViewModel;
         private SettingsService settingsService;
-        private SettingsModel settingsModel;
-        private ModuleModel moduleModel;
-        private ModuleService moduleService;
         public ProjectManagement()
         {
             InitializeComponent();
@@ -26,8 +22,6 @@ namespace FantasyModuleParser.Main
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
 
-            projectManagementViewModel = new ProjectManagementViewModel();
-            DataContext = projectManagementViewModel;
             settingsService = new SettingsService();
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
@@ -57,14 +51,6 @@ namespace FantasyModuleParser.Main
             viewModel.UpdateModule();
         }
 
-        private void SaveToSettings()
-        {
-            settingsService = new SettingsService();
-            moduleService = new ModuleService();
-            settingsModel = settingsService.Load();
-            moduleModel = moduleService.Load();
-            settingsModel.LastProject = moduleModel.ModFilename;
-        }
         private void SaveModule_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;       
@@ -72,7 +58,10 @@ namespace FantasyModuleParser.Main
             //    SaveToModule_Click(sender, e);
             //else
             viewModel.SaveModule(settingsService.Load().ProjectFolderLocation, viewModel.ModuleModel);
-            SaveToSettings();
+
+            viewModel.SettingsModel.LastProject = viewModel.ModuleModel.ModFilename;
+            settingsService.Save(viewModel.SettingsModel);
+
         }
         private void SaveModuleAndClose_Click(object sender, RoutedEventArgs e)
         {

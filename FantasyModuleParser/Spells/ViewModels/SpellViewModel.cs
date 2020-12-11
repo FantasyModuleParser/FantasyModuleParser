@@ -100,6 +100,7 @@ namespace FantasyModuleParser.Spells.ViewModels
         {
             ModuleModel = _moduleService.GetModuleModel();
         }
+
         public void AddSpellToModule(string categoryValue)
         {
             if (ModuleModel == null || ModuleModel.Categories == null || ModuleModel.Categories.Count == 0 || categoryValue == null)
@@ -112,7 +113,7 @@ namespace FantasyModuleParser.Spells.ViewModels
                 _moduleService.AddSpellToCategory(SpellModel, categoryValue);
                 MessageBox.Show("Spell has been added to the project");
             }
-            catch (Exception exception)
+            catch (InvalidDataException exception)
             {
                 MessageBox.Show("Error detected while adding Spell to Project :: " + exception.Message);
             }

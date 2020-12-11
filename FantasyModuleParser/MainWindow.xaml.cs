@@ -46,8 +46,14 @@ namespace FantasyModuleParser
             }
             if(settingsModel.LastProject != null && settingsModel.LoadLastProject)
             {
-                moduleService.Load(Path.Combine(settingsModel.ProjectFolderLocation, settingsModel.LastProject + ".fmp"));
-                moduleModel = moduleService.GetModuleModel();
+                string lastModuleFilePath = Path.Combine(settingsModel.ProjectFolderLocation, settingsModel.LastProject + ".fmp");
+                if(File.Exists(lastModuleFilePath)) 
+                {
+                    moduleService.Load(Path.Combine(settingsModel.ProjectFolderLocation, settingsModel.LastProject + ".fmp"));
+                    moduleModel = moduleService.GetModuleModel();
+                    npcOptionUserControl.Refresh();
+                    (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
+                }
             }
         }
 
