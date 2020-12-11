@@ -195,6 +195,8 @@ namespace FMPTests_Spells.Importer
         {
             yield return new object[] { generateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 1 minute" };
             yield return new object[] { generateSpellModel_Duration(10, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 10 minutes" };
+            yield return new object[] { generateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Concentration, up to 1 minute" };
+            yield return new object[] { generateSpellModel_Duration(10, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Concentration, up to 10 minutes" };
             yield return new object[] { generateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Duration: Instantaneous" };
             yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Round, null), "Duration: 1 round" };
             yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Minute, null), "Duration: 1 minute" };

@@ -77,12 +77,12 @@ namespace FMPTests_Spells.Importer
         {
             SpellModel expectedSpellModel = LoadSpellFileContent(HotDQ_BASE_PATH + "Druidcraft.txt");
 
-            Assert.AreEqual("Confusion", expectedSpellModel.SpellName);
+            Assert.AreEqual("Druidcraft", expectedSpellModel.SpellName);
         }
         [TestMethod]
         public void FeatherFall()
         {
-            SpellModel expectedSpellModel = LoadSpellFileContent(HotDQ_BASE_PATH + "FeatherFall.txt");
+            SpellModel expectedSpellModel = LoadSpellFileContent(HotDQ_BASE_PATH + "Featherfall.txt");
 
             Assert.AreEqual("Feather Fall", expectedSpellModel.SpellName);
         }

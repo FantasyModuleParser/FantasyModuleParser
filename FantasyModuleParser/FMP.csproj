@@ -437,6 +437,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Importer\Enums\ImportSpellState.cs" />
+    <Compile Include="Importer\Spells\FormatSpellPDFService.cs" />
     <Compile Include="Importer\Spells\IImportSpell.cs" />
     <Compile Include="Importer\Spells\ImportSpellBase.cs" />
     <Compile Include="Main\UserControls\CustomCastersUC.xaml.cs">

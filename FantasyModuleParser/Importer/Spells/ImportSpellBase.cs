@@ -1,72 +1,66 @@
 ﻿using FantasyModuleParser.Extensions;
+using FantasyModuleParser.Importer.Enums;
 using FantasyModuleParser.Spells.Enums;
 using FantasyModuleParser.Spells.Models;
-using MySqlX.XDevAPI.Common;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
-using System.Windows.Markup;
 
 namespace FantasyModuleParser.Importer.Spells
 {
     public class ImportSpellBase : IImportSpell
     {
-        private enum ImportStatEnum
-        {
-            INITIAL, LEVEL_SCHOOL, CAST_BY, CASTING_TIME, COMPONENTS, RANGE, DURATION, DESCRIPTION
-        }
+
         public SpellModel ImportTextToSpellModel(string importData)
         {
-            SpellModel resultSpellModel = new SpellModel();       
-            ImportStatEnum importStatEnum = ImportStatEnum.INITIAL;
+            SpellModel resultSpellModel = new SpellModel();
 
-            StringReader stringReader = new StringReader(importData);
+            string formattedImportData = FormatSpellPDFService.FormatData(importData);
+
+            ImportSpellState importStatEnum = ImportSpellState.INITIAL;
+
+            StringReader stringReader = new StringReader(formattedImportData);
             string line = "";
             while ((line = stringReader.ReadLine()) != null)
             {
                 //importStatEnum = getImportStateEnum(importStatEnum, importData);
                 switch (importStatEnum)
                 {
-                    case ImportStatEnum.INITIAL:
+                    case ImportSpellState.INITIAL:
                         resultSpellModel.SpellName = line;
-                        importStatEnum = ImportStatEnum.LEVEL_SCHOOL;
+                        importStatEnum = ImportSpellState.LEVEL_SCHOOL;
                         break;
-                    case ImportStatEnum.LEVEL_SCHOOL:
+                    case ImportSpellState.LEVEL_SCHOOL:
                         resultSpellModel.SpellLevel = ParseSpellLevel(line);
                         resultSpellModel.SpellSchool = parseSpellSchool(line);
                         resultSpellModel.IsRitual = checkIfRitual(line);
-                        importStatEnum = ImportStatEnum.CASTING_TIME;
+                        importStatEnum = ImportSpellState.CASTING_TIME;
                         break;
-                    case ImportStatEnum.CASTING_TIME:
+                    case ImportSpellState.CASTING_TIME:
                         ParseCastingTime(line, resultSpellModel);
-                        importStatEnum = ImportStatEnum.RANGE;
+                        importStatEnum = ImportSpellState.RANGE;
                         break;
-                    case ImportStatEnum.RANGE:
+                    case ImportSpellState.RANGE:
                         ParseRange(line, resultSpellModel);
-                        importStatEnum = ImportStatEnum.COMPONENTS;
+                        importStatEnum = ImportSpellState.COMPONENTS;
                         break;
-                    case ImportStatEnum.COMPONENTS:
+                    case ImportSpellState.COMPONENTS:
                         ParseComponents(line, resultSpellModel);
-                        importStatEnum = ImportStatEnum.DURATION;
+                        importStatEnum = ImportSpellState.DURATION;
                         break;
-                    case ImportStatEnum.DURATION:
+                    case ImportSpellState.DURATION:
                         ParseDuration(line, resultSpellModel);
-                        importStatEnum = ImportStatEnum.CAST_BY;
+                        importStatEnum = ImportSpellState.CAST_BY;
                         break;
-                    case ImportStatEnum.CAST_BY:
+                    case ImportSpellState.CAST_BY:
                         if (line.StartsWith("Classes:"))
                             ParseCastByClasses(line, resultSpellModel);
                         else
                             resultSpellModel.Description = line; // No character class to associate with
-                        importStatEnum = ImportStatEnum.DESCRIPTION;
+                        importStatEnum = ImportSpellState.DESCRIPTION;
                         break;
-                    case ImportStatEnum.DESCRIPTION:
+                    case ImportSpellState.DESCRIPTION:
                         if(line.EndsWith(".", StringComparison.Ordinal)) 
                         {
                             resultSpellModel.Description += line;
@@ -201,8 +195,9 @@ namespace FantasyModuleParser.Importer.Spells
 
             if(componentArray.Length == 2 && spellModel.IsMaterialComponent)
             {
+                string rawComponentText = componentArray[1].Trim();
                 // Removes the leading '(' and ending ')' characters
-                spellModel.ComponentText = componentArray[1].Substring(0, componentArray[1].Length - 1);
+                spellModel.ComponentText = rawComponentText.Substring(0, rawComponentText.Length - 1);
             }
         }
         public void ParseDuration(string importData, SpellModel spellModel)
@@ -214,6 +209,12 @@ namespace FantasyModuleParser.Importer.Spells
                 spellModel.DurationTime = int.Parse(formattedData.Split(' ')[2]);
                 spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[3]);
             } 
+            else if (formattedData.StartsWith("Concentration, up to ", StringComparison.OrdinalIgnoreCase))
+            {
+                spellModel.DurationType = DurationType.Concentration;
+                spellModel.DurationTime = int.Parse(formattedData.Split(' ')[3]);
+                spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[4]);
+            }
             else if (formattedData.Equals("Instantaneous"))
             {
                 spellModel.DurationType = DurationType.Instantaneous;
