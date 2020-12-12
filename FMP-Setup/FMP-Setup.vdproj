@@ -2394,7 +2394,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_89E3EC870B20448CA778A149967CD1A9"
             {
-            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\FantasyModuleParser.exe"
+            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Release\\FantasyModuleParser.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0BA3C34B953948E8B3AECD4007A7CD92"
