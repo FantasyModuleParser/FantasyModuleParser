@@ -8,12 +8,14 @@ namespace FantasyModuleParser.Converters
     {
         public override LanguageModel ReadJson(JsonReader reader, Type objectType, LanguageModel existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            return (LanguageModel)reader.Value;
+            if(reader != null)
+                return (LanguageModel)reader.Value;
+            return null;
         }
 
         public override void WriteJson(JsonWriter writer, LanguageModel value, JsonSerializer serializer)
         {
-            if (value.Selected)
+            if (writer != null && value != null && value.Selected)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("$type");

@@ -16,5 +16,7 @@
         public string DefaultGUISelection { get; set; }
         public string LogFolderLocation { get; set; }
         public string LogLevel { get; set; }
+        public bool LoadLastProject { get; set; }
+        public string LastProject { get; set; }
     }
 }
