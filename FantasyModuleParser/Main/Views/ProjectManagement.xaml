@@ -3,8 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:FantasyModuleParser.NPC.ViewModels"
         mc:Ignorable="d"
         Title="Project Management" Height="520" Width="820" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico" Closing="Window_Closing">
+    <Window.DataContext>
+        <viewModel:ProjectManagementViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <Style TargetType="Label" x:Key="LabelHeader">
             <Setter Property="FontWeight" Value="Bold"/>
@@ -141,7 +145,7 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Title:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleName" Text="{Binding Path=ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleName" Text="{Binding ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
@@ -149,7 +153,7 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Category:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleCategory" Style="{StaticResource InformationText}" Text="{Binding Path=ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleCategory" Style="{StaticResource InformationText}" Text="{Binding ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="7">
                     <Grid.ColumnDefinitions>
@@ -157,7 +161,7 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Author:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleAuthor" Text="{Binding Path=ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleAuthor" Text="{Binding ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="9">
                     <Grid.ColumnDefinitions>
@@ -166,7 +170,7 @@
                         <ColumnDefinition Width="98" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Filename:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleModFilename" Text="{Binding Path=ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Style="{StaticResource InformationText}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleModFilename" Text="{Binding ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Style="{StaticResource InformationText}" Grid.Column="1"/>
                     <Label Content=".mod" FontSize="8" VerticalAlignment="Center" Padding="0" Grid.Column="2"/>
                 </Grid>
                 <Grid Grid.Row="11">
@@ -175,7 +179,7 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Thumbnail Filename:" Padding="0" Grid.Column="0" />
-                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding Path=ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource ThumbnailFileText}" Grid.Column="1" />
+                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource ThumbnailFileText}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="13">
                     <Grid.ColumnDefinitions>
@@ -185,14 +189,14 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="70" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox IsChecked="{Binding Path=ModuleModel.IsGMOnly, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="GM View Only" Padding="0" Grid.Column="1" />
-                    <CheckBox IsChecked="{Binding Path=ModuleModel.IsLockedRecords, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="Lock Records" Padding="0" Grid.Column="3" />
+                    <CheckBox IsChecked="{Binding ModuleModel.IsGMOnly, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="GM View Only" Padding="0" Grid.Column="1" />
+                    <CheckBox IsChecked="{Binding ModuleModel.IsLockedRecords, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="Lock Records" Padding="0" Grid.Column="3" />
                 </Grid>
                 <Grid Grid.Row="15">
                     <Label Content="Module Path" Padding="0" />
                 </Grid>
                 <Grid Grid.Row="17">
-                    <TextBox x:Name="ModulePathTB" Text="{Binding Path=FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Style="{StaticResource ModulePathText}" />
+                    <TextBox x:Name="ModulePathTB" Text="{Binding FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Style="{StaticResource ModulePathText}" />
                 </Grid>
                 <Label Content="Use the options under File to manage your project" Padding="0" Grid.Row="19"/>
                 <Label Content="1. 'New Project' resets all fields" Padding="0" Grid.Row="20"/>
@@ -250,7 +254,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Images" IsChecked="{Binding Path=ModuleModel.IncludeImages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{StaticResource CheckboxParser}" Grid.Column="0" />
+                    <CheckBox Content="Images" IsChecked="{Binding ModuleModel.IncludeImages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <Label Content="module\input\images\" Style="{StaticResource LabelStandard}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="4">
@@ -258,7 +262,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Tokens" IsChecked="{Binding Path=ModuleModel.IncludeTokens, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
+                    <CheckBox Content="Tokens" IsChecked="{Binding ModuleModel.IncludeTokens, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <Label Content="module\input\tokens\" Style="{StaticResource LabelStandard}" Grid.Column="1" />
                 </Grid>
                 <Label Content="Data Section" Style="{StaticResource LabelHeader}" Grid.Row="5"/>
@@ -267,7 +271,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="NPCs/Monsters" IsChecked="{Binding Path=ModuleModel.IncludeNPCs, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
+                    <CheckBox Content="NPCs/Monsters" IsChecked="{Binding ModuleModel.IncludeNPCs, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <Label Content="module\input\npcs.json" Style="{StaticResource LabelStandard}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="7">
@@ -315,7 +319,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Spells" IsChecked="{Binding Path=ModuleModel.IncludeSpells, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
+                    <CheckBox Content="Spells" IsChecked="{Binding ModuleModel.IncludeSpells, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
                     <Label Content="module\input\spells.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="13">

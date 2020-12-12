@@ -25,7 +25,7 @@ namespace FantasyModuleParser.Main.Services
         {
             Save(configurationModel, Path.Combine(settingsConfigurationFilePath, settingsConfigurationFileName));
         }
-        public void Save(SettingsModel configurationModel, string filePath)
+        public static void Save(SettingsModel configurationModel, string filePath)
         {
             using (StreamWriter file = File.CreateText(@filePath))
             {
@@ -38,7 +38,7 @@ namespace FantasyModuleParser.Main.Services
         {
             return Load(Path.Combine(settingsConfigurationFilePath, settingsConfigurationFileName));
         }
-        public SettingsModel Load(string filePath)
+        public static SettingsModel Load(string filePath)
         {
             if (File.Exists(filePath))
             {
@@ -61,6 +61,8 @@ namespace FantasyModuleParser.Main.Services
                 settingsModel.FGCampaignFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "campaigns");
                 settingsModel.PersistentWindow = true;
                 settingsModel.DefaultGUISelection = "None";
+                settingsModel.LoadLastProject = false;
+                settingsModel.LastProject = null;
                 return settingsModel;
             }
         }
