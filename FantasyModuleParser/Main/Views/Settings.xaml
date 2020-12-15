@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser"
+        xmlns:viewModel="clr-namespace:FantasyModuleParser.Main.ViewModels"
+        xmlns:SettingUserControls="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
         xmlns:SuiteSettingsUserControl="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
         xmlns:NPCSettingsUserControl="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
         xmlns:SpellSettingsUserControl="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
@@ -13,6 +15,9 @@
         xmlns:ParcelSettingsUserControl="clr-namespace:FantasyModuleParser.Main.UserControls.Settings"
         mc:Ignorable="d"
         Title="Fantasy Module Parser Settings" Height="470" Width="700" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
+    <Window.DataContext>
+        <viewModel:SettingsViewModel />
+    </Window.DataContext>
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -55,6 +60,11 @@
                 <TabItem Header="Parcels" Visibility="Collapsed">
                     <Grid Background="#FFE5E5E5">
                         <ParcelSettingsUserControl:ParcelSettingsUC HorizontalAlignment="Center" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Logs" Visibility="Visible">
+                    <Grid Background="#FFE5E5E5">
+                        <SettingUserControls:LogSettingsUC />
                     </Grid>
                 </TabItem>
             </TabControl>

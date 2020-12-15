@@ -157,6 +157,9 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Markdig, Version=0.21.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdig.0.21.1\lib\net452\Markdig.dll</HintPath>
     </Reference>
@@ -225,6 +228,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -265,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\UserControls\Settings\EquipmentSettingsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\UserControls\Settings\LogSettingsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -445,6 +453,9 @@
     <Compile Include="Main\Models\Enums\GUIOption.cs" />
     <Compile Include="Main\UserControls\CustomCastersUC.xaml.cs">
       <DependentUpon>CustomCastersUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\UserControls\Settings\LogSettingsUC.xaml.cs">
+      <DependentUpon>LogSettingsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\ViewModels\CustomCastersUCViewModel.cs" />
     <Compile Include="NPC\Commands\ActionCommand.cs" />
@@ -714,6 +725,9 @@
     </EmbeddedResource>
     <None Include=".gitignore" />
     <None Include="CHANGELOG.json" />
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

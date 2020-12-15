@@ -14,6 +14,8 @@
         public string ParcelFolderLocation { get; set; }
         public bool PersistentWindow { get; set; }
         public string DefaultGUISelection { get; set; }
+        public string LogFolderLocation { get; set; }
+        public string LogLevel { get; set; }
         public bool LoadLastProject { get; set; }
         public string LastProject { get; set; }
     }

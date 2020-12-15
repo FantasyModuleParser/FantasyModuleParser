@@ -1830,8 +1830,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
-        "ProductCode" = "8:{C34A4C79-D41D-4354-AF89-13A4DC7E6411}"
-        "PackageCode" = "8:{CDC7AA02-40FC-4637-99B1-3258C0120D0A}"
+        "ProductCode" = "8:{699645B1-14D1-4195-AC1F-9D9E4A4B5832}"
+        "PackageCode" = "8:{A138D7C6-CE31-4646-B252-21ACEA654343}"
         "UpgradeCode" = "8:{AFDEA0AD-13E5-4525-BA36-E7A08BE22109}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1968,7 +1968,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6CC56D7D35234F6B864E81655E9D6456"
             {
             "Name" = "8:Uninstall FMP"
-            "Arguments" = "8:/x {C34A4C79-D41D-4354-AF89-13A4DC7E6411} /qr"
+            "Arguments" = "8:/x {699645B1-14D1-4195-AC1F-9D9E4A4B5832} /qr"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
@@ -2394,7 +2394,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_89E3EC870B20448CA778A149967CD1A9"
             {
-            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Release\\FantasyModuleParser.exe"
+            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\FantasyModuleParser.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0BA3C34B953948E8B3AECD4007A7CD92"

@@ -1,4 +1,6 @@
 ﻿using FantasyModuleParser.Main.Models;
+using log4net;
+using log4net.Core;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -24,6 +26,7 @@ namespace FantasyModuleParser.Main.Services
         public void Save(SettingsModel configurationModel)
         {
             Save(configurationModel, Path.Combine(settingsConfigurationFilePath, settingsConfigurationFileName));
+            ChangeLogLevel(configurationModel);
         }
         public static void Save(SettingsModel configurationModel, string filePath)
         {
@@ -65,6 +68,28 @@ namespace FantasyModuleParser.Main.Services
                 settingsModel.LastProject = null;
                 return settingsModel;
             }
+        }
+
+        public void ChangeLogLevel()
+        {
+            ChangeLogLevel(settingsModel);
+        }
+
+        public void ChangeLogLevel(SettingsModel settingsModel)
+        {
+            switch (settingsModel.LogLevel)
+            {
+                case "INFO":
+                    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root.Level = Level.Info;
+                    break;
+                case "DEBUG":
+                    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root.Level = Level.Debug;
+                    break;
+                default:
+                    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root.Level = Level.Info;
+                    break;
+            }
+    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).RaiseConfigurationChanged(EventArgs.Empty);
         }
     }
 }

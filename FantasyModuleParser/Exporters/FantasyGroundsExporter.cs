@@ -6,6 +6,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.Spells.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +22,8 @@ namespace FantasyModuleParser.Exporters
 {
 	public class FantasyGroundsExporter : IExporter
 	{
+		private static readonly ILog log = LogManager.GetLogger(typeof(FantasyGroundsExporter));
+
 		string Immunity;
 		string Resistance;
 		private SettingsService settingsService;
@@ -42,17 +45,21 @@ namespace FantasyModuleParser.Exporters
         }
 		public void CreateModule(ModuleModel moduleModel)
 		{
-			if (string.IsNullOrEmpty(settingsService.Load().FGModuleFolderLocation))
+			SettingsModel settingsModel = settingsService.Load();
+
+			if (string.IsNullOrEmpty(settingsModel.FGModuleFolderLocation))
 			{
+				log.Warn("Create Module -- No Module path has been set. Saved Path :: " + settingsModel.FGModuleFolderLocation);
 				throw new ApplicationException("No Module Path has been set");
 			}
 
 			if (string.IsNullOrEmpty(moduleModel.Name))
 			{
+				log.Warn("Create Module -- No Module name has been saved.");
 				throw new ApplicationException("No Module Name has been set");
 			}
 
-			string moduleFolderPath = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name);
+			string moduleFolderPath = Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name);
 
 			// Create the folder all content will go into based on the Module name
 			Directory.CreateDirectory(moduleFolderPath);
@@ -60,6 +67,7 @@ namespace FantasyModuleParser.Exporters
 			// Save Thumbnail to Module Folder
 			if (!string.IsNullOrEmpty(moduleModel.ThumbnailPath))
             {
+				log.Debug("Create Module -- No thumbnail filename for module");
 				SaveThumbnailImage(moduleModel);
 			}
 
@@ -85,11 +93,13 @@ namespace FantasyModuleParser.Exporters
 			// Zipping up the folder contents and naming to *.mod
 
 			// First need to check if the file exists;  If so, delete it
-			if (File.Exists(@Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod")))
+			if (File.Exists(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod")))
 			{
-				File.Delete(@Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod"));
+				File.Delete(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod"));
 			}
-			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name + ".mod"));
+			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod"));
+
+			log.Debug("Module Created!!  Saved to :: " + Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod"));
 		}
 		/// <summary>
 		/// Generates a List of all NPCs across all Categories in one List<NPCModel> object.  Used for Reference Manual material.
