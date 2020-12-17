@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.NPC;
+﻿using FantasyModuleParser.Importer.Utils.Tests;
+using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -26,26 +27,16 @@ namespace FantasyModuleParser.Importer.NPC.Tests
 
         private NPCModel LoadEngineerSuiteTestNPCFile()
         {
-            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.DnDBeyond.Aboleth.txt");
+            string fileContent = ImportCommonUtilsTests.GetEmbeddedResourceFileContent("FMPTests.Resources.DnDBeyond.Aboleth.txt");
 
             return _iImportNPC.ImportTextToNPCModel(fileContent);
         }
 
         private NPCModel LoadEngineerSuiteTestNPCFile(String npcName)
         {
-            string fileContent = GetEmbeddedResourceFileContent("FMPTests.Resources.DnDBeyond." + npcName + ".txt");
+            string fileContent = ImportCommonUtilsTests.GetEmbeddedResourceFileContent("FMPTests.Resources.DnDBeyond." + npcName + ".txt");
 
             return _iImportNPC.ImportTextToNPCModel(fileContent);
-        }
-
-        private string GetEmbeddedResourceFileContent(string embeddedResourcePath)
-        {
-
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(@embeddedResourcePath))
-            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-            {
-                return reader.ReadToEnd();
-            }
         }
 
         [TestMethod()]

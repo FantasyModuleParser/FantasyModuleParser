@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
+using System.IO;
+using System.Reflection;
 
 namespace FantasyModuleParser.Importer.Utils.Tests
 {
@@ -81,5 +83,15 @@ namespace FantasyModuleParser.Importer.Utils.Tests
             };
         }
         #endregion
+
+        public static string GetEmbeddedResourceFileContent(string embeddedResourcePath)
+        {
+
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(@embeddedResourcePath))
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                return reader.ReadToEnd();
+            }
+        }
     }
 }

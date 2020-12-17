@@ -2,10 +2,12 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
+using log4net;
 using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace FantasyModuleParser.Spells
 {
@@ -14,8 +16,9 @@ namespace FantasyModuleParser.Spells
     /// </summary>
     public partial class SpellOptionControl : UserControl
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(SpellOptionControl));
         public event EventHandler OnViewStatBlock;
-        public event EventHandler OnViewStatUpdate;
+        private ImportTextSpellView importTextSpellView;
         public SpellOptionControl()
         {
             InitializeComponent();
@@ -23,6 +26,9 @@ namespace FantasyModuleParser.Spells
             ReactionDescription.IsEnabled = spellViewModel.SpellModel.CastingType == Enums.CastingType.Reaction;
             DurationTime.IsEnabled = spellViewModel.SpellModel.DurationType == Enums.DurationType.Time;
             DurationUnit.IsEnabled = spellViewModel.SpellModel.DurationType == Enums.DurationType.Time;
+            importTextSpellView = new ImportTextSpellView();
+            importTextSpellView.DataContext = this.DataContext;
+            log.Debug("Spell Option UC Initialized");
         }
         private void SaveSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -32,14 +38,26 @@ namespace FantasyModuleParser.Spells
         {
             if (DurationTime != null && DurationUnit != null)
             {
-                DurationTime.IsEnabled = (DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Time || (DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Concentration;
+                SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+                switch (spellModel.DurationType)
+                {
+                    case Enums.DurationType.Time:
+                    case Enums.DurationType.Concentration:
+                        DurationTime.IsEnabled = true;
+                        DurationTime_TextChanged();
+                        break;
+                    case Enums.DurationType.Instantaneous:
+                    case Enums.DurationType.UntilDispelled:
+                    case Enums.DurationType.UntilDispelledOrTriggered:
+                        spellModel.DurationText = spellModel.DurationType.GetDescription();
+                        DurationText.Text = spellModel.DurationText;
+                        DurationTime.IsEnabled = false;
+                        break;
+                    default:
+                        DurationTime.IsEnabled = false;
+                        break;
+                }
                 DurationUnit.IsEnabled = DurationTime.IsEnabled;
-                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Instantaneous)
-                    DurationText.Text = Enums.DurationType.Instantaneous.GetDescription();
-                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.UntilDispelled)
-                    DurationText.Text = Enums.DurationType.UntilDispelled.GetDescription();
-                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.UntilDispelledOrTriggered)
-                    DurationText.Text = Enums.DurationType.UntilDispelledOrTriggered.GetDescription();
             }
         }
 
@@ -73,8 +91,6 @@ namespace FantasyModuleParser.Spells
                 + (String.IsNullOrWhiteSpace(spellModel.ReactionDescription) ? "" : ", " + spellModel.ReactionDescription);
             else
                 CastingDisplayValue.Text = "";
-            //if(OnViewStatUpdate != null)
-            //    OnViewStatUpdate.Invoke(this, EventArgs.Empty);
         }
         private bool IsSpellModelNull() { return (DataContext as SpellViewModel).SpellModel == null; }
         private void ViewStatBlock_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -108,23 +124,14 @@ namespace FantasyModuleParser.Spells
                 return;
             if (RangeValueTB == null)
                 return;
-            if (RangeDescriptionTB == null)
-                return;
-            if (spellModel.RangeType == Enums.RangeType.Self)
-            {
-                RangeDescriptionTB.IsEnabled = true;
-                RangeDescriptionLabel.IsEnabled = true;
-            }
-            else
-            {
-                RangeDescriptionTB.IsEnabled = false;
-                RangeDescriptionLabel.IsEnabled = false;
-            }
 
             if (RangeValueTB.IsEnabled = (spellModel.RangeType == Enums.RangeType.Ranged))
                 RangeDisplayValue.Text = spellModel.Range + " feet"; 
             else
                 RangeDisplayValue.Text = spellModel.RangeType == Enums.RangeType.None ? "" : spellModel.RangeType.GetDescription();
+
+            spellModel.RangeDescription = RangeDisplayValue.Text;
+
             RangeDistanceLabel.IsEnabled = RangeValueTB.IsEnabled;
         }
         private void SpellComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -207,38 +214,56 @@ namespace FantasyModuleParser.Spells
                 if (stringBuilder.Length > 2)
                     stringBuilder.Remove(stringBuilder.Length - 2, 2);
 
-                (DataContext as SpellViewModel).UpdateCastBy(stringBuilder.ToString());
+                SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+                spellModel.CastBy = stringBuilder.ToString();
+                CastByTB.Text = spellModel.CastBy;
             }
         }
 
-        private void RangeType_Changed(object sender, TextChangedEventArgs e)
+        private void OpenImportSpellView_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Self");
-            if (!string.IsNullOrEmpty(RangeDescriptionTB.Text))
-                stringBuilder.Append(" " + RangeDescriptionTB.Text);
-            RangeDisplayValue.Text = stringBuilder.ToString();
+            importTextSpellView.ShowDialog();
         }
 
         private void DurationTime_TextChanged(object sender, RoutedEventArgs e)
         {
+            DurationTime_TextChanged();
+        }
+
+        private void DurationTime_TextChanged()
+        {
             int numDuration;
             if (int.TryParse(DurationTime.Text, out numDuration))
             {
+                SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
                 StringBuilder stringBuilder = new StringBuilder();
-                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Time)
+                if (spellModel.DurationType == Enums.DurationType.Time)
                 {
-                    DurationText.Text = stringBuilder.Append(numDuration + " " + DurationUnit.Text).ToString();
+                    stringBuilder.Append(numDuration + " " + spellModel.DurationUnit.GetDescription());
                     if (numDuration > 1)
-                        DurationText.Text = stringBuilder.Append("s").ToString();
+                        stringBuilder.Append("s");
                 }
-                if ((DataContext as SpellViewModel).SpellModel.DurationType == Enums.DurationType.Concentration)
+                if (spellModel.DurationType == Enums.DurationType.Concentration)
                 {
-                    DurationText.Text = stringBuilder.Append("Concentration, up to " + numDuration + " " + DurationUnit.Text).ToString();
+                    stringBuilder.Append("Concentration, up to " + numDuration + " " + spellModel.DurationUnit.GetDescription());
                     if (numDuration > 1)
-                        DurationText.Text = stringBuilder.Append("s").ToString();
+                        stringBuilder.Append("s");
                 }
+
+                spellModel.DurationText = stringBuilder.ToString();
+                DurationText.Text = spellModel.DurationText;
             }
+        }
+
+        private void ComponentDescription_Changed(object sender, EventArgs e)
+        {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            spellModel.ComponentDescription = SpellViewModel.GenerateComponentDescription(spellModel);
+
+            // Due to some wierd ass quirk, this window needs to bind spellModel.ComponentDescription to an 
+            // TextBox on the .xaml in order for the View Stat Block page to update correctly.  My guess is
+            // I am missing an event trigger (or invoking) somewhere...
+            HiddenComponentDescriptionTB.Text = spellModel.ComponentDescription;
         }
     }
 }

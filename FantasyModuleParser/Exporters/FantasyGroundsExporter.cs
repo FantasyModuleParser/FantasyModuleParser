@@ -6,6 +6,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.Spells.Models;
+using FantasyModuleParser.Spells.ViewModels;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -905,31 +906,9 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void WriteSpellComponents(XmlWriter xmlWriter, SpellModel spellModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-			if (spellModel.IsVerbalComponent)
-			{
-				stringBuilder.Append("V");
-				if (spellModel.IsSomaticComponent)
-				{
-					stringBuilder.Append(", S");
-					if (spellModel.IsMaterialComponent)
-						stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
-				}
-				else if (spellModel.IsMaterialComponent)
-					stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
-			}
-			else if (!spellModel.IsVerbalComponent && spellModel.IsSomaticComponent)
-			{
-				stringBuilder.Append("S");
-				if (spellModel.IsMaterialComponent)
-					stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
-			}
-			else if (!spellModel.IsVerbalComponent && !spellModel.IsSomaticComponent && spellModel.IsMaterialComponent)
-				stringBuilder.Append("M (" + spellModel.ComponentText + ")");
-
 			xmlWriter.WriteStartElement("components");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(stringBuilder.ToString());
+			xmlWriter.WriteString(SpellViewModel.GenerateComponentDescription(spellModel));
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteSpellRitual(XmlWriter xmlWriter, SpellModel spellModel)

@@ -448,6 +448,8 @@
     <Compile Include="Converters\SelectableActionModelConverter.cs" />
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
     <Compile Include="Exporters\ICampaign.cs" />
+    <Compile Include="Importer\Enums\ImportSpellState.cs" />
+    <Compile Include="Importer\Spells\FormatSpellPDFService.cs" />
     <Compile Include="Importer\Spells\IImportSpell.cs" />
     <Compile Include="Importer\Spells\ImportSpellBase.cs" />
     <Compile Include="Main\Models\Enums\GUIOption.cs" />
@@ -627,6 +629,9 @@
     <Compile Include="Spells\Enums\RangeType.cs" />
     <Compile Include="Spells\Enums\SpellLevel.cs" />
     <Compile Include="Spells\Enums\SpellSchool.cs" />
+    <Compile Include="Spells\ImportTextSpellView.xaml.cs">
+      <DependentUpon>ImportTextSpellView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spells\Models\CustomCastersModel.cs" />
     <Compile Include="Spells\Models\SpellModel.cs" />
     <Compile Include="Spells\Services\ISpellService.cs" />
@@ -638,6 +643,7 @@
       <DependentUpon>SpellStatBlockUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spells\ViewModels\CastByViewModel.cs" />
+    <Compile Include="Spells\ViewModels\ImportTextSpellViewModel.cs" />
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
@@ -691,6 +697,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Spells\CastByWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Spells\ImportTextSpellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

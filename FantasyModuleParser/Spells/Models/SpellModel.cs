@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Spells.Enums;
+using Newtonsoft.Json;
 
 namespace FantasyModuleParser.Spells.Models
 {
@@ -11,13 +12,17 @@ namespace FantasyModuleParser.Spells.Models
         public int CastingTime { get; set; }
         public CastingType CastingType { get; set; }
         public string ReactionDescription { get; set; }
+        [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Range { get; set; }
         public RangeType RangeType { get; set; }
+        [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string RangeDescription { get; set; }
         public bool IsVerbalComponent { get; set; }
         public bool IsSomaticComponent { get; set; }
         public bool IsMaterialComponent { get; set; }
         public string ComponentText { get; set; }
+        [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string ComponentDescription { get; set; }
         public string DurationText { get; set; }
         public int DurationTime { get; set; }
         public DurationType DurationType { get; set; }
