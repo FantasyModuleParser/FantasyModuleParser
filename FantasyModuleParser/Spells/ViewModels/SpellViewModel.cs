@@ -6,6 +6,7 @@ using FantasyModuleParser.Spells.Services;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Text;
 using System.Windows;
 
 namespace FantasyModuleParser.Spells.ViewModels
@@ -123,6 +124,33 @@ namespace FantasyModuleParser.Spells.ViewModels
             this.SpellModel.CastBy = classNames;
             RaisePropertyChanged(nameof(SpellModel));
             RaisePropertyChanged(nameof(SpellModel.CastBy));
+        }
+
+        public static string GenerateComponentDescription(SpellModel spellModel)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (spellModel.IsVerbalComponent)
+            {
+                stringBuilder.Append("V");
+                if (spellModel.IsSomaticComponent)
+                {
+                    stringBuilder.Append(", S");
+                    if (spellModel.IsMaterialComponent)
+                        stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+                }
+                else if (spellModel.IsMaterialComponent)
+                    stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+            }
+            else if (!spellModel.IsVerbalComponent && spellModel.IsSomaticComponent)
+            {
+                stringBuilder.Append("S");
+                if (spellModel.IsMaterialComponent)
+                    stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+            }
+            else if (!spellModel.IsVerbalComponent && !spellModel.IsSomaticComponent && spellModel.IsMaterialComponent)
+                stringBuilder.Append("M (" + spellModel.ComponentText + ")");
+
+            return stringBuilder.ToString();
         }
     }
 }

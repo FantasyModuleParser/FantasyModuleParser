@@ -34,6 +34,18 @@
                 <Border  Background="Black" BorderBrush="Black" BorderThickness="2" />
                 <StackPanel x:Name="SpellLevelHeaderSP" Orientation="Horizontal">
                     <Label Content="{Binding SpellLevel, Converter={StaticResource enumConverter}}" FontSize="12" FontWeight="Bold" FontStyle="Italic"/>
+                    <Label Content="level" FontSize="12" FontWeight="Bold" FontStyle="Italic">
+                        <Label.Style>
+                            <Style TargetType="Label">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SpellLevel, Converter={StaticResource enumConverter}}" Value="cantrip">
+                                        <Setter Property="Visibility" Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                    <Label Content="{Binding SpellSchool, Converter={StaticResource enumConverter}}" FontSize="12" FontWeight="Bold" FontStyle="Italic"/>
                     <Label Content="(ritual)">
                         <Label.Style>
                             <Style TargetType="Label">
@@ -69,7 +81,7 @@
                 </StackPanel>
                 <StackPanel x:Name="ComponentDetailSP" Orientation="Horizontal">
                     <Label Content="Components: " FontWeight="Bold" />
-                    <Label Content="{Binding ComponentDescription, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Label Content="{Binding ComponentDescription, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel x:Name="DurationSP" Orientation="Horizontal">
                     <Label Content="Duration: " FontWeight="Bold" />

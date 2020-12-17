@@ -170,11 +170,12 @@
                 <ColumnDefinition Width="250" />
             </Grid.ColumnDefinitions>
             <Label Content="Components:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <CheckBox IsChecked="{Binding SpellModel.IsVerbalComponent, UpdateSourceTrigger=PropertyChanged}" Content="V" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="1"/>
-            <CheckBox IsChecked="{Binding SpellModel.IsSomaticComponent, UpdateSourceTrigger=PropertyChanged}" Content="S" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="2"/>
-            <CheckBox IsChecked="{Binding SpellModel.IsMaterialComponent, UpdateSourceTrigger=PropertyChanged}" Content="M" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="3"/>
+            <CheckBox IsChecked="{Binding SpellModel.IsVerbalComponent, UpdateSourceTrigger=PropertyChanged}" Content="V" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="1"   Checked="ComponentDescription_Changed"/>
+            <CheckBox IsChecked="{Binding SpellModel.IsSomaticComponent, UpdateSourceTrigger=PropertyChanged}" Content="S" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="2"  Checked="ComponentDescription_Changed"/>
+            <CheckBox IsChecked="{Binding SpellModel.IsMaterialComponent, UpdateSourceTrigger=PropertyChanged}" Content="M" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Column="3" Checked="ComponentDescription_Changed"/>
             <Label Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4" />
-            <TextBox Text="{Binding SpellModel.ComponentText, UpdateSourceTrigger=PropertyChanged}" Height="20" Grid.Column="5" IsEnabled="{Binding SpellModel.IsMaterialComponent}" />
+            <TextBox Text="{Binding SpellModel.ComponentText, UpdateSourceTrigger=PropertyChanged}" Height="20" Grid.Column="5" IsEnabled="{Binding SpellModel.IsMaterialComponent}" TextChanged="ComponentDescription_Changed" />
+            <TextBox x:Name="HiddenComponentDescriptionTB" Text="{Binding SpellModel.ComponentDescription, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed"/>
         </Grid>
         <Grid Grid.Row="6" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>

@@ -251,5 +251,16 @@ namespace FantasyModuleParser.Spells
                 DurationText.Text = spellModel.DurationText;
             }
         }
+
+        private void ComponentDescription_Changed(object sender, EventArgs e)
+        {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            spellModel.ComponentDescription = SpellViewModel.GenerateComponentDescription(spellModel);
+
+            // Due to some wierd ass quirk, this window needs to bind spellModel.ComponentDescription to an 
+            // TextBox on the .xaml in order for the View Stat Block page to update correctly.  My guess is
+            // I am missing an event trigger (or invoking) somewhere...
+            HiddenComponentDescriptionTB.Text = spellModel.ComponentDescription;
+        }
     }
 }
