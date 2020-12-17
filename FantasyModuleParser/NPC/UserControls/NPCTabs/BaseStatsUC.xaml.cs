@@ -183,6 +183,11 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 			}
 		}
 
+		private void ClearToken_Click(object sender, RoutedEventArgs e)
+		{
+			(DataContext as NPCModel).NPCToken = "";
+		}
+
 		private void DiceFunction_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			_isViewDiceFunctionWindowOpen = false;
