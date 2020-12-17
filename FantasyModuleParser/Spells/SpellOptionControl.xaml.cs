@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
+using log4net;
 using System;
 using System.Text;
 using System.Windows;
@@ -15,6 +16,7 @@ namespace FantasyModuleParser.Spells
     /// </summary>
     public partial class SpellOptionControl : UserControl
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(SpellOptionControl));
         public event EventHandler OnViewStatBlock;
         private ImportTextSpellView importTextSpellView;
         public SpellOptionControl()
@@ -26,6 +28,7 @@ namespace FantasyModuleParser.Spells
             DurationUnit.IsEnabled = spellViewModel.SpellModel.DurationType == Enums.DurationType.Time;
             importTextSpellView = new ImportTextSpellView();
             importTextSpellView.DataContext = this.DataContext;
+            log.Debug("Spell Option UC Initialized");
         }
         private void SaveSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
