@@ -223,7 +223,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <TextBox Text="{Binding SpellModel.CastBy, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="50" VerticalScrollBarVisibility="Visible" Grid.Column="2" TextWrapping="Wrap"/>
+            <TextBox x:Name="CastByTB" Text="{Binding SpellModel.CastBy, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="50" VerticalScrollBarVisibility="Visible" Grid.Column="2" TextWrapping="Wrap"/>
         </Grid>
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>

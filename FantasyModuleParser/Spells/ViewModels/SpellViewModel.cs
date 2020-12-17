@@ -120,8 +120,9 @@ namespace FantasyModuleParser.Spells.ViewModels
         }
         public void UpdateCastBy(string classNames)
         {
-            SpellModel.CastBy = classNames;
+            this.SpellModel.CastBy = classNames;
             RaisePropertyChanged(nameof(SpellModel));
+            RaisePropertyChanged(nameof(SpellModel.CastBy));
         }
     }
 }

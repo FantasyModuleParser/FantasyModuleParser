@@ -77,7 +77,7 @@
                 </StackPanel>
                 <StackPanel x:Name="ClassesSP" Orientation="Horizontal">
                     <Label Content="Classes: " FontWeight="Bold" />
-                    <Label Content="{Binding SpellModel.CastBy, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding CastBy, UpdateSourceTrigger=PropertyChanged}" Padding="5" Width="430" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" />
                 </StackPanel>
                 <StackPanel x:Name="DescriptionSP" Orientation="Horizontal">
                     <TextBlock Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Padding="5" Width="430" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" />

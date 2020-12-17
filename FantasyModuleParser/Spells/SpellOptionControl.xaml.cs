@@ -6,6 +6,7 @@ using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace FantasyModuleParser.Spells
 {
@@ -210,7 +211,9 @@ namespace FantasyModuleParser.Spells
                 if (stringBuilder.Length > 2)
                     stringBuilder.Remove(stringBuilder.Length - 2, 2);
 
-                (DataContext as SpellViewModel).UpdateCastBy(stringBuilder.ToString());
+                SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+                spellModel.CastBy = stringBuilder.ToString();
+                CastByTB.Text = spellModel.CastBy;
             }
         }
 
