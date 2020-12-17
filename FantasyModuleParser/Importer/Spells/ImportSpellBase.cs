@@ -64,7 +64,7 @@ namespace FantasyModuleParser.Importer.Spells
                         if(line.EndsWith(".", StringComparison.Ordinal)) 
                         {
                             resultSpellModel.Description += line;
-                            resultSpellModel.Description += "\r\n";    
+                            resultSpellModel.Description += Environment.NewLine;    
                         } else if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
                         {
                             resultSpellModel.Description += "**At Higher Levels.**";
@@ -79,6 +79,9 @@ namespace FantasyModuleParser.Importer.Spells
                         break;
                 }
             }
+
+            // Trim off the Description, as it will have a leading newLine character
+            resultSpellModel.Description = resultSpellModel.Description.TrimEnd();
 
             return resultSpellModel;
         }
@@ -186,6 +189,8 @@ namespace FantasyModuleParser.Importer.Spells
         }
         public void ParseComponents(string importData, SpellModel spellModel)
         {
+            if (importData.ToUpper().StartsWith("COMPONENTS:"))
+                importData = importData.Substring("Components:".Length);
             string[] componentArray = importData.Split('(');
 
             // If Material component is unselected, then componentArray will be length of 1.  Otherwise, length of 2

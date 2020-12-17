@@ -61,18 +61,18 @@ namespace FantasyModuleParser.Importer.Spells
                         //    ParseCastByClasses(line, resultSpellModel);
                         //else
                         //    resultSpellModel.Description = line; // No character class to associate with
-                        resultStringBuilder.Append(line).Append(Environment.NewLine);
+                        resultStringBuilder.Append(Environment.NewLine).Append(line);
                         importStatEnum = ImportSpellState.DESCRIPTION;
                         break;
                     case ImportSpellState.DESCRIPTION:
-                        resultStringBuilder.Append(line).Append(" ");
+                        resultStringBuilder.Append(' ').Append(line);
                         break;
                     default:
                         //no-op
                         break;
                 }
             }
-            return resultStringBuilder.ToString();
+            return resultStringBuilder.ToString().TrimEnd();
         }
     }
 }

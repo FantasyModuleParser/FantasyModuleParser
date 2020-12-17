@@ -108,5 +108,38 @@ namespace FMPTests_Spells.Importer
             Assert.AreEqual("Water Walk", expectedSpellModel.SpellName);
         }
         #endregion
+
+        [TestMethod]
+        public void AscendingFlame()
+        {
+            SpellModel expectedSpellModel = LoadSpellFileContent("PDF.AscendingFlame.txt");
+
+            Assert.AreEqual("Ascending Flame", expectedSpellModel.SpellName);
+
+            Assert.AreEqual(expectedSpellModel.SpellLevel, FantasyModuleParser.Spells.Enums.SpellLevel.Cantrip);
+            Assert.AreEqual(expectedSpellModel.SpellSchool, FantasyModuleParser.Spells.Enums.SpellSchool.Evocation);
+            Assert.AreEqual(expectedSpellModel.IsRitual, false);
+
+            Assert.AreEqual(expectedSpellModel.CastingTime, 1);
+            Assert.AreEqual(expectedSpellModel.CastingType, FantasyModuleParser.Spells.Enums.CastingType.Action);
+            Assert.AreEqual(expectedSpellModel.ReactionDescription, null);
+
+            Assert.AreEqual(expectedSpellModel.Range, 60);
+            Assert.AreEqual(expectedSpellModel.RangeType, FantasyModuleParser.Spells.Enums.RangeType.Ranged);
+
+            Assert.AreEqual(expectedSpellModel.IsVerbalComponent, true);
+            Assert.AreEqual(expectedSpellModel.IsSomaticComponent, true);
+            Assert.AreEqual(expectedSpellModel.IsMaterialComponent, false);
+            Assert.AreEqual(expectedSpellModel.ComponentText, null);
+
+            Assert.AreEqual(expectedSpellModel.DurationTime, 0);
+            Assert.AreEqual(expectedSpellModel.DurationType, DurationType.Instantaneous);
+            Assert.AreEqual(expectedSpellModel.DurationUnit, DurationUnit.None);
+            Assert.AreEqual(expectedSpellModel.DurationText, null);
+
+            Assert.AreEqual(expectedSpellModel.CastBy, "Cleric");
+
+            Assert.AreEqual(expectedSpellModel.Description, "A flame-like radiance burns a creature that you can see within range. The target must succeed on a Dexterity saving throw or take 1d6 radiant damage, granting you half of the damage dealt as temporary hit points. The target gains no benefit from cover for this saving throw. The spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).");
+        }
     }
 }
