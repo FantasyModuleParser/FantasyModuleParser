@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using FantasyModuleParser.Spells.ViewModels;
+using System;
+using System.Windows.Controls;
 
 namespace FantasyModuleParser.Spells.UserControls
 {

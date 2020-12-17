@@ -28,7 +28,7 @@
         <converter:EnumConverter x:Key="enumConverter"/>
     </UserControl.Resources>
     <Grid>
-        <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Background="Aquamarine" VerticalScrollBarVisibility="Auto" Margin="0" Width="450" Height="700" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical" DataContext="{Binding SpellModel}">
                 <Label Content="{Binding SpellName}" FontSize="16" FontWeight="Bold"/>
                 <Border  Background="Black" BorderBrush="Black" BorderThickness="2" />
@@ -65,20 +65,22 @@
                 </StackPanel>
                 <StackPanel x:Name="RangeDetailSP" Orientation="Horizontal">
                     <Label Content="Range: " FontWeight="Bold" />
-                    
-                    
+                    <Label Content="{Binding RangeDescription, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel x:Name="ComponentDetailSP" Orientation="Horizontal">
                     <Label Content="Components: " FontWeight="Bold" />
+                    <Label Content="{Binding ComponentDescription, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel x:Name="DurationSP" Orientation="Horizontal">
                     <Label Content="Duration: " FontWeight="Bold" />
+                    <Label Content="{Binding DurationText, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel x:Name="ClassesSP" Orientation="Horizontal">
                     <Label Content="Classes: " FontWeight="Bold" />
+                    <Label Content="{Binding SpellModel.CastBy, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel x:Name="DescriptionSP" Orientation="Horizontal">
-                    <Label Content="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Padding="5" Width="430" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

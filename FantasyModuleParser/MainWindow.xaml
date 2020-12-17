@@ -77,7 +77,7 @@
                 <ListBoxItem IsEnabled="False">Add Reference Manual</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Skills</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Stories</ListBoxItem>
-                <ListBoxItem IsEnabled="False" Name="optionSpells">Add Spells</ListBoxItem>
+                <ListBoxItem IsEnabled="True" Name="optionSpells">Add Spells</ListBoxItem>
                 <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
@@ -85,7 +85,7 @@
             <npcOptionUserControl:NPCOptionControl x:Name="npcOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel" />
         </StackPanel>
         <StackPanel Name="stackSpells" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
-            <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel" OnViewStatUpdate="event_UpdateViewStatBlockPanel"/>
+            <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel"/>
         </StackPanel>
         <StackPanel Name="stackMain" Grid.Row="1" Grid.Column="1" Visibility="Visible">
             <Image Source="/Resources/FMP-Logo-400.png" Width="400" Height="400"/>
