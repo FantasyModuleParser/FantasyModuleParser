@@ -8,6 +8,7 @@ using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Spells;
 using FantasyModuleParser.Spells.UserControls;
 using FantasyModuleParser.Spells.ViewModels;
+using log4net;
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -23,17 +24,41 @@ namespace FantasyModuleParser
     public partial class MainWindow : Window
     {
         private bool isViewStatBlockVisible = false;
+        private ModuleService moduleService;
+        private ModuleModel moduleModel;
         private SettingsModel settingsModel;
         private SettingsService settingsService;
         private NPCOptionControl npcOptionControl;
         private SpellStatBlockUC spellStatBlockUC;
         private SpellViewModel spellViewModel;
 
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public MainWindow()
         {
             InitializeComponent();
+            log4net.Config.XmlConfigurator.Configure();
+            moduleService = new ModuleService();
             settingsService = new SettingsService();
+            settingsModel = settingsService.Load();
             spellStatBlockUC = new SpellStatBlockUC();
+            if(settingsModel.DefaultGUISelection != null && 
+                settingsModel.DefaultGUISelection.Equals("NPCOption", StringComparison.CurrentCulture))
+            {
+                ShowNPCUserControl();
+                optionNPC.IsSelected = true;
+            }
+            if(settingsModel.LastProject != null && settingsModel.LoadLastProject)
+            {
+                string lastModuleFilePath = Path.Combine(settingsModel.ProjectFolderLocation, settingsModel.LastProject + ".fmp");
+                if(File.Exists(lastModuleFilePath)) 
+                {
+                    moduleService.Load(Path.Combine(settingsModel.ProjectFolderLocation, settingsModel.LastProject + ".fmp"));
+                    moduleModel = moduleService.GetModuleModel();
+                    npcOptionUserControl.Refresh();
+                    (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
+                }
+            }
         }
 
         private void Directory_Click(object sender, RoutedEventArgs e)
@@ -44,71 +69,45 @@ namespace FantasyModuleParser
             switch (menuitem.Name)
             {
                 case "AppData":
-                    if (!Directory.Exists(settingsModel.MainFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.MainFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.MainFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.MainFolderLocation);
                     break;
                 case "Projects":
-                    if (!Directory.Exists(settingsModel.ProjectFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.ProjectFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.ProjectFolderLocation);
                     break;
                 case "Artifacts":
-                    if (!Directory.Exists(settingsModel.ArtifactFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.ArtifactFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.ArtifactFolderLocation);
                     break;
                 case "Equipment":
-                    if (!Directory.Exists(settingsModel.EquipmentFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.EquipmentFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.EquipmentFolderLocation);
                     break;
                 case "NPCs":
-                    if (!Directory.Exists(settingsModel.NPCFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.NPCFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.NPCFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.NPCFolderLocation);
                     break;
                 case "Parcels":
-                    if (!Directory.Exists(settingsModel.ParcelFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.ParcelFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.ParcelFolderLocation);
                     break;
                 case "Spells":
-                    if (!Directory.Exists(settingsModel.SpellFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.SpellFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.SpellFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.SpellFolderLocation);
                     break;
                 case "Tables":
-                    if (!Directory.Exists(settingsModel.TableFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.TableFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.TableFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.TableFolderLocation);
                     break;
                 case "FGModules":
-                    if (!Directory.Exists(settingsModel.FGModuleFolderLocation))
-                    {
-                        Directory.CreateDirectory(settingsModel.FGModuleFolderLocation);
-                    }
-                    openFileDialog.InitialDirectory = settingsModel.FGModuleFolderLocation;
+                    openFileDialog.InitialDirectory = CheckAndCreateDirectory(settingsModel.FGModuleFolderLocation);
                     break;
             }
             openFileDialog.ShowDialog();
         }
+        private string CheckAndCreateDirectory(string folderLocation)
+        {
+            if (!Directory.Exists(folderLocation))
+            {
+                log.Debug("Folder location is non-existant;  Creating folder :: " + folderLocation);
+                Directory.CreateDirectory(folderLocation);
+            }
+            return folderLocation;
+        }
+
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             ProjectManagement projectManagement = null;
@@ -169,28 +168,59 @@ namespace FantasyModuleParser
             // throughout the application
 
             exporter.CreateModule(moduleService.GetModuleModel());
+            MessageBox.Show("Module Created Successfully");
+        }
+
+        private void CreateCampaign_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO:  This is a prime example of how Dependency Injection would be 
+            // amazing!  each exporter uses the interface IExporter, so the DI system
+            // could be updated based on the user's selection from somewhere else
+
+            // For now, just infer that IExporter = new FantasyGroundsExporter;
+
+            ICampaign exporter = new FantasyGroundsCampaign();
+
+            // DI would be used here to get an singleton instance of ModuleService (acting almost as a factory...)
+            ModuleService moduleService = new ModuleService();
+
+            //moduleService.GetModuleModel() refers to the static instantiation of ModuleModel, which is modified
+            // throughout the application
+
+            exporter.CreateCampaign(moduleService.GetModuleModel());
+            MessageBox.Show("Campaign Created Successfully");
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
+            log.Info("=====  Fantasy Module Parser closed  ======");
+            log.Info("=============  Logging Ended  =============");
             System.Windows.Application.Current.Shutdown();
+        }
+        private void ShowNPCUserControl()
+        {
+            stackNPC.Visibility = Visibility.Visible;
+            stackMain.Visibility = Visibility.Hidden;
+            stackSpells.Visibility = Visibility.Hidden;
+        }
+        private void ShowSpellUserControl()
+        {
+            stackNPC.Visibility = Visibility.Hidden;
+            stackMain.Visibility = Visibility.Hidden;
+            stackSpells.Visibility = Visibility.Visible;
+            spellViewModel = spellOptionUserControl.DataContext as SpellViewModel;
+            spellStatBlockUC.DataContext = spellViewModel;
         }
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-            if (optionNPC.IsSelected == true)
+            if (optionNPC.IsSelected)
             {
-                stackNPC.Visibility = Visibility.Visible;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Hidden;
+                ShowNPCUserControl();
             }
-            if (optionSpells.IsSelected == true)
+            if (optionSpells.IsSelected)
             {
-                stackNPC.Visibility = Visibility.Hidden;
-                stackMain.Visibility = Visibility.Hidden;
-                stackSpells.Visibility = Visibility.Visible;
-                spellViewModel = spellOptionUserControl.DataContext as SpellViewModel;
-                spellStatBlockUC.DataContext = spellViewModel;
+                ShowSpellUserControl();
             }
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)

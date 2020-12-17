@@ -30,11 +30,11 @@ namespace FantasyModuleParser.NPC
         public Reactions()
         {
             InitializeComponent();
+            // Enable it so the popup window can close on the Escape key
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
             actionController = new ActionController();
             npcController = new NPCController();
-
             NpcReactions = npcController.GetNPCModel().Reactions;
-
             DataContext = this;
         }
 

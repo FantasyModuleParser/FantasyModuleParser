@@ -30,9 +30,10 @@ namespace FantasyModuleParser.NPC
         public ViewLairActions()
         {
             InitializeComponent();
+            // Enable it so the popup window can close on the Escape key
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
             actionController = new ActionController();
             NpcLairActions = actionController.GetNPCModel().LairActions;
-
             DataContext = this;
             lairOptions.IsChecked = true;
         }

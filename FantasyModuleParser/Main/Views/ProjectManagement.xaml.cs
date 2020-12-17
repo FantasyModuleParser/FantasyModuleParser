@@ -14,7 +14,6 @@ namespace FantasyModuleParser.Main
     /// </summary>
     public partial class ProjectManagement : Window
     {
-        private ProjectManagementViewModel projectManagementViewModel;
         private SettingsService settingsService;
         public ProjectManagement()
         {
@@ -23,8 +22,6 @@ namespace FantasyModuleParser.Main
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
 
-            projectManagementViewModel = new ProjectManagementViewModel();
-            DataContext = projectManagementViewModel;
             settingsService = new SettingsService();
         }
         private void ESExit_Click(object sender, RoutedEventArgs e)
@@ -56,11 +53,15 @@ namespace FantasyModuleParser.Main
 
         private void SaveModule_Click(object sender, RoutedEventArgs e)
         {
-            ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;
+            ProjectManagementViewModel viewModel = DataContext as ProjectManagementViewModel;       
             //if (viewModel.ModuleModel.SaveFilePath == null || viewModel.ModuleModel.SaveFilePath.Length <= 0)
             //    SaveToModule_Click(sender, e);
             //else
             viewModel.SaveModule(settingsService.Load().ProjectFolderLocation, viewModel.ModuleModel);
+
+            viewModel.SettingsModel.LastProject = viewModel.ModuleModel.ModFilename;
+            settingsService.Save(viewModel.SettingsModel);
+
         }
         private void SaveModuleAndClose_Click(object sender, RoutedEventArgs e)
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FantasyModuleParser.NPC.Views"
         mc:Ignorable="d"
-        Title="Markdown Help" Height="300" Width="450" ResizeMode="NoResize">
+        Title="Markdown Help" Height="300" Width="450" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
     <Grid Height="300" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />

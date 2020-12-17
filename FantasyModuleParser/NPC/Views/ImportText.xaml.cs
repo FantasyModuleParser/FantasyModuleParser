@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Importer.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FantasyModuleParser.NPC
 {
@@ -15,6 +16,8 @@ namespace FantasyModuleParser.NPC
         public ImportText()
         {
             InitializeComponent();
+            // Enable it so the popup window can close on the Escape key
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
             ImportTextBox.Focus();
             ImportTextBox.Select(0,0);
         }

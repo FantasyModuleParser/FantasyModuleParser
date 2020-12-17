@@ -15,7 +15,7 @@ namespace FantasyModuleParser.Main
         public Settings()
         {
             InitializeComponent();
-            DataContext = new SettingsViewModel();
+            //DataContext = new SettingsViewModel();
             settingsService = new SettingsService();
             // Enable it so the popup window can close on the Escape key
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };

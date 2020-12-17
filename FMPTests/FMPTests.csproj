@@ -145,6 +145,8 @@
     <EmbeddedResource Include="Resources\Ankhotep_The_Mummy_Priest.npc" />
     <EmbeddedResource Include="Resources\Giant_Sand_Spider.npc" />
     <EmbeddedResource Include="Resources\MarkdownDescriptions\AncestralBarbarianTest.md" />
+    <EmbeddedResource Include="Resources\abyssalhag.npc" />
+    <EmbeddedResource Include="Resources\ancientearthelemental.npc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FantasyModuleParser\FMP.csproj">

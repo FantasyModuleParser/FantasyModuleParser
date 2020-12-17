@@ -121,10 +121,14 @@ namespace FantasyModuleParser.Importer.NPC
                 if (line.StartsWith("NPCimagePath:"))
                 {
                     parsedNPCModel.NPCImage = line.Substring(14);
+                    if (parsedNPCModel.NPCImage.Equals(" "))
+                        parsedNPCModel.NPCImage = "";
                 }
                 if (line.StartsWith("NPCTokenPath:"))
                 {
                     parsedNPCModel.NPCToken = line.Substring(13);
+                    if (parsedNPCModel.NPCToken.Equals(" ") || parsedNPCModel.NPCToken.Equals(null))
+                        parsedNPCModel.NPCToken = "";
                 }
                 if (line.StartsWith("LAction"))
                 {

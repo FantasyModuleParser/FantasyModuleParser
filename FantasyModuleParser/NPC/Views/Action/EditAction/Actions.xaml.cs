@@ -28,6 +28,8 @@ namespace FantasyModuleParser.NPC
         public Actions()
         {
             InitializeComponent();
+            // Enable it so the popup window can close on the Escape key
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
             actionController = new ActionController();
             NPCActions = actionController.GetNPCModel().NPCActions;
             DataContext = this;

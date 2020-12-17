@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FMPTests-Spells", "FMPTests
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5} = {3F562E61-C80A-4DD4-AD30-EB34EB6855F5}
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FMP-Setup", "FMP-Setup\FMP-Setup.vdproj", "{B6F351AD-669F-4CF6-A09E-EB89FC510017}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{E7AA16D8-48EE-486F-8BA8-89EA571A97AD}.Release|x64.Build.0 = Release|Any CPU
 		{E7AA16D8-48EE-486F-8BA8-89EA571A97AD}.Release|x86.ActiveCfg = Release|Any CPU
 		{E7AA16D8-48EE-486F-8BA8-89EA571A97AD}.Release|x86.Build.0 = Release|Any CPU
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Debug|Any CPU.ActiveCfg = Debug
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Debug|ARM.ActiveCfg = Debug
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Debug|ARM64.ActiveCfg = Debug
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Debug|x64.ActiveCfg = Debug
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Debug|x86.ActiveCfg = Debug
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Release|Any CPU.ActiveCfg = Release
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Release|ARM.ActiveCfg = Release
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Release|ARM64.ActiveCfg = Release
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Release|x64.ActiveCfg = Release
+		{B6F351AD-669F-4CF6-A09E-EB89FC510017}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

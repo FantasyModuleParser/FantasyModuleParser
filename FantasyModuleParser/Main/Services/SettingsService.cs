@@ -1,4 +1,6 @@
 ﻿using FantasyModuleParser.Main.Models;
+using log4net;
+using log4net.Core;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -24,8 +26,9 @@ namespace FantasyModuleParser.Main.Services
         public void Save(SettingsModel configurationModel)
         {
             Save(configurationModel, Path.Combine(settingsConfigurationFilePath, settingsConfigurationFileName));
+            ChangeLogLevel(configurationModel);
         }
-        public void Save(SettingsModel configurationModel, string filePath)
+        public static void Save(SettingsModel configurationModel, string filePath)
         {
             using (StreamWriter file = File.CreateText(@filePath))
             {
@@ -38,7 +41,7 @@ namespace FantasyModuleParser.Main.Services
         {
             return Load(Path.Combine(settingsConfigurationFilePath, settingsConfigurationFileName));
         }
-        public SettingsModel Load(string filePath)
+        public static SettingsModel Load(string filePath)
         {
             if (File.Exists(filePath))
             {
@@ -58,9 +61,35 @@ namespace FantasyModuleParser.Main.Services
                 settingsModel.TableFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Tables");
                 settingsModel.ParcelFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Parcels");
                 settingsModel.FGModuleFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "modules");
+                settingsModel.FGCampaignFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "campaigns");
                 settingsModel.PersistentWindow = true;
+                settingsModel.DefaultGUISelection = "None";
+                settingsModel.LoadLastProject = false;
+                settingsModel.LastProject = null;
                 return settingsModel;
             }
+        }
+
+        public void ChangeLogLevel()
+        {
+            ChangeLogLevel(settingsModel);
+        }
+
+        public void ChangeLogLevel(SettingsModel settingsModel)
+        {
+            switch (settingsModel.LogLevel)
+            {
+                case "INFO":
+                    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root.Level = Level.Info;
+                    break;
+                case "DEBUG":
+                    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root.Level = Level.Debug;
+                    break;
+                default:
+                    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root.Level = Level.Info;
+                    break;
+            }
+    ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).RaiseConfigurationChanged(EventArgs.Empty);
         }
     }
 }

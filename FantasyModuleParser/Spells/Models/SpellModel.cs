@@ -13,6 +13,7 @@ namespace FantasyModuleParser.Spells.Models
         public string ReactionDescription { get; set; }
         public int Range { get; set; }
         public RangeType RangeType { get; set; }
+        public string RangeDescription { get; set; }
         public bool IsVerbalComponent { get; set; }
         public bool IsSomaticComponent { get; set; }
         public bool IsMaterialComponent { get; set; }

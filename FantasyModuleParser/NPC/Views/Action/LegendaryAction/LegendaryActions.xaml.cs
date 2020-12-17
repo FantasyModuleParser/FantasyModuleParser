@@ -29,13 +29,14 @@ namespace FantasyModuleParser.NPC
         public LegendaryActions()
         {
             InitializeComponent();
+            // Enable it so the popup window can close on the Escape key
+            PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
             actionController = new ActionController();
             NpcLegendaryActions = actionController.GetNPCModel().LegendaryActions;
-
             DataContext = this;
         }
 
-        private void ESExit_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

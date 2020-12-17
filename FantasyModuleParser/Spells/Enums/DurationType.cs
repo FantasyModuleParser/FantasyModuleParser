@@ -16,10 +16,10 @@ namespace FantasyModuleParser.Spells.Enums
 		[Description("time")]
 		Time = 3,
 
-		[Description("until dispelled")]
+		[Description("Until dispelled")]
 		UntilDispelled = 4,
 
-		[Description("until dispelled or triggered")]
+		[Description("Until dispelled or triggered")]
 		UntilDispelledOrTriggered = 5,
 	}
 }
