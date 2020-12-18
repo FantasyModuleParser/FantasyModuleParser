@@ -953,6 +953,8 @@
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="NPC Token:" Style="{StaticResource informationLabel}" Grid.Column="0" />
             <TextBox Name="strNPCToken" Text="{Binding Path=NPCToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" Grid.Column="2" TabIndex="43" MouseDoubleClick="strNPCToken_MouseDoubleClick">
@@ -962,6 +964,7 @@
                     </TextBlock>
                 </TextBox.ToolTip>
             </TextBox>
+            <Button Content="Clear Token" Click="ClearToken_Click" Grid.Column="4"/>
         </Grid>
     </Grid>
 </UserControl>
