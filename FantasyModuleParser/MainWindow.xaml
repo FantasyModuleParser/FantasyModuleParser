@@ -7,6 +7,22 @@
     xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
     mc:Ignorable="d"
     Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key="Options">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="Gray" />
+        </Style>
+        <Style TargetType="ListBoxItem" x:Key="Enabled">
+            <Setter Property="IsEnabled" Value="true"/>
+        </Style>
+        <Style TargetType="ListBoxItem" x:Key="Disabled">
+            <Setter Property="IsEnabled" Value="false"/>
+        </Style>
+    </Window.Resources>
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -59,26 +75,26 @@
             </MenuItem>
         </Menu>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
-            <Label Content="Options" FontSize="16" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Center"></Label>
+            <Label Content="Options" Style="{StaticResource Options}"></Label>
             <ListBox SelectionChanged="listBoxItem_Selected">
-                <ListBoxItem IsEnabled="False">Add Backgrounds</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Classes</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Encounters</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Encounters (Random)</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Equipment</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Feats</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Images</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Image Grids</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Image Pins</ListBoxItem>
-                <ListBoxItem IsEnabled="True" Name="optionNPC">Add NPCs / Monsters</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Parcels</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Pregenerated Characters</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Quests</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Reference Manual</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Skills</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Stories</ListBoxItem>
-                <ListBoxItem IsEnabled="True" Name="optionSpells">Add Spells</ListBoxItem>
-                <ListBoxItem IsEnabled="False">Add Tables</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Backgrounds</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Classes</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Encounters</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Encounters (Random)</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Equipment</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Feats</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Images</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Image Grids</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Image Pins</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Enabled}" Name="optionNPC">Add NPCs / Monsters</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Parcels</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Pregenerated Characters</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Quests</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Reference Manual</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Skills</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Stories</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}" Name="optionSpells">Add Spells</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
         <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
@@ -88,7 +104,7 @@
             <spellOptionUserControl:SpellOptionControl x:Name="spellOptionUserControl" Height="700" OnViewStatBlock="event_EnableViewStatBlockPanel"/>
         </StackPanel>
         <StackPanel Name="stackMain" Grid.Row="1" Grid.Column="1" Visibility="Visible">
-            <Image Source="/Resources/FMP-Logo-400.png" Width="400" Height="400"/>
+            <Image Source="/Resources/FMP-Logo-400.png" Width="400" Height="410" Margin="0,10,0,0"/>
         </StackPanel>
         <WrapPanel x:Name="ViewStatBlockPanel" Grid.Column="3" Grid.Row="1" Orientation="Vertical" >
             
