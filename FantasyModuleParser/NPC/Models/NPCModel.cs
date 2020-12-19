@@ -236,6 +236,7 @@ namespace FantasyModuleParser.NPC
         public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
         public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
         public ObservableCollection<LanguageModel> UserLanguages { get; set; }
+        [DefaultValue("No special conditions")]
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
