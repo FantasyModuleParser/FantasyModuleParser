@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:FantasyModuleParser.NPC.ViewModels"
         mc:Ignorable="d"
-        Title="Project Management" Height="520" Width="820" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico" Closing="Window_Closing">
+        Title="Project Management" Height="450" Width="820" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico" Closing="Window_Closing">
     <Window.DataContext>
         <viewModel:ProjectManagementViewModel/>
     </Window.DataContext>
@@ -28,12 +28,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Height" Value="24" />
             <Setter Property="FontSize" Value="10px" />
-        </Style>
-        <Style TargetType="Label" x:Key="LabelStandardDisabled">
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="Foreground" Value="Gray" />
-            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style TargetType="TextBox" x:Key="InformationText">
             <Setter Property="Margin" Value="0" />
@@ -90,7 +84,7 @@
         </Style>
     </Window.Resources>
     <Grid Background="#FFE5E5E5">
-        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="800">
+        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="700">
             <MenuItem Header="_File">
                 <MenuItem Header="_New Project" Click="NewProject_Click" />
                 <MenuItem Header="_Load Project" Click="LoadModule_Click"/>
@@ -107,7 +101,7 @@
                 <ColumnDefinition Width="5"/>
             </Grid.ColumnDefinitions>
             <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" Width="360" Height="195" Margin="-5,26,0,0" Grid.Column="1"/>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3" VerticalAlignment="Top" Width="425" Height="445" Margin="-5,26,0,0" />
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="250" Margin="-5,26,0,0" />
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25" />
@@ -233,29 +227,23 @@
                     <RowDefinition Height="16" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
                 </Grid.RowDefinitions>
                 <Label Content="Parser Information" Foreground="Gray" Padding="0" FontWeight="Bold" Grid.Row="1"/>
-                <Label Content="Image Section" Style="{StaticResource LabelHeader}" Grid.Row="2"/>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="190" />
+                        <ColumnDefinition Width="230" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Image Section" Style="{StaticResource LabelHeader}" Grid.Column="0" />
+                    <Label Content="Adventure Sections" Style="{StaticResource LabelHeader}" Grid.Column="1" />
+                </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Images" IsChecked="{Binding ModuleModel.IncludeImages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{StaticResource CheckboxParser}" Grid.Column="0" />
-                    <Label Content="module\input\images\" Style="{StaticResource LabelStandard}" Grid.Column="1"/>
+                    <CheckBox Content="Encounters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
@@ -263,16 +251,23 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Tokens" IsChecked="{Binding ModuleModel.IncludeTokens, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
-                    <Label Content="module\input\tokens\" Style="{StaticResource LabelStandard}" Grid.Column="1" />
+                    <CheckBox Content="Random Encounters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
                 </Grid>
-                <Label Content="Data Section" Style="{StaticResource LabelHeader}" Grid.Row="5"/>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="190" />
+                        <ColumnDefinition Width="230" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Data Section" Style="{StaticResource LabelHeader}" Grid.Column="0"/>
+                    <CheckBox Content="Quests" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
+                </Grid>
                 <Grid Grid.Row="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="NPCs/Monsters" IsChecked="{Binding ModuleModel.IncludeNPCs, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
-                    <Label Content="module\input\npcs.json" Style="{StaticResource LabelStandard}" Grid.Column="1" />
+                    <CheckBox Content="Story Entries" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
                 </Grid>
                 <Grid Grid.Row="7">
                     <Grid.ColumnDefinitions>
@@ -280,7 +275,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Races" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\races.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
+                    <CheckBox Content="Story Templates" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="8">
                     <Grid.ColumnDefinitions>
@@ -288,7 +283,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Classes" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\classes.json" Style="{StaticResource LabelStandardDisabled}" Foreground="Gray" Grid.Column="1"/>
+                    <CheckBox Content="Treasure Parcels" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="9">
                     <Grid.ColumnDefinitions>
@@ -296,7 +291,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Backgrounds" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\backgrounds.json" Style="{StaticResource LabelStandardDisabled}" Foreground="Gray" Grid.Column="1"/>
+                    <CheckBox Content="Image Pins" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="10">
                     <Grid.ColumnDefinitions>
@@ -304,7 +299,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Feats" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\feats.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
+                    <CheckBox Content="Image Grids" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="11">
                     <Grid.ColumnDefinitions>
@@ -312,15 +307,15 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Skills" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\skills.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
+                    <CheckBox Content="Pregenerated Characters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Spells" IsChecked="{Binding ModuleModel.IncludeSpells, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\spells.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
+                    <CheckBox Content="Spells" IsChecked="{Binding ModuleModel.IncludeSpells, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0"/>
+                    <Label Content="Utility Sections" Style="{StaticResource LabelHeader}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="13">
                     <Grid.ColumnDefinitions>
@@ -328,7 +323,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Equipment" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\equipment.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
+                    <CheckBox Content="Reference Manual" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="14">
                     <Grid.ColumnDefinitions>
@@ -336,97 +331,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Magic Items" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\artifacts.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
-                </Grid>
-                <Label Content="Adventure Sections" Style="{StaticResource LabelHeader}" Grid.Row="15"/>
-                <Grid Grid.Row="16">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Encounters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\encounters.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
-                </Grid>
-                <Grid Grid.Row="17">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Random Encounters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\randomencounters.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
-                </Grid>
-                <Grid Grid.Row="18">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Quests" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\quests.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
-                </Grid>
-                <Grid Grid.Row="19">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Story Entries" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\story.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
-                </Grid>
-                <Grid Grid.Row="20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Story Templates" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\storytemplates.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
-                </Grid>
-                <Grid Grid.Row="21">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Treasure Parcels" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\parcels.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
-                </Grid>
-                <Grid Grid.Row="22">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Image Pins" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\imagepins.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
-                </Grid>
-                <Grid Grid.Row="23">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Image Grids" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\imagegrids.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
-                </Grid>
-                <Grid Grid.Row="24">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Pregenerated Characters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\pregens.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
-                </Grid>
-                <Label Content="Utility Sections" Style="{StaticResource LabelHeader}" Grid.Row="25" />
-                <Grid Grid.Row="26">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Reference Manual" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <Label Content="module\input\referencemanual.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1" />
-                </Grid>
-                <Grid Grid.Row="27">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190" />
-                        <ColumnDefinition Width="230" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Content="Tables" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
-                    <Label Content="module\input\tables.json" Style="{StaticResource LabelStandardDisabled}" Grid.Column="1"/>
+                    <CheckBox Content="Tables" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
                 </Grid>
             </Grid>
         </Grid>
