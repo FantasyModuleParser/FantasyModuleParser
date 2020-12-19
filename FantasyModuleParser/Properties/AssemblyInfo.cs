@@ -54,4 +54,4 @@ using System.Windows;
 [assembly: AssemblyVersion("0.2.1.0")]
 [assembly: AssemblyFileVersion("0.2.1.0")]
 [assembly: NeutralResourcesLanguage("en-US")]
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
+// [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
