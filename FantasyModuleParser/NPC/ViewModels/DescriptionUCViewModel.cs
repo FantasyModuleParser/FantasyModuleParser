@@ -26,6 +26,16 @@ namespace FantasyModuleParser.NPC.ViewModels
                 RaisePropertyChanged(nameof(Description)); 
             } 
         }
+        public string NonID
+        {
+            get
+            { return this._npcModel.NonID; }
+            set
+            {
+                this._npcModel.NonID = value;
+                RaisePropertyChanged(nameof(NonID));
+            }
+        }
 
         private FlowDocument _markdownDocument;
         public FlowDocument MarkdownDocument
