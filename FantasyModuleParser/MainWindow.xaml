@@ -93,7 +93,7 @@
                 <ListBoxItem Style="{StaticResource Disabled}">Add Reference Manual</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Skills</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Stories</ListBoxItem>
-                <ListBoxItem Style="{StaticResource Disabled}" Name="optionSpells">Add Spells</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Enabled}" Name="optionSpells">Add Spells</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
