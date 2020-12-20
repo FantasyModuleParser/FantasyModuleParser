@@ -7,22 +7,34 @@
              mc:Ignorable="d" 
              d:DesignHeight="260" d:DesignWidth="400">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="60" />
-            <ColumnDefinition Width="10" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
             <RowDefinition Height="23" />
             <RowDefinition Height="10" />
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
-        <Label Content="New Category" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-        <TextBox x:Name="NewCategoryValue" Height="23" Width="200" Padding="0" Grid.Row="1" Grid.Column="2"/>
-        <Button Content="Add" Width="50" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" Click="AddCategoryButton_Click"/>
-        <ListBox ItemsSource="{Binding Path=ModuleModel.Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" Width="300" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="3" Grid.ColumnSpan="4"/>
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <Label Content="New Category: " VerticalAlignment="Center" Padding="0" Grid.Column="0"/>
+            <TextBox x:Name="NewCategoryValue" Padding="0" Grid.Column="2"/>
+            <Button Content="Add" Grid.Column="4" Click="AddCategoryButton_Click"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <ListBox ItemsSource="{Binding Path=ModuleModel.Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" Grid.Column="1" />
+        </Grid>
+        
+        
+        
     </Grid>
 </UserControl>
