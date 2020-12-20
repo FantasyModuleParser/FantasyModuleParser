@@ -947,7 +947,7 @@ namespace FantasyModuleParser.Exporters
 		private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
 		{
 			string libname = moduleModel.Name.ToLower();
-			return libname.Replace(" ", "");
+			return libname.Replace(" ", "").Replace("'", "");
 		}
 		private string CategoryNameToXML(CategoryModel categoryModel)
         {

@@ -98,7 +98,7 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="25" />
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="210" Width="600" Margin="2,10,0,0" Grid.Row="0" Grid.RowSpan="18" />
+        <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="210" Width="585" Margin="2,10,0,0" Grid.Row="0" Grid.RowSpan="18" />
         <!--#region Top-->
         <Grid Grid.Row="1">
             <Label Content="NPC Information" Style="{StaticResource informationHeader}" />
@@ -798,7 +798,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="2,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="17" Grid.Column="1" Height="210" Width="298" />
+            <Border BorderBrush="Black" BorderThickness="1" Margin="2,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="17" Grid.Column="1" Height="210" Width="285" />
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5" />

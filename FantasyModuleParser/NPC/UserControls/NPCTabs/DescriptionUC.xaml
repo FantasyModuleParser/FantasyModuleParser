@@ -12,8 +12,8 @@
         <viewModel:DescriptionUCViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="270,455,0,0" VerticalAlignment="Top" Width="160"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="440,455,0,0" VerticalAlignment="Top" Width="165"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="250,455,0,0" VerticalAlignment="Top" Width="160"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="420,455,0,0" VerticalAlignment="Top" Width="165"/>
         <StackPanel Orientation="Vertical">
             <Grid Width="590" Height="400">
                 <Grid.ColumnDefinitions>
@@ -139,7 +139,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <TextBox x:Name="NonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox x:Name="NonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="180" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <TextBox.ToolTip>
                         <TextBlock>
                             (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.

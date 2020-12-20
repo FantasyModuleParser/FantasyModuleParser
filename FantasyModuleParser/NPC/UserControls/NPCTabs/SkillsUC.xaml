@@ -5,406 +5,446 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:FantasyModuleParser.NPC.UserControls.NPCTabs"
 			 mc:Ignorable="d" 
-			 d:DesignHeight="600" d:DesignWidth="600">
+			 d:DesignHeight="750" d:DesignWidth="580">
+    <UserControl.Resources>
+        <Style TargetType="Label" x:Key="Header">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Label" x:Key="SkillLabel">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="SkillText">
+            <EventSetter Event="PreviewTextInput" Handler="NumberValidationTextBox" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Width" Value="40" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="10" /> 
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="350" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-        </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.RowSpan="64" Grid.Column="1" Grid.ColumnSpan="18"/>
-        <!--#region Skill Bonuses-->
-        <Label Content="Skill Bonuses" Foreground="Gray" FontWeight="Bold" Padding="0" VerticalAlignment="Center" Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="8"/>
-        <Label Content="Acrobatics" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strAcrobatics" Text="{Binding Path=Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="5" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="1">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Acrobatics skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Animal Handling" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="8" Grid.RowSpan="3" Grid.Column="4" Grid.ColumnSpan="9"/>
-        <TextBox Name="strAnimalHandling" Text="{Binding Path=AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="8" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="2">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Animal Handling skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Arcana" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="12" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strArcana" Text="{Binding Path=Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="12" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="3">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Arcana skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Athletics" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="15" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="5" />
-        <TextBox Name="strAthletics" Text="{Binding Path=Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="15" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="4">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Athletics skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Deception" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="18" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strDeception" Text="{Binding Path=Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="18" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="5">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Deception skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="History" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="21" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strHistory" Text="{Binding History}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="21" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="6">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's History skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Insight" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="24" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strInsight" Text="{Binding Path=Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="24" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="7">
-            <TextBox.ToolTip>
-                <TextBlock>
-						Enter the NPC's Insight skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Intimidation" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="27" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="7"/>
-        <TextBox Name="strIntimidation" Text="{Binding Path=Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="27" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="8">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Intimidation skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Investigation" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="31" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="7"/>
-        <TextBox Name="strInvestigation" Text="{Binding Path=Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="31" Grid.RowSpan="3" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="9">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Investigation skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Medicine" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="35" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="5"/>
-        <TextBox Name="strMedicine" Text="{Binding Path=Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="35" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="10">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Medicine skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Nature" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="38" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strNature" Text="{Binding Path=Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="38" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="11">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Nature skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Perception" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="41" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strPerception" Text="{Binding Path=Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="41" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="12">
-            <TextBox.ToolTip>
-                <TextBlock>
-				    Enter the NPC's Perception skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Performance" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="44" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="7"/>
-        <TextBox Name="strPerformance" Text="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="44" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="13">
-            <TextBox.ToolTip>
-                <TextBlock>
-				    Enter the NPC's Performance skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Persuasion" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="47" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="6"/>
-        <TextBox Name="strPersuasion" Text="{Binding Path=Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="47" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="14">
-            <TextBox.ToolTip>
-                <TextBlock>
-				    Enter the NPC's Persuasion skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Religion" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="50" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="5"/>
-        <TextBox Name="strReligion" Text="{Binding Path=Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="50" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="15">
-            <TextBox.ToolTip>
-                <TextBlock>
-				    Enter the NPC's Religion skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Sleight of Hand" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="53" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="9"/>
-        <TextBox Name="strSleightofHand" Text="{Binding Path=SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="53" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="16">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Sleight of Hand skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Stealth" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="56" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strStealth" Text="{Binding Path=Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="56" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="17">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Stealth skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Survival" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="59" Grid.RowSpan="2" Grid.Column="9" Grid.ColumnSpan="4"/>
-        <TextBox Name="strSurvival" Text="{Binding Path=Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Grid.Row="59" Grid.RowSpan="2" Grid.Column="14" Grid.ColumnSpan="3" TabIndex="18">
-            <TextBox.ToolTip>
-                <TextBlock>
-					Enter the NPC's Survival skill modifier.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <!--#endregion-->
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.RowSpan="64" Grid.Column="20" Grid.ColumnSpan="33"/>
-        <!--#region Languages-->
-        <Label Content="Languages Spoken" Foreground="Gray" FontWeight="Bold" Padding="0" VerticalAlignment="Center" Grid.Row="2" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="11"/>
-        <Label Content="Standard" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="15"/>
-        <ListBox Name="listStandard" ItemsSource="{Binding Path=StandardLanguages}" SelectionMode="Multiple" Padding="0" Grid.Row="8" Grid.RowSpan="18" Grid.Column="21" Grid.ColumnSpan="15" TabIndex="19">
-            <ListBox.ToolTip>
-                <TextBlock>
-					Select the standard languages that your NPC knows.
-					<LineBreak />
-					<Italic>You can select as many as you like.</Italic>
-                </TextBlock>
-            </ListBox.ToolTip>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Language}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Label Content="Exotic" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" Grid.RowSpan="2" Grid.Column="37" Grid.ColumnSpan="15"/>
-        <ListBox Name="listExotic" ItemsSource="{Binding Path=ExoticLanguages}" SelectionMode="Multiple" Padding="0" Grid.Row="8" Grid.RowSpan="18" Grid.Column="37" Grid.ColumnSpan="15" TabIndex="20">
-            <ListBox.ToolTip>
-                <TextBlock>
-					Select the exotic languages that your NPC knows.
-					<LineBreak />
-					<Italic>You can select as many as you like.</Italic>
-                </TextBlock>
-            </ListBox.ToolTip>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Language}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Label Content="Monstrous" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="28" Grid.RowSpan="4" Grid.Column="21" Grid.ColumnSpan="15"/>
-        <ListBox Name="listMonstrous" ItemsSource="{Binding Path=MonstrousLanguages}" SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="21" Grid.ColumnSpan="15" TabIndex="21">
-            <ListBox.ToolTip>
-                <TextBlock>
-				    Select the monstrous languages that your NPC knows.
-				    <LineBreak />
-				    <Italic>You can select as many as you like.</Italic>
-                </TextBlock>
-            </ListBox.ToolTip>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Language}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Label Content="User" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="28" Grid.RowSpan="3" Grid.Column="37" Grid.ColumnSpan="15"/>
-        <ListBox Name="listUser"  ItemsSource="{Binding Path=UserLanguages}"  SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="37" Grid.ColumnSpan="15" TabIndex="22">
-            <ListBox.ToolTip>
-                <TextBlock>
-				    Select the user-defined languages that your NPC knows.
-					<LineBreak />
-					<Italic>To modify this list, select `Options|Manage language list` from the menu.</Italic>
-                </TextBlock>
-            </ListBox.ToolTip>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Language}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Label Content="Language Options" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="53" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="10"/>
-        <ComboBox Name="strLanguageOptions" Text="{Binding Path=LanguageOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="56" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="23">
-            <ComboBoxItem IsSelected="True">No special conditions</ComboBoxItem>
-            <ComboBoxItem>Speaks no languages</ComboBoxItem>
-            <ComboBoxItem>Speaks all languages</ComboBoxItem>
-            <ComboBoxItem>Speaks languages it knew in life</ComboBoxItem>
-            <ComboBoxItem>Can't speak; Knows selected languages</ComboBoxItem>
-            <ComboBoxItem>Can't speak; Knows creator's languages</ComboBoxItem>
-            <ComboBoxItem>Can't speak; Knows languages known in life</ComboBoxItem>
-            <ComboBoxItem>Alternative language text (enter below)</ComboBoxItem>
-            <ComboBox.ToolTip>
-                <TextBlock>
+        <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="1" Margin="-5,10,9,0" Height="400"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="400" />
+            </Grid.RowDefinitions>
+            <Label Content="Skill Bonuses" Style="{StaticResource Header}" Grid.Row="1" />
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Label Content="Acrobatics" Style="{StaticResource SkillLabel}" Grid.Row="1" />
+                    <Label Content="Animal Handling" Style="{StaticResource SkillLabel}" Grid.Row="2" />
+                    <Label Content="Arcana" Style="{StaticResource SkillLabel}" Grid.Row="3" />
+                    <Label Content="Athletics" Style="{StaticResource SkillLabel}" Grid.Row="4" />
+                    <Label Content="Deception" Style="{StaticResource SkillLabel}" Grid.Row="5" />
+                    <Label Content="History" Style="{StaticResource SkillLabel}" Grid.Row="6" />
+                    <Label Content="Insight" Style="{StaticResource SkillLabel}" Grid.Row="7" />
+                    <Label Content="Intimidation" Style="{StaticResource SkillLabel}" Grid.Row="8" />
+                    <Label Content="Investigation" Style="{StaticResource SkillLabel}" Grid.Row="9" />
+                    <Label Content="Medicine" Style="{StaticResource SkillLabel}" Grid.Row="10" />
+                    <Label Content="Nature" Style="{StaticResource SkillLabel}" Grid.Row="11" />
+                    <Label Content="Perception" Style="{StaticResource SkillLabel}" Grid.Row="12" />
+                    <Label Content="Performance" Style="{StaticResource SkillLabel}" Grid.Row="13" />
+                    <Label Content="Persuasion" Style="{StaticResource SkillLabel}" Grid.Row="14" />
+                    <Label Content="Religion" Style="{StaticResource SkillLabel}" Grid.Row="15" />
+                    <Label Content="Sleight of Hand" Style="{StaticResource SkillLabel}" Grid.Row="16" />
+                    <Label Content="Stealth" Style="{StaticResource SkillLabel}" Grid.Row="17" />
+                    <Label Content="Survival" Style="{StaticResource SkillLabel}" Grid.Row="18" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <TextBox Name="strAcrobatics" Style="{StaticResource SkillText}" Text="{Binding Path=Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="1" TabIndex="1">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Acrobatics skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strAnimalHandling" Style="{StaticResource SkillText}" Text="{Binding Path=AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" TabIndex="2">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Animal Handling skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strArcana" Style="{StaticResource SkillText}" Text="{Binding Path=Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" TabIndex="3">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Arcana skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strAthletics" Style="{StaticResource SkillText}" Text="{Binding Path=Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" TabIndex="4">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Athletics skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strDeception" Style="{StaticResource SkillText}" Text="{Binding Path=Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" TabIndex="5">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Deception skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strHistory" Style="{StaticResource SkillText}" Text="{Binding History, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" TabIndex="6">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's History skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strInsight" Style="{StaticResource SkillText}" Text="{Binding Path=Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" TabIndex="7">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+						        Enter the NPC's Insight skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strIntimidation" Style="{StaticResource SkillText}" Text="{Binding Path=Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" TabIndex="8">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Intimidation skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strInvestigation" Style="{StaticResource SkillText}" Text="{Binding Path=Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="9" TabIndex="9">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Investigation skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strMedicine" Style="{StaticResource SkillText}" Text="{Binding Path=Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="10" TabIndex="10">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Medicine skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strNature" Style="{StaticResource SkillText}" Text="{Binding Path=Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="11" TabIndex="11">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Nature skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strPerception" Style="{StaticResource SkillText}" Text="{Binding Path=Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" TabIndex="12">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+				                Enter the NPC's Perception skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strPerformance" Style="{StaticResource SkillText}" Text="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="13" TabIndex="13">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+				                Enter the NPC's Performance skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strPersuasion" Style="{StaticResource SkillText}" Text="{Binding Path=Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="14" TabIndex="14">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+				                Enter the NPC's Persuasion skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strReligion" Style="{StaticResource SkillText}" Text="{Binding Path=Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="15" TabIndex="15">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+				                Enter the NPC's Religion skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strSleightofHand" Style="{StaticResource SkillText}" Text="{Binding Path=SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="16" TabIndex="16">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Sleight of Hand skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strStealth" Style="{StaticResource SkillText}" Text="{Binding Path=Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="17" TabIndex="17">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Stealth skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    <TextBox Name="strSurvival" Style="{StaticResource SkillText}" Text="{Binding Path=Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="18" TabIndex="18">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+					            Enter the NPC's Survival skill modifier.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="410" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Margin="-4,0,-4,-4" Grid.RowSpan="10"/>
+            <Grid Grid.Row="1">
+                <Label Content="Languages Spoken" Style="{StaticResource Header}" />
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="170" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="170" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="170" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Label Content="Standard" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <ListBox Name="listStandard" ItemsSource="{Binding Path=StandardLanguages}" SelectionMode="Multiple" Padding="0" TabIndex="19">
+                            <ListBox.ToolTip>
+                                <TextBlock>
+					                Select the standard languages that your NPC knows.
+					                <LineBreak />
+					                <Italic>You can select as many as you like.</Italic>
+                                </TextBlock>
+                            </ListBox.ToolTip>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Language}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Label Content="Monstrous" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Row="7">
+                        <ListBox Name="listMonstrous" ItemsSource="{Binding Path=MonstrousLanguages}" SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="21" Grid.ColumnSpan="15" TabIndex="21">
+                            <ListBox.ToolTip>
+                                <TextBlock>
+				                    Select the monstrous languages that your NPC knows.
+				                    <LineBreak />
+				                    <Italic>You can select as many as you like.</Italic>
+                                </TextBlock>
+                            </ListBox.ToolTip>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Language}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="170" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="170" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Label Content="Exotic" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <ListBox Name="listExotic" ItemsSource="{Binding Path=ExoticLanguages}" SelectionMode="Multiple" Padding="0" TabIndex="20">
+                            <ListBox.ToolTip>
+                                <TextBlock>
+					                Select the exotic languages that your NPC knows.
+					                <LineBreak />
+					                <Italic>You can select as many as you like.</Italic>
+                                </TextBlock>
+                            </ListBox.ToolTip>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Language}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Label Content="User" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Row="7">
+                        <ListBox Name="listUser"  ItemsSource="{Binding Path=UserLanguages}"  SelectionMode="Multiple" Padding="0" TabIndex="22">
+                            <ListBox.ToolTip>
+                                <TextBlock>
+				                    Select the user-defined languages that your NPC knows.
+					                <LineBreak />
+					                <Italic>To modify this list, select `Options|Manage language list` from the menu.</Italic>
+                                </TextBlock>
+                            </ListBox.ToolTip>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Language}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Label Content="Language Options" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            </Grid>
+            <Grid Grid.Row="6">
+                <ComboBox Name="strLanguageOptions" Text="{Binding Path=LanguageOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="56" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="23">
+                    <ComboBoxItem IsSelected="True">No special conditions</ComboBoxItem>
+                    <ComboBoxItem>Speaks no languages</ComboBoxItem>
+                    <ComboBoxItem>Speaks all languages</ComboBoxItem>
+                    <ComboBoxItem>Speaks languages it knew in life</ComboBoxItem>
+                    <ComboBoxItem>Can't speak; Knows selected languages</ComboBoxItem>
+                    <ComboBoxItem>Can't speak; Knows creator's languages</ComboBoxItem>
+                    <ComboBoxItem>Can't speak; Knows languages known in life</ComboBoxItem>
+                    <ComboBoxItem>Alternative language text (enter below)</ComboBoxItem>
+                    <ComboBox.ToolTip>
+                        <TextBlock>
 				    Select any special options for your NPC's language skills.
 				    <LineBreak />
 				    <Italic>Choosing 'No special conditions' uses the languages above.</Italic>
-                </TextBlock>
-            </ComboBox.ToolTip>
-        </ComboBox>
-        <TextBox Name="strLanguageOptionsText" Text="{Binding Path=LanguageOptionsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="59" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="24">
-            <TextBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Row="8">
+                <TextBox Name="strLanguageOptionsText" Text="{Binding Path=LanguageOptionsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="59" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="24">
+                    <TextBox.ToolTip>
+                        <TextBlock>
 				    Fill in any text you want to use for the language skill in place of the standard texts above.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <CheckBox Name="chkTelepathy" IsChecked="{Binding Path=Telepathy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Telepathy" Padding="5,0,0,0" VerticalAlignment="Center" Grid.Row="62" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="8" TabIndex="25">
-            <CheckBox.ToolTip>
-                <TextBlock>
-				    Check this box if your NPC has telepathy.
-                </TextBlock>
-            </CheckBox.ToolTip>
-        </CheckBox>
-        <Label Content="Range:" Padding="0" VerticalAlignment="Center" Grid.Row="62" Grid.RowSpan="2" Grid.Column="30" Grid.ColumnSpan="4" />
-        <TextBox Name="strTelepathyRange" Text="{Binding Path=TelepathyRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="62" Grid.RowSpan="2" Grid.Column="34" Grid.ColumnSpan="18" TabIndex="26">
-            <TextBox.ToolTip>
-                <TextBlock>
+                        </TextBlock>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </Grid>
+            <Grid Grid.Row="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="170" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <CheckBox Name="chkTelepathy" IsChecked="{Binding Path=Telepathy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Telepathy" Margin="5,0,0,0" VerticalAlignment="Center" TabIndex="25">
+                        <CheckBox.ToolTip>
+                            <TextBlock>
+				                Check this box if your NPC has telepathy.
+                            </TextBlock>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Label Content="Range:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                </Grid>
+                <Grid Grid.Column="3">
+                    <TextBox Name="strTelepathyRange" Text="{Binding Path=TelepathyRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="62" Grid.RowSpan="2" Grid.Column="34" Grid.ColumnSpan="18" TabIndex="26">
+                        <TextBox.ToolTip>
+                            <TextBlock>
 								Fill in the range (and the unit) of your NPC's telepathy.
 								<LineBreak />
 								<Italic>For example: 150 ft. or 5 miles</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
