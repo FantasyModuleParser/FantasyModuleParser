@@ -5,6 +5,5 @@ namespace FantasyModuleParser.Exporters
     public interface IExporter
     {
         void CreateModule(ModuleModel moduleModel);
-        void CreateCampaign(ModuleModel moduleModel);
     }
 }

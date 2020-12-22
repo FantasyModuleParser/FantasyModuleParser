@@ -18,7 +18,7 @@ using System.Xml;
 
 namespace FantasyModuleParser.Exporters
 {
-    public class FantasyGroundsCampaign : IExporter
+    public class FantasyGroundsCampaign : ICampaign
     {
         string Immunity;
         string Resistance;
