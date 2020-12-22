@@ -735,9 +735,6 @@
     </EmbeddedResource>
     <None Include=".gitignore" />
     <None Include="CHANGELOG.json" />
-    <Content Include="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
