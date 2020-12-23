@@ -130,7 +130,7 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label IsEnabled="False" Content="Spell:" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="SpellDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.SpellFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="SpellDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
+            <TextBox Name="SpellDefaultFolder" IsEnabled="True" Text="{Binding Path=SettingsModel.SpellFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="SpellDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
             <CheckBox Content="Load Last Project" IsChecked="{Binding Path=SettingsModel.LoadLastProject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Margin="5,0,0,0" Padding="5,0,0,0" 
                 Grid.Column="5">
                 <CheckBox.ToolTip>
