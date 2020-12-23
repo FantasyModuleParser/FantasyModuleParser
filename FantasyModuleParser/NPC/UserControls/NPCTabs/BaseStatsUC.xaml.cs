@@ -1,17 +1,10 @@
-﻿using FantasyModuleParser.Main;
-using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action.Enums;
+﻿using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Views;
-using FantasyModuleParser.NPC.UserControls.NPCTabs;
-using System;
-using System.Collections;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static FantasyModuleParser.Extensions.EnumerationExtension;
 using Microsoft.Win32;
 using System.Text;
 
@@ -186,6 +179,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
 		private void ClearToken_Click(object sender, RoutedEventArgs e)
 		{
 			(DataContext as NPCModel).NPCToken = "";
+			strNPCToken.Text = "";
 		}
 
 		private void DiceFunction_Closing(object sender, System.ComponentModel.CancelEventArgs e)
