@@ -327,6 +327,7 @@
             <Label Content="Alignment:" Style="{StaticResource informationLabel}" Grid.Column="1" />
             <ComboBox Name="strAlignment" Text="{Binding Path=Alignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource comboBox}" Grid.Column="3" TabIndex="5">
                 <ComboBoxItem>unaligned</ComboBoxItem>
+                <ComboBoxItem>any alignment</ComboBoxItem>
                 <ComboBoxItem>lawful good</ComboBoxItem>
                 <ComboBoxItem>lawful neutral</ComboBoxItem>
                 <ComboBoxItem>lawful evil</ComboBoxItem>
