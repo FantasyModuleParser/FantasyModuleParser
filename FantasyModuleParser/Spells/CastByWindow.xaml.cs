@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace FantasyModuleParser.Spells
 {

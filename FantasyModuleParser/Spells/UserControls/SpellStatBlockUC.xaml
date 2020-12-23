@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel="clr-namespace:FantasyModuleParser.Spells.ViewModels"
              xmlns:model="clr-namespace:FantasyModuleParser.Spells.Models"
-             xmlns:local="clr-namespace:FantasyModuleParser.Spells.UserControls"
              xmlns:converter="clr-namespace:FantasyModuleParser.Converters"
              xmlns:spellEnum="clr-namespace:FantasyModuleParser.Spells.Enums"
              mc:Ignorable="d" 

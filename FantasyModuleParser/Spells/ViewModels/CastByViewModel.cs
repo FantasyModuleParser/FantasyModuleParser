@@ -3,7 +3,6 @@ using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Spells.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace FantasyModuleParser.Spells.ViewModels
 {

@@ -5,7 +5,6 @@ using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.Services;
 using log4net;
 using Newtonsoft.Json;
-using System;
 using System.IO;
 using System.Text;
 using System.Windows;

@@ -1,5 +1,4 @@
 ﻿using FantasyModuleParser.Importer.Spells;
-using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
 using System.Windows;
 
