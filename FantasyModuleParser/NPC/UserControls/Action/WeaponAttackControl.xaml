@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
              xmlns:enums="clr-namespace:FantasyModuleParser.NPC.Models.Action.Enums"
-             xmlns:ActionModel="clr-namespace:FantasyModuleParser.NPC.Models.Action"
              mc:Ignorable="d" 
              d:DesignHeight="430" d:DesignWidth="430">
     <Grid>

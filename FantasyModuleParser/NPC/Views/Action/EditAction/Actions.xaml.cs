@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.UserControls.Action;
-using FantasyModuleParser.NPC.ViewModel;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace FantasyModuleParser.NPC
 {

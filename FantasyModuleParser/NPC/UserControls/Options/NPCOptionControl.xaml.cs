@@ -2,7 +2,6 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.NPC.Views;
 using System;

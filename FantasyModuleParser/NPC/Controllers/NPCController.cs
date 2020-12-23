@@ -1,13 +1,11 @@
 ﻿using FantasyModuleParser.Converters;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
-using FantasyModuleParser.NPC.Models.Skills;
 using Markdig;
 using Markdig.Wpf;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;

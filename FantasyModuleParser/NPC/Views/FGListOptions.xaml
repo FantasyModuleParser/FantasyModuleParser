@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FantasyModuleParser.NPC"
         mc:Ignorable="d"
         Title="Change NPC Terrain Types and Origin Lore" Height="300" Width="350" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
     <Grid Background="#FFE5E5E5">

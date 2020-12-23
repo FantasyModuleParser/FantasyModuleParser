@@ -1,10 +1,6 @@
-﻿using FantasyModuleParser.Main;
-using FantasyModuleParser.NPC.Controllers;
+﻿using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action.Enums;
-using FantasyModuleParser.NPC.Views;
-using FantasyModuleParser.NPC.UserControls.NPCTabs;
 using System;
-using FantasyModuleParser.NPC.Models.Action.Enums;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
