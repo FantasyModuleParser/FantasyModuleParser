@@ -1070,7 +1070,7 @@ namespace FantasyModuleParser.Exporters
 		private string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
-			return name.Replace(" ", "_").Replace(",", "");
+			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
 		}
 		private string NPCTypeToXMLFormat(string actualType)
 		{
