@@ -536,6 +536,7 @@
     <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
     <Compile Include="NPC\Models\Action\DamageTypeModel.cs" />
     <Compile Include="NPC\Models\Action\Enums\ConditionType.cs" />
+    <Compile Include="NPC\Models\Action\Enums\DamageResistance.cs" />
     <Compile Include="NPC\Models\Action\Enums\WeaponImmunity.cs" />
     <Compile Include="NPC\Models\Action\Enums\WeaponResistance.cs" />
     <Compile Include="NPC\Models\Action\LairAction.cs" />
