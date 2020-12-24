@@ -466,6 +466,8 @@ namespace FantasyModuleParser.Importer.NPC
                     Language = language.Trim(),
                     Selected = true
                 });
+
+                npcModel.LanguageOptions = "No special conditions";
             }
 
         }
