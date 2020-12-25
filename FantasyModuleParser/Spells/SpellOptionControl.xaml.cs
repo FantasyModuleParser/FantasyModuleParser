@@ -264,5 +264,19 @@ namespace FantasyModuleParser.Spells
             // I am missing an event trigger (or invoking) somewhere...
             HiddenComponentDescriptionTB.Text = spellModel.ComponentDescription;
         }
+
+        private void RangeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            if (spellModel.RangeType.GetDescription() == "--" || spellModel.RangeType.GetDescription() == "Touch" || spellModel.RangeType.GetDescription() == "Sight" || spellModel.RangeType.GetDescription() == "Unlimited")
+                RangeValueTB.IsEnabled = false;
+            if (spellModel.RangeType.GetDescription() == "Self" || spellModel.RangeType.GetDescription() == "ranged")
+                RangeValueTB.IsEnabled = true;
+        }
+
+        private void SelfComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace FantasyModuleParser.Spells.Models
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Range { get; set; }
         public RangeType RangeType { get; set; }
+        public SelfType SelfType { get; set; }
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string RangeDescription { get; set; }
         public bool IsVerbalComponent { get; set; }

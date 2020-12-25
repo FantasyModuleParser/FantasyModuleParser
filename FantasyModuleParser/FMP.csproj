@@ -628,6 +628,7 @@
     <Compile Include="Spells\Enums\DurationType.cs" />
     <Compile Include="Spells\Enums\DurationUnit.cs" />
     <Compile Include="Spells\Enums\RangeType.cs" />
+    <Compile Include="Spells\Enums\SelfType.cs" />
     <Compile Include="Spells\Enums\SpellLevel.cs" />
     <Compile Include="Spells\Enums\SpellSchool.cs" />
     <Compile Include="Spells\ImportTextSpellView.xaml.cs">
