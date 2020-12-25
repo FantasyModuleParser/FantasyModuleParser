@@ -631,6 +631,7 @@
     <Compile Include="Spells\Enums\SelfType.cs" />
     <Compile Include="Spells\Enums\SpellLevel.cs" />
     <Compile Include="Spells\Enums\SpellSchool.cs" />
+    <Compile Include="Spells\Enums\UnitType.cs" />
     <Compile Include="Spells\ImportTextSpellView.xaml.cs">
       <DependentUpon>ImportTextSpellView.xaml</DependentUpon>
     </Compile>

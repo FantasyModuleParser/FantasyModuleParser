@@ -119,13 +119,57 @@ namespace FantasyModuleParser.Spells
         private void RangeComboBox_SelectionChanged(object sender, EventArgs e)
         {
             SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            StringBuilder stringBuilder = new StringBuilder();
             if (spellModel == null)
                 return;
             if (RangeValueTB == null)
                 return;
 
+            if (spellModel.RangeType == Enums.RangeType.None || spellModel.RangeType == Enums.RangeType.Touch || spellModel.RangeType == Enums.RangeType.Sight || spellModel.RangeType == Enums.RangeType.Unlimited)
+            {
+                RangeValueTB.IsEnabled = false;
+                RangeDistanceLabel.IsEnabled = false;
+                UnitLabel.IsEnabled = false;
+                UnitValueTB.IsEnabled = false;
+                ShapeLabel.IsEnabled = false;
+                SelfTypeCB.IsEnabled = false;
+            }
+            if (spellModel.RangeType == Enums.RangeType.Self)
+            {
+                RangeDistanceLabel.IsEnabled = true;
+                RangeValueTB.IsEnabled = true;
+                UnitLabel.IsEnabled = true;
+                UnitValueTB.IsEnabled = true;
+                ShapeLabel.IsEnabled = true;
+                SelfTypeCB.IsEnabled = true;
+            }
+            if (spellModel.RangeType == Enums.RangeType.Ranged)
+            {
+                RangeDistanceLabel.IsEnabled = true;
+                RangeValueTB.IsEnabled = true;
+                UnitLabel.IsEnabled = true;
+                UnitValueTB.IsEnabled = true;
+                ShapeLabel.IsEnabled = false;
+                SelfTypeCB.IsEnabled = false;
+            }             
+
             if (RangeValueTB.IsEnabled = (spellModel.RangeType == Enums.RangeType.Ranged))
-                RangeDisplayValue.Text = spellModel.Range + " feet"; 
+                RangeDisplayValue.Text = spellModel.Range + " " + spellModel.Unit.GetDescription();
+            else if (RangeValueTB.IsEnabled = (spellModel.RangeType == Enums.RangeType.Self))
+            {
+                stringBuilder.Append("spellModel.RangeType.GetDescription()");
+                if (spellModel.SelfType.GetDescription() == "radius")
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " radius)");
+                if (spellModel.SelfType.GetDescription() == "cone")
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " cone)");
+                if (spellModel.SelfType.GetDescription() == "line")
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " line)");
+                if (spellModel.SelfType.GetDescription() == "cube")
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " cube)");          
+                if (spellModel.SelfType.GetDescription() == "sphere")
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + "-radius sphere)");
+                RangeDisplayValue.Text = stringBuilder.ToString();
+            }   
             else
                 RangeDisplayValue.Text = spellModel.RangeType == Enums.RangeType.None ? "" : spellModel.RangeType.GetDescription();
 
@@ -269,8 +313,19 @@ namespace FantasyModuleParser.Spells
         {
             SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
             if (spellModel.RangeType.GetDescription() == "--" || spellModel.RangeType.GetDescription() == "Touch" || spellModel.RangeType.GetDescription() == "Sight" || spellModel.RangeType.GetDescription() == "Unlimited")
+            {
                 RangeValueTB.IsEnabled = false;
-            if (spellModel.RangeType.GetDescription() == "Self" || spellModel.RangeType.GetDescription() == "ranged")
+                RangeDistanceLabel.IsEnabled = false;
+            }
+            if (spellModel.RangeType.GetDescription() == "Self")
+            {
+                RangeDistanceLabel.IsEnabled = true;
+                RangeValueTB.IsEnabled = true;
+                ShapeLabel.IsEnabled = true;
+                SelfTypeCB.IsEnabled = true;
+            }
+                
+            if (spellModel.RangeType.GetDescription() == "ranged")
                 RangeValueTB.IsEnabled = true;
         }
 

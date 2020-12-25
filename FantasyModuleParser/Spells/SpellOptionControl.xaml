@@ -156,7 +156,10 @@
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" SelectionChanged="RangeComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
             <Label Name="RangeDistanceLabel" Content="Distance:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Grid.Column="4" />
             <TextBox x:Name="RangeValueTB" Text="{Binding SpellModel.Range, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" IsEnabled="False" Grid.Column="5" TextChanged="RangeComboBox_SelectionChanged" />
-            <ComboBox x:Name="SelfTypeCB" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SelfType}}}" SelectedValue="{Binding SpellModel.SelfType, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" SelectionChanged="SelfComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Row="1" Grid.Column="5" />
+            <Label x:Name="UnitLabel" Content="Unit" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False"  Grid.Row="1" Grid.Column="2" />
+            <ComboBox x:Name="UnitValueTB" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:UnitType}}}" SelectedValue="{Binding SpellModel.Unit, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" VerticalAlignment="Center" DisplayMemberPath="Description" IsEnabled="False" Grid.Row="1" Grid.Column="3" />
+            <Label x:Name="ShapeLabel" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Content="Shape:" Grid.Row="1" Grid.Column="4"/>
+            <ComboBox x:Name="SelfTypeCB" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SelfType}}}" SelectedValue="{Binding SpellModel.SelfType, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"  SelectedValuePath="Value" SelectionChanged="SelfComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Row="1" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
