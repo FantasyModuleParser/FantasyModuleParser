@@ -105,17 +105,60 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			string saveDirectory = settingsService.Load().NPCFolderLocation;
 			string savePath = Path.Combine(saveDirectory, npcModel.NPCName + ".json");
 
+			if (string.IsNullOrEmpty(npcModel.NPCType))
+				log.Warn("NPC Type is missing from " + npcModel.NPCName);
+			if (string.IsNullOrEmpty(npcModel.Size))
+				log.Warn("Size is missing from " + npcModel.NPCName);
+			if (string.IsNullOrEmpty(npcModel.AC))
+				log.Warn("AC is missing from " + npcModel.NPCName);
+			if (string.IsNullOrEmpty(npcModel.Alignment))
+				log.Warn("Alignment is missing from " + npcModel.NPCName);
+			if (string.IsNullOrEmpty(npcModel.ChallengeRating))
+				log.Warn("Challenge Rating is missing from " + npcModel.NPCName);
+			if (npcModel.XP == null)
+				log.Warn("Experience Points is missing from " + npcModel.NPCName);
+			if (!string.IsNullOrEmpty(npcModel.HP))
+				log.Warn("Hit Points are missing from " + npcModel.NPCName);
+			if (!string.IsNullOrEmpty(npcModel.LanguageOptions))
+				log.Warn("Language Option (usually No special conditions) is missing from " + npcModel.NPCName);
+			if (npcModel.Telepathy == true && string.IsNullOrEmpty(npcModel.TelepathyRange))
+				log.Warn("Telepathy Range is missing from " + npcModel.NPCName);
+			if (npcModel.SpellcastingSection == true)
+            {
+				if (string.IsNullOrEmpty(npcModel.CantripSpells))
+					log.Warn("Number of Cantrip slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.FirstLevelSpells))
+					log.Warn("Number of First Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.SecondLevelSpells))
+					log.Warn("Number of Second Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.ThirdLevelSpells))
+					log.Warn("Number of Third Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.FourthLevelSpells))
+					log.Warn("Number of Fourth Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.FifthLevelSpells))
+					log.Warn("Number of Fifth Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.SixthLevelSpells))
+					log.Warn("Number of Sixth Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.SeventhLevelSpells))
+					log.Warn("Number of Seventh Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.EighthLevelSpells))
+					log.Warn("Number of Eighth Level Spell slots is missing from " + npcModel.NPCName);
+				if (string.IsNullOrEmpty(npcModel.NinthLevelSpells))
+					log.Warn("Number of Ninth Level Spell slots is missing from " + npcModel.NPCName);
+			}
+			
 			((App)Application.Current).NpcModel = npcModel;
 			if (Directory.Exists(saveDirectory))
             {
 				npcController.Save(savePath, npcModel);
-				log.Debug("Spell " + npcModel.NPCName + " has successfully been saved to " + savePath);
+				log.Info("NPC " + npcModel.NPCName + " has successfully been saved to " + savePath);
 				MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
 			}
 			else
             {
 				Directory.CreateDirectory(saveDirectory);
 				npcController.Save(savePath, npcModel);
+				log.Info("NPC " + npcModel.NPCName + " has successfully been saved to " + savePath);
 				MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
 			}
 		}
@@ -151,6 +194,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				// As the assumption here is the User is on the Base Stats tab while loading
 				// a NPC File
 				RefreshUserControls();
+				log.Info("NPC " + npcModel.NPCName + " has successfully been loaded");
 			}
 		}
 
@@ -189,6 +233,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		{
 			if(FGCategoryComboBox.Items.Count == 0)
 			{
+				log.Warn("No Module Project loaded!\nPlease create / load a Module through Options -> Manage Project");
 				MessageBox.Show("No Module Project loaded!\nPlease create / load a Module through Options -> Manage Project");
 				return;
 			}
@@ -199,7 +244,8 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			{
 				moduleService.AddNPCToCategory(npcController.GetNPCModel(), (FGCategoryComboBox.SelectedItem as CategoryModel).Name);
 				Refresh();
-				MessageBox.Show("NPC has been added to the project");
+				log.Info("NPC " + npcModel.NPCName + " has successfully been added to project");
+				MessageBox.Show("NPC " + npcModel.NPCName + " has been added to the project");
 			}
 			catch (Exception exception)
 			{

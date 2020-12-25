@@ -75,8 +75,8 @@ namespace FantasyModuleParser.Spells.ViewModels
             {
                 if (string.IsNullOrEmpty(SpellModel.CastBy))
                 {
+                    log.Warn("No CastBy classes selected for spell " + SpellModel.SpellName);
                     MessageBox.Show("Please select which class can cast spell " + SpellModel.SpellName + " and try again.");
-                    
                     return;
                 }
                 try
@@ -86,7 +86,6 @@ namespace FantasyModuleParser.Spells.ViewModels
                 catch (InvalidDataException exception)
                 {
                     log.Error(" ==== Error detected while saving Spell :: " + exception.Message + " ======== ");
-                    log.Warn("No CastBy classes selected for spell " + SpellModel.SpellName);
                 }
             }
         }
@@ -98,7 +97,7 @@ namespace FantasyModuleParser.Spells.ViewModels
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
                 serializer.Serialize(file, SpellModel);
-                log.Debug("Spell " + SpellModel.SpellName + " has successfully been saved to " + filePath);
+                log.Info("Spell " + SpellModel.SpellName + " has successfully been saved to " + filePath);
                 MessageBox.Show("Spell " + SpellModel.SpellName + " has been saved successfully");
             }
         }
@@ -106,6 +105,7 @@ namespace FantasyModuleParser.Spells.ViewModels
         public void LoadSpell()
         {
             SpellModel = _spellService.Load(_settingsModel.SpellFolderLocation);
+            log.Info("Spell " + SpellModel.SpellName + " has been successfully loaded");
         }
 
         public void Refresh()
