@@ -100,11 +100,14 @@ namespace FantasyModuleParser.Spells.ViewModels
                 log.Info("Spell " + SpellModel.SpellName + " has successfully been saved to " + filePath);
                 MessageBox.Show("Spell " + SpellModel.SpellName + " has been saved successfully");
             }
+            log.Debug("Finished saving Spell...");
         }
 
         public void LoadSpell()
         {
+            log.Debug("Loading spell started...");
             SpellModel = _spellService.Load(_settingsModel.SpellFolderLocation);
+            log.Debug("Loading spell completed...");
             log.Info("Spell " + SpellModel.SpellName + " has been successfully loaded");
         }
 
@@ -129,9 +132,11 @@ namespace FantasyModuleParser.Spells.ViewModels
             }
             try
             {
+                log.Debug("Adding spell " + SpellModel.SpellName + " to project started...");
                 _moduleService.AddSpellToCategory(SpellModel, categoryValue);
+                log.Debug("Adding spell " + SpellModel.SpellName + " to project completed...");
                 MessageBox.Show("Spell " + SpellModel.SpellName + " has been added to the project");
-                log.Debug("Spell " + SpellModel.SpellName + " has been added to the project");
+                log.Info("Spell " + SpellModel.SpellName + " has been added to the project");
             }
             catch (InvalidDataException exception)
             {

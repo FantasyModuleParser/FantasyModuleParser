@@ -115,8 +115,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				log.Warn("Alignment is missing from " + npcModel.NPCName);
 			if (string.IsNullOrEmpty(npcModel.ChallengeRating))
 				log.Warn("Challenge Rating is missing from " + npcModel.NPCName);
-			if (npcModel.XP == null)
-				log.Warn("Experience Points is missing from " + npcModel.NPCName);
 			if (!string.IsNullOrEmpty(npcModel.HP))
 				log.Warn("Hit Points are missing from " + npcModel.NPCName);
 			if (!string.IsNullOrEmpty(npcModel.LanguageOptions))
