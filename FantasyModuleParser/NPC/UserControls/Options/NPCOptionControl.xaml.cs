@@ -2,8 +2,10 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.NPC.Views;
+using log4net;
 using System;
 using System.IO;
 using System.Windows;
@@ -30,6 +32,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		#endregion
 
 		public event EventHandler OnViewStatBlock;
+		private static readonly ILog log = LogManager.GetLogger(typeof(NPCViewModel));
 		public NPCOptionControl()
 		{
 			InitializeComponent();
@@ -106,13 +109,14 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			if (Directory.Exists(saveDirectory))
             {
 				npcController.Save(savePath, npcModel);
-				MessageBox.Show("NPC Saved Successfully");
+				log.Debug("Spell " + npcModel.NPCName + " has successfully been saved to " + savePath);
+				MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
 			}
 			else
             {
 				Directory.CreateDirectory(saveDirectory);
 				npcController.Save(savePath, npcModel);
-				MessageBox.Show("NPC Saved Successfully");
+				MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
 			}
 		}
 		private void NewNPC_Click(object sender, RoutedEventArgs e)
