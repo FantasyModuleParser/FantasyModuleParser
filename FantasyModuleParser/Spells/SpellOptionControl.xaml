@@ -152,7 +152,7 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Range:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Name="RangeDisplayValue" Text="{Binding SpellModel.RangeDescription, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Name="RangeDisplayValue" Text="{Binding SpellModel.RangeDescription, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" SelectionChanged="RangeComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
             <Label Name="RangeDistanceLabel" Content="Distance:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Grid.Column="4" />
