@@ -129,27 +129,21 @@ namespace FantasyModuleParser.Spells
             {
                 RangeValueTB.IsEnabled = false;
                 RangeDistanceLabel.IsEnabled = false;
-                UnitLabel.IsEnabled = false;
                 UnitValueTB.IsEnabled = false;
-                ShapeLabel.IsEnabled = false;
                 SelfTypeCB.IsEnabled = false;
             }
             if (spellModel.RangeType == Enums.RangeType.Self)
             {
                 RangeDistanceLabel.IsEnabled = true;
                 RangeValueTB.IsEnabled = true;
-                UnitLabel.IsEnabled = true;
                 UnitValueTB.IsEnabled = true;
-                ShapeLabel.IsEnabled = true;
                 SelfTypeCB.IsEnabled = true;
             }
             if (spellModel.RangeType == Enums.RangeType.Ranged)
             {
                 RangeDistanceLabel.IsEnabled = true;
                 RangeValueTB.IsEnabled = true;
-                UnitLabel.IsEnabled = true;
                 UnitValueTB.IsEnabled = true;
-                ShapeLabel.IsEnabled = false;
                 SelfTypeCB.IsEnabled = false;
             }             
 
@@ -159,15 +153,15 @@ namespace FantasyModuleParser.Spells
             {
                 stringBuilder.Append("spellModel.RangeType.GetDescription()");
                 if (spellModel.SelfType.GetDescription() == "radius")
-                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " radius)");
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " " + spellModel.SelfType + ")");
                 if (spellModel.SelfType.GetDescription() == "cone")
-                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " cone)");
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " " + spellModel.SelfType + ")");
                 if (spellModel.SelfType.GetDescription() == "line")
-                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " line)");
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " " + spellModel.SelfType + ")");
                 if (spellModel.SelfType.GetDescription() == "cube")
-                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " cube)");          
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + " " + spellModel.SelfType + ")");          
                 if (spellModel.SelfType.GetDescription() == "sphere")
-                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + "-radius sphere)");
+                    stringBuilder.Append(" (" + spellModel.Range + "-" + spellModel.Unit + "-radius " + spellModel.SelfType + ")");
                 RangeDisplayValue.Text = stringBuilder.ToString();
             }   
             else
@@ -307,26 +301,6 @@ namespace FantasyModuleParser.Spells
             // TextBox on the .xaml in order for the View Stat Block page to update correctly.  My guess is
             // I am missing an event trigger (or invoking) somewhere...
             HiddenComponentDescriptionTB.Text = spellModel.ComponentDescription;
-        }
-
-        private void RangeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
-            if (spellModel.RangeType.GetDescription() == "--" || spellModel.RangeType.GetDescription() == "Touch" || spellModel.RangeType.GetDescription() == "Sight" || spellModel.RangeType.GetDescription() == "Unlimited")
-            {
-                RangeValueTB.IsEnabled = false;
-                RangeDistanceLabel.IsEnabled = false;
-            }
-            if (spellModel.RangeType.GetDescription() == "Self")
-            {
-                RangeDistanceLabel.IsEnabled = true;
-                RangeValueTB.IsEnabled = true;
-                ShapeLabel.IsEnabled = true;
-                SelfTypeCB.IsEnabled = true;
-            }
-                
-            if (spellModel.RangeType.GetDescription() == "ranged")
-                RangeValueTB.IsEnabled = true;
         }
 
         private void SelfComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
