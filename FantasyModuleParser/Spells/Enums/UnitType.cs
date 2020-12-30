@@ -4,16 +4,19 @@ namespace FantasyModuleParser.Spells.Enums
 {
     public enum UnitType
     {
+		[Description("--")]
+		None = 0,
+
 		[Description("feet")]
-		Feet = 0,
+		Feet = 1,
 
 		[Description("foot")]
-		Foot = 1,
+		Foot = 2,
 
 		[Description("mile")]
-		Mile = 2,
+		Mile = 3,
 
 		[Description("miles")]
-		Miles = 3,
+		Miles = 4,
 	}
 }

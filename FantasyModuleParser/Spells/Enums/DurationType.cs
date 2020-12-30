@@ -13,7 +13,7 @@ namespace FantasyModuleParser.Spells.Enums
 		[Description("Instantaneous")]
 		Instantaneous = 2,
 
-		[Description("time")]
+		[Description("Time")]
 		Time = 3,
 
 		[Description("Until dispelled")]
