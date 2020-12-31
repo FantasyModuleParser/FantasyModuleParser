@@ -85,6 +85,7 @@ namespace FantasyModuleParser.Spells.ViewModels
                 }
                 catch (InvalidDataException exception)
                 {
+                    MessageBox.Show(" ==== Error detected while saving Spell :: " + exception.Message + " ======== ");
                     log.Error(" ==== Error detected while saving Spell :: " + exception.Message + " ======== ");
                 }
             }
