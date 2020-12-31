@@ -2,7 +2,6 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.NPC.ViewModels;
 using FantasyModuleParser.NPC.Views;
 using log4net;
@@ -32,7 +31,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 		#endregion
 
 		public event EventHandler OnViewStatBlock;
-		private static readonly ILog log = LogManager.GetLogger(typeof(NPCViewModel));
+		private static readonly ILog log = LogManager.GetLogger(typeof(NPCOptionControl));
 		public NPCOptionControl()
 		{
 			InitializeComponent();
