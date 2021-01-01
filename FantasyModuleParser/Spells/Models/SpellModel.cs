@@ -16,15 +16,19 @@ namespace FantasyModuleParser.Spells.Models
         public int CastingTime { get; set; }
         public CastingType CastingType { get; set; }
         public string ReactionDescription { get; set; }
-        [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        [DefaultValue(0)]
+        [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int Range { get; set; }
-        [DefaultValue("None")]
+        [DefaultValue(0)]
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public RangeType RangeType { get; set; }
+        [DefaultValue(0)]
+        [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public UnitType Unit { get; set; }
-        [DefaultValue("None")]
+        [DefaultValue(0)]
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public SelfType SelfType { get; set; }
+        [DefaultValue("None")]
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string RangeDescription { get; set; }
         public bool IsVerbalComponent { get; set; }
