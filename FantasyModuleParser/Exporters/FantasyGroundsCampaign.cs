@@ -31,7 +31,9 @@ namespace FantasyModuleParser.Exporters
 
         public void CreateCampaign(ModuleModel moduleModel)
         {
-            if (string.IsNullOrEmpty(settingsService.Load().FGCampaignFolderLocation))
+			if(moduleModel == null)
+				throw new ApplicationException("No ModuleModel object has been set");
+			if (string.IsNullOrEmpty(settingsService.Load().FGCampaignFolderLocation))
             {
                 throw new ApplicationException("No Campaign folder has been set");
             }
@@ -67,8 +69,10 @@ namespace FantasyModuleParser.Exporters
             }
         }
 
-        private List<NPCModel> GenerateFatNPCList(ModuleModel moduleModel)
+        private static List<NPCModel> GenerateFatNPCList(ModuleModel moduleModel)
         {
+			if (moduleModel == null)
+				throw new ArgumentNullException(nameof(moduleModel));
             List<NPCModel> FatNPCList = new List<NPCModel>();
 
             foreach (CategoryModel category in moduleModel.Categories)
@@ -79,7 +83,7 @@ namespace FantasyModuleParser.Exporters
             return FatNPCList;
         }
 
-        private List<SpellModel> GenerateFatSpellList(ModuleModel moduleModel)
+        private static List<SpellModel> GenerateFatSpellList(ModuleModel moduleModel)
         {
             List<SpellModel> FatSpellList = new List<SpellModel>();
             foreach (CategoryModel category in moduleModel.Categories)
@@ -95,8 +99,8 @@ namespace FantasyModuleParser.Exporters
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = GenerateFatSpellList(moduleModel);
 			HashSet<string> UniqueCasterClass = new HashSet<string>();
-			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
-			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
+			FatNPCList.Sort((npcOne, npcTwo) => string.Compare(npcOne.NPCName,npcTwo.NPCName, StringComparison.Ordinal));
+			FatSpellList.Sort((spellOne, spellTwo) => string.Compare(spellOne.SpellName,spellTwo.SpellName, StringComparison.Ordinal));
 			/// <summary>
 			///  Names all token images to match the NPC name
 			/// </summary>
@@ -319,7 +323,7 @@ namespace FantasyModuleParser.Exporters
 		private void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			List<SpellModel> SpellList = getFatSpellModelList(moduleModel);
-			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
+			SpellList.Sort((spellOne, spellTwo) => string.Compare(spellOne.SpellName,spellTwo.SpellName, StringComparison.Ordinal));
 			//var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
 			foreach (string castByValue in getSortedSpellCasterList(moduleModel))
 			{

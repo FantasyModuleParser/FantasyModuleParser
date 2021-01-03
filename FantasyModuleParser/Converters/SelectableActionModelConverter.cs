@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace FantasyModuleParser.Converters
 {
@@ -8,7 +9,9 @@ namespace FantasyModuleParser.Converters
     {
         public override SelectableActionModel ReadJson(JsonReader reader, Type objectType, SelectableActionModel existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            return (SelectableActionModel)reader.Value;
+            if(reader != null)
+                return (SelectableActionModel)reader.Value;
+            return null;
         }
 
         /// <summary>
@@ -24,6 +27,8 @@ namespace FantasyModuleParser.Converters
         /// <param name="serializer"></param>
         public override void WriteJson(JsonWriter writer, SelectableActionModel value, JsonSerializer serializer)
         {
+            Contract.Requires(value != null);
+            Contract.Requires(writer != null);
             if (value.Selected)
             {
                 writer.WriteStartObject();

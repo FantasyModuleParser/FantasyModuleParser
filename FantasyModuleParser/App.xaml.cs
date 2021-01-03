@@ -10,6 +10,7 @@ using log4net.Appender;
 // using log4net.Core;
 #endregion
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,7 @@ namespace FantasyModuleParser
 
         void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            string errorMessage = string.Format("An unhandled exception occurred: {0}\r=========================\r\r Restarting Fantasy Module Parser may be required.\n\nIf still unresolved, please let developers know in the Discord server.", e.Exception.Message);
+            string errorMessage = string.Format(CultureInfo.InvariantCulture, "An unhandled exception occurred: {0}\r=========================\r\r Restarting Fantasy Module Parser may be required.\n\nIf still unresolved, please let developers know in the Discord server.", e.Exception.Message);
             
             // This is purely for quick debugging errors that a user can copy & Paste.
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -74,7 +75,7 @@ namespace FantasyModuleParser
             #endregion
         }
 
-        private void Log4NetXmlSetup()
+        private static void Log4NetXmlSetup()
         {
             const string xmlData = @" <log4net>
   <root>
@@ -103,9 +104,11 @@ namespace FantasyModuleParser
 
             //return new MemoryStream(ASCIIEncoding.Default.GetBytes(xmlData));
 
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xmlData);
-
+            XmlDocument doc = new XmlDocument() { XmlResolver = null };
+            System.IO.StringReader sreader = new System.IO.StringReader(xmlData);
+            XmlReader reader = XmlReader.Create(sreader, new XmlReaderSettings() { XmlResolver = null });
+            doc.Load(reader);
+            reader.Dispose();
             log4net.Config.XmlConfigurator.Configure(doc.DocumentElement);
         }
     }
