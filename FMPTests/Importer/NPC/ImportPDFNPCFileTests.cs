@@ -1,5 +1,4 @@
-﻿using FantasyModuleParser.Importer.NPC;
-using FantasyModuleParser.NPC;
+﻿using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;

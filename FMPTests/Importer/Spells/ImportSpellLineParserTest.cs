@@ -3,7 +3,6 @@ using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.Enums;
 using System.Collections.Generic;
 using FantasyModuleParser.Importer.Spells;
-using System.Linq;
 
 namespace FMPTests_Spells.Importer
 {

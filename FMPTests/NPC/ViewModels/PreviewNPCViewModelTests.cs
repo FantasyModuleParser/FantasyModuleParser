@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FantasyModuleParser.NPC.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FantasyModuleParser.NPC.Controllers;
 
 namespace FantasyModuleParser.NPC.ViewModels.Tests
