@@ -6,8 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace FantasyModuleParser.Importer.NPC.Tests
 {
