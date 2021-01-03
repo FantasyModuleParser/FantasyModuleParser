@@ -427,6 +427,7 @@ namespace FantasyModuleParser.Importer.NPC
             npcModel.ExoticLanguages = languageController.GenerateExoticLanguages();
             npcModel.MonstrousLanguages = languageController.GenerateMonsterLanguages();
             npcModel.UserLanguages = new System.Collections.ObjectModel.ObservableCollection<LanguageModel>();
+            npcModel.LanguageOptions = "No special conditions";
 
             string languageStringTrimmed = languages.Remove(0, 9); // Removes the 'Languages' word
             foreach (string language in languageStringTrimmed.Split(','))
