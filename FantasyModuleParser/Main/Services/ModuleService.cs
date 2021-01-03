@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
+using log4net;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -14,6 +15,7 @@ namespace FantasyModuleParser.Main.Services
     // used throughout the application (hence why ModuleModel is static)
     public class ModuleService
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(ModuleService));
         // Static module to be shared for any class using ModuleService
         private static ModuleModel moduleModel;
         private SettingsService settingsService;
@@ -66,24 +68,51 @@ namespace FantasyModuleParser.Main.Services
         public void AddNPCToCategory(NPCModel npcModel, string categoryValue)
         {
             if (categoryValue == null || categoryValue.Length == 0)
+            {
+                log.Error("Category value is null; Cannot save NPC.\nSelect a Category from the FG Category dropdown menu.");
                 throw new InvalidDataException("Category value is null;  Cannot save NPC.\nSelect a Category from the FG Category dropdown menu.");
+            }
             if (npcModel == null)
+            {
+                log.Error("NPC Model data object is null.");
                 throw new InvalidDataException("NPC Model data object is null.\nYou thought you could add an NPC without creating or importing one?");
+            }
             if (npcModel.NPCName == null || npcModel.NPCName.Length == 0)
+            {
+                log.Error("NPC name is empty!");
                 throw new InvalidDataException("NPC name is empty!\nAll NPCs must have a name.");
+            }
             if (npcModel.ChallengeRating == null || npcModel.ChallengeRating.Length == 0)
+            {
+                log.Error("No Challenge Rating has been set for NPC.");
                 throw new InvalidDataException("No Challenge Rating has been set for NPC.\nHow do you expect to give your players experience?");
+            }                
             if (npcModel.NPCType == null || npcModel.NPCType.Length == 0)
+            {
+                log.Error("NPC must have a specified type.");
                 throw new InvalidDataException("NPC must have a specified type.\nEven an unknown NPC has a type.");
+            }                
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
+            {
+                log.Error("Category Value is not in the Module Model data object!");
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            }                
             if (!string.IsNullOrEmpty(npcModel.NPCImage) && npcModel.NPCImage.StartsWith("file:///"))
+            {
+                log.Error("Remove the file:/// from the NPC Image path and Add to Project again.");
                 throw new InvalidDataException("Remove the file:/// from the NPC Image path and Add to Project again.");
+            }
             if (npcModel.Alignment == null)
+            {
+                log.Error("Select an alignment for the NPC and add to project again.");
                 throw new InvalidDataException("Select an alignment for the NPC and add to project again.\nDoes alignment really matter in DnD anymore?");
+            }                
             if (npcModel.AC == null)
+            {
+                log.Error("Please add an armor class and try again.");
                 throw new InvalidDataException("Please add an armor class and try again.\nHow do you expect to hit a NPC without knowing it's AC?");
+            }                
             if (string.IsNullOrEmpty(npcModel.NPCToken))
             {
                 npcModel.NPCToken = "";
@@ -104,15 +133,26 @@ namespace FantasyModuleParser.Main.Services
         public void AddSpellToCategory(SpellModel spellModel, string categoryValue)
         {
             if (categoryValue == null || categoryValue.Length == 0)
-                throw new InvalidDataException("Category value is null;  Cannot save NPC");
+            {
+                log.Error("Category value is null;  Cannot save Spell");
+                throw new InvalidDataException("Category value is null;  Cannot save Spell");
+            }                
             if (spellModel == null)
+            {
+                log.Error(nameof(SpellModel) + " data object is null");
                 throw new InvalidDataException(nameof(SpellModel) + " data object is null");
+            }                
             if (spellModel.SpellName == null || spellModel.SpellName.Length == 0)
-                throw new InvalidDataException("spellModel name is empty!");
-
+            {
+                log.Error("Spell name is empty!");
+                throw new InvalidDataException("Spell name is empty!");
+            }
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
+            {
+                log.Error("Category Value is not in the Module Model data object!");
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            }
             else
             {
                 if (categoryModel.SpellModels.FirstOrDefault(x => x.SpellName.Equals(spellModel.SpellName, StringComparison.Ordinal)) == null)
