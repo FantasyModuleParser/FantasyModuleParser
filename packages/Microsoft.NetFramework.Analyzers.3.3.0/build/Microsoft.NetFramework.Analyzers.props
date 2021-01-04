@@ -1,0 +1,16 @@
+<Project>
+  
+  <!-- 
+    This import includes an additional props file that disables built-in analyzers from .NET SDK that have the identical CA rules to those implemented in this package.
+    This additional props file should only be present in the analyzer NuGet package, it should **not** be inserted into the .NET SDK.
+  -->
+  <Import Project="DisableNETAnalyzersForNuGetPackage.props" Condition="Exists('DisableNETAnalyzersForNuGetPackage.props')" />
+
+  <!-- 
+    This property group prevents the rule ids implemented in this package to be bumped to errors when
+    the 'CodeAnalysisTreatWarningsAsErrors' = 'false'.
+  -->
+  <PropertyGroup Condition="'$(CodeAnalysisTreatWarningsAsErrors)' == 'false'">
+    <WarningsNotAsErrors>$(WarningsNotAsErrors);CA1058;CA2153;CA3075;CA3076;CA3077;CA3147</WarningsNotAsErrors>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,2196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Toolkit.Parsers</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Toolkit.Parsers.IParser`1">
+            <summary>
+            Parser interface.
+            </summary>
+            <typeparam name="T">Type to parse into.</typeparam>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.IParser`1.Parse(System.String)">
+            <summary>
+            Parse method which all classes must implement.
+            </summary>
+            <param name="data">Data to parse.</param>
+            <returns>Strong typed parsed data.</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Core.ParseHelpers">
+            <summary>
+            This class offers helpers for Parsing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Core.ParseHelpers.IsMarkdownBlankOrWhiteSpace(System.String)">
+            <summary>
+            Determines if a Markdown string is blank or comprised entirely of whitespace characters.
+            </summary>
+            <returns>true if blank or white space</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Core.ParseHelpers.IsMarkdownWhiteSpace(System.Char)">
+            <summary>
+            Determines if a character is a Markdown whitespace character.
+            </summary>
+            <returns>true if is white space</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Core.StringValueAttribute">
+            <summary>
+            The StringValue attribute is used as a helper to decorate enum values with string representations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Core.StringValueAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Core.StringValueAttribute" /> class.
+            Constructor accepting string value.
+            </summary>
+            <param name="value">String value</param>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Core.StringValueAttribute.Value">
+            <summary>
+            Gets property for string value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.SchemaBase">
+            <summary>
+            Strong typed schema base class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.SchemaBase.InternalID">
+            <summary>
+            Gets or sets identifier for strong typed record.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock">
+            <summary>
+            Represents a block of text that is displayed in a fixed-width font.  Inline elements and
+            escape sequences are ignored inside the code block.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock.Text">
+            <summary>
+            Gets or sets the source code to display.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock.CodeLanguage">
+            <summary>
+            Gets or sets the Language specified in prefix, e.g. ```c# (Github Style Parsing).<para />
+            This does not guarantee that the Code Block has a language, or no language, some valid code might not have been prefixed, and this will still return null. <para />
+            To ensure all Code is Highlighted (If desired), you might have to determine the language from the provided string, such as looking for key words.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock.Parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Parses a code block.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location of the first character in the block. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <param name="quoteDepth"> The current nesting level for block quoting. </param>
+            <param name="actualEnd"> Set to the end of the block when the return value is non-null. </param>
+            <returns> A parsed code block, or <c>null</c> if this is not a code block. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock">
+            <summary>
+            Represents a heading.
+            <seealso href="https://spec.commonmark.org/0.29/#atx-headings">Single-Line Header CommonMark Spec</seealso><seealso href="https://spec.commonmark.org/0.29/#setext-headings">Two-Line Header CommonMark Spec</seealso></summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock.HeaderLevel">
+            <summary>
+            Gets or sets the header level (1-6).  1 is the most important header, 6 is the least important.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock.Inlines">
+            <summary>
+            Gets or sets the contents of the block.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock.ParseHashPrefixedHeader(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parses a header that starts with a hash.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location of the first hash character. </param>
+            <param name="end"> The location of the end of the line. </param>
+            <returns> A parsed header block, or <c>null</c> if this is not a header. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock.ParseUnderlineStyleHeader(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Parses a two-line header.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="firstLineStart"> The location of the start of the first line. </param>
+            <param name="firstLineEnd"> The location of the end of the first line. </param>
+            <param name="secondLineStart"> The location of the start of the second line. </param>
+            <param name="secondLineEnd"> The location of the end of the second line. </param>
+            <returns> A parsed header block, or <c>null</c> if this is not a header. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.HorizontalRuleBlock">
+            <summary>
+            Represents a horizontal line.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.HorizontalRuleBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.HorizontalRuleBlock" /> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.HorizontalRuleBlock.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parses a horizontal rule.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location of the start of the line. </param>
+            <param name="end"> The location of the end of the line. </param>
+            <returns> A parsed horizontal rule block, or <c>null</c> if this is not a horizontal rule. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.HorizontalRuleBlock.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock">
+            <summary>
+            Represents the target of a reference ([ref][]).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock.Id">
+            <summary>
+            Gets or sets the reference ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock.Url">
+            <summary>
+            Gets or sets the link URL.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock.Tooltip">
+            <summary>
+            Gets or sets a tooltip to display on hover.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a reference e.g. "[example]: http://www.reddit.com 'title'".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="end"> The location to stop parsing. </param>
+            <returns> A parsed markdown link, or <c>null</c> if this is not a markdown link. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.LinkReferenceBlock.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock">
+            <summary>
+            Represents a list, with each list item proceeded by either a number or a bullet.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.Items">
+            <summary>
+            Gets or sets the list items.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.Style">
+            <summary>
+            Gets or sets the style of the list, either numbered or bulleted.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.Parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Parses a list block.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location of the first character in the block. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <param name="quoteDepth"> The current nesting level for block quoting. </param>
+            <param name="actualEnd"> Set to the end of the block when the return value is non-null. </param>
+            <returns> A parsed list block, or <c>null</c> if this is not a list block. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.ParseItemPreamble(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parsing helper method.
+            </summary>
+            <returns>Returns a ListItemPreamble</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.AppendTextToListItem(Microsoft.Toolkit.Parsers.Markdown.Blocks.ListItemBlock,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Parsing helper method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.ReplaceStringBuilders(Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock)">
+            <summary>
+            Parsing helper.
+            </summary>
+            <returns>
+                <c>true</c> if any of the list items were parsed using the block parser. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListItemBlock">
+            <summary>
+            This specifies the Content of the List element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.ListItemBlock.Blocks">
+            <summary>
+            Gets or sets the contents of the list item.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.ParagraphBlock">
+            <summary>
+            Represents a block of text that is displayed as a single paragraph.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ParagraphBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.ParagraphBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.ParagraphBlock.Inlines">
+            <summary>
+            Gets or sets the contents of the block.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ParagraphBlock.Parse(System.String)">
+            <summary>
+            Parses paragraph text.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <returns> A parsed paragraph. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.ParagraphBlock.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.QuoteBlock">
+            <summary>
+            Represents a block that is displayed using a quote style.  Quotes are used to indicate
+            that the text originated elsewhere (e.g. a previous comment).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.QuoteBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.QuoteBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.QuoteBlock.Blocks">
+            <summary>
+            Gets or sets the contents of the block.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.QuoteBlock.Parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Parses a quote block.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="startOfLine"> The location of the start of the line. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <param name="quoteDepth"> The current nesting level of quotes. </param>
+            <param name="actualEnd"> Set to the end of the block when the return value is non-null. </param>
+            <returns> A parsed quote block. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock">
+            <summary>
+            Represents a block which contains tabular data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.Rows">
+            <summary>
+            Gets or sets the table rows.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.ColumnDefinitions">
+            <summary>
+            Gets or sets describes the columns in the table.  Rows can have more or less cells than the number
+            of columns.  Rows with fewer cells should be padded with empty cells.  For rows with
+            more cells, the extra cells should be hidden.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.Parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Parses a table block.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location of the first character in the block. </param>
+            <param name="endOfFirstLine"> The location of the end of the first line. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <param name="quoteDepth"> The current nesting level for block quoting. </param>
+            <param name="actualEnd"> Set to the end of the block when the return value is non-null. </param>
+            <returns> A parsed table block, or <c>null</c> if this is not a table block. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableColumnDefinition">
+            <summary>
+            Describes a column in the markdown table.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableColumnDefinition.Alignment">
+            <summary>
+            Gets or sets the alignment of content in a table column.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableRow">
+            <summary>
+            Represents a single row in the table.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableRow.Cells">
+            <summary>
+            Gets or sets the table cells.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableRow.ParseContents(System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.Action{System.Int32,System.Int32})">
+            <summary>
+            Parses the contents of the row, ignoring whitespace at the beginning and end of each cell.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="startingPos"> The position of the start of the row. </param>
+            <param name="maxEndingPos"> The maximum position of the end of the row </param>
+            <param name="quoteDepth"> The current nesting level for block quoting. </param>
+            <param name="requireVerticalBar"> Indicates whether the line must contain a vertical bar. </param>
+            <param name="contentParser"> Called for each cell. </param>
+            <returns> The position of the start of the next line. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableRow.Parse(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Called when this block type should parse out the goods. Given the markdown, a starting point, and a max ending point
+            the block should find the start of the block, find the end and parse out the middle. The end most of the time will not be
+            the max ending pos, but it sometimes can be. The function will return where it ended parsing the block in the markdown.
+            </summary>
+            <returns>the postiion parsed to</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableCell">
+            <summary>
+            Represents a cell in the table.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock.TableCell.Inlines">
+            <summary>
+            Gets or sets the cell contents.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock">
+            <summary>
+            Yaml Header. use for blog.
+            e.g.
+            ---
+            title: something
+            tag: something
+            ---
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock.Children">
+            <summary>
+            Gets or sets yaml header properties
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock.Parse(System.String,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Parse yaml header
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location of the first hash character. </param>
+            <param name="end"> The location of the end of the line. </param>
+            <param name="realEndIndex"> The location of the actual end of the aprse. </param>
+            <returns>Parsed <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock" /> class</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock">
+            <summary>
+            A Block Element is an element that is a container for other structures.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock.Type">
+            <summary>
+            Gets or sets tells us what type this element is.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock.#ctor(Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock" /> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+            <param name="obj"> The object to compare with the current object. </param>
+            <returns>
+                <c>true</c> if the specified object is equal to the current object; otherwise, <c>false.</c></returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock.GetHashCode">
+            <summary>
+            Serves as the default hash function.
+            </summary>
+            <returns> A hash code for the current object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.ColumnAlignment">
+            <summary>
+            The alignment of content in a table column.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.ColumnAlignment.Unspecified">
+            <summary>
+            The alignment was not specified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.ColumnAlignment.Left">
+            <summary>
+            Content should be left aligned.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.ColumnAlignment.Right">
+            <summary>
+            Content should be right aligned.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.ColumnAlignment.Center">
+            <summary>
+            Content should be centered.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.HyperlinkType">
+            <summary>
+            Specifies the type of Hyperlink that is used.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.HyperlinkType.BracketedUrl">
+            <summary>
+            A hyperlink surrounded by angle brackets (e.g. "http://www.reddit.com").
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.HyperlinkType.FullUrl">
+            <summary>
+            A fully qualified hyperlink (e.g. "http://www.reddit.com").
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.HyperlinkType.PartialUrl">
+            <summary>
+            A URL without a scheme (e.g. "www.reddit.com").
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.HyperlinkType.Email">
+            <summary>
+            An email address (e.g. "test@reddit.com").
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.HyperlinkType.Subreddit">
+            <summary>
+            A subreddit link (e.g. "/r/news").
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.HyperlinkType.User">
+            <summary>
+            A user link (e.g. "/u/quinbd").
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod" />
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Comment">
+            <summary>
+            A Comment text
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.LinkReference">
+            <summary>
+            A Link Reference
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Bold">
+            <summary>
+            A bold element
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.BoldItalic">
+            <summary>
+            An bold and italic block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Code">
+            <summary>
+            A code element
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Italic">
+            <summary>
+            An italic block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.MarkdownLink">
+            <summary>
+            A link block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.AngleBracketLink">
+            <summary>
+            An angle bracket link.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Url">
+            <summary>
+            A url block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.RedditLink">
+            <summary>
+            A reddit style link
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.PartialLink">
+            <summary>
+            An in line text link
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Email">
+            <summary>
+            An email element
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Strikethrough">
+            <summary>
+            strike through element
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Superscript">
+            <summary>
+            Super script element.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Subscript">
+            <summary>
+            Sub script element.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Image">
+            <summary>
+            Image element.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.InlineParseMethod.Emoji">
+            <summary>
+            Emoji element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.ListStyle">
+            <summary>
+            This specifies the type of style the List will be.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.ListStyle.Bulleted">
+            <summary>
+            A list with bullets
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.ListStyle.Numbered">
+            <summary>
+            A numbered list
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType">
+            <summary>
+            Determines the type of Block the Block element is.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.Root">
+            <summary>
+            The root element
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.Paragraph">
+            <summary>
+            A paragraph element.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.Quote">
+            <summary>
+            A quote block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.Code">
+            <summary>
+            A code block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.Header">
+            <summary>
+            A header block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.List">
+            <summary>
+            A list block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.ListItemBuilder">
+            <summary>
+            A list item block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.HorizontalRule">
+            <summary>
+            a horizontal rule block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.Table">
+            <summary>
+            A table block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.LinkReference">
+            <summary>
+            A link block
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownBlockType.YamlHeader">
+            <summary>
+            A Yaml header block
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType">
+            <summary>
+            Determines the type of Inline the Inline Element is.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Comment">
+            <summary>
+            A comment
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.TextRun">
+            <summary>
+            A text run
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Bold">
+            <summary>
+            A bold run
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Italic">
+            <summary>
+            An italic run
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.MarkdownLink">
+            <summary>
+            A link in markdown syntax
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.RawHyperlink">
+            <summary>
+            A raw hyper link
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.RawSubreddit">
+            <summary>
+            A raw subreddit link
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Strikethrough">
+            <summary>
+            A strike through run
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Superscript">
+            <summary>
+            A superscript run
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Subscript">
+            <summary>
+            A subscript run
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Code">
+            <summary>
+            A code run
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Image">
+            <summary>
+            An image
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.Emoji">
+            <summary>
+            Emoji
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType.LinkReference">
+            <summary>
+            Link Reference
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common">
+            <summary>
+            Helpers for Markdown.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.ParseInlineChildren(System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            This function can be called by any element parsing. Given a start and stopping point this will
+            parse all found elements out of the range.
+            </summary>
+            <returns> A list of parsed inlines. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.FindNextInlineElement(System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Finds the next inline element by matching trip chars and verifying the match.
+            </summary>
+            <param name="markdown"> The markdown text to parse. </param>
+            <param name="start"> The position to start parsing. </param>
+            <param name="end"> The position to stop parsing. </param>
+            <param name="ignoreLinks"> Indicates whether to parse links. </param>
+            <returns>Returns the next element</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.FindNextSingleNewLine(System.String,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Returns the next \n or \r\n in the markdown.
+            </summary>
+            <returns>the next single line</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.IndexOf(System.String,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Helper function for index of with a start and an ending.
+            </summary>
+            <returns>Pos of the searched for item</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.IndexOf(System.String,System.Char,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Helper function for index of with a start and an ending.
+            </summary>
+            <returns>Pos of the searched for item</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.FindNextWhiteSpace(System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Finds the next whitespace in a range.
+            </summary>
+            <returns>pos of the white space</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.ParseLines(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Parses lines.
+            </summary>
+            <returns>LineInfo</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.SkipQuoteCharacters(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Skips a certain number of quote characters (&gt;).
+            </summary>
+            <returns>Skip Quote Chars</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.Common.IsUrlValid(System.String)">
+            <summary>
+            Checks if the given URL is allowed in a markdown link.
+            </summary>
+            <param name="url"> The URL to check. </param>
+            <returns>
+                <c>true</c> if the URL is valid; <c>false</c> otherwise. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Helpers.DebuggingReporter">
+            <summary>
+            Reports an error during debugging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Helpers.DebuggingReporter.ReportCriticalError(System.String)">
+            <summary>
+            Reports a critical error.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineParseResult">
+            <summary>
+            Represents the result of parsing an inline element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineParseResult.ParsedElement">
+            <summary>
+            Gets the element that was parsed (can be <c>null</c>).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineParseResult.Start">
+            <summary>
+            Gets the position of the first character in the parsed element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineParseResult.End">
+            <summary>
+            Gets the position of the character after the last character in the parsed element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper">
+            <summary>
+            A helper class for the trip chars. This is an optimization. If we ask each class to go
+            through the rage and look for itself we end up looping through the range n times, once
+            for each inline. This class represent a character that an inline needs to have a
+            possible match. We will go through the range once and look for everyone's trip chars,
+            and if they can make a match from the trip char then we will commit to them.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldItalicTextInline">
+            <summary>
+            Represents a span containing bold italic text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldItalicTextInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldItalicTextInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldItalicTextInline.Inlines">
+            <summary>
+            Gets or sets the contents of the inline.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldItalicTextInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldItalicTextInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a bold text span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed bold text span, or <c>null</c> if this is not a bold text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldItalicTextInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline">
+            <summary>
+            Represents a span that contains bold text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline.Inlines">
+            <summary>
+            Gets or sets the contents of the inline.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a bold text span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed bold text span, or <c>null</c> if this is not a bold text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline">
+            <summary>
+            Represents a span containing code, or other text that is to be displayed using a
+            fixed-width font.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline.Text">
+            <summary>
+            Gets or sets the text to display as code.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse an inline code span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed inline code span, or <c>null</c> if this is not an inline code span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.CommentInline">
+            <summary>
+            Represents a span that contains comment.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CommentInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.CommentInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.CommentInline.Text">
+            <summary>
+            Gets or sets the Content of the Comment.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CommentInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CommentInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a comment span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed bold text span, or <c>null</c> if this is not a bold text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.CommentInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.EmojiInline">
+            <summary>
+            Represents a span containing emoji symbol.
+            </summary>
+            <summary>
+            Represents a span containing emoji symbol.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.EmojiInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.EmojiInline" /> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.EmojiInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.EmojiInline.Text">
+            <summary>
+            Gets or sets the text for this run.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline">
+            <summary>
+            Represents a type of hyperlink where the text and the target URL cannot be controlled
+            independently.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.Text">
+            <summary>
+            Gets or sets the text to display.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.Url">
+            <summary>
+            Gets or sets the URL to link to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.Microsoft#Toolkit#Parsers#Markdown#Inlines#ILinkElement#Tooltip">
+            <summary>
+            Gets this type of hyperlink does not have a tooltip.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.LinkType">
+            <summary>
+            Gets or sets the type of hyperlink.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ParseAngleBracketLink(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a URL within angle brackets e.g. "http://www.reddit.com".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed URL, or <c>null</c> if this is not a URL. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ParseUrl(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a URL e.g. "http://www.reddit.com".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="tripPos"> The location of the colon character. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed URL, or <c>null</c> if this is not a URL. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ParseRedditLink(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a subreddit link e.g. "/r/news" or "r/news".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed subreddit or user link, or <c>null</c> if this is not a subreddit link. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ParseDoubleSlashLink(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parse a link of the form "/r/news" or "/u/quinbd".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed subreddit or user link, or <c>null</c> if this is not a subreddit link. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ParseSingleSlashLink(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parse a link of the form "r/news" or "u/quinbd".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed subreddit or user link, or <c>null</c> if this is not a subreddit link. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ParsePartialLink(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a URL without a scheme e.g. "www.reddit.com".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="tripPos"> The location of the dot character. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed URL, or <c>null</c> if this is not a URL. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ParseEmailAddress(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse an email address e.g. "test@reddit.com".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="minStart"> The minimum start position to return. </param>
+            <param name="tripPos"> The location of the at character. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed URL, or <c>null</c> if this is not a URL. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.FindEndOfRedditLink(System.String,System.Int32,System.Int32)">
+            <summary>
+            Finds the next character that is not a letter, digit or underscore in a range.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start searching. </param>
+            <param name="end"> The location to stop searching. </param>
+            <returns> The location of the next character that is not a letter, digit or underscore. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline.FindUrlEnd(System.String,System.Int32,System.Int32)">
+            <summary>
+            Finds the end of a URL.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start searching. </param>
+            <param name="maxEnd"> The location to stop searching. </param>
+            <returns> The location of the end of the URL. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.IInlineContainer">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.IInlineContainer" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.IInlineContainer.Inlines">
+            <summary>
+            Gets or sets the contents of the inline.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.IInlineLeaf">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.IInlineLeaf" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.IInlineLeaf.Text">
+            <summary>
+            Gets or sets the text for this run.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.ILinkElement">
+            <summary>
+            Implemented by all inline link elements.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ILinkElement.Url">
+            <summary>
+            Gets the link URL.  This can be a relative URL, but note that subreddit links will always
+            have the leading slash (i.e. the Url will be "/r/baconit" even if the text is
+            "r/baconit").
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ILinkElement.Tooltip">
+            <summary>
+            Gets a tooltip to display on hover.  Can be <c>null</c>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline">
+            <summary>
+            Represents an embedded image.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.Url">
+            <summary>
+            Gets or sets the image URL.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.RenderUrl">
+            <summary>
+            Gets or sets the image Render URL.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.Tooltip">
+            <summary>
+            Gets or sets a text to display on hover.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.Text">
+            <summary>
+            Gets or sets the text for this run.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.ReferenceId">
+            <summary>
+            Gets or sets the ID of a reference, if this is a reference-style link.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.ImageWidth">
+            <summary>
+            Gets image width
+            If value is greater than 0, ImageStretch is set to UniformToFill
+            If both ImageWidth and ImageHeight are greater than 0, ImageStretch is set to Fill
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.ImageHeight">
+            <summary>
+            Gets image height
+            If value is greater than 0, ImageStretch is set to UniformToFill
+            If both ImageWidth and ImageHeight are greater than 0, ImageStretch is set to Fill
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse an image e.g. "![Toolkit logo](https://raw.githubusercontent.com/windows-toolkit/WindowsCommunityToolkit/master/Microsoft.Toolkit.Uwp.SampleApp/Assets/ToolkitLogo.png)".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="end"> The location to stop parsing. </param>
+            <returns> A parsed markdown image, or <c>null</c> if this is not a markdown image. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.ResolveReference(Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument)">
+            <summary>
+            If this is a reference-style link, attempts to converts it to a regular link.
+            </summary>
+            <param name="document"> The document containing the list of references. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline">
+            <summary>
+            Represents a span containing italic text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline.Inlines">
+            <summary>
+            Gets or sets the contents of the inline.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a italic text span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed italic text span, or <c>null</c> if this is not a italic text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.LinkAnchorInline">
+            <summary>
+            Represents a span that contains a reference for links to point to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.LinkAnchorInline.Link">
+            <summary>
+            Gets or sets the Name of this Link Reference.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.LinkAnchorInline.Raw">
+            <summary>
+            Gets or sets the raw Link Reference.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.LinkAnchorInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.LinkAnchorInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a comment span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed bold text span, or <c>null</c> if this is not a bold text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.LinkAnchorInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline">
+            <summary>
+            Represents a type of hyperlink where the text can be different from the target URL.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.Inlines">
+            <summary>
+            Gets or sets the contents of the inline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.Url">
+            <summary>
+            Gets or sets the link URL.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.Tooltip">
+            <summary>
+            Gets or sets a tooltip to display on hover.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.ReferenceId">
+            <summary>
+            Gets or sets the ID of a reference, if this is a reference-style link.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a markdown link e.g. "[](http://www.reddit.com)".
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed markdown link, or <c>null</c> if this is not a markdown link. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.ResolveReference(Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument)">
+            <summary>
+            If this is a reference-style link, attempts to converts it to a regular link.
+            </summary>
+            <param name="document"> The document containing the list of references. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline">
+            <summary>
+            Represents a span containing strikethrough text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline.Inlines">
+            <summary>
+            Gets or sets The contents of the inline.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a strikethrough text span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed strikethrough text span, or <c>null</c> if this is not a strikethrough text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline">
+            <summary>
+            Represents a span containing subscript text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline.Inlines">
+            <summary>
+            Gets or sets the contents of the inline.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a subscript text span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed subscript text span, or <c>null</c> if this is not a subscript text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline">
+            <summary>
+            Represents a span containing superscript text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline.Inlines">
+            <summary>
+            Gets or sets the contents of the inline.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline.AddTripChars(System.Collections.Generic.List{Microsoft.Toolkit.Parsers.Markdown.Helpers.InlineTripCharHelper})">
+            <summary>
+            Returns the chars that if found means we might have a match.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Attempts to parse a superscript text span.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="maxEnd"> The location to stop parsing. </param>
+            <returns> A parsed superscript text span, or <c>null</c> if this is not a superscript text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline">
+            <summary>
+            Represents a span containing plain text.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline.Text">
+            <summary>
+            Gets or sets the text for this run.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parses unformatted text.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="end"> The location to stop parsing. </param>
+            <returns> A parsed text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline.ResolveEscapeSequences(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parses unformatted text.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The location to start parsing. </param>
+            <param name="end"> The location to stop parsing. </param>
+            <returns> A parsed text span. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownInline">
+            <summary>
+            An internal class that is the base class for all inline elements.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownInline.Type">
+            <summary>
+            Gets or sets this element is.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownInline.#ctor(Microsoft.Toolkit.Parsers.Markdown.MarkdownInlineType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownInline" /> class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument">
+            <summary>
+            Represents a Markdown Document. <para />
+            Initialize an instance and call <see cref="M:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.Parse(System.String)" /> to parse the Raw Markdown Text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.KnownSchemes">
+            <summary>
+            Gets a list of URL schemes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument" /> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.Blocks">
+            <summary>
+            Gets or sets the list of block elements.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.Parse(System.String)">
+            <summary>
+            Parses markdown document text.
+            </summary>
+            <param name="markdownText"> The markdown text. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.Parse(System.String,System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Parses a markdown document.
+            </summary>
+            <param name="markdown"> The markdown text. </param>
+            <param name="start"> The position to start parsing. </param>
+            <param name="end"> The position to stop parsing. </param>
+            <param name="quoteDepth"> The current nesting level for block quoting. </param>
+            <param name="actualEnd"> Set to the position at which parsing ended.  This can be
+            different from <paramref name="end" /> when the parser is being called recursively.
+            </param>
+            <returns> A list of parsed blocks. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.LookUpReference(System.String)">
+            <summary>
+            Looks up a reference using the ID.
+            A reference is a line that looks like this:
+            [foo]: http://example.com/
+            </summary>
+            <param name="id"> The ID of the reference (case insensitive). </param>
+            <returns> The reference details, or <c>null</c> if the reference wasn't found. </returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument.ToString">
+            <summary>
+            Converts the object into it's textual representation.
+            </summary>
+            <returns> The textual representation of this object. </returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.MarkdownElement">
+            <summary>
+            This is a class used as the base class of all markdown elements.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext">
+            <summary>
+            Helper for holding persistent state of Renderer.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext.TrimLeadingWhitespace">
+            <summary>
+            Gets or sets a value indicating whether to trim whitespace.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext.Parent">
+            <summary>
+            Gets or sets the parent Element for this Context.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext.Clone">
+            <summary>
+            Clones the Context.
+            </summary>
+            <returns>Clone</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase">
+            <summary>
+            Block Rendering Methods.
+            </summary>
+            <summary>
+            A base renderer for Rendering Markdown into Controls.
+            </summary>
+            <summary>
+            Inline Rendering Methods.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderParagraph(Microsoft.Toolkit.Parsers.Markdown.Blocks.ParagraphBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a paragraph element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderYamlHeader(Microsoft.Toolkit.Parsers.Markdown.Blocks.YamlHeaderBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a yaml header element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderHeader(Microsoft.Toolkit.Parsers.Markdown.Blocks.HeaderBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a header element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderListElement(Microsoft.Toolkit.Parsers.Markdown.Blocks.ListBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a list element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderHorizontalRule(Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a horizontal rule element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderQuote(Microsoft.Toolkit.Parsers.Markdown.Blocks.QuoteBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a quote element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderCode(Microsoft.Toolkit.Parsers.Markdown.Blocks.CodeBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a code element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderTable(Microsoft.Toolkit.Parsers.Markdown.Blocks.TableBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a table element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.#ctor(Microsoft.Toolkit.Parsers.Markdown.MarkdownDocument)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase" /> class.
+            </summary>
+            <param name="document">Markdown Document to Render</param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.Render(Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders all Content to the Provided Parent UI.
+            </summary>
+            <param name="context">UI Context</param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderBlocks(System.Collections.Generic.IEnumerable{Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock},Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a list of block elements.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderBlock(Microsoft.Toolkit.Parsers.Markdown.Blocks.MarkdownBlock,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Called to render a block element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderInlineChildren(System.Collections.Generic.IList{Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownInline},Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders all of the children for the given element.
+            </summary>
+            <param name="inlineElements"> The parsed inline elements to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderInline(Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Called to render an inline element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.CollapseWhitespace(Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext,System.String)">
+            <summary>
+            Removes leading whitespace, but only if this is the first run in the block.
+            </summary>
+            <returns>The corrected string</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.CheckRenderMarkdownLink(Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Verifies if the link is valid, before processing into a link, or plain text.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.Document">
+            <summary>
+            Gets the markdown document that will be rendered.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderEmoji(Microsoft.Toolkit.Parsers.Markdown.Inlines.EmojiInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders emoji element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderTextRun(Microsoft.Toolkit.Parsers.Markdown.Inlines.TextRunInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a text run element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderBoldRun(Microsoft.Toolkit.Parsers.Markdown.Inlines.BoldTextInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a bold run element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderMarkdownLink(Microsoft.Toolkit.Parsers.Markdown.Inlines.MarkdownLinkInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a link element
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderImage(Microsoft.Toolkit.Parsers.Markdown.Inlines.ImageInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders an image element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderHyperlink(Microsoft.Toolkit.Parsers.Markdown.Inlines.HyperlinkInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a raw link element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderItalicRun(Microsoft.Toolkit.Parsers.Markdown.Inlines.ItalicTextInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a text run element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderStrikethroughRun(Microsoft.Toolkit.Parsers.Markdown.Inlines.StrikethroughTextInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a strikethrough element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderSuperscriptRun(Microsoft.Toolkit.Parsers.Markdown.Inlines.SuperscriptTextInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a superscript element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderSubscriptRun(Microsoft.Toolkit.Parsers.Markdown.Inlines.SubscriptTextInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a subscript element.
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Markdown.Render.MarkdownRendererBase.RenderCodeRun(Microsoft.Toolkit.Parsers.Markdown.Inlines.CodeInline,Microsoft.Toolkit.Parsers.Markdown.Render.IRenderContext)">
+            <summary>
+            Renders a code element
+            </summary>
+            <param name="element"> The parsed inline element to render. </param>
+            <param name="context"> Persistent state. </param>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Rss.AtomParser">
+            <summary>
+            Parser for Atom endpoints.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.AtomParser.LoadFeed(System.Xml.Linq.XDocument)">
+            <summary>
+            Atom reader implementation to parse Atom content.
+            </summary>
+            <param name="doc">XDocument to parse.</param>
+            <returns>Strong typed response.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.AtomParser.GetRssSchema(System.Xml.Linq.XElement)">
+            <summary>
+            Retieves strong type for passed item.
+            </summary>
+            <param name="item">XElement to parse.</param>
+            <returns>Strong typed object.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.AtomParser.GetItemAuthor(System.Xml.Linq.XElement)">
+            <summary>
+            Retrieves item author from XElement.
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>String of Item Author.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.AtomParser.GetItemImage(System.Xml.Linq.XElement)">
+            <summary>
+            Returns item image from XElement item.
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>String pointing to item image.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.AtomParser.GetItemContent(System.Xml.Linq.XElement)">
+            <summary>
+            Returns item content from XElement item.
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>String of item content.</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Rss.BaseRssParser">
+            <summary>
+            Base class for Rss Parser(s).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.BaseRssParser.GetFeedType(System.Xml.Linq.XDocument)">
+            <summary>
+            Retrieve feed type from XDocument.
+            </summary>
+            <param name="doc">XDocument doc.</param>
+            <returns>Return feed type.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.BaseRssParser.LoadFeed(System.Xml.Linq.XDocument)">
+            <summary>
+            Abstract method to be override by specific implementations of the reader.
+            </summary>
+            <param name="doc">XDocument doc.</param>
+            <returns>Returns list of strongly typed results.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.BaseRssParser.ProcessHtmlContent(System.String)">
+            <summary>
+            Fix up the HTML content.
+            </summary>
+            <param name="htmlContent">Content to be fixed up.</param>
+            <returns>Fixed up content.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.BaseRssParser.ProcessHtmlSummary(System.String)">
+            <summary>
+            Create a summary of the HTML content.
+            </summary>
+            <param name="htmlContent">Content to be processed.</param>
+            <returns>Summary of the content.</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Rss.RssType">
+            <summary>
+            Type of Rss.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssType.Atom">
+            <summary>
+            Atom
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssType.Rss">
+            <summary>
+            RSS
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssType.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Rss.Rss2Parser">
+            <summary>
+            Rss reader implementation to parse Rss content.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.NsRdfNamespaceUri">
+            <summary>
+            RDF Namespace Uri.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.NsRdfElementsNamespaceUri">
+            <summary>
+            RDF Elements Namespace Uri.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.NsRdfContentNamespaceUri">
+            <summary>
+            RDF Content Namespace Uri.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.LoadFeed(System.Xml.Linq.XDocument)">
+            <summary>
+            This override load and parses the document and return a list of RssSchema values.
+            </summary>
+            <param name="doc">XDocument to be loaded.</param>
+            <returns>Strongly typed list of feeds.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.ParseItem(System.Xml.Linq.XElement)">
+            <summary>
+            Parses XElement item into strong typed object.
+            </summary>
+            <param name="item">XElement item to parse.</param>
+            <returns>Strong typed object.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.ParseRDFItem(System.Xml.Linq.XElement)">
+            <summary>
+            Parses RSS version 1.0 objects.
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>Strong typed object.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.ParseRssItem(System.Xml.Linq.XElement)">
+            <summary>
+            Parses RSS version 2.0 objects.
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>Strong typed object.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.Rss2Parser.GetItemAuthor(System.Xml.Linq.XElement)">
+            <summary>
+            Retrieve item author from item.
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>String of item author.</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Rss.RssHelper">
+            <summary>
+            Class with utilities for Rss related works.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.ImagePattern">
+            <summary>
+            String for regular expression for image pattern.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.HiperlinkPattern">
+            <summary>
+            String for regular xpression for hyperlink pattern.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.HeightPattern">
+            <summary>
+            String for regular expression for height pattern.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.WidthPattern">
+            <summary>
+            String for regular expression for width pattern.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.RegexImages">
+            <summary>
+            Regular expression for image pattern.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.RegexLinks">
+            <summary>
+            Regular expression for hyperlink pattern.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.RegexHeight">
+            <summary>
+            Regular expression for height pattern.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.RegexWidth">
+            <summary>
+            Regular expression for width pattern.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.SanitizeString(System.String)">
+            <summary>
+            Removes \t characters in the string and trim additional space and carriage returns.
+            </summary>
+            <param name="text">Text string.</param>
+            <returns>Sanitized string.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetSafeElementDate(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Get item date from xelement and element name.
+            </summary>
+            <param name="item">XElement item.</param>
+            <param name="elementName">Name of element.</param>
+            <returns>Item date.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetSafeElementDate(System.Xml.Linq.XElement,System.String,System.Xml.Linq.XNamespace)">
+            <summary>
+            Get item date from xelement, element name and namespace.
+            </summary>
+            <param name="item">XElement item.</param>
+            <param name="elementName">Name of element.</param>
+            <param name="xNamespace">XNamespace namespace.</param>
+            <returns>Item date.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetSafeElementString(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Get item string value for xelement and element name.
+            </summary>
+            <param name="item">XElement item.</param>
+            <param name="elementName">Name of element.</param>
+            <returns>Safe string.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetSafeElementsString(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Get item string values for xelement and element name.
+            </summary>
+            <param name="item">XElement item.</param>
+            <param name="elementName">Name of the element.</param>
+            <returns>Safe list of string values.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetSafeElementsString(System.Xml.Linq.XElement,System.String,System.Xml.Linq.XNamespace)">
+            <summary>
+            Get item string values for xelement, element name and namespace.
+            </summary>
+            <param name="item">XELement item.</param>
+            <param name="elementName">Name of element.</param>
+            <param name="xNamespace">XNamespace namespace.</param>
+            <returns>Safe list of string values.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetSafeElementString(System.Xml.Linq.XElement,System.String,System.Xml.Linq.XNamespace)">
+            <summary>
+            Get item string value for xelement, element name and namespace.
+            </summary>
+            <param name="item">XElement item.</param>
+            <param name="elementName">Name of element.</param>
+            <param name="xNamespace">XNamespace namespace.</param>
+            <returns>Safe string.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetLink(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Get feed url to see full original information.
+            </summary>
+            <param name="item">XElement item.</param>
+            <param name="rel">rel attribute value.</param>
+            <returns>String link.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetImage(System.Xml.Linq.XElement)">
+            <summary>
+            Get feed image.
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>Feed data image.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetImageFromEnclosure(System.Xml.Linq.XElement)">
+            <summary>
+            Get the item image from the enclosure element http://www.w3schools.com/rss/rss_tag_enclosure.asp
+            </summary>
+            <param name="item">XElement item.</param>
+            <returns>Feed data image.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.TryParseDateTime(System.String,System.DateTime@)">
+            <summary>
+            Tries to parse the original string to a datetime format.
+            </summary>
+            <param name="s">Input string.</param>
+            <param name="result">Parsed datetime.</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.TimeZoneToOffset(System.String)">
+            <summary>
+            Calculate and return timezone.
+            </summary>
+            <param name="tz">Input string.</param>
+            <returns>Parsed timezone.</returns>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssHelper.GetImagesInHTMLString(System.String)">
+            <summary>
+            Retrieve images from HTML string.
+            </summary>
+            <param name="htmlString">String of HTML.</param>
+            <returns>List of images.</returns>
+        </member>
+        <member name="F:Microsoft.Toolkit.Parsers.Rss.RssHelper.TimeZones">
+            <summary>
+            Dictionary of timezones.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Rss.RssParser">
+            <summary>
+            The RSS Parser allows you to parse an RSS content String into RSS Schema.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Toolkit.Parsers.Rss.RssParser.Parse(System.String)">
+            <summary>
+            Parse an RSS content string into RSS Schema.
+            </summary>
+            <param name="data">Input string.</param>
+            <returns>Strong type.</returns>
+        </member>
+        <member name="T:Microsoft.Toolkit.Parsers.Rss.RssSchema">
+            <summary>
+            Implementation of the RssSchema class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.Title">
+            <summary>
+            Gets or sets title.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.Summary">
+            <summary>
+            Gets or sets summary.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.Content">
+            <summary>
+            Gets or sets content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.ImageUrl">
+            <summary>
+            Gets or sets image Url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.ExtraImageUrl">
+            <summary>
+            Gets or sets extra Image Url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.MediaUrl">
+            <summary>
+            Gets or sets media Url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.FeedUrl">
+            <summary>
+            Gets or sets feed Url.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.Author">
+            <summary>
+            Gets or sets author.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.PublishDate">
+            <summary>
+            Gets or sets publish Date.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Toolkit.Parsers.Rss.RssSchema.Categories">
+            <summary>
+            Gets or sets item's categories.
+            </summary>
+        </member>
+    </members>
+</doc>
