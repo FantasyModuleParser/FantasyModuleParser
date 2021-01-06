@@ -1,5 +1,7 @@
 ﻿using FantasyModuleParser.Importer.NPC;
 using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,6 +22,10 @@ namespace FantasyModuleParser.NPC
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
             ImportTextBox.Focus();
             ImportTextBox.Select(0,0);
+
+            importESNPC = new ImportEngineerSuiteNPC();
+            importDnDBeyondNPC = new ImportDnDBeyondNPC();
+            importPDFNPC = new ImportPDFNPC();
         }
 
         private void ESExit_Click(object sender, RoutedEventArgs e)
@@ -29,9 +35,7 @@ namespace FantasyModuleParser.NPC
 
         private void ImportTextAndReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            importESNPC = new ImportEngineerSuiteNPC();
-            importDnDBeyondNPC = new ImportDnDBeyondNPC();
-            importPDFNPC = new ImportPDFNPC();
+            
             NPCController npcController = new NPCController();
 
             switch(ImportSelector.SelectedIndex)
@@ -47,6 +51,25 @@ namespace FantasyModuleParser.NPC
                     break;
             }
             this.Visibility = Visibility.Hidden;
+        }
+
+        private void ImportTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            NPCController npcController = new NPCController();
+            switch (ImportSelector.SelectedIndex)
+            {
+                case 0:
+                    npcController.LoadNPCModel(importPDFNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    break;
+                case 1:
+                    npcController.LoadNPCModel(importESNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    break;
+                case 2:
+                    npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    break;
+            }
+
+            NPCStatBlockUC.RefreshDataContext(sender, null);
         }
     }
 }
