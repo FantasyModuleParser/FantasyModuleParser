@@ -4,6 +4,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Models.Skills;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace FantasyModuleParser.Importer.NPC
     {
         public ImportCommonUtils importCommonUtils = new ImportCommonUtils();
         public abstract NPCModel ImportTextToNPCModel(string importTextContent);
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Declares all the 'continue' flags used in Importers
@@ -935,6 +937,14 @@ namespace FantasyModuleParser.Importer.NPC
                 return;
             }
             string[] legendaryActionArray = legendaryAction.Split('.');
+
+            if (legendaryActionArray.Length <= 1) {
+                log.Error("Failed to parse the line in Legendary Actions :: " + legendaryAction + Environment.NewLine + "The Legendary Action description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine + 
+                    "Failed to parse the line in Legendary Actions :: " + legendaryAction + 
+                    Environment.NewLine + "The Legendary Action description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Detect. The golbin makes a Wisdom (Perception) check.\" (without the double quotes)");
+            }
             legendaryActionModel.ActionName = legendaryActionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
             for (int idx = 1; idx < legendaryActionArray.Length; idx++)
