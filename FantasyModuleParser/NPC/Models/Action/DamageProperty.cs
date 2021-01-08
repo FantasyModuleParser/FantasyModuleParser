@@ -38,5 +38,15 @@ namespace FantasyModuleParser.NPC.Models.Action
                    Bonus == other.Bonus &&
                    DamageType == other.DamageType;
         }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 289795370;
+            hashCode = hashCode * -1521134295 + NumOfDice.GetHashCode();
+            hashCode = hashCode * -1521134295 + DieType.GetHashCode();
+            hashCode = hashCode * -1521134295 + Bonus.GetHashCode();
+            hashCode = hashCode * -1521134295 + DamageType.GetHashCode();
+            return hashCode;
+        }
     }
 }
