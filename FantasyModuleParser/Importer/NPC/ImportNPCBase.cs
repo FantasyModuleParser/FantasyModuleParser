@@ -502,6 +502,14 @@ namespace FantasyModuleParser.Importer.NPC
                 return;
 
             string[] traitArray = traits.Split('.');
+            if (traitArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Traits :: " + traits + Environment.NewLine + "The Trait description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Traits :: " + traits +
+                    Environment.NewLine + "The Trait description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Nimble Escape. The goblin can take the Disengage or Hide action as a bonus action on each of its turns.\" (without the double quotes)");
+            }
             ActionModelBase traitModel = new ActionModelBase();
             traitModel.ActionName = traitArray[0];
             StringBuilder stringBuilder = new StringBuilder();
@@ -715,7 +723,6 @@ namespace FantasyModuleParser.Importer.NPC
             if (standardAction.Length == 0 || standardAction.Trim().Length == 0)
                 return;
 
-
             if (standardAction.StartsWith(Multiattack.LocalActionName))
             {
                 ParseMultiattackAction(npcModel, standardAction);
@@ -909,6 +916,16 @@ namespace FantasyModuleParser.Importer.NPC
         public void ParseReaction(NPCModel npcModel, string reaction)
         {
             string[] reactionArray = reaction.Split('.');
+
+            if (reactionArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Reactions :: " + reaction + Environment.NewLine + "The Reaction description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Reactions :: " + reaction +
+                    Environment.NewLine + "The Rection description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Parry. The noble adds 2 to its AC against one melee attack that would hit it. To do so, the noble must see the attacker and be wielding a melee weapon.\" (without the double quotes)");
+            }
+
             ActionModelBase reactionModel = new ActionModelBase();
             reactionModel.ActionName = reactionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
@@ -945,6 +962,7 @@ namespace FantasyModuleParser.Importer.NPC
                     Environment.NewLine + "The Legendary Action description appears to be missing." +
                     Environment.NewLine + "An example would be \"Detect. The golbin makes a Wisdom (Perception) check.\" (without the double quotes)");
             }
+
             legendaryActionModel.ActionName = legendaryActionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
             for (int idx = 1; idx < legendaryActionArray.Length; idx++)
