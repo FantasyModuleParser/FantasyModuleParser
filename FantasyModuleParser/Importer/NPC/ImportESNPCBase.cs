@@ -239,6 +239,16 @@ namespace FantasyModuleParser.Importer.NPC
             if (reaction.Length == 0 || reaction.Trim().Length == 0)
                 return;
             string[] reactionArray = reaction.Split('.');
+
+            if (reactionArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Reactions :: " + reaction + Environment.NewLine + "The Reaction description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Reactions :: " + reaction +
+                    Environment.NewLine + "The Rection description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Parry. The noble adds 2 to its AC against one melee attack that would hit it. To do so, the noble must see the attacker and be wielding a melee weapon.\" (without the double quotes)");
+            }
+
             ActionModelBase reactionModel = new ActionModelBase();
             reactionModel.ActionName = reactionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
@@ -259,6 +269,16 @@ namespace FantasyModuleParser.Importer.NPC
             if (legendaryAction.Length == 0 || legendaryAction.Trim().Length == 0)
                 return;
             string[] legendaryActionArray = legendaryAction.Split('.');
+
+            if (legendaryActionArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Legendary Actions :: " + legendaryAction + Environment.NewLine + "The Legendary Action description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Legendary Actions :: " + legendaryAction +
+                    Environment.NewLine + "The Legendary Action description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Detect. The golbin makes a Wisdom (Perception) check.\" (without the double quotes)");
+            }
+
             LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
             legendaryActionModel.ActionName = legendaryActionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
