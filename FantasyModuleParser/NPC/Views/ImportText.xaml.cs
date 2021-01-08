@@ -2,6 +2,8 @@
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.ViewModels;
 using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -46,11 +48,40 @@ namespace FantasyModuleParser.NPC
                 ImportNPCModelFromText(ImportTextBox.Text);
                 ImportErrorFeedbackTB.Text = "";
             }
-            catch (ApplicationException exception)
+            catch (Exception ex )
             {
-                ImportErrorFeedbackTB.Text = exception.Message;
+                if (ex is ApplicationException || ex is FormatException)
+                {
+                    ImportErrorFeedbackTB.Text = attemptToFindParseMethodFromException(ex);
+                    ImportErrorFeedbackTB.Text += Environment.NewLine;
+                    ImportErrorFeedbackTB.Text += ex.Message;
+                }   
+                else
+                    throw;
             }
             NPCStatBlockUC.RefreshDataContext(sender, null);
+        }
+
+        private string attemptToFindParseMethodFromException(Exception ex)
+        {
+            StringReader stringReader = new StringReader(ex.StackTrace);
+            string line = "";
+            string result = "";
+            while ((line = stringReader.ReadLine()) != null)
+            {
+                if (line.Contains("FantasyModuleParser") && line.Contains(".Parse"))
+                {
+                    int preSubstringLength = line.IndexOf(".Parse");
+                    int postSubstring = line.Substring(preSubstringLength).IndexOf("(");
+                    result = line.Substring(preSubstringLength + 1, postSubstring - 1);
+
+                    // We want to ignore basic methods named "Parse" and only target our custom ones
+                    if(!result.Contains("Int32"))
+                        break;
+                }                   
+            }
+            stringReader.Dispose();
+            return result;
         }
 
         private void ImportNPCModelFromText(string inputData)
