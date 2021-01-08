@@ -840,7 +840,6 @@ namespace FantasyModuleParser.Importer.NPC
             Regex PrimaryOnlyDamageRegex = new Regex(@".*?damage");
             Regex PrimaryWithVersatileRegex = new Regex(@".*?if used with two hands.*");
             string damagePropertyData = weaponDescription.Substring(weaponDescription.IndexOf("Hit: ", StringComparison.Ordinal) + 4);
-            string flavorText = "";
             if (PrimarySecondaryDamageRegex.IsMatch(damagePropertyData))
             {
                 string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
