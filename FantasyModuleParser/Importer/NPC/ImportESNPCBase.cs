@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models.Action;
+using log4net;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace FantasyModuleParser.Importer.NPC
     public abstract class ImportESNPCBase : ImportNPCBase
     {
 
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         /// <summary>
         /// 'STR DEX CON INT WIS CHA 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)'
         /// </summary>

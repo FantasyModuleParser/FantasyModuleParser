@@ -73,24 +73,35 @@ namespace FantasyModuleParser.Importer.NPC
             else
                 npcModel.NPCType = npcCharacteristics[1].ToLower();
 
-            if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
-                // includes removing the comma character at the end
-                npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
-            else if (npcCharacteristics.Length > 3)
-                npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
+            if (npcCharacteristics.Length <= 2)
+            {
+                log.Error("Failed to parse the line in Size and Alignment :: " + sizeAndAlignment + Environment.NewLine + "The alignment appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Size and Alignment :: " + sizeAndAlignment +
+                    Environment.NewLine + "The alignment appears to be missing." +
+                    Environment.NewLine + "An example would be \"Medium beast, lawful good.\" (without the double quotes)");
+            }
             else
-                npcModel.Alignment = npcCharacteristics[2];
-
-            if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
-                npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
-            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
-                if (npcCharacteristics.Length > 4)
-                    if (npcModel.Tag.Contains(","))
-                        npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
-                    else
-                        npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+            {
+                if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
+                    // includes removing the comma character at the end
+                    npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
+                else if (npcCharacteristics.Length > 3)
+                    npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
                 else
-                    npcModel.Alignment = npcCharacteristics[3];
+                    npcModel.Alignment = npcCharacteristics[2];
+
+                if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
+                    npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
+                if (npcModel.Tag != null && npcModel.Tag.Length > 0)
+                    if (npcCharacteristics.Length > 4)
+                        if (npcModel.Tag.Contains(","))
+                            npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
+                        else
+                            npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+                    else
+                        npcModel.Alignment = npcCharacteristics[3];
+            }
         }
 
         /// <summary>
@@ -955,7 +966,8 @@ namespace FantasyModuleParser.Importer.NPC
             }
             string[] legendaryActionArray = legendaryAction.Split('.');
 
-            if (legendaryActionArray.Length <= 1) {
+            if (legendaryActionArray.Length <= 1) 
+            {
                 log.Error("Failed to parse the line in Legendary Actions :: " + legendaryAction + Environment.NewLine + "The Legendary Action description appears to be missing.");
                 throw new ApplicationException(Environment.NewLine + 
                     "Failed to parse the line in Legendary Actions :: " + legendaryAction + 
