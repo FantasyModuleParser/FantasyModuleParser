@@ -939,7 +939,7 @@ namespace FantasyModuleParser.Importer.NPC
             string[] legendaryActionArray = legendaryAction.Split('.');
 
             if (legendaryActionArray.Length <= 1) {
-                log.Error("Failed to parse the line in Legendary Actions :: " + legendaryAction + Environment.NewLine + "The Legendary Action description appears to be missing.");
+                log.Error("Failed to parse the line in Legendary Actions :: " + legendaryAction + "; The Legendary Action description appears to be missing.");
                 throw new ApplicationException(Environment.NewLine + 
                     "Failed to parse the line in Legendary Actions :: " + legendaryAction + 
                     Environment.NewLine + "The Legendary Action description appears to be missing." +

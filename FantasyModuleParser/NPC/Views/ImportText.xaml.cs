@@ -35,41 +35,39 @@ namespace FantasyModuleParser.NPC
 
         private void ImportTextAndReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            NPCController npcController = new NPCController();
-
-            switch(ImportSelector.SelectedIndex)
-            {
-                case 0:
-                    npcController.LoadNPCModel(importPDFNPC.ImportTextToNPCModel(ImportTextBox.Text));
-                    break;
-                case 1:
-                    npcController.LoadNPCModel(importESNPC.ImportTextToNPCModel(ImportTextBox.Text));
-                    break;
-                case 2:
-                    npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(ImportTextBox.Text));
-                    break;
-            }
+            ImportNPCModelFromText(ImportTextBox.Text);
             this.Visibility = Visibility.Hidden;
         }
 
         private void ImportTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
+            try 
+            { 
+                ImportNPCModelFromText(ImportTextBox.Text);
+                ImportErrorFeedbackTB.Text = "";
+            }
+            catch (ApplicationException exception)
+            {
+                ImportErrorFeedbackTB.Text = exception.Message;
+            }
+            NPCStatBlockUC.RefreshDataContext(sender, null);
+        }
+
+        private void ImportNPCModelFromText(string inputData)
+        {
             NPCController npcController = new NPCController();
             switch (ImportSelector.SelectedIndex)
             {
                 case 0:
-                    npcController.LoadNPCModel(importPDFNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    npcController.LoadNPCModel(importPDFNPC.ImportTextToNPCModel(inputData));
                     break;
                 case 1:
-                    npcController.LoadNPCModel(importESNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    npcController.LoadNPCModel(importESNPC.ImportTextToNPCModel(inputData));
                     break;
                 case 2:
-                    npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(ImportTextBox.Text));
+                    npcController.LoadNPCModel(importDnDBeyondNPC.ImportTextToNPCModel(inputData));
                     break;
             }
-
-            NPCStatBlockUC.RefreshDataContext(sender, null);
         }
     }
 }

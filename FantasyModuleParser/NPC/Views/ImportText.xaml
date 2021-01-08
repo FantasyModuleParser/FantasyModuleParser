@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:previewNpcView="clr-namespace:FantasyModuleParser.NPC.UserControls"
+        xmlns:viewModel="clr-namespace:FantasyModuleParser.NPC.ViewModels"
         mc:Ignorable="d"
         Title="Import Text" Height="810" Width="970" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
     <Grid Background="#FFE5E5E5">
@@ -39,5 +40,14 @@
         </Grid>
 
         <previewNpcView:ViewNPCStatBlockUC Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" x:Name="NPCStatBlockUC" />
+
+        <TextBlock TextWrapping="Wrap" Name="ImportErrorFeedbackTB" Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" TextAlignment="Center">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <!-- Highlight for Reviewed (Default) -->
+                    <Setter Property="Background" Value="OrangeRed" />
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
     </Grid>
 </Window>
