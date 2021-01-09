@@ -498,6 +498,14 @@ namespace FantasyModuleParser.Importer.NPC
                 string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(' && c != ')').ToArray());
                 npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
             }
+            else
+            {
+                log.Error("Failed to parse the line in Challenge :: " + challengeRatingAndXP + Environment.NewLine + "The Challenge Rating and XP appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Challenge :: " + challengeRatingAndXP +
+                    Environment.NewLine + "The Challenge Rating and XP appears to be missing." +
+                    Environment.NewLine + "An example would be \"Challenge 2 (500 XP)\" (without the double quotes)");
+            }
 
         }
 
