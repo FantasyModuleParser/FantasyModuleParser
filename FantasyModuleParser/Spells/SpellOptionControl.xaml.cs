@@ -4,6 +4,7 @@ using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
 using log4net;
 using System;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,24 @@ namespace FantasyModuleParser.Spells
         }
         private void SaveSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            log.Info("Saving spell " + spellModel.SpellName + " has started...");
+
+            if (spellModel == null)
+            {
+                log.Error(nameof(SpellModel) + " data object is null");
+                throw new InvalidDataException(nameof(SpellModel) + " data object is null");
+            }
+            if (spellModel.SpellName == null || spellModel.SpellName.Length == 0)
+            {
+                log.Error("Spell name is empty!");
+                throw new InvalidDataException("Spell name is empty!");
+            }
+            if (string.IsNullOrEmpty(spellModel.CastBy))
+            {
+                log.Error("Spell " + spellModel.SpellName + " has a null value for CastBy");
+                throw new InvalidDataException("Spell " + spellModel.SpellName + " has no casters listed.\n What good is a spell if you can't be cast by anyone?");
+            }
             (DataContext as SpellViewModel).Save();
         }
         private void DurationSelectionEnabled_ComboboxChanged(object sender, SelectionChangedEventArgs e)

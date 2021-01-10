@@ -73,12 +73,6 @@ namespace FantasyModuleParser.Spells.ViewModels
             Directory.CreateDirectory(_settingsModel.SpellFolderLocation);
             if (!string.IsNullOrWhiteSpace(SpellModel.SpellName))
             {
-                if (string.IsNullOrEmpty(SpellModel.CastBy))
-                {
-                    log.Warn("No CastBy classes selected for spell " + SpellModel.SpellName);
-                    MessageBox.Show("Please select which class can cast spell " + SpellModel.SpellName + " and try again.");
-                    return;
-                }
                 try
                 {
                     Save(_settingsModel.SpellFolderLocation + @"\" + SpellModel.SpellName + ".spl");
