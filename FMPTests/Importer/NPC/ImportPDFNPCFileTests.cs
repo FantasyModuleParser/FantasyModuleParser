@@ -18,7 +18,6 @@ namespace FantasyModuleParser.Importer.NPC.Tests
     public class ImportPDFNPCFileTests
     {
         private IImportNPC _iImportNPC;
-        NPCModel actualNPCModel = null;
 
         [TestInitialize]
         public void Initialize()

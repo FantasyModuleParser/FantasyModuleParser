@@ -2,7 +2,7 @@
 {
     public class Multiattack : ActionModelBase
     {
-        public new const string LocalActionName = "Multiattack";
+        public const string LocalActionName = "Multiattack";
 
         public Multiattack()
         {

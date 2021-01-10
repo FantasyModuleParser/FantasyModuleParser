@@ -3,22 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:previewNpcView="clr-namespace:FantasyModuleParser.NPC.UserControls"
+        xmlns:viewModel="clr-namespace:FantasyModuleParser.NPC.ViewModels"
         mc:Ignorable="d"
-        Title="Import Text" Height="610" Width="520" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
+        Title="Import Text" Height="810" Width="970" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="700"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="ImportTextBox" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap" AcceptsReturn="True"/>
+        <TextBox x:Name="ImportTextBox" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap" AcceptsReturn="True" TextChanged="ImportTextBox_TextChanged"/>
         <ComboBox x:Name="ImportSelector" Grid.Row="2" Grid.Column="1" Width="200" Height="25" HorizontalAlignment="Right" Margin="5">
             <ComboBoxItem IsSelected="True">PDF (NPC)</ComboBoxItem>
             <ComboBoxItem>Engineer Suite v1 (NPC)</ComboBoxItem>
@@ -35,5 +38,16 @@
             <Button Content="Import and Return" Grid.Column="1" HorizontalAlignment="Left" Click="ImportTextAndReturnButton_Click" Width="130" />
             <Button Content="Cancel All Changes" Grid.Column="2" Width="130" HorizontalAlignment="Right" Click="ESExit_Click"/>
         </Grid>
+
+        <previewNpcView:ViewNPCStatBlockUC Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" x:Name="NPCStatBlockUC" />
+
+        <TextBlock TextWrapping="Wrap" Name="ImportErrorFeedbackTB" Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" TextAlignment="Center">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <!-- Highlight for Reviewed (Default) -->
+                    <Setter Property="Background" Value="OrangeRed" />
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
     </Grid>
 </Window>
