@@ -649,6 +649,13 @@
     <Compile Include="Spells\ViewModels\CastByViewModel.cs" />
     <Compile Include="Spells\ViewModels\ImportTextSpellViewModel.cs" />
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
+    <Compile Include="Tables\Models\TableModel.cs" />
+    <Compile Include="Tables\Services\ITableService.cs" />
+    <Compile Include="Tables\Services\TableService.cs" />
+    <Compile Include="Tables\TableOptionControl.xaml.cs">
+      <DependentUpon>TableOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\ViewModels\TableOptionViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
     <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
@@ -713,6 +720,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Spells\UserControls\SpellStatBlockUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\TableOptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -894,6 +905,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NPC\UserControls\Action\Reactions\" />
+    <Folder Include="Tables\UserControls\" />
     <Folder Include="Test\" />
   </ItemGroup>
   <ItemGroup>
