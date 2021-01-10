@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
+using log4net;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -14,6 +15,7 @@ namespace FantasyModuleParser.Main.Services
     // used throughout the application (hence why ModuleModel is static)
     public class ModuleService
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(ModuleService));
         // Static module to be shared for any class using ModuleService
         private static ModuleModel moduleModel;
         private SettingsService settingsService;
@@ -104,15 +106,31 @@ namespace FantasyModuleParser.Main.Services
         public void AddSpellToCategory(SpellModel spellModel, string categoryValue)
         {
             if (categoryValue == null || categoryValue.Length == 0)
-                throw new InvalidDataException("Category value is null;  Cannot save NPC");
+            {
+                log.Error("Category value is null;  Cannot save Spell");
+                throw new InvalidDataException("Category value is null;  Cannot save Spell");
+            }
             if (spellModel == null)
+            {
+                log.Error(nameof(SpellModel) + " data object is null");
                 throw new InvalidDataException(nameof(SpellModel) + " data object is null");
+            }
             if (spellModel.SpellName == null || spellModel.SpellName.Length == 0)
-                throw new InvalidDataException("spellModel name is empty!");
-
+            {
+                log.Error("Spell name is empty!");
+                throw new InvalidDataException("Spell name is empty!");
+            }
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
+            {
+                log.Error("Category Value is not in the Module Model data object!");
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            }
+            if (string.IsNullOrEmpty(spellModel.CastBy))
+            {
+                log.Error("Spell " + spellModel.SpellName + " has a null value for CastBy");
+                throw new InvalidDataException("Spell " + spellModel.SpellName + " has no casters listed.\n What good is a spell if you can't be cast by anyone?");
+            }
             else
             {
                 if (categoryModel.SpellModels.FirstOrDefault(x => x.SpellName.Equals(spellModel.SpellName, StringComparison.Ordinal)) == null)
