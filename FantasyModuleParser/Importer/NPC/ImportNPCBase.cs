@@ -498,15 +498,6 @@ namespace FantasyModuleParser.Importer.NPC
                 string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(' && c != ')').ToArray());
                 npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
             }
-            // else
-            // {
-            //     log.Error("Failed to parse the line in Challenge :: " + challengeRatingAndXP + Environment.NewLine + "The Challenge Rating and XP appears to be missing.");
-            //    throw new ApplicationException(Environment.NewLine +
-            //        "Failed to parse the line in Challenge :: " + challengeRatingAndXP +
-            //        Environment.NewLine + "The Challenge Rating and XP appears to be missing." +
-            //        Environment.NewLine + "An example would be \"Challenge 2 (500 XP)\" (without the double quotes)");
-            // }
-
         }
 
         /// <summary>
@@ -940,7 +931,7 @@ namespace FantasyModuleParser.Importer.NPC
                 log.Error("Failed to parse the line in Reactions :: " + reaction + Environment.NewLine + "The Reaction description appears to be missing.");
                 throw new ApplicationException(Environment.NewLine +
                     "Failed to parse the line in Reactions :: " + reaction +
-                    Environment.NewLine + "The Rection description appears to be missing." +
+                    Environment.NewLine + "The Reaction description appears to be missing." +
                     Environment.NewLine + "An example would be \"Parry. The noble adds 2 to its AC against one melee attack that would hit it. To do so, the noble must see the attacker and be wielding a melee weapon.\" (without the double quotes)");
             }
 
