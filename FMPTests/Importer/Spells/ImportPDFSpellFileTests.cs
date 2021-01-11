@@ -64,6 +64,28 @@ namespace FMPTests_Spells.Importer
             SpellModel expectedSpellModel = LoadSpellFileContent(HotDQ_BASE_PATH + "ColorSpray.txt");
 
             Assert.AreEqual("Color Spray", expectedSpellModel.SpellName);
+            Assert.AreEqual(expectedSpellModel.SpellLevel, FantasyModuleParser.Spells.Enums.SpellLevel.First);
+            Assert.AreEqual(expectedSpellModel.SpellSchool, FantasyModuleParser.Spells.Enums.SpellSchool.Illusion);
+            Assert.AreEqual(expectedSpellModel.IsRitual, false);
+
+            Assert.AreEqual(expectedSpellModel.CastingTime, 1);
+            Assert.AreEqual(expectedSpellModel.CastingType, FantasyModuleParser.Spells.Enums.CastingType.Action);
+            Assert.AreEqual(expectedSpellModel.ReactionDescription, null);
+
+            Assert.AreEqual(expectedSpellModel.Range, 15);
+            Assert.AreEqual(expectedSpellModel.RangeType, FantasyModuleParser.Spells.Enums.RangeType.Self);
+            Assert.AreEqual(expectedSpellModel.Unit, FantasyModuleParser.Spells.Enums.UnitType.Foot);
+            Assert.AreEqual(expectedSpellModel.SelfType, FantasyModuleParser.Spells.Enums.SelfType.Cone);
+
+            Assert.AreEqual(expectedSpellModel.IsVerbalComponent, true);
+            Assert.AreEqual(expectedSpellModel.IsSomaticComponent, true);
+            Assert.AreEqual(expectedSpellModel.IsMaterialComponent, true);
+            Assert.AreEqual(expectedSpellModel.ComponentText, "a pinch of powder or sand that is colored red, yellow, and blue");
+
+            Assert.AreEqual(expectedSpellModel.DurationTime, 1);
+            Assert.AreEqual(expectedSpellModel.DurationType, DurationType.Time);
+            Assert.AreEqual(expectedSpellModel.DurationUnit, DurationUnit.Round);
+            Assert.AreEqual(expectedSpellModel.DurationText, null);
         }
         [TestMethod]
         public void Confusion()
