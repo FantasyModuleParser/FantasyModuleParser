@@ -2,6 +2,7 @@
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.NPC.ViewModel;
+using log4net;
 using System.Text;
 using System.Windows;
 
@@ -10,6 +11,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
     public class PreviewNPCViewModel : ViewModelBase
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(PreviewNPCViewModel));
         public NPCModel NPCModel { get; set; }
         private NPCController npcController;
         private string Resistance;
@@ -71,7 +73,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             initalizeViewModel();
         }
 
-        private void initalizeViewModel()
+        public void initalizeViewModel()
         {
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = UpdateSkillsDescription();
@@ -962,7 +964,13 @@ namespace FantasyModuleParser.NPC.ViewModels
                 {
                     stringBuilder.Append(" " + NPCModel.FlavorText);
                 }
-                stringBuilder.Append(" It has the following " + NPCModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
+                if (NPCModel.SpellcastingSpellClass == null)
+                {
+                    MessageBox.Show("Spellcasting Class is null. Please select what class the spells are.");
+                    log.Error("Spellcasting Class is null. Please select what class the spells are.");
+                }
+                else
+                    stringBuilder.Append(" It has the following " + NPCModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
                 return stringBuilder.ToString();
             }
             return "";
@@ -1100,7 +1108,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.Reactions != null)
+                if (NPCModel.Reactions.Count >= 1)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -1109,7 +1117,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.Reactions != null)
+                if (NPCModel.Reactions.Count >= 1)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -1118,7 +1126,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.LegendaryActions != null)
+                if (NPCModel.LegendaryActions.Count >= 1)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -1127,7 +1135,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.LegendaryActions != null)
+                if (NPCModel.LegendaryActions.Count >= 1)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -1136,7 +1144,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.LairActions != null)
+                if (NPCModel.LairActions.Count >= 1)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }
@@ -1145,7 +1153,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             get
             {
-                if (NPCModel.LairActions != null)
+                if (NPCModel.LairActions.Count >= 1)
                     return Visibility.Visible;
                 return Visibility.Collapsed;
             }

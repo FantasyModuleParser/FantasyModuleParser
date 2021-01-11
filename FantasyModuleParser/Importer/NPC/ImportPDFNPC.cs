@@ -172,7 +172,7 @@ namespace FantasyModuleParser.Importer.NPC
         /// 'STR DEX CON INT WIS CHA 
         /// 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)'
         /// </summary>
-        private void ParseStatAttributes(NPCModel npcModel, string statAttributes)
+        private new static void ParseStatAttributes(NPCModel npcModel, string statAttributes)
         {
             string[] splitAttributes = statAttributes.Split(' ');
             npcModel.AttributeStr = int.Parse(splitAttributes[0], CultureInfo.CurrentCulture);

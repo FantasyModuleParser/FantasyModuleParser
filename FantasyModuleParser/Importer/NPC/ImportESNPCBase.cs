@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models.Action;
+using log4net;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace FantasyModuleParser.Importer.NPC
 {
     public abstract class ImportESNPCBase : ImportNPCBase
     {
-
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         /// <summary>
         /// 'STR DEX CON INT WIS CHA 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)'
         /// </summary>
@@ -32,7 +33,7 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         /// <param name="npcModel"></param>
         /// <param name="innateSpellcastingAttributes"></param>
-        public void ParseInnateSpellCastingAttributes(NPCModel npcModel, string innateSpellcastingAttributes)
+        public new void ParseInnateSpellCastingAttributes(NPCModel npcModel, string innateSpellcastingAttributes)
         {
             if (innateSpellcastingAttributes.StartsWith("Innate Spellcasting"))
             {
@@ -109,7 +110,7 @@ namespace FantasyModuleParser.Importer.NPC
         /// <summary>
         /// 'Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks). V1_npc_all has the following Sorcerer spells prepared:\rCantrips (At will): Cantrips1\r1st level (9 slots): Spell 1st\r2nd level (8 slots): Spell 2nd\r3rd level (7 slots): Spell 3rd\r4th level (6 slots): Spell 4th\r5th level (5 slots): Spell 5th\r6th level (4 slots): Spell 6th\r7th level (3 slots): Spell 7th\r8th level (2 slots): Spell 8th\r9th level (1 slot): Spell 9th\r*Spell 2nd'
         /// </summary>
-        public void ParseSpellCastingAttributes(NPCModel npcModel, string spellCastingAttributes)
+        public new void ParseSpellCastingAttributes(NPCModel npcModel, string spellCastingAttributes)
         {
             if (spellCastingAttributes.StartsWith("Spellcasting"))
             {
@@ -234,11 +235,21 @@ namespace FantasyModuleParser.Importer.NPC
         /// <summary>
         /// 'Parry. You know what it does.. NINJA DODGE.'
         /// </summary>
-        public void ParseReaction(NPCModel npcModel, string reaction)
+        public new void ParseReaction(NPCModel npcModel, string reaction)
         {
             if (reaction.Length == 0 || reaction.Trim().Length == 0)
                 return;
             string[] reactionArray = reaction.Split('.');
+
+            if (reactionArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Reactions :: " + reaction + Environment.NewLine + "The Reaction description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Reactions :: " + reaction +
+                    Environment.NewLine + "The Rection description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Parry. The noble adds 2 to its AC against one melee attack that would hit it. To do so, the noble must see the attacker and be wielding a melee weapon.\" (without the double quotes)");
+            }
+
             ActionModelBase reactionModel = new ActionModelBase();
             reactionModel.ActionName = reactionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
@@ -254,11 +265,21 @@ namespace FantasyModuleParser.Importer.NPC
         /// <summary>
         /// 'Options. This creature has 5 legendary actions.'
         /// </summary>
-        public void ParseLegendaryAction(NPCModel npcModel, string legendaryAction)
+        public new void ParseLegendaryAction(NPCModel npcModel, string legendaryAction)
         {
             if (legendaryAction.Length == 0 || legendaryAction.Trim().Length == 0)
                 return;
             string[] legendaryActionArray = legendaryAction.Split('.');
+
+            if (legendaryActionArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Legendary Actions :: " + legendaryAction + Environment.NewLine + "The Legendary Action description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Legendary Actions :: " + legendaryAction +
+                    Environment.NewLine + "The Legendary Action description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Detect. The golbin makes a Wisdom (Perception) check.\" (without the double quotes)");
+            }
+
             LegendaryActionModel legendaryActionModel = new LegendaryActionModel();
             legendaryActionModel.ActionName = legendaryActionArray[0];
             StringBuilder stringBuilder = new StringBuilder();

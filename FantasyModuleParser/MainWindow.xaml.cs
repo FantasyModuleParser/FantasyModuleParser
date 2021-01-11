@@ -28,7 +28,6 @@ namespace FantasyModuleParser
         private ModuleModel moduleModel;
         private SettingsModel settingsModel;
         private SettingsService settingsService;
-        private NPCOptionControl npcOptionControl;
         private SpellStatBlockUC spellStatBlockUC;
         private SpellViewModel spellViewModel;
 
