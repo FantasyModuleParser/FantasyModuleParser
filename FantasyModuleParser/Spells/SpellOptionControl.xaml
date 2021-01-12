@@ -125,7 +125,6 @@
             <TextBox x:Name="CastingTimeTB" Text="{Binding SpellModel.CastingTime, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="3" TextChanged="Casting_Changed" IsEnabled="False"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="4"/>
             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:CastingType}}}" SelectedValue="{Binding SpellModel.CastingType}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectionChanged="Casting_Changed" Style="{StaticResource standardComboBox}" Grid.Column="5"/>
-            
             <Label Name="CastingDescriptionLabel" Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" IsEnabled="False" Grid.Column="2" Grid.Row="1" />
             <TextBox x:Name="ReactionDescription" Text="{Binding SpellModel.ReactionDescription, UpdateSourceTrigger=PropertyChanged}" TextChanged="Casting_Changed" VerticalAlignment="Center" IsEnabled="False" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3" />
         </Grid>
@@ -152,11 +151,15 @@
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Label Content="Range:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox Name="RangeDisplayValue" Text="{Binding SpellModel.RangeDescription, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBox Name="RangeDisplayValue" Text="{Binding SpellModel.RangeDescription, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Grid.Column="1"/>
             <Label Content="Type:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" Grid.Column="2"/>
-            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" SelectionChanged="RangeComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
+            <ComboBox Name="RangeTypeCB" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:RangeType}}}" SelectedValue="{Binding SpellModel.RangeType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" SelectionChanged="RangeTypeComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Column="3" />
             <Label Name="RangeDistanceLabel" Content="Distance:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Grid.Column="4" />
-            <TextBox x:Name="RangeValueTB" Text="{Binding SpellModel.Range, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" IsEnabled="False" Grid.Column="5" TextChanged="RangeComboBox_SelectionChanged" />
+            <TextBox x:Name="RangeValueTB" Text="{Binding SpellModel.Range, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" IsEnabled="False" Grid.Column="5" TextChanged="DistanceTextBox_SelectionChanged" />
+            <Label Name="UnitLabel" Content="Unit" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False"  Grid.Row="1" Grid.Column="2" />
+            <ComboBox x:Name="UnitValueCB" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:UnitType}}}" SelectedValue="{Binding SpellModel.Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Value" VerticalAlignment="Center" DisplayMemberPath="Description" IsEnabled="False" Grid.Row="1" Grid.Column="3" SelectionChanged="UnitValueCB_SelectionChanged"/>
+            <Label Name="ShapeLabel" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,5,0" IsEnabled="False" Content="Shape:" Grid.Row="1" Grid.Column="4"/>
+            <ComboBox x:Name="SelfTypeCB" ItemsSource="{Binding Source={extension:Enumeration {x:Type spellEnum:SelfType}}}" SelectedValue="{Binding SpellModel.SelfType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"  SelectedValuePath="Value" SelectionChanged="SelfComboBox_SelectionChanged" DisplayMemberPath="Description" VerticalAlignment="Center" Grid.Row="1" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
