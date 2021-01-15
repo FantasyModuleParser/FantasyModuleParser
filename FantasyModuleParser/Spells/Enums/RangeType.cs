@@ -13,13 +13,16 @@ namespace FantasyModuleParser.Spells.Enums
 		[Description("Touch")]
 		Touch = 2,
 
-		[Description("ranged")]
+		[Description("Ranged")]
 		Ranged = 3,
 
 		[Description("Sight")]
 		Sight = 4,
 
+		[Description("Special")]
+		Special = 5,
+
 		[Description("Unlimited")]
-		Unlimited = 5,
+		Unlimited = 6,
     }
 }

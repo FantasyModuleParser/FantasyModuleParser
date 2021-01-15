@@ -4,6 +4,7 @@ using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
 using log4net;
 using System;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,24 @@ namespace FantasyModuleParser.Spells
         }
         private void SaveSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            log.Info("Saving spell " + spellModel.SpellName + " has started...");
+
+            if (spellModel == null)
+            {
+                log.Error(nameof(SpellModel) + " data object is null");
+                throw new InvalidDataException(nameof(SpellModel) + " data object is null");
+            }
+            if (spellModel.SpellName == null || spellModel.SpellName.Length == 0)
+            {
+                log.Error("Spell name is empty!");
+                throw new InvalidDataException("Spell name is empty!");
+            }
+            if (string.IsNullOrEmpty(spellModel.CastBy))
+            {
+                log.Error("Spell " + spellModel.SpellName + " has a null value for CastBy");
+                throw new InvalidDataException("Spell " + spellModel.SpellName + " has no casters listed.\n What good is a spell if you can't be cast by anyone?");
+            }
             (DataContext as SpellViewModel).Save();
         }
         private void DurationSelectionEnabled_ComboboxChanged(object sender, SelectionChangedEventArgs e)
@@ -116,23 +135,7 @@ namespace FantasyModuleParser.Spells
             else
                 (DataContext as SpellViewModel).AddSpellToModule((FGCategoryComboBox.SelectedItem as CategoryModel).Name);
         }
-        private void RangeComboBox_SelectionChanged(object sender, EventArgs e)
-        {
-            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
-            if (spellModel == null)
-                return;
-            if (RangeValueTB == null)
-                return;
-
-            if (RangeValueTB.IsEnabled = (spellModel.RangeType == Enums.RangeType.Ranged))
-                RangeDisplayValue.Text = spellModel.Range + " feet"; 
-            else
-                RangeDisplayValue.Text = spellModel.RangeType == Enums.RangeType.None ? "" : spellModel.RangeType.GetDescription();
-
-            spellModel.RangeDescription = RangeDisplayValue.Text;
-
-            RangeDistanceLabel.IsEnabled = RangeValueTB.IsEnabled;
-        }
+       
         private void SpellComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = (sender as ComboBox);
@@ -263,6 +266,130 @@ namespace FantasyModuleParser.Spells
             // TextBox on the .xaml in order for the View Stat Block page to update correctly.  My guess is
             // I am missing an event trigger (or invoking) somewhere...
             HiddenComponentDescriptionTB.Text = spellModel.ComponentDescription;
+        }
+
+        private void SelfComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            StringBuilder stringBuilder = new StringBuilder();
+            if (spellModel == null)
+                return;
+            if (RangeValueTB == null)
+                return;
+
+            if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.None) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Sight) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Special) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Touch) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Unlimited))
+                RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            else if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Ranged))
+                RangeDisplayValue.Text = spellModel.Range + " " + spellModel.Unit.GetDescription();
+            else
+            {
+                if (spellModel.SelfType.Equals(Enums.SelfType.Cone) || spellModel.SelfType.Equals(Enums.SelfType.Cube) || spellModel.SelfType.Equals(Enums.SelfType.Line) || spellModel.SelfType.Equals(Enums.SelfType.Radius))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + " " + spellModel.SelfType.GetDescription() + ")";
+                else if (spellModel.SelfType.Equals(Enums.SelfType.Sphere))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + "-radius " + spellModel.SelfType.GetDescription() + ")";
+                else
+                    RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            }
+        }
+
+        private void DistanceTextBox_SelectionChanged(object sender, TextChangedEventArgs e)
+        {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            StringBuilder stringBuilder = new StringBuilder();
+            if (spellModel == null)
+                return;
+            if (RangeValueTB == null)
+                return;
+
+            if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.None) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Sight) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Special) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Touch) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Unlimited))
+                RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            else if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Ranged))
+                RangeDisplayValue.Text = spellModel.Range + " " + spellModel.Unit.GetDescription();
+            else
+            {
+                if (spellModel.SelfType.Equals(Enums.SelfType.Cone) || spellModel.SelfType.Equals(Enums.SelfType.Cube) || spellModel.SelfType.Equals(Enums.SelfType.Line) || spellModel.SelfType.Equals(Enums.SelfType.Radius))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + " " + spellModel.SelfType.GetDescription() + ")";
+                else if (spellModel.SelfType.Equals(Enums.SelfType.Sphere))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + "-radius " + spellModel.SelfType.GetDescription() + ")";
+                else
+                    RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            }
+        }
+
+        private void UnitValueCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            StringBuilder stringBuilder = new StringBuilder();
+            if (spellModel == null)
+                return;
+            if (RangeValueTB == null)
+                return;
+
+            if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.None) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Sight) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Special) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Touch) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Unlimited))
+                RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            else if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Ranged))
+                RangeDisplayValue.Text = spellModel.Range + " " + spellModel.Unit.GetDescription();
+            else
+            {
+                if (spellModel.SelfType.Equals(Enums.SelfType.Cone) || spellModel.SelfType.Equals(Enums.SelfType.Cube) || spellModel.SelfType.Equals(Enums.SelfType.Line) || spellModel.SelfType.Equals(Enums.SelfType.Radius))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + " " + spellModel.SelfType.GetDescription() + ")";
+                else if (spellModel.SelfType.Equals(Enums.SelfType.Sphere))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + "-radius " + spellModel.SelfType.GetDescription() + ")";
+                else
+                    RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            }
+        }
+
+        private void RangeTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
+            StringBuilder stringBuilder = new StringBuilder();
+            if (spellModel == null)
+                return;
+            if (RangeValueTB == null)
+                return;
+
+            if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Ranged))
+            {
+                RangeDistanceLabel.IsEnabled = true;
+                RangeValueTB.IsEnabled = true;
+                UnitLabel.IsEnabled = true;
+                UnitValueCB.IsEnabled = true;
+                ShapeLabel.IsEnabled = false;
+                SelfTypeCB.IsEnabled = false;
+            }
+            else if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Self))
+            {
+                RangeDistanceLabel.IsEnabled = true;
+                RangeValueTB.IsEnabled = true;
+                UnitLabel.IsEnabled = true;
+                UnitValueCB.IsEnabled = true;
+                ShapeLabel.IsEnabled = true;
+                SelfTypeCB.IsEnabled = true;
+            }
+            else
+            {
+                RangeDistanceLabel.IsEnabled = false;
+                RangeValueTB.IsEnabled = false;
+                UnitLabel.IsEnabled = false;
+                UnitValueCB.IsEnabled = false;
+                ShapeLabel.IsEnabled = false;
+                SelfTypeCB.IsEnabled = false;
+            }
+
+            if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.None) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Sight) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Special) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Touch) || RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Unlimited))
+                RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            else if (RangeTypeCB.SelectedValue.Equals(Enums.RangeType.Ranged))
+                RangeDisplayValue.Text = spellModel.Range + " " + spellModel.Unit.GetDescription();
+            else
+            {
+                if (spellModel.SelfType.Equals(Enums.SelfType.Cone) || spellModel.SelfType.Equals(Enums.SelfType.Cube) || spellModel.SelfType.Equals(Enums.SelfType.Line) || spellModel.SelfType.Equals(Enums.SelfType.Radius))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + " " + spellModel.SelfType.GetDescription() + ")";
+                else if (spellModel.SelfType.Equals(Enums.SelfType.Sphere))
+                    RangeDisplayValue.Text = spellModel.RangeType + " (" + spellModel.Range + "-" + spellModel.Unit.GetDescription() + "-radius " + spellModel.SelfType.GetDescription() + ")";
+                else
+                    RangeDisplayValue.Text = spellModel.RangeType.ToString();
+            }
         }
     }
 }

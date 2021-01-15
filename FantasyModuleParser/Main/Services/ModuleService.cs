@@ -86,18 +86,18 @@ namespace FantasyModuleParser.Main.Services
             {
                 log.Error("No Challenge Rating has been set for NPC.");
                 throw new InvalidDataException("No Challenge Rating has been set for NPC.\nHow do you expect to give your players experience?");
-            }                
+            }
             if (npcModel.NPCType == null || npcModel.NPCType.Length == 0)
             {
                 log.Error("NPC must have a specified type.");
                 throw new InvalidDataException("NPC must have a specified type.\nEven an unknown NPC has a type.");
-            }                
+            }
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
             {
                 log.Error("Category Value is not in the Module Model data object!");
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
-            }                
+            }
             if (!string.IsNullOrEmpty(npcModel.NPCImage) && npcModel.NPCImage.StartsWith("file:///"))
             {
                 log.Error("Remove the file:/// from the NPC Image path and Add to Project again.");
@@ -107,12 +107,12 @@ namespace FantasyModuleParser.Main.Services
             {
                 log.Error("Select an alignment for the NPC and add to project again.");
                 throw new InvalidDataException("Select an alignment for the NPC and add to project again.\nDoes alignment really matter in DnD anymore?");
-            }                
+            }
             if (npcModel.AC == null)
             {
                 log.Error("Please add an armor class and try again.");
                 throw new InvalidDataException("Please add an armor class and try again.\nHow do you expect to hit a NPC without knowing it's AC?");
-            }                
+            }
             if (string.IsNullOrEmpty(npcModel.NPCToken))
             {
                 npcModel.NPCToken = "";
@@ -136,12 +136,12 @@ namespace FantasyModuleParser.Main.Services
             {
                 log.Error("Category value is null;  Cannot save Spell");
                 throw new InvalidDataException("Category value is null;  Cannot save Spell");
-            }                
+            }
             if (spellModel == null)
             {
                 log.Error(nameof(SpellModel) + " data object is null");
                 throw new InvalidDataException(nameof(SpellModel) + " data object is null");
-            }                
+            }
             if (spellModel.SpellName == null || spellModel.SpellName.Length == 0)
             {
                 log.Error("Spell name is empty!");
@@ -152,6 +152,11 @@ namespace FantasyModuleParser.Main.Services
             {
                 log.Error("Category Value is not in the Module Model data object!");
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            }
+            if (string.IsNullOrEmpty(spellModel.CastBy))
+            {
+                log.Error("Spell " + spellModel.SpellName + " has a null value for CastBy");
+                throw new InvalidDataException("Spell " + spellModel.SpellName + " has no casters listed.\n What good is a spell if you can't be cast by anyone?");
             }
             else
             {
