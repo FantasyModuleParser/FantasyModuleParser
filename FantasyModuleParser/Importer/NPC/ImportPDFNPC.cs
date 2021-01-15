@@ -30,17 +30,17 @@ namespace FantasyModuleParser.Importer.NPC
                     // Line number one indicates the NPC name
                     parsedNPCModel.NPCName = line;
 
-                if (line.ToLower().StartsWith("Tiny") || line.ToLower().StartsWith("Small") || line.ToLower().StartsWith("Medium") || line.ToLower().StartsWith("Large") || line.ToLower().StartsWith("Huge") || line.ToLower().StartsWith("Gargantuan"))
+                if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Armor Class", StringComparison.Ordinal) || line.ToLower().StartsWith("Armour Class"))
+                if (line.StartsWith("Armor Class", StringComparison.Ordinal) || line.StartsWith("Armour Class"))
                     ParseArmorClass(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Hit Points", StringComparison.Ordinal))
+                if (line.StartsWith("Hit Points", StringComparison.Ordinal))
                     ParseHitPoints(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Speed", StringComparison.Ordinal))
+                if (line.StartsWith("Speed", StringComparison.Ordinal))
                     ParseSpeedAttributes(parsedNPCModel, line);
 
                 if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
@@ -55,31 +55,31 @@ namespace FantasyModuleParser.Importer.NPC
                     resetContinueFlags();
                 }
 
-                if (line.ToLower().StartsWith("Saving Throws", StringComparison.Ordinal))
+                if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
                     ParseSavingThrows(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Skills", StringComparison.Ordinal))
+                if (line.StartsWith("Skills", StringComparison.Ordinal))
                     ParseSkillAttributes(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Damage Resistances", StringComparison.Ordinal))
+                if (line.StartsWith("Damage Resistances", StringComparison.Ordinal))
                     ParseDamageResistances(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
+                if (line.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
                     ParseDamageVulnerabilities(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Damage Immunities", StringComparison.Ordinal))
+                if (line.StartsWith("Damage Immunities", StringComparison.Ordinal))
                     ParseDamageImmunities(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Condition Immunities", StringComparison.Ordinal))
+                if (line.StartsWith("Condition Immunities", StringComparison.Ordinal))
                     ParseConditionImmunities(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Senses", StringComparison.Ordinal))
+                if (line.StartsWith("Senses", StringComparison.Ordinal))
                     ParseVisionAttributes(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Languages", StringComparison.Ordinal))
+                if (line.StartsWith("Languages", StringComparison.Ordinal))
                     ParseLanguages(parsedNPCModel, line);
 
-                if (line.ToLower().StartsWith("Challenge", StringComparison.Ordinal))
+                if (line.StartsWith("Challenge", StringComparison.Ordinal))
                 {
                     ParseChallengeRatingAndXP(parsedNPCModel, line);
                     continueTraitsFlag = true;
@@ -94,14 +94,14 @@ namespace FantasyModuleParser.Importer.NPC
                         continueActionsFlag = true;
                         continue;
                     }
-                    if (line.ToLower().StartsWith("Innate Spellcasting"))
+                    if (line.StartsWith("Innate Spellcasting"))
                     {
                         //resetContinueFlags();
                         //continueInnateSpellcastingFlag = true;
                         ParseInnateSpellCastingAttributes(parsedNPCModel, line);
                         continue;
                     }
-                    if (line.ToLower().StartsWith("Spellcasting"))
+                    if (line.StartsWith("Spellcasting"))
                     {
                         resetContinueFlags();
                         continueSpellcastingFlag = true;
