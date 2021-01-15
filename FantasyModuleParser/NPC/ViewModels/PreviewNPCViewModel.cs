@@ -73,7 +73,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             initalizeViewModel();
         }
 
-        private void initalizeViewModel()
+        public void initalizeViewModel()
         {
             SpeedDescription = UpdateSpeedDescription();
             SkillsDescription = UpdateSkillsDescription();

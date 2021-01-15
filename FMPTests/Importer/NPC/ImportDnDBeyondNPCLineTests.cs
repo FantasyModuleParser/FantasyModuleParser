@@ -95,5 +95,30 @@ namespace FMPTests.Importer.NPC
             return npcModel;
         }
         #endregion
+
+        #region Legendary Actions
+        /// <summary>
+        /// Unit test is to ensure that exceptions are being handled correctly for Legendary Action parsing
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="expectException"></param>
+        [TestMethod]
+        [DynamicData(nameof(LegendaryActionErrorData), DynamicDataSourceType.Method)]
+        public void Test_Parse_LegendaryAction_ErrorHandling(string text, bool expectException)
+        {
+            if (expectException)
+                Assert.ThrowsException<ApplicationException>(() => _importNPC.ParseLegendaryAction(actualNPCModel, text));
+            else
+                // No Exception should be thrown here
+                _importNPC.ParseLegendaryAction(actualNPCModel, text);
+        }
+
+        private static IEnumerable<object[]> LegendaryActionErrorData()
+        {
+            yield return new object[] { "Options. This creature has 5 legendary actions.", false };
+            yield return new object[] { "", false };
+            yield return new object[] { "Options", true };
+        }
+        #endregion
     }
 }

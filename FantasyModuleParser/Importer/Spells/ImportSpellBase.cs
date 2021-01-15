@@ -167,25 +167,45 @@ namespace FantasyModuleParser.Importer.Spells
             // Remove 'range: ' from the description
             lowerImportData = lowerImportData.Substring(7).Trim();
 
-            if (lowerImportData.Equals("self"))
-                spellModel.RangeType = RangeType.Self;
-            if (lowerImportData.Equals("unlimited"))
-                spellModel.RangeType = RangeType.Unlimited;
-            if (lowerImportData.Equals("touch"))
-                spellModel.RangeType = RangeType.Touch;
-            if (lowerImportData.Equals("sight"))
-                spellModel.RangeType = RangeType.Sight;
-            if (lowerImportData.Contains("feet") || lowerImportData.Contains("ft"))
+            if (lowerImportData.Contains("self"))
             {
-                // Typically it is 60 feet, 60 ft., etc...  Will still use regex incase 60feet is entered.
-                Regex regex = new Regex("(?<Alphabet>[a-zA-Z]*)(?<Numeric>[0-9]*)");
-                string numMatch = regex.Match(lowerImportData).Groups["Numeric"].Value;
-                if (!String.IsNullOrEmpty(numMatch))
-                    spellModel.Range = int.Parse(numMatch);
-                spellModel.RangeType = RangeType.Ranged;
+                spellModel.RangeType = RangeType.Self;
+                if (lowerImportData.Contains("foot") || lowerImportData.Contains("ft"))
+                {
+                    string[] selfFields = lowerImportData.Split(' ');
+                    string[] rangeFields = selfFields[1].Split('-');
+                    spellModel.Range = int.Parse(rangeFields[0].Substring(1));
+                    spellModel.Unit = UnitType.Foot;
+                    if (selfFields[2].ToString() == "sphere)")
+                        spellModel.SelfType = SelfType.Sphere;
+                    else if (selfFields[2].ToString() == "radius)")
+                        spellModel.SelfType = SelfType.Radius;
+                    else if (selfFields[2].ToString() == "line)")
+                        spellModel.SelfType = SelfType.Line;
+                    else if (selfFields[2].ToString() == "cone)")
+                        spellModel.SelfType = SelfType.Cone;
+                    else if (selfFields[2].ToString() == "cube)")
+                        spellModel.SelfType = SelfType.Cube;
+                }
             }
-
-
+            else
+            {
+                if (lowerImportData.Equals("unlimited"))
+                    spellModel.RangeType = RangeType.Unlimited;
+                if (lowerImportData.Equals("touch"))
+                    spellModel.RangeType = RangeType.Touch;
+                if (lowerImportData.Equals("sight"))
+                    spellModel.RangeType = RangeType.Sight;
+                if (lowerImportData.Contains("feet") || lowerImportData.Contains("ft"))
+                {
+                    // Typically it is 60 feet, 60 ft., etc...  Will still use regex incase 60feet is entered.
+                    Regex regex = new Regex("(?<Alphabet>[a-zA-Z]*)(?<Numeric>[0-9]*)");
+                    string numMatch = regex.Match(lowerImportData).Groups["Numeric"].Value;
+                    if (!String.IsNullOrEmpty(numMatch))
+                        spellModel.Range = int.Parse(numMatch);
+                    spellModel.RangeType = RangeType.Ranged;
+                }
+            }
         }
         public void ParseComponents(string importData, SpellModel spellModel)
         {

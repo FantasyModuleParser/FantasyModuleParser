@@ -877,13 +877,9 @@ namespace FantasyModuleParser.Exporters
 		private void WriteSpellRange(XmlWriter xmlWriter, SpellModel spellModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			if(spellModel.RangeType == Spells.Enums.RangeType.Ranged)
-				stringBuilder.Append(spellModel.Range + " feet");
-			else
-				stringBuilder.Append(spellModel.RangeType);
 			xmlWriter.WriteStartElement("range");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(stringBuilder.ToString());
+			xmlWriter.WriteString(spellModel.RangeDescription);
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteCastingTime(XmlWriter xmlWriter, SpellModel spellModel)

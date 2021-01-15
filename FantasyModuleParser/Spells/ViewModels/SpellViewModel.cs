@@ -70,11 +70,18 @@ namespace FantasyModuleParser.Spells.ViewModels
         }
         public void Save()
         {
-            log.Debug("Beginning to save Spell...");
             Directory.CreateDirectory(_settingsModel.SpellFolderLocation);
             if (!string.IsNullOrWhiteSpace(SpellModel.SpellName))
             {
-                Save(_settingsModel.SpellFolderLocation + @"\" + SpellModel.SpellName + ".spl");
+                try
+                {
+                    Save(_settingsModel.SpellFolderLocation + @"\" + SpellModel.SpellName + ".spl");
+                }
+                catch (InvalidDataException exception)
+                {
+                    MessageBox.Show(" ==== Error detected while saving Spell :: " + exception.Message + " ======== ");
+                    log.Error(" ==== Error detected while saving Spell :: " + exception.Message + " ======== ");
+                }
             }
         }
         public void Save(string filePath)
@@ -85,13 +92,18 @@ namespace FantasyModuleParser.Spells.ViewModels
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
                 serializer.Serialize(file, SpellModel);
-                log.Debug("Spell has successfully been saved to " + filePath);
+                log.Info("Spell " + SpellModel.SpellName + " has successfully been saved to " + filePath);
+                MessageBox.Show("Spell " + SpellModel.SpellName + " has been saved successfully");
             }
+            log.Debug("Finished saving Spell...");
         }
 
         public void LoadSpell()
         {
+            log.Debug("Loading spell started...");
             SpellModel = _spellService.Load(_settingsModel.SpellFolderLocation);
+            log.Debug("Loading spell completed...");
+            log.Info("Spell " + SpellModel.SpellName + " has been successfully loaded");
         }
 
         public void Refresh()
@@ -107,11 +119,19 @@ namespace FantasyModuleParser.Spells.ViewModels
                 log.Warn("No Module Project loaded!\nPlease create / load a Module through Options -> Manage Project");
                 return;
             }
+            else if (string.IsNullOrEmpty(SpellModel.CastBy))
+            {
+                MessageBox.Show("Please select which class can cast spell " + SpellModel.SpellName + " and try again.");
+                log.Warn("No CastBy classes selected for spell " + SpellModel.SpellName);
+                return;
+            }
             try
             {
+                log.Debug("Adding spell " + SpellModel.SpellName + " to project started...");
                 _moduleService.AddSpellToCategory(SpellModel, categoryValue);
+                log.Debug("Adding spell " + SpellModel.SpellName + " to project completed...");
                 MessageBox.Show("Spell " + SpellModel.SpellName + " has been added to the project");
-                log.Debug("Spell " + SpellModel.SpellName + " has been added to the project");
+                log.Info("Spell " + SpellModel.SpellName + " has been added to the project");
             }
             catch (InvalidDataException exception)
             {

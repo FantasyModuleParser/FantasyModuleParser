@@ -4,6 +4,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.Models.Skills;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace FantasyModuleParser.Importer.NPC
     {
         public ImportCommonUtils importCommonUtils = new ImportCommonUtils();
         public abstract NPCModel ImportTextToNPCModel(string importTextContent);
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Declares all the 'continue' flags used in Importers
@@ -71,24 +73,35 @@ namespace FantasyModuleParser.Importer.NPC
             else
                 npcModel.NPCType = npcCharacteristics[1].ToLower();
 
-            if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
-                // includes removing the comma character at the end
-                npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
-            else if (npcCharacteristics.Length > 3)
-                npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
+            if (npcCharacteristics.Length <= 2)
+            {
+                log.Error("Failed to parse the line in Size and Alignment :: " + sizeAndAlignment + Environment.NewLine + "The alignment appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Size and Alignment :: " + sizeAndAlignment +
+                    Environment.NewLine + "The alignment appears to be missing." +
+                    Environment.NewLine + "An example would be \"Medium beast, lawful good.\" (without the double quotes)");
+            }
             else
-                npcModel.Alignment = npcCharacteristics[2];
-
-            if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
-                npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
-            if (npcModel.Tag != null && npcModel.Tag.Length > 0)
-                if (npcCharacteristics.Length > 4)
-                    if (npcModel.Tag.Contains(","))
-                        npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
-                    else
-                        npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+            {
+                if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
+                    // includes removing the comma character at the end
+                    npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
+                else if (npcCharacteristics.Length > 3)
+                    npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
                 else
-                    npcModel.Alignment = npcCharacteristics[3];
+                    npcModel.Alignment = npcCharacteristics[2];
+
+                if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
+                    npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
+                if (npcModel.Tag != null && npcModel.Tag.Length > 0)
+                    if (npcCharacteristics.Length > 4)
+                        if (npcModel.Tag.Contains(","))
+                            npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
+                        else
+                            npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+                    else
+                        npcModel.Alignment = npcCharacteristics[3];
+            }
         }
 
         /// <summary>
@@ -485,7 +498,6 @@ namespace FantasyModuleParser.Importer.NPC
                 string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(' && c != ')').ToArray());
                 npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
             }
-
         }
 
         /// <summary>
@@ -500,6 +512,14 @@ namespace FantasyModuleParser.Importer.NPC
                 return;
 
             string[] traitArray = traits.Split('.');
+            if (traitArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Traits :: " + traits + Environment.NewLine + "The Trait description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Traits :: " + traits +
+                    Environment.NewLine + "The Trait description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Nimble Escape. The goblin can take the Disengage or Hide action as a bonus action on each of its turns.\" (without the double quotes)");
+            }
             ActionModelBase traitModel = new ActionModelBase();
             traitModel.ActionName = traitArray[0];
             StringBuilder stringBuilder = new StringBuilder();
@@ -713,7 +733,6 @@ namespace FantasyModuleParser.Importer.NPC
             if (standardAction.Length == 0 || standardAction.Trim().Length == 0)
                 return;
 
-
             if (standardAction.StartsWith(Multiattack.LocalActionName))
             {
                 ParseMultiattackAction(npcModel, standardAction);
@@ -820,7 +839,6 @@ namespace FantasyModuleParser.Importer.NPC
             Regex PrimaryOnlyDamageRegex = new Regex(@".*?damage");
             Regex PrimaryWithVersatileRegex = new Regex(@".*?if used with two hands.*");
             string damagePropertyData = weaponDescription.Substring(weaponDescription.IndexOf("Hit: ", StringComparison.Ordinal) + 4);
-            string flavorText = "";
             if (PrimarySecondaryDamageRegex.IsMatch(damagePropertyData))
             {
                 string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
@@ -907,6 +925,16 @@ namespace FantasyModuleParser.Importer.NPC
         public void ParseReaction(NPCModel npcModel, string reaction)
         {
             string[] reactionArray = reaction.Split('.');
+
+            if (reactionArray.Length <= 1)
+            {
+                log.Error("Failed to parse the line in Reactions :: " + reaction + Environment.NewLine + "The Reaction description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine +
+                    "Failed to parse the line in Reactions :: " + reaction +
+                    Environment.NewLine + "The Reaction description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Parry. The noble adds 2 to its AC against one melee attack that would hit it. To do so, the noble must see the attacker and be wielding a melee weapon.\" (without the double quotes)");
+            }
+
             ActionModelBase reactionModel = new ActionModelBase();
             reactionModel.ActionName = reactionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
@@ -935,6 +963,16 @@ namespace FantasyModuleParser.Importer.NPC
                 return;
             }
             string[] legendaryActionArray = legendaryAction.Split('.');
+
+            if (legendaryActionArray.Length <= 1) 
+            {
+                log.Error("Failed to parse the line in Legendary Actions :: " + legendaryAction + Environment.NewLine + "The Legendary Action description appears to be missing.");
+                throw new ApplicationException(Environment.NewLine + 
+                    "Failed to parse the line in Legendary Actions :: " + legendaryAction + 
+                    Environment.NewLine + "The Legendary Action description appears to be missing." +
+                    Environment.NewLine + "An example would be \"Detect. The golbin makes a Wisdom (Perception) check.\" (without the double quotes)");
+            }
+
             legendaryActionModel.ActionName = legendaryActionArray[0];
             StringBuilder stringBuilder = new StringBuilder();
             for (int idx = 1; idx < legendaryActionArray.Length; idx++)
