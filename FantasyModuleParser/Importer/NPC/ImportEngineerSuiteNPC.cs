@@ -30,72 +30,72 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 if (line.StartsWith("***Part 1***"))
                     continue;
-                if(lineNumber == 1)
+                if (lineNumber == 1)
                 {
                     // Line number one indicates the NPC name
                     parsedNPCModel.NPCName = line;
                 }
-                if(lineNumber == 2)
+                if (lineNumber == 2)
                 {
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
                 }
 
-                if (line.StartsWith("Armor Class", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Armor Class", StringComparison.Ordinal))
                     ParseArmorClass(parsedNPCModel, line);
-                if (line.StartsWith("Hit Points", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Hit Points", StringComparison.Ordinal))
                     ParseHitPoints(parsedNPCModel, line);
-                if (line.StartsWith("Speed", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Speed", StringComparison.Ordinal))
                     ParseSpeedAttributes(parsedNPCModel, line);
-                if (line.StartsWith("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
                     ParseStatAttributes(parsedNPCModel, line);
-                if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Saving Throws", StringComparison.Ordinal))
                     ParseSavingThrows(parsedNPCModel, line);
-                if (line.StartsWith("Skills", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Skills", StringComparison.Ordinal))
                     ParseSkillAttributes(parsedNPCModel, line);
-                if (line.StartsWith("Damage Resistances", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Damage Resistances", StringComparison.Ordinal))
                     ParseDamageResistances(parsedNPCModel, line);
-                if (line.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
                     ParseDamageVulnerabilities(parsedNPCModel, line);
-                if (line.StartsWith("Damage Immunities", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Damage Immunities", StringComparison.Ordinal))
                     ParseDamageImmunities(parsedNPCModel, line);
-                if (line.StartsWith("Condition Immunities", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Condition Immunities", StringComparison.Ordinal))
                     ParseConditionImmunities(parsedNPCModel, line);
-                if (line.StartsWith("Senses", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Senses", StringComparison.Ordinal))
                     ParseVisionAttributes(parsedNPCModel, line);
-                if (line.StartsWith("Languages", StringComparison.Ordinal))
+                if (line.ToLower().StartsWith("Languages", StringComparison.Ordinal))
                     ParseLanguages(parsedNPCModel, line);
-                if (line.StartsWith("Challenge", StringComparison.Ordinal)) { 
+                if (line.ToLower().StartsWith("Challenge", StringComparison.Ordinal)) { 
                     ParseChallengeRatingAndXP(parsedNPCModel, line);
                     continueTraitsFlag = true;
                     continue;
                 }
-                if (line.StartsWith("Innate Spellcasting"))
+                if (line.ToLower().StartsWith("Innate Spellcasting"))
                 {
                     resetContinueFlags();
                     ParseInnateSpellCastingAttributes(parsedNPCModel, line);
                 }
-                if (line.StartsWith("Spellcasting"))
+                if (line.ToLower().StartsWith("Spellcasting"))
                 {
                     resetContinueFlags();
                     ParseSpellCastingAttributes(parsedNPCModel, line);
                 }
-                if (line.StartsWith("ACTIONS"))
+                if (line.ToLower().StartsWith("ACTIONS"))
                 {
                     resetContinueFlags();
                     continueActionsFlag = true;
                 }
-                if (line.StartsWith("REACTIONS"))
+                if (line.ToLower().StartsWith("REACTIONS"))
                 {
                     resetContinueFlags();
                     continueReactionsFlag = true;
                 }
-                if (line.StartsWith("LEGENDARY ACTIONS"))
+                if (line.ToLower().StartsWith("LEGENDARY ACTIONS"))
                 {
                     resetContinueFlags();
                     continueLegendaryActionsFlag = true;
                 }
-                if (line.StartsWith("LAIR ACTIONS"))
+                if (line.ToLower().StartsWith("LAIR ACTIONS"))
                 {
                     resetContinueFlags();
                     continueLairActionsFlag = true;
@@ -106,31 +106,31 @@ namespace FantasyModuleParser.Importer.NPC
                 }
 
                 // Parsing through ***Part 3***
-                if (line.StartsWith("NPCgender:"))
+                if (line.ToLower().StartsWith("NPCgender:"))
                 {
                     parsedNPCModel.NPCGender = line.Substring(11);
                 }
-                if (line.StartsWith("NPCunique:"))
+                if (line.ToLower().StartsWith("NPCunique:"))
                 {
                     parsedNPCModel.Unique = line.Equals("NPCunique: 1", StringComparison.Ordinal);
                 }
-                if (line.StartsWith("NPCpropername:"))
+                if (line.ToLower().StartsWith("NPCpropername:"))
                 {
                     parsedNPCModel.NPCNamed = line.Equals("NPCpropername: 1", StringComparison.Ordinal);
                 }
-                if (line.StartsWith("NPCimagePath:"))
+                if (line.ToLower().StartsWith("NPCimagePath:"))
                 {
                     parsedNPCModel.NPCImage = line.Substring(14);
                     if (parsedNPCModel.NPCImage.Equals(" "))
                         parsedNPCModel.NPCImage = "";
                 }
-                if (line.StartsWith("NPCTokenPath:"))
+                if (line.ToLower().StartsWith("NPCTokenPath:"))
                 {
                     parsedNPCModel.NPCToken = line.Substring(13);
                     if (parsedNPCModel.NPCToken.Equals(" ") || parsedNPCModel.NPCToken.Equals(null))
                         parsedNPCModel.NPCToken = "";
                 }
-                if (line.StartsWith("LAction"))
+                if (line.ToLower().StartsWith("LAction"))
                 {
                     // Get the lair action number
                     int lairActionIndex = int.Parse(line.Split(':')[0].Substring(7), CultureInfo.CurrentCulture);
@@ -144,16 +144,16 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueTraitsFlag)
                     ParseTraits(parsedNPCModel, line);
                 
-                if(continueActionsFlag && !line.Equals("ACTIONS"))
+                if(continueActionsFlag && !line.Equals("ACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseStandardAction(parsedNPCModel, line);
 
-                if (continueReactionsFlag && !line.Equals("REACTIONS"))
+                if (continueReactionsFlag && !line.Equals("REACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseReaction(parsedNPCModel, line);
 
-                if (continueLegendaryActionsFlag && !line.Equals("LEGENDARY ACTIONS"))
+                if (continueLegendaryActionsFlag && !line.Equals("LEGENDARY ACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseLegendaryAction(parsedNPCModel, line);
 
-                if (continueLairActionsFlag && !line.Equals("LAIR ACTIONS"))
+                if (continueLairActionsFlag && !line.Equals("LAIR ACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseLairAction(parsedNPCModel, line);
 
                 lineNumber++;
