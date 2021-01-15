@@ -4,9 +4,248 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Tables"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Tables.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="700" d:DesignWidth="620">
+    <UserControl.DataContext>
+        <viewModel:TableOptionViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="standardButton">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="ComboBox" x:Key="standardComboBox">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="standardTextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0,-1,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" x:Key="TooltipButton">
+            <Setter Property="ToolTipService.InitialShowDelay" Value="50" />
+            <Setter Property="ToolTipService.ShowDuration" Value="5000" />
+            <Setter Property="ToolTipService.BetweenShowDelay" Value="10000" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <ControlTemplate x:Key="validationTemplate">
+            <Grid>
+                <Label Foreground="Red" HorizontalAlignment="Right" VerticalAlignment="Center">Please insert a integer</Label>
+                <Border BorderThickness="1" BorderBrush="Red">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Top" Background="AliceBlue" Height="700" Width="620">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="660" />
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="2">
+            <TabItem Header="Main">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="35*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="3" Margin="0,5,0,-5"/>
+                    <Grid Grid.Row="0" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Table Name:" Grid.Row="0" Grid.Column="0"/>
+                            <TextBox Text="{Binding TableModel.Name}" Grid.Row="0" Grid.Column="1" Margin="5" TextWrapping="NoWrap"/>
+                            <Label Content="Output To:" Grid.Row="0" Grid.Column="2"/>
+                            <ComboBox Grid.Row="0" Grid.Column="3" Style="{StaticResource standardComboBox}">
+                                <ComboBoxItem Content="Chat" IsSelected="True"/>
+                                <ComboBoxItem Content="Story"/>
+                                <ComboBoxItem Content="Parcel"/>
+                                <ComboBoxItem Content="Encounter"/>
+                            </ComboBox>
+
+                            <Label Content="Description:" Grid.Row="1" Grid.Column="0"/>
+                            <TextBox Text="{Binding TableModel.Name}" Grid.Row="1" Grid.Column="1" Margin="5" TextWrapping="WrapWithOverflow"/>
+
+                            <Label Content="Role Method:" Grid.Row="2" Grid.Column="0"/>
+                            <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource standardComboBox}" SelectionChanged="RoleMethodCombobox_Changed">
+                                <ComboBoxItem Name="TableValuesCBI" Content="Based on table values" IsSelected="True"/>
+                                <ComboBoxItem Name="PresetRangeCBI" Content="Preset range"/>
+                                <ComboBoxItem Name="CustomDiceCBI" Content="Custom dice roll"/>
+                            </ComboBox>
+                        </Grid>
+
+                        <!-- Make this visible when the Role Method 'Custom Dice Roll' is selected-->
+                        <Grid Grid.Row="1" Visibility="Hidden" x:Name="CustomDiceRollGrid">
+                            <Grid.Resources>
+                                <Style TargetType="Label" x:Key="labelPosition">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="1" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="2" Content="d4" Style="{StaticResource labelPosition}"/>
+
+                            <TextBox Grid.Column="3" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="4" Content="d6" Style="{StaticResource labelPosition}"/>
+
+                            <TextBox Grid.Column="5" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="6" Content="d8" Style="{StaticResource labelPosition}"/>
+
+                            <TextBox Grid.Column="7" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="8" Content="d10" Style="{StaticResource labelPosition}"/>
+
+                            <TextBox Grid.Column="9" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="10" Content="d12" Style="{StaticResource labelPosition}"/>
+
+                            <TextBox Grid.Column="11" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="12" Content="d20" Style="{StaticResource labelPosition}"/>
+
+                            <Label   Grid.Column="13" Content="Mod:"  Style="{StaticResource labelPosition}"/>
+                            <TextBox Grid.Column="14" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                        </Grid>
+
+                        <!-- Make this visible when the Role Method 'Preset Range' is selected-->
+                        <Grid Grid.Row="1" Visibility="Hidden" x:Name="PresetRangeGrid">
+                            <Grid.Resources>
+                                <Style TargetType="Label" x:Key="labelPosition">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="10*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="1" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="2" Content="Min" Style="{StaticResource labelPosition}"/>
+
+                            <TextBox Grid.Column="3" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox"/>
+                            <Label   Grid.Column="4" Content="Max" Style="{StaticResource labelPosition}"/>
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="6*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Rows:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBox Grid.Column="1" Style="{StaticResource standardTextBox}" 
+                                     PreviewTextInput="NumberValidationTextBox" />
+
+                            <Label Content="Columns:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBox Grid.Column="3" Style="{StaticResource standardTextBox}" 
+                                    PreviewTextInput="NumberValidationTextBox" />
+                        </Grid>
+
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="5">
+                        <DataGrid x:Name="TableContent">
+                            
+                        </DataGrid>
+                    </Grid>
+                    <Grid Grid.Row="2" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="3*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Label Content="FG Category" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" />
+                            <Label Content="Selected Table" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" />
+
+                            <!-- Second internal row -->
+                            <ComboBox Name="FGCategoryComboBox" ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name"
+                                IsSynchronizedWithCurrentItem="True"
+                                SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
+                            <Button x:Name="PrevBtn" Content="Prev Table" Grid.Column="1" Grid.Row="1" Style="{StaticResource standardButton}" />
+                            <Button x:Name="NextBtn" Content="Next Table" Grid.Column="2" Grid.Row="1" Style="{StaticResource standardButton}" />
+                            <ComboBox x:Name="TableComboBox" ItemsSource="{Binding SelectedCategoryModel.TableModels}" DisplayMemberPath="Name" Grid.Column="3" Grid.Row="1" Style="{StaticResource standardComboBox}" />
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <!--<Button Content="Import Text" Grid.Column="0" Style="{StaticResource standardButton}"/>-->
+                            <!--<Button Content="View Stat Block" Grid.Column="1" Style="{StaticResource standardButton}"   />-->
+                            <Button Content="Save Table" Grid.Column="2"  Style="{StaticResource standardButton}" />
+                            <Button Content="Add to Project" Grid.Column="3"  Style="{StaticResource standardButton}"  />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Notes">
+                <Grid>
+                    
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

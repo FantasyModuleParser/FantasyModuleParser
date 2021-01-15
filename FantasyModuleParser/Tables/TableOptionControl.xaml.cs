@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Text.RegularExpressions;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows;
 
 namespace FantasyModuleParser.Tables
 {
@@ -20,9 +10,26 @@ namespace FantasyModuleParser.Tables
     /// </summary>
     public partial class TableUserControl : UserControl
     {
+        private Regex numericValidationRegex = new Regex("[^0-9]+");
         public TableUserControl()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = numericValidationRegex.IsMatch(e.Text);
+        }
+
+        private void RoleMethodCombobox_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            CustomDiceRollGrid.Visibility = CustomDiceCBI.IsSelected ? Visibility.Visible : Visibility.Hidden;
+            PresetRangeGrid.Visibility = PresetRangeCBI.IsSelected ? Visibility.Visible : Visibility.Hidden; 
         }
     }
 }

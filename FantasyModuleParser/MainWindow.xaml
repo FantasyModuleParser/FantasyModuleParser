@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
     xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
+        xmlns:tableUserControl="clr-namespace:FantasyModuleParser.Tables"
     mc:Ignorable="d"
     Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
     <Window.Resources>
@@ -26,7 +27,7 @@
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="800" />
+            <RowDefinition Height="700" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180" />
@@ -94,7 +95,7 @@
                 <ListBoxItem Style="{StaticResource Disabled}">Add Skills</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Stories</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Enabled}" Name="optionSpells">Add Spells</ListBoxItem>
-                <ListBoxItem Style="{StaticResource Disabled}">Add Tables</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Enabled}" Name="optionTable">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
         <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
@@ -105,6 +106,9 @@
         </StackPanel>
         <StackPanel Name="stackMain" Grid.Row="1" Grid.Column="1" Visibility="Visible">
             <Image Source="/Resources/FMP-Logo-400.png" Width="400" Height="410" Margin="0,10,0,0"/>
+        </StackPanel>
+        <StackPanel Name="stackTable" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+            <tableUserControl:TableUserControl x:Name="tableOptionUserControl" Height="750"/>
         </StackPanel>
         <WrapPanel x:Name="ViewStatBlockPanel" Grid.Column="3" Grid.Row="1" Orientation="Vertical" >
             

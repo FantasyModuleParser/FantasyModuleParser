@@ -649,12 +649,15 @@
     <Compile Include="Spells\ViewModels\CastByViewModel.cs" />
     <Compile Include="Spells\ViewModels\ImportTextSpellViewModel.cs" />
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
+    <Compile Include="Tables\Models\DelegateCommand.cs" />
     <Compile Include="Tables\Models\TableModel.cs" />
     <Compile Include="Tables\Services\ITableService.cs" />
     <Compile Include="Tables\Services\TableService.cs" />
     <Compile Include="Tables\TableOptionControl.xaml.cs">
       <DependentUpon>TableOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tables\ViewModels\CellViewModel.cs" />
+    <Compile Include="Tables\ViewModels\ICellViewModel.cs" />
     <Compile Include="Tables\ViewModels\TableOptionViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
     <Compile Include="NPC\Models\Action\ActionModelBase.cs" />

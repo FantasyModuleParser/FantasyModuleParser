@@ -200,17 +200,29 @@ namespace FantasyModuleParser
         }
         private void ShowNPCUserControl()
         {
+            HideMainUserControls();
             stackNPC.Visibility = Visibility.Visible;
-            stackMain.Visibility = Visibility.Hidden;
-            stackSpells.Visibility = Visibility.Hidden;
         }
         private void ShowSpellUserControl()
         {
-            stackNPC.Visibility = Visibility.Hidden;
-            stackMain.Visibility = Visibility.Hidden;
+            HideMainUserControls();
             stackSpells.Visibility = Visibility.Visible;
             spellViewModel = spellOptionUserControl.DataContext as SpellViewModel;
             spellStatBlockUC.DataContext = spellViewModel;
+        }
+
+        private void ShowTableUserControl()
+        {
+            HideMainUserControls();
+            stackTable.Visibility = Visibility.Visible;
+        }
+
+        private void HideMainUserControls()
+        {
+            stackNPC.Visibility = Visibility.Hidden;
+            stackMain.Visibility = Visibility.Hidden;
+            stackSpells.Visibility = Visibility.Hidden;
+            stackTable.Visibility = Visibility.Hidden;
         }
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
@@ -222,6 +234,9 @@ namespace FantasyModuleParser
             {
                 ShowSpellUserControl();
             }
+            if (optionTable.IsSelected)
+                ShowTableUserControl();
+
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {
