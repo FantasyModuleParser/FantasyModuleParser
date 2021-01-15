@@ -28,8 +28,11 @@ namespace FantasyModuleParser.Tables
 
         private void RoleMethodCombobox_Changed(object sender, SelectionChangedEventArgs e)
         {
-            CustomDiceRollGrid.Visibility = CustomDiceCBI.IsSelected ? Visibility.Visible : Visibility.Hidden;
-            PresetRangeGrid.Visibility = PresetRangeCBI.IsSelected ? Visibility.Visible : Visibility.Hidden; 
+            if (CustomDiceCBI != null & PresetRangeCBI != null)
+            {
+                CustomDiceRollGrid.Visibility = CustomDiceCBI.IsSelected ? Visibility.Visible : Visibility.Hidden;
+                PresetRangeGrid.Visibility = PresetRangeCBI.IsSelected ? Visibility.Visible : Visibility.Hidden;
+            }
         }
     }
 }
