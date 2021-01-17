@@ -94,13 +94,16 @@ namespace FantasyModuleParser.Exporters
 			// Zipping up the folder contents and naming to *.mod
 
 			// First need to check if the file exists;  If so, delete it
-			if (File.Exists(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod")))
+			if (File.Exists(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod")))
 			{
-				File.Delete(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod"));
+				File.Delete(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod"));
 			}
-			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod"));
+			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod"));
 
-			log.Debug("Module Created!!  Saved to :: " + Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name + ".mod"));
+			/// Delete created unzipped files
+			DeleteDirectory(moduleFolderPath);
+
+			log.Debug("Module Created!!  Saved to :: " + Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod"));
 		}
 		/// <summary>
 		/// Generates a List of all NPCs across all Categories in one List<NPCModel> object.  Used for Reference Manual material.
@@ -115,6 +118,24 @@ namespace FantasyModuleParser.Exporters
 					FatNPCList.Add(npcModel);
 			}
 			return FatNPCList;
+		}
+		private void DeleteDirectory(string target_dir)
+		{
+			string[] files = Directory.GetFiles(target_dir);
+			string[] dirs = Directory.GetDirectories(target_dir);
+
+			foreach (string file in files)
+			{
+				File.SetAttributes(file, FileAttributes.Normal);
+				File.Delete(file);
+			}
+
+			foreach (string dir in dirs)
+			{
+				DeleteDirectory(dir);
+			}
+
+			Directory.Delete(target_dir, false);
 		}
 		/// <summary>
 		/// Generates a List of all Spells across all Categories in one List<SpellModel> object. Used for Reference Manual material.
