@@ -129,12 +129,12 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				log.Warn("Challenge Rating is missing from " + npcModel.NPCName);
 				throw new InvalidDataException("Challenge Rating is missing from " + npcModel.NPCName);
 			}				
-			if (!string.IsNullOrEmpty(npcModel.HP))
+			if (string.IsNullOrEmpty(npcModel.HP))
             {
 				log.Warn("Hit Points are missing from " + npcModel.NPCName);
 				throw new InvalidDataException("Hit Points are missing from " + npcModel.NPCName);
 			}			
-			if (!string.IsNullOrEmpty(npcModel.LanguageOptions))
+			if (string.IsNullOrEmpty(npcModel.LanguageOptions))
             {
 				log.Warn("Language Option (usually No special conditions) is missing from " + npcModel.NPCName);
 				throw new InvalidDataException("Language Option (usually No special conditions) is missing from " + npcModel.NPCName);
