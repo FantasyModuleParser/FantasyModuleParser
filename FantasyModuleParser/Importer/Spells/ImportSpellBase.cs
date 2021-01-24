@@ -55,9 +55,13 @@ namespace FantasyModuleParser.Importer.Spells
                         break;
                     case ImportSpellState.CAST_BY:
                         if (line.StartsWith("Classes:"))
+						{
                             ParseCastByClasses(line, resultSpellModel);
+                        }                            
                         else
+						{
                             resultSpellModel.Description = line; // No character class to associate with
+                        }                            
                         importStatEnum = ImportSpellState.DESCRIPTION;
                         break;
                     case ImportSpellState.DESCRIPTION:
@@ -65,15 +69,16 @@ namespace FantasyModuleParser.Importer.Spells
                         {
                             resultSpellModel.Description += line;
                             resultSpellModel.Description += Environment.NewLine;    
-                        } else if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
+                        } 
+                        else if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
                         {
                             resultSpellModel.Description += "**At Higher Levels.**";
                             resultSpellModel.Description += line.Substring(17);
                         }
                         else
+						{
                             resultSpellModel.Description += line;
-
-
+                        }
                         break;
                     default:
                         break;
@@ -89,34 +94,42 @@ namespace FantasyModuleParser.Importer.Spells
         public SpellLevel ParseSpellLevel(string importData)
         {
             if(importData.ToLower(CultureInfo.CurrentCulture).Contains("cantrip"))
+			{
                 return SpellLevel.Cantrip;
+            }                
 
             foreach(SpellLevel spellLevelEnum in Enum.GetValues(typeof(SpellLevel)))
             {
                 if (importData.Contains(EnumDescription.GetDescription(spellLevelEnum)))
+				{
                     return spellLevelEnum;
+                }                    
             }
 
             return SpellLevel.Cantrip;
 
         }
-        public SpellSchool parseSpellSchool(string importData)
+        static public SpellSchool parseSpellSchool(string importData)
         {
             string importDataLower = importData.ToLower(CultureInfo.CurrentCulture);
             foreach (SpellSchool spellSchoolEnum in Enum.GetValues(typeof(SpellSchool)))
             {
                 if (importDataLower.Contains(EnumDescription.GetDescription(spellSchoolEnum).ToLower(CultureInfo.CurrentCulture)))
+				{
                     return spellSchoolEnum;
+                }                    
             }
             return SpellSchool.Abjuration;
         }
-        public bool checkIfRitual(string importData)
+        static public bool checkIfRitual(string importData)
         {
             if (!String.IsNullOrWhiteSpace(importData))
+			{
                 return importData.ToLower(CultureInfo.CurrentCulture).Contains("(ritual)");
+            }                
             return false;
         }
-        public void ParseCastingTime(string importData, SpellModel spellModel)
+        static public void ParseCastingTime(string importData, SpellModel spellModel)
         {
             string lowerImportData = importData.ToLower(CultureInfo.CurrentCulture);
 
@@ -129,7 +142,9 @@ namespace FantasyModuleParser.Importer.Spells
                 string[] reactionDescriptionArray = lowerImportData.Split(',');
                 string reactionDescription = "";
                 for (int idx = 1; idx < reactionDescriptionArray.Length; idx++)
+				{
                     reactionDescription += reactionDescriptionArray[idx].Trim() + ",";
+                }                    
 
                 //Remove the last comma
                 reactionDescription = reactionDescription.Substring(0, reactionDescription.Length - 1);
@@ -141,13 +156,17 @@ namespace FantasyModuleParser.Importer.Spells
                 int actionValue = int.Parse(castingTimeArray[0]);
                 string actionType = "";
                 for (int idx = 1; idx < castingTimeArray.Length; idx++)
+				{
                     actionType += castingTimeArray[idx] + " ";
+                }                    
 
                 actionType = actionType.TrimEnd();
                 
                 // Remove the 's' character (e.g. hours to hour, minutes to minute)
                 if (actionType.EndsWith("s"))
+				{
                     actionType = actionType.Substring(0, actionType.Length - 1);
+                }                    
 
                 foreach(CastingType castingType in Enum.GetValues(typeof(CastingType)))
                 {
@@ -160,7 +179,7 @@ namespace FantasyModuleParser.Importer.Spells
                 spellModel.CastingTime = actionValue;
             }
         }
-        public void ParseRange(string importData, SpellModel spellModel)
+        static public void ParseRange(string importData, SpellModel spellModel)
         {
             string lowerImportData = importData.ToLower(CultureInfo.CurrentCulture);
 
@@ -177,40 +196,60 @@ namespace FantasyModuleParser.Importer.Spells
                     spellModel.Range = int.Parse(rangeFields[0].Substring(1));
                     spellModel.Unit = UnitType.Foot;
                     if (selfFields[2].ToString() == "sphere)")
+					{
                         spellModel.SelfType = SelfType.Sphere;
+                    }                        
                     else if (selfFields[2].ToString() == "radius)")
+					{
                         spellModel.SelfType = SelfType.Radius;
+                    }                        
                     else if (selfFields[2].ToString() == "line)")
+					{
                         spellModel.SelfType = SelfType.Line;
+                    }                        
                     else if (selfFields[2].ToString() == "cone)")
+					{
                         spellModel.SelfType = SelfType.Cone;
+                    }                        
                     else if (selfFields[2].ToString() == "cube)")
+					{
                         spellModel.SelfType = SelfType.Cube;
+                    }                        
                 }
             }
             else
             {
                 if (lowerImportData.Equals("unlimited"))
+				{
                     spellModel.RangeType = RangeType.Unlimited;
+                }                    
                 if (lowerImportData.Equals("touch"))
+				{
                     spellModel.RangeType = RangeType.Touch;
+                }                    
                 if (lowerImportData.Equals("sight"))
+				{
                     spellModel.RangeType = RangeType.Sight;
+                }                    
                 if (lowerImportData.Contains("feet") || lowerImportData.Contains("ft"))
                 {
                     // Typically it is 60 feet, 60 ft., etc...  Will still use regex incase 60feet is entered.
                     Regex regex = new Regex("(?<Alphabet>[a-zA-Z]*)(?<Numeric>[0-9]*)");
                     string numMatch = regex.Match(lowerImportData).Groups["Numeric"].Value;
                     if (!String.IsNullOrEmpty(numMatch))
+					{
                         spellModel.Range = int.Parse(numMatch);
+                    }                        
                     spellModel.RangeType = RangeType.Ranged;
                 }
             }
         }
-        public void ParseComponents(string importData, SpellModel spellModel)
+        static public void ParseComponents(string importData, SpellModel spellModel)
         {
             if (importData.ToUpper().StartsWith("COMPONENTS:"))
+			{
                 importData = importData.Substring("Components:".Length);
+            }                
             string[] componentArray = importData.Split('(');
 
             // If Material component is unselected, then componentArray will be length of 1.  Otherwise, length of 2
@@ -225,7 +264,7 @@ namespace FantasyModuleParser.Importer.Spells
                 spellModel.ComponentText = rawComponentText.Substring(0, rawComponentText.Length - 1);
             }
         }
-        public void ParseDuration(string importData, SpellModel spellModel)
+        static public void ParseDuration(string importData, SpellModel spellModel)
         {
             string formattedData = importData.Substring("Duration: ".Length);
             if(formattedData.StartsWith("Up to ", StringComparison.OrdinalIgnoreCase))
@@ -265,32 +304,43 @@ namespace FantasyModuleParser.Importer.Spells
                 spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[1]);
             }
         }
-        private DurationUnit _parseDurationUnit(string data)
+        static private DurationUnit _parseDurationUnit(string data)
         {
             string lowerCaseData = data.ToLower();
             if (lowerCaseData.StartsWith("round", StringComparison.Ordinal))
+			{
                 return DurationUnit.Round;
+            }                
             if (lowerCaseData.StartsWith("minute", StringComparison.Ordinal))
+			{
                 return DurationUnit.Minute;
+            }                
             if (lowerCaseData.StartsWith("hour", StringComparison.Ordinal))
+			{
                 return DurationUnit.Hour;
+            }                
             if (lowerCaseData.StartsWith("day", StringComparison.Ordinal))
+			{
                 return DurationUnit.Day;
+            }                
             return DurationUnit.None;
         }
-        public void ParseCastByClasses(string importData, SpellModel spellModel)
+        static public void ParseCastByClasses(string importData, SpellModel spellModel)
         {
             spellModel.CastBy = importData.Substring(9);
         }
 
-        public string ParseDescription(string importData)
+        static public string ParseDescription(string importData)
         {
             const string AT_HIGHER_LEVELS = "At Higher Levels";
             if (importData.StartsWith(AT_HIGHER_LEVELS, StringComparison.Ordinal))
+			{
                 return "**" + AT_HIGHER_LEVELS + "**" + importData.Substring(AT_HIGHER_LEVELS.Length);
+            }                
             if (importData.EndsWith(".", StringComparison.Ordinal))
+			{
                 return importData + "\r\n";
-            
+            }
             return importData;
         }
     }
