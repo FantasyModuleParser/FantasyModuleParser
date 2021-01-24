@@ -58,6 +58,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         public string SpellcastingNinthLabel { get; set; }
         public string SpellcastingNinth { get; set; }
         public string SpellcastingMarkedSpells { get; set; }
+        public string ActionsVisibility { get; set; }
         public string WeaponName1 { get; set; }
 
         public PreviewNPCViewModel()
@@ -1091,7 +1092,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.NPCActions != null)
+                {
                     return Visibility.Visible;
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -1100,61 +1103,75 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.NPCActions != null)
+                {
                     return Visibility.Visible;
+                }
                 return Visibility.Collapsed;
             }
         }
-        public Visibility PresentReaction
+        public Visibility PresentReactions
         {
             get
             {
                 if (NPCModel.Reactions.Count >= 1)
+                {
                     return Visibility.Visible;
+                }
                 return Visibility.Collapsed;
             }
         }
-        public Visibility PresentReactionLine
+        public Visibility PresentReactionsLine
         {
             get
             {
                 if (NPCModel.Reactions.Count >= 1)
+                {
                     return Visibility.Visible;
+                }
                 return Visibility.Collapsed;
             }
         }
-        public Visibility PresentLegAction
+        public Visibility PresentLegActions
         {
             get
             {
                 if (NPCModel.LegendaryActions.Count >= 1)
+                {
                     return Visibility.Visible;
+                }
                 return Visibility.Collapsed;
             }
         }
-        public Visibility PresentLegActionLine
+        public Visibility PresentLegActionsLine
         {
             get
             {
                 if (NPCModel.LegendaryActions.Count >= 1)
+                {
                     return Visibility.Visible;
+                }
                 return Visibility.Collapsed;
             }
         }
-        public Visibility PresentLairAction
+        public Visibility PresentLairActions
         {
             get
             {
                 if (NPCModel.LairActions.Count >= 1)
+                {
                     return Visibility.Visible;
+                }
                 return Visibility.Collapsed;
             }
         }
-        public Visibility PresentLairActionLine
+        public Visibility PresentLairActionsLine
         {
             get
             {
                 if (NPCModel.LairActions.Count >= 1)
+                {
                     return Visibility.Visible;
+                }                    
                 return Visibility.Collapsed;
             }
         }
