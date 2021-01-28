@@ -25,8 +25,8 @@ namespace FMPTests_Spells.Importer
         public void TestSpellLevelAndSchool(SpellModel expectedSpellModel, string importData)
         {
             Assert.AreEqual(expectedSpellModel.SpellLevel, importSpellBase.ParseSpellLevel(importData));
-            Assert.AreEqual(expectedSpellModel.SpellSchool, importSpellBase.parseSpellSchool(importData));
-            Assert.AreEqual(expectedSpellModel.IsRitual, importSpellBase.checkIfRitual(importData));
+            Assert.AreEqual(expectedSpellModel.SpellSchool, importSpellBase.ParseSpellSchool(importData));
+            Assert.AreEqual(expectedSpellModel.IsRitual, importSpellBase.CheckIfRitual(importData));
         }
         
 

@@ -518,7 +518,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteStartElement("index");
 					WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.spelllists._index_@" + moduleModel.Name, "(Index)");
 					int spellListId = 2;
-					foreach (string castByValue in getSortedSpellCasterList(moduleModel))
+					foreach (string castByValue in GetSortedSpellCasterList(moduleModel))
 					{
 						string referenceId = "reference.spellists.";
 						referenceId += castByValue.Replace(" ", "").Replace("(", "").Replace(")", "").ToLower();
@@ -698,10 +698,10 @@ namespace FantasyModuleParser.Exporters
 		#region Spell Methods for Reference Data XML
 		static private void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel)
         {
-			List<SpellModel> SpellList = getFatSpellModelList(moduleModel);
+			List<SpellModel> SpellList = GetFatSpellModelList(moduleModel);
 			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			//var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
-			foreach (string castByValue in getSortedSpellCasterList(moduleModel))
+			foreach (string castByValue in GetSortedSpellCasterList(moduleModel))
 			{
 				xmlWriter.WriteStartElement(castByValue.ToLower().Replace("(", "").Replace(")", "").Replace(" ", ""));  // <castby>
 					xmlWriter.WriteStartElement("description"); // <castby> <description>
@@ -823,7 +823,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 		}
-		static private HashSet<string> generateSpellCasterList(ModuleModel moduleModel)
+		static private HashSet<string> GenerateSpellCasterList(ModuleModel moduleModel)
 		{
 			HashSet<string> casterList = new HashSet<string>();
 
@@ -849,11 +849,11 @@ namespace FantasyModuleParser.Exporters
 
 			return casterList;
 		}
-		static private IEnumerable<string> getSortedSpellCasterList(ModuleModel moduleModel)
+		static private IEnumerable<string> GetSortedSpellCasterList(ModuleModel moduleModel)
 		{
-			return generateSpellCasterList(moduleModel).OrderBy(item => item);
+			return GenerateSpellCasterList(moduleModel).OrderBy(item => item);
 		}
-		static private List<SpellModel> getFatSpellModelList(ModuleModel moduleModel)
+		static private List<SpellModel> GetFatSpellModelList(ModuleModel moduleModel)
         {
 			List<SpellModel> spellModels = new List<SpellModel>();
 			if (moduleModel.Categories == null)
@@ -1802,11 +1802,11 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(appendSenses("darkvision ", npcModel.Darkvision, " ft."));
-			stringBuilder.Append(appendBlindSenses("blindsight ", npcModel.Blindsight, " ft."));
-			stringBuilder.Append(appendSenses("tremorsense ", npcModel.Tremorsense, " ft."));
-			stringBuilder.Append(appendSenses("truesight ", npcModel.Truesight, " ft."));
-			stringBuilder.Append(appendSenses("passive perception ", npcModel.PassivePerception, ""));
+			stringBuilder.Append(AppendSenses("darkvision ", npcModel.Darkvision, " ft."));
+			stringBuilder.Append(AppendBlindSenses("blindsight ", npcModel.Blindsight, " ft."));
+			stringBuilder.Append(AppendSenses("tremorsense ", npcModel.Tremorsense, " ft."));
+			stringBuilder.Append(AppendSenses("truesight ", npcModel.Truesight, " ft."));
+			stringBuilder.Append(AppendSenses("passive perception ", npcModel.PassivePerception, ""));
 			if (stringBuilder.Length >= 2)
 			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
@@ -1817,7 +1817,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(sensesString);
 			xmlWriter.WriteEndElement();
 		}
-		static private string appendSenses(string senseName, int senseValue, string senseRange)
+		static private string AppendSenses(string senseName, int senseValue, string senseRange)
 		{
 			if (senseValue != 0)
 			{
@@ -1826,7 +1826,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			return "";
 		}
-		static private string appendBlindSenses(string senseName, int senseValue, string senseRange)
+		static private string AppendBlindSenses(string senseName, int senseValue, string senseRange)
 		{
 			NPCModel npcModel = new NPCModel();
 			string delimiter = ", ";
@@ -2258,20 +2258,7 @@ namespace FantasyModuleParser.Exporters
 
 			return settings;
 		}
-		static private string writeXmlDocumentToString(XmlDocument xmlDocument)
-		{
-			XmlWriterSettings settings = GetXmlWriterSettings();
-			string document = "";
-			using (StringWriter sw = new StringWriterWithEncoding())
-			using (XmlWriter writer = XmlWriter.Create(sw, settings))
-			{
-				xmlDocument.WriteContentTo(writer);
-				writer.Close();
-				document = sw.ToString();
-			}
-			return document;
-		}
-
+		
 		public sealed class StringWriterWithEncoding : StringWriter
 		{
 			private readonly Encoding encoding;

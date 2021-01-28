@@ -33,8 +33,8 @@ namespace FantasyModuleParser.Importer.Spells
                         break;
                     case ImportSpellState.LEVEL_SCHOOL:
                         resultSpellModel.SpellLevel = ParseSpellLevel(line);
-                        resultSpellModel.SpellSchool = parseSpellSchool(line);
-                        resultSpellModel.IsRitual = checkIfRitual(line);
+                        resultSpellModel.SpellSchool = ParseSpellSchool(line);
+                        resultSpellModel.IsRitual = CheckIfRitual(line);
                         importStatEnum = ImportSpellState.CASTING_TIME;
                         break;
                     case ImportSpellState.CASTING_TIME:
@@ -109,7 +109,7 @@ namespace FantasyModuleParser.Importer.Spells
             return SpellLevel.Cantrip;
 
         }
-        static public SpellSchool parseSpellSchool(string importData)
+        static public SpellSchool ParseSpellSchool(string importData)
         {
             string importDataLower = importData.ToLower(CultureInfo.CurrentCulture);
             foreach (SpellSchool spellSchoolEnum in Enum.GetValues(typeof(SpellSchool)))
@@ -121,7 +121,7 @@ namespace FantasyModuleParser.Importer.Spells
             }
             return SpellSchool.Abjuration;
         }
-        static public bool checkIfRitual(string importData)
+        static public bool CheckIfRitual(string importData)
         {
             if (!String.IsNullOrWhiteSpace(importData))
 			{
@@ -271,13 +271,13 @@ namespace FantasyModuleParser.Importer.Spells
             {
                 spellModel.DurationType = DurationType.Concentration;
                 spellModel.DurationTime = int.Parse(formattedData.Split(' ')[2]);
-                spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[3]);
+                spellModel.DurationUnit = ParseDurationUnit(formattedData.Split(' ')[3]);
             } 
             else if (formattedData.StartsWith("Concentration, up to ", StringComparison.OrdinalIgnoreCase))
             {
                 spellModel.DurationType = DurationType.Concentration;
                 spellModel.DurationTime = int.Parse(formattedData.Split(' ')[3]);
-                spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[4]);
+                spellModel.DurationUnit = ParseDurationUnit(formattedData.Split(' ')[4]);
             }
             else if (formattedData.Equals("Instantaneous"))
             {
@@ -301,10 +301,10 @@ namespace FantasyModuleParser.Importer.Spells
             {
                 spellModel.DurationType = DurationType.Time;
                 spellModel.DurationTime = int.Parse(formattedData.Split(' ')[0]);
-                spellModel.DurationUnit = _parseDurationUnit(formattedData.Split(' ')[1]);
+                spellModel.DurationUnit = ParseDurationUnit(formattedData.Split(' ')[1]);
             }
         }
-        static private DurationUnit _parseDurationUnit(string data)
+        static private DurationUnit ParseDurationUnit(string data)
         {
             string lowerCaseData = data.ToLower();
             if (lowerCaseData.StartsWith("round", StringComparison.Ordinal))
