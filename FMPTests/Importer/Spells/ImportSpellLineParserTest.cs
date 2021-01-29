@@ -32,32 +32,32 @@ namespace FMPTests_Spells.Importer
 
         private static IEnumerable<object[]> SpellLevelAndSchoolData()
         {
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.First, SpellSchool.Abjuration), "1st-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Second, SpellSchool.Abjuration), "2nd-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Abjuration), "3rd-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Fourth, SpellSchool.Abjuration), "4th-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Fifth, SpellSchool.Abjuration), "5th-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Sixth, SpellSchool.Abjuration), "6th-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Seventh, SpellSchool.Abjuration), "7th-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Eighth, SpellSchool.Abjuration), "8th-level abjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Ninth, SpellSchool.Abjuration), "9th-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.First, SpellSchool.Abjuration), "1st-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Second, SpellSchool.Abjuration), "2nd-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Abjuration), "3rd-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Fourth, SpellSchool.Abjuration), "4th-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Fifth, SpellSchool.Abjuration), "5th-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Sixth, SpellSchool.Abjuration), "6th-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Seventh, SpellSchool.Abjuration), "7th-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Eighth, SpellSchool.Abjuration), "8th-level abjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Ninth, SpellSchool.Abjuration), "9th-level abjuration" };
 
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Conjuration), "3rd-level conjuration" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Divination), "3rd-level divination" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Enchantment), "3rd-level enchantment" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Evocation), "3rd-level evocation" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Illusion), "3rd-level illusion" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Necromancy), "3rd-level necromancy" };
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Transmutation), "3rd-level transmutation" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Conjuration), "3rd-level conjuration" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Divination), "3rd-level divination" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Enchantment), "3rd-level enchantment" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Evocation), "3rd-level evocation" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Illusion), "3rd-level illusion" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Necromancy), "3rd-level necromancy" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Transmutation), "3rd-level transmutation" };
 
-            yield return new object[] { generateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Abjuration, true), "3rd-level abjuration (ritual)" };
+            yield return new object[] { GenerateSpellModel_SpellLevelAndSchool(SpellLevel.Third, SpellSchool.Abjuration, true), "3rd-level abjuration (ritual)" };
 
         }
-        private static SpellModel generateSpellModel_SpellLevelAndSchool(SpellLevel spellLevel, SpellSchool school)
+        private static SpellModel GenerateSpellModel_SpellLevelAndSchool(SpellLevel spellLevel, SpellSchool school)
         {
-            return generateSpellModel_SpellLevelAndSchool(spellLevel, school, false);
+            return GenerateSpellModel_SpellLevelAndSchool(spellLevel, school, false);
         }
-        private static SpellModel generateSpellModel_SpellLevelAndSchool(SpellLevel spellLevel, SpellSchool school, bool isRitual)
+        private static SpellModel GenerateSpellModel_SpellLevelAndSchool(SpellLevel spellLevel, SpellSchool school, bool isRitual)
         {
             SpellModel spellModel = new SpellModel()
             {
@@ -83,21 +83,21 @@ namespace FMPTests_Spells.Importer
 
         private static IEnumerable<object[]> CastingTimeData()
         {
-            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Action), "Casting Time: 1 action" };
-            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.BonusAction), "Casting Time: 1 bonus action" };
-            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Hour), "Casting Time: 1 hour" };
-            yield return new object[] { generateSpellModel_CastingTime(3, CastingType.Hour), "Casting Time: 3 hours" };
-            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Minute), "Casting Time: 1 minute" };
-            yield return new object[] { generateSpellModel_CastingTime(5, CastingType.Minute ), "Casting Time: 5 minutes" };
-            yield return new object[] { generateSpellModel_CastingTime(1, CastingType.Reaction, "where the target can suck it"), "Casting Time: 1 reaction, where the target can suck it" };
+            yield return new object[] { GenerateSpellModel_CastingTime(1, CastingType.Action), "Casting Time: 1 action" };
+            yield return new object[] { GenerateSpellModel_CastingTime(1, CastingType.BonusAction), "Casting Time: 1 bonus action" };
+            yield return new object[] { GenerateSpellModel_CastingTime(1, CastingType.Hour), "Casting Time: 1 hour" };
+            yield return new object[] { GenerateSpellModel_CastingTime(3, CastingType.Hour), "Casting Time: 3 hours" };
+            yield return new object[] { GenerateSpellModel_CastingTime(1, CastingType.Minute), "Casting Time: 1 minute" };
+            yield return new object[] { GenerateSpellModel_CastingTime(5, CastingType.Minute ), "Casting Time: 5 minutes" };
+            yield return new object[] { GenerateSpellModel_CastingTime(1, CastingType.Reaction, "where the target can suck it"), "Casting Time: 1 reaction, where the target can suck it" };
 
         }
 
-        private static SpellModel generateSpellModel_CastingTime(int castingTime, CastingType castingType)
+        private static SpellModel GenerateSpellModel_CastingTime(int castingTime, CastingType castingType)
         {
-            return generateSpellModel_CastingTime(castingTime, castingType, null);
+            return GenerateSpellModel_CastingTime(castingTime, castingType, null);
         }
-        private static SpellModel generateSpellModel_CastingTime(int castingTime, CastingType castingType, string reactionDescription)
+        private static SpellModel GenerateSpellModel_CastingTime(int castingTime, CastingType castingType, string reactionDescription)
         {
             SpellModel spellModel = new SpellModel()
             {
@@ -122,17 +122,17 @@ namespace FMPTests_Spells.Importer
 
         private static IEnumerable<object[]> RangeData()
         {
-            yield return new object[] { generateSpellModel_Range(60, RangeType.Ranged), "Range: 60 feet" };
-            yield return new object[] { generateSpellModel_Range(90, RangeType.Ranged), "Range: 90 ft." };
-            yield return new object[] { generateSpellModel_Range(120, RangeType.Ranged), "Range: 120 ft." };
-            yield return new object[] { generateSpellModel_Range(0, RangeType.Self), "Range: self" };
-            yield return new object[] { generateSpellModel_Range(0, RangeType.Sight), "Range: sight" };
-            yield return new object[] { generateSpellModel_Range(0, RangeType.Touch), "Range: touch" };
-            yield return new object[] { generateSpellModel_Range(0, RangeType.Unlimited), "Range: unlimited" };
+            yield return new object[] { GenerateSpellModel_Range(60, RangeType.Ranged), "Range: 60 feet" };
+            yield return new object[] { GenerateSpellModel_Range(90, RangeType.Ranged), "Range: 90 ft." };
+            yield return new object[] { GenerateSpellModel_Range(120, RangeType.Ranged), "Range: 120 ft." };
+            yield return new object[] { GenerateSpellModel_Range(0, RangeType.Self), "Range: self" };
+            yield return new object[] { GenerateSpellModel_Range(0, RangeType.Sight), "Range: sight" };
+            yield return new object[] { GenerateSpellModel_Range(0, RangeType.Touch), "Range: touch" };
+            yield return new object[] { GenerateSpellModel_Range(0, RangeType.Unlimited), "Range: unlimited" };
 
         }
 
-        private static SpellModel generateSpellModel_Range(int range, RangeType rangeType)
+        private static SpellModel GenerateSpellModel_Range(int range, RangeType rangeType)
         {
             SpellModel spellModel = new SpellModel()
             {
@@ -158,16 +158,16 @@ namespace FMPTests_Spells.Importer
 
         private static IEnumerable<object[]> ComponentData()
         {
-            yield return new object[] { generateSpellModel_Components(true, true, false, null), "V, S" };
-            yield return new object[] { generateSpellModel_Components(true, false, false, null), "V" };
-            yield return new object[] { generateSpellModel_Components(false, true, false, null), "S" };
-            yield return new object[] { generateSpellModel_Components(false, false, true, "main component1"), "M (main component1)" };
-            yield return new object[] { generateSpellModel_Components(true, false, true, "main component2"), "V, M (main component2)" };
-            yield return new object[] { generateSpellModel_Components(false, true, true, "main component3"), "S, M (main component3)" };
-            yield return new object[] { generateSpellModel_Components(true, true, true, "main component4"), "V, S, M (main component4)" };
+            yield return new object[] { GenerateSpellModel_Components(true, true, false, null), "V, S" };
+            yield return new object[] { GenerateSpellModel_Components(true, false, false, null), "V" };
+            yield return new object[] { GenerateSpellModel_Components(false, true, false, null), "S" };
+            yield return new object[] { GenerateSpellModel_Components(false, false, true, "main component1"), "M (main component1)" };
+            yield return new object[] { GenerateSpellModel_Components(true, false, true, "main component2"), "V, M (main component2)" };
+            yield return new object[] { GenerateSpellModel_Components(false, true, true, "main component3"), "S, M (main component3)" };
+            yield return new object[] { GenerateSpellModel_Components(true, true, true, "main component4"), "V, S, M (main component4)" };
         }
 
-        private static SpellModel generateSpellModel_Components(bool isVerbal, bool isSomatic, bool isMaterial, string materialComponentText)
+        private static SpellModel GenerateSpellModel_Components(bool isVerbal, bool isSomatic, bool isMaterial, string materialComponentText)
         {
             SpellModel spellModel = new SpellModel()
             {
@@ -193,24 +193,24 @@ namespace FMPTests_Spells.Importer
         }
         private static IEnumerable<object[]> DurationData()
         {
-            yield return new object[] { generateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 1 minute" };
-            yield return new object[] { generateSpellModel_Duration(10, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 10 minutes" };
-            yield return new object[] { generateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Concentration, up to 1 minute" };
-            yield return new object[] { generateSpellModel_Duration(10, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Concentration, up to 10 minutes" };
-            yield return new object[] { generateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Duration: Instantaneous" };
-            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Round, null), "Duration: 1 round" };
-            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Minute, null), "Duration: 1 minute" };
-            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Hour, null), "Duration: 1 hour" };
-            yield return new object[] { generateSpellModel_Duration(1, DurationType.Time, DurationUnit.Day, null), "Duration: 1 day" };
-            yield return new object[] { generateSpellModel_Duration(3, DurationType.Time, DurationUnit.Round, null), "Duration: 3 rounds" };
-            yield return new object[] { generateSpellModel_Duration(6, DurationType.Time, DurationUnit.Day, null), "Duration: 6 days" };
-            yield return new object[] { generateSpellModel_Duration(10, DurationType.Time, DurationUnit.Minute, null), "Duration: 10 minutes" };
-            yield return new object[] { generateSpellModel_Duration(8, DurationType.Time, DurationUnit.Hour, null), "Duration: 8 hours" };
-            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelled, DurationUnit.None, null), "Duration: Until dispelled" };
-            yield return new object[] { generateSpellModel_Duration(0, DurationType.UntilDispelledOrTriggered, DurationUnit.None, null), "Duration: Until dispelled or triggered" };
+            yield return new object[] { GenerateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 1 minute" };
+            yield return new object[] { GenerateSpellModel_Duration(10, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Up to 10 minutes" };
+            yield return new object[] { GenerateSpellModel_Duration(1, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Concentration, up to 1 minute" };
+            yield return new object[] { GenerateSpellModel_Duration(10, DurationType.Concentration, DurationUnit.Minute, null), "Duration: Concentration, up to 10 minutes" };
+            yield return new object[] { GenerateSpellModel_Duration(0, DurationType.Instantaneous, DurationUnit.None, null), "Duration: Instantaneous" };
+            yield return new object[] { GenerateSpellModel_Duration(1, DurationType.Time, DurationUnit.Round, null), "Duration: 1 round" };
+            yield return new object[] { GenerateSpellModel_Duration(1, DurationType.Time, DurationUnit.Minute, null), "Duration: 1 minute" };
+            yield return new object[] { GenerateSpellModel_Duration(1, DurationType.Time, DurationUnit.Hour, null), "Duration: 1 hour" };
+            yield return new object[] { GenerateSpellModel_Duration(1, DurationType.Time, DurationUnit.Day, null), "Duration: 1 day" };
+            yield return new object[] { GenerateSpellModel_Duration(3, DurationType.Time, DurationUnit.Round, null), "Duration: 3 rounds" };
+            yield return new object[] { GenerateSpellModel_Duration(6, DurationType.Time, DurationUnit.Day, null), "Duration: 6 days" };
+            yield return new object[] { GenerateSpellModel_Duration(10, DurationType.Time, DurationUnit.Minute, null), "Duration: 10 minutes" };
+            yield return new object[] { GenerateSpellModel_Duration(8, DurationType.Time, DurationUnit.Hour, null), "Duration: 8 hours" };
+            yield return new object[] { GenerateSpellModel_Duration(0, DurationType.UntilDispelled, DurationUnit.None, null), "Duration: Until dispelled" };
+            yield return new object[] { GenerateSpellModel_Duration(0, DurationType.UntilDispelledOrTriggered, DurationUnit.None, null), "Duration: Until dispelled or triggered" };
         }
 
-        private static SpellModel generateSpellModel_Duration(int durationTime, DurationType durationType, DurationUnit durationUnit, string durationText)
+        private static SpellModel GenerateSpellModel_Duration(int durationTime, DurationType durationType, DurationUnit durationUnit, string durationText)
         {
             SpellModel spellModel = new SpellModel()
             {
@@ -233,12 +233,12 @@ namespace FMPTests_Spells.Importer
         }
         private static IEnumerable<object[]> CharacterCastByData()
         {
-            yield return new object[] { generateSpellModel_CastBy("Sorcerer, Warlock, Wizard"), "Classes: Sorcerer, Warlock, Wizard" };
-            yield return new object[] { generateSpellModel_CastBy("Sorcerer"), "Classes: Sorcerer" };
-            yield return new object[] { generateSpellModel_CastBy("Warlock, Wizard"), "Classes: Warlock, Wizard" };
+            yield return new object[] { GenerateSpellModel_CastBy("Sorcerer, Warlock, Wizard"), "Classes: Sorcerer, Warlock, Wizard" };
+            yield return new object[] { GenerateSpellModel_CastBy("Sorcerer"), "Classes: Sorcerer" };
+            yield return new object[] { GenerateSpellModel_CastBy("Warlock, Wizard"), "Classes: Warlock, Wizard" };
         }
 
-        private static SpellModel generateSpellModel_CastBy(string characterClasses)
+        private static SpellModel GenerateSpellModel_CastBy(string characterClasses)
         {
             SpellModel spellModel = new SpellModel()
             {

@@ -27,7 +27,7 @@ namespace FantasyModuleParser.Exporters
 
 		string Immunity;
 		string Resistance;
-		private SettingsService settingsService;
+		private readonly SettingsService settingsService;
 
 		public FantasyGroundsExporter()
 		{
@@ -902,7 +902,7 @@ namespace FantasyModuleParser.Exporters
 			}				
 			else
 			{
-				xmlWriter.WriteValue(spellModel.SpellLevel.GetDescription()[0]);
+				xmlWriter.WriteValue((int)spellModel.SpellLevel);
 			}				
 			xmlWriter.WriteEndElement();
 		}

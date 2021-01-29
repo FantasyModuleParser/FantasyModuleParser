@@ -13,7 +13,7 @@ namespace FantasyModuleParser.NPC.ViewModels
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(PreviewNPCViewModel));
         public NPCModel NPCModel { get; set; }
-        private NPCController npcController;
+        private readonly NPCController npcController;
         private string Resistance;
         private string Immunity;
 
@@ -269,31 +269,31 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string UpdateSkillsDescription()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(appendSkill("Acrobatics", NPCModel.Acrobatics));
-            stringBuilder.Append(appendSkill("Animal Handling", NPCModel.AnimalHandling));
-            stringBuilder.Append(appendSkill("Arcana", NPCModel.Arcana));
-            stringBuilder.Append(appendSkill("Athletics", NPCModel.Athletics));
-            stringBuilder.Append(appendSkill("Deception", NPCModel.Deception));
-            stringBuilder.Append(appendSkill("History", NPCModel.History));
-            stringBuilder.Append(appendSkill("Insight", NPCModel.Insight));
-            stringBuilder.Append(appendSkill("Intimidation", NPCModel.Intimidation));
-            stringBuilder.Append(appendSkill("Investigation", NPCModel.Investigation));
-            stringBuilder.Append(appendSkill("Medicine", NPCModel.Medicine));
-            stringBuilder.Append(appendSkill("Nature", NPCModel.Nature));
-            stringBuilder.Append(appendSkill("Perception", NPCModel.Perception));
-            stringBuilder.Append(appendSkill("Performance", NPCModel.Performance));
-            stringBuilder.Append(appendSkill("Persuasion", NPCModel.Persuasion));
-            stringBuilder.Append(appendSkill("Religion", NPCModel.Religion));
-            stringBuilder.Append(appendSkill("Sleight of Hand", NPCModel.SleightOfHand));
-            stringBuilder.Append(appendSkill("Stealth", NPCModel.Stealth));
-            stringBuilder.Append(appendSkill("Survival", NPCModel.Survival));
+            stringBuilder.Append(AppendSkill("Acrobatics", NPCModel.Acrobatics));
+            stringBuilder.Append(AppendSkill("Animal Handling", NPCModel.AnimalHandling));
+            stringBuilder.Append(AppendSkill("Arcana", NPCModel.Arcana));
+            stringBuilder.Append(AppendSkill("Athletics", NPCModel.Athletics));
+            stringBuilder.Append(AppendSkill("Deception", NPCModel.Deception));
+            stringBuilder.Append(AppendSkill("History", NPCModel.History));
+            stringBuilder.Append(AppendSkill("Insight", NPCModel.Insight));
+            stringBuilder.Append(AppendSkill("Intimidation", NPCModel.Intimidation));
+            stringBuilder.Append(AppendSkill("Investigation", NPCModel.Investigation));
+            stringBuilder.Append(AppendSkill("Medicine", NPCModel.Medicine));
+            stringBuilder.Append(AppendSkill("Nature", NPCModel.Nature));
+            stringBuilder.Append(AppendSkill("Perception", NPCModel.Perception));
+            stringBuilder.Append(AppendSkill("Performance", NPCModel.Performance));
+            stringBuilder.Append(AppendSkill("Persuasion", NPCModel.Persuasion));
+            stringBuilder.Append(AppendSkill("Religion", NPCModel.Religion));
+            stringBuilder.Append(AppendSkill("Sleight of Hand", NPCModel.SleightOfHand));
+            stringBuilder.Append(AppendSkill("Stealth", NPCModel.Stealth));
+            stringBuilder.Append(AppendSkill("Survival", NPCModel.Survival));
             if (stringBuilder.Length >= 2)
 			{
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }                
             return stringBuilder.ToString().Trim();
         } 
-        static private string appendSkill(string skillName, int skillValue)
+        static private string AppendSkill(string skillName, int skillValue)
         {
             string delimiter = ", ";
             if (skillValue != 0)
@@ -318,19 +318,19 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string UpdateSavingThrows()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(appendSavingThrowStr("Str", NPCModel.SavingThrowStr));
-            stringBuilder.Append(appendSavingThrowDex("Dex", NPCModel.SavingThrowDex));
-            stringBuilder.Append(appendSavingThrowCon("Con", NPCModel.SavingThrowCon));
-            stringBuilder.Append(appendSavingThrowInt("Int", NPCModel.SavingThrowInt));
-            stringBuilder.Append(appendSavingThrowWis("Wis", NPCModel.SavingThrowWis));
-            stringBuilder.Append(appendSavingThrowCha("Cha", NPCModel.SavingThrowCha));
+            stringBuilder.Append(AppendSavingThrowStr("Str", NPCModel.SavingThrowStr));
+            stringBuilder.Append(AppendSavingThrowDex("Dex", NPCModel.SavingThrowDex));
+            stringBuilder.Append(AppendSavingThrowCon("Con", NPCModel.SavingThrowCon));
+            stringBuilder.Append(AppendSavingThrowInt("Int", NPCModel.SavingThrowInt));
+            stringBuilder.Append(AppendSavingThrowWis("Wis", NPCModel.SavingThrowWis));
+            stringBuilder.Append(AppendSavingThrowCha("Cha", NPCModel.SavingThrowCha));
             if (stringBuilder.Length >= 2)
             {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
             return stringBuilder.ToString();
         }
-        private string appendSavingThrowStr(string savingThrowName, int savingThrowValue)
+        private string AppendSavingThrowStr(string savingThrowName, int savingThrowValue)
         {
             string delimiter = ", ";
             if (NPCModel.SavingThrowStrBool == true && savingThrowValue == 0)
@@ -343,7 +343,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             }
             return "";
         }
-        private string appendSavingThrowDex(string savingThrowName, int savingThrowValue)
+        private string AppendSavingThrowDex(string savingThrowName, int savingThrowValue)
         {
             string delimiter = ", ";
             if (NPCModel.SavingThrowDexBool == true && savingThrowValue == 0)
@@ -356,7 +356,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             }
             return "";
         }
-        private string appendSavingThrowCon(string savingThrowName, int savingThrowValue)
+        private string AppendSavingThrowCon(string savingThrowName, int savingThrowValue)
         {
             string delimiter = ", ";
             if (NPCModel.SavingThrowConBool == true && savingThrowValue == 0)
@@ -369,7 +369,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             }
             return "";
         }
-        private string appendSavingThrowInt(string savingThrowName, int savingThrowValue)
+        private string AppendSavingThrowInt(string savingThrowName, int savingThrowValue)
         {
             string delimiter = ", ";
             if (NPCModel.SavingThrowIntBool == true && savingThrowValue == 0)
@@ -382,7 +382,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             }
             return "";
         }
-        private string appendSavingThrowWis(string savingThrowName, int savingThrowValue)
+        private string AppendSavingThrowWis(string savingThrowName, int savingThrowValue)
         {
             string delimiter = ", ";
             if (NPCModel.SavingThrowWisBool == true && savingThrowValue == 0)
@@ -395,7 +395,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             }
             return "";
         }
-        private string appendSavingThrowCha(string savingThrowName, int savingThrowValue)
+        private string AppendSavingThrowCha(string savingThrowName, int savingThrowValue)
         {
             string delimiter = ", ";
             if (NPCModel.SavingThrowChaBool == true && savingThrowValue == 0)
@@ -740,11 +740,11 @@ namespace FantasyModuleParser.NPC.ViewModels
         private string UpdateSenses()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(appendSenses("darkvision ", NPCModel.Darkvision, " ft."));
-            stringBuilder.Append(appendBlindSenses("blindsight ", NPCModel.Blindsight, " ft."));
-            stringBuilder.Append(appendSenses("tremorsense ", NPCModel.Tremorsense, " ft."));
-            stringBuilder.Append(appendSenses("truesight ", NPCModel.Truesight, " ft."));
-            stringBuilder.Append(appendSenses("passive perception ", NPCModel.PassivePerception, ""));
+            stringBuilder.Append(AppendSenses("darkvision ", NPCModel.Darkvision, " ft."));
+            stringBuilder.Append(AppendBlindSenses("blindsight ", NPCModel.Blindsight, " ft."));
+            stringBuilder.Append(AppendSenses("tremorsense ", NPCModel.Tremorsense, " ft."));
+            stringBuilder.Append(AppendSenses("truesight ", NPCModel.Truesight, " ft."));
+            stringBuilder.Append(AppendSenses("passive perception ", NPCModel.PassivePerception, ""));
             if (stringBuilder.Length >= 2)
 			{
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
@@ -752,7 +752,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             return stringBuilder.ToString();
         }
 
-        static private string appendSenses(string senseName, int senseValue, string senseRange)
+        static private string AppendSenses(string senseName, int senseValue, string senseRange)
         {
             if (senseValue != 0)
             {
@@ -762,7 +762,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             return "";
         }
 
-        private string appendBlindSenses(string senseName, int senseValue, string senseRange)
+        private string AppendBlindSenses(string senseName, int senseValue, string senseRange)
         {
             string delimiter = ", ";
             if (senseValue != 0 && NPCModel.BlindBeyond == false)
