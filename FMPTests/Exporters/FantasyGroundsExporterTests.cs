@@ -24,13 +24,15 @@ namespace FantasyModuleParser.Exporters.Tests
         [TestInitialize]
         public void Initialize()
         {
-            moduleModel = new ModuleModel();
-            moduleModel.Name = "Test Module";
-            moduleModel.Author = "Fredska";
-            moduleModel.Category = "Supplement";
-            //moduleModel.ModulePath = "Path\\To\\Everything";
+            moduleModel = new ModuleModel
+            {
+                Name = "Test Module",
+                Author = "Fredska",
+                Category = "Supplement",
+                //moduleModel.ModulePath = "Path\\To\\Everything";
 
-            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();;
+                Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>()
+            };
             moduleModel.Categories.Add(new CategoryModel() { Name = "Supplement" });
 
             exporter = new FantasyGroundsExporter();
@@ -67,19 +69,21 @@ namespace FantasyModuleParser.Exporters.Tests
             NPCController npcController = new NPCController();
             NPCModel npcModel = npcController.Load(Path.Combine(pathParams));
 
-            // Setup the ModuleModel data
-            // Module Path = Windows -> MyDocuments -> FantasyModuleParser_UnitTests
-            // Module Name = IntegrationTest_Mage1
+			// Setup the ModuleModel data
+			// Module Path = Windows -> MyDocuments -> FantasyModuleParser_UnitTests
+			// Module Name = IntegrationTest_Mage1
 
-            ModuleModel moduleModel = new ModuleModel();
-            moduleModel.Name = "IntegrationTest_Mage1";
-            moduleModel.Author = "Automated MS Test v2";
-            moduleModel.Category = "Automated";
-            //moduleModel.ModulePath = 
-            //    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
+			ModuleModel moduleModel = new ModuleModel
+			{
+				Name = "IntegrationTest_Mage1",
+				Author = "Automated MS Test v2",
+				Category = "Automated",
+				//moduleModel.ModulePath = 
+				//    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
-            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();
-            moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
+				Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>()
+			};
+			moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
             moduleModel.Categories[0].NPCModels.Add(npcModel);
 
             // And finally, for the actual integration test run
@@ -144,19 +148,21 @@ namespace FantasyModuleParser.Exporters.Tests
             npcModels[3].NPCImage = @"C:\Users\darkpool\AppData\Roaming\NPC Engineer\Saved NPC Files\MonsterManual_DEV\Wood Woad.jpg";
             npcModels[4].NPCImage = @"C:\Users\darkpool\AppData\Roaming\NPC Engineer\Saved NPC Files\MonsterManual_DEV\Displacer Beast.jpg";
 
-            // Setup the ModuleModel data
-            // Module Path = Windows -> MyDocuments -> FantasyModuleParser_UnitTests
-            // Module Name = IntegrationTest_Mage1
+			// Setup the ModuleModel data
+			// Module Path = Windows -> MyDocuments -> FantasyModuleParser_UnitTests
+			// Module Name = IntegrationTest_Mage1
 
-            ModuleModel moduleModel = new ModuleModel();
-            moduleModel.Name = "IntegrationTest_MultipleCategories";
-            moduleModel.Author = "Automated MS Test v2";
-            moduleModel.Category = "Automated";
-            //moduleModel.ModulePath =
-            //    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
+			ModuleModel moduleModel = new ModuleModel
+			{
+				Name = "IntegrationTest_MultipleCategories",
+				Author = "Automated MS Test v2",
+				Category = "Automated",
+				//moduleModel.ModulePath =
+				//    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
-            moduleModel.Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>();
-            moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
+				Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>()
+			};
+			moduleModel.Categories.Add(new CategoryModel() { Name = "Automated" });
             moduleModel.Categories.Add(new CategoryModel() { Name = "MyNPCs" });
             moduleModel.Categories.Add(new CategoryModel() { Name = "Fey Creatures" });
             moduleModel.Categories[0].NPCModels.Add(npcModels[0]);
@@ -169,7 +175,7 @@ namespace FantasyModuleParser.Exporters.Tests
             exporter.CreateModule(moduleModel);
         }
 
-        private string XmlPrettyPrint(string input)
+        private static string XmlPrettyPrint(string input)
         {
             XDocument xDocument = new XDocument(input);
             return xDocument.ToString();

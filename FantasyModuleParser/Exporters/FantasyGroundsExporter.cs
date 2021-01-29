@@ -2214,7 +2214,9 @@ namespace FantasyModuleParser.Exporters
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
 		/// </summary>
-		static public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
+		#pragma warning disable CA1822 // Unable to make static due to Unit Tests
+		public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
+		#pragma warning restore CA1822 // Unable to make static due to Unit Tests
 		{
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
