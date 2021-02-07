@@ -60,7 +60,7 @@ namespace FantasyModuleParser.Importer.Spells
                         }                            
                         else
 						{
-                            resultSpellModel.Description = line; // No character class to associate with
+                            resultSpellModel.Description = line + " "; // No character class to associate with
                         }                            
                         importStatEnum = ImportSpellState.DESCRIPTION;
                         break;

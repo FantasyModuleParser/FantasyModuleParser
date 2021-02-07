@@ -77,7 +77,7 @@ namespace FantasyModuleParser.NPC.ViewModels
         public void InitalizeViewModel()
         {
             SpeedDescription = UpdateSpeedDescription();
-            SkillsDescription = UpdateSkillsDescription();
+            SkillsDescription = NPCModel.SkillAttributesToString();
             StrengthAttribute = UpdateStrengthAttribute();
             DexterityAttribute = UpdateDexterityAttribute();
             ConstitutionAttribute = UpdateConstitutionAttribute();
@@ -266,42 +266,42 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return Visibility.Collapsed;
             }
         }
-        private string UpdateSkillsDescription()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(AppendSkill("Acrobatics", NPCModel.Acrobatics));
-            stringBuilder.Append(AppendSkill("Animal Handling", NPCModel.AnimalHandling));
-            stringBuilder.Append(AppendSkill("Arcana", NPCModel.Arcana));
-            stringBuilder.Append(AppendSkill("Athletics", NPCModel.Athletics));
-            stringBuilder.Append(AppendSkill("Deception", NPCModel.Deception));
-            stringBuilder.Append(AppendSkill("History", NPCModel.History));
-            stringBuilder.Append(AppendSkill("Insight", NPCModel.Insight));
-            stringBuilder.Append(AppendSkill("Intimidation", NPCModel.Intimidation));
-            stringBuilder.Append(AppendSkill("Investigation", NPCModel.Investigation));
-            stringBuilder.Append(AppendSkill("Medicine", NPCModel.Medicine));
-            stringBuilder.Append(AppendSkill("Nature", NPCModel.Nature));
-            stringBuilder.Append(AppendSkill("Perception", NPCModel.Perception));
-            stringBuilder.Append(AppendSkill("Performance", NPCModel.Performance));
-            stringBuilder.Append(AppendSkill("Persuasion", NPCModel.Persuasion));
-            stringBuilder.Append(AppendSkill("Religion", NPCModel.Religion));
-            stringBuilder.Append(AppendSkill("Sleight of Hand", NPCModel.SleightOfHand));
-            stringBuilder.Append(AppendSkill("Stealth", NPCModel.Stealth));
-            stringBuilder.Append(AppendSkill("Survival", NPCModel.Survival));
-            if (stringBuilder.Length >= 2)
-			{
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }                
-            return stringBuilder.ToString().Trim();
-        } 
-        static private string AppendSkill(string skillName, int skillValue)
-        {
-            string delimiter = ", ";
-            if (skillValue != 0)
-			{
-                return skillName + ((skillValue < 0) ? " " : " +") + skillValue + delimiter;
-            }                
-            return "";
-        }
+   //     private string UpdateSkillsDescription()
+   //     {
+   //         StringBuilder stringBuilder = new StringBuilder();
+   //         stringBuilder.Append(AppendSkill("Acrobatics", NPCModel.Acrobatics));
+   //         stringBuilder.Append(AppendSkill("Animal Handling", NPCModel.AnimalHandling));
+   //         stringBuilder.Append(AppendSkill("Arcana", NPCModel.Arcana));
+   //         stringBuilder.Append(AppendSkill("Athletics", NPCModel.Athletics));
+   //         stringBuilder.Append(AppendSkill("Deception", NPCModel.Deception));
+   //         stringBuilder.Append(AppendSkill("History", NPCModel.History));
+   //         stringBuilder.Append(AppendSkill("Insight", NPCModel.Insight));
+   //         stringBuilder.Append(AppendSkill("Intimidation", NPCModel.Intimidation));
+   //         stringBuilder.Append(AppendSkill("Investigation", NPCModel.Investigation));
+   //         stringBuilder.Append(AppendSkill("Medicine", NPCModel.Medicine));
+   //         stringBuilder.Append(AppendSkill("Nature", NPCModel.Nature));
+   //         stringBuilder.Append(AppendSkill("Perception", NPCModel.Perception));
+   //         stringBuilder.Append(AppendSkill("Performance", NPCModel.Performance));
+   //         stringBuilder.Append(AppendSkill("Persuasion", NPCModel.Persuasion));
+   //         stringBuilder.Append(AppendSkill("Religion", NPCModel.Religion));
+   //         stringBuilder.Append(AppendSkill("Sleight of Hand", NPCModel.SleightOfHand));
+   //         stringBuilder.Append(AppendSkill("Stealth", NPCModel.Stealth));
+   //         stringBuilder.Append(AppendSkill("Survival", NPCModel.Survival));
+   //         if (stringBuilder.Length >= 2)
+			//{
+   //             stringBuilder.Remove(stringBuilder.Length - 2, 2);
+   //         }                
+   //         return stringBuilder.ToString().Trim();
+   //     } 
+   //     static private string AppendSkill(string skillName, int skillValue)
+   //     {
+   //         string delimiter = ", ";
+   //         if (skillValue != 0)
+			//{
+   //             return skillName + ((skillValue < 0) ? " " : " +") + skillValue + delimiter;
+   //         }                
+   //         return "";
+   //     }
         #endregion
         #region UpdateSavingThrows
         public Visibility ShowSavingThrows
