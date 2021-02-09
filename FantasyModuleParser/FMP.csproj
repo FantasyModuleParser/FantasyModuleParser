@@ -651,6 +651,7 @@
     <Compile Include="Spells\ViewModels\CastByViewModel.cs" />
     <Compile Include="Spells\ViewModels\ImportTextSpellViewModel.cs" />
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
+    <Compile Include="Tables\Models\CellModel.cs" />
     <Compile Include="Tables\Models\DelegateCommand.cs" />
     <Compile Include="Tables\Models\TableModel.cs" />
     <Compile Include="Tables\Services\ITableService.cs" />

@@ -3,6 +3,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.NPC.ViewModel"
 			 mc:Ignorable="d" 
 			 d:DesignHeight="750" d:DesignWidth="580">
     <UserControl.Resources>
@@ -26,6 +27,9 @@
             <Setter Property="Width" Value="40" />
         </Style>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModel:NPCViewModel />
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" /> 
@@ -108,35 +112,35 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
-                    <TextBox Name="strAcrobatics" Style="{StaticResource SkillText}" Text="{Binding Path=Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="1" TabIndex="1">
+                    <TextBox Name="strAcrobatics" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Acrobatics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="1" TabIndex="1">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Acrobatics skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strAnimalHandling" Style="{StaticResource SkillText}" Text="{Binding Path=AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" TabIndex="2">
+                    <TextBox Name="strAnimalHandling" Style="{StaticResource SkillText}" Text="{Binding NpcModel.AnimalHandling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" TabIndex="2">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Animal Handling skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strArcana" Style="{StaticResource SkillText}" Text="{Binding Path=Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" TabIndex="3">
+                    <TextBox Name="strArcana" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Arcana, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" TabIndex="3">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Arcana skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strAthletics" Style="{StaticResource SkillText}" Text="{Binding Path=Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" TabIndex="4">
+                    <TextBox Name="strAthletics" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Athletics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" TabIndex="4">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Athletics skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strDeception" Style="{StaticResource SkillText}" Text="{Binding Path=Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" TabIndex="5">
+                    <TextBox Name="strDeception" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Deception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" TabIndex="5">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Deception skill modifier.
@@ -150,84 +154,84 @@
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strInsight" Style="{StaticResource SkillText}" Text="{Binding Path=Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" TabIndex="7">
+                    <TextBox Name="strInsight" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Insight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" TabIndex="7">
                         <TextBox.ToolTip>
                             <TextBlock>
 						        Enter the NPC's Insight skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strIntimidation" Style="{StaticResource SkillText}" Text="{Binding Path=Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" TabIndex="8">
+                    <TextBox Name="strIntimidation" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Intimidation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" TabIndex="8">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Intimidation skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strInvestigation" Style="{StaticResource SkillText}" Text="{Binding Path=Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="9" TabIndex="9">
+                    <TextBox Name="strInvestigation" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Investigation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="9" TabIndex="9">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Investigation skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strMedicine" Style="{StaticResource SkillText}" Text="{Binding Path=Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="10" TabIndex="10">
+                    <TextBox Name="strMedicine" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Medicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="10" TabIndex="10">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Medicine skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strNature" Style="{StaticResource SkillText}" Text="{Binding Path=Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="11" TabIndex="11">
+                    <TextBox Name="strNature" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Nature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="11" TabIndex="11">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Nature skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strPerception" Style="{StaticResource SkillText}" Text="{Binding Path=Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" TabIndex="12">
+                    <TextBox Name="strPerception" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Perception, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="12" TabIndex="12">
                         <TextBox.ToolTip>
                             <TextBlock>
 				                Enter the NPC's Perception skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strPerformance" Style="{StaticResource SkillText}" Text="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="13" TabIndex="13">
+                    <TextBox Name="strPerformance" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="13" TabIndex="13">
                         <TextBox.ToolTip>
                             <TextBlock>
 				                Enter the NPC's Performance skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strPersuasion" Style="{StaticResource SkillText}" Text="{Binding Path=Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="14" TabIndex="14">
+                    <TextBox Name="strPersuasion" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Persuasion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="14" TabIndex="14">
                         <TextBox.ToolTip>
                             <TextBlock>
 				                Enter the NPC's Persuasion skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strReligion" Style="{StaticResource SkillText}" Text="{Binding Path=Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="15" TabIndex="15">
+                    <TextBox Name="strReligion" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="15" TabIndex="15">
                         <TextBox.ToolTip>
                             <TextBlock>
 				                Enter the NPC's Religion skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strSleightofHand" Style="{StaticResource SkillText}" Text="{Binding Path=SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="16" TabIndex="16">
+                    <TextBox Name="strSleightofHand" Style="{StaticResource SkillText}" Text="{Binding NpcModel.SleightOfHand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="16" TabIndex="16">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Sleight of Hand skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strStealth" Style="{StaticResource SkillText}" Text="{Binding Path=Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="17" TabIndex="17">
+                    <TextBox Name="strStealth" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Stealth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="17" TabIndex="17">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Stealth skill modifier.
                             </TextBlock>
                         </TextBox.ToolTip>
                     </TextBox>
-                    <TextBox Name="strSurvival" Style="{StaticResource SkillText}" Text="{Binding Path=Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="18" TabIndex="18">
+                    <TextBox Name="strSurvival" Style="{StaticResource SkillText}" Text="{Binding NpcModel.Survival, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="18" TabIndex="18">
                         <TextBox.ToolTip>
                             <TextBlock>
 					            Enter the NPC's Survival skill modifier.
@@ -276,7 +280,7 @@
                         <Label Content="Standard" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </Grid>
                     <Grid Grid.Row="3">
-                        <ListBox Name="listStandard" ItemsSource="{Binding Path=StandardLanguages}" SelectionMode="Multiple" Padding="0" TabIndex="19">
+                        <ListBox Name="listStandard" ItemsSource="{Binding NpcModel.StandardLanguages}" SelectionMode="Multiple" Padding="0" TabIndex="19">
                             <ListBox.ToolTip>
                                 <TextBlock>
 					                Select the standard languages that your NPC knows.
@@ -300,7 +304,7 @@
                         <Label Content="Monstrous" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </Grid>
                     <Grid Grid.Row="7">
-                        <ListBox Name="listMonstrous" ItemsSource="{Binding Path=MonstrousLanguages}" SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="21" Grid.ColumnSpan="15" TabIndex="21">
+                        <ListBox Name="listMonstrous" ItemsSource="{Binding NpcModel.MonstrousLanguages}" SelectionMode="Multiple" Padding="0" Grid.Row="32" Grid.RowSpan="20" Grid.Column="21" Grid.ColumnSpan="15" TabIndex="21">
                             <ListBox.ToolTip>
                                 <TextBlock>
 				                    Select the monstrous languages that your NPC knows.
@@ -336,7 +340,7 @@
                         <Label Content="Exotic" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </Grid>
                     <Grid Grid.Row="3">
-                        <ListBox Name="listExotic" ItemsSource="{Binding Path=ExoticLanguages}" SelectionMode="Multiple" Padding="0" TabIndex="20">
+                        <ListBox Name="listExotic" ItemsSource="{Binding NpcModel.ExoticLanguages}" SelectionMode="Multiple" Padding="0" TabIndex="20">
                             <ListBox.ToolTip>
                                 <TextBlock>
 					                Select the exotic languages that your NPC knows.
@@ -360,7 +364,7 @@
                         <Label Content="User" Padding="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </Grid>
                     <Grid Grid.Row="7">
-                        <ListBox Name="listUser"  ItemsSource="{Binding Path=UserLanguages}"  SelectionMode="Multiple" Padding="0" TabIndex="22">
+                        <ListBox Name="listUser"  ItemsSource="{Binding NpcModel.UserLanguages}"  SelectionMode="Multiple" Padding="0" TabIndex="22">
                             <ListBox.ToolTip>
                                 <TextBlock>
 				                    Select the user-defined languages that your NPC knows.
@@ -386,7 +390,7 @@
                 <Label Content="Language Options" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" />
             </Grid>
             <Grid Grid.Row="6">
-                <ComboBox Name="strLanguageOptions" Text="{Binding Path=LanguageOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="56" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="23">
+                <ComboBox Name="strLanguageOptions" Text="{Binding NpcModel.LanguageOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="56" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="23">
                     <ComboBoxItem IsSelected="True">No special conditions</ComboBoxItem>
                     <ComboBoxItem>Speaks no languages</ComboBoxItem>
                     <ComboBoxItem>Speaks all languages</ComboBoxItem>
@@ -405,7 +409,7 @@
                 </ComboBox>
             </Grid>
             <Grid Grid.Row="8">
-                <TextBox Name="strLanguageOptionsText" Text="{Binding Path=LanguageOptionsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="59" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="24">
+                <TextBox Name="strLanguageOptionsText" Text="{Binding NpcModel.LanguageOptionsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalContentAlignment="Center" Grid.Row="59" Grid.RowSpan="2" Grid.Column="21" Grid.ColumnSpan="31" TabIndex="24">
                     <TextBox.ToolTip>
                         <TextBlock>
 				    Fill in any text you want to use for the language skill in place of the standard texts above.
@@ -421,7 +425,7 @@
                     <ColumnDefinition Width="170" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <CheckBox Name="chkTelepathy" IsChecked="{Binding Path=Telepathy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Telepathy" Margin="5,0,0,0" VerticalAlignment="Center" TabIndex="25">
+                    <CheckBox Name="chkTelepathy" IsChecked="{Binding NpcModel.Telepathy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Telepathy" Margin="5,0,0,0" VerticalAlignment="Center" TabIndex="25">
                         <CheckBox.ToolTip>
                             <TextBlock>
 				                Check this box if your NPC has telepathy.
@@ -433,7 +437,7 @@
                     <Label Content="Range:" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 </Grid>
                 <Grid Grid.Column="3">
-                    <TextBox Name="strTelepathyRange" Text="{Binding Path=TelepathyRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="62" Grid.RowSpan="2" Grid.Column="34" Grid.ColumnSpan="18" TabIndex="26">
+                    <TextBox Name="strTelepathyRange" Text="{Binding NpcModel.TelepathyRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="62" Grid.RowSpan="2" Grid.Column="34" Grid.ColumnSpan="18" TabIndex="26">
                         <TextBox.ToolTip>
                             <TextBlock>
 								Fill in the range (and the unit) of your NPC's telepathy.

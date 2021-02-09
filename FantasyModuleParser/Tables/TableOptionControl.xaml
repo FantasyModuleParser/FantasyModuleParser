@@ -47,9 +47,9 @@
         <TabControl Grid.Row="2">
             <TabItem Header="Main">
                 <Grid Margin="5">
-                    <Grid.ColumnDefinitions>
+                    <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25*"/>
                         <RowDefinition Height="35*"/>
@@ -192,9 +192,14 @@
                         </Grid>
 
                     </Grid>
+
+                    
+
                     <Grid Grid.Row="1" Margin="5">
-                        <DataGrid x:Name="TableContent">
-                            
+                        <TextBox x:Name="textBox" DockPanel.Dock="Top"  />
+                        <DataGrid Name="TableExampleDataGrid" SelectionUnit="Cell" SelectionMode="Single" ItemsSource="{Binding Data}" SelectedCellsChanged="DataGrid_SelectedCellsChanged" >
+
+
                         </DataGrid>
                     </Grid>
                     <Grid Grid.Row="2" >
