@@ -156,52 +156,52 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					log.Warn("Spellcasting Ability is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Spellcasting Ability is missing from " + npcModel.NPCName);
 				}
-				if (string.IsNullOrEmpty(npcModel.CantripSpellList) && string.IsNullOrEmpty(npcModel.CantripSpells))
+				if (!string.IsNullOrEmpty(npcModel.CantripSpellList) && string.IsNullOrEmpty(npcModel.CantripSpells))
                 {
 					log.Warn("Number of Cantrip slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Cantrip slots is missing from " + npcModel.NPCName);
 				}
-				if (string.IsNullOrEmpty(npcModel.FirstLevelSpellList) && string.IsNullOrEmpty(npcModel.FirstLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.FirstLevelSpellList) && string.IsNullOrEmpty(npcModel.FirstLevelSpells))
 				{
 					log.Warn("Number of First Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of First Level Spell slots is missing from " + npcModel.NPCName);
 				}				
-				if (string.IsNullOrEmpty(npcModel.SecondLevelSpellList) && string.IsNullOrEmpty(npcModel.SecondLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.SecondLevelSpellList) && string.IsNullOrEmpty(npcModel.SecondLevelSpells))
                 {
 					log.Warn("Number of Second Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Second Level Spell slots is missing from " + npcModel.NPCName);
 				}					
-				if (string.IsNullOrEmpty(npcModel.ThirdLevelSpellList) && string.IsNullOrEmpty(npcModel.ThirdLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.ThirdLevelSpellList) && string.IsNullOrEmpty(npcModel.ThirdLevelSpells))
                 {
 					log.Warn("Number of Third Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Third Level Spell slots is missing from " + npcModel.NPCName);
 				}					
-				if (string.IsNullOrEmpty(npcModel.FourthLevelSpellList) && string.IsNullOrEmpty(npcModel.FourthLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.FourthLevelSpellList) && string.IsNullOrEmpty(npcModel.FourthLevelSpells))
                 {
 					log.Warn("Number of Fourth Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Fourth Level Spell slots is missing from " + npcModel.NPCName);
 				}					
-				if (string.IsNullOrEmpty(npcModel.FifthLevelSpellList) && string.IsNullOrEmpty(npcModel.FifthLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.FifthLevelSpellList) && string.IsNullOrEmpty(npcModel.FifthLevelSpells))
                 {
 					log.Warn("Number of Fifth Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Fifth Level Spell slots is missing from " + npcModel.NPCName);
 				}					
-				if (string.IsNullOrEmpty(npcModel.SixthLevelSpellList) && string.IsNullOrEmpty(npcModel.SixthLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.SixthLevelSpellList) && string.IsNullOrEmpty(npcModel.SixthLevelSpells))
                 {
 					log.Warn("Number of Sixth Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Sixth Level Spell slots is missing from " + npcModel.NPCName);
 				}					
-				if (string.IsNullOrEmpty(npcModel.SeventhLevelSpellList) && string.IsNullOrEmpty(npcModel.SeventhLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.SeventhLevelSpellList) && string.IsNullOrEmpty(npcModel.SeventhLevelSpells))
                 {
 					log.Warn("Number of Seventh Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Seventh Level Spell slots is missing from " + npcModel.NPCName);
 				}					
-				if (string.IsNullOrEmpty(npcModel.EighthLevelSpellList) && string.IsNullOrEmpty(npcModel.EighthLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.EighthLevelSpellList) && string.IsNullOrEmpty(npcModel.EighthLevelSpells))
                 {
 					log.Warn("Number of Eighth Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Eighth Level Spell slots is missing from " + npcModel.NPCName);
 				}					
-				if (string.IsNullOrEmpty(npcModel.NinthLevelSpellList) && string.IsNullOrEmpty(npcModel.NinthLevelSpells))
+				if (!string.IsNullOrEmpty(npcModel.NinthLevelSpellList) && string.IsNullOrEmpty(npcModel.NinthLevelSpells))
                 {
 					log.Warn("Number of Ninth Level Spell slots is missing from " + npcModel.NPCName);
 					throw new InvalidDataException("Number of Ninth Level Spell slots is missing from " + npcModel.NPCName);
