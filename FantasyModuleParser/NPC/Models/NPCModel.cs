@@ -1,6 +1,10 @@
 ﻿using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using Newtonsoft.Json;
+using System;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -331,6 +335,170 @@ namespace FantasyModuleParser.NPC
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        //private static int ParseAttributeStringToInt(string attribute)
+        //{
+        //    if (attribute.Length == 0 || attribute.Trim().Length == 0) { return 0; }
+
+        //    attribute = attribute.Replace('+', ' ');
+        //    attribute = attribute.Replace(',', ' ');
+        //    string attributeSubstring = attribute.Trim();
+        //    return int.Parse(attributeSubstring, CultureInfo.CurrentCulture);
+        //}
+
+        private static bool ParseAttributeStringToInt(string skillAttributeString, out string skillAttributeName, out int skillValue)
+		{
+            skillAttributeName = null;
+            skillValue = 0;
+
+            // For each skillAttributeValue: "Arcana +3" or "+2 Animal Handling"; split on spaces " "
+            // each of these arrays should contain 2, 3 or 4 substrings
+            string[] currentSkillString = skillAttributeString.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+			// make sure that there are at least 2 elements here: the attribute and the number
+			if (currentSkillString.Length < 2)
+            {
+				//TODO write out skillAttributeValue to warning dialog box
+				return false;
+            }
+
+            // is the last substring a number or not?
+            // var lastItem = currentSkillString[^1];
+            bool success = Int32.TryParse(currentSkillString[currentSkillString.Length - 1], out skillValue);
+
+            // the last element is a number, this is the expected format
+            if (success)
+            {
+                skillAttributeName = currentSkillString[0];
+                // skillValue is correct as it is
+                return true;
+            }
+
+            // the last element wasn't a number, so is the first element the number?
+            if (Int32.TryParse(currentSkillString[0], out skillValue))
+            {
+                // the attribute name should be the element following the number in the currentSkillString array
+                skillAttributeName = currentSkillString[1];
+                // and at this point, we believe that skillValue is correct/valid
+                return true;
+            }
+
+            // Int32.TryParse failed, there isn't much we can to to recover
+            //TODO write out skillAttributeValue to warning dialog box
+            return false;
+        }
+
+        /// <summary>
+        /// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9,
+        ///  Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
+        /// </summary>
+        public void ParseSkillAttributes(string line)
+        {
+            // Remove leading text "Skill "
+            string skillAttributes = Regex.Replace(line.Trim(), "^Skills", String.Empty, RegexOptions.IgnoreCase).Trim();
+
+			string[] skillAttributeArray = skillAttributes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);  // Split string on comma, ","
+
+			foreach (string skillAttributeValue in skillAttributeArray)
+            {
+                string skillAttributeName;
+                if (!ParseAttributeStringToInt(skillAttributeValue, out skillAttributeName, out int value)) { continue; }
+
+                switch (skillAttributeName)
+                {
+                    case "Acrobatics":
+                        Acrobatics = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Animal":
+                        AnimalHandling = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 2]);
+                        break;
+                    case "Arcana":
+                        Arcana = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Athletics":
+                        Athletics = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Deception":
+                        Deception = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "History":
+                        History = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Insight":
+                        Insight = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Intimidation":
+                        Intimidation = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Investigation":
+                        Investigation = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Medicine":
+                        Medicine = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Nature":
+                        Nature = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Perception":
+                        Perception = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Performance":
+                        Performance = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Persuasion":
+                        Persuasion = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Religion":
+                        Religion = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Sleight":
+                        SleightOfHand = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 3]);
+                        break;
+                    case "Stealth":
+                        Stealth = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    case "Survival":
+                        Survival = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        break;
+                    default:
+                        // TODO: add error reporting code here
+                        break;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Loop through the SkillAttributes enumeration and add the name & value to the string if the value is not 0
+        /// </summary>
+        /// <returns>A string representation of all the current values of the skillAttributes </returns>
+        public string SkillAttributesToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (Acrobatics != 0)        stringBuilder.Append($"Acrobatics {(Acrobatics >= 0 ? "+" : String.Empty)}{Acrobatics}, ");
+            if (AnimalHandling != 0)    stringBuilder.Append($"Animal Handling {(AnimalHandling >= 0 ? "+" : String.Empty)}{AnimalHandling}, ");
+            if (Arcana != 0)            stringBuilder.Append($"Arcana {(Arcana >= 0 ? "+" : String.Empty)}{Arcana}, ");
+            if (Athletics != 0)         stringBuilder.Append($"Athletics {(Athletics >= 0 ? "+" : String.Empty)}{Athletics}, ");
+            if (Deception != 0)         stringBuilder.Append($"Deception {(Deception >= 0 ? "+" : String.Empty)}{Deception}, ");
+            if (History != 0)           stringBuilder.Append($"History {(History >= 0 ? "+" : String.Empty)}{History}, ");
+            if (Insight != 0)           stringBuilder.Append($"Insight {(Insight >= 0 ? "+" : String.Empty)}{Insight}, ");
+            if (Intimidation != 0)      stringBuilder.Append($"Intimidation {(Intimidation >= 0 ? "+" : String.Empty)}{Intimidation}, ");
+            if (Investigation != 0)     stringBuilder.Append($"Investigation {(Investigation >= 0 ? "+" : String.Empty)}{Investigation}, ");
+            if (Medicine != 0)          stringBuilder.Append($"Medicine {(Medicine >= 0 ? "+" : String.Empty)}{Medicine}, ");
+            if (Nature != 0)            stringBuilder.Append($"Nature {(Nature >= 0 ? "+" : String.Empty)}{Nature}, ");
+            if (Perception != 0)        stringBuilder.Append($"Perception {(Perception >= 0 ? "+" : String.Empty)}{Perception}, ");
+            if (Performance != 0)       stringBuilder.Append($"Performance {(Performance >= 0 ? "+" : String.Empty)}{Performance}, ");
+            if (Persuasion != 0)        stringBuilder.Append($"Persuasion {(Persuasion >= 0 ? "+" : String.Empty)}{Persuasion}, ");
+            if (Religion != 0)          stringBuilder.Append($"Religion {(Religion >= 0 ? "+" : String.Empty)}{Religion}, ");
+            if (SleightOfHand != 0)     stringBuilder.Append($"Sleight Of Hand {(SleightOfHand >= 0 ? "+" : String.Empty)}{SleightOfHand}, ");
+            if (Stealth != 0)           stringBuilder.Append($"Stealth {(Stealth >= 0 ? "+" : String.Empty)}{Stealth}, ");
+            if (Survival != 0)          stringBuilder.Append($"Survival {(Survival >= 0 ? "+" : String.Empty)}{Survival}, ");
+
+            if (stringBuilder.Length >= 2) { stringBuilder.Remove(stringBuilder.Length - 2, 2); }
+
+            return stringBuilder.ToString().Trim();
+        }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

@@ -109,7 +109,7 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseArmorClass(NPCModel npcModel, string armorClass)
         {
-            if (armorClass.StartsWith("Armor Class ", StringComparison.Ordinal))
+            if (armorClass.StartsWith("Armor Class ", StringComparison.OrdinalIgnoreCase) || armorClass.StartsWith("Armour Class ", StringComparison.OrdinalIgnoreCase))
             {
                 npcModel.AC = armorClass.Substring(12);
             }
@@ -283,71 +283,7 @@ namespace FantasyModuleParser.Importer.NPC
         /// </summary>
         public void ParseSkillAttributes(NPCModel npcModel, string skillAttributes)
         {
-            int columnIndex = 0;
-            string[] skillAttributeArray = skillAttributes.Split(' ');
-            foreach (string skillAttributeValue in skillAttributeArray)
-            {
-                switch (skillAttributeValue)
-                {
-                    case "Acrobatics":
-                        npcModel.Acrobatics = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Animal":
-                        npcModel.AnimalHandling = parseAttributeStringToInt(skillAttributeArray[columnIndex + 2]);
-                        break;
-                    case "Arcana":
-                        npcModel.Arcana = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Athletics":
-                        npcModel.Athletics = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Deception":
-                        npcModel.Deception = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "History":
-                        npcModel.History = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Insight":
-                        npcModel.Insight = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Intimidation":
-                        npcModel.Intimidation = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Investigation":
-                        npcModel.Investigation = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Medicine":
-                        npcModel.Medicine = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Nature":
-                        npcModel.Nature = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Perception":
-                        npcModel.Perception = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Performance":
-                        npcModel.Performance = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Persuasion":
-                        npcModel.Persuasion = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Religion":
-                        npcModel.Religion = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Sleight":
-                        npcModel.SleightOfHand = parseAttributeStringToInt(skillAttributeArray[columnIndex + 3]);
-                        break;
-                    case "Stealth":
-                        npcModel.Stealth = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    case "Survival":
-                        npcModel.Survival = parseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
-                        break;
-                    default:
-                        break;
-                }
-                columnIndex++;
-            }
+            npcModel.ParseSkillAttributes(skillAttributes);
         }
 
         /// <summary>
