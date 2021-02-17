@@ -50,7 +50,31 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		private void SaveNPCToFile(object sender, RoutedEventArgs e)
 		{
-			NpcController.GetNPCModel().SaveNPCToFile(sender, e);
+			NPCModel npcModel = NpcController.GetNPCModel();
+			string saveDirectory = settingsService.Load().NPCFolderLocation;
+			string savePath = Path.Combine(saveDirectory, npcModel.NPCName + ".json");
+
+			string warningMessageDoNotSave = npcModel.OkToSaveToFile(sender, e);
+
+			if (!string.IsNullOrEmpty(warningMessageDoNotSave))
+			{
+				MessageBox.Show(warningMessageDoNotSave);
+				return;
+			}
+			((App)Application.Current).NpcModel = npcModel;
+			if (Directory.Exists(saveDirectory))
+			{
+				NpcController.Save(savePath, npcModel);
+				log.Info("NPC " + npcModel.NPCName + " has successfully been saved to " + savePath);
+				MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
+			}
+			else
+			{
+				Directory.CreateDirectory(saveDirectory);
+				NpcController.Save(savePath, npcModel);
+				log.Info("NPC " + npcModel.NPCName + " has successfully been saved to " + savePath);
+				MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
+			}
 		}
 
 		private void Menu_Click(object sender, RoutedEventArgs e)

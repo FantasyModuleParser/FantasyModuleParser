@@ -508,138 +508,124 @@ namespace FantasyModuleParser.NPC
             return stringBuilder.ToString().Trim();
         }
 
-        public void SaveNPCToFile(object sender, RoutedEventArgs e)
+        public string OkToSaveToFile(object sender, RoutedEventArgs e)
         {
-
-            NPCModel npcModel = NpcController.GetNPCModel();
-            string saveDirectory = settingsService.Load().NPCFolderLocation;
-            string savePath = Path.Combine(saveDirectory, npcModel.NPCName + ".json");
             string warningMessageDoNotSave = "";
 
-            if (string.IsNullOrEmpty(npcModel.NPCType))
+            if (string.IsNullOrEmpty(NPCType))
             {
-                log.Warn("NPC Type is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "NPC Type is missing from " + npcModel.NPCName + "\n";
+                log.Warn("NPC Type is missing from " + NPCName);
+                warningMessageDoNotSave += "NPC Type is missing from " + NPCName + "\n";
             }
-            if (string.IsNullOrEmpty(npcModel.Size))
+            if (string.IsNullOrEmpty(Size))
             {
-                log.Warn("Size is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "Size is missing from " + npcModel.NPCName + "\n";
+                log.Warn("Size is missing from " + NPCName);
+                warningMessageDoNotSave += "Size is missing from " + NPCName + "\n";
             }
-            if (string.IsNullOrEmpty(npcModel.AC))
+            if (string.IsNullOrEmpty(AC))
             {
-                log.Warn("AC is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "AC is missing from " + npcModel.NPCName + "\n";
+                log.Warn("AC is missing from " + NPCName);
+                warningMessageDoNotSave += "AC is missing from " + NPCName + "\n";
             }
-            if (string.IsNullOrEmpty(npcModel.Alignment))
+            if (string.IsNullOrEmpty(Alignment))
             {
-                log.Warn("Alignment is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "Alignment is missing from " + npcModel.NPCName + "\n";
+                log.Warn("Alignment is missing from " + NPCName);
+                warningMessageDoNotSave += "Alignment is missing from " + NPCName + "\n";
             }
-            if (string.IsNullOrEmpty(npcModel.ChallengeRating))
+            if (string.IsNullOrEmpty(ChallengeRating))
             {
-                log.Warn("Challenge Rating is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "Challenge Rating is missing from " + npcModel.NPCName + "\n";
+                log.Warn("Challenge Rating is missing from " + NPCName);
+                warningMessageDoNotSave += "Challenge Rating is missing from " + NPCName + "\n";
             }
-            if (string.IsNullOrEmpty(npcModel.HP))
+            if (string.IsNullOrEmpty(HP))
             {
-                log.Warn("Hit Points are missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "Hit Points are missing from " + npcModel.NPCName + "\n";
+                log.Warn("Hit Points are missing from " + NPCName);
+                warningMessageDoNotSave += "Hit Points are missing from " + NPCName + "\n";
             }
-            if (string.IsNullOrEmpty(npcModel.LanguageOptions))
+            if (string.IsNullOrEmpty(LanguageOptions))
             {
-                log.Warn("Language Option (usually No special conditions) is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "Language Option (usually No special conditions) is missing from " + npcModel.NPCName + "\n";
+                log.Warn("Language Option (usually No special conditions) is missing from " + NPCName);
+                warningMessageDoNotSave += "Language Option (usually No special conditions) is missing from " + NPCName + "\n";
             }
-            if (npcModel.Telepathy == true && string.IsNullOrEmpty(npcModel.TelepathyRange))
+            if (Telepathy == true && string.IsNullOrEmpty(TelepathyRange))
             {
-                log.Warn("Telepathy Range is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "Telepathy Range is missing from " + npcModel.NPCName + "\n";
+                log.Warn("Telepathy Range is missing from " + NPCName);
+                warningMessageDoNotSave += "Telepathy Range is missing from " + NPCName + "\n";
             }
-            if (npcModel.InnateSpellcastingSection == true && string.IsNullOrEmpty(npcModel.InnateSpellcastingAbility))
+            if (InnateSpellcastingSection == true && string.IsNullOrEmpty(InnateSpellcastingAbility))
             {
-                log.Warn("Innate Spellcasting Ability is missing from " + npcModel.NPCName);
-                warningMessageDoNotSave += "Innate Spellcasting Ability is missing from " + npcModel.NPCName + "\n";
+                log.Warn("Innate Spellcasting Ability is missing from " + NPCName);
+                warningMessageDoNotSave += "Innate Spellcasting Ability is missing from " + NPCName + "\n";
             }
-            if (npcModel.SpellcastingSection == true)
+            if (SpellcastingSection == true)
             {
-                if (string.IsNullOrEmpty(npcModel.SCSpellcastingAbility))
-                {
-                    log.Warn("Spellcasting Ability is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Spellcasting Ability is missing from " + npcModel.NPCName + "\n";
+                if (string.IsNullOrEmpty(SpellcastingCasterLevel))
+				{
+                    log.Warn("Spellcaster Level is missing from " + NPCName);
+                    warningMessageDoNotSave += "What level spellcaster is " + NPCName + "\n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.CantripSpellList) && string.IsNullOrEmpty(npcModel.CantripSpells))
+                if (string.IsNullOrEmpty(SCSpellcastingAbility))
                 {
-                    log.Warn("Number of Cantrip slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Cantrip spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Spellcasting Ability is missing from " + NPCName);
+                    warningMessageDoNotSave += "Spellcasting Ability is missing from " + NPCName + "\n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.FirstLevelSpellList) && string.IsNullOrEmpty(npcModel.FirstLevelSpells))
+                if (string.IsNullOrEmpty(SpellcastingSpellClass))
                 {
-                    log.Warn("Number of First Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many First Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Spellcasting Class is missing from " + NPCName);
+                    warningMessageDoNotSave += "What class of spells does " + NPCName + " know \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.SecondLevelSpellList) && string.IsNullOrEmpty(npcModel.SecondLevelSpells))
+                if (!string.IsNullOrEmpty(CantripSpellList) && string.IsNullOrEmpty(CantripSpells))
                 {
-                    log.Warn("Number of Second Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Second Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of Cantrip slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Cantrip spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.ThirdLevelSpellList) && string.IsNullOrEmpty(npcModel.ThirdLevelSpells))
+                if (!string.IsNullOrEmpty(FirstLevelSpellList) && string.IsNullOrEmpty(FirstLevelSpells))
                 {
-                    log.Warn("Number of Third Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Third Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of First Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many First Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.FourthLevelSpellList) && string.IsNullOrEmpty(npcModel.FourthLevelSpells))
+                if (!string.IsNullOrEmpty(SecondLevelSpellList) && string.IsNullOrEmpty(SecondLevelSpells))
                 {
-                    log.Warn("Number of Fourth Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Fourth Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of Second Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Second Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.FifthLevelSpellList) && string.IsNullOrEmpty(npcModel.FifthLevelSpells))
+                if (!string.IsNullOrEmpty(ThirdLevelSpellList) && string.IsNullOrEmpty(ThirdLevelSpells))
                 {
-                    log.Warn("Number of Fifth Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Fifth Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of Third Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Third Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.SixthLevelSpellList) && string.IsNullOrEmpty(npcModel.SixthLevelSpells))
+                if (!string.IsNullOrEmpty(FourthLevelSpellList) && string.IsNullOrEmpty(FourthLevelSpells))
                 {
-                    log.Warn("Number of Sixth Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Sixth Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of Fourth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Fourth Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.SeventhLevelSpellList) && string.IsNullOrEmpty(npcModel.SeventhLevelSpells))
+                if (!string.IsNullOrEmpty(FifthLevelSpellList) && string.IsNullOrEmpty(FifthLevelSpells))
                 {
-                    log.Warn("Number of Seventh Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Seventh Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of Fifth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Fifth Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.EighthLevelSpellList) && string.IsNullOrEmpty(npcModel.EighthLevelSpells))
+                if (!string.IsNullOrEmpty(SixthLevelSpellList) && string.IsNullOrEmpty(SixthLevelSpells))
                 {
-                    log.Warn("Number of Eighth Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Eighth Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of Sixth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Sixth Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(npcModel.NinthLevelSpellList) && string.IsNullOrEmpty(npcModel.NinthLevelSpells))
+                if (!string.IsNullOrEmpty(SeventhLevelSpellList) && string.IsNullOrEmpty(SeventhLevelSpells))
                 {
-                    log.Warn("Number of Ninth Level Spell slots is missing from " + npcModel.NPCName);
-                    warningMessageDoNotSave += "Choose how many Ninth Level Spell slots " + npcModel.NPCName + " has \n";
+                    log.Warn("Number of Seventh Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Seventh Level Spell slots " + NPCName + " has \n";
+                }
+                if (!string.IsNullOrEmpty(EighthLevelSpellList) && string.IsNullOrEmpty(EighthLevelSpells))
+                {
+                    log.Warn("Number of Eighth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Eighth Level Spell slots " + NPCName + " has \n";
+                }
+                if (!string.IsNullOrEmpty(NinthLevelSpellList) && string.IsNullOrEmpty(NinthLevelSpells))
+                {
+                    log.Warn("Number of Ninth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Ninth Level Spell slots " + NPCName + " has \n";
                 }
             }
-
-            if (!string.IsNullOrEmpty(warningMessageDoNotSave))
-            {
-                MessageBox.Show(warningMessageDoNotSave);
-                return;
-            }
-
-            ((App)Application.Current).NpcModel = npcModel;
-            if (Directory.Exists(saveDirectory))
-            {
-                NpcController.Save(savePath, npcModel);
-                log.Info("NPC " + npcModel.NPCName + " has successfully been saved to " + savePath);
-                MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
-            }
-            else
-            {
-                Directory.CreateDirectory(saveDirectory);
-                NpcController.Save(savePath, npcModel);
-                log.Info("NPC " + npcModel.NPCName + " has successfully been saved to " + savePath);
-                MessageBox.Show("NPC " + npcModel.NPCName + " Saved Successfully");
-            }
+            return warningMessageDoNotSave;
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
