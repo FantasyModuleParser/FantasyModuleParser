@@ -99,77 +99,78 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		private void SaveNPCToFile(object sender, RoutedEventArgs e)
 		{
-
+			
 			NPCModel npcModel = npcController.GetNPCModel();
 			string saveDirectory = settingsService.Load().NPCFolderLocation;
 			string savePath = Path.Combine(saveDirectory, npcModel.NPCName + ".json");
+			string warningMessageDoNotSave = "";
 
 			if (string.IsNullOrEmpty(npcModel.NPCType))
             {
 				log.Warn("NPC Type is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("NPC Type is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "NPC Type is missing from " + npcModel.NPCName + "\n";
 			}		
 			if (string.IsNullOrEmpty(npcModel.Size))
             {
 				log.Warn("Size is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("Size is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "Size is missing from " + npcModel.NPCName + "\n";
 			}				
 			if (string.IsNullOrEmpty(npcModel.AC))
             {
 				log.Warn("AC is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("AC is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "AC is missing from " + npcModel.NPCName + "\n";
 			}
 			if (string.IsNullOrEmpty(npcModel.Alignment))
             {
 				log.Warn("Alignment is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("Alignment is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "Alignment is missing from " + npcModel.NPCName + "\n";
 			}
 			if (string.IsNullOrEmpty(npcModel.ChallengeRating))
             {
 				log.Warn("Challenge Rating is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("Challenge Rating is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "Challenge Rating is missing from " + npcModel.NPCName + "\n";
 			}				
 			if (string.IsNullOrEmpty(npcModel.HP))
             {
 				log.Warn("Hit Points are missing from " + npcModel.NPCName);
-				throw new InvalidDataException("Hit Points are missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "Hit Points are missing from " + npcModel.NPCName + "\n";
 			}			
 			if (string.IsNullOrEmpty(npcModel.LanguageOptions))
             {
 				log.Warn("Language Option (usually No special conditions) is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("Language Option (usually No special conditions) is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "Language Option (usually No special conditions) is missing from " + npcModel.NPCName + "\n";
 			}				
 			if (npcModel.Telepathy == true && string.IsNullOrEmpty(npcModel.TelepathyRange))
             {
 				log.Warn("Telepathy Range is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("Telepathy Range is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "Telepathy Range is missing from " + npcModel.NPCName + "\n";
 			}
 			if (npcModel.InnateSpellcastingSection == true && string.IsNullOrEmpty(npcModel.InnateSpellcastingAbility))
             {
 				log.Warn("Innate Spellcasting Ability is missing from " + npcModel.NPCName);
-				throw new InvalidDataException("Innate Spellcasting Ability is missing from " + npcModel.NPCName);
+				warningMessageDoNotSave += "Innate Spellcasting Ability is missing from " + npcModel.NPCName + "\n";
 			}				
 			if (npcModel.SpellcastingSection == true)
             {
 				if (string.IsNullOrEmpty(npcModel.SCSpellcastingAbility))
                 {
 					log.Warn("Spellcasting Ability is missing from " + npcModel.NPCName);
-					throw new InvalidDataException("Spellcasting Ability is missing from " + npcModel.NPCName);
+					warningMessageDoNotSave += "Spellcasting Ability is missing from " + npcModel.NPCName + "\n";
 				}
 				if (!string.IsNullOrEmpty(npcModel.CantripSpellList) && string.IsNullOrEmpty(npcModel.CantripSpells))
                 {
 					log.Warn("Number of Cantrip slots is missing from " + npcModel.NPCName);
-					throw new InvalidDataException("Number of Cantrip slots is missing from " + npcModel.NPCName);
+					warningMessageDoNotSave += "Choose how many Cantrip spell slots " + npcModel.NPCName + " has \n";
 				}
 				if (!string.IsNullOrEmpty(npcModel.FirstLevelSpellList) && string.IsNullOrEmpty(npcModel.FirstLevelSpells))
 				{
 					log.Warn("Number of First Level Spell slots is missing from " + npcModel.NPCName);
-					throw new InvalidDataException("Number of First Level Spell slots is missing from " + npcModel.NPCName);
+					warningMessageDoNotSave += "Choose how many First Level Spell slots " + npcModel.NPCName + " has \n";
 				}				
 				if (!string.IsNullOrEmpty(npcModel.SecondLevelSpellList) && string.IsNullOrEmpty(npcModel.SecondLevelSpells))
                 {
 					log.Warn("Number of Second Level Spell slots is missing from " + npcModel.NPCName);
-					throw new InvalidDataException("Number of Second Level Spell slots is missing from " + npcModel.NPCName);
+					warningMessageDoNotSave += "Choose how many Second Level Spell slots " + npcModel.NPCName + " has \n";
 				}					
 				if (!string.IsNullOrEmpty(npcModel.ThirdLevelSpellList) && string.IsNullOrEmpty(npcModel.ThirdLevelSpells))
                 {
@@ -207,7 +208,13 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 					throw new InvalidDataException("Number of Ninth Level Spell slots is missing from " + npcModel.NPCName);
 				}					
 			}
-			
+
+			if (!string.IsNullOrEmpty(warningMessageDoNotSave))
+			{
+				MessageBox.Show(warningMessageDoNotSave);
+				return;
+			}
+
 			((App)Application.Current).NpcModel = npcModel;
 			if (Directory.Exists(saveDirectory))
             {
