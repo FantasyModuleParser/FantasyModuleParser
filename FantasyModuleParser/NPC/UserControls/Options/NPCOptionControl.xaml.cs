@@ -144,7 +144,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				log.Warn("Telepathy Range is missing from " + npcModel.NPCName);
 				throw new InvalidDataException("Telepathy Range is missing from " + npcModel.NPCName);
 			}
-			if (npcModel.InnateSpellcastingSection == true && !string.IsNullOrEmpty(npcModel.InnateSpellcastingAbility))
+			if (npcModel.InnateSpellcastingSection == true && string.IsNullOrEmpty(npcModel.InnateSpellcastingAbility))
             {
 				log.Warn("Innate Spellcasting Ability is missing from " + npcModel.NPCName);
 				throw new InvalidDataException("Innate Spellcasting Ability is missing from " + npcModel.NPCName);
