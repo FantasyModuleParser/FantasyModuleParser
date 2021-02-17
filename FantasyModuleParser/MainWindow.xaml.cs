@@ -24,11 +24,11 @@ namespace FantasyModuleParser
     public partial class MainWindow : Window
     {
         private bool isViewStatBlockVisible = false;
-        private ModuleService moduleService;
-        private ModuleModel moduleModel;
+        private readonly ModuleService moduleService;
+        private readonly ModuleModel moduleModel;
         private SettingsModel settingsModel;
-        private SettingsService settingsService;
-        private SpellStatBlockUC spellStatBlockUC;
+        private readonly SettingsService settingsService;
+        private readonly SpellStatBlockUC spellStatBlockUC;
         private SpellViewModel spellViewModel;
 
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -97,7 +97,7 @@ namespace FantasyModuleParser
             }
             openFileDialog.ShowDialog();
         }
-        private string CheckAndCreateDirectory(string folderLocation)
+        private static string CheckAndCreateDirectory(string folderLocation)
         {
             if (!Directory.Exists(folderLocation))
             {
@@ -233,15 +233,13 @@ namespace FantasyModuleParser
                     // Shrink / Grow the main window based on the ViewStatBlock
                     this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
 
-                    if (isViewStatBlockVisible)
-                        ViewStatBlockPanel.Children.Add(new ViewNPCStatBlockUC());
+                    if (isViewStatBlockVisible)     { ViewStatBlockPanel.Children.Add(new ViewNPCStatBlockUC()); }
                     break;
                 case nameof(SpellOptionControl):
                     // TODO:  Create the Stat Block for Spells and add it here (uncomment the break when doing so)
                     this.Width += 450 * (isViewStatBlockVisible ? 1 : -1);
 
-                    if (isViewStatBlockVisible)
-                        ViewStatBlockPanel.Children.Add(spellStatBlockUC);
+                    if (isViewStatBlockVisible)     { ViewStatBlockPanel.Children.Add(spellStatBlockUC); }
                     break;
                 //break;
                 default:
