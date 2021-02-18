@@ -574,52 +574,52 @@ namespace FantasyModuleParser.NPC
                     log.Warn("Spellcasting Class is missing from " + NPCName);
                     warningMessageDoNotSave += "What class of spells does " + NPCName + " know \n";
                 }
-                if (!string.IsNullOrEmpty(CantripSpellList) && string.IsNullOrEmpty(CantripSpells))
+                if (string.IsNullOrEmpty(CantripSpells) && !string.IsNullOrEmpty(CantripSpellList))
                 {
                     log.Warn("Number of Cantrip slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Cantrip spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(FirstLevelSpellList) && string.IsNullOrEmpty(FirstLevelSpells))
+                if (string.IsNullOrEmpty(FirstLevelSpells) && !string.IsNullOrEmpty(FirstLevelSpellList))
                 {
                     log.Warn("Number of First Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many First Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(SecondLevelSpellList) && string.IsNullOrEmpty(SecondLevelSpells))
+                if (string.IsNullOrEmpty(SecondLevelSpells) && !string.IsNullOrEmpty(SecondLevelSpellList))
                 {
                     log.Warn("Number of Second Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Second Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(ThirdLevelSpellList) && string.IsNullOrEmpty(ThirdLevelSpells))
+                if (string.IsNullOrEmpty(ThirdLevelSpells) && !string.IsNullOrEmpty(ThirdLevelSpellList))
                 {
                     log.Warn("Number of Third Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Third Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(FourthLevelSpellList) && string.IsNullOrEmpty(FourthLevelSpells))
+                if (string.IsNullOrEmpty(FourthLevelSpells) && !string.IsNullOrEmpty(FourthLevelSpellList))
                 {
                     log.Warn("Number of Fourth Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Fourth Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(FifthLevelSpellList) && string.IsNullOrEmpty(FifthLevelSpells))
+                if (string.IsNullOrEmpty(FifthLevelSpells) && !string.IsNullOrEmpty(FifthLevelSpellList))
                 {
                     log.Warn("Number of Fifth Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Fifth Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(SixthLevelSpellList) && string.IsNullOrEmpty(SixthLevelSpells))
+                if (string.IsNullOrEmpty(SixthLevelSpells) && !string.IsNullOrEmpty(SixthLevelSpellList))
                 {
                     log.Warn("Number of Sixth Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Sixth Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(SeventhLevelSpellList) && string.IsNullOrEmpty(SeventhLevelSpells))
+                if (string.IsNullOrEmpty(SeventhLevelSpells) && !string.IsNullOrEmpty(SeventhLevelSpellList))
                 {
                     log.Warn("Number of Seventh Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Seventh Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(EighthLevelSpellList) && string.IsNullOrEmpty(EighthLevelSpells))
+                if (string.IsNullOrEmpty(EighthLevelSpells) && !string.IsNullOrEmpty(EighthLevelSpellList))
                 {
                     log.Warn("Number of Eighth Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Eighth Level Spell slots " + NPCName + " has \n";
                 }
-                if (!string.IsNullOrEmpty(NinthLevelSpellList) && string.IsNullOrEmpty(NinthLevelSpells))
+                if (string.IsNullOrEmpty(NinthLevelSpells) && !string.IsNullOrEmpty(NinthLevelSpellList))
                 {
                     log.Warn("Number of Ninth Level Spell slots is missing from " + NPCName);
                     warningMessageDoNotSave += "Choose how many Ninth Level Spell slots " + NPCName + " has \n";
