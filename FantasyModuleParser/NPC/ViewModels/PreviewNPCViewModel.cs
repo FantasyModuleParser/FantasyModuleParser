@@ -102,7 +102,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             SpellcastingFourthLabel = UpdateSpellcastingFourthLabel();
             SpellcastingFifthLabel = UpdateSpellcastingFifthLabel();
             SpellcastingSixthLabel = UpdateSpellcastingSixthLabel();
-            SpellcastingSeventhLabel = UpdateSpellcastingSeventhLabel();;
+            SpellcastingSeventhLabel = UpdateSpellcastingSeventhLabel(); ;
             SpellcastingEighthLabel = UpdateSpellcastingEighthLabel();
             SpellcastingNinthLabel = UpdateSpellcastingNinthLabel();
             SpellcastingMarkedSpells = UpdateSpellcastingMarkedSpells();
@@ -117,11 +117,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             num = -5 + (NPCModel.AttributeStr / 2);
 
             if (NPCModel.AttributeStr >= 10)
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeStr + " (+" + num + ")");
-            }                
+            }
             else
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeStr + " (" + num + ")");
             }
             return stringBuilder.ToString();
@@ -134,11 +134,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             num = -5 + (NPCModel.AttributeDex / 2);
 
             if (NPCModel.AttributeDex >= 10)
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeDex + " (+" + num + ")");
-            }                
+            }
             else
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeDex + " (" + num + ")");
             }
             return stringBuilder.ToString();
@@ -151,11 +151,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             num = -5 + (NPCModel.AttributeCon / 2);
 
             if (NPCModel.AttributeCon >= 10)
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeCon + " (+" + num + ")");
-            }                
+            }
             else
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeCon + " (" + num + ")");
             }
             return stringBuilder.ToString();
@@ -168,11 +168,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             num = -5 + (NPCModel.AttributeInt / 2);
 
             if (NPCModel.AttributeInt >= 10)
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeInt + " (+" + num + ")");
-            }                
+            }
             else
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeInt + " (" + num + ")");
             }
             return stringBuilder.ToString();
@@ -185,11 +185,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             num = -5 + (NPCModel.AttributeWis / 2);
 
             if (NPCModel.AttributeWis >= 10)
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeWis + " (+" + num + ")");
-            }               
+            }
             else
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeWis + " (" + num + ")");
             }
             return stringBuilder.ToString();
@@ -202,11 +202,11 @@ namespace FantasyModuleParser.NPC.ViewModels
             num = -5 + (NPCModel.AttributeCha / 2);
 
             if (NPCModel.AttributeCha >= 10)
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeCha + " (+" + num + ")");
-            }                
+            }
             else
-			{
+            {
                 stringBuilder.Append(NPCModel.AttributeCha + " (" + num + ")");
             }
             return stringBuilder.ToString();
@@ -218,22 +218,24 @@ namespace FantasyModuleParser.NPC.ViewModels
             StringBuilder stringBuilder = new StringBuilder();
 
             if (NPCModel.Speed == 0)
-			{
+            {
                 stringBuilder.Append("0 ft., ");
-            }                
+            }
             else
-			{
+            {
                 stringBuilder.Append(AppendSpeedAttribute("", NPCModel.Speed, false));
-                stringBuilder.Append(AppendSpeedAttribute("climb", NPCModel.Climb, false));
-                stringBuilder.Append(AppendSpeedAttribute("fly", NPCModel.Fly, NPCModel.Hover));
-                stringBuilder.Append(AppendSpeedAttribute("burrow", NPCModel.Burrow, false));
-                stringBuilder.Append(AppendSpeedAttribute("swim", NPCModel.Swim, false));
-            }                
+            }
+
+            stringBuilder.Append(AppendSpeedAttribute("climb", NPCModel.Climb, false));
+            stringBuilder.Append(AppendSpeedAttribute("fly", NPCModel.Fly, NPCModel.Hover));
+            stringBuilder.Append(AppendSpeedAttribute("burrow", NPCModel.Burrow, false));
+            stringBuilder.Append(AppendSpeedAttribute("swim", NPCModel.Swim, false));
+
 
             if (stringBuilder.Length >= 2)
-			{
+            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }                
+            }
             return stringBuilder.ToString().Trim();
         }
 
@@ -241,17 +243,17 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             string delimiter = ", ";
             if (value != 0 && hover == false)
-			{
+            {
                 return name + " " + value + " ft." + delimiter;
-            }                
+            }
             else if (value != 0 && hover == true)
-			{
+            {
                 return name + " " + value + " ft." + " (hover)" + delimiter;
             }
             else
-			{
+            {
                 return "";
-            }            
+            }
         }
         #endregion
         #region UpdateSkills
@@ -260,48 +262,48 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (SkillsDescription.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
-   //     private string UpdateSkillsDescription()
-   //     {
-   //         StringBuilder stringBuilder = new StringBuilder();
-   //         stringBuilder.Append(AppendSkill("Acrobatics", NPCModel.Acrobatics));
-   //         stringBuilder.Append(AppendSkill("Animal Handling", NPCModel.AnimalHandling));
-   //         stringBuilder.Append(AppendSkill("Arcana", NPCModel.Arcana));
-   //         stringBuilder.Append(AppendSkill("Athletics", NPCModel.Athletics));
-   //         stringBuilder.Append(AppendSkill("Deception", NPCModel.Deception));
-   //         stringBuilder.Append(AppendSkill("History", NPCModel.History));
-   //         stringBuilder.Append(AppendSkill("Insight", NPCModel.Insight));
-   //         stringBuilder.Append(AppendSkill("Intimidation", NPCModel.Intimidation));
-   //         stringBuilder.Append(AppendSkill("Investigation", NPCModel.Investigation));
-   //         stringBuilder.Append(AppendSkill("Medicine", NPCModel.Medicine));
-   //         stringBuilder.Append(AppendSkill("Nature", NPCModel.Nature));
-   //         stringBuilder.Append(AppendSkill("Perception", NPCModel.Perception));
-   //         stringBuilder.Append(AppendSkill("Performance", NPCModel.Performance));
-   //         stringBuilder.Append(AppendSkill("Persuasion", NPCModel.Persuasion));
-   //         stringBuilder.Append(AppendSkill("Religion", NPCModel.Religion));
-   //         stringBuilder.Append(AppendSkill("Sleight of Hand", NPCModel.SleightOfHand));
-   //         stringBuilder.Append(AppendSkill("Stealth", NPCModel.Stealth));
-   //         stringBuilder.Append(AppendSkill("Survival", NPCModel.Survival));
-   //         if (stringBuilder.Length >= 2)
-			//{
-   //             stringBuilder.Remove(stringBuilder.Length - 2, 2);
-   //         }                
-   //         return stringBuilder.ToString().Trim();
-   //     } 
-   //     static private string AppendSkill(string skillName, int skillValue)
-   //     {
-   //         string delimiter = ", ";
-   //         if (skillValue != 0)
-			//{
-   //             return skillName + ((skillValue < 0) ? " " : " +") + skillValue + delimiter;
-   //         }                
-   //         return "";
-   //     }
+        //     private string UpdateSkillsDescription()
+        //     {
+        //         StringBuilder stringBuilder = new StringBuilder();
+        //         stringBuilder.Append(AppendSkill("Acrobatics", NPCModel.Acrobatics));
+        //         stringBuilder.Append(AppendSkill("Animal Handling", NPCModel.AnimalHandling));
+        //         stringBuilder.Append(AppendSkill("Arcana", NPCModel.Arcana));
+        //         stringBuilder.Append(AppendSkill("Athletics", NPCModel.Athletics));
+        //         stringBuilder.Append(AppendSkill("Deception", NPCModel.Deception));
+        //         stringBuilder.Append(AppendSkill("History", NPCModel.History));
+        //         stringBuilder.Append(AppendSkill("Insight", NPCModel.Insight));
+        //         stringBuilder.Append(AppendSkill("Intimidation", NPCModel.Intimidation));
+        //         stringBuilder.Append(AppendSkill("Investigation", NPCModel.Investigation));
+        //         stringBuilder.Append(AppendSkill("Medicine", NPCModel.Medicine));
+        //         stringBuilder.Append(AppendSkill("Nature", NPCModel.Nature));
+        //         stringBuilder.Append(AppendSkill("Perception", NPCModel.Perception));
+        //         stringBuilder.Append(AppendSkill("Performance", NPCModel.Performance));
+        //         stringBuilder.Append(AppendSkill("Persuasion", NPCModel.Persuasion));
+        //         stringBuilder.Append(AppendSkill("Religion", NPCModel.Religion));
+        //         stringBuilder.Append(AppendSkill("Sleight of Hand", NPCModel.SleightOfHand));
+        //         stringBuilder.Append(AppendSkill("Stealth", NPCModel.Stealth));
+        //         stringBuilder.Append(AppendSkill("Survival", NPCModel.Survival));
+        //         if (stringBuilder.Length >= 2)
+        //{
+        //             stringBuilder.Remove(stringBuilder.Length - 2, 2);
+        //         }                
+        //         return stringBuilder.ToString().Trim();
+        //     } 
+        //     static private string AppendSkill(string skillName, int skillValue)
+        //     {
+        //         string delimiter = ", ";
+        //         if (skillValue != 0)
+        //{
+        //             return skillName + ((skillValue < 0) ? " " : " +") + skillValue + delimiter;
+        //         }                
+        //         return "";
+        //     }
         #endregion
         #region UpdateSavingThrows
         public Visibility ShowSavingThrows
@@ -309,9 +311,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (SavingThrows.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                   
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -415,7 +417,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (DamageVulnerabilities.Length > 0)
-				{
+                {
                     return Visibility.Visible;
                 }
                 return Visibility.Collapsed;
@@ -427,14 +429,14 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (SelectableActionModel selectableActionModel in NPCModel.DamageVulnerabilityModelList)
             {
                 if (selectableActionModel.Selected == true)
-				{
+                {
                     stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
-                }                    
+                }
             }
             if (stringBuilder.Length >= 2)
-			{
+            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }                
+            }
             return stringBuilder.ToString().Trim();
         }
         #endregion
@@ -444,9 +446,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (DamageResistances.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -456,9 +458,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (SelectableActionModel selectableActionModel in NPCModel.DamageResistanceModelList)
             {
                 if (selectableActionModel.Selected == true)
-				{
+                {
                     stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
-                }                    
+                }
             }
             if (stringBuilder.Length >= 2)
             {
@@ -496,15 +498,15 @@ namespace FantasyModuleParser.NPC.ViewModels
                     foreach (SelectableActionModel selectableActionModelDmg in NPCModel.SpecialWeaponDmgResistanceModelList)
                     {
                         if (selectableActionModelDmg.Selected == true)
-						{
+                        {
                             stringBuilder.Append(selectableActionModelDmg.ActionDescription).Append(", ");
-                        }                            
+                        }
                     }
                     if (stringBuilder.Length >= 2)
                     {
                         stringBuilder.Remove(stringBuilder.Length - 2, 2);
                     }
-                    stringBuilder.Append(Resistance);    
+                    stringBuilder.Append(Resistance);
                 }
             }
             return stringBuilder.ToString().Trim();
@@ -516,9 +518,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (DamageImmunities.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -528,9 +530,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (SelectableActionModel selectableActionModel in NPCModel.DamageImmunityModelList)
             {
                 if (selectableActionModel.Selected == true)
-				{
+                {
                     stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
-                }                    
+                }
             }
             if (stringBuilder.Length >= 2)
             {
@@ -564,9 +566,9 @@ namespace FantasyModuleParser.NPC.ViewModels
                     foreach (SelectableActionModel selectableActionModelDmg in NPCModel.SpecialWeaponDmgImmunityModelList)
                     {
                         if (selectableActionModelDmg.Selected == true)
-						{
+                        {
                             stringBuilder.Append(selectableActionModelDmg.ActionDescription).Append(", ");
-                        }                            
+                        }
                     }
                     if (stringBuilder.Length >= 2)
                     {
@@ -584,9 +586,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (ConditionImmunities.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -596,18 +598,18 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (SelectableActionModel selectableActionModel in NPCModel.ConditionImmunityModelList)
             {
                 if (selectableActionModel.Selected == true)
-				{
+                {
                     stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
-                }                    
+                }
             }
             if (NPCModel.ConditionOther == true)
             {
                 stringBuilder.Append(NPCModel.ConditionOtherText + ", ");
             }
             if (stringBuilder.Length >= 2)
-			{
+            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }                
+            }
             return stringBuilder.ToString().Trim();
         }
         #endregion
@@ -617,13 +619,13 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (Languages.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
-        
+
         private string UpdateLanguages()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -632,32 +634,32 @@ namespace FantasyModuleParser.NPC.ViewModels
             foreach (LanguageModel languageModel in NPCModel.StandardLanguages)
             {
                 if (languageModel.Selected == true)
-				{
+                {
                     stringBuilder.Append(languageModel.Language).Append(", ");
-                }                    
+                }
             }
             foreach (LanguageModel languageModel in NPCModel.ExoticLanguages)
             {
                 if (languageModel.Selected == true)
-				{
+                {
                     stringBuilder.Append(languageModel.Language).Append(", ");
-                }                    
+                }
             }
             foreach (LanguageModel languageModel in NPCModel.MonstrousLanguages)
             {
                 if (languageModel.Selected == true)
-				{
+                {
                     stringBuilder.Append(languageModel.Language).Append(", ");
-                }                    
+                }
             }
             if (NPCModel.UserLanguages != null && NPCModel.UserLanguages.Count > 0)
             {
                 foreach (LanguageModel languageModel in NPCModel.UserLanguages)
                 {
                     if (languageModel.Selected == true)
-					{
+                    {
                         stringBuilder.Append(languageModel.Language).Append(", ");
-                    }                        
+                    }
                 }
             }
             if (NPCModel.Telepathy)
@@ -665,7 +667,7 @@ namespace FantasyModuleParser.NPC.ViewModels
                 stringBuilder.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
             }
             if (stringBuilder.Length >= 2)
-			{
+            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
             if (NPCModel.LanguageOptions == "No special conditions" || NPCModel.LanguageOptions == null)
@@ -729,10 +731,10 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return stringBuilderOption.ToString();
             }
             else
-			{
+            {
                 return "";
             }
-                
+
         }
 
         #endregion
@@ -746,9 +748,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             stringBuilder.Append(AppendSenses("truesight ", NPCModel.Truesight, " ft."));
             stringBuilder.Append(AppendSenses("passive perception ", NPCModel.PassivePerception, ""));
             if (stringBuilder.Length >= 2)
-			{
+            {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }                
+            }
             return stringBuilder.ToString();
         }
 
@@ -766,15 +768,15 @@ namespace FantasyModuleParser.NPC.ViewModels
         {
             string delimiter = ", ";
             if (senseValue != 0 && NPCModel.BlindBeyond == false)
-			{
+            {
                 return senseName + senseValue + senseRange + delimiter;
-            }                
+            }
             else if (senseValue != 0 && NPCModel.BlindBeyond == true)
-			{
+            {
                 return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
-            }                
+            }
             return "";
-            
+
         }
         #endregion
         #region UpdateChallengeRating
@@ -791,20 +793,20 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.InnateSpellcastingSection == true)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
         public Visibility ShowInnateAtWill
         {
-            get 
+            get
             {
                 if (NPCModel.InnateAtWill != null && NPCModel.InnateAtWill.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -813,9 +815,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.FivePerDay != null && NPCModel.FivePerDay.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -824,9 +826,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.FourPerDay != null && NPCModel.FourPerDay.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -835,9 +837,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.ThreePerDay != null && NPCModel.ThreePerDay.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -846,9 +848,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.TwoPerDay != null && NPCModel.TwoPerDay.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -857,9 +859,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.OnePerDay != null && NPCModel.OnePerDay.Length > 0)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -883,23 +885,23 @@ namespace FantasyModuleParser.NPC.ViewModels
             if (NPCModel.InnateSpellcastingSection == true)
             {
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("The " + NPCModel.NPCName.ToLower() + "'s spellcasting ability is " + NPCModel.InnateSpellcastingAbility + " ("); 
+                stringBuilder.Append("The " + NPCModel.NPCName.ToLower() + "'s spellcasting ability is " + NPCModel.InnateSpellcastingAbility + " (");
                 if (NPCModel.InnateSpellSaveDC != 0)
-				{
+                {
                     stringBuilder.Append("spell save DC " + NPCModel.InnateSpellSaveDC);
-                }                    
+                }
                 if (NPCModel.InnateSpellSaveDC != 0 && NPCModel.InnateSpellHitBonus != 0)
-				{
+                {
                     stringBuilder.Append(", ");
-                }                    
+                }
                 if (NPCModel.InnateSpellHitBonus > 0)
-				{
+                {
                     stringBuilder.Append("+" + NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
-                }                    
+                }
                 else if (NPCModel.InnateSpellHitBonus < 0)
-				{
+                {
                     stringBuilder.Append(NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
-                }                    
+                }
                 stringBuilder.Append("). The " + NPCModel.NPCName.ToLower() + " can innately cast the following spells, " + NPCModel.ComponentText + ":");
                 return stringBuilder.ToString();
             }
@@ -912,9 +914,9 @@ namespace FantasyModuleParser.NPC.ViewModels
             get
             {
                 if (NPCModel.SpellcastingSection == true)
-				{
+                {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
@@ -1077,9 +1079,9 @@ namespace FantasyModuleParser.NPC.ViewModels
                     log.Error("Spellcasting Class is null. Please select what class the spells are.");
                 }
                 else
-				{
+                {
                     stringBuilder.Append(" It has the following " + NPCModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
-                }                    
+                }
                 return stringBuilder.ToString();
             }
             return "";
@@ -1279,7 +1281,7 @@ namespace FantasyModuleParser.NPC.ViewModels
                 if (NPCModel.LairActions.Count >= 1)
                 {
                     return Visibility.Visible;
-                }                    
+                }
                 return Visibility.Collapsed;
             }
         }
