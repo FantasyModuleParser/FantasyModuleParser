@@ -1,7 +1,12 @@
-﻿using FantasyModuleParser.NPC.Models.Action;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Controllers;
+using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
+using log4net;
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
@@ -9,6 +14,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace FantasyModuleParser.NPC
 {
@@ -330,6 +336,9 @@ namespace FantasyModuleParser.NPC
         public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
         public ObservableCollection<ActionModelBase> Reactions { get; } = new ObservableCollection<ActionModelBase>();
         #endregion
+        public NPCController NpcController { get; set; }
+        private readonly SettingsService settingsService;
+        private static readonly ILog log = LogManager.GetLogger(typeof(NPCModel));
         public NPCModel()
         {
         }
@@ -401,10 +410,9 @@ namespace FantasyModuleParser.NPC
 
 			foreach (string skillAttributeValue in skillAttributeArray)
             {
-                string skillAttributeName;
-                if (!ParseAttributeStringToInt(skillAttributeValue, out skillAttributeName, out int value)) { continue; }
+				if (!ParseAttributeStringToInt(skillAttributeValue, out string skillAttributeName, out int value)) { continue; }
 
-                switch (skillAttributeName)
+				switch (skillAttributeName)
                 {
                     case "Acrobatics":
                         Acrobatics = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
@@ -476,44 +484,159 @@ namespace FantasyModuleParser.NPC
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            if (Acrobatics != 0)        stringBuilder.Append($"Acrobatics {(Acrobatics >= 0 ? "+" : String.Empty)}{Acrobatics}, ");
-            if (AnimalHandling != 0)    stringBuilder.Append($"Animal Handling {(AnimalHandling >= 0 ? "+" : String.Empty)}{AnimalHandling}, ");
-            if (Arcana != 0)            stringBuilder.Append($"Arcana {(Arcana >= 0 ? "+" : String.Empty)}{Arcana}, ");
-            if (Athletics != 0)         stringBuilder.Append($"Athletics {(Athletics >= 0 ? "+" : String.Empty)}{Athletics}, ");
-            if (Deception != 0)         stringBuilder.Append($"Deception {(Deception >= 0 ? "+" : String.Empty)}{Deception}, ");
-            if (History != 0)           stringBuilder.Append($"History {(History >= 0 ? "+" : String.Empty)}{History}, ");
-            if (Insight != 0)           stringBuilder.Append($"Insight {(Insight >= 0 ? "+" : String.Empty)}{Insight}, ");
-            if (Intimidation != 0)      stringBuilder.Append($"Intimidation {(Intimidation >= 0 ? "+" : String.Empty)}{Intimidation}, ");
-            if (Investigation != 0)     stringBuilder.Append($"Investigation {(Investigation >= 0 ? "+" : String.Empty)}{Investigation}, ");
-            if (Medicine != 0)          stringBuilder.Append($"Medicine {(Medicine >= 0 ? "+" : String.Empty)}{Medicine}, ");
-            if (Nature != 0)            stringBuilder.Append($"Nature {(Nature >= 0 ? "+" : String.Empty)}{Nature}, ");
-            if (Perception != 0)        stringBuilder.Append($"Perception {(Perception >= 0 ? "+" : String.Empty)}{Perception}, ");
-            if (Performance != 0)       stringBuilder.Append($"Performance {(Performance >= 0 ? "+" : String.Empty)}{Performance}, ");
-            if (Persuasion != 0)        stringBuilder.Append($"Persuasion {(Persuasion >= 0 ? "+" : String.Empty)}{Persuasion}, ");
-            if (Religion != 0)          stringBuilder.Append($"Religion {(Religion >= 0 ? "+" : String.Empty)}{Religion}, ");
-            if (SleightOfHand != 0)     stringBuilder.Append($"Sleight Of Hand {(SleightOfHand >= 0 ? "+" : String.Empty)}{SleightOfHand}, ");
-            if (Stealth != 0)           stringBuilder.Append($"Stealth {(Stealth >= 0 ? "+" : String.Empty)}{Stealth}, ");
-            if (Survival != 0)          stringBuilder.Append($"Survival {(Survival >= 0 ? "+" : String.Empty)}{Survival}, ");
+            if (Acrobatics != 0)        { stringBuilder.Append($"Acrobatics {(Acrobatics >= 0 ? "+" : String.Empty)}{Acrobatics}, "); }
+            if (AnimalHandling != 0)    { stringBuilder.Append($"Animal Handling {(AnimalHandling >= 0 ? "+" : String.Empty)}{AnimalHandling}, "); }
+            if (Arcana != 0)            { stringBuilder.Append($"Arcana {(Arcana >= 0 ? "+" : String.Empty)}{Arcana}, "); }
+            if (Athletics != 0)         { stringBuilder.Append($"Athletics {(Athletics >= 0 ? "+" : String.Empty)}{Athletics}, "); }
+            if (Deception != 0)         { stringBuilder.Append($"Deception {(Deception >= 0 ? "+" : String.Empty)}{Deception}, "); }
+            if (History != 0)           { stringBuilder.Append($"History {(History >= 0 ? "+" : String.Empty)}{History}, "); }
+            if (Insight != 0)           { stringBuilder.Append($"Insight {(Insight >= 0 ? "+" : String.Empty)}{Insight}, "); }
+            if (Intimidation != 0)      { stringBuilder.Append($"Intimidation {(Intimidation >= 0 ? "+" : String.Empty)}{Intimidation}, "); }
+            if (Investigation != 0)     { stringBuilder.Append($"Investigation {(Investigation >= 0 ? "+" : String.Empty)}{Investigation}, "); }
+            if (Medicine != 0)          { stringBuilder.Append($"Medicine {(Medicine >= 0 ? "+" : String.Empty)}{Medicine}, "); }
+            if (Nature != 0)            { stringBuilder.Append($"Nature {(Nature >= 0 ? "+" : String.Empty)}{Nature}, "); }
+            if (Perception != 0)        { stringBuilder.Append($"Perception {(Perception >= 0 ? "+" : String.Empty)}{Perception}, "); }
+            if (Performance != 0)       { stringBuilder.Append($"Performance {(Performance >= 0 ? "+" : String.Empty)}{Performance}, "); }
+            if (Persuasion != 0)        { stringBuilder.Append($"Persuasion {(Persuasion >= 0 ? "+" : String.Empty)}{Persuasion}, "); }
+            if (Religion != 0)          { stringBuilder.Append($"Religion {(Religion >= 0 ? "+" : String.Empty)}{Religion}, "); }
+            if (SleightOfHand != 0)     { stringBuilder.Append($"Sleight Of Hand {(SleightOfHand >= 0 ? "+" : String.Empty)}{SleightOfHand}, "); }
+            if (Stealth != 0)           { stringBuilder.Append($"Stealth {(Stealth >= 0 ? "+" : String.Empty)}{Stealth}, "); }
+            if (Survival != 0)          { stringBuilder.Append($"Survival {(Survival >= 0 ? "+" : String.Empty)}{Survival}, "); }
 
             if (stringBuilder.Length >= 2) { stringBuilder.Remove(stringBuilder.Length - 2, 2); }
 
             return stringBuilder.ToString().Trim();
         }
 
+        public string OkToSaveToFile(object sender, RoutedEventArgs e)
+        {
+            string warningMessageDoNotSave = "";
+
+            if (string.IsNullOrEmpty(NPCType))
+            {
+                log.Warn("NPC Type is missing from " + NPCName);
+                warningMessageDoNotSave += "NPC Type is missing from " + NPCName + "\n";
+            }
+            if (string.IsNullOrEmpty(Size))
+            {
+                log.Warn("Size is missing from " + NPCName);
+                warningMessageDoNotSave += "Size is missing from " + NPCName + "\n";
+            }
+            if (string.IsNullOrEmpty(AC))
+            {
+                log.Warn("AC is missing from " + NPCName);
+                warningMessageDoNotSave += "AC is missing from " + NPCName + "\n";
+            }
+            if (string.IsNullOrEmpty(Alignment))
+            {
+                log.Warn("Alignment is missing from " + NPCName);
+                warningMessageDoNotSave += "Alignment is missing from " + NPCName + "\n";
+            }
+            if (string.IsNullOrEmpty(ChallengeRating))
+            {
+                log.Warn("Challenge Rating is missing from " + NPCName);
+                warningMessageDoNotSave += "Challenge Rating is missing from " + NPCName + "\n";
+            }
+            if (string.IsNullOrEmpty(HP))
+            {
+                log.Warn("Hit Points are missing from " + NPCName);
+                warningMessageDoNotSave += "Hit Points are missing from " + NPCName + "\n";
+            }
+            if (string.IsNullOrEmpty(LanguageOptions))
+            {
+                log.Warn("Language Option (usually No special conditions) is missing from " + NPCName);
+                warningMessageDoNotSave += "Language Option (usually No special conditions) is missing from " + NPCName + "\n";
+            }
+            if (Telepathy == true && string.IsNullOrEmpty(TelepathyRange))
+            {
+                log.Warn("Telepathy Range is missing from " + NPCName);
+                warningMessageDoNotSave += "Telepathy Range is missing from " + NPCName + "\n";
+            }
+            if (InnateSpellcastingSection == true && string.IsNullOrEmpty(InnateSpellcastingAbility))
+            {
+                log.Warn("Innate Spellcasting Ability is missing from " + NPCName);
+                warningMessageDoNotSave += "Innate Spellcasting Ability is missing from " + NPCName + "\n";
+            }
+            if (SpellcastingSection == true)
+            {
+                if (string.IsNullOrEmpty(SpellcastingCasterLevel))
+				{
+                    log.Warn("Spellcaster Level is missing from " + NPCName);
+                    warningMessageDoNotSave += "What level spellcaster is " + NPCName + "\n";
+                }
+                if (string.IsNullOrEmpty(SCSpellcastingAbility))
+                {
+                    log.Warn("Spellcasting Ability is missing from " + NPCName);
+                    warningMessageDoNotSave += "Spellcasting Ability is missing from " + NPCName + "\n";
+                }
+                if (string.IsNullOrEmpty(SpellcastingSpellClass))
+                {
+                    log.Warn("Spellcasting Class is missing from " + NPCName);
+                    warningMessageDoNotSave += "What class of spells does " + NPCName + " know \n";
+                }
+                if (string.IsNullOrEmpty(CantripSpells) && !string.IsNullOrEmpty(CantripSpellList))
+                {
+                    log.Warn("Number of Cantrip slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Cantrip spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(FirstLevelSpells) && !string.IsNullOrEmpty(FirstLevelSpellList))
+                {
+                    log.Warn("Number of First Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many First Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(SecondLevelSpells) && !string.IsNullOrEmpty(SecondLevelSpellList))
+                {
+                    log.Warn("Number of Second Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Second Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(ThirdLevelSpells) && !string.IsNullOrEmpty(ThirdLevelSpellList))
+                {
+                    log.Warn("Number of Third Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Third Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(FourthLevelSpells) && !string.IsNullOrEmpty(FourthLevelSpellList))
+                {
+                    log.Warn("Number of Fourth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Fourth Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(FifthLevelSpells) && !string.IsNullOrEmpty(FifthLevelSpellList))
+                {
+                    log.Warn("Number of Fifth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Fifth Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(SixthLevelSpells) && !string.IsNullOrEmpty(SixthLevelSpellList))
+                {
+                    log.Warn("Number of Sixth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Sixth Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(SeventhLevelSpells) && !string.IsNullOrEmpty(SeventhLevelSpellList))
+                {
+                    log.Warn("Number of Seventh Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Seventh Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(EighthLevelSpells) && !string.IsNullOrEmpty(EighthLevelSpellList))
+                {
+                    log.Warn("Number of Eighth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Eighth Level Spell slots " + NPCName + " has \n";
+                }
+                if (string.IsNullOrEmpty(NinthLevelSpells) && !string.IsNullOrEmpty(NinthLevelSpellList))
+                {
+                    log.Warn("Number of Ninth Level Spell slots is missing from " + NPCName);
+                    warningMessageDoNotSave += "Choose how many Ninth Level Spell slots " + NPCName + " has \n";
+                }
+            }
+            return warningMessageDoNotSave;
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 
         protected bool Set<T>(ref T backingField, T value, [CallerMemberName] string propertyname = null)
         {
             // Check if the value and backing field are actualy different
-            if (EqualityComparer<T>.Default.Equals(backingField, value))
-            {
-                return false;
-            }
+            if (EqualityComparer<T>.Default.Equals(backingField, value))    { return false; }
 
             // Setting the backing field and the RaisePropertyChanged
             backingField = value;
