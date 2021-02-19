@@ -122,11 +122,13 @@ namespace FantasyModuleParser
                 case "ManageProject":
                     projectManagement = new ProjectManagement();
                     projectManagement.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
+                    projectManagement.SaveAndCloseAction += ProjectManagement_OnSaveAndCloseAction;
                     projectManagement.Show();
                     break;
                 case "ProjectManagement":
                     projectManagement = new ProjectManagement();
                     projectManagement.OnCloseWindowAction += ProjectManagement_OnCloseWindowAction;
+                    projectManagement.SaveAndCloseAction += ProjectManagement_OnSaveAndCloseAction;
                     projectManagement.ShowDialog();
                     break;
                 case "Settings":
@@ -147,6 +149,13 @@ namespace FantasyModuleParser
         private void ProjectManagement_OnCloseWindowAction(object sender, EventArgs e)
         {
             npcOptionUserControl.Refresh();
+            (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
+        }
+
+        private void ProjectManagement_OnSaveAndCloseAction(object sender, EventArgs e)
+        {
+            moduleModel = moduleService.GetModuleModel();
+            npcOptionUserControl.Refresh(true);
             (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
         }
 

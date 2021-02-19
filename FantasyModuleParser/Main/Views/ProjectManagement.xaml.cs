@@ -65,8 +65,14 @@ namespace FantasyModuleParser.Main
         }
         private void SaveModuleAndClose_Click(object sender, RoutedEventArgs e)
         {
-            SaveModule_Click(sender, e);
-            ESExit_Click(sender, e);
+            if (validateRequiredFields()) { 
+                SaveModule_Click(sender, e);
+                OnSaveAndCloseAction(EventArgs.Empty);
+                ESExit_Click(sender, e);
+            } else
+            {
+                RequiredTextBox_TextChanged(sender, null);
+            }
         }
 
         private void SaveToModule_Click(object sender, RoutedEventArgs e)
@@ -126,9 +132,39 @@ namespace FantasyModuleParser.Main
             }
         }
 
+        public event EventHandler SaveAndCloseAction;
+        protected virtual void OnSaveAndCloseAction(EventArgs e)
+        {
+            EventHandler handler = SaveAndCloseAction;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         private void ModuleModFilename_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             (DataContext as ProjectManagementViewModel).UpdateFullModulePath();
+            RequiredTextBox_TextChanged(sender, e);
+        }
+
+        private void RequiredTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (validateRequiredFields())
+            {
+                RequiredLabel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                RequiredLabel.Visibility = Visibility.Visible;
+            }
+        }
+
+        private bool validateRequiredFields()
+        {
+            if (ModuleName == null || ModuleModFilename == null)
+                return false;
+            return !String.IsNullOrEmpty(ModuleName.Text) && !String.IsNullOrEmpty(ModuleModFilename.Text);
         }
     }
 }
