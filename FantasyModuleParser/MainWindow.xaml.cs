@@ -25,7 +25,11 @@ namespace FantasyModuleParser
     {
         private bool isViewStatBlockVisible = false;
         private readonly ModuleService moduleService;
-        private readonly ModuleModel moduleModel;
+
+        // TODO: Darkpool: reverting readonly status due to an anti-pattern, where the Save action
+        //  should update moduleModel, but in reality it **should** have the moduleModel object
+        //  itself call an update... maybe?  Need to discuss w/ Battlemarch
+        private ModuleModel moduleModel;
         private SettingsModel settingsModel;
         private readonly SettingsService settingsService;
         private readonly SpellStatBlockUC spellStatBlockUC;

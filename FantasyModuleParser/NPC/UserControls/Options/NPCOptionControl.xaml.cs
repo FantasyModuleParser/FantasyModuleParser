@@ -237,7 +237,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 				CategorySelectedNPCComboBox.SelectedIndex = 0;
 
-				npcController.UpdateNPCModel(new NPCModel());
+				NpcController.UpdateNPCModel(new NPCModel());
 				RefreshUserControls();
 			}
 			else
