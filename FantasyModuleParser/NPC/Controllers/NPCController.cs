@@ -34,10 +34,12 @@ namespace FantasyModuleParser.NPC.Controllers
 		public void Save(string path, NPCModel npcModel)
 		{
 			using (StreamWriter file = File.CreateText(@path))
-			{ 
-				JsonSerializer serializer = new JsonSerializer();
-				serializer.Formatting = Formatting.Indented;
-				serializer.TypeNameHandling = TypeNameHandling.Objects;
+			{
+				JsonSerializer serializer = new JsonSerializer
+				{
+					Formatting = Formatting.Indented,
+					TypeNameHandling = TypeNameHandling.Objects
+				};
 				serializer.Converters.Add(new SelectableActionModelConverter());
 				serializer.Converters.Add(new LanguageModelConverter());
 				serializer.Serialize(file, npcModel);
@@ -74,16 +76,17 @@ namespace FantasyModuleParser.NPC.Controllers
 
 		public NPCModel InitializeNPCModel()
 		{
-			NPCModel npcModel = new NPCModel();
-
-			npcModel.DamageResistanceModelList = GetSelectableActionModelList(typeof(DamageType));
-			npcModel.DamageVulnerabilityModelList = GetSelectableActionModelList(typeof(DamageType));
-			npcModel.DamageImmunityModelList = GetSelectableActionModelList(typeof(DamageType));
-			npcModel.ConditionImmunityModelList = GetSelectableActionModelList(typeof(ConditionType));
-			npcModel.SpecialWeaponImmunityModelList = GetSelectableActionModelList(typeof(WeaponImmunity));
-			npcModel.SpecialWeaponDmgImmunityModelList = GetSelectableActionModelList(typeof(DamageType));
-			npcModel.SpecialWeaponResistanceModelList = GetSelectableActionModelList(typeof(WeaponResistance));
-			npcModel.SpecialWeaponDmgResistanceModelList = GetSelectableActionModelList(typeof(DamageType));
+			NPCModel npcModel = new NPCModel
+			{
+				DamageResistanceModelList = GetSelectableActionModelList(typeof(DamageType)),
+				DamageVulnerabilityModelList = GetSelectableActionModelList(typeof(DamageType)),
+				DamageImmunityModelList = GetSelectableActionModelList(typeof(DamageType)),
+				ConditionImmunityModelList = GetSelectableActionModelList(typeof(ConditionType)),
+				SpecialWeaponImmunityModelList = GetSelectableActionModelList(typeof(WeaponImmunity)),
+				SpecialWeaponDmgImmunityModelList = GetSelectableActionModelList(typeof(DamageType)),
+				SpecialWeaponResistanceModelList = GetSelectableActionModelList(typeof(WeaponResistance)),
+				SpecialWeaponDmgResistanceModelList = GetSelectableActionModelList(typeof(DamageType))
+			};
 
 			// For SpecialWeaponDmgResistance & Immunity lists, make the default selected to "No special weapon immunity / resistance", which is the first in each list
 			npcModel.SpecialWeaponImmunityModelList.First().Selected = true;
