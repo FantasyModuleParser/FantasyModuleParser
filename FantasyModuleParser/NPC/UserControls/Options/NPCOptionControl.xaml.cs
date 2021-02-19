@@ -222,12 +222,24 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 		public void Refresh()
 		{
+			Refresh(false);
+		}
+
+		public void Refresh(bool flush)
+        {
 			npcOptionControlViewModel.Refresh();
-			if(FGCategoryComboBox.SelectedItem == null)
+			if (FGCategoryComboBox.SelectedItem == null || flush)
 			{
 				FGCategoryComboBox.ItemsSource = npcOptionControlViewModel.ModuleModel.Categories;
 				FGCategoryComboBox.SelectedIndex = 0;
-			} 
+
+				// Clear out CategorySelectedNPCComboBox
+
+				CategorySelectedNPCComboBox.SelectedIndex = 0;
+
+				NpcController.UpdateNPCModel(new NPCModel());
+				RefreshUserControls();
+			}
 			else
 			{
 				CategorySelectedNPCComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).NPCModels;
@@ -239,7 +251,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
         private void PrevNPCInCategory_Button_Click(object sender, RoutedEventArgs e)
         {
 			CategoryModel categoryModel = FGCategoryComboBox.SelectedItem as CategoryModel;
-			if (categoryModel != null)
+			if (categoryModel != null && categoryModel.NPCModels.Count > 0)
 			{
 				if (categoryIndex == 0) { categoryIndex = categoryModel.NPCModels.Count - 1; }
 				else { categoryIndex--; }
@@ -255,7 +267,7 @@ namespace FantasyModuleParser.NPC.UserControls.Options
         private void NextNPCInCategory_Button_Click(object sender, RoutedEventArgs e)
         {
 			CategoryModel categoryModel = FGCategoryComboBox.SelectedItem as CategoryModel;
-			if (categoryModel != null)
+			if (categoryModel != null && categoryModel.NPCModels.Count > 0)
 			{
 				if (categoryIndex == categoryModel.NPCModels.Count - 1) { categoryIndex = 0; }
 				else { categoryIndex++; }
