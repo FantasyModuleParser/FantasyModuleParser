@@ -211,8 +211,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 			{
 				moduleService.AddNPCToCategory(NpcController.GetNPCModel(), (FGCategoryComboBox.SelectedItem as CategoryModel).Name);
 				Refresh();
-				log.Info("NPC " + npcModel.NPCName + " has successfully been added to project");
-				MessageBox.Show("NPC " + npcModel.NPCName + " has been added to the project");
 			}
 			catch (Exception exception)
 			{
