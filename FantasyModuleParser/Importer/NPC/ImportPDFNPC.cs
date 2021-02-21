@@ -34,7 +34,7 @@ namespace FantasyModuleParser.Importer.NPC
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
 
-                if (line.StartsWith("Armor Class", StringComparison.Ordinal))
+                if (line.StartsWith("Armor Class", StringComparison.OrdinalIgnoreCase) || line.StartsWith("Armour Class", StringComparison.OrdinalIgnoreCase))
                     ParseArmorClass(parsedNPCModel, line);
 
                 if (line.StartsWith("Hit Points", StringComparison.Ordinal))
@@ -43,7 +43,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (line.StartsWith("Speed", StringComparison.Ordinal))
                     ParseSpeedAttributes(parsedNPCModel, line);
 
-                if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.Ordinal))
+                if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
                 {
                     continueBaseStatsFlag = true;
                     continue;

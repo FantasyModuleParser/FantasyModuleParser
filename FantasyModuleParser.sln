@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMPTests", "FMPTests\FMPTes
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FMPSetup", "FMPSetup\FMPSetup.vdproj", "{A158EB2E-9360-4581-AAB8-2FD7B2DBCFEE}"
 EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "FMP-exe", "FMP-exe\FMP-exe.wixproj", "{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,18 @@ Global
 		{A158EB2E-9360-4581-AAB8-2FD7B2DBCFEE}.Release|ARM64.ActiveCfg = Release
 		{A158EB2E-9360-4581-AAB8-2FD7B2DBCFEE}.Release|x64.ActiveCfg = Release
 		{A158EB2E-9360-4581-AAB8-2FD7B2DBCFEE}.Release|x86.ActiveCfg = Release
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Debug|ARM.ActiveCfg = Debug|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Debug|ARM64.ActiveCfg = Debug|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Debug|x64.ActiveCfg = Debug|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Debug|x86.ActiveCfg = Debug|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Debug|x86.Build.0 = Debug|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Release|Any CPU.ActiveCfg = Release|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Release|ARM.ActiveCfg = Release|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Release|ARM64.ActiveCfg = Release|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Release|x64.ActiveCfg = Release|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Release|x86.ActiveCfg = Release|x86
+		{C7DFA3AA-44DB-4101-BEA8-2ABA1089617A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

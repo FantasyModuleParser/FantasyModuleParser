@@ -7,7 +7,7 @@
     xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
         xmlns:tableUserControl="clr-namespace:FantasyModuleParser.Tables"
     mc:Ignorable="d"
-    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico">
+    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="CanMinimize" Icon="/Resources/FMP-Logo.ico">
     <Window.Resources>
         <Style TargetType="Label" x:Key="Options">
             <Setter Property="FontWeight" Value="Bold"/>

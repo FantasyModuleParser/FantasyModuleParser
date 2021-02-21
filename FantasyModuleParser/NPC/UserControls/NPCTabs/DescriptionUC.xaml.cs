@@ -55,7 +55,10 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         }
         public void Refresh()
         {
-            (DataContext as DescriptionUCViewModel).Refresh();
+            if (DataContext != null)
+            {
+                (DataContext as DescriptionUCViewModel).Refresh();
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

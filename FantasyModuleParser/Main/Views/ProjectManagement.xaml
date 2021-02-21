@@ -38,12 +38,26 @@
         </Style>
         <Style TargetType="TextBox" x:Key="InformationText">
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="5,0,0,0" />
-            <Setter Property="Height" Value="20" />
+            <Setter Property="Padding" Value="0,0,0,0" />
+            <!--<Setter Property="Height" Value="20" />-->
             <Setter Property="Width" Value="200" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="FontSize" Value="12px" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="InformationTextRequired">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0,0,0,0" />
+            <!--<Setter Property="Height" Value="20" />-->
+            <Setter Property="Width" Value="200" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="12px" />
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBox" x:Key="ModuleFilenameText">
             <Setter Property="Margin" Value="0" />
@@ -74,6 +88,11 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="FontSize" Value="10px" />
             <Setter Property="IsEnabled" Value="False" />
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="CheckBox" x:Key="CheckboxParser">
             <Setter Property="Margin" Value="30,0,0,0" />
@@ -89,66 +108,68 @@
             <Setter Property="IsEnabled" Value="False" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style TargetType="Grid" x:Key="GridInformationStyle">
+            <Setter Property="Margin" Value="1" />
+        </Style>
     </Window.Resources>
     <Grid Background="#FFE5E5E5">
-        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="700">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New Project" Click="NewProject_Click" />
-                <MenuItem Header="_Load Project" Click="LoadModule_Click"/>
-                <MenuItem Header="_Save Project" Click="SaveModule_Click"/>
-                <MenuItem Header="_Save Project As..." Click="SaveToModule_Click"/>
-            </MenuItem>
-        </Menu>
+
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="355"/>
-                <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="420"/>
-                <ColumnDefinition Width="5"/>
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" Width="360" Height="195" Margin="-5,26,0,0" Grid.Column="1"/>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="250" Margin="-5,26,0,0" />
-            <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Menu x:Name="Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New Project" Click="NewProject_Click" />
+                    <MenuItem Header="_Load Project" Click="LoadModule_Click"/>
+                    <MenuItem Header="_Save Project" Click="SaveModule_Click"/>
+                    <MenuItem Header="_Save Project As..." Click="SaveToModule_Click"/>
+                </MenuItem>
+            </Menu>
+            <Grid Grid.Column="0" Grid.Row="1" Margin="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="16" />
                     <RowDefinition Height="20" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
-                    <RowDefinition Height="16" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
-                <Label Content="Module Information" Style="{StaticResource LabelSuperHeader}" Grid.Row="1"/>
-                <Grid Grid.Row="3">
+                <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="9" Margin="-2,0,-2,-5" />
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="12*" />
+                        <ColumnDefinition Width="20*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Module Information" Style="{StaticResource LabelSuperHeader}" Grid.Column="0"/>
+                    <Label x:Name="RequiredLabel"  Content="Required" Style="{StaticResource LabelSuperHeader}" Foreground="Red" Margin="0,0,20,0" HorizontalAlignment="Right" Grid.Column="1"/>
+                </Grid>
+                <Grid Grid.Row="1" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Title:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleName" Text="{Binding ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleName" Text="{Binding ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationTextRequired}" TextChanged="RequiredTextBox_TextChanged"  Grid.Column="1"/>
                 </Grid>
-                <Grid Grid.Row="5">
+                <Grid Grid.Row="2" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="200" />
@@ -156,7 +177,7 @@
                     <Label Content="Module Category:" Padding="0" Grid.Column="0"/>
                     <TextBox x:Name="ModuleCategory" Style="{StaticResource InformationText}" Text="{Binding ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1"/>
                 </Grid>
-                <Grid Grid.Row="7">
+                <Grid Grid.Row="3" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="200" />
@@ -164,17 +185,17 @@
                     <Label Content="Module Author:" Padding="0" Grid.Column="0"/>
                     <TextBox x:Name="ModuleAuthor" Text="{Binding ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
                 </Grid>
-                <Grid Grid.Row="9">
+                <Grid Grid.Row="4" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="200" />
                         <ColumnDefinition Width="98" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Filename:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleModFilename" Text="{Binding ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Style="{StaticResource InformationText}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleModFilename" Text="{Binding ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Style="{StaticResource InformationTextRequired}" Grid.Column="1"/>
                     <Label Content=".mod" FontSize="8" VerticalAlignment="Center" Padding="0" Grid.Column="2"/>
                 </Grid>
-                <Grid Grid.Row="11">
+                <Grid Grid.Row="5" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="200" />
@@ -182,7 +203,7 @@
                     <Label Content="Thumbnail Filename:" Padding="0" Grid.Column="0" />
                     <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource ThumbnailFileText}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="13">
+                <Grid Grid.Row="6" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70" />
                         <ColumnDefinition Width="100" />
@@ -190,22 +211,22 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="70" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox IsChecked="{Binding ModuleModel.IsGMOnly, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="GM View Only" Padding="0" Grid.Column="1" />
-                    <CheckBox IsChecked="{Binding ModuleModel.IsLockedRecords, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="Lock Records" Padding="0" Grid.Column="3" />
+                    <CheckBox IsChecked="{Binding ModuleModel.IsGMOnly, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="GM View Only" Padding="0" VerticalAlignment="Center" Grid.Column="1" />
+                    <CheckBox IsChecked="{Binding ModuleModel.IsLockedRecords, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Content="Lock Records" Padding="0" VerticalAlignment="Center" Grid.Column="3" />
                 </Grid>
-                <Grid Grid.Row="15">
+                <Grid Grid.Row="7">
                     <Label Content="Module Path" Padding="0" />
                 </Grid>
-                <Grid Grid.Row="17">
+                <Grid Grid.Row="8"  Style="{StaticResource GridInformationStyle}">
                     <TextBox x:Name="ModulePathTB" Text="{Binding FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Style="{StaticResource ModulePathText}" />
                 </Grid>
-                <Label Content="Use the options under File to manage your project" Padding="0" Grid.Row="19"/>
-                <Label Content="1. 'New Project' resets all fields" Padding="0" Grid.Row="20"/>
-                <Label Content="2. 'Load Project' loads a previously saved .json file" Padding="0" Grid.Row="21"/>
-                <Label Content="3. 'Save Project' stores your information in a .json file" Padding="0" Grid.Row="22"/>
-                <Label Content="4. 'Save Project As...' opens a folder selector to choose" Padding="0" Width="300" HorizontalAlignment="Left" Grid.Row="23" />
-                <Label Content="where to save your project file" Padding="13,0,0,0" Width="300" HorizontalAlignment="Left" Grid.Row="24" />
-                <Grid Grid.Row="26">
+                <Label Content="Use the options under File to manage your project" Padding="0" Grid.Row="10"/>
+                <Label Content="1. 'New Project' resets all fields" Padding="0" Grid.Row="11"/>
+                <Label Content="2. 'Load Project' loads a previously saved .json file" Padding="0" Grid.Row="12"/>
+                <Label Content="3. 'Save Project' stores your information in a .json file" Padding="0" Grid.Row="13"/>
+                <Label Content="4. 'Save Project As...' opens a folder selector to choose" Padding="0" Width="300" HorizontalAlignment="Left" Grid.Row="14" />
+                <Label Content="where to save your project file" Padding="13,0,0,0" Width="300" HorizontalAlignment="Left" Grid.Row="15" />
+                <Grid Grid.Row="16">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70" />
                         <ColumnDefinition Width="100" />
@@ -217,9 +238,8 @@
                     <Button Content="Close" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="ESExit_Click" Padding="0" Margin="10,0,0,0" Grid.Column="3" />
                 </Grid>
             </Grid>
-            <Grid Grid.Column="3">
+            <Grid Grid.Column="1" Grid.Row="1" Margin="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="16" />
                     <RowDefinition Height="16" />
@@ -235,8 +255,9 @@
                     <RowDefinition Height="16" />
                     <RowDefinition Height="16" />
                 </Grid.RowDefinitions>
-                <Label Content="Parser Information" Style="{StaticResource LabelSuperHeader}" Grid.Row="1"/>
-                <Grid Grid.Row="2">
+                <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="14" Margin="-2,0,-2,-5"/>
+                <Label Content="Parser Information" Style="{StaticResource LabelSuperHeader}" Grid.Row="0"/>
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -244,7 +265,7 @@
                     <Label Content="Image Section" Style="{StaticResource LabelHeader}" Grid.Column="0" />
                     <Label Content="Adventure Sections" Style="{StaticResource LabelHeader}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -252,7 +273,7 @@
                     <CheckBox Content="Images" IsChecked="{Binding ModuleModel.IncludeImages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <CheckBox Content="Encounters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="4">
+                <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -260,7 +281,7 @@
                     <CheckBox Content="Tokens" IsChecked="{Binding ModuleModel.IncludeTokens, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <CheckBox Content="Random Encounters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
                 </Grid>
-                <Grid Grid.Row="5">
+                <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -268,7 +289,7 @@
                     <Label Content="Data Section" Style="{StaticResource LabelHeader}" Grid.Column="0"/>
                     <CheckBox Content="Quests" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
                 </Grid>
-                <Grid Grid.Row="6">
+                <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -276,7 +297,7 @@
                     <CheckBox Content="NPCs/Monsters" IsChecked="{Binding ModuleModel.IncludeNPCs, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <CheckBox Content="Story Entries" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
                 </Grid>
-                <Grid Grid.Row="7">
+                <Grid Grid.Row="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -284,7 +305,7 @@
                     <CheckBox Content="Races" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
                     <CheckBox Content="Story Templates" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="8">
+                <Grid Grid.Row="7">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -292,7 +313,7 @@
                     <CheckBox Content="Classes" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
                     <CheckBox Content="Treasure Parcels" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="9">
+                <Grid Grid.Row="8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -300,7 +321,7 @@
                     <CheckBox Content="Backgrounds" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
                     <CheckBox Content="Image Pins" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="10">
+                <Grid Grid.Row="9">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -308,7 +329,7 @@
                     <CheckBox Content="Feats" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
                     <CheckBox Content="Image Grids" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="11">
+                <Grid Grid.Row="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -316,7 +337,7 @@
                     <CheckBox Content="Skills" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0"/>
                     <CheckBox Content="Pregenerated Characters" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="12">
+                <Grid Grid.Row="11">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -324,7 +345,7 @@
                     <CheckBox Content="Spells" IsChecked="{Binding ModuleModel.IncludeSpells, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0"/>
                     <Label Content="Utility Sections" Style="{StaticResource LabelHeader}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="13">
+                <Grid Grid.Row="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
@@ -332,7 +353,7 @@
                     <CheckBox Content="Equipment" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
                     <CheckBox Content="Reference Manual" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="14">
+                <Grid Grid.Row="13">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />

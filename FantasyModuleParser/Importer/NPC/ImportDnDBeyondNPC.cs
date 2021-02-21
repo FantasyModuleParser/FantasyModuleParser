@@ -38,7 +38,7 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseSizeAndAlignment(parsedNPCModel, line);
                 }
 
-                if (line.StartsWith("Armor Class", StringComparison.Ordinal))
+                if (line.StartsWith("Armor Class", StringComparison.OrdinalIgnoreCase) || line.StartsWith("Armour Class", StringComparison.OrdinalIgnoreCase))
                     ParseArmorClass(parsedNPCModel, line);
                 if (line.StartsWith("Hit Points", StringComparison.Ordinal))
                     ParseHitPoints(parsedNPCModel, line);
@@ -65,32 +65,32 @@ namespace FantasyModuleParser.Importer.NPC
                         continueCharismaFlag = true;
                         break;
                 }
-                while (continueStrengthFlag == true && !line.Equals("STR"))
+                while (continueStrengthFlag == true && !line.Equals("STR", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeStrength(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                while (continueDexterityFlag == true && !line.Equals("DEX"))
+                while (continueDexterityFlag == true && !line.Equals("DEX", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeDexterity(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                while (continueConstitutionFlag == true && !line.Equals("CON"))
+                while (continueConstitutionFlag == true && !line.Equals("CON", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeConstitution(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                while (continueIntelligenceFlag == true && !line.Equals("INT"))
+                while (continueIntelligenceFlag == true && !line.Equals("INT", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeIntelligence(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                while (continueWisdomFlag == true && !line.Equals("WIS"))
+                while (continueWisdomFlag == true && !line.Equals("WIS", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeWisdom(parsedNPCModel, line);
                     resetContinueFlags();
                 }
-                while (continueCharismaFlag == true && !line.Equals("CHA"))
+                while (continueCharismaFlag == true && !line.Equals("CHA", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeCharisma(parsedNPCModel, line);
                     resetContinueFlags();
@@ -121,7 +121,7 @@ namespace FantasyModuleParser.Importer.NPC
                     continue;
                 if (continueTraitsFlag)
                 {
-                    if (line.Equals("Actions"))
+                    if (line.Equals("Actions", System.StringComparison.OrdinalIgnoreCase))
                     {
                         resetContinueFlags();
                         continueActionsFlag = true;
@@ -147,7 +147,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueSpellcastingFlag)
                 {
-                    if (line.Equals("Actions"))
+                    if (line.Equals("Actions", System.StringComparison.OrdinalIgnoreCase))
                     {
                         resetContinueFlags();
                         continueActionsFlag = true;
@@ -158,7 +158,7 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueInnateSpellcastingFlag)
                 {
-                    if (line.Equals("Actions"))
+                    if (line.Equals("Actions", System.StringComparison.OrdinalIgnoreCase))
                     {
                         resetContinueFlags();
                         continueActionsFlag = true;
@@ -184,12 +184,12 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueActionsFlag)
                 {
                     resetContinueFlags();
-                    if (line.Equals("Reactions"))
+                    if (line.Equals("Reactions", System.StringComparison.OrdinalIgnoreCase))
                     {
                         continueReactionsFlag = true;
                         continue;
                     }
-                    if (line.Equals("Legendary Actions"))
+                    if (line.Equals("Legendary Actions", System.StringComparison.OrdinalIgnoreCase))
                     {
                         continueLegendaryActionsFlag = true;
                         continue;
@@ -200,7 +200,7 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueReactionsFlag)
                 {
                     resetContinueFlags();
-                    if (line.Equals("Legendary Actions"))
+                    if (line.Equals("Legendary Actions", System.StringComparison.OrdinalIgnoreCase))
                     {
                         continueLegendaryActionsFlag = true;
                         continue;

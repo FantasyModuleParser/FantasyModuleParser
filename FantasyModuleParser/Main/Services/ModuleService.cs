@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace FantasyModuleParser.Main.Services
 {
@@ -67,51 +68,53 @@ namespace FantasyModuleParser.Main.Services
 
         public void AddNPCToCategory(NPCModel npcModel, string categoryValue)
         {
+            string warningMessageDoNotAdd= "";
+
             if (categoryValue == null || categoryValue.Length == 0)
             {
                 log.Error("Category value is null; Cannot save NPC.\nSelect a Category from the FG Category dropdown menu.");
-                throw new InvalidDataException("Category value is null;  Cannot save NPC.\nSelect a Category from the FG Category dropdown menu.");
+                warningMessageDoNotAdd += "Cannot save " + npcModel.NPCName + " NPC. Select a Category from the FG Category dropdown menu. \n";
             }
             if (npcModel == null)
             {
                 log.Error("NPC Model data object is null.");
-                throw new InvalidDataException("NPC Model data object is null.\nYou thought you could add an NPC without creating or importing one?");
+                warningMessageDoNotAdd += "You must create an NPC first \n";
             }
-            if (npcModel.NPCName == null || npcModel.NPCName.Length == 0)
+            if (string.IsNullOrEmpty(npcModel.NPCName))
             {
-                log.Error("NPC name is empty!");
-                throw new InvalidDataException("NPC name is empty!\nAll NPCs must have a name.");
+                log.Warn("NPC name is empty!");
+                warningMessageDoNotAdd += "Please give your NPC a name \n";
             }
-            if (npcModel.ChallengeRating == null || npcModel.ChallengeRating.Length == 0)
+            if (string.IsNullOrEmpty(npcModel.ChallengeRating))
             {
-                log.Error("No Challenge Rating has been set for NPC.");
-                throw new InvalidDataException("No Challenge Rating has been set for NPC.\nHow do you expect to give your players experience?");
+                log.Warn("No Challenge Rating has been set for " + npcModel.NPCName + ".");
+                warningMessageDoNotAdd += "Challenge Rating is a required field for " + npcModel.NPCName + "\n";
             }
-            if (npcModel.NPCType == null || npcModel.NPCType.Length == 0)
+            if (string.IsNullOrEmpty(npcModel.NPCType))
             {
-                log.Error("NPC must have a specified type.");
-                throw new InvalidDataException("NPC must have a specified type.\nEven an unknown NPC has a type.");
+                log.Warn(npcModel.NPCName + " must have a specified type.");
+                warningMessageDoNotAdd += npcModel.NPCName + " must have a specified type. \n";
             }
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)
             {
                 log.Error("Category Value is not in the Module Model data object!");
-                throw new InvalidDataException("Category Value is not in the Module Model data object!");
+                warningMessageDoNotAdd += "No categories are available for selection \n";
             }
             if (!string.IsNullOrEmpty(npcModel.NPCImage) && npcModel.NPCImage.StartsWith("file:///"))
             {
-                log.Error("Remove the file:/// from the NPC Image path and Add to Project again.");
-                throw new InvalidDataException("Remove the file:/// from the NPC Image path and Add to Project again.");
+                log.Warn("Remove the file:/// from the NPC Image path and Add to Project again.");
+                warningMessageDoNotAdd += "Remove the file:/// from " + npcModel.NPCName + "'s Image path and Add to Project again. \n";
             }
-            if (npcModel.Alignment == null)
+            if (string.IsNullOrEmpty(npcModel.Alignment))
             {
-                log.Error("Select an alignment for the NPC and add to project again.");
-                throw new InvalidDataException("Select an alignment for the NPC and add to project again.\nDoes alignment really matter in DnD anymore?");
+                log.Warn("Select an alignment for the NPC and add to project again.");
+                warningMessageDoNotAdd += "Select an alignment for " + npcModel.NPCName + " and add to project again.\n";
             }
-            if (npcModel.AC == null)
+            if (string.IsNullOrEmpty(npcModel.AC))
             {
-                log.Error("Please add an armor class and try again.");
-                throw new InvalidDataException("Please add an armor class and try again.\nHow do you expect to hit a NPC without knowing it's AC?");
+                log.Warn("Please add an armor class and try again.");
+                warningMessageDoNotAdd += "Please add an armor class for " + npcModel.NPCName + " and try again.\n";
             }
             if (string.IsNullOrEmpty(npcModel.NPCToken))
             {
@@ -122,12 +125,23 @@ namespace FantasyModuleParser.Main.Services
                 npcModel.NPCImage = "";
             }
 
-            if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
-                categoryModel.NPCModels.Add(npcModel);  // The real magic is here
-            
+            if (!string.IsNullOrEmpty(warningMessageDoNotAdd))
+			{
+                MessageBox.Show(warningMessageDoNotAdd);
+                return;
+			}
+            else
+			{
+                if (categoryModel.NPCModels.FirstOrDefault(x => x.NPCName.Equals(npcModel.NPCName, StringComparison.Ordinal)) == null)
+				{
+                    categoryModel.NPCModels.Add(npcModel);  // The real magic is here
+                }
+                string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
+                Save(appendedFileName, moduleModel);
 
-            string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
-            Save(appendedFileName, moduleModel);
+                log.Info(npcModel.NPCName + " has successfully been added to project");
+                MessageBox.Show(npcModel.NPCName + " has been added to the project");
+            }
         }
 
         public void AddSpellToCategory(SpellModel spellModel, string categoryValue)

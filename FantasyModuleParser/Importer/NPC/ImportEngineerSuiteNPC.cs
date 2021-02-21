@@ -30,18 +30,18 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 if (line.StartsWith("***Part 1***"))
                     continue;
-                if(lineNumber == 1)
+                if (lineNumber == 1)
                 {
                     // Line number one indicates the NPC name
                     parsedNPCModel.NPCName = line;
                 }
-                if(lineNumber == 2)
+                if (lineNumber == 2)
                 {
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
                 }
 
-                if (line.StartsWith("Armor Class", StringComparison.Ordinal))
+                if (line.StartsWith("Armor Class", StringComparison.OrdinalIgnoreCase) || line.StartsWith("Armour Class", StringComparison.OrdinalIgnoreCase))
                     ParseArmorClass(parsedNPCModel, line);
                 if (line.StartsWith("Hit Points", StringComparison.Ordinal))
                     ParseHitPoints(parsedNPCModel, line);
@@ -144,16 +144,16 @@ namespace FantasyModuleParser.Importer.NPC
                 if (continueTraitsFlag)
                     ParseTraits(parsedNPCModel, line);
                 
-                if(continueActionsFlag && !line.Equals("ACTIONS"))
+                if(continueActionsFlag && !line.Equals("ACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseStandardAction(parsedNPCModel, line);
 
-                if (continueReactionsFlag && !line.Equals("REACTIONS"))
+                if (continueReactionsFlag && !line.Equals("REACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseReaction(parsedNPCModel, line);
 
-                if (continueLegendaryActionsFlag && !line.Equals("LEGENDARY ACTIONS"))
+                if (continueLegendaryActionsFlag && !line.Equals("LEGENDARY ACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseLegendaryAction(parsedNPCModel, line);
 
-                if (continueLairActionsFlag && !line.Equals("LAIR ACTIONS"))
+                if (continueLairActionsFlag && !line.Equals("LAIR ACTIONS", StringComparison.OrdinalIgnoreCase))
                     ParseLairAction(parsedNPCModel, line);
 
                 lineNumber++;
