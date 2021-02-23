@@ -21,6 +21,11 @@ namespace FantasyModuleParser.Importer.NPC
         public abstract NPCModel ImportTextToNPCModel(string importTextContent);
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        static char[] spaceSeparator = new char[] {' '};
+        static char[] periodSeparator = new char[] {'.'};
+        static char[] commaSeparator = new char[] {','};
+        static char[] colonSeparator = new char[] {':'};
+
         /// <summary>
         /// Declares all the 'continue' flags used in Importers
         /// </summary>
@@ -725,22 +730,60 @@ namespace FantasyModuleParser.Importer.NPC
             WeaponAttack weaponAttackModel = new WeaponAttack();
 
             weaponAttackModel.WeaponType = importCommonUtils.GetWeaponTypeFromString(standardAction);
-            weaponAttackModel.ActionName = standardAction.Split('.')[0];
+            
+            // return the name of the weapon, it should be the first substring up to the period
+            weaponAttackModel.ActionName = standardAction.Split(periodSeparator, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
 
             int firstColonIndex = standardAction.IndexOf(':');
-            string weaponDescription = standardAction.Substring(firstColonIndex + 2);
+            
+            if (firstColonIndex == -1)
+            {
+                //TODO WARNING "Actions: weapon string did not contain a \":\" as expected, parsed string is: " + standardAction
+            }
 
-            string[] weaponDescriptionDataSplit = weaponDescription.Split(',');
+            // split the weapon description, everyting in standardAction after the first colon
+            string[] tmp = standardAction.Split(colonSeparator, 2, StringSplitOptions.RemoveEmptyEntries);
+            if(tmp.Length != 2)
+			{
+                //TODO WARNING "Actions: weapon string did not contain a description after the first \":\" as expected, parsed string is: " + standardAction
+            }
+
+            // standardAction.Substring(firstColonIndex + 2); could have resulted in an out of bounds exception
+            string weaponDescription = tmp[1].Trim(); 
+
+            string[] weaponDescriptionDataSplit = weaponDescription.Split(commaSeparator, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string weaponDescriptionData in weaponDescriptionDataSplit)
             {
                 if (weaponDescriptionData.Contains("to hit"))
-                    weaponAttackModel.ToHit = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[0]);
-                if (weaponDescriptionData.Contains("reach"))
-                    weaponAttackModel.Reach = parseAttributeStringToInt(weaponDescriptionData.Split(' ')[2]);
+                {
+                    Match matches = Regex.Match(weaponDescriptionData, @"[+-]\d+");
+                    if (matches.Success)
+                    {
+                        weaponAttackModel.ToHit = parseAttributeStringToInt(matches.Value);  // weaponDescriptionData.Split(' ')[0]);
+                    }
+					else
+					{ 
+                        // TODO warning, parse fail
+                    }
+                    continue;
+                }
+				if (weaponDescriptionData.Contains("reach"))
+				{
+                    Match matches = Regex.Match(weaponDescriptionData, @"\d+");
+                    if (matches.Success)
+                    {
+                        weaponAttackModel.Reach = parseAttributeStringToInt(matches.Value);
+                    }
+                    else
+                    {
+                        // TODO warning, parse fail
+                    }
+                    continue;
+                }
                 if (weaponDescriptionData.Contains("range"))
                 {
-                    int rangeIndex = weaponDescriptionData.IndexOf("range ", StringComparison.Ordinal);
+                    int rangeIndex = weaponDescriptionData.IndexOf("range ", StringComparison.OrdinalIgnoreCase);
                     string rangeStringValue = weaponDescriptionData.Substring(rangeIndex + 6).Split(' ')[0];
 
                     if (rangeStringValue.Contains("/"))
@@ -755,9 +798,15 @@ namespace FantasyModuleParser.Importer.NPC
                     }
                 }
                 if (weaponDescriptionData.Contains("one target"))
+                {
                     weaponAttackModel.TargetType = TargetType.target;
+                    // TODO add continue here?
+                }
                 if (weaponDescriptionData.Contains("one creature"))
+                {
                     weaponAttackModel.TargetType = TargetType.creature;
+                    // TODO add continue here?
+                }
             }
 
             ParseWeaponAttackDamageText(weaponAttackModel, weaponDescription);
@@ -780,7 +829,6 @@ namespace FantasyModuleParser.Importer.NPC
                 string[] damagePropertyDataSplit = damagePropertyData.Split(new string[] { " plus " }, StringSplitOptions.None);
                 weaponAttackModel.PrimaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[0]);
                 weaponAttackModel.SecondaryDamage = importCommonUtils.ParseDamageProperty(damagePropertyDataSplit[1]);
-
 
                 // Parse out any flavor text
                 ParseWeaponAttackFlavorText(weaponAttackModel, damagePropertyData, PrimarySecondaryDamageRegex);

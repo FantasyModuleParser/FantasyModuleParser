@@ -19,67 +19,110 @@ namespace FantasyModuleParser.Importer.NPC
         public override NPCModel ImportTextToNPCModel(string importTextContent)
         {
             NPCModel parsedNPCModel = new NPCController().InitializeNPCModel();
+            
             string formattedNPCTextData = formatContentService.FormatImportContent(importTextContent);
             StringReader stringReader = new StringReader(formattedNPCTextData);
-            string line = "";
-            int lineNumber = 1;
             resetContinueFlags();
+
+            // The first line indicates the NPC name
+            string line = stringReader.ReadLine();
+            if (line != null)
+			{
+                parsedNPCModel.NPCName = line;
+            }
+
+            // TODO: When a line.StartsWith() if statement is parsed, it should call continue
+            // so as not to check other if statements that are known to not be valid at the moment
             while ((line = stringReader.ReadLine()) != null)
             {
-                if (lineNumber == 1)
-                    // Line number one indicates the NPC name
-                    parsedNPCModel.NPCName = line;
+				if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
+				{
+					// Line 2 indicates Size, Type, (tag), Alignment
+					ParseSizeAndAlignment(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
-                    // Line 2 indicates Size, Type, (tag), Alignment
-                    ParseSizeAndAlignment(parsedNPCModel, line);
+				if (line.StartsWith("Armor Class", StringComparison.OrdinalIgnoreCase) || line.StartsWith("Armour Class", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseArmorClass(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Armor Class", StringComparison.OrdinalIgnoreCase) || line.StartsWith("Armour Class", StringComparison.OrdinalIgnoreCase))
-                    ParseArmorClass(parsedNPCModel, line);
+				if (line.StartsWith("Hit Points", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseHitPoints(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Hit Points", StringComparison.Ordinal))
-                    ParseHitPoints(parsedNPCModel, line);
+				if (line.StartsWith("Speed", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseSpeedAttributes(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Speed", StringComparison.Ordinal))
-                    ParseSpeedAttributes(parsedNPCModel, line);
+				if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
+				{
+					continueBaseStatsFlag = true;
+					continue;
+				}
 
-                if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
-                {
-                    continueBaseStatsFlag = true;
-                    continue;
-                }
+				if (continueBaseStatsFlag)
+				{
+					ParseStatAttributes(parsedNPCModel, line);
+					// Why not simply set continueBaseStatsFlag to false here?
+					resetContinueFlags();
+					continue;
+				}
 
-                if (continueBaseStatsFlag)
-                {
-                    ParseStatAttributes(parsedNPCModel, line);
-                    resetContinueFlags();
-                }
+				if (line.StartsWith("Saving Throws", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseSavingThrows(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
-                    ParseSavingThrows(parsedNPCModel, line);
+				if (line.StartsWith("Skills", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseSkillAttributes(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Skills", StringComparison.Ordinal))
-                    ParseSkillAttributes(parsedNPCModel, line);
+				if (line.StartsWith("Damage Resistances", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseDamageResistances(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Damage Resistances", StringComparison.Ordinal))
-                    ParseDamageResistances(parsedNPCModel, line);
+				if (line.StartsWith("Damage Vulnerabilities", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseDamageVulnerabilities(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
-                    ParseDamageVulnerabilities(parsedNPCModel, line);
+				if (line.StartsWith("Damage Immunities", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseDamageImmunities(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Damage Immunities", StringComparison.Ordinal))
-                    ParseDamageImmunities(parsedNPCModel, line);
+				if (line.StartsWith("Condition Immunities", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseConditionImmunities(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Condition Immunities", StringComparison.Ordinal))
-                    ParseConditionImmunities(parsedNPCModel, line);
+				if (line.StartsWith("Senses", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseVisionAttributes(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Senses", StringComparison.Ordinal))
-                    ParseVisionAttributes(parsedNPCModel, line);
+				if (line.StartsWith("Languages", StringComparison.OrdinalIgnoreCase))
+				{
+					ParseLanguages(parsedNPCModel, line);
+					continue;
+				}
 
-                if (line.StartsWith("Languages", StringComparison.Ordinal))
-                    ParseLanguages(parsedNPCModel, line);
-
-                if (line.StartsWith("Challenge", StringComparison.Ordinal))
+				if (line.StartsWith("Challenge", StringComparison.OrdinalIgnoreCase))
                 {
                     ParseChallengeRatingAndXP(parsedNPCModel, line);
                     continueTraitsFlag = true;
@@ -163,7 +206,6 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseLegendaryAction(parsedNPCModel, line);
                     continue;
                 }
-                lineNumber++;
             }
             return parsedNPCModel;
         }

@@ -20,6 +20,52 @@ namespace FantasyModuleParser.NPC
 {
     public class NPCModel
     {
+        #region Enumerators
+        public enum SkillAttributes
+        {
+            Acrobatics,
+			[Description("Animal Handling")]
+            AnimalHandling,
+            Arcana,
+            Athletics,
+            Deception,
+            History,
+            Insight,
+            Intimidation,
+            Investigation,
+            Medicine,
+            Nature,
+            Perception,
+            Performance,
+            Persuasion,
+            Religion,
+			[Description("Sleight Of Hand")]
+            SleightOfHand,
+            Stealth,
+            Survival
+        };
+        #endregion
+
+        #region Constructors
+        public NPCModel()
+        {
+        }
+        #endregion
+
+        #region Variables
+        public const string strSpaceOpenParenPlus = " (+";
+        public const string strSpaceOpenParen = " (";
+        public const string strCloseParen = ")";
+        public const string strCloseParenColon = "):";
+
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region Methods
+        #endregion
+
         #region Private Variables
         private int _speed;
         private int _burrow;
@@ -73,6 +119,7 @@ namespace FantasyModuleParser.NPC
         private int _sleightOfHand;
         private int _stealth;
         private int _survival;
+
         #region Innate Spellcasting
         private bool _innateSpellcastingSection;
         private bool _markAsPsionics;
@@ -86,7 +133,8 @@ namespace FantasyModuleParser.NPC
         private string _innateThreePerDay;
         private string _innateFourPerDay;
         private string _innateFivePerDay;
-        #endregion
+        #endregion  // Innate Spellcasting
+
         #region Spellcasting
         private bool _SpellcastingSection;
         private string _SpellcastingCasterLevel;
@@ -97,7 +145,7 @@ namespace FantasyModuleParser.NPC
         private string _FlavorText;
         private string _CantripSpells;
         private string _CantripSpellList;
-        private string _FirstLevelSpells;
+        private string _FirstLevelSpellSlots;
         private string _FirstLevelSpellList;
         private string _SecondLevelSpells;
         private string _SecondLevelSpellList;
@@ -119,9 +167,10 @@ namespace FantasyModuleParser.NPC
         private string _MarkedSpells;
         private string _NPCImage;
         private string _npcToken;
-        #endregion
+        #endregion  // Spellcasting
 
-        #endregion
+        #endregion  // Private Variables
+
         #region Public Variables
         public string NPCName { get; set; }
         public string Size { get; set; }
@@ -134,60 +183,85 @@ namespace FantasyModuleParser.NPC
         public bool Unique { get; set; }
         public bool NPCNamed { get; set; }
         public int Speed { get { return _speed; } set { Set(ref _speed, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Burrow { get { return _burrow; } set { Set(ref _burrow, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Climb { get { return _climb; } set { Set(ref _climb, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Fly { get { return _fly; } set { Set(ref _fly, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool Hover { get { return _hover; } set { Set(ref _hover, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Swim { get { return _swim; } set { Set(ref _swim, value); } }
+
         public int AttributeStr { get { return _attributeStr; } set { Set(ref _attributeStr, value); } }
         public int AttributeDex { get { return _attributeDex; } set { Set(ref _attributeDex, value); } }
         public int AttributeCon { get { return _attributeCon; } set { Set(ref _attributeCon, value); } }
         public int AttributeInt { get { return _attributeInt; } set { Set(ref _attributeInt, value); } }
         public int AttributeWis { get { return _attributeWis; } set { Set(ref _attributeWis, value); } }
         public int AttributeCha { get { return _attributeCha; } set { Set(ref _attributeCha, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SavingThrowStr { get { return _savingThrowStr; } set { Set(ref _savingThrowStr, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SavingThrowDex { get { return _savingThrowDex; } set { Set(ref _savingThrowDex, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SavingThrowCon { get { return _savingThrowCon; } set { Set(ref _savingThrowCon, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SavingThrowInt { get { return _savingThrowInt; } set { Set(ref _savingThrowInt, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SavingThrowWis { get { return _savingThrowWis; } set { Set(ref _savingThrowWis, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SavingThrowCha { get { return _savingThrowCha; } set { Set(ref _savingThrowCha, value); } }
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SavingThrowStrBool { get { return _savingThrowStrBool; } set { Set(ref _savingThrowStrBool, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SavingThrowDexBool { get { return _savingThrowDexBool; } set { Set(ref _savingThrowDexBool, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SavingThrowConBool { get { return _savingThrowConBool; } set { Set(ref _savingThrowConBool, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SavingThrowIntBool { get { return _savingThrowIntBool; } set { Set(ref _savingThrowIntBool, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SavingThrowWisBool { get { return _savingThrowWisBool; } set { Set(ref _savingThrowWisBool, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SavingThrowChaBool { get { return _savingThrowChaBool; } set { Set(ref _savingThrowChaBool, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Blindsight { get { return _blindsight; } set { Set(ref _blindsight, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool BlindBeyond { get { return _blindBeyond; } set { Set(ref _blindBeyond, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Darkvision { get { return _darkvision; } set { Set(ref _darkvision, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Tremorsense { get { return _tremorsense; } set { Set(ref _tremorsense, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Truesight { get { return _truesight; } set { Set(ref _truesight, value); } }
+
         public int PassivePerception { get { return _passivePerception; } set { Set(ref _passivePerception, value); } }
         public string ChallengeRating { get { return _challengeRating; } set { Set(ref _challengeRating, value); } }
         public int XP { get { return _xp; } set { Set(ref _xp, value); } }
         public string NPCToken { get { return _npcToken; } set { Set(ref _npcToken, value); } }
+
         public List<SelectableActionModel> DamageResistanceModelList { get; set; }
         public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
         public List<SelectableActionModel> DamageImmunityModelList { get; set; }
@@ -196,166 +270,269 @@ namespace FantasyModuleParser.NPC
         public List<SelectableActionModel> SpecialWeaponDmgResistanceModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
         public List<SelectableActionModel> SpecialWeaponDmgImmunityModelList { get; set; }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool ConditionOther { get { return _conditionOther; } set { Set(ref _conditionOther, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string ConditionOtherText { get { return _conditionOtherText; } set { Set(ref _conditionOtherText, value); } }
+
+        #region Begin Skill Attributes
+
+        // Create the dictionary to hold all of the SkillAttributes
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int Acrobatics { get { return _acrobatics; } set { Set(ref _acrobatics, value); } }
+        public Dictionary<SkillAttributes, int> skillAttributes = new Dictionary<SkillAttributes, int>();
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int AnimalHandling { get { return _animalHandling; } set { Set(ref _animalHandling, value); } }
+        public int Acrobatics { get => _acrobatics; set => Set(ref _acrobatics, value); }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int Arcana { get { return _arcana; } set { Set(ref _arcana, value); } }
+        public int AnimalHandling { get => _animalHandling; set => Set(ref _animalHandling, value); }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int Athletics { get { return _athletics; } set { Set(ref _athletics, value); } }
+        public int Arcana { get => _arcana; set => Set(ref _arcana, value); }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int Deception { get { return _deception; } set { Set(ref _deception, value); } }
+        public int Athletics { get => _athletics; set => Set(ref _athletics, value); }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int History { get { return _history; } set { Set(ref _history, value); } }
+        public int Deception { get => _deception; set => Set(ref _deception, value); }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int Insight { get { return _insight; } set { Set(ref _insight, value); } }
+        public int History { get => _history; set => Set(ref _history, value); }
+
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public int Insight { get => _insight; set => Set(ref _insight, value); }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Intimidation { get { return _intimidation; } set { Set(ref _intimidation, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Investigation { get { return _investigation; } set { Set(ref _investigation, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Medicine { get { return _medicine; } set { Set(ref _medicine, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Nature { get { return _nature; } set { Set(ref _nature, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Perception { get { return _perception; } set { Set(ref _perception, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Performance { get { return _performance; } set { Set(ref _performance, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Persuasion { get { return _persuasion; } set { Set(ref _persuasion, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Religion { get { return _religion; } set { Set(ref _religion, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int SleightOfHand { get { return _sleightOfHand; } set { Set(ref _sleightOfHand, value); } }
+        public int SleightOfHand { get => _sleightOfHand; set { Set(ref _sleightOfHand, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int Stealth { get { return _stealth; } set { Set(ref _stealth, value); } }
+        public int Stealth { get => _stealth; set { Set(ref _stealth, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public int Survival { get { return _survival; } set { Set(ref _survival, value); } }
+        public int Survival { get => _survival; set => Set(ref _survival, value); }
+
+        #endregion  // Skill Attributes
+
         public ObservableCollection<LanguageModel> StandardLanguages { get; set; }
         public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
         public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
         public ObservableCollection<LanguageModel> UserLanguages { get; set; }
+
         public string LanguageOptions { get; set; }
         public string LanguageOptionsText { get; set; }
         public bool Telepathy { get; set; }
         public string TelepathyRange { get; set; }
         public ObservableCollection<ActionModelBase> Traits { get; set; }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool InnateSpellcastingSection { get { return _innateSpellcastingSection; } set { Set(ref _innateSpellcastingSection, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool Psionics { get { return _markAsPsionics; } set { Set(ref _markAsPsionics, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string InnateSpellcastingAbility { get { return _innateSpellcastingAbility; } set { Set(ref _innateSpellcastingAbility, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int InnateSpellSaveDC { get { return _innateSpellSaveDC; } set { Set(ref _innateSpellSaveDC, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int InnateSpellHitBonus { get { return _innateSpellHitBonus; } set { Set(ref _innateSpellHitBonus, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string ComponentText { get { return _innateComponentText; } set { Set(ref _innateComponentText, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string InnateAtWill { get { return _innateAtWill; } set { Set(ref _innateAtWill, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FivePerDay { get { return _innateFivePerDay; } set { Set(ref _innateFivePerDay, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FourPerDay { get { return _innateFourPerDay; } set { Set(ref _innateFourPerDay, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string ThreePerDay { get { return _innateThreePerDay; } set { Set(ref _innateThreePerDay, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string TwoPerDay { get { return _innateTwoPerDay; } set { Set(ref _innateTwoPerDay, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string OnePerDay { get { return _innateOnePerDay; } set { Set(ref _innateOnePerDay, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SpellcastingSection { get { return _SpellcastingSection; } set { Set(ref _SpellcastingSection, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SpellcastingCasterLevel { get { return _SpellcastingCasterLevel; } set { Set(ref _SpellcastingCasterLevel, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SCSpellcastingAbility { get { return _SCSpellcastingAbility; } set { Set(ref _SCSpellcastingAbility, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SpellcastingSpellSaveDC { get { return _SpellcastingSpellSaveDC; } set { Set(ref _SpellcastingSpellSaveDC, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SpellcastingSpellHitBonus { get { return _SpellcastingSpellHitBonus; } set { Set(ref _SpellcastingSpellHitBonus, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SpellcastingSpellClass { get { return _SpellcastingSpellClass; } set { Set(ref _SpellcastingSpellClass, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FlavorText { get { return _FlavorText; } set { Set(ref _FlavorText, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string CantripSpells { get { return _CantripSpells; } set { Set(ref _CantripSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string CantripSpellList { get { return _CantripSpellList; } set { Set(ref _CantripSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public string FirstLevelSpells { get { return _FirstLevelSpells; } set { Set(ref _FirstLevelSpells, value); } }
+        public string FirstLevelSpells { get { return _FirstLevelSpellSlots; } set { Set(ref _FirstLevelSpellSlots, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FirstLevelSpellList { get { return _FirstLevelSpellList; } set { Set(ref _FirstLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SecondLevelSpells { get { return _SecondLevelSpells; } set { Set(ref _SecondLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SecondLevelSpellList { get { return _SecondLevelSpellList; } set { Set(ref _SecondLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string ThirdLevelSpells { get { return _ThirdLevelSpells; } set { Set(ref _ThirdLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string ThirdLevelSpellList { get { return _ThirdLevelSpellList; } set { Set(ref _ThirdLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FourthLevelSpells { get { return _FourthLevelSpells; } set { Set(ref _FourthLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FourthLevelSpellList { get { return _FourthLevelSpellList; } set { Set(ref _FourthLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FifthLevelSpells { get { return _FifthLevelSpells; } set { Set(ref _FifthLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string FifthLevelSpellList { get { return _FifthLevelSpellList; } set { Set(ref _FifthLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SixthLevelSpells { get { return _SixthLevelSpells; } set { Set(ref _SixthLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SixthLevelSpellList { get { return _SixthLevelSpellList; } set { Set(ref _SixthLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SeventhLevelSpells { get { return _SeventhLevelSpells; } set { Set(ref _SeventhLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string SeventhLevelSpellList { get { return _SeventhLevelSpellList; } set { Set(ref _SeventhLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string EighthLevelSpells { get { return _EighthLevelSpells; } set { Set(ref _EighthLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string EighthLevelSpellList { get { return _EighthLevelSpellList; } set { Set(ref _EighthLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string NinthLevelSpells { get { return _NinthLevelSpells; } set { Set(ref _NinthLevelSpells, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string NinthLevelSpellList { get { return _NinthLevelSpellList; } set { Set(ref _NinthLevelSpellList, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool MarkedSpellsCheck { get { return _MarkedSpellsCheck; } set { Set(ref _MarkedSpellsCheck, value); } }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string MarkedSpells { get { return _MarkedSpells; } set { Set(ref _MarkedSpells, value); } }
+
         public string Description { get; set; }
         public string NonID { get; set; }
+
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string NPCImage { get { return _NPCImage; } set { Set(ref _NPCImage, value); } }
+
         public ObservableCollection<ActionModelBase> NPCActions { get; } = new ObservableCollection<ActionModelBase>();
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
         public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
         public ObservableCollection<ActionModelBase> Reactions { get; } = new ObservableCollection<ActionModelBase>();
-        #endregion
+        #endregion  // Public Variables
+
         public NPCController NpcController { get; set; }
-        private readonly SettingsService settingsService;
         private static readonly ILog log = LogManager.GetLogger(typeof(NPCModel));
-        public NPCModel()
-        {
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //private static int ParseAttributeStringToInt(string attribute)
-        //{
-        //    if (attribute.Length == 0 || attribute.Trim().Length == 0) { return 0; }
+        // Characteristic modifier properties as strings
+        public string UpdateStrengthAttributeModifier => DetermineAttributeModifierString(AttributeStr);
+        public string UpdateDexterityAttributeModifier => DetermineAttributeModifierString(AttributeDex);
+        public string UpdateConstitutionAttributeModifier => DetermineAttributeModifierString(AttributeCon);
+        public string UpdateIntelligenceAttributeModifier => DetermineAttributeModifierString(AttributeInt);
+        public string UpdateWisdomAttributeModifier => DetermineAttributeModifierString(AttributeWis);
+        public string UpdateCharismaAttributeModifier => DetermineAttributeModifierString(AttributeCha);
 
-        //    attribute = attribute.Replace('+', ' ');
-        //    attribute = attribute.Replace(',', ' ');
-        //    string attributeSubstring = attribute.Trim();
-        //    return int.Parse(attributeSubstring, CultureInfo.CurrentCulture);
-        //}
+        private static string DetermineAttributeModifierString(int value)
+        {
+            // formats as +1, -1, +0 (for arguments 1, -1, 0)
+            return string.Format(" ({0:+#;-#;+0})", -5 + (value / 2)); ;
+        }
 
-        private static bool ParseAttributeStringToInt(string skillAttributeString, out string skillAttributeName, out int skillValue)
+		public string RetrieveCantripsSpellSlotsString => GetSpellSlotsString("Cantrips", CantripSpells);
+		public string RetrieveFirstLevelSpellSlotsString => GetSpellSlotsString("1st", FirstLevelSpells);  // TODO checge to be FistLevelSpellSlots
+		public string RetrieveSecondLevelSpellSlotsString => GetSpellSlotsString("2nd", SecondLevelSpells);
+		public string RetrieveThirdLevelSpellSlotsString => GetSpellSlotsString("3rd", ThirdLevelSpells);
+		public string RetrieveFourthLevelSpellSlotsString => GetSpellSlotsString("4th", FourthLevelSpells);
+		public string RetrieveFifthLevelSpellSlotsString => GetSpellSlotsString("5th", FifthLevelSpells);
+		public string RetrieveSixthLevelSpellSlotsString => GetSpellSlotsString("6th", SixthLevelSpells);
+		public string RetrieveSeventhLevelSpellSlotsString => GetSpellSlotsString("7th", SeventhLevelSpells);
+		public string RetrieveEighthLevelSpellSlotsString => GetSpellSlotsString("8th", EighthLevelSpells);
+		public string RetrieveNinthLevelSpellSlotsString => GetSpellSlotsString("9th", NinthLevelSpells);
+		public string RetrieveMarkedLevelSpellSlotsString => GetSpellSlotsString("* ", MarkedSpells);
+
+		public static string GetSpellSlotsString(string lvl, string spellSlotsAtLevel)
+		{
+			if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) return string.Empty;
+
+			string strLvl = lvl.Equals("Cantrips") || lvl.Equals("* ") ? lvl : lvl + " level";
+
+			// "1st level (" + spellListAtLevel.ToLower() + "):"
+			return string.Format("{0}{1}{2}{3}", strLvl, strSpaceOpenParen, spellSlotsAtLevel.ToLower().Trim(), strCloseParenColon);
+		}
+
+		/// <summary>
+		/// Parse each skills attributes substring and retrieve it's value
+		/// </summary>
+		/// <param name="skillAttributeName">The name of the skill attribute.</param>
+		/// <param name="skillValue">The numerical value of the attribute.</param>
+		/// <returns>Returns true if skill was parsed correctly.</returns>
+		private static bool ParseAttributeStringToInt(string skillAttributeString, out string skillAttributeName, out int skillValue)
 		{
             skillAttributeName = null;
             skillValue = 0;
@@ -367,8 +544,8 @@ namespace FantasyModuleParser.NPC
 			// make sure that there are at least 2 elements here: the attribute and the number
 			if (currentSkillString.Length < 2)
             {
-				//TODO write out skillAttributeValue to warning dialog box
-				return false;
+                log.Error("A problem occured parsing skill attribute string: " + skillAttributeString);
+                return false;
             }
 
             // is the last substring a number or not?
@@ -393,15 +570,26 @@ namespace FantasyModuleParser.NPC
             }
 
             // Int32.TryParse failed, there isn't much we can to to recover
-            //TODO write out skillAttributeValue to warning dialog box
+            log.Error("A problem occured parsing skill attribute string: " + skillAttributeString);
             return false;
         }
 
-        /// <summary>
-        /// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9,
-        ///  Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
-        /// </summary>
-        public void ParseSkillAttributes(string line)
+		public string givemespeed()
+		{
+			return string.Format("{0}{1}{3}{3}{4}",
+                this.Speed == 0 ? string.Empty : string.Format("{0} ft.", this.Speed),
+                this.Climb == 0 ? string.Empty : string.Format(", climb {0} ft.", this.Climb),
+                this.Fly == 0 ? string.Empty : string.Format(", fly {0} ft.{1}", this.Fly, this.Hover ? " (hover)" : string.Empty),
+                this.Burrow == 0 ? string.Empty : string.Format(", burrow {0} ft.", this.Burrow),
+                this.Swim == 0 ? string.Empty : string.Format(", swim {0} ft.", this.Swim));
+		}
+
+		/// <summary>
+		/// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9,
+		///  Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
+		/// </summary>
+		/// <param name="line">The Skills string to be parsed in its entirity</param>
+		public void ParseSkillAttributes(string line)
         {
             // Remove leading text "Skill "
             string skillAttributes = Regex.Replace(line.Trim(), "^Skills", String.Empty, RegexOptions.IgnoreCase).Trim();
@@ -412,61 +600,61 @@ namespace FantasyModuleParser.NPC
             {
 				if (!ParseAttributeStringToInt(skillAttributeValue, out string skillAttributeName, out int value)) { continue; }
 
-				switch (skillAttributeName)
+                switch (skillAttributeName)
                 {
                     case "Acrobatics":
-                        Acrobatics = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Acrobatics = value;
                         break;
                     case "Animal":
-                        AnimalHandling = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 2]);
+                        AnimalHandling = value;
                         break;
                     case "Arcana":
-                        Arcana = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Arcana = value;
                         break;
                     case "Athletics":
-                        Athletics = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Athletics = value;
                         break;
                     case "Deception":
-                        Deception = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Deception = value;
                         break;
                     case "History":
-                        History = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        History = value;
                         break;
                     case "Insight":
-                        Insight = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Insight = value;
                         break;
                     case "Intimidation":
-                        Intimidation = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Intimidation = value;
                         break;
                     case "Investigation":
-                        Investigation = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Investigation = value;
                         break;
                     case "Medicine":
-                        Medicine = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Medicine = value;
                         break;
                     case "Nature":
-                        Nature = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Nature = value;
                         break;
                     case "Perception":
-                        Perception = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Perception = value;
                         break;
                     case "Performance":
-                        Performance = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Performance = value;
                         break;
                     case "Persuasion":
-                        Persuasion = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Persuasion = value;
                         break;
                     case "Religion":
-                        Religion = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Religion = value;
                         break;
                     case "Sleight":
-                        SleightOfHand = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 3]);
+                        SleightOfHand = value;
                         break;
                     case "Stealth":
-                        Stealth = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Stealth = value;
                         break;
                     case "Survival":
-                        Survival = value; // ParseAttributeStringToInt(skillAttributeArray[columnIndex + 1]);
+                        Survival = value;
                         break;
                     default:
                         // TODO: add error reporting code here
@@ -636,7 +824,10 @@ namespace FantasyModuleParser.NPC
         protected bool Set<T>(ref T backingField, T value, [CallerMemberName] string propertyname = null)
         {
             // Check if the value and backing field are actualy different
-            if (EqualityComparer<T>.Default.Equals(backingField, value))    { return false; }
+            if (EqualityComparer<T>.Default.Equals(backingField, value))
+            {
+                return false;
+            }
 
             // Setting the backing field and the RaisePropertyChanged
             backingField = value;
