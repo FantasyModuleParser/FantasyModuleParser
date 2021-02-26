@@ -24,6 +24,7 @@ namespace FantasyModuleParser.Importer.NPC
         private const char spaceChar = ' ';
         private const string periodStr = ".";
         private const string colonStr = ":";
+        private const string slashSlashRStr = "\\r";
 
         public string FormatImportContent(string importTextContent)
         {
@@ -41,7 +42,7 @@ namespace FantasyModuleParser.Importer.NPC
                         {
                             if (line.StartsWith("Languages", StringComparison.OrdinalIgnoreCase))
                             {
-								_ = formattedTextContent.Append(Environment.NewLine).Append(line);  //Environment.NewLine
+								_ = formattedTextContent.Append(Environment.NewLine).Append(line);
                                 importNPCState = ImportNPCState.NO_STATE;
                             }
                             else
@@ -107,9 +108,9 @@ namespace FantasyModuleParser.Importer.NPC
                             {
                                 _ = formattedTextContent.Append(spaceChar + Environment.NewLine);
                             }
-                            if (line.EndsWith("prepared:", StringComparison.OrdinalIgnoreCase))
+                            else if (line.EndsWith("prepared:", StringComparison.OrdinalIgnoreCase))
                             {
-                                _ = formattedTextContent.Append(Environment.NewLine);
+                                _ = formattedTextContent.Append(slashSlashRStr);
                             }
                             else if (line.Equals("actions", StringComparison.OrdinalIgnoreCase))
                             {
@@ -151,7 +152,7 @@ namespace FantasyModuleParser.Importer.NPC
                                 line.StartsWith("4/day each:", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3/day each:", StringComparison.OrdinalIgnoreCase) ||
                                 line.StartsWith("2/day each:", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1/day each:", StringComparison.OrdinalIgnoreCase))
                             {
-                                _ = formattedTextContent.Append(Environment.NewLine).Append(line);
+                                _ = formattedTextContent.Append(slashSlashRStr).Append(line);
                                 importNPCState = ImportNPCState.INNATE_SPELLCASTING_SELECTION;
                             }
                             else
@@ -177,7 +178,7 @@ namespace FantasyModuleParser.Importer.NPC
                                 line.StartsWith("4/day", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3/day", StringComparison.OrdinalIgnoreCase) ||
                                 line.StartsWith("2/day", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1/day", StringComparison.OrdinalIgnoreCase))
                             {
-                                _ = formattedTextContent.Append(Environment.NewLine).Append(line);
+                                _ = formattedTextContent.Append(slashSlashRStr).Append(line);
                             }
                             else if (line.Equals("actions", StringComparison.OrdinalIgnoreCase))
                             {
@@ -209,7 +210,7 @@ namespace FantasyModuleParser.Importer.NPC
                                 line.StartsWith("6th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("7th level", StringComparison.OrdinalIgnoreCase) ||
                                 line.StartsWith("8th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("9th level", StringComparison.OrdinalIgnoreCase))
 							{
-								_ = formattedTextContent.Append(Environment.NewLine).Append(line);
+								_ = formattedTextContent.Append(slashSlashRStr).Append(line);
                             }
                             else
                             {
@@ -242,13 +243,13 @@ namespace FantasyModuleParser.Importer.NPC
                                 continue;
                             }
                             // The ':' character is a result from the ultimate_tyrant parsing
-                            if (line.EndsWith(".", StringComparison.OrdinalIgnoreCase) || (line.EndsWith(":", StringComparison.OrdinalIgnoreCase) && !line.EndsWith("Hit:", StringComparison.OrdinalIgnoreCase)))
+                            if (line.EndsWith(".") || (line.EndsWith(":") && !line.EndsWith("Hit:", StringComparison.OrdinalIgnoreCase)))
                             {
                                 _ = formattedTextContent.Append(spaceChar + Environment.NewLine);
                             }
                             else if (line.EndsWith("prepared:", StringComparison.OrdinalIgnoreCase))
                             {
-                                _ = formattedTextContent.Append(Environment.NewLine);
+                                _ = formattedTextContent.Append(slashSlashRStr);
                             }
                             else if (line.Equals("legendary actions", StringComparison.OrdinalIgnoreCase))
                             {

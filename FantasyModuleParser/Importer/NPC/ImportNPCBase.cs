@@ -755,7 +755,7 @@ namespace FantasyModuleParser.Importer.NPC
 
             foreach (string weaponDescriptionData in weaponDescriptionDataSplit)
             {
-                if (weaponDescriptionData.Contains("to hit"))
+                if (weaponDescriptionData.Contains("to hit")) // TODO , StringComparison.OrdinalIgnoreCase
                 {
                     Match matches = Regex.Match(weaponDescriptionData, @"[+-]\d+");
                     if (matches.Success)
@@ -766,10 +766,9 @@ namespace FantasyModuleParser.Importer.NPC
 					{ 
                         // TODO warning, parse fail
                     }
-                    continue;
                 }
-				if (weaponDescriptionData.Contains("reach"))
-				{
+				if (weaponDescriptionData.Contains("reach")) // TODO , StringComparison.OrdinalIgnoreCase
+                {
                     Match matches = Regex.Match(weaponDescriptionData, @"\d+");
                     if (matches.Success)
                     {
@@ -779,14 +778,13 @@ namespace FantasyModuleParser.Importer.NPC
                     {
                         // TODO warning, parse fail
                     }
-                    continue;
                 }
                 if (weaponDescriptionData.Contains("range"))
                 {
                     int rangeIndex = weaponDescriptionData.IndexOf("range ", StringComparison.OrdinalIgnoreCase);
                     string rangeStringValue = weaponDescriptionData.Substring(rangeIndex + 6).Split(' ')[0];
 
-                    if (rangeStringValue.Contains("/"))
+                    if (rangeStringValue.Contains('/'))
                     {
                         weaponAttackModel.WeaponRangeShort = int.Parse(rangeStringValue.Split('/')[0], CultureInfo.CurrentCulture);
                         weaponAttackModel.WeaponRangeLong = int.Parse(rangeStringValue.Split('/')[1], CultureInfo.CurrentCulture);

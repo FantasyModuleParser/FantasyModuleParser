@@ -52,7 +52,7 @@ namespace FantasyModuleParser.NPC.ViewModels.Tests
 
             PreviewNPCViewModel previewNPCViewModel = new PreviewNPCViewModel(_npcModel);
 
-            Assert.AreEqual(expected, previewNPCViewModel.UpdateSpeedDescription());
+            Assert.AreEqual(expected, previewNPCViewModel.NPCModel.GetAllSpeeeds()); // UpdateSpeedDescription()) ;
         }
 
         [TestMethod]

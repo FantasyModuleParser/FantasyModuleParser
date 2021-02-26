@@ -20,7 +20,10 @@ namespace FantasyModuleParser.NPC
 {
     public class NPCModel
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(NPCModel));
+
         #region Enumerators
+
         public enum SkillAttributes
         {
             Acrobatics,
@@ -44,27 +47,32 @@ namespace FantasyModuleParser.NPC
             Stealth,
             Survival
         };
-        #endregion
 
-        #region Constructors
-        public NPCModel()
-        {
-        }
-        #endregion
+        #endregion  // Enumerators
 
-        #region Variables
+        #region Constants
+
         public const string strSpaceOpenParenPlus = " (+";
         public const string strSpaceOpenParen = " (";
         public const string strCloseParen = ")";
         public const string strCloseParenColon = "):";
 
-        #endregion
+        #endregion  // Constants
 
-        #region Properties
-        #endregion
+        #region Constructors
 
-        #region Methods
-        #endregion
+        public NPCModel()
+        {
+        }
+
+        #endregion  // Constructors
+
+        #region Public Variables
+
+        public NPCController NpcController { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion  // Public Variables
 
         #region Private Variables
         private int _speed;
@@ -167,12 +175,12 @@ namespace FantasyModuleParser.NPC
         private string _MarkedSpells;
         private string _NPCImage;
         private string _npcToken;
-        #endregion  // Spellcasting
+		#endregion  // Spellcasting
 
-        #endregion  // Private Variables
+		#endregion  // Private Variables
 
-        #region Public Variables
-        public string NPCName { get; set; }
+		#region Auto-Implemented Properties
+		public string NPCName { get; set; }
         public string Size { get; set; }
         public string NPCType { get; set; }
         public string Tag { get; set; }
@@ -184,6 +192,29 @@ namespace FantasyModuleParser.NPC
         public bool NPCNamed { get; set; }
         public int Speed { get { return _speed; } set { Set(ref _speed, value); } }
 
+        public List<SelectableActionModel> DamageResistanceModelList { get; set; }
+        public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
+        public List<SelectableActionModel> DamageImmunityModelList { get; set; }
+        public List<SelectableActionModel> ConditionImmunityModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponResistanceModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponDmgResistanceModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
+        public List<SelectableActionModel> SpecialWeaponDmgImmunityModelList { get; set; }
+
+        public ObservableCollection<LanguageModel> StandardLanguages { get; set; }
+        public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
+        public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
+        public ObservableCollection<LanguageModel> UserLanguages { get; set; }
+
+        public string LanguageOptions { get; set; }
+        public string LanguageOptionsText { get; set; }
+        public bool Telepathy { get; set; }
+        public string TelepathyRange { get; set; }
+        public ObservableCollection<ActionModelBase> Traits { get; set; }
+
+        #endregion  // Auto-Implemented Properties
+
+        #region Properties
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Burrow { get { return _burrow; } set { Set(ref _burrow, value); } }
 
@@ -206,7 +237,9 @@ namespace FantasyModuleParser.NPC
         public int AttributeWis { get { return _attributeWis; } set { Set(ref _attributeWis, value); } }
         public int AttributeCha { get { return _attributeCha; } set { Set(ref _attributeCha, value); } }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		#region Saving Throw Properties
+
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int SavingThrowStr { get { return _savingThrowStr; } set { Set(ref _savingThrowStr, value); } }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
@@ -242,7 +275,9 @@ namespace FantasyModuleParser.NPC
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool SavingThrowChaBool { get { return _savingThrowChaBool; } set { Set(ref _savingThrowChaBool, value); } }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		#endregion Saving Throw Properties
+
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Blindsight { get { return _blindsight; } set { Set(ref _blindsight, value); } }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
@@ -262,22 +297,15 @@ namespace FantasyModuleParser.NPC
         public int XP { get { return _xp; } set { Set(ref _xp, value); } }
         public string NPCToken { get { return _npcToken; } set { Set(ref _npcToken, value); } }
 
-        public List<SelectableActionModel> DamageResistanceModelList { get; set; }
-        public List<SelectableActionModel> DamageVulnerabilityModelList { get; set; }
-        public List<SelectableActionModel> DamageImmunityModelList { get; set; }
-        public List<SelectableActionModel> ConditionImmunityModelList { get; set; }
-        public List<SelectableActionModel> SpecialWeaponResistanceModelList { get; set; }
-        public List<SelectableActionModel> SpecialWeaponDmgResistanceModelList { get; set; }
-        public List<SelectableActionModel> SpecialWeaponImmunityModelList { get; set; }
-        public List<SelectableActionModel> SpecialWeaponDmgImmunityModelList { get; set; }
-
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool ConditionOther { get { return _conditionOther; } set { Set(ref _conditionOther, value); } }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string ConditionOtherText { get { return _conditionOtherText; } set { Set(ref _conditionOtherText, value); } }
 
-        #region Begin Skill Attributes
+        #endregion  // Properties
+
+        #region Begin Skill Attributes Properties
 
         // Create the dictionary to hold all of the SkillAttributes
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
@@ -337,18 +365,7 @@ namespace FantasyModuleParser.NPC
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public int Survival { get => _survival; set => Set(ref _survival, value); }
 
-        #endregion  // Skill Attributes
-
-        public ObservableCollection<LanguageModel> StandardLanguages { get; set; }
-        public ObservableCollection<LanguageModel> ExoticLanguages { get; set; }
-        public ObservableCollection<LanguageModel> MonstrousLanguages { get; set; }
-        public ObservableCollection<LanguageModel> UserLanguages { get; set; }
-
-        public string LanguageOptions { get; set; }
-        public string LanguageOptionsText { get; set; }
-        public bool Telepathy { get; set; }
-        public string TelepathyRange { get; set; }
-        public ObservableCollection<ActionModelBase> Traits { get; set; }
+        #endregion  // Skill Attributes Properties
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool InnateSpellcastingSection { get { return _innateSpellcastingSection; } set { Set(ref _innateSpellcastingSection, value); } }
@@ -483,12 +500,6 @@ namespace FantasyModuleParser.NPC
         public ObservableCollection<LairAction> LairActions { get; } = new ObservableCollection<LairAction>();
         public ObservableCollection<LegendaryActionModel> LegendaryActions { get; } = new ObservableCollection<LegendaryActionModel>();
         public ObservableCollection<ActionModelBase> Reactions { get; } = new ObservableCollection<ActionModelBase>();
-        #endregion  // Public Variables
-
-        public NPCController NpcController { get; set; }
-        private static readonly ILog log = LogManager.GetLogger(typeof(NPCModel));
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         // Characteristic modifier properties as strings
         public string UpdateStrengthAttributeModifier => DetermineAttributeModifierString(AttributeStr);
@@ -497,12 +508,6 @@ namespace FantasyModuleParser.NPC
         public string UpdateIntelligenceAttributeModifier => DetermineAttributeModifierString(AttributeInt);
         public string UpdateWisdomAttributeModifier => DetermineAttributeModifierString(AttributeWis);
         public string UpdateCharismaAttributeModifier => DetermineAttributeModifierString(AttributeCha);
-
-        private static string DetermineAttributeModifierString(int value)
-        {
-            // formats as +1, -1, +0 (for arguments 1, -1, 0)
-            return string.Format(" ({0:+#;-#;+0})", -5 + (value / 2)); ;
-        }
 
 		public string RetrieveCantripsSpellSlotsString => GetSpellSlotsString("Cantrips", CantripSpells);
 		public string RetrieveFirstLevelSpellSlotsString => GetSpellSlotsString("1st", FirstLevelSpells);  // TODO checge to be FistLevelSpellSlots
@@ -516,7 +521,14 @@ namespace FantasyModuleParser.NPC
 		public string RetrieveNinthLevelSpellSlotsString => GetSpellSlotsString("9th", NinthLevelSpells);
 		public string RetrieveMarkedLevelSpellSlotsString => GetSpellSlotsString("* ", MarkedSpells);
 
-		public static string GetSpellSlotsString(string lvl, string spellSlotsAtLevel)
+        #region Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lvl"></param>
+        /// <param name="spellSlotsAtLevel"></param>
+        /// <returns></returns>
+        public static string GetSpellSlotsString(string lvl, string spellSlotsAtLevel)
 		{
 			if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) return string.Empty;
 
@@ -526,13 +538,24 @@ namespace FantasyModuleParser.NPC
 			return string.Format("{0}{1}{2}{3}", strLvl, strSpaceOpenParen, spellSlotsAtLevel.ToLower().Trim(), strCloseParenColon);
 		}
 
-		/// <summary>
-		/// Parse each skills attributes substring and retrieve it's value
-		/// </summary>
-		/// <param name="skillAttributeName">The name of the skill attribute.</param>
-		/// <param name="skillValue">The numerical value of the attribute.</param>
-		/// <returns>Returns true if skill was parsed correctly.</returns>
-		private static bool ParseAttributeStringToInt(string skillAttributeString, out string skillAttributeName, out int skillValue)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static string DetermineAttributeModifierString(int value)
+        {
+            // formats as +1, -1, +0 (for arguments 1, -1, 0)
+            return string.Format(" ({0:+#;-#;+0})", -5 + (value / 2)); ;
+        }
+
+        /// <summary>
+        /// Parse each skills attributes substring and retrieve it's value
+        /// </summary>
+        /// <param name="skillAttributeName">The name of the skill attribute.</param>
+        /// <param name="skillValue">The numerical value of the attribute.</param>
+        /// <returns>Returns true if skill was parsed correctly.</returns>
+        private static bool ParseAttributeStringToInt(string skillAttributeString, out string skillAttributeName, out int skillValue)
 		{
             skillAttributeName = null;
             skillValue = 0;
@@ -574,22 +597,59 @@ namespace FantasyModuleParser.NPC
             return false;
         }
 
-		public string givemespeed()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+		public string GetAllSpeeeds()
 		{
-			return string.Format("{0}{1}{3}{3}{4}",
-                this.Speed == 0 ? string.Empty : string.Format("{0} ft.", this.Speed),
+			return string.Format("{0}{1}{2}{3}{4}",
+                string.Format("{0} ft.", this.Speed),
                 this.Climb == 0 ? string.Empty : string.Format(", climb {0} ft.", this.Climb),
                 this.Fly == 0 ? string.Empty : string.Format(", fly {0} ft.{1}", this.Fly, this.Hover ? " (hover)" : string.Empty),
                 this.Burrow == 0 ? string.Empty : string.Format(", burrow {0} ft.", this.Burrow),
                 this.Swim == 0 ? string.Empty : string.Format(", swim {0} ft.", this.Swim));
 		}
 
-		/// <summary>
-		/// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9,
-		///  Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
-		/// </summary>
-		/// <param name="line">The Skills string to be parsed in its entirity</param>
-		public void ParseSkillAttributes(string line)
+		public string UpdateSavingThrowsString()
+		{
+            string delimiter = ", ";
+
+            //Tuple<string, bool, int>[] tuples = {
+            //    Tuple.Create("Str", SavingThrowStrBool, SavingThrowStr),
+            //    Tuple.Create("Dex", SavingThrowDexBool, SavingThrowDex),
+            //    Tuple.Create("Con", SavingThrowConBool, SavingThrowCon),
+            //    Tuple.Create("Int", SavingThrowIntBool, SavingThrowInt),
+            //    Tuple.Create("Wis", SavingThrowWisBool, SavingThrowWis),
+            //    Tuple.Create("Cha", SavingThrowChaBool, SavingThrowCha)
+            //};
+
+            //string pointValues = tuples.Aggregate(string.Empty,
+            //                                      (x, p) =>
+            //                                       x + string.Format("{0}, {1} ", p.Item1.ToString(), p.Item2.ToString())
+            //                                      (sav.isChecked || sav.value != 0 ? string.Format("Str {0:+#;-#;+0}{1}", sav.name, delimiter) : String.Empty)
+            //                                      );
+
+
+            //Func<(string name, bool isChecked, int value), string> concatThem = sav => (sav.isChecked || sav.value != 0 ? string.Format("Str {0:+#;-#;+0}{1}", sav.name, delimiter) : String.Empty);
+
+            // formats as +1, -1, +0 (for arguments 1, -1, 0)
+            return string.Format("{0}{1}{2}{3}{4}{5}",
+                SavingThrowStrBool || SavingThrowStr != 0 ? string.Format("Str {0:+#;-#;+0}{1}", SavingThrowStr, delimiter) : String.Empty,
+                SavingThrowDexBool || SavingThrowDex != 0 ? string.Format("Dex {0:+#;-#;+0}{1}", SavingThrowDex, delimiter) : String.Empty,
+                SavingThrowConBool || SavingThrowCon != 0 ? string.Format("Con {0:+#;-#;+0}{1}", SavingThrowCon, delimiter) : String.Empty,
+                SavingThrowIntBool || SavingThrowInt != 0 ? string.Format("Int {0:+#;-#;+0}{1}", SavingThrowInt, delimiter) : String.Empty,
+                SavingThrowWisBool || SavingThrowWis != 0 ? string.Format("Wis {0:+#;-#;+0}{1}", SavingThrowWis, delimiter) : String.Empty,
+                SavingThrowChaBool || SavingThrowCha != 0 ? string.Format("Cha {0:+#;-#;+0}{1}", SavingThrowCha, delimiter) : String.Empty
+                ).TrimEnd(' ', ',');
+        }
+
+        /// <summary>
+        /// 'Skills Acrobatics +1, Animal Handling +2, Arcana +3, Athletics +4, Deception +5, History +6, Insight +7, Intimidation +8, Investigation +9,
+        ///  Medicine +10, Nature +11, Perception +12, Performance +13, Persuasion +14, Religion +15, Sleight of Hand +16, Stealth +17, Survival +18'
+        /// </summary>
+        /// <param name="line">The Skills string to be parsed in its entirity</param>
+        public void ParseSkillAttributes(string line)
         {
             // Remove leading text "Skill "
             string skillAttributes = Regex.Replace(line.Trim(), "^Skills", String.Empty, RegexOptions.IgnoreCase).Trim();
@@ -691,13 +751,20 @@ namespace FantasyModuleParser.NPC
             if (Stealth != 0)           { stringBuilder.Append($"Stealth {(Stealth >= 0 ? "+" : String.Empty)}{Stealth}, "); }
             if (Survival != 0)          { stringBuilder.Append($"Survival {(Survival >= 0 ? "+" : String.Empty)}{Survival}, "); }
 
-            if (stringBuilder.Length >= 2) { stringBuilder.Remove(stringBuilder.Length - 2, 2); }
+            // if (stringBuilder.Length >= 2) { stringBuilder.Remove(stringBuilder.Length - 2, 2); }
 
-            return stringBuilder.ToString().Trim();
+            return stringBuilder.ToString().TrimEnd(' ', ',');
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public string OkToSaveToFile(object sender, RoutedEventArgs e)
         {
+            // TODO each of these if blocks, has 2 lines of the same text, create a method to handle it
             string warningMessageDoNotSave = "";
 
             if (string.IsNullOrEmpty(NPCType))
@@ -815,6 +882,8 @@ namespace FantasyModuleParser.NPC
             }
             return warningMessageDoNotSave;
         }
+
+        #endregion  // Methods
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

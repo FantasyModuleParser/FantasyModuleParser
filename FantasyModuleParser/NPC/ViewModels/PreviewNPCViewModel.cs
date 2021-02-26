@@ -76,7 +76,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public void InitalizeViewModel()
         {
-            SpeedDescription = UpdateSpeedDescription();
+            SpeedDescription = NPCModel.GetAllSpeeeds();  // UpdateSpeedDescription();
             SkillsDescription = NPCModel.SkillAttributesToString();
 
 			#region UpdateAbilityScores
@@ -88,7 +88,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 			CharismaAttribute = NPCModel.UpdateCharismaAttributeModifier;
 			#endregion
 
-			SavingThrows = UpdateSavingThrows();
+			SavingThrows = NPCModel.UpdateSavingThrowsString();
             Senses = UpdateSenses();
             DamageVulnerabilities = UpdateDamageVulnerabilities();
             DamageResistances = UpdateDamageResistances();
@@ -117,48 +117,48 @@ namespace FantasyModuleParser.NPC.ViewModels
 
 
         #region UpdateSpeed
-        public string UpdateSpeedDescription()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+        //public string UpdateSpeedDescription()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
 
-            if (NPCModel.Speed == 0)
-            {
-                stringBuilder.Append("0 ft., ");
-            }
-            else
-            {
-                stringBuilder.Append(AppendSpeedAttribute("", NPCModel.Speed, false));
-            }
+        //    if (NPCModel.Speed == 0)
+        //    {
+        //        stringBuilder.Append("0 ft., ");
+        //    }
+        //    else
+        //    {
+        //        stringBuilder.Append(AppendSpeedAttribute("", NPCModel.Speed, false));
+        //    }
 
-            stringBuilder.Append(AppendSpeedAttribute("climb", NPCModel.Climb, false));
-            stringBuilder.Append(AppendSpeedAttribute("fly", NPCModel.Fly, NPCModel.Hover));
-            stringBuilder.Append(AppendSpeedAttribute("burrow", NPCModel.Burrow, false));
-            stringBuilder.Append(AppendSpeedAttribute("swim", NPCModel.Swim, false));
+        //    stringBuilder.Append(AppendSpeedAttribute("climb", NPCModel.Climb, false));
+        //    stringBuilder.Append(AppendSpeedAttribute("fly", NPCModel.Fly, NPCModel.Hover));
+        //    stringBuilder.Append(AppendSpeedAttribute("burrow", NPCModel.Burrow, false));
+        //    stringBuilder.Append(AppendSpeedAttribute("swim", NPCModel.Swim, false));
 
 
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            return stringBuilder.ToString().Trim();
-        }
+        //    if (stringBuilder.Length >= 2)
+        //    {
+        //        stringBuilder.Remove(stringBuilder.Length - 2, 2);
+        //    }
+        //    return stringBuilder.ToString().Trim();
+        //}
 
-        static private string AppendSpeedAttribute(string name, int value, bool hover)
-        {
-            string delimiter = ", ";
-            if (value != 0 && hover == false)
-            {
-                return name + " " + value + " ft." + delimiter;
-            }
-            else if (value != 0 && hover == true)
-            {
-                return name + " " + value + " ft." + " (hover)" + delimiter;
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //static private string AppendSpeedAttribute(string name, int value, bool hover)
+        //{
+        //    string delimiter = ", ";
+        //    if (value != 0 && hover == false)
+        //    {
+        //        return name + " " + value + " ft." + delimiter;
+        //    }
+        //    else if (value != 0 && hover == true)
+        //    {
+        //        return name + " " + value + " ft." + " (hover)" + delimiter;
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
         #endregion
 
         #region UpdateSkills
@@ -188,99 +188,99 @@ namespace FantasyModuleParser.NPC.ViewModels
                 return Visibility.Collapsed;
             }
         }
-        private string UpdateSavingThrows()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(AppendSavingThrowStr("Str", NPCModel.SavingThrowStr));
-            stringBuilder.Append(AppendSavingThrowDex("Dex", NPCModel.SavingThrowDex));
-            stringBuilder.Append(AppendSavingThrowCon("Con", NPCModel.SavingThrowCon));
-            stringBuilder.Append(AppendSavingThrowInt("Int", NPCModel.SavingThrowInt));
-            stringBuilder.Append(AppendSavingThrowWis("Wis", NPCModel.SavingThrowWis));
-            stringBuilder.Append(AppendSavingThrowCha("Cha", NPCModel.SavingThrowCha));
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            return stringBuilder.ToString();
-        }
-        private string AppendSavingThrowStr(string savingThrowName, int savingThrowValue)
-        {
-            string delimiter = ", ";
-            if (NPCModel.SavingThrowStrBool == true && savingThrowValue == 0)
-            {
-                return savingThrowName + " +" + savingThrowValue + delimiter;
-            }
-            else if (NPCModel.SavingThrowStrBool == false && savingThrowValue != 0)
-            {
-                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-            }
-            return "";
-        }
-        private string AppendSavingThrowDex(string savingThrowName, int savingThrowValue)
-        {
-            string delimiter = ", ";
-            if (NPCModel.SavingThrowDexBool == true && savingThrowValue == 0)
-            {
-                return savingThrowName + " +" + savingThrowValue + delimiter;
-            }
-            else if (NPCModel.SavingThrowDexBool == false && savingThrowValue != 0)
-            {
-                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-            }
-            return "";
-        }
-        private string AppendSavingThrowCon(string savingThrowName, int savingThrowValue)
-        {
-            string delimiter = ", ";
-            if (NPCModel.SavingThrowConBool == true && savingThrowValue == 0)
-            {
-                return savingThrowName + " +" + savingThrowValue + delimiter;
-            }
-            else if (NPCModel.SavingThrowConBool == false && savingThrowValue != 0)
-            {
-                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-            }
-            return "";
-        }
-        private string AppendSavingThrowInt(string savingThrowName, int savingThrowValue)
-        {
-            string delimiter = ", ";
-            if (NPCModel.SavingThrowIntBool == true && savingThrowValue == 0)
-            {
-                return savingThrowName + " +" + savingThrowValue + delimiter;
-            }
-            else if (NPCModel.SavingThrowIntBool == false && savingThrowValue != 0)
-            {
-                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-            }
-            return "";
-        }
-        private string AppendSavingThrowWis(string savingThrowName, int savingThrowValue)
-        {
-            string delimiter = ", ";
-            if (NPCModel.SavingThrowWisBool == true && savingThrowValue == 0)
-            {
-                return savingThrowName + " +" + savingThrowValue + delimiter;
-            }
-            else if (NPCModel.SavingThrowWisBool == false && savingThrowValue != 0)
-            {
-                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-            }
-            return "";
-        }
-        private string AppendSavingThrowCha(string savingThrowName, int savingThrowValue)
-        {
-            string delimiter = ", ";
-            if (NPCModel.SavingThrowChaBool == true && savingThrowValue == 0)
-            {
-                return savingThrowName + " +" + savingThrowValue + delimiter;
-            }
-            else if (NPCModel.SavingThrowChaBool == false && savingThrowValue != 0)
-            {
-                return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-            }
-            return "";
-        }
+        //private string UpdateSavingThrows()
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
+        //    stringBuilder.Append(AppendSavingThrowStr("Str", NPCModel.SavingThrowStr));
+        //    stringBuilder.Append(AppendSavingThrowDex("Dex", NPCModel.SavingThrowDex));
+        //    stringBuilder.Append(AppendSavingThrowCon("Con", NPCModel.SavingThrowCon));
+        //    stringBuilder.Append(AppendSavingThrowInt("Int", NPCModel.SavingThrowInt));
+        //    stringBuilder.Append(AppendSavingThrowWis("Wis", NPCModel.SavingThrowWis));
+        //    stringBuilder.Append(AppendSavingThrowCha("Cha", NPCModel.SavingThrowCha));
+        //    if (stringBuilder.Length >= 2)
+        //    {
+        //        stringBuilder.Remove(stringBuilder.Length - 2, 2);
+        //    }
+        //    return stringBuilder.ToString();
+        //}
+        //private string AppendSavingThrowStr(string savingThrowName, int savingThrowValue)
+        //{
+        //    string delimiter = ", ";
+        //    if (NPCModel.SavingThrowStrBool == true && savingThrowValue == 0)
+        //    {
+        //        return savingThrowName + " +" + savingThrowValue + delimiter;
+        //    }
+        //    else if (NPCModel.SavingThrowStrBool == false && savingThrowValue != 0)
+        //    {
+        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+        //    }
+        //    return "";
+        //}
+        //private string AppendSavingThrowDex(string savingThrowName, int savingThrowValue)
+        //{
+        //    string delimiter = ", ";
+        //    if (NPCModel.SavingThrowDexBool == true && savingThrowValue == 0)
+        //    {
+        //        return savingThrowName + " +" + savingThrowValue + delimiter;
+        //    }
+        //    else if (NPCModel.SavingThrowDexBool == false && savingThrowValue != 0)
+        //    {
+        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+        //    }
+        //    return "";
+        //}
+        //private string AppendSavingThrowCon(string savingThrowName, int savingThrowValue)
+        //{
+        //    string delimiter = ", ";
+        //    if (NPCModel.SavingThrowConBool == true && savingThrowValue == 0)
+        //    {
+        //        return savingThrowName + " +" + savingThrowValue + delimiter;
+        //    }
+        //    else if (NPCModel.SavingThrowConBool == false && savingThrowValue != 0)
+        //    {
+        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+        //    }
+        //    return "";
+        //}
+        //private string AppendSavingThrowInt(string savingThrowName, int savingThrowValue)
+        //{
+        //    string delimiter = ", ";
+        //    if (NPCModel.SavingThrowIntBool == true && savingThrowValue == 0)
+        //    {
+        //        return savingThrowName + " +" + savingThrowValue + delimiter;
+        //    }
+        //    else if (NPCModel.SavingThrowIntBool == false && savingThrowValue != 0)
+        //    {
+        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+        //    }
+        //    return "";
+        //}
+        //private string AppendSavingThrowWis(string savingThrowName, int savingThrowValue)
+        //{
+        //    string delimiter = ", ";
+        //    if (NPCModel.SavingThrowWisBool == true && savingThrowValue == 0)
+        //    {
+        //        return savingThrowName + " +" + savingThrowValue + delimiter;
+        //    }
+        //    else if (NPCModel.SavingThrowWisBool == false && savingThrowValue != 0)
+        //    {
+        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+        //    }
+        //    return "";
+        //}
+        //private string AppendSavingThrowCha(string savingThrowName, int savingThrowValue)
+        //{
+        //    string delimiter = ", ";
+        //    if (NPCModel.SavingThrowChaBool == true && savingThrowValue == 0)
+        //    {
+        //        return savingThrowName + " +" + savingThrowValue + delimiter;
+        //    }
+        //    else if (NPCModel.SavingThrowChaBool == false && savingThrowValue != 0)
+        //    {
+        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
+        //    }
+        //    return "";
+        //}
         #endregion
         #region UpdateDamageVulnerabilities
         public Visibility ShowDamageVulnerabilities
@@ -308,7 +308,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             {
                 stringBuilder.Remove(stringBuilder.Length - 2, 2);
             }
-            return stringBuilder.ToString().Trim();
+            return stringBuilder.ToString().TrimEnd(',', ' ');
         }
         #endregion
         #region UpdateDamageResistances

@@ -131,9 +131,9 @@ namespace FantasyModuleParser.Importer.NPC
 
                 if (continueTraitsFlag)
                 {
-                    if (line.ToLower().Equals("actions"))
-                    {
-                        resetContinueFlags();
+                    if (line.Equals("actions", StringComparison.OrdinalIgnoreCase))
+					{
+						resetContinueFlags();
                         continueActionsFlag = true;
                         continue;
                     }
