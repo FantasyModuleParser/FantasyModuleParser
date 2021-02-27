@@ -530,7 +530,7 @@ namespace FantasyModuleParser.NPC
         /// <returns></returns>
         public static string GetSpellSlotsString(string lvl, string spellSlotsAtLevel)
 		{
-			if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) return string.Empty;
+            if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) { return string.Empty; }
 
 			string strLvl = lvl.Equals("Cantrips") || lvl.Equals("* ") ? lvl : lvl + " level";
 
