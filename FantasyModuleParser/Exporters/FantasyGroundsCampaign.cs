@@ -22,7 +22,7 @@ namespace FantasyModuleParser.Exporters
     {
         string Immunity;
         string Resistance;
-        private SettingsService settingsService;
+        private readonly SettingsService settingsService;
 
         public FantasyGroundsCampaign()
         {
@@ -71,22 +71,14 @@ namespace FantasyModuleParser.Exporters
         {
             List<NPCModel> FatNPCList = new List<NPCModel>();
 
-            foreach (CategoryModel category in moduleModel.Categories)
-            {
-                foreach (NPCModel npcModel in category.NPCModels)
-                    FatNPCList.Add(npcModel);
-            }
+            foreach (CategoryModel category in moduleModel.Categories)	{ foreach (NPCModel npcModel in category.NPCModels) { FatNPCList.Add(npcModel); } }
             return FatNPCList;
         }
 
         private List<SpellModel> GenerateFatSpellList(ModuleModel moduleModel)
         {
             List<SpellModel> FatSpellList = new List<SpellModel>();
-            foreach (CategoryModel category in moduleModel.Categories)
-            {
-                foreach (SpellModel spellModel in category.SpellModels)
-                    FatSpellList.Add(spellModel);
-            }
+            foreach (CategoryModel category in moduleModel.Categories)	{ foreach (SpellModel spellModel in category.SpellModels) { FatSpellList.Add(spellModel); } }
             return FatSpellList;
         }
 
@@ -111,15 +103,9 @@ namespace FantasyModuleParser.Exporters
 						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name, "tokens");
 						if (Directory.Exists(NPCTokenDirectory))
 						{
-							if (File.Exists(NPCTokenFileName))
-							{
-								File.Delete(NPCTokenFileName);
-							}
+							if (File.Exists(NPCTokenFileName))	{ File.Delete(NPCTokenFileName); }
 						}
-						else
-						{
-							Directory.CreateDirectory(NPCTokenDirectory);
-						}
+						else { Directory.CreateDirectory(NPCTokenDirectory); }
 						File.Copy(npcModel.NPCToken, NPCTokenFileName);
 					}
 				}
@@ -341,10 +327,8 @@ namespace FantasyModuleParser.Exporters
 							xmlWriter.WriteStartElement("level" + (int)levelList[0].SpellLevel); // <castby> <groups> <level#>
 							xmlWriter.WriteStartElement("description"); // <castby> <groups> <level#> <description>
 							xmlWriter.WriteAttributeString("type", "string");
-							if (levelList[0].SpellLevel == Spells.Enums.SpellLevel.Cantrip)
-								xmlWriter.WriteString("Cantrips");
-							else
-								xmlWriter.WriteString("Level " + (int)levelList[0].SpellLevel + " Spells");
+							if (levelList[0].SpellLevel == Spells.Enums.SpellLevel.Cantrip) { xmlWriter.WriteString("Cantrips"); }
+							else { xmlWriter.WriteString("Level " + (int)levelList[0].SpellLevel + " Spells"); }
 							xmlWriter.WriteEndElement(); // <castby> <groups> <level#> </description>
 							xmlWriter.WriteStartElement("index");   // <castby> <groups> <level#> <index>
 							foreach (SpellModel spellLevelList in levelList)
@@ -357,9 +341,13 @@ namespace FantasyModuleParser.Exporters
 								xmlWriter.WriteEndElement(); // <spellname> <link> </class>
 								xmlWriter.WriteStartElement("recordname"); // <spellname> <link> <recordname>
 								if (moduleModel.IsLockedRecords)
+								{
 									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", "") + "@" + moduleModel.Name);
+								}
 								else
+								{
 									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
+								}
 								xmlWriter.WriteEndElement(); // <spellname> <link> </recordname>
 								xmlWriter.WriteStartElement("description"); // <spellname> <link> <description>
 								xmlWriter.WriteStartElement("field"); // <spellname> <link> <description> <field>
@@ -469,15 +457,12 @@ namespace FantasyModuleParser.Exporters
 		private List<SpellModel> getFatSpellModelList(ModuleModel moduleModel)
 		{
 			List<SpellModel> spellModels = new List<SpellModel>();
-			if (moduleModel.Categories == null) return spellModels;
+			if (moduleModel.Categories == null) { return spellModels; }
 			foreach (CategoryModel categoryModel in moduleModel.Categories)
 			{
-				if (categoryModel.SpellModels == null) return spellModels;
-				foreach (SpellModel spellModel in categoryModel.SpellModels)
-				{
-					spellModels.Add(spellModel);
-				}
-			}
+				if (categoryModel.SpellModels == null) { return spellModels; }
+				foreach (SpellModel spellModel in categoryModel.SpellModels) { spellModels.Add(spellModel); }
+			}				
 			return spellModels;
 		}
 		private string SpellNameToXMLFormat(SpellModel spellModel)
@@ -503,10 +488,8 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("level");
 			xmlWriter.WriteAttributeString("type", "number");
-			if (spellModel.SpellLevel.GetDescription().Equals("cantrip"))
-				xmlWriter.WriteString("0");
-			else
-				xmlWriter.WriteValue(spellModel.SpellLevel.GetDescription()[0]);
+			if (spellModel.SpellLevel.GetDescription().Equals("cantrip")) { xmlWriter.WriteString("0"); }
+			else { xmlWriter.WriteValue((int)spellModel.SpellLevel); }
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteSpellSchool(XmlWriter xmlWriter, SpellModel spellModel)
@@ -535,7 +518,6 @@ namespace FantasyModuleParser.Exporters
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(spellModel.CastingTime + " " + spellModel.CastingType.GetDescription());
-
 			xmlWriter.WriteStartElement("castingtime");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(stringBuilder.ToString());
@@ -558,20 +540,19 @@ namespace FantasyModuleParser.Exporters
 				if (spellModel.IsSomaticComponent)
 				{
 					stringBuilder.Append(", S");
-					if (spellModel.IsMaterialComponent)
-						stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+					if (spellModel.IsMaterialComponent) { stringBuilder.Append(", M (" + spellModel.ComponentText + ")"); }
 				}
-				else if (spellModel.IsMaterialComponent)
-					stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+				else if (spellModel.IsMaterialComponent) { stringBuilder.Append(", M (" + spellModel.ComponentText + ")"); }
 			}
 			else if (!spellModel.IsVerbalComponent && spellModel.IsSomaticComponent)
 			{
 				stringBuilder.Append("S");
-				if (spellModel.IsMaterialComponent)
-					stringBuilder.Append(", M (" + spellModel.ComponentText + ")");
+				if (spellModel.IsMaterialComponent) { stringBuilder.Append(", M (" + spellModel.ComponentText + ")"); }
 			}
 			else if (!spellModel.IsVerbalComponent && !spellModel.IsSomaticComponent && spellModel.IsMaterialComponent)
+			{
 				stringBuilder.Append("M (" + spellModel.ComponentText + ")");
+			}				
 
 			xmlWriter.WriteStartElement("components");
 			xmlWriter.WriteAttributeString("type", "string");
@@ -582,10 +563,8 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("ritual");
 			xmlWriter.WriteAttributeString("type", "number");
-			if (spellModel.IsRitual)
-				xmlWriter.WriteString("1");
-			else
-				xmlWriter.WriteString("0");
+			if (spellModel.IsRitual) { xmlWriter.WriteString("1"); }
+			else { xmlWriter.WriteString("0"); }
 			xmlWriter.WriteEndElement();
 		}
 		#endregion
@@ -599,10 +578,8 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("reference_colindex");
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("recordname");
-			if (moduleModel.IsLockedRecords)
-				xmlWriter.WriteString(listId + "@" + moduleModel.Name);
-			else
-				xmlWriter.WriteString(listId);
+			if (moduleModel.IsLockedRecords) { xmlWriter.WriteString(listId + "@" + moduleModel.Name); }
+			else { xmlWriter.WriteString(listId); }
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("name");
@@ -682,14 +659,10 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void ProcessNPCListByCR(XmlWriter xmlWriter, ModuleModel moduleModel, string actualCR, List<NPCModel> NPCList)
 		{
-			if (actualCR == "1/8")
-				xmlWriter.WriteStartElement("CR0125");
-			else if (actualCR == "1/4")
-				xmlWriter.WriteStartElement("CR025");
-			else if (actualCR == "1/2")
-				xmlWriter.WriteStartElement("CR05");
-			else
-				xmlWriter.WriteStartElement("CR" + actualCR);
+			if (actualCR == "1/8") { xmlWriter.WriteStartElement("CR0125"); }
+			else if (actualCR == "1/4") { xmlWriter.WriteStartElement("CR025"); }
+			else if (actualCR == "1/2") { xmlWriter.WriteStartElement("CR05"); }
+			else { xmlWriter.WriteStartElement("CR" + actualCR); }
 			xmlWriter.WriteStartElement("description");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("CR " + actualCR);
@@ -781,35 +754,23 @@ namespace FantasyModuleParser.Exporters
 			string StrModifier;
 			string WisModifier;
 
-			if (npcModel.AttributeCha >= 10)
-				ChaModifier = "+";
-			else
-				ChaModifier = "";
+			if (npcModel.AttributeCha >= 10) { ChaModifier = "+"; }
+			else { ChaModifier = ""; }
 
-			if (npcModel.AttributeCon >= 10)
-				ConModifier = "+";
-			else
-				ConModifier = "";
+			if (npcModel.AttributeCon >= 10) { ConModifier = "+"; }
+			else { ConModifier = ""; }
 
-			if (npcModel.AttributeDex >= 10)
-				DexModifier = "+";
-			else
-				DexModifier = "";
+			if (npcModel.AttributeDex >= 10) { DexModifier = "+"; }
+			else { DexModifier = ""; }
 
-			if (npcModel.AttributeInt >= 10)
-				IntModifier = "+";
-			else
-				IntModifier = "";
+			if (npcModel.AttributeInt >= 10) { IntModifier = "+"; }
+			else { IntModifier = ""; }
 
-			if (npcModel.AttributeStr >= 10)
-				StrModifier = "+";
-			else
-				StrModifier = "";
+			if (npcModel.AttributeStr >= 10) { StrModifier = "+"; }
+			else { StrModifier = ""; }
 
-			if (npcModel.AttributeWis >= 10)
-				WisModifier = "+";
-			else
-				WisModifier = "";
+			if (npcModel.AttributeWis >= 10) { WisModifier = "+"; }
+			else { WisModifier = ""; }
 
 			xmlWriter.WriteStartElement("abilities");
 			xmlWriter.WriteStartElement("charisma");
@@ -949,14 +910,11 @@ namespace FantasyModuleParser.Exporters
 			{
 				foreach (SelectableActionModel condition in npcModel.ConditionImmunityModelList)
 				{
-					if (condition.Selected)
-						stringBuilder.Append(condition.ActionDescription.ToLower()).Append(", ");
+					if (condition.Selected) { stringBuilder.Append(condition.ActionDescription.ToLower()).Append(", "); }
 				}
 			}
-			if (npcModel.ConditionOther)
-				stringBuilder.Append(npcModel.ConditionOtherText.ToLower() + ", ");
-			if (stringBuilder.Length >= 2)
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			if (npcModel.ConditionOther) { stringBuilder.Append(npcModel.ConditionOtherText.ToLower() + ", "); }
+			if (stringBuilder.Length >= 2) { stringBuilder.Remove(stringBuilder.Length - 2, 2); }
 
 			xmlWriter.WriteValue(stringBuilder.ToString().Trim());
 			xmlWriter.WriteEndElement();
@@ -974,17 +932,16 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("damageimmunities");
 			xmlWriter.WriteAttributeString("type", "string");
 			if (npcModel.DamageImmunityModelList != null)
+			{
 				foreach (SelectableActionModel damageImmunities in npcModel.DamageImmunityModelList)
 				{
-					if (damageImmunities.Selected)
-						stringBuilder.Append(damageImmunities.ActionDescription.ToLower()).Append(", ");
+					if (damageImmunities.Selected) { stringBuilder.Append(damageImmunities.ActionDescription.ToLower()).Append(", "); }		
 				}
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
+			}				
+			if (stringBuilder.Length >= 2)	{ stringBuilder.Remove(stringBuilder.Length - 2, 2); }
 			stringBuilder.Append("; ");
 			if (npcModel.SpecialWeaponImmunityModelList != null)
+			{
 				foreach (SelectableActionModel specialWeaponImmunity in npcModel.SpecialWeaponImmunityModelList)
 				{
 					if (specialWeaponImmunity.Selected == true && specialWeaponImmunity.ActionName != "NoSpecial")
@@ -1006,17 +963,16 @@ namespace FantasyModuleParser.Exporters
 						}
 						foreach (SelectableActionModel specialWeaponDmgImmunity in npcModel.SpecialWeaponDmgImmunityModelList)
 						{
-							if (specialWeaponDmgImmunity.Selected)
-								stringBuilder.Append(specialWeaponDmgImmunity.ActionDescription).Append(", ");
+							if (specialWeaponDmgImmunity.Selected) { stringBuilder.Append(specialWeaponDmgImmunity.ActionDescription).Append(", "); }
 						}
-						if (stringBuilder.Length >= 2)
-							stringBuilder.Remove(stringBuilder.Length - 2, 2);
+						if (stringBuilder.Length >= 2) { stringBuilder.Remove(stringBuilder.Length - 2, 2); }
 						stringBuilder.Append(Immunity);
 					}
 				}
+			}
+				
 			string weaponDamageImmunityString = stringBuilder.ToString().Trim();
-			if (weaponDamageImmunityString.EndsWith(";", true, CultureInfo.CurrentCulture))
-				weaponDamageImmunityString = weaponDamageImmunityString.Substring(0, weaponDamageImmunityString.Length - 1);
+			if (weaponDamageImmunityString.EndsWith(";", true, CultureInfo.CurrentCulture)) { weaponDamageImmunityString = weaponDamageImmunityString.Substring(0, weaponDamageImmunityString.Length - 1); }
 			xmlWriter.WriteString(weaponDamageImmunityString);
 			xmlWriter.WriteEndElement();
 		}
@@ -1026,15 +982,16 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("damageresistances");
 			xmlWriter.WriteAttributeString("type", "string");
 			if (npcModel.DamageResistanceModelList != null)
+			{
 				foreach (SelectableActionModel damageResistances in npcModel.DamageResistanceModelList)
 				{
-					if (damageResistances.Selected)
-						stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", ");
+					if (damageResistances.Selected) { stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", "); }
 				}
-			if (stringBuilder.Length >= 2)
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
+			if (stringBuilder.Length >= 2) { stringBuilder.Remove(stringBuilder.Length - 2, 2); }
 			stringBuilder.Append("; ");
 			if (npcModel.SpecialWeaponResistanceModelList != null)
+			{
 				foreach (SelectableActionModel specialWeaponResistance in npcModel.SpecialWeaponResistanceModelList)
 				{
 					if (specialWeaponResistance.Selected == true && specialWeaponResistance.ActionName != "NoSpecial")
@@ -1065,11 +1022,10 @@ namespace FantasyModuleParser.Exporters
 						stringBuilder.Append(Resistance);
 					}
 				}
+			}				
 			string weaponDamageResistanceString = stringBuilder.ToString().Trim();
-			if (weaponDamageResistanceString.StartsWith(";", true, CultureInfo.CurrentCulture))
-				weaponDamageResistanceString = weaponDamageResistanceString.Remove(0, 1);
-			if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture))
-				weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1);
+			if (weaponDamageResistanceString.StartsWith(";", true, CultureInfo.CurrentCulture)) { weaponDamageResistanceString = weaponDamageResistanceString.Remove(0, 1); }
+			if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture)) { weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1); }				
 			xmlWriter.WriteString(weaponDamageResistanceString);
 			xmlWriter.WriteEndElement();
 		}
