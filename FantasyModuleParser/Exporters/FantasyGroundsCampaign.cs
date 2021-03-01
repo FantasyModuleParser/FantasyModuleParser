@@ -320,82 +320,6 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 		#region Spell Methods for Reference Data XML
-		private void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel)
-		{
-			List<SpellModel> SpellList = getFatSpellModelList(moduleModel);
-			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
-			//var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
-			foreach (string castByValue in getSortedSpellCasterList(moduleModel))
-			{
-				xmlWriter.WriteStartElement(castByValue.ToLower().Replace("(", "").Replace(")", "").Replace(" ", ""));  // <castby>
-				xmlWriter.WriteStartElement("description"); // <castby> <description>
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString(castByValue + " Spells");
-				xmlWriter.WriteEndElement(); // <castby> </description>
-				xmlWriter.WriteStartElement("groups"); // <castby> <groups>
-				SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.CompareTo(spellTwo.SpellLevel));
-				var LevelList = SpellList.GroupBy(x => (int)x.SpellLevel).Select(x => x.ToList()).ToList();
-
-				foreach (SpellModel spellModel in SpellList)
-				{
-					if (spellModel.CastBy.Contains(castByValue))
-					{
-						foreach (List<SpellModel> levelList in LevelList)
-						{
-							xmlWriter.WriteStartElement("level" + (int)levelList[0].SpellLevel); // <castby> <groups> <level#>
-							xmlWriter.WriteStartElement("description"); // <castby> <groups> <level#> <description>
-							xmlWriter.WriteAttributeString("type", "string");
-
-							if (levelList[0].SpellLevel == Spells.Enums.SpellLevel.Cantrip) 
-							{ 
-								xmlWriter.WriteString("Cantrips"); 
-							}
-							else 
-							{ 
-								xmlWriter.WriteString("Level " + (int)levelList[0].SpellLevel + " Spells"); 
-							}
-
-							xmlWriter.WriteEndElement(); // <castby> <groups> <level#> </description>
-							xmlWriter.WriteStartElement("index");   // <castby> <groups> <level#> <index>
-							foreach (SpellModel spellLevelList in levelList)
-							{
-								xmlWriter.WriteStartElement(spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));  // <spellname>
-								xmlWriter.WriteStartElement("link"); // <spellname> <link>
-								xmlWriter.WriteAttributeString("type", "windowreference");
-								xmlWriter.WriteStartElement("class");   // <spellname> <link> <class>
-								xmlWriter.WriteString("reference_spell");
-								xmlWriter.WriteEndElement(); // <spellname> <link> </class>
-								xmlWriter.WriteStartElement("recordname"); // <spellname> <link> <recordname>
-								if (moduleModel.IsLockedRecords)
-								{
-									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", "") + "@" + moduleModel.Name);
-								}
-								else
-								{
-									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
-								}
-								xmlWriter.WriteEndElement(); // <spellname> <link> </recordname>
-								xmlWriter.WriteStartElement("description"); // <spellname> <link> <description>
-								xmlWriter.WriteStartElement("field"); // <spellname> <link> <description> <field>
-								xmlWriter.WriteString("name");
-								xmlWriter.WriteEndElement(); // <spellname> <link> <description> </field>
-								xmlWriter.WriteEndElement(); // <spellname> <link> </description>
-								xmlWriter.WriteEndElement(); // <spellname> </link>
-								xmlWriter.WriteStartElement("source"); // <spellname> <source>
-								xmlWriter.WriteString("Class " + castByValue);
-								xmlWriter.WriteEndElement(); // <spellname> </source>
-								xmlWriter.WriteEndElement(); // </spellname>
-
-							}
-							xmlWriter.WriteEndElement();  // <castby> <groups> <level#> </index>
-							xmlWriter.WriteEndElement();  // <castby> <groups> </level#>
-						}
-					}
-				}
-				xmlWriter.WriteEndElement();  // <castby> </groups>
-				xmlWriter.WriteEndElement();  // </castby>
-			}
-		}
 		private void SpellLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<SpellModel> SpellList)
 		{
 			foreach (SpellModel spell in SpellList)
@@ -449,53 +373,6 @@ namespace FantasyModuleParser.Exporters
 			SpellLocation(xmlWriter, moduleModel, SpellList);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
-		}
-		private HashSet<string> generateSpellCasterList(ModuleModel moduleModel)
-		{
-			HashSet<string> casterList = new HashSet<string>();
-
-			if (moduleModel != null && moduleModel.Categories != null)
-			{
-				foreach (CategoryModel categoryModel in moduleModel.Categories)
-				{
-					if (categoryModel.SpellModels != null)
-					{
-						foreach (SpellModel spellModel in categoryModel.SpellModels)
-						{
-							if (!String.IsNullOrWhiteSpace(spellModel.CastBy))
-							{
-								foreach (string castByValue in spellModel.CastBy.Split(','))
-								{
-									casterList.Add(castByValue.Trim());
-								}
-							}
-						}
-					}
-				}
-			}
-
-			return casterList;
-		}
-		private IEnumerable<string> getSortedSpellCasterList(ModuleModel moduleModel)
-		{
-			return generateSpellCasterList(moduleModel).OrderBy(item => item);
-		}
-		private List<SpellModel> getFatSpellModelList(ModuleModel moduleModel)
-		{
-			List<SpellModel> spellModels = new List<SpellModel>();
-			if (moduleModel.Categories == null) { return spellModels; }
-			foreach (CategoryModel categoryModel in moduleModel.Categories)
-			{
-				if (categoryModel.SpellModels == null) 
-				{ 
-					return spellModels; 
-				}
-				foreach (SpellModel spellModel in categoryModel.SpellModels) 
-				{ 
-					spellModels.Add(spellModel); 
-				}
-			}				
-			return spellModels;
 		}
 		private string SpellNameToXMLFormat(SpellModel spellModel)
 		{
@@ -604,57 +481,6 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(stringBuilder.ToString());
 			xmlWriter.WriteEndElement();
-		}
-		private void WriteSpellRitual(XmlWriter xmlWriter, SpellModel spellModel)
-		{
-			xmlWriter.WriteStartElement("ritual");
-			xmlWriter.WriteAttributeString("type", "number");
-			if (spellModel.IsRitual) 
-			{
-				xmlWriter.WriteString("1"); 
-			}
-			else 
-			{ 
-				xmlWriter.WriteString("0"); 
-			}
-			xmlWriter.WriteEndElement();
-		}
-		#endregion
-		#region Common methods for Reference Manual XML
-		private void WriteIDLinkList(XmlWriter xmlWriter, ModuleModel moduleModel, string id, string listId, string listDescription)
-		{
-			xmlWriter.WriteStartElement(id);
-			xmlWriter.WriteStartElement("listlink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
-			xmlWriter.WriteStartElement("class");
-			xmlWriter.WriteString("reference_colindex");
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("recordname");
-			if (moduleModel.IsLockedRecords) 
-			{ 
-				xmlWriter.WriteString(listId + "@" + moduleModel.Name); 
-			}
-			else 
-			{ 
-				xmlWriter.WriteString(listId); 
-			}
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(listDescription);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
-		}
-		private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
-		{
-			string libname = moduleModel.Name.ToLower();
-			return libname.Replace(" ", "");
-		}
-		private string CategoryNameToXML(CategoryModel categoryModel)
-		{
-			string categoryName = categoryModel.Name;
-			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
 		}
 		#endregion
 		#region NPC Methods for Reference Data XML
@@ -781,10 +607,10 @@ namespace FantasyModuleParser.Exporters
 			foreach (List<NPCModel> npcList in AlphabetList)
 			{
 				string actualLetter = npcList[0].NPCName[0] + "";
-				ProcessNPCListByCategoryLetter(xmlWriter, npcModel, moduleModel, actualLetter, npcList);
+				ProcessNPCListByCategoryLetter(xmlWriter, npcModel, moduleModel);
 			}
 		}
-		private void ProcessNPCListByCategoryLetter(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, string actualLetter, List<NPCModel> NPCList)
+		private void ProcessNPCListByCategoryLetter(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
 			xmlWriter.WriteStartElement("link");
@@ -1166,13 +992,19 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("damagevulnerabilities");
 			xmlWriter.WriteAttributeString("type", "string");
 			if (npcModel.DamageVulnerabilityModelList != null)
+			{
 				foreach (SelectableActionModel damageVulnerabilities in npcModel.DamageVulnerabilityModelList)
 				{
 					if (damageVulnerabilities.Selected == true)
+					{
 						stringBuilder.Append(damageVulnerabilities.ActionDescription.ToLower()).Append(", ");
+					}
 				}
+			}				
 			if (stringBuilder.Length >= 2)
+			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
 			string weaponDamageVulnerabilityString = stringBuilder.ToString().Trim();
 
 			xmlWriter.WriteValue(weaponDamageVulnerabilityString);
@@ -1181,18 +1013,26 @@ namespace FantasyModuleParser.Exporters
 		private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			if (npcModel.HP == null)
+			{
 				npcModel.HP = "0 (0)";
+			}				
 			string[] hpArray = npcModel.HP.Split('(');
 			string hpValue = hpArray[0].Trim();
 			string hpDieBreakdown = "";
 			if (hpArray.Length == 2)
+			{
 				hpDieBreakdown = "(" + hpArray[1];
+			}				
 			xmlWriter.WriteStartElement("hd");
 			xmlWriter.WriteAttributeString("type", "string");
 			if (hpArray.Length == 2)
+			{
 				xmlWriter.WriteString(hpDieBreakdown);
+			}				
 			else
+			{
 				xmlWriter.WriteString("");
+			}				
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("hp");
 			xmlWriter.WriteAttributeString("type", "number");
@@ -1204,6 +1044,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("lairactions");
 			int actionID = 1;
 			if (npcModel.LairActions != null)
+			{
 				foreach (LairAction lairaction in npcModel.LairActions)
 				{
 					xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
@@ -1218,6 +1059,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement();
 					actionID = ++actionID;
 				}
+			}				
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteLanguages(XmlWriter xmlWriter, NPCModel npcModel)
@@ -1227,67 +1069,93 @@ namespace FantasyModuleParser.Exporters
 			foreach (LanguageModel languageModel in npcModel.StandardLanguages)
 			{
 				if (languageModel.Selected == true)
+				{
 					stringBuilder.Append(languageModel.Language).Append(", ");
+				}					
 			}
 			foreach (LanguageModel languageModel in npcModel.ExoticLanguages)
 			{
 				if (languageModel.Selected == true)
+				{
 					stringBuilder.Append(languageModel.Language).Append(", ");
+				}					
 			}
 			foreach (LanguageModel languageModel in npcModel.MonstrousLanguages)
 			{
 				if (languageModel.Selected == true)
+				{
 					stringBuilder.Append(languageModel.Language).Append(", ");
+				}					
 			}
 			if (npcModel.UserLanguages != null && npcModel.UserLanguages.Count > 0)
 			{
 				foreach (LanguageModel languageModel in npcModel.UserLanguages)
 				{
 					if (languageModel.Selected == true)
+					{
 						stringBuilder.Append(languageModel.Language).Append(", ");
+					}						
 				}
 			}
 			if (npcModel.Telepathy)
+			{
 				stringBuilder.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+			}				
 			if (stringBuilder.Length >= 2)
+			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
 			if (npcModel.LanguageOptions == "No special conditions" || npcModel.LanguageOptions == null)
+			{
 				stringBuilderOption.Append(stringBuilder);
+			}				
 			else if (npcModel.LanguageOptions == "Speaks no languages")
+			{
 				stringBuilderOption.Append("-");
+			}				
 			else if (npcModel.LanguageOptions == "Speaks all languages")
 			{
 				stringBuilderOption.Append("all").Append(", ");
 				if (npcModel.Telepathy)
+				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+				}					
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Can't speak; Knows selected languages")
 			{
 				stringBuilderOption.Append("understands" + stringBuilder + " but can't speak").Append(", ");
 				if (npcModel.Telepathy)
+				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+				}					
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Can't speak; Knows creator's languages")
 			{
 				stringBuilderOption.Append("understands the languages of its creator but can't speak").Append(", ");
 				if (npcModel.Telepathy)
+				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+				}					
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Can't speak; Knows languages known in life")
 			{
 				stringBuilderOption.Append("Understands all languages it spoke in life but can't speak").Append(", ");
 				if (npcModel.Telepathy)
+				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+				}						
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			else if (npcModel.LanguageOptions == "Alternative language text (enter below)")
 			{
 				stringBuilderOption.Append(npcModel.LanguageOptionsText.ToString().Trim()).Append(", ");
 				if (npcModel.Telepathy)
+				{
 					stringBuilderOption.Append("telepathy " + npcModel.TelepathyRange).Append(", ");
+				}					
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			xmlWriter.WriteStartElement("languages");
@@ -1347,20 +1215,33 @@ namespace FantasyModuleParser.Exporters
 			StringBuilder stringBuilder = new StringBuilder();
 
 			if (npcModel.SavingThrowStr != 0 || npcModel.SavingThrowStrBool)
+			{
 				stringBuilder.Append("Str ").Append(npcModel.SavingThrowStr >= 0 ? "+" : "").Append(npcModel.SavingThrowStr).Append(", ");
+			}				
 			if (npcModel.SavingThrowDex != 0 || npcModel.SavingThrowDexBool)
+			{
 				stringBuilder.Append("Dex ").Append(npcModel.SavingThrowDex >= 0 ? "+" : "").Append(npcModel.SavingThrowDex).Append(", ");
+			}				
 			if (npcModel.SavingThrowCon != 0 || npcModel.SavingThrowConBool)
+			{
 				stringBuilder.Append("Con ").Append(npcModel.SavingThrowCon >= 0 ? "+" : "").Append(npcModel.SavingThrowCon).Append(", ");
+			}				
 			if (npcModel.SavingThrowInt != 0 || npcModel.SavingThrowIntBool)
+			{
 				stringBuilder.Append("Int ").Append(npcModel.SavingThrowInt >= 0 ? "+" : "").Append(npcModel.SavingThrowInt).Append(", ");
+			}				
 			if (npcModel.SavingThrowWis != 0 || npcModel.SavingThrowWisBool)
+			{
 				stringBuilder.Append("Wis ").Append(npcModel.SavingThrowWis >= 0 ? "+" : "").Append(npcModel.SavingThrowWis).Append(", ");
+			}				
 			if (npcModel.SavingThrowCha != 0 || npcModel.SavingThrowChaBool)
+			{
 				stringBuilder.Append("Cha ").Append(npcModel.SavingThrowCha >= 0 ? "+" : "").Append(npcModel.SavingThrowCha).Append(", ");
-
+			}
 			if (stringBuilder.Length >= 2)
+			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
 			string savingThrowString = stringBuilder.ToString().Trim();
 
 			xmlWriter.WriteStartElement("savingthrows");
@@ -1371,20 +1252,22 @@ namespace FantasyModuleParser.Exporters
 		private void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(appendSenses("darkvision ", npcModel.Darkvision, " ft."));
-			stringBuilder.Append(appendBlindSenses("blindsight ", npcModel.Blindsight, " ft."));
-			stringBuilder.Append(appendSenses("tremorsense ", npcModel.Tremorsense, " ft."));
-			stringBuilder.Append(appendSenses("truesight ", npcModel.Truesight, " ft."));
-			stringBuilder.Append(appendSenses("passive perception ", npcModel.PassivePerception, ""));
+			stringBuilder.Append(AppendSenses("darkvision ", npcModel.Darkvision, " ft."));
+			stringBuilder.Append(AppendBlindSenses("blindsight ", npcModel.Blindsight, " ft."));
+			stringBuilder.Append(AppendSenses("tremorsense ", npcModel.Tremorsense, " ft."));
+			stringBuilder.Append(AppendSenses("truesight ", npcModel.Truesight, " ft."));
+			stringBuilder.Append(AppendSenses("passive perception ", npcModel.PassivePerception, ""));
 			if (stringBuilder.Length >= 2)
+			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
 			string sensesString = stringBuilder.ToString().Trim();
 			xmlWriter.WriteStartElement("senses");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteValue(sensesString);
 			xmlWriter.WriteEndElement();
 		}
-		private string appendSenses(string senseName, int senseValue, string senseRange)
+		private string AppendSenses(string senseName, int senseValue, string senseRange)
 		{
 			if (senseValue != 0)
 			{
@@ -1393,14 +1276,18 @@ namespace FantasyModuleParser.Exporters
 			}
 			return "";
 		}
-		private string appendBlindSenses(string senseName, int senseValue, string senseRange)
+		private string AppendBlindSenses(string senseName, int senseValue, string senseRange)
 		{
 			NPCModel npcModel = new NPCModel();
 			string delimiter = ", ";
 			if (senseValue != 0 && npcModel.BlindBeyond == false)
+			{
 				return senseName + senseValue + senseRange + delimiter;
+			}				
 			else if (senseValue != 0 && npcModel.BlindBeyond == true)
+			{
 				return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
+			}				
 			return "";
 		}
 		private void WriteSpeed(XmlWriter xmlWriter, NPCModel npcModel)
@@ -1408,19 +1295,33 @@ namespace FantasyModuleParser.Exporters
 			StringBuilder stringBuilder = new StringBuilder();
 
 			if (npcModel.Speed > 0)
+			{
 				stringBuilder.Append(npcModel.Speed + " ft.").Append(", ");
+			}				
 			if (npcModel.Burrow > 0)
+			{
 				stringBuilder.Append("burrow " + npcModel.Burrow + " ft.").Append(", ");
+			}				
 			if (npcModel.Climb > 0)
+			{
 				stringBuilder.Append("climb " + npcModel.Climb + " ft.").Append(", ");
+			}				
 			if (npcModel.Hover)
+			{
 				stringBuilder.Append("fly " + npcModel.Fly + " ft. (hover)").Append(", ");
+			}				
 			if (npcModel.Fly > 0 && !npcModel.Hover)
+			{
 				stringBuilder.Append("fly " + npcModel.Fly + " ft.").Append(", ");
+			}				
 			if (npcModel.Swim > 0)
+			{
 				stringBuilder.Append("swim " + npcModel.Swim + " ft.").Append(", ");
+			}
 			if (stringBuilder.Length >= 2)
+			{
 				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
 			string speedString = stringBuilder.ToString().Trim();
 			xmlWriter.WriteStartElement("speed");
 			xmlWriter.WriteAttributeString("type", "string");
@@ -1439,8 +1340,9 @@ namespace FantasyModuleParser.Exporters
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(npcModel.NPCType);
 			if (npcModel.Tag != null)
+			{
 				stringBuilder.Append(" " + npcModel.Tag);
-
+			}
 			xmlWriter.WriteStartElement("type");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteValue(stringBuilder.ToString());
@@ -1467,9 +1369,13 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("token");
 			xmlWriter.WriteAttributeString("type", "token");
 			if (npcModel.NPCToken == null || npcModel.NPCToken == " " || !moduleModel.IncludeTokens)
+			{
 				xmlWriter.WriteString("");
+			}				
 			else
+			{
 				xmlWriter.WriteValue("tokens\\" + Path.GetFileName(npcModel.NPCToken) + "@" + moduleModel.Name);
+			}				
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
@@ -1497,39 +1403,63 @@ namespace FantasyModuleParser.Exporters
 				}
 			}
 			if (npcModel.Psionics)
+			{
 				innateName = "Innate Spellcasting (Psionics)";
+			}				
 			else if (npcModel.InnateSpellcastingSection && !npcModel.Psionics)
+			{
 				innateName = "Innate Spellcasting";
+			}				
 			if (innateName.Length > 0)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
 				if (!string.IsNullOrEmpty(npcModel.InnateSpellcastingAbility))
+				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + "'s innate spellcasting ability is " + npcModel.InnateSpellcastingAbility);
+				}					
 				else
+				{
 					MessageBox.Show("Please fill in the Innate Spellcasting Ability");
+				}					
 				if (npcModel.InnateSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.InnateSpellSaveDC);
 					if (npcModel.InnateSpellHitBonus != 0)
+					{
 						stringBuilder.Append("spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus);
+					}						
 					stringBuilder.Append(")");
 				}
 				else if (npcModel.InnateSpellHitBonus != 0)
+				{
 					stringBuilder.Append("(spell hit bonus ").Append(npcModel.InnateSpellHitBonus >= 0 ? "+" : "").Append(npcModel.InnateSpellHitBonus + ")");
+				}					
 				stringBuilder.Append(". ");
 				stringBuilder.Append("It can innately cast the following spells, " + npcModel.ComponentText + ":");
 				if (npcModel.InnateAtWill != null)
+				{
 					stringBuilder.Append("\\rAt will: " + npcModel.InnateAtWill);
+				}					
 				if (npcModel.FivePerDay != null)
+				{
 					stringBuilder.Append("\\r5/day each: " + npcModel.FivePerDay);
+				}					
 				if (npcModel.FourPerDay != null)
+				{
 					stringBuilder.Append("\\r4/day each: " + npcModel.FourPerDay);
+				}					
 				if (npcModel.ThreePerDay != null)
+				{
 					stringBuilder.Append("\\r3/day each: " + npcModel.ThreePerDay);
+				}					
 				if (npcModel.TwoPerDay != null)
+				{
 					stringBuilder.Append("\\r2/day each: " + npcModel.TwoPerDay);
+				}					
 				if (npcModel.OnePerDay != null)
+				{
 					stringBuilder.Append("\\r1/day each: " + npcModel.OnePerDay);
+				}					
 				string innateCastingDescription = stringBuilder.ToString();
 
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
@@ -1545,50 +1475,86 @@ namespace FantasyModuleParser.Exporters
 				actionID = ++actionID;
 			}
 			if (npcModel.SpellcastingSection)
+			{
 				spellcastingName = "Spellcasting";
+			}				
 			if (spellcastingName.Length > 0)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
 				if (!string.IsNullOrEmpty(npcModel.SpellcastingCasterLevel))
+				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " is a " + npcModel.SpellcastingCasterLevel + "-level spellcaster. ");
+				}					
 				else
+				{
 					MessageBox.Show("Please fill in the Spellcasting Level");
+				}					
 				if (!string.IsNullOrEmpty(npcModel.SCSpellcastingAbility))
+				{
 					stringBuilder.Append("Its spellcasting ability is " + npcModel.SCSpellcastingAbility);
+				}					
 				else
+				{
 					MessageBox.Show("Please fill in the Spellcasting Ability");
+				}				
 				if (npcModel.SpellcastingSpellSaveDC != 0)
 				{
 					stringBuilder.Append(" (spell save DC " + npcModel.SpellcastingSpellSaveDC);
 					if (npcModel.SpellcastingSpellHitBonus != 0)
+					{
 						stringBuilder.Append(", spell hit bonus ").Append(npcModel.SpellcastingSpellHitBonus >= 0 ? "+" : "").Append(npcModel.SpellcastingSpellHitBonus);
+					}						
 					stringBuilder.Append(")");
 				}
 				stringBuilder.Append(". ");
 				if (!string.IsNullOrEmpty(npcModel.SpellcastingSpellClass))
+				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following " + npcModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
+				}					
 				else
+				{
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following spells prepared:");
+				}					
 				if (npcModel.CantripSpellList != null)
+				{
 					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpells.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
+				}					
 				if (npcModel.FirstLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r1st level (" + npcModel.FirstLevelSpells.ToLower() + "): " + npcModel.FirstLevelSpellList.ToLower());
+				}					
 				if (npcModel.SecondLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r2nd level (" + npcModel.SecondLevelSpells.ToLower() + "): " + npcModel.SecondLevelSpellList.ToLower());
+				}					
 				if (npcModel.ThirdLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r3rd level (" + npcModel.ThirdLevelSpells.ToLower() + "): " + npcModel.ThirdLevelSpellList.ToLower());
+				}					
 				if (npcModel.FourthLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r4th level (" + npcModel.FourthLevelSpells.ToLower() + "): " + npcModel.FourthLevelSpellList.ToLower());
+				}					
 				if (npcModel.FifthLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r5th level (" + npcModel.FifthLevelSpells.ToLower() + "): " + npcModel.FifthLevelSpellList.ToLower());
+				}					
 				if (npcModel.SixthLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r6th level (" + npcModel.SixthLevelSpells.ToLower() + "): " + npcModel.SixthLevelSpellList.ToLower());
+				}					
 				if (npcModel.SeventhLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r7th level (" + npcModel.SeventhLevelSpells.ToLower() + "): " + npcModel.SeventhLevelSpellList.ToLower());
+				}					
 				if (npcModel.EighthLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r8th level (" + npcModel.EighthLevelSpells.ToLower() + "): " + npcModel.EighthLevelSpellList.ToLower());
+				}					
 				if (npcModel.NinthLevelSpellList != null)
+				{
 					stringBuilder.Append("\\r9th level (" + npcModel.NinthLevelSpells.ToLower() + "): " + npcModel.NinthLevelSpellList.ToLower());
+				}					
 				string spellcastingDescription = stringBuilder.ToString();
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 				xmlWriter.WriteStartElement("desc");
@@ -1649,7 +1615,7 @@ namespace FantasyModuleParser.Exporters
 
 			return settings;
 		}
-		private string writeXmlDocumentToString(XmlDocument xmlDocument)
+		private string WriteXmlDocumentToString(XmlDocument xmlDocument)
 		{
 			XmlWriterSettings settings = GetXmlWriterSettings();
 			string document = "";

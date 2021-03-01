@@ -8,11 +8,11 @@ namespace FantasyModuleParser.Main.Models
 {
     public class ModuleModel
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(ModuleModel));
+        // private static readonly ILog log = LogManager.GetLogger(typeof(ModuleModel));
 
         public NPCController NpcController { get; set; }
         public NPCModel NpcModel { get; set; }
-        public CategoryModel categoryModel { get; set; }
+        public CategoryModel Categorymodel { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string Author { get; set; }
