@@ -1292,40 +1292,9 @@ namespace FantasyModuleParser.Exporters
 		}
 		private void WriteSpeed(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-
-			if (npcModel.Speed > 0)
-			{
-				stringBuilder.Append(npcModel.Speed + " ft.").Append(", ");
-			}				
-			if (npcModel.Burrow > 0)
-			{
-				stringBuilder.Append("burrow " + npcModel.Burrow + " ft.").Append(", ");
-			}				
-			if (npcModel.Climb > 0)
-			{
-				stringBuilder.Append("climb " + npcModel.Climb + " ft.").Append(", ");
-			}				
-			if (npcModel.Hover)
-			{
-				stringBuilder.Append("fly " + npcModel.Fly + " ft. (hover)").Append(", ");
-			}				
-			if (npcModel.Fly > 0 && !npcModel.Hover)
-			{
-				stringBuilder.Append("fly " + npcModel.Fly + " ft.").Append(", ");
-			}				
-			if (npcModel.Swim > 0)
-			{
-				stringBuilder.Append("swim " + npcModel.Swim + " ft.").Append(", ");
-			}
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}				
-			string speedString = stringBuilder.ToString().Trim();
 			xmlWriter.WriteStartElement("speed");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteValue(speedString);
+			xmlWriter.WriteString(npcModel.GetAllSpeeds());
 			xmlWriter.WriteEndElement();
 		}
 		private void WriteSize(XmlWriter xmlWriter, NPCModel npcModel)

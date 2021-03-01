@@ -601,7 +601,7 @@ namespace FantasyModuleParser.NPC
         /// 
         /// </summary>
         /// <returns></returns>
-		public string GetAllSpeeeds()
+		public string GetAllSpeeds()
 		{
 			return string.Format("{0}{1}{2}{3}{4}",
                 string.Format("{0} ft.", this.Speed),

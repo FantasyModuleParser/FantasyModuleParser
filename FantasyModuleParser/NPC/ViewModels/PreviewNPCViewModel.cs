@@ -76,7 +76,7 @@ namespace FantasyModuleParser.NPC.ViewModels
 
         public void InitalizeViewModel()
         {
-            SpeedDescription = NPCModel.GetAllSpeeeds();  // UpdateSpeedDescription();
+            SpeedDescription = NPCModel.GetAllSpeeds();  // UpdateSpeedDescription();
             SkillsDescription = NPCModel.SkillAttributesToString();
 
 			#region UpdateAbilityScores
