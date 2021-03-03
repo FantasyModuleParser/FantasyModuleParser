@@ -1770,7 +1770,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(AppendSenses("darkvision ", npcModel.Darkvision, " ft."));
-			stringBuilder.Append(AppendBlindSenses("blindsight ", npcModel.Blindsight, " ft."));
+			stringBuilder.Append(AppendBlindSenses("blindsight ", npcModel.Blindsight, npcModel.BlindBeyond, " ft."));
 			stringBuilder.Append(AppendSenses("tremorsense ", npcModel.Tremorsense, " ft."));
 			stringBuilder.Append(AppendSenses("truesight ", npcModel.Truesight, " ft."));
 			stringBuilder.Append(AppendSenses("passive perception ", npcModel.PassivePerception, ""));
@@ -1793,19 +1793,11 @@ namespace FantasyModuleParser.Exporters
 			}
 			return "";
 		}
-		static public string AppendBlindSenses(string senseName, int senseValue, string senseRange)
-		{
-			NPCModel npcModel = new NPCModel();
+		static public string AppendBlindSenses(string senseName, int senseValue, bool blindBeyond, string senseRange)
+		{ 
 			string delimiter = ", ";
-			if (senseValue != 0 && npcModel.BlindBeyond == false)
-			{
-				return senseName + senseValue + senseRange + delimiter;
-			}				
-			else if (senseValue != 0 && npcModel.BlindBeyond == true)
-			{
-				return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
-			}				
-			return "";
+			return senseValue == 0 ? string.Empty : string.Format("{0}{1}{2}{3}{4}",
+				senseName, senseValue, senseRange, blindBeyond == true ? " (blind beyond this radius)" : string.Empty, delimiter);
 		}
 		static public void WriteSpeed(XmlWriter xmlWriter, NPCModel npcModel)
 		{
