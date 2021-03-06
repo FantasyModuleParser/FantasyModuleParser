@@ -3,6 +3,11 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Data;
+using FantasyModuleParser.Tables.ViewModels;
+using FantasyModuleParser.Tables.ViewModels.Enums;
+using System.Collections.ObjectModel;
+using FantasyModuleParser.Tables.Models;
+using System.Text;
 
 namespace FantasyModuleParser.Tables
 {
@@ -21,7 +26,9 @@ namespace FantasyModuleParser.Tables
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            tableOptionViewModel.UpdateDataGrid();
+            TableExampleDataGrid?.Items.Refresh();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -31,30 +38,27 @@ namespace FantasyModuleParser.Tables
 
         private void RoleMethodCombobox_Changed(object sender, SelectionChangedEventArgs e)
         {
-            if (CustomDiceCBI != null & PresetRangeCBI != null)
-            {
-                CustomDiceRollGrid.Visibility = CustomDiceCBI.IsSelected ? Visibility.Visible : Visibility.Hidden;
-                PresetRangeGrid.Visibility = PresetRangeCBI.IsSelected ? Visibility.Visible : Visibility.Hidden;
-            }
-        }
+            // Validate that the grids to be hidden / visible have been initialized
+            if (CustomDiceRollGrid == null || PresetRangeGrid == null)
+                return;
 
-        private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-            if (e.AddedCells.Count == 0)
-                this.textBox.SetBinding(TextBox.TextProperty, (string)null);
-            else
+            // Validate that the viewModel exists and is tied to the TableOptionViewModel for correct reference
+            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            if (tableOptionViewModel != null && tableOptionViewModel.TableModel != null)
             {
-                //var selectedCell = e.AddedCells.First();
-                var selectedCell = e.AddedCells[0];
-
-                // Assumes your header is the same name as the field it's bound to
-                var binding = new Binding(selectedCell.Column.Header.ToString())
+                // Reset the grid to default both grids to hidden
+                CustomDiceRollGrid.Visibility = Visibility.Hidden;
+                PresetRangeGrid.Visibility = Visibility.Hidden;
+                // Switch between the RollMethodEnum options, setting the appropriate grid to be visible
+                switch (tableOptionViewModel.TableModel.RollMethod)
                 {
-                    Mode = BindingMode.TwoWay,
-                    Source = selectedCell.Item,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-                };
-                this.textBox.SetBinding(TextBox.TextProperty, binding);
+                    case RollMethodEnum.CustomDiceRoll:
+                        CustomDiceRollGrid.Visibility = Visibility.Visible;
+                        break;
+                    case RollMethodEnum.PresetRange:
+                        PresetRangeGrid.Visibility = Visibility.Visible;
+                        break;
+                }
             }
         }
     }

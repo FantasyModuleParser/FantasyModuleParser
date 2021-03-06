@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace FantasyModuleParser.NPC.ViewModel
 {
@@ -22,6 +23,22 @@ namespace FantasyModuleParser.NPC.ViewModel
         {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool Set<T>(ref T backingField, T value, [CallerMemberName] string propertyname = null)
+        {
+            // Check if the value and backing field are actualy different
+            if (EqualityComparer<T>.Default.Equals(backingField, value)) { return false; }
+
+            // Setting the backing field and the RaisePropertyChanged
+            backingField = value;
+            OnPropertyChanged(propertyname);
+            return true;
         }
     }
 }

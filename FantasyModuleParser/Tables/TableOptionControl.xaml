@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:tableEnum="clr-namespace:FantasyModuleParser.Tables.ViewModels.Enums"
              xmlns:local="clr-namespace:FantasyModuleParser.Tables"
              xmlns:viewModel="clr-namespace:FantasyModuleParser.Tables.ViewModels"
              mc:Ignorable="d" 
@@ -76,24 +78,28 @@
                             </Grid.RowDefinitions>
 
                             <Label Content="Table Name:" Grid.Row="0" Grid.Column="0"/>
-                            <TextBox Text="{Binding TableModel.Name}" Grid.Row="0" Grid.Column="1" Margin="5" TextWrapping="NoWrap"/>
+                            <TextBox Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="5" TextWrapping="NoWrap"/>
                             <Label Content="Output To:" Grid.Row="0" Grid.Column="2"/>
-                            <ComboBox Grid.Row="0" Grid.Column="3" Style="{StaticResource standardComboBox}">
-                                <ComboBoxItem Content="Chat" IsSelected="True"/>
-                                <ComboBoxItem Content="Story"/>
-                                <ComboBoxItem Content="Parcel"/>
-                                <ComboBoxItem Content="Encounter"/>
-                            </ComboBox>
+
+
+                            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type tableEnum:OutputTypeEnum}}}"
+                                      SelectedValue="{Binding OutputType}"
+                                      SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="3"
+                                      Style="{StaticResource standardComboBox}" SelectedIndex="0" />
+
 
                             <Label Content="Description:" Grid.Row="1" Grid.Column="0"/>
                             <TextBox Text="{Binding TableModel.Name}" Grid.Row="1" Grid.Column="1" Margin="5" TextWrapping="WrapWithOverflow"/>
 
                             <Label Content="Role Method:" Grid.Row="2" Grid.Column="0"/>
-                            <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource standardComboBox}" SelectionChanged="RoleMethodCombobox_Changed">
-                                <ComboBoxItem Name="TableValuesCBI" Content="Based on table values" IsSelected="True"/>
-                                <ComboBoxItem Name="PresetRangeCBI" Content="Preset range"/>
-                                <ComboBoxItem Name="CustomDiceCBI" Content="Custom dice roll"/>
+                            <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type tableEnum:RollMethodEnum}}}"
+                                      SelectedValue="{Binding RollMethod}" SelectedValuePath="Value"
+                                      DisplayMemberPath="Description" Grid.Row="2" Grid.Column="1"
+                                      Style="{StaticResource standardComboBox}" 
+                                      SelectionChanged="RoleMethodCombobox_Changed">
+                                
                             </ComboBox>
+
                         </Grid>
 
                         <!-- Make this visible when the Role Method 'Custom Dice Roll' is selected-->
@@ -184,11 +190,17 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="Rows:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             <TextBox Grid.Column="1" Style="{StaticResource standardTextBox}" 
+                                     Text="{Binding GridHeight, UpdateSourceTrigger=PropertyChanged}"
+                                     TextChanged="TextBox_TextChanged"
                                      PreviewTextInput="NumberValidationTextBox" />
 
                             <Label Content="Columns:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             <TextBox Grid.Column="3" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox" />
+                                     Text="{Binding GridWidth, UpdateSourceTrigger=PropertyChanged}" 
+                                     TextChanged="TextBox_TextChanged"
+                                    PreviewTextInput="NumberValidationTextBox">
+                              
+                            </TextBox>
                         </Grid>
 
                     </Grid>
@@ -197,7 +209,8 @@
 
                     <Grid Grid.Row="1" Margin="5">
                         <TextBox x:Name="textBox" DockPanel.Dock="Top"  />
-                        <DataGrid Name="TableExampleDataGrid" SelectionUnit="Cell" SelectionMode="Single" ItemsSource="{Binding Data}" SelectedCellsChanged="DataGrid_SelectedCellsChanged" >
+                        <DataGrid Name="TableExampleDataGrid" SelectionUnit="Cell" SelectionMode="Single" ItemsSource="{Binding Data.DefaultView}"
+                                  AutoGenerateColumns="True" HeadersVisibility="None" >
 
 
                         </DataGrid>

@@ -1,9 +1,6 @@
 ﻿using FantasyModuleParser.Spells.Enums;
 using Newtonsoft.Json;
 using System.ComponentModel;
-using System.Text;
-using System.Windows;
-using FantasyModuleParser.Extensions;
 
 namespace FantasyModuleParser.Spells.Models
 {

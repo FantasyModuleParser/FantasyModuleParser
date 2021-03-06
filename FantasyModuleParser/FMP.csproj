@@ -660,6 +660,8 @@
       <DependentUpon>TableOptionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tables\ViewModels\CellViewModel.cs" />
+    <Compile Include="Tables\ViewModels\Enums\OutputTypeEnum.cs" />
+    <Compile Include="Tables\ViewModels\Enums\RollMethodEnum.cs" />
     <Compile Include="Tables\ViewModels\ICellViewModel.cs" />
     <Compile Include="Tables\ViewModels\TableOptionViewModel.cs" />
     <Compile Include="Utils\CommonMethod.cs" />
