@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Linq;
 
 namespace FantasyModuleParser.NPC
 {
@@ -530,7 +531,7 @@ namespace FantasyModuleParser.NPC
         /// <returns></returns>
         public static string GetSpellSlotsString(string lvl, string spellSlotsAtLevel)
 		{
-			if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) return string.Empty;
+            if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) { return string.Empty; }
 
 			string strLvl = lvl.Equals("Cantrips") || lvl.Equals("* ") ? lvl : lvl + " level";
 
@@ -601,7 +602,7 @@ namespace FantasyModuleParser.NPC
         /// 
         /// </summary>
         /// <returns></returns>
-		public string GetAllSpeeeds()
+		public string GetAllSpeeds()
 		{
 			return string.Format("{0}{1}{2}{3}{4}",
                 string.Format("{0} ft.", this.Speed),
@@ -611,37 +612,30 @@ namespace FantasyModuleParser.NPC
                 this.Swim == 0 ? string.Empty : string.Format(", swim {0} ft.", this.Swim));
 		}
 
-		public string UpdateSavingThrowsString()
-		{
-            string delimiter = ", ";
+        /// <summary>
+        /// For all the saving throws, format and concatenate them as a single string.
+        /// If the saving throw checkbox is checked (usually used when the saving throw is 0 (zero)) or the saving
+        /// throw value is != 0, then add that saving throw substring to the return string under construction
+        /// </summary>
+        /// <returns>The saving throws as a comma delimtered string, like "Dex +0, Int -2, Wis +11" </returns>
+        public string UpdateSavingThrowsString()
+        {
+            const string delimiter = ", ";
+            char[] trimChars = { ' ', ',' };
 
-            //Tuple<string, bool, int>[] tuples = {
-            //    Tuple.Create("Str", SavingThrowStrBool, SavingThrowStr),
-            //    Tuple.Create("Dex", SavingThrowDexBool, SavingThrowDex),
-            //    Tuple.Create("Con", SavingThrowConBool, SavingThrowCon),
-            //    Tuple.Create("Int", SavingThrowIntBool, SavingThrowInt),
-            //    Tuple.Create("Wis", SavingThrowWisBool, SavingThrowWis),
-            //    Tuple.Create("Cha", SavingThrowChaBool, SavingThrowCha)
-            //};
+            // {0:+#;-#;+0} formats the string as +1, -1, +0 (for arguments 1, -1, 0)
+            // use String Builder, since we know the max size, init the SB with that size: 8 chars per saving throw x up to 6 savingThrows
+            (string name, bool isChecked, int value)[] threeUple = {
+                ("Str", this.SavingThrowStrBool, this.SavingThrowStr),
+                ("Dex", this.SavingThrowDexBool, this.SavingThrowDex),
+                ("Con", this.SavingThrowConBool, this.SavingThrowCon),
+                ("Int", this.SavingThrowIntBool, this.SavingThrowInt),
+                ("Wis", this.SavingThrowWisBool, this.SavingThrowWis),
+                ("Cha", this.SavingThrowChaBool, this.SavingThrowCha)
+            };
 
-            //string pointValues = tuples.Aggregate(string.Empty,
-            //                                      (x, p) =>
-            //                                       x + string.Format("{0}, {1} ", p.Item1.ToString(), p.Item2.ToString())
-            //                                      (sav.isChecked || sav.value != 0 ? string.Format("Str {0:+#;-#;+0}{1}", sav.name, delimiter) : String.Empty)
-            //                                      );
-
-
-            //Func<(string name, bool isChecked, int value), string> concatThem = sav => (sav.isChecked || sav.value != 0 ? string.Format("Str {0:+#;-#;+0}{1}", sav.name, delimiter) : String.Empty);
-
-            // formats as +1, -1, +0 (for arguments 1, -1, 0)
-            return string.Format("{0}{1}{2}{3}{4}{5}",
-                SavingThrowStrBool || SavingThrowStr != 0 ? string.Format("Str {0:+#;-#;+0}{1}", SavingThrowStr, delimiter) : String.Empty,
-                SavingThrowDexBool || SavingThrowDex != 0 ? string.Format("Dex {0:+#;-#;+0}{1}", SavingThrowDex, delimiter) : String.Empty,
-                SavingThrowConBool || SavingThrowCon != 0 ? string.Format("Con {0:+#;-#;+0}{1}", SavingThrowCon, delimiter) : String.Empty,
-                SavingThrowIntBool || SavingThrowInt != 0 ? string.Format("Int {0:+#;-#;+0}{1}", SavingThrowInt, delimiter) : String.Empty,
-                SavingThrowWisBool || SavingThrowWis != 0 ? string.Format("Wis {0:+#;-#;+0}{1}", SavingThrowWis, delimiter) : String.Empty,
-                SavingThrowChaBool || SavingThrowCha != 0 ? string.Format("Cha {0:+#;-#;+0}{1}", SavingThrowCha, delimiter) : String.Empty
-                ).TrimEnd(' ', ',');
+            return threeUple.Aggregate(new StringBuilder(48), (sb, sav) => sb.Append(sav.isChecked || sav.value != 0 ?
+                string.Format("{0} {1:+#;-#;+0}{2}", sav.name, sav.value, delimiter) : string.Empty)).ToString().TrimEnd(' ', ',');
         }
 
         /// <summary>
