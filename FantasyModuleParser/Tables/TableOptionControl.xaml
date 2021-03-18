@@ -6,7 +6,9 @@
              xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
              xmlns:tableEnum="clr-namespace:FantasyModuleParser.Tables.ViewModels.Enums"
              xmlns:local="clr-namespace:FantasyModuleParser.Tables"
+             xmlns:behavior="clr-namespace:FantasyModuleParser.Tables.ViewModels.Behaviors"
              xmlns:viewModel="clr-namespace:FantasyModuleParser.Tables.ViewModels"
+             xmlns:userControl="clr-namespace:FantasyModuleParser.Tables.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="620">
     <UserControl.DataContext>
@@ -190,13 +192,13 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="Rows:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             <TextBox Grid.Column="1" Style="{StaticResource standardTextBox}" 
-                                     Text="{Binding GridHeight, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding RowCount, UpdateSourceTrigger=PropertyChanged}"
                                      TextChanged="TextBox_TextChanged"
                                      PreviewTextInput="NumberValidationTextBox" />
 
                             <Label Content="Columns:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             <TextBox Grid.Column="3" Style="{StaticResource standardTextBox}" 
-                                     Text="{Binding GridWidth, UpdateSourceTrigger=PropertyChanged}" 
+                                     Text="{Binding ColumnCount, UpdateSourceTrigger=PropertyChanged}" 
                                      TextChanged="TextBox_TextChanged"
                                     PreviewTextInput="NumberValidationTextBox">
                               
@@ -208,12 +210,26 @@
                     
 
                     <Grid Grid.Row="1" Margin="5">
-                        <TextBox x:Name="textBox" DockPanel.Dock="Top"  />
-                        <DataGrid Name="TableExampleDataGrid" SelectionUnit="Cell" SelectionMode="Single" ItemsSource="{Binding Data.DefaultView}"
-                                  AutoGenerateColumns="True" HeadersVisibility="None" >
+                        <!--<TextBox x:Name="textBox" DockPanel.Dock="Top"  />-->
 
-
+                        <!--<ListBox ItemsSource="{Binding Path=FMPConfigurationModel.UserLanguages}" Width="300" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="3" Grid.ColumnSpan="4">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock Text="Box 1"/>
+                                        <TextBlock Text="Box 2" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>-->
+                        <DataGrid Name="TableExampleDataGrid" >
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Click Me" Click="MenuItem_Click"/>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
                         </DataGrid>
+                        <!--<userControl:ListViewExtension MatrixSource="{Binding SourceCollection}"/>-->
                     </Grid>
                     <Grid Grid.Row="2" >
                         <Grid.RowDefinitions>

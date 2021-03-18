@@ -652,13 +652,20 @@
     <Compile Include="Spells\ViewModels\ImportTextSpellViewModel.cs" />
     <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
     <Compile Include="Tables\Models\CellModel.cs" />
+    <Compile Include="Tables\Models\DataMatrix.cs" />
     <Compile Include="Tables\Models\DelegateCommand.cs" />
+    <Compile Include="Tables\Models\GenericEnumerator.cs" />
+    <Compile Include="Tables\Models\MatrixColumn.cs" />
     <Compile Include="Tables\Models\TableModel.cs" />
     <Compile Include="Tables\Services\ITableService.cs" />
     <Compile Include="Tables\Services\TableService.cs" />
     <Compile Include="Tables\TableOptionControl.xaml.cs">
       <DependentUpon>TableOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tables\UserControls\ListViewExtension.xaml.cs">
+      <DependentUpon>ListViewExtension.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\ViewModels\Behaviors\DataGridColumnBehavior.cs" />
     <Compile Include="Tables\ViewModels\CellViewModel.cs" />
     <Compile Include="Tables\ViewModels\Enums\OutputTypeEnum.cs" />
     <Compile Include="Tables\ViewModels\Enums\RollMethodEnum.cs" />
@@ -732,6 +739,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tables\TableOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\UserControls\ListViewExtension.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -913,7 +924,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NPC\UserControls\Action\Reactions\" />
-    <Folder Include="Tables\UserControls\" />
     <Folder Include="Test\" />
   </ItemGroup>
   <ItemGroup>
