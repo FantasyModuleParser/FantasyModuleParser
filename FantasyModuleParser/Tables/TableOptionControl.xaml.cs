@@ -5,10 +5,6 @@ using System.Windows;
 using System.Windows.Data;
 using FantasyModuleParser.Tables.ViewModels;
 using FantasyModuleParser.Tables.ViewModels.Enums;
-using System.Collections.ObjectModel;
-using FantasyModuleParser.Tables.Models;
-using System.Text;
-using System.Web.UI.WebControls;
 using System.Data;
 
 namespace FantasyModuleParser.Tables
@@ -21,6 +17,7 @@ namespace FantasyModuleParser.Tables
     public partial class TableUserControl : UserControl
     {
         private Regex numericValidationRegex = new Regex("[^0-9]+");
+
         public TableUserControl()
         {
             InitializeComponent();
@@ -46,20 +43,157 @@ namespace FantasyModuleParser.Tables
             // columns are dynamically generated. Therefore, the columns   
             // must be re-created each time the page is refreshed.
 
+            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+
             // Create and add the columns to the collection.
             TableExampleDataGrid.Columns.Add(CreateBoundColumn("From", "From"));
             TableExampleDataGrid.Columns.Add(CreateBoundColumn("To", "To"));
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn("1", ""));
+            TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
 
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            
 
-            DataView dv = new DataView(tableOptionViewModel.Data);
+            //DataView dv = new DataView(tableOptionViewModel.Data);
 
-            TableExampleDataGrid.ItemsSource = dv;
+            //TableExampleDataGrid.ItemsSource = dv;
 
+            // Generate the Context Menu used by the grid
+            generateContextMenu();
+        }
 
+        private void generateContextMenu()
+        { 
+            TableExampleDataGrid.ContextMenu.Items.Add(buildLinkWithinThisProject());
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
 
+            TableExampleDataGrid.ContextMenu.Items.Add(buildInternalLink());
+            TableExampleDataGrid.ContextMenu.Items.Add(buildExternalLink());
 
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+            MenuItem insertRowMenuItem = new MenuItem();
+            insertRowMenuItem.Header = "Insert Row";
+            insertRowMenuItem.Click += InsertRow_Click;
+            TableExampleDataGrid.ContextMenu.Items.Add(insertRowMenuItem);
+
+            MenuItem deleteRowMenuItem = new MenuItem();
+            deleteRowMenuItem.Header = "Delete Row";
+            deleteRowMenuItem.Click += DeleteRowMenuItem_Click; ;
+            TableExampleDataGrid.ContextMenu.Items.Add(deleteRowMenuItem);
+
+            MenuItem clearRowMenuItem = new MenuItem();
+            clearRowMenuItem.Header = "Clear Row";
+            clearRowMenuItem.Click += ClearRowMenuItem_Click;
+            TableExampleDataGrid.ContextMenu.Items.Add(clearRowMenuItem);
+
+        }
+
+        private void ClearRowMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void DeleteRowMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void InsertRow_Click(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private MenuItem buildLinkWithinThisProject()
+        {
+            MenuItem miLinkWithinProject = new MenuItem();
+            miLinkWithinProject.Header = "Select link within this Project";
+
+            MenuItem imageMenuItem = new MenuItem();
+            imageMenuItem.Header = "Image";
+
+            // TODO:  Build out a reference of all images within 
+            // this FMP module, if applicable
+
+            MenuItem npcMenuItem = new MenuItem();
+            npcMenuItem.Header = "NPC";
+
+            //TODO:  Build out a reference of all NPCs between categories
+            // with this FMP module
+
+            MenuItem spellMenuItem = new MenuItem();
+            npcMenuItem.Header = "Spell";
+
+            //TODO:  Build out a reference of all NPCs between categories
+            // with this FMP module
+
+            MenuItem tableMenuItem = new MenuItem();
+            npcMenuItem.Header = "Table";
+
+            //TODO:  Build out a reference of all NPCs between categories
+            // with this FMP module
+
+            miLinkWithinProject.Items.Add(imageMenuItem);
+            miLinkWithinProject.Items.Add(npcMenuItem);
+            miLinkWithinProject.Items.Add(spellMenuItem);
+            miLinkWithinProject.Items.Add(tableMenuItem);
+
+            return miLinkWithinProject;
+        }
+
+        private MenuItem buildInternalLink()
+        {
+            MenuItem menuItemBuildInternalLink = new MenuItem();
+            menuItemBuildInternalLink.Header = "Build Internal Link";
+
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Image"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("NPC"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Spell"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Table"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Parcel"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Item"));
+
+            return menuItemBuildInternalLink;
+        }
+
+        private MenuItem buildInternalLinkSubMenuItem(string headerValue)
+        {
+            MenuItem subMenuItem = new MenuItem();
+            subMenuItem.Header = headerValue;
+            subMenuItem.Click += BuildInternalLink_MenuItem_ClickEvent;
+
+            return subMenuItem;
+        }
+
+        private void BuildInternalLink_MenuItem_ClickEvent(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private MenuItem buildExternalLink()
+        {
+            MenuItem menuItemBuildExternalLink = new MenuItem();
+            menuItemBuildExternalLink.Header = "Build External Link";
+
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Image"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("NPC"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Spell"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Table"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Parcel"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Item"));
+
+            return menuItemBuildExternalLink;
+        }
+
+        private MenuItem buildExternalLinkSubMenuItem(string headerValue)
+        {
+            MenuItem subMenuItem = new MenuItem();
+            subMenuItem.Header = headerValue;
+            subMenuItem.Click += BuildExternalLink_MenuItem_ClickEvent;
+
+            return subMenuItem;
+        }
+
+        private void BuildExternalLink_MenuItem_ClickEvent(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         private DataGridBoundColumn CreateBoundColumn(string DataFieldValue, string HeaderTextValue)

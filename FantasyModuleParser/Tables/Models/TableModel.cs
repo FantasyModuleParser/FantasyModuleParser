@@ -38,8 +38,9 @@ namespace FantasyModuleParser.Tables.Models
         public TableModel Load()
         {
             // For now, just create the default TableModel object, with the Load process coming later
+            CreateDefaultTableModel();
             CreateMockData();
-            return CreateDefaultTableModel();
+            return this;
         }
 
         public void CreateMockData()

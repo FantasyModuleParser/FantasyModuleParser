@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Tables.Models;
 using FantasyModuleParser.Tables.Services;
@@ -113,6 +114,12 @@ namespace FantasyModuleParser.Tables.ViewModels
             set { Set(ref sourceCollection, value); }
         }
 
+        private DataView _dataView;
+        public DataView TableDataView
+        {
+            get => _dataView;
+            set { Set(ref _dataView, value); }
+        }
 
         public ICommand OnDataGridSizeChangeCommand { get; set; }
 
@@ -121,7 +128,9 @@ namespace FantasyModuleParser.Tables.ViewModels
             _tableService = new TableService();
             _tableModel = new TableModel();
             CreateDefaultDataTable();
-            _dataGridColumns = new ObservableCollection<DataGridColumn>();
+
+            TableDataView = new DataView(Data);
+            //_dataGridColumns = new ObservableCollection<DataGridColumn>();
             //ChangeGridDimesions();
             //CreateTable();
         }
@@ -146,12 +155,14 @@ namespace FantasyModuleParser.Tables.ViewModels
 
             for(int idx = 2; idx < TableModel.ColumnHeaderLabels.Count; idx++)
             {
-                Data.Columns.Add(new DataColumn($"[{idx}]", typeof(int)));
+                Data.Columns.Add(new DataColumn($"Col{idx}", typeof(string)));
             }
 
             //3.  With the columns defined, now move the gridData into the DataTable
             // NOTE:  Even if the GridData in TableModel has more columns of data, it will only read upto the 
-            // number of defined columns above.  *** This will result in data loss if not careful!!! ***
+            // number of defined columns above in ColumnHeaderLabels.
+            //
+            // *** This will result in data loss if not careful when removing columns!!! ***
 
             foreach(List<string> rowData in TableModel.BasicStringGridData)
             {
@@ -159,147 +170,61 @@ namespace FantasyModuleParser.Tables.ViewModels
                 for(int rowIdx = 0; rowIdx < TableModel.ColumnHeaderLabels.Count; rowIdx++)
                 {
                     // Safety check that the list of strings in rowData does not throw an ArrayOutOfBoundsException
-                    if (rowData.Count < rowIdx)
-                        dr[rowIdx] = rowData[rowIdx];
+                    
+                    if (rowIdx < rowData.Count) 
+                    {
+                        switch (rowIdx)
+                        {
+                            case 0:
+                                dr["From"] = rowData[rowIdx];
+                                break;
+                            case 1:
+                                dr["To"] = rowData[rowIdx];
+                                break;
+                            default:
+                                dr[$"Col{rowIdx}"] = rowData[rowIdx];
+                                break;
+
+                        }
+                    }
                 }
 
                 Data.Rows.Add(dr);
             }
         }
 
-        public void ChangeGridDimesions()
+        // Experimenting with the ActionCommand as a delegate for the button clicks from the View
+        ActionCommand _insertRowCommand;
+        public ICommand InsertRowCommand
         {
-
-            // 1. Because DataTable requires to clear out 
-            Data = new DataTable();
-            ResetColumns();
-            DataGridColumns.Clear();
-            
-            if (_tableModel != null)
+            get
             {
-                for (var posCol = 0; posCol < _tableModel.ColumnCount; posCol++)
+                if(_insertRowCommand == null)
                 {
-                    //if (!Data.Columns.Contains($"Column { posCol }"))
-                    //    Data.Columns.Add($"Column { posCol }");
-                    //var row = new ObservableCollection<ICellViewModel>();
-
-                    List<string> recordInfo = new List<string>();
-                    for (var posRow = 0; posRow < _tableModel.RowCount; posRow++)
-                    {
-                        // If this loop is on the first outer iteration, then it's the "header" row, where all
-                        // columns are defined
-                        if (posCol == 0)
-                        {
-                            //string columnName = posCol >= row.Count ? "" + posCol : row[posCol].Content;
-                            //if (!Data.Columns.Contains(columnName))
-                            //{ Data.Columns.Add(columnName); }
-                            //DataGridTextColumn dataGridTextColumn = new DataGridTextColumn();
-                            //dataGridTextColumn.Header = columnName;
-                            //DataGridColumns.Add(dataGridTextColumn);
-                            //Data.Rows.Add($"Row { posCol }");
-                            DataRow dataRow = Data.NewRow();
-                            dataRow[posCol] = $"Row {posRow}";
-                            Data.Rows.Add(dataRow);
-                        }
-                        else
-                        {
-                            //recordInfo.Add(posCol >= row.Count ? "" + posCol : row[posCol].Content);
-                            DataRow dataRow = Data.Rows[posRow];
-
-                            if (dataRow != null)
-                            {
-                                dataRow[$"Column { posCol }"] = $"Row {posRow}";
-                            }
-                            else
-                            {
-                                dataRow = Data.NewRow();
-                                dataRow[$"Column { posCol }"] = $"Row {posRow}";
-                                Data.Rows.Add(dataRow);
-                            }
-
-
-                        }
-                    }
-                    //Data.Rows.Add(recordInfo.ToArray());
+                    _insertRowCommand = new ActionCommand(param => TableDataView.AddNew());
                 }
-                //Data.AcceptChanges();
-                
+                return _insertRowCommand;
             }
-
-            OnPropertyChanged(nameof(Data));
         }
 
-        private static readonly DataTable _dt = new DataTable();
-        public void AddColumn(string columnName)
+        ActionCommand _deleteRowCommand;
+        public ICommand DeleteRowCommand
         {
-            var temp = this.Data;
-            this.Data = _dt;
-            temp.Columns.Clear();
-            temp.Columns.Add(columnName);
-            this.Data = temp;
-
-        }
-
-        private void ResetColumns()
-        {
-            var temp = this.Data;
-            this.Data = _dt;
-            temp.Columns.Clear();
-            for (var posCol = 0; posCol < _tableModel.ColumnCount; posCol++)
+            get
             {
-                if (!temp.Columns.Contains($"Column { posCol }"))
+                if (_deleteRowCommand == null)
                 {
-                    DataColumn dataColumn = new DataColumn($"Column { posCol }");
-                    dataColumn.Caption = "";
-                    temp.Columns.Add(dataColumn);
+                    _deleteRowCommand = new ActionCommand(param => attemptToDeleteLastRow());
+                    //TODO:  Can add a Predicate command to the ActionCommand, but not sure how that works in practice.....
                 }
+                return _deleteRowCommand;
             }
-            this.Data = temp;
         }
 
-        private ObservableCollection<ObservableCollection<ICellViewModel>> CreateCells()
+        private void attemptToDeleteLastRow()
         {
-            var cells = new ObservableCollection<ObservableCollection<ICellViewModel>>();
-            for (var posRow = 0; posRow < RowCount; posRow++)
-            {
-                var row = new ObservableCollection<ICellViewModel>();
-                for (var posCol = 0; posCol < ColumnCount; posCol++)
-                {
-                    var cellViewModel = new CellViewModel("");
-                    row.Add(cellViewModel);
-                }
-                cells.Add(row);
-            }
-            return cells;
+            if (TableDataView.Count > 0)
+                TableDataView.Delete(TableDataView.Count - 1);
         }
-
-
-        private DataMatrix generateData()
-        {
-            List<object[]> rows = new List<object[]>();
-            for (int i = 0; i < RowCount; i++)
-            {
-                var line = new object[ColumnCount];
-                for (int j = 0; j < ColumnCount; j++)
-                {
-                    line[j] = ($"Data Entry Line: {i + 1} Entry: {j + 1}");
-                }
-                rows.Add(line);
-            }
-
-            List<string> columns = new List<string>();
-            for (int i = 0; i < ColumnCount; i++)
-            {
-                //columns.Add(new MatrixColumn() { Name = $"Column {i + 1}" });
-                columns.Add($"Column {i + 1}");
-            }
-            return new DataMatrix() { Columns = columns, Rows = rows };
-        }
-
-        public void CreateTable()
-        {
-            SourceCollection = generateData();
-        }
-
     }
 }
