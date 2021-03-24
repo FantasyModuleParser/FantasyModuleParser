@@ -80,7 +80,7 @@
                             </Grid.RowDefinitions>
 
                             <Label Content="Table Name:" Grid.Row="0" Grid.Column="0"/>
-                            <TextBox Text="{Binding TableModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="5" TextWrapping="NoWrap"/>
+                            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="5" TextWrapping="NoWrap"/>
                             <Label Content="Output To:" Grid.Row="0" Grid.Column="2"/>
 
 
