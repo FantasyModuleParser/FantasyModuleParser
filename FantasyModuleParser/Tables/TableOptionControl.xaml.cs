@@ -6,6 +6,8 @@ using System.Windows.Data;
 using FantasyModuleParser.Tables.ViewModels;
 using FantasyModuleParser.Tables.ViewModels.Enums;
 using System.Data;
+using FantasyModuleParser.Main.Services;
+using System;
 
 namespace FantasyModuleParser.Tables
 {
@@ -46,11 +48,17 @@ namespace FantasyModuleParser.Tables
             TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
 
             // Create and add the columns to the collection.
+            TableExampleDataGrid.Columns.Clear();
             TableExampleDataGrid.Columns.Add(CreateBoundColumn("From", "From"));
             TableExampleDataGrid.Columns.Add(CreateBoundColumn("To", "To"));
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
 
-            
+            for(int colIdx = 2; colIdx < tableOptionViewModel.TableModel.ColumnHeaderLabels.Count; colIdx++)
+            {
+                TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{colIdx}", tableOptionViewModel.TableModel.ColumnHeaderLabels[colIdx]));
+            }
+
+
+
 
             //DataView dv = new DataView(tableOptionViewModel.Data);
 
@@ -61,7 +69,8 @@ namespace FantasyModuleParser.Tables
         }
 
         private void generateContextMenu()
-        { 
+        {
+            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             TableExampleDataGrid.ContextMenu.Items.Add(buildLinkWithinThisProject());
             TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
 
@@ -71,17 +80,18 @@ namespace FantasyModuleParser.Tables
             TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
             MenuItem insertRowMenuItem = new MenuItem();
             insertRowMenuItem.Header = "Insert Row";
-            insertRowMenuItem.Click += InsertRow_Click;
+            insertRowMenuItem.Command = tableOptionViewModel.InsertRowCommand;
             TableExampleDataGrid.ContextMenu.Items.Add(insertRowMenuItem);
 
             MenuItem deleteRowMenuItem = new MenuItem();
             deleteRowMenuItem.Header = "Delete Row";
-            deleteRowMenuItem.Click += DeleteRowMenuItem_Click; ;
+            deleteRowMenuItem.Command = tableOptionViewModel.DeleteRowCommand;
+            deleteRowMenuItem.CommandParameter = TableExampleDataGrid.SelectedItem;
             TableExampleDataGrid.ContextMenu.Items.Add(deleteRowMenuItem);
 
             MenuItem clearRowMenuItem = new MenuItem();
             clearRowMenuItem.Header = "Clear Row";
-            clearRowMenuItem.Click += ClearRowMenuItem_Click;
+            clearRowMenuItem.Command = tableOptionViewModel.ClearRowCommand;
             TableExampleDataGrid.ContextMenu.Items.Add(clearRowMenuItem);
 
         }
@@ -265,6 +275,39 @@ namespace FantasyModuleParser.Tables
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void LoadTableModule_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsService settingsService = new SettingsService();
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+            
+            openFileDlg.InitialDirectory = settingsService.Load().TableFolderLocation;
+            openFileDlg.Filter = "Table files (*.tbl)|*.tbl|All files (*.*)|*.*";
+            openFileDlg.RestoreDirectory = true;
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+                tableOptionViewModel.TableModel = tableOptionViewModel.TableModel.Load(openFileDlg.FileName);
+
+                tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
+
+                InitializeTableDataGrid();
+            }
+        }
+
+        private void InsertColumn_Click(object sender, RoutedEventArgs e)
+        {
+            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            int currentColumnCount = TableExampleDataGrid.Columns.Count;
+            //TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
+            TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
         }
     }
 }

@@ -1,7 +1,10 @@
-﻿using FantasyModuleParser.Tables.ViewModels.Enums;
+﻿using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.Tables.ViewModels.Enums;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Data;
+using System.IO;
 
 namespace FantasyModuleParser.Tables.Models
 {
@@ -16,6 +19,7 @@ namespace FantasyModuleParser.Tables.Models
 
         public List<string> ColumnHeaderLabels = new List<string>();
         public List<List<string>> BasicStringGridData = new List<List<string>>();
+        public DataTable tableDataTable = new DataTable();
 
 
         public TableModel()
@@ -56,7 +60,31 @@ namespace FantasyModuleParser.Tables.Models
 
         public void Save()
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrWhiteSpace(this.Name))
+                throw new Exception("The table is missing a name");
+
+            SettingsService settingsService = new SettingsService();
+            string filePath = Path.Combine(settingsService.Load().TableFolderLocation, this.Name + ".tbl");
+
+            Save(filePath);
+        }
+
+        public void Save(string filePath)
+        {
+            using (StreamWriter file = File.CreateText(@filePath))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Formatting = Formatting.Indented;
+                serializer.Serialize(file, this);
+            }
+        }
+
+        // Loads a FPM Module json file based on a given filePath
+        // Must call GetModuleModel() to get the loaded module (overkill bloat happening here)
+        public TableModel Load(string @filePath)
+        {
+            string jsonData = File.ReadAllText(@filePath);
+            return JsonConvert.DeserializeObject<TableModel>(jsonData);
         }
 
     }

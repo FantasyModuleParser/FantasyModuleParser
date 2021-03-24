@@ -62,8 +62,8 @@ namespace FantasyModuleParser.Tables.ViewModels
 
         public DataTable Data
         {
-            get { return _dataTable; }
-            set { this._dataTable = value; RaisePropertyChanged(nameof(Data)); }
+            get { return _tableModel.tableDataTable; }
+            set { this._tableModel.tableDataTable = value; RaisePropertyChanged(nameof(Data)); }
         }
 
         public string Name
@@ -119,6 +119,15 @@ namespace FantasyModuleParser.Tables.ViewModels
         {
             get => _dataView;
             set { Set(ref _dataView, value); }
+        }
+
+        // This is an attempt at binding the selected item from the DataGrid on the view
+        // as to be used to manipulate the DataView object inside this ViewModel
+        private object _selectedItem;
+        public object SelectedItem
+        {
+            get => _selectedItem;
+            set { Set(ref _selectedItem, value); }
         }
 
         public ICommand OnDataGridSizeChangeCommand { get; set; }
@@ -184,7 +193,6 @@ namespace FantasyModuleParser.Tables.ViewModels
                             default:
                                 dr[$"Col{rowIdx}"] = rowData[rowIdx];
                                 break;
-
                         }
                     }
                 }
@@ -214,17 +222,75 @@ namespace FantasyModuleParser.Tables.ViewModels
             {
                 if (_deleteRowCommand == null)
                 {
-                    _deleteRowCommand = new ActionCommand(param => attemptToDeleteLastRow());
+                    _deleteRowCommand = new ActionCommand(param => attemptToDeleteLastRow(param),
+                        param => TableDataView.Count > 0);
                     //TODO:  Can add a Predicate command to the ActionCommand, but not sure how that works in practice.....
                 }
                 return _deleteRowCommand;
             }
         }
 
-        private void attemptToDeleteLastRow()
+        ActionCommand _clearRowCommand;
+        public ICommand ClearRowCommand
+        {
+            get
+            {
+                if (_clearRowCommand == null)
+                {
+                    _clearRowCommand = new ActionCommand(param => attemptToClearLastRow(),
+                        param => TableDataView.Count > 0);
+                    //TODO:  Can add a Predicate command to the ActionCommand, but not sure how that works in practice.....
+                }
+                return _clearRowCommand;
+            }
+        }
+
+        ActionCommand _addColumnCommand;
+        public ICommand AddColumnCommand
+        {
+            get
+            {
+                if (_addColumnCommand == null)
+                {
+                    _addColumnCommand = new ActionCommand(param => AddColumnToDataTable());
+                    //TODO:  Can add a Predicate command to the ActionCommand, but not sure how that works in practice.....
+                }
+                return _addColumnCommand;
+            }
+        }
+
+        private void attemptToDeleteLastRow(object param)
+        {
+                TableDataView.Delete(TableDataView.Count - 1);
+        }
+
+        private void attemptToClearLastRow()
         {
             if (TableDataView.Count > 0)
                 TableDataView.Delete(TableDataView.Count - 1);
+        }
+
+        private void AddColumnToDataTable()
+        {
+            Data.Columns.Add(new DataColumn("Col" + TableModel.ColumnHeaderLabels.Count, typeof(string)));
+            TableModel.ColumnHeaderLabels.Add("");
+
+            TableDataView = new DataView(Data);
+
+        }
+
+
+        ActionCommand _saveCommand;
+        public ICommand SaveCommand
+        {
+            get
+            {
+                if (_saveCommand == null)
+                { 
+                    _saveCommand = new ActionCommand(param => _tableModel.Save());
+                }
+                return _saveCommand;
+            }
         }
     }
 }
