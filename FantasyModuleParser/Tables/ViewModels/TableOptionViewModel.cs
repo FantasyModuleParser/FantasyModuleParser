@@ -21,7 +21,6 @@ namespace FantasyModuleParser.Tables.ViewModels
         private TableModel _tableModel;
         private ModuleModel _moduleModel;
         private CategoryModel _selectedCategoryModel;
-        private ObservableCollection<ObservableCollection<ICellViewModel>> _cells;
         private DataTable _dataTable;
         private ObservableCollection<DataGridColumn> _dataGridColumns;
 
@@ -54,14 +53,6 @@ namespace FantasyModuleParser.Tables.ViewModels
                 RaisePropertyChanged(nameof(SelectedCategoryModel));
             }
         }
-        public ObservableCollection<ObservableCollection<ICellViewModel>> Cells
-        {
-            get { return this._cells; }
-            set
-            {
-                this._cells = value;
-            }
-        }
 
         public DataTable Data
         {
@@ -84,13 +75,6 @@ namespace FantasyModuleParser.Tables.ViewModels
         {
             get { return _dataGridColumns; }
             set { Set(ref _dataGridColumns, value); }
-        }
-
-        private DataMatrix sourceCollection;
-        public DataMatrix SourceCollection
-        {
-            get => sourceCollection;
-            set { Set(ref sourceCollection, value); }
         }
 
         private DataView _dataView;
