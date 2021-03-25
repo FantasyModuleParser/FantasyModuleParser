@@ -66,30 +66,6 @@ namespace FantasyModuleParser.Tables.ViewModels
             set { this._tableModel.tableDataTable = value; RaisePropertyChanged(nameof(Data)); }
         }
 
-        public string Name
-        {
-            get { return _tableModel.Name; }
-            set { Set(ref _tableModel.Name, value); }
-        }
-
-        public string Description
-        {
-            get { return _tableModel.Description; }
-            set { Set(ref _tableModel.Description, value); }
-        }
-
-        public OutputTypeEnum OutputType
-        {
-            get { return _tableModel.OutputType; }
-            set { Set(ref _tableModel.OutputType, value); }
-        }
-
-        public RollMethodEnum RollMethod
-        {
-            get { return _tableModel.RollMethod; }
-            set { Set(ref _tableModel.RollMethod, value); }
-        }
-
         public int RowCount
         {
             get { return _tableModel.RowCount; }

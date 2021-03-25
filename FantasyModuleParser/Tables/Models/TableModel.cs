@@ -1,22 +1,65 @@
 ﻿using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Tables.ViewModels.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 
 namespace FantasyModuleParser.Tables.Models
 {
-    public class TableModel
+    public class TableModel : ViewModelBase
     {
-        public string Name;
-        public string Description;
-        public OutputTypeEnum OutputType;
-        public RollMethodEnum RollMethod;
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set => Set(ref _name, value);
+        }
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set => Set(ref _description, value);
+        }
+        private string _notes;
+        public string Notes
+        {
+            get => _notes;
+            set => Set(ref _notes, value);
+        }
+        private OutputTypeEnum _outputType;
+        public OutputTypeEnum OutputType
+        {
+            get => _outputType;
+            set => Set(ref _outputType, value);
+        }
+        private RollMethodEnum _rollMethod;
+        public RollMethodEnum RollMethod
+        {
+            get => _rollMethod;
+            set => Set(ref _rollMethod, value);
+        }
         public int RowCount = 8;
         public int ColumnCount = 8;
 
+        private bool _isLocked;
+        public bool IsLocked
+        {
+            get => _isLocked;
+            set => Set(ref _isLocked, value);
+        }
+        private bool _showResultsInChat;
+        public bool ShowResultsInChat
+        {
+            get => _showResultsInChat;
+            set => Set(ref _showResultsInChat, value);
+        }
+
+        // Property Changed events are already handled within the 
+        // TableOptionViewModel
         public List<string> ColumnHeaderLabels = new List<string>();
         public List<List<string>> BasicStringGridData = new List<List<string>>();
         public DataTable tableDataTable = new DataTable();

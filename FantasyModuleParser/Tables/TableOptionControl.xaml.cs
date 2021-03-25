@@ -295,6 +295,7 @@ namespace FantasyModuleParser.Tables
             {
                 TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
                 tableOptionViewModel.TableModel = tableOptionViewModel.TableModel.Load(openFileDlg.FileName);
+               
 
                 tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
 
@@ -308,6 +309,29 @@ namespace FantasyModuleParser.Tables
             int currentColumnCount = TableExampleDataGrid.Columns.Count;
             //TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
             TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
+        }
+
+        private void TableExampleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (TableExampleDataGrid.SelectedIndex == -1) //if column selected, cant use .CurrentColumn property
+            {
+                MessageBox.Show("Please double click on a row");
+            }
+            else
+            {
+                DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
+
+                dataRowView.Delete();
+
+                //DataGridColumn columnHeader = TableExampleDataGrid.CurrentColumn;
+
+                //TableExampleDataGrid.Columns.Remove(columnHeader);
+                //if (columnHeader != null)
+                //{
+                //    string input = Interaction.InputBox("Title", "Prompt", "Default", 0, 0);
+                //    columnHeader.Header = input;
+                //}
+            }
         }
     }
 }
