@@ -233,7 +233,7 @@
                         </ListBox>-->
                         <DataGrid Name="TableExampleDataGrid" HeadersVisibility="Column" 
                                   ItemsSource="{Binding TableDataView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  MouseDoubleClick="TableExampleDataGrid_MouseDoubleClick">
+                                  SelectionMode="Single" SelectionUnit="Cell">
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Click Me" Click="MenuItem_Click"/>

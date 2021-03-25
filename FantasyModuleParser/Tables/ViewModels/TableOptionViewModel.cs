@@ -4,6 +4,7 @@ using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Tables.Models;
 using FantasyModuleParser.Tables.Services;
 using FantasyModuleParser.Tables.ViewModels.Enums;
+using log4net;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -14,6 +15,8 @@ namespace FantasyModuleParser.Tables.ViewModels
 {
     public class TableOptionViewModel : ViewModelBase
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(TableOptionViewModel));
+
         private ITableService _tableService;
         private TableModel _tableModel;
         private ModuleModel _moduleModel;
@@ -206,21 +209,6 @@ namespace FantasyModuleParser.Tables.ViewModels
             }
         }
 
-        ActionCommand _clearRowCommand;
-        public ICommand ClearRowCommand
-        {
-            get
-            {
-                if (_clearRowCommand == null)
-                {
-                    _clearRowCommand = new ActionCommand(param => attemptToClearLastRow(),
-                        param => TableDataView.Count > 0);
-                    //TODO:  Can add a Predicate command to the ActionCommand, but not sure how that works in practice.....
-                }
-                return _clearRowCommand;
-            }
-        }
-
         ActionCommand _addColumnCommand;
         public ICommand AddColumnCommand
         {
@@ -240,18 +228,67 @@ namespace FantasyModuleParser.Tables.ViewModels
                 TableDataView.Delete(TableDataView.Count - 1);
         }
 
-        private void attemptToClearLastRow()
+        private ActionCommand _insertColumnCommand;
+        public ActionCommand InsertColumnCommand
         {
-            if (TableDataView.Count > 0)
-                TableDataView.Delete(TableDataView.Count - 1);
+            get
+            {
+                if(_insertColumnCommand == null)
+                {
+                    _insertColumnCommand = new ActionCommand(param => AddColumnToDataTable());
+                }
+                return _insertColumnCommand;
+            }
         }
-
         private void AddColumnToDataTable()
         {
             Data.Columns.Add(new DataColumn("Col" + TableModel.ColumnHeaderLabels.Count, typeof(string)));
             TableModel.ColumnHeaderLabels.Add("");
 
             TableDataView = new DataView(Data);
+        }
+
+        private ActionCommand _removeColumnCommand;
+        public ActionCommand RemoveColumnCommand
+        {
+            get
+            {
+                if(_removeColumnCommand == null)
+                {
+                    _removeColumnCommand = new ActionCommand(param => RemoveColumnFromDataTable(param as DataGridColumn));
+                }
+                return _removeColumnCommand;
+            }
+        }
+
+        private bool PredicateRemoveColumnFromDataTable(object dataColumn)
+        {
+            log.Info(dataColumn);
+            if(dataColumn == null)
+            {
+                return false;
+            }
+            return (dataColumn as DataGridColumn).DisplayIndex> 1;
+        }
+        private void RemoveColumnFromDataTable(DataGridColumn dataColumn)
+        {
+            if(dataColumn == null)
+            {
+                log.Info(string.Format("Cannot delete the column as the param is not a dataColumn type :: {0}", dataColumn));
+                return;
+            }
+
+            if(dataColumn.DisplayIndex <= 1)
+            {
+                log.Info(string.Format("Cannot delete column {0} at the index {1}; Continuing on..", dataColumn.Header, dataColumn.DisplayIndex));
+                return;
+            }
+            Data.Columns.RemoveAt(dataColumn.DisplayIndex);
+        }
+
+
+        private void RemoveColumnFromDataTable()
+        {
 
         }
 

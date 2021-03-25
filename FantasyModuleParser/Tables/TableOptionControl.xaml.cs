@@ -23,6 +23,7 @@ namespace FantasyModuleParser.Tables
         public TableUserControl()
         {
             InitializeComponent();
+            generateContextMenu();
             InitializeTableDataGrid();
             //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             //TableExampleDataGrid.ItemsSource = tableOptionViewModel.Data.DefaultView;
@@ -65,7 +66,7 @@ namespace FantasyModuleParser.Tables
             //TableExampleDataGrid.ItemsSource = dv;
 
             // Generate the Context Menu used by the grid
-            generateContextMenu();
+            //generateContextMenu();
         }
 
         private void generateContextMenu()
@@ -89,11 +90,46 @@ namespace FantasyModuleParser.Tables
             deleteRowMenuItem.CommandParameter = TableExampleDataGrid.SelectedItem;
             TableExampleDataGrid.ContextMenu.Items.Add(deleteRowMenuItem);
 
-            MenuItem clearRowMenuItem = new MenuItem();
-            clearRowMenuItem.Header = "Clear Row";
-            clearRowMenuItem.Command = tableOptionViewModel.ClearRowCommand;
-            TableExampleDataGrid.ContextMenu.Items.Add(clearRowMenuItem);
+            //MenuItem clearRowMenuItem = new MenuItem();
+            //clearRowMenuItem.Header = "Clear Row";
+            //clearRowMenuItem.Command = tableOptionViewModel.ClearRowCommand;
+            //TableExampleDataGrid.ContextMenu.Items.Add(clearRowMenuItem);
 
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+
+            MenuItem insertColumnMenuItem = new MenuItem();
+            insertColumnMenuItem.Header = "Insert Column";
+            insertColumnMenuItem.Click += InsertColumn_Click;
+            insertColumnMenuItem.Command = tableOptionViewModel.InsertColumnCommand;
+            TableExampleDataGrid.ContextMenu.Items.Add(insertColumnMenuItem);
+
+            MenuItem deleteColumnMenuItem = new MenuItem();
+            deleteColumnMenuItem.Header = "Delete Column";
+            deleteColumnMenuItem.Click += DeleteColumnMenuItem_Click;
+            deleteColumnMenuItem.Command = tableOptionViewModel.RemoveColumnCommand;
+            deleteColumnMenuItem.CommandParameter = TableExampleDataGrid.CurrentColumn;
+            TableExampleDataGrid.ContextMenu.Items.Add(deleteColumnMenuItem);
+
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+
+            MenuItem clearCellMenuItem = new MenuItem();
+            clearCellMenuItem.Header = "Clear Cell";
+            clearCellMenuItem.Click += ClearCellMenuItem_Click;
+            TableExampleDataGrid.ContextMenu.Items.Add(clearCellMenuItem);
+
+        }
+
+        private void ClearCellMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = TableExampleDataGrid.SelectedItem;
+            TableExampleDataGrid.SelectedValue = "";
+        }
+
+        private void DeleteColumnMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
+            //dataRowView.Delete();
+            TableExampleDataGrid.Columns.Remove(TableExampleDataGrid.CurrentColumn);
         }
 
         private void ClearRowMenuItem_Click(object sender, RoutedEventArgs e)
@@ -225,16 +261,6 @@ namespace FantasyModuleParser.Tables
 
         }
 
-        private static int columnNumber = 100;
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-            //tableOptionViewModel.ChangeGridDimesions();
-            //TableExampleDataGrid?.Items.Refresh();
-            //tableOptionViewModel.AddColumn($"Column {columnNumber}");
-            //columnNumber++;
-        }
-
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             e.Handled = numericValidationRegex.IsMatch(e.Text);
@@ -311,27 +337,27 @@ namespace FantasyModuleParser.Tables
             TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
         }
 
-        private void TableExampleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (TableExampleDataGrid.SelectedIndex == -1) //if column selected, cant use .CurrentColumn property
-            {
-                MessageBox.Show("Please double click on a row");
-            }
-            else
-            {
-                DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
+        //private void TableExampleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (TableExampleDataGrid.SelectedIndex == -1) //if column selected, cant use .CurrentColumn property
+        //    {
+        //        MessageBox.Show("Please double click on a row");
+        //    }
+        //    else
+        //    {
+        //        DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
 
-                dataRowView.Delete();
+        //        dataRowView.Delete();
 
-                //DataGridColumn columnHeader = TableExampleDataGrid.CurrentColumn;
+        //        //DataGridColumn columnHeader = TableExampleDataGrid.CurrentColumn;
 
-                //TableExampleDataGrid.Columns.Remove(columnHeader);
-                //if (columnHeader != null)
-                //{
-                //    string input = Interaction.InputBox("Title", "Prompt", "Default", 0, 0);
-                //    columnHeader.Header = input;
-                //}
-            }
-        }
+        //        //TableExampleDataGrid.Columns.Remove(columnHeader);
+        //        //if (columnHeader != null)
+        //        //{
+        //        //    string input = Interaction.InputBox("Title", "Prompt", "Default", 0, 0);
+        //        //    columnHeader.Header = input;
+        //        //}
+        //    }
+        //}
     }
 }
