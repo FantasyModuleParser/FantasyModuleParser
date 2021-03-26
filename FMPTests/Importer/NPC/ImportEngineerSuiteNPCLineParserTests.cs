@@ -744,25 +744,25 @@ namespace FMPTests.Importer.NPC
             Assert.AreEqual(expectedNPCModel.SpellcastingSpellHitBonus, actualNPCModel.SpellcastingSpellHitBonus);
             Assert.AreEqual(expectedNPCModel.SpellcastingSpellClass, actualNPCModel.SpellcastingSpellClass);
             Assert.AreEqual(expectedNPCModel.FlavorText, actualNPCModel.FlavorText);
-            Assert.AreEqual(expectedNPCModel.CantripSpells, actualNPCModel.CantripSpells);
+            Assert.AreEqual(expectedNPCModel.CantripSpellSlots, actualNPCModel.CantripSpellSlots);
             Assert.AreEqual(expectedNPCModel.CantripSpellList, actualNPCModel.CantripSpellList);
-            Assert.AreEqual(expectedNPCModel.FirstLevelSpells, actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual(expectedNPCModel.FirstLevelSpellSlots, actualNPCModel.FirstLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.FirstLevelSpellList, actualNPCModel.FirstLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.SecondLevelSpells, actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual(expectedNPCModel.SecondLevelSpellSlots, actualNPCModel.SecondLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.SecondLevelSpellList, actualNPCModel.SecondLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.ThirdLevelSpells, actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual(expectedNPCModel.ThirdLevelSpellSlots, actualNPCModel.ThirdLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.ThirdLevelSpellList, actualNPCModel.ThirdLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.FourthLevelSpells, actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.FourthLevelSpellSlots, actualNPCModel.FourthLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.FourthLevelSpellList, actualNPCModel.FourthLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.FifthLevelSpells, actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.FifthLevelSpellSlots, actualNPCModel.FifthLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.FifthLevelSpellList, actualNPCModel.FifthLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.SixthLevelSpells, actualNPCModel.SixthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.SixthLevelSpellSlots, actualNPCModel.SixthLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.SixthLevelSpellList, actualNPCModel.SixthLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.SeventhLevelSpells, actualNPCModel.SeventhLevelSpells);
+            Assert.AreEqual(expectedNPCModel.SeventhLevelSpellSlots, actualNPCModel.SeventhLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.SeventhLevelSpellList, actualNPCModel.SeventhLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.EighthLevelSpells, actualNPCModel.EighthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.EighthLevelSpellSlots, actualNPCModel.EighthLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.EighthLevelSpellList, actualNPCModel.EighthLevelSpellList);
-            Assert.AreEqual(expectedNPCModel.NinthLevelSpells, actualNPCModel.NinthLevelSpells);
+            Assert.AreEqual(expectedNPCModel.NinthLevelSpellSlots, actualNPCModel.NinthLevelSpellSlots);
             Assert.AreEqual(expectedNPCModel.NinthLevelSpellList, actualNPCModel.NinthLevelSpellList);
             Assert.AreEqual(expectedNPCModel.MarkedSpells, actualNPCModel.MarkedSpells);
         }
@@ -808,33 +808,33 @@ namespace FMPTests.Importer.NPC
             npcModel.SpellcastingSpellHitBonus = hitBonus;
             npcModel.SpellcastingSpellClass = spellClass;
             npcModel.FlavorText = flavorText;
-            npcModel.CantripSpells = cantripSpells;
+            npcModel.CantripSpellSlots = cantripSpells;
             npcModel.CantripSpellList = cantripSpellList;
-            npcModel.FirstLevelSpells = firstSpells;
+            npcModel.FirstLevelSpellSlots = firstSpells;
             npcModel.FirstLevelSpellList = firstSpellList;
 
-            npcModel.SecondLevelSpells = secondSpells;
+            npcModel.SecondLevelSpellSlots = secondSpells;
             npcModel.SecondLevelSpellList = secondSpellList;
 
-            npcModel.ThirdLevelSpells = thirdSpells;
+            npcModel.ThirdLevelSpellSlots = thirdSpells;
             npcModel.ThirdLevelSpellList = thirdSpellList;
 
-            npcModel.FourthLevelSpells = fourthSpells;
+            npcModel.FourthLevelSpellSlots = fourthSpells;
             npcModel.FourthLevelSpellList = fourthSpellList;
 
-            npcModel.FifthLevelSpells = fifthSpells;
+            npcModel.FifthLevelSpellSlots = fifthSpells;
             npcModel.FifthLevelSpellList = fifthSpellList;
 
-            npcModel.SixthLevelSpells = sixthSpells;
+            npcModel.SixthLevelSpellSlots = sixthSpells;
             npcModel.SixthLevelSpellList = sixthSpellList;
 
-            npcModel.SeventhLevelSpells = seventhSpells;
+            npcModel.SeventhLevelSpellSlots = seventhSpells;
             npcModel.SeventhLevelSpellList = seventhSpellList;
 
-            npcModel.EighthLevelSpells = eighthSpells;
+            npcModel.EighthLevelSpellSlots = eighthSpells;
             npcModel.EighthLevelSpellList = eighthSpellList;
 
-            npcModel.NinthLevelSpells = ninthSpells;
+            npcModel.NinthLevelSpellSlots = ninthSpells;
             npcModel.NinthLevelSpellList = ninthSpellList;
             npcModel.MarkedSpells = markedSpells;
 

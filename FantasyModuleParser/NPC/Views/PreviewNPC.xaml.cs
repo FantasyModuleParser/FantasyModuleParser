@@ -25,17 +25,17 @@ namespace FantasyModuleParser.NPC.Views
             PreviewKeyDown += (sender, eventArgs) => { if (eventArgs.Key == Key.Escape) Close(); };
 
             viewModel = new PreviewNPCViewModel();
-            viewModel.NPCModel.PropertyChanged += RefreshDataContext;
+            viewModel.NpcModel.PropertyChanged += RefreshDataContext;
 
-            setupPropertyChangedEventForLanguages(viewModel.NPCModel.StandardLanguages);
-            setupPropertyChangedEventForLanguages(viewModel.NPCModel.ExoticLanguages);
-            setupPropertyChangedEventForLanguages(viewModel.NPCModel.MonstrousLanguages);
+            setupPropertyChangedEventForLanguages(viewModel.NpcModel.StandardLanguages);
+            setupPropertyChangedEventForLanguages(viewModel.NpcModel.ExoticLanguages);
+            setupPropertyChangedEventForLanguages(viewModel.NpcModel.MonstrousLanguages);
             // Custom method for UserLanguages, as the user can add / remove languages at will
 
-            if(viewModel.NPCModel.UserLanguages == null)
-                viewModel.NPCModel.UserLanguages = new ObservableCollection<LanguageModel>();
+            if(viewModel.NpcModel.UserLanguages == null)
+                viewModel.NpcModel.UserLanguages = new ObservableCollection<LanguageModel>();
                 
-            viewModel.NPCModel.UserLanguages.CollectionChanged += (sender, e) =>
+            viewModel.NpcModel.UserLanguages.CollectionChanged += (sender, e) =>
             {
                 if (e.NewItems != null)
                 {

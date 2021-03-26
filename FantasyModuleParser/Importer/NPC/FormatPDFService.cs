@@ -36,6 +36,9 @@ namespace FantasyModuleParser.Importer.NPC
 
             while ((line = stringReader.ReadLine()) != null)
             {
+                line = line.Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
                 switch (importNPCState)
                 {
                     case ImportNPCState.SENSES:
@@ -111,6 +114,11 @@ namespace FantasyModuleParser.Importer.NPC
                             else if (line.EndsWith("prepared:", StringComparison.OrdinalIgnoreCase))
                             {
                                 _ = formattedTextContent.Append(slashSlashRStr);
+                                if (line.StartsWith("Spellcasting. ", StringComparison.OrdinalIgnoreCase)) { importNPCState = ImportNPCState.SPELLCASTING; }
+                            }
+                            else if (line.StartsWith("Spellcasting. ", StringComparison.OrdinalIgnoreCase))
+                            {
+                                importNPCState = ImportNPCState.SPELLCASTING;
                             }
                             else if (line.Equals("actions", StringComparison.OrdinalIgnoreCase))
                             {
@@ -121,9 +129,9 @@ namespace FantasyModuleParser.Importer.NPC
                             {
                                 importNPCState = ImportNPCState.INNATE_SPELLCASTING;
                             }
-                            else if (line.StartsWith("Spellcasting. ", StringComparison.OrdinalIgnoreCase))
-                            {
-                                importNPCState = ImportNPCState.SPELLCASTING;
+                            else if(line.StartsWith("Proficiency", StringComparison.OrdinalIgnoreCase))
+							{
+                                _ = formattedTextContent.Append(Environment.NewLine);
                             }
                             else
                             {
@@ -198,11 +206,6 @@ namespace FantasyModuleParser.Importer.NPC
                                 _ = formattedTextContent.Append(Environment.NewLine).Append(line).Append(Environment.NewLine);
                                 importNPCState = ImportNPCState.ACTIONS;
                             }
-                            else if (checkIfLineMaybeTrait(line))
-                            {
-                                _ = formattedTextContent.Append(Environment.NewLine).Append(line);
-                                importNPCState = ImportNPCState.TRAITS;
-                            }
 							else if (
                                 line.StartsWith("Cantrips", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1st level", StringComparison.OrdinalIgnoreCase) ||
                                 line.StartsWith("2nd level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3rd level", StringComparison.OrdinalIgnoreCase) ||
@@ -211,6 +214,11 @@ namespace FantasyModuleParser.Importer.NPC
                                 line.StartsWith("8th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("9th level", StringComparison.OrdinalIgnoreCase))
 							{
 								_ = formattedTextContent.Append(slashSlashRStr).Append(line);
+                            }
+                            else if (checkIfLineMaybeTrait(line))
+                            {
+                                _ = formattedTextContent.Append(Environment.NewLine).Append(line);
+                                importNPCState = ImportNPCState.TRAITS;
                             }
                             else
                             {

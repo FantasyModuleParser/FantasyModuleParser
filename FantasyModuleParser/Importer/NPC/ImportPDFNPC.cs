@@ -35,29 +35,33 @@ namespace FantasyModuleParser.Importer.NPC
             // so as not to check other if statements that are known to not be valid at the moment
             while ((line = stringReader.ReadLine()) != null)
             {
-				if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
+                line = line.Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") ||
+                    line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
 				{
 					// Line 2 indicates Size, Type, (tag), Alignment
 					ParseSizeAndAlignment(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Armor Class", StringComparison.OrdinalIgnoreCase) || line.StartsWith("Armour Class", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseArmorClass(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Hit Points", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseHitPoints(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Speed", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseSpeedAttributes(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
@@ -71,55 +75,55 @@ namespace FantasyModuleParser.Importer.NPC
 					ParseStatAttributes(parsedNPCModel, line);
 					// Why not simply set continueBaseStatsFlag to false here?
 					resetContinueFlags();
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Saving Throws", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseSavingThrows(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Skills", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseSkillAttributes(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Damage Resistances", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseDamageResistances(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Damage Vulnerabilities", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseDamageVulnerabilities(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Damage Immunities", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseDamageImmunities(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Condition Immunities", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseConditionImmunities(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Senses", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseVisionAttributes(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Languages", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseLanguages(parsedNPCModel, line);
-					continue;
+					//continue;
 				}
 
 				if (line.StartsWith("Challenge", StringComparison.OrdinalIgnoreCase))

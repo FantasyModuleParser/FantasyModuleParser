@@ -185,43 +185,43 @@ namespace FantasyModuleParser.Importer.NPC
                 switch (spellDataArray[0])
                 {
                     case "Cantrips":
-                        npcModel.CantripSpells = (spellDataArray[1] + " " + spellDataArray[2]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').ToLower().Trim();
+                        npcModel.CantripSpellSlots = (spellDataArray[1] + " " + spellDataArray[2]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').ToLower().Trim();
                         npcModel.CantripSpellList = appendSpellList(spellDataArray, 3);
                         break;
                     case "1st":
-                        npcModel.FirstLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.FirstLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.FirstLevelSpellList = appendSpellList(spellDataArray, 4).TrimEnd();
                         break;
                     case "2nd":
-                        npcModel.SecondLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.SecondLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.SecondLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     case "3rd":
-                        npcModel.ThirdLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.ThirdLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.ThirdLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     case "4th":
-                        npcModel.FourthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.FourthLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.FourthLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     case "5th":
-                        npcModel.FifthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.FifthLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.FifthLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     case "6th":
-                        npcModel.SixthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.SixthLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.SixthLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     case "7th":
-                        npcModel.SeventhLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.SeventhLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.SeventhLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     case "8th":
-                        npcModel.EighthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.EighthLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.EighthLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     case "9th":
-                        npcModel.NinthLevelSpells = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
+                        npcModel.NinthLevelSpellSlots = (spellDataArray[2] + " " + spellDataArray[3]).Replace('(', ' ').Replace(')', ' ').Replace(':', ' ').Trim();
                         npcModel.NinthLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     default:

@@ -12,10 +12,11 @@ namespace FantasyModuleParser.NPC.ViewModels
     public class PreviewNPCViewModel : ViewModelBase
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(PreviewNPCViewModel));
-        public NPCModel NPCModel { get; set; }
+        // private static readonly char[] trimCharsSpaceComma = { ' ', ',' };
+		// private static readonly string delimiter = ", ";
+
+        public NPCModel NpcModel { get; set; }
         private readonly NPCController npcController;
-        private string Resistance;
-        private string Immunity;
 
         public string SpeedDescription { get; set; }
         public string SkillsDescription { get; set; }
@@ -64,1098 +65,245 @@ namespace FantasyModuleParser.NPC.ViewModels
         public PreviewNPCViewModel()
         {
             npcController = new NPCController();
-            NPCModel = npcController.GetNPCModel();
+            NpcModel = npcController.GetNPCModel();
             InitalizeViewModel();
         }
 
         public PreviewNPCViewModel(NPCModel npcModel)
         {
-            NPCModel = npcModel;
+            NpcModel = npcModel;
             InitalizeViewModel();
         }
 
         public void InitalizeViewModel()
         {
-            SpeedDescription = NPCModel.GetAllSpeeeds();  // UpdateSpeedDescription();
-            SkillsDescription = NPCModel.SkillAttributesToString();
+            SpeedDescription = NpcModel.GetAllSpeeds();
+            SkillsDescription = NpcModel.SkillAttributesToString();
 
 			#region UpdateAbilityScores
-			StrengthAttribute = NPCModel.UpdateStrengthAttributeModifier;
-			DexterityAttribute = NPCModel.UpdateDexterityAttributeModifier;
-			ConstitutionAttribute = NPCModel.UpdateConstitutionAttributeModifier;
-			IntelligenceAttribute = NPCModel.UpdateIntelligenceAttributeModifier;
-			WisdomAttribute = NPCModel.UpdateWisdomAttributeModifier;
-			CharismaAttribute = NPCModel.UpdateCharismaAttributeModifier;
+			StrengthAttribute = NpcModel.UpdateStrengthAttributeModifier;
+			DexterityAttribute = NpcModel.UpdateDexterityAttributeModifier;
+			ConstitutionAttribute = NpcModel.UpdateConstitutionAttributeModifier;
+			IntelligenceAttribute = NpcModel.UpdateIntelligenceAttributeModifier;
+			WisdomAttribute = NpcModel.UpdateWisdomAttributeModifier;
+			CharismaAttribute = NpcModel.UpdateCharismaAttributeModifier;
 			#endregion
 
-			SavingThrows = NPCModel.UpdateSavingThrowsString();
-            Senses = UpdateSenses();
-            DamageVulnerabilities = UpdateDamageVulnerabilities();
-            DamageResistances = UpdateDamageResistances();
-            DamageImmunities = UpdateDamageImmunities();
-            ConditionImmunities = UpdateConditionImmunities();
-            Languages = UpdateLanguages();
-            Challenge = UpdateChallengeRating();
-            InnateSpellcastingLabel = UpdateInnateSpellcastingLabel();
-            InnateSpellcasting = UpdateInnateSpellcasting();
-            Spellcasting = UpdateSpellcasting();
+			SavingThrows = NpcModel.UpdateSavingThrowsString();
+            Senses = NpcModel.UpdateSenses();
+            DamageVulnerabilities = NpcModel.UpdateDamageVulnerabilities();
+            DamageResistances = NpcModel.UpdateDamageResistances();
+            DamageImmunities = NpcModel.UpdateDamageImmunities();
+            ConditionImmunities = NpcModel.UpdateConditionImmunities();
+            Languages = NpcModel.UpdateLanguages();
+            Challenge = NpcModel.UpdateChallengeRating;
+            InnateSpellcastingLabel = NpcModel.UpdateInnateSpellcastingLabel();
+            InnateSpellcasting = NpcModel.UpdateInnateSpellcasting();
+            Spellcasting = NpcModel.UpdateSpellcasting();
 
             #region UpdateSpellSlotsLabels
-			SpellcastingCantripsLabel = NPCModel.RetrieveCantripsSpellSlotsString;
-            SpellcastingFirstLabel = NPCModel.RetrieveFirstLevelSpellSlotsString;
-            SpellcastingSecondLabel = NPCModel.RetrieveSecondLevelSpellSlotsString;
-            SpellcastingThirdLabel = NPCModel.RetrieveThirdLevelSpellSlotsString;
-            SpellcastingFourthLabel = NPCModel.RetrieveFourthLevelSpellSlotsString;
-            SpellcastingFifthLabel = NPCModel.RetrieveFifthLevelSpellSlotsString;
-            SpellcastingSixthLabel = NPCModel.RetrieveSixthLevelSpellSlotsString;
-            SpellcastingSeventhLabel = NPCModel.RetrieveSeventhLevelSpellSlotsString;
-            SpellcastingEighthLabel = NPCModel.RetrieveEighthLevelSpellSlotsString;
-            SpellcastingNinthLabel = NPCModel.RetrieveNinthLevelSpellSlotsString;
-            SpellcastingMarkedSpells = NPCModel.RetrieveMarkedLevelSpellSlotsString;
+			SpellcastingCantripsLabel = NpcModel.RetrieveCantripsSpellSlotsString;
+            SpellcastingFirstLabel = NpcModel.RetrieveFirstLevelSpellSlotsString;
+            SpellcastingSecondLabel = NpcModel.RetrieveSecondLevelSpellSlotsString;
+            SpellcastingThirdLabel = NpcModel.RetrieveThirdLevelSpellSlotsString;
+            SpellcastingFourthLabel = NpcModel.RetrieveFourthLevelSpellSlotsString;
+            SpellcastingFifthLabel = NpcModel.RetrieveFifthLevelSpellSlotsString;
+            SpellcastingSixthLabel = NpcModel.RetrieveSixthLevelSpellSlotsString;
+            SpellcastingSeventhLabel = NpcModel.RetrieveSeventhLevelSpellSlotsString;
+            SpellcastingEighthLabel = NpcModel.RetrieveEighthLevelSpellSlotsString;
+            SpellcastingNinthLabel = NpcModel.RetrieveNinthLevelSpellSlotsString;
+            SpellcastingMarkedSpells = NpcModel.RetrieveMarkedLevelSpellSlotsString;
             #endregion
         }
 
+		#region UpdateSkills
+		public Visibility ShowSkills
+		{
+			get { return SkillsDescription.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+		#endregion
 
-        #region UpdateSpeed
-        //public string UpdateSpeedDescription()
-        //{
-        //    StringBuilder stringBuilder = new StringBuilder();
+		#region UpdateSavingThrows
+		public Visibility ShowSavingThrows
+		{
+			get { return SavingThrows.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+		#endregion
 
-        //    if (NPCModel.Speed == 0)
-        //    {
-        //        stringBuilder.Append("0 ft., ");
-        //    }
-        //    else
-        //    {
-        //        stringBuilder.Append(AppendSpeedAttribute("", NPCModel.Speed, false));
-        //    }
+		#region UpdateDamageVulnerabilities
+		public Visibility ShowDamageVulnerabilities
+		{
+			get { return DamageVulnerabilities.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+		#endregion
 
-        //    stringBuilder.Append(AppendSpeedAttribute("climb", NPCModel.Climb, false));
-        //    stringBuilder.Append(AppendSpeedAttribute("fly", NPCModel.Fly, NPCModel.Hover));
-        //    stringBuilder.Append(AppendSpeedAttribute("burrow", NPCModel.Burrow, false));
-        //    stringBuilder.Append(AppendSpeedAttribute("swim", NPCModel.Swim, false));
+		#region UpdateDamageResistances
+		public Visibility ShowDamageResistances
+		{
+			get { return DamageResistances.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
+		#endregion
 
-        //    if (stringBuilder.Length >= 2)
-        //    {
-        //        stringBuilder.Remove(stringBuilder.Length - 2, 2);
-        //    }
-        //    return stringBuilder.ToString().Trim();
-        //}
+		#region UpdateDamageImmunities
+		public Visibility ShowDamageImmunities
+		{
+			get { return DamageImmunities.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        //static private string AppendSpeedAttribute(string name, int value, bool hover)
-        //{
-        //    string delimiter = ", ";
-        //    if (value != 0 && hover == false)
-        //    {
-        //        return name + " " + value + " ft." + delimiter;
-        //    }
-        //    else if (value != 0 && hover == true)
-        //    {
-        //        return name + " " + value + " ft." + " (hover)" + delimiter;
-        //    }
-        //    else
-        //    {
-        //        return "";
-        //    }
-        //}
+		#endregion
+
+		#region UpdateConditionImmunities
+		public Visibility ShowConditionImmunities
+		{
+			get { return ConditionImmunities.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+		#endregion
+
+		#region UpdateLanguages
+		public Visibility ShowLanguages
+		{
+			get { return Languages.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
         #endregion
 
-        #region UpdateSkills
-        public Visibility ShowSkills
-        {
-            get
-            {
-                if (SkillsDescription.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
+		#region UpdateInnateSpellcasting
+		public Visibility ShowInnateSpellcasting
+		{
+			get { return NpcModel.InnateSpellcastingSection == true ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        #endregion
+		public Visibility ShowInnateAtWill
+		{
+			get { return NpcModel.InnateAtWill != null && NpcModel.InnateAtWill.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        #region UpdateSavingThrows
-        public Visibility ShowSavingThrows
-        {
-            get
-            {
-                if (SavingThrows.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        //private string UpdateSavingThrows()
-        //{
-        //    StringBuilder stringBuilder = new StringBuilder();
-        //    stringBuilder.Append(AppendSavingThrowStr("Str", NPCModel.SavingThrowStr));
-        //    stringBuilder.Append(AppendSavingThrowDex("Dex", NPCModel.SavingThrowDex));
-        //    stringBuilder.Append(AppendSavingThrowCon("Con", NPCModel.SavingThrowCon));
-        //    stringBuilder.Append(AppendSavingThrowInt("Int", NPCModel.SavingThrowInt));
-        //    stringBuilder.Append(AppendSavingThrowWis("Wis", NPCModel.SavingThrowWis));
-        //    stringBuilder.Append(AppendSavingThrowCha("Cha", NPCModel.SavingThrowCha));
-        //    if (stringBuilder.Length >= 2)
-        //    {
-        //        stringBuilder.Remove(stringBuilder.Length - 2, 2);
-        //    }
-        //    return stringBuilder.ToString();
-        //}
-        //private string AppendSavingThrowStr(string savingThrowName, int savingThrowValue)
-        //{
-        //    string delimiter = ", ";
-        //    if (NPCModel.SavingThrowStrBool == true && savingThrowValue == 0)
-        //    {
-        //        return savingThrowName + " +" + savingThrowValue + delimiter;
-        //    }
-        //    else if (NPCModel.SavingThrowStrBool == false && savingThrowValue != 0)
-        //    {
-        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-        //    }
-        //    return "";
-        //}
-        //private string AppendSavingThrowDex(string savingThrowName, int savingThrowValue)
-        //{
-        //    string delimiter = ", ";
-        //    if (NPCModel.SavingThrowDexBool == true && savingThrowValue == 0)
-        //    {
-        //        return savingThrowName + " +" + savingThrowValue + delimiter;
-        //    }
-        //    else if (NPCModel.SavingThrowDexBool == false && savingThrowValue != 0)
-        //    {
-        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-        //    }
-        //    return "";
-        //}
-        //private string AppendSavingThrowCon(string savingThrowName, int savingThrowValue)
-        //{
-        //    string delimiter = ", ";
-        //    if (NPCModel.SavingThrowConBool == true && savingThrowValue == 0)
-        //    {
-        //        return savingThrowName + " +" + savingThrowValue + delimiter;
-        //    }
-        //    else if (NPCModel.SavingThrowConBool == false && savingThrowValue != 0)
-        //    {
-        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-        //    }
-        //    return "";
-        //}
-        //private string AppendSavingThrowInt(string savingThrowName, int savingThrowValue)
-        //{
-        //    string delimiter = ", ";
-        //    if (NPCModel.SavingThrowIntBool == true && savingThrowValue == 0)
-        //    {
-        //        return savingThrowName + " +" + savingThrowValue + delimiter;
-        //    }
-        //    else if (NPCModel.SavingThrowIntBool == false && savingThrowValue != 0)
-        //    {
-        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-        //    }
-        //    return "";
-        //}
-        //private string AppendSavingThrowWis(string savingThrowName, int savingThrowValue)
-        //{
-        //    string delimiter = ", ";
-        //    if (NPCModel.SavingThrowWisBool == true && savingThrowValue == 0)
-        //    {
-        //        return savingThrowName + " +" + savingThrowValue + delimiter;
-        //    }
-        //    else if (NPCModel.SavingThrowWisBool == false && savingThrowValue != 0)
-        //    {
-        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-        //    }
-        //    return "";
-        //}
-        //private string AppendSavingThrowCha(string savingThrowName, int savingThrowValue)
-        //{
-        //    string delimiter = ", ";
-        //    if (NPCModel.SavingThrowChaBool == true && savingThrowValue == 0)
-        //    {
-        //        return savingThrowName + " +" + savingThrowValue + delimiter;
-        //    }
-        //    else if (NPCModel.SavingThrowChaBool == false && savingThrowValue != 0)
-        //    {
-        //        return savingThrowName + ((savingThrowValue < 0) ? " " : " +") + savingThrowValue + delimiter;
-        //    }
-        //    return "";
-        //}
-        #endregion
-        #region UpdateDamageVulnerabilities
-        public Visibility ShowDamageVulnerabilities
-        {
-            get
-            {
-                if (DamageVulnerabilities.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        private string UpdateDamageVulnerabilities()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (SelectableActionModel selectableActionModel in NPCModel.DamageVulnerabilityModelList)
-            {
-                if (selectableActionModel.Selected == true)
-                {
-                    stringBuilder.Append(selectableActionModel.ActionName).Append(", ");
-                }
-            }
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            return stringBuilder.ToString().TrimEnd(',', ' ');
-        }
-        #endregion
-        #region UpdateDamageResistances
-        public Visibility ShowDamageResistances
-        {
-            get
-            {
-                if (DamageResistances.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        private string UpdateDamageResistances()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (SelectableActionModel selectableActionModel in NPCModel.DamageResistanceModelList)
-            {
-                if (selectableActionModel.Selected == true)
-                {
-                    stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
-                }
-            }
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            stringBuilder.Append("; ");
-            if (stringBuilder.Length == 2)
-            {
-                stringBuilder.Remove(0, 2);
-            }
-            foreach (SelectableActionModel selectableActionModel in NPCModel.SpecialWeaponResistanceModelList)
-            {
-                if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
-                {
-                    if (selectableActionModel.ActionName == "Nonmagical")
-                    {
-                        Resistance = " from nonmagical attacks";
-                    }
-                    else if (selectableActionModel.ActionName == "NonmagicalSilvered")
-                    {
-                        Resistance = " from nonmagical attacks that aren't silvered";
-                    }
-                    else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
-                    {
-                        Resistance = " from nonmagical attacks that aren't adamantine";
-                    }
-                    else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
-                    {
-                        Resistance = " from nonmagical attacks that aren't cold-forged iron";
-                    }
-                    else if (selectableActionModel.ActionName == "Magical")
-                    {
-                        Resistance = " from magic weapons";
-                    }
-                    foreach (SelectableActionModel selectableActionModelDmg in NPCModel.SpecialWeaponDmgResistanceModelList)
-                    {
-                        if (selectableActionModelDmg.Selected == true)
-                        {
-                            stringBuilder.Append(selectableActionModelDmg.ActionDescription).Append(", ");
-                        }
-                    }
-                    if (stringBuilder.Length >= 2)
-                    {
-                        stringBuilder.Remove(stringBuilder.Length - 2, 2);
-                    }
-                    stringBuilder.Append(Resistance);
-                }
-            }
-            return stringBuilder.ToString().Trim();
-        }
-        #endregion
-        #region UpdateDamageImmunities
-        public Visibility ShowDamageImmunities
-        {
-            get
-            {
-                if (DamageImmunities.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        private string UpdateDamageImmunities()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (SelectableActionModel selectableActionModel in NPCModel.DamageImmunityModelList)
-            {
-                if (selectableActionModel.Selected == true)
-                {
-                    stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
-                }
-            }
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            stringBuilder.Append("; ");
-            if (stringBuilder.Length == 2)
-            {
-                stringBuilder.Remove(0, 2);
-            }
-            foreach (SelectableActionModel selectableActionModel in NPCModel.SpecialWeaponImmunityModelList)
-            {
-                if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
-                {
-                    if (selectableActionModel.ActionName == "Nonmagical")
-                    {
-                        Immunity = " from nonmagical attacks";
-                    }
-                    else if (selectableActionModel.ActionName == "NonmagicalSilvered")
-                    {
-                        Immunity = " from nonmagical attacks that aren't silvered";
-                    }
-                    else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
-                    {
-                        Immunity = " from nonmagical attacks that aren't adamantine";
-                    }
-                    else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
-                    {
-                        Immunity = " from nonmagical attacks that aren't cold-forged iron";
-                    }
-                    foreach (SelectableActionModel selectableActionModelDmg in NPCModel.SpecialWeaponDmgImmunityModelList)
-                    {
-                        if (selectableActionModelDmg.Selected == true)
-                        {
-                            stringBuilder.Append(selectableActionModelDmg.ActionDescription).Append(", ");
-                        }
-                    }
-                    if (stringBuilder.Length >= 2)
-                    {
-                        stringBuilder.Remove(stringBuilder.Length - 2, 2);
-                    }
-                    stringBuilder.Append(Immunity);
-                }
-            }
-            return stringBuilder.ToString().Trim();
-        }
-        #endregion
-        #region UpdateConditionImmunities
-        public Visibility ShowConditionImmunities
-        {
-            get
-            {
-                if (ConditionImmunities.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        private string UpdateConditionImmunities()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (SelectableActionModel selectableActionModel in NPCModel.ConditionImmunityModelList)
-            {
-                if (selectableActionModel.Selected == true)
-                {
-                    stringBuilder.Append(selectableActionModel.ActionDescription).Append(", ");
-                }
-            }
-            if (NPCModel.ConditionOther == true)
-            {
-                stringBuilder.Append(NPCModel.ConditionOtherText + ", ");
-            }
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            return stringBuilder.ToString().Trim();
-        }
-        #endregion
-        #region UpdateLanguages
-        public Visibility ShowLanguages
-        {
-            get
-            {
-                if (Languages.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
+		public Visibility ShowInnateFivePerDay
+		{
+			get { return NpcModel.FivePerDay != null && NpcModel.FivePerDay.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        private string UpdateLanguages()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            StringBuilder stringBuilderOption = new StringBuilder();
+		public Visibility ShowInnateFourPerDay
+		{
+			get { return NpcModel.FourPerDay != null && NpcModel.FourPerDay.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-            foreach (LanguageModel languageModel in NPCModel.StandardLanguages)
-            {
-                if (languageModel.Selected == true)
-                {
-                    stringBuilder.Append(languageModel.Language).Append(", ");
-                }
-            }
-            foreach (LanguageModel languageModel in NPCModel.ExoticLanguages)
-            {
-                if (languageModel.Selected == true)
-                {
-                    stringBuilder.Append(languageModel.Language).Append(", ");
-                }
-            }
-            foreach (LanguageModel languageModel in NPCModel.MonstrousLanguages)
-            {
-                if (languageModel.Selected == true)
-                {
-                    stringBuilder.Append(languageModel.Language).Append(", ");
-                }
-            }
-            if (NPCModel.UserLanguages != null && NPCModel.UserLanguages.Count > 0)
-            {
-                foreach (LanguageModel languageModel in NPCModel.UserLanguages)
-                {
-                    if (languageModel.Selected == true)
-                    {
-                        stringBuilder.Append(languageModel.Language).Append(", ");
-                    }
-                }
-            }
-            if (NPCModel.Telepathy)
-            {
-                stringBuilder.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
-            }
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            if (NPCModel.LanguageOptions == "No special conditions" || NPCModel.LanguageOptions == null)
-            {
-                stringBuilderOption.Append(stringBuilder);
-                return stringBuilderOption.ToString();
-            }
-            else if (NPCModel.LanguageOptions == "Speaks no languages")
-            {
-                stringBuilderOption.Append('-');
-                return stringBuilderOption.ToString();
-            }
-            else if (NPCModel.LanguageOptions == "Speaks all languages")
-            {
-                stringBuilderOption.Append("all").Append(", ");
-                if (NPCModel.Telepathy)
-                {
-                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
-                }
-                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
-                return stringBuilderOption.ToString();
-            }
-            else if (NPCModel.LanguageOptions == "Can't speak; Knows selected languages")
-            {
-                stringBuilderOption.Append("understands" + stringBuilder + " but can't speak").Append(", ");
-                if (NPCModel.Telepathy)
-                {
-                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
-                }
-                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
-                return stringBuilderOption.ToString();
-            }
-            else if (NPCModel.LanguageOptions == "Can't speak; Knows creator's languages")
-            {
-                stringBuilderOption.Append("understands the languages of its creator but can't speak").Append(", ");
-                if (NPCModel.Telepathy)
-                {
-                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
-                }
-                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
-                return stringBuilderOption.ToString();
-            }
-            else if (NPCModel.LanguageOptions == "Can't speak; Knows languages known in life")
-            {
-                stringBuilderOption.Append("Understands all languages it spoke in life but can't speak").Append(", ");
-                if (NPCModel.Telepathy)
-                {
-                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
-                }
-                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
-                return stringBuilderOption.ToString();
-            }
-            else if (NPCModel.LanguageOptions == "Alternative language text (enter below)")
-            {
-                stringBuilderOption.Append(NPCModel.LanguageOptionsText.ToString().Trim()).Append(", ");
-                if (NPCModel.Telepathy)
-                {
-                    stringBuilderOption.Append("telepathy " + NPCModel.TelepathyRange).Append(", ");
-                }
-                stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
-                return stringBuilderOption.ToString();
-            }
-            else
-            {
-                return "";
-            }
+		public Visibility ShowInnateThreePerDay
+		{
+			get { return NpcModel.ThreePerDay != null && NpcModel.ThreePerDay.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        }
+		public Visibility ShowInnateTwoPerDay
+		{
+			get { return NpcModel.TwoPerDay != null && NpcModel.TwoPerDay.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        #endregion
-        #region UpdateSenses
-        private string UpdateSenses()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(AppendSenses("darkvision ", NPCModel.Darkvision, " ft."));
-            stringBuilder.Append(AppendBlindSenses("blindsight ", NPCModel.Blindsight, " ft."));
-            stringBuilder.Append(AppendSenses("tremorsense ", NPCModel.Tremorsense, " ft."));
-            stringBuilder.Append(AppendSenses("truesight ", NPCModel.Truesight, " ft."));
-            stringBuilder.Append(AppendSenses("passive perception ", NPCModel.PassivePerception, ""));
-            if (stringBuilder.Length >= 2)
-            {
-                stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            }
-            return stringBuilder.ToString();
-        }
+		public Visibility ShowInnateOnePerDay
+		{
+			get { return NpcModel.OnePerDay != null && NpcModel.OnePerDay.Length > 0 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+		#endregion
 
-        static private string AppendSenses(string senseName, int senseValue, string senseRange)
-        {
-            if (senseValue != 0)
-            {
-                string delimiter = ", ";
-                return senseName + senseValue + senseRange + delimiter;
-            }
-            return "";
-        }
+		#region UpdateSpellcasting
+		public Visibility ShowSpellcasting
+		{
+			get { return NpcModel.SpellcastingSection == true ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        private string AppendBlindSenses(string senseName, int senseValue, string senseRange)
-        {
-            string delimiter = ", ";
-            if (senseValue != 0 && NPCModel.BlindBeyond == false)
-            {
-                return senseName + senseValue + senseRange + delimiter;
-            }
-            else if (senseValue != 0 && NPCModel.BlindBeyond == true)
-            {
-                return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
-            }
-            return "";
+		public Visibility ShowCantrips
+		{
+			get { return NpcModel.CantripSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        }
-        #endregion
-        #region UpdateChallengeRating
-        private string UpdateChallengeRating()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(NPCModel.ChallengeRating + " (" + NPCModel.XP + " XP)");
-            return stringBuilder.ToString();
-        }
-        #endregion
-        #region UpdateInnateSpellcasting
-        public Visibility ShowInnateSpellcasting
-        {
-            get
-            {
-                if (NPCModel.InnateSpellcastingSection == true)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowInnateAtWill
-        {
-            get
-            {
-                if (NPCModel.InnateAtWill != null && NPCModel.InnateAtWill.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowInnateFivePerDay
-        {
-            get
-            {
-                if (NPCModel.FivePerDay != null && NPCModel.FivePerDay.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowInnateFourPerDay
-        {
-            get
-            {
-                if (NPCModel.FourPerDay != null && NPCModel.FourPerDay.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowInnateThreePerDay
-        {
-            get
-            {
-                if (NPCModel.ThreePerDay != null && NPCModel.ThreePerDay.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowInnateTwoPerDay
-        {
-            get
-            {
-                if (NPCModel.TwoPerDay != null && NPCModel.TwoPerDay.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowInnateOnePerDay
-        {
-            get
-            {
-                if (NPCModel.OnePerDay != null && NPCModel.OnePerDay.Length > 0)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        private string UpdateInnateSpellcastingLabel()
-        {
-            if (NPCModel.InnateSpellcastingSection == true)
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("Innate Spellcasting");
-                if (NPCModel.Psionics == true)
-                {
-                    stringBuilder.Append(" (Psionics)");
-                }
-                stringBuilder.Append('.');
-                return stringBuilder.ToString();
-            }
-            return "";
-        }
-        private string UpdateInnateSpellcasting()
-        {
-            if (NPCModel.InnateSpellcastingSection == true)
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("The " + NPCModel.NPCName.ToLower() + "'s spellcasting ability is " + NPCModel.InnateSpellcastingAbility + " (");
-                if (NPCModel.InnateSpellSaveDC != 0)
-                {
-                    stringBuilder.Append("spell save DC " + NPCModel.InnateSpellSaveDC);
-                }
-                if (NPCModel.InnateSpellSaveDC != 0 && NPCModel.InnateSpellHitBonus != 0)
-                {
-                    stringBuilder.Append(", ");
-                }
-                if (NPCModel.InnateSpellHitBonus > 0)
-                {
-                    stringBuilder.Append("+" + NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
-                }
-                else if (NPCModel.InnateSpellHitBonus < 0)
-                {
-                    stringBuilder.Append(NPCModel.InnateSpellHitBonus + " to hit with spell attacks");
-                }
-                stringBuilder.Append("). The " + NPCModel.NPCName.ToLower() + " can innately cast the following spells, " + NPCModel.ComponentText + ":");
-                return stringBuilder.ToString();
-            }
-            return "";
-        }
-        #endregion
-        #region UpdateSpellcasting
-        public Visibility ShowSpellcasting
-        {
-            get
-            {
-                if (NPCModel.SpellcastingSection == true)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowCantrips
-        {
-            get
-            {
-                if (NPCModel.CantripSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowFirst
-        {
-            get
-            {
-                if (NPCModel.FirstLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowSecond
-        {
-            get
-            {
-                if (NPCModel.SecondLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowThird
-        {
-            get
-            {
-                if (NPCModel.ThirdLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowFourth
-        {
-            get
-            {
-                if (NPCModel.FourthLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowFifth
-        {
-            get
-            {
-                if (NPCModel.FifthLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowSixth
-        {
-            get
-            {
-                if (NPCModel.SixthLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowSeventh
-        {
-            get
-            {
-                if (NPCModel.SeventhLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowEighth
-        {
-            get
-            {
-                if (NPCModel.EighthLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowNinth
-        {
-            get
-            {
-                if (NPCModel.NinthLevelSpellList != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility ShowMarked
-        {
-            get
-            {
-                if (NPCModel.MarkedSpells != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        private string UpdateSpellcasting()
-        {
-            if (NPCModel.SpellcastingSection == true)
-            {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("The " + NPCModel.NPCName.ToLower() + " is a " + NPCModel.SpellcastingCasterLevel + " level spellcaster. Its spellcasting ability is ");
-                stringBuilder.Append(NPCModel.SCSpellcastingAbility);
-                if (NPCModel.SpellcastingSpellSaveDC != 0)
-                {
-                    stringBuilder.Append(" (spell save DC " + NPCModel.SpellcastingSpellSaveDC);
-                    if (NPCModel.SpellcastingSpellHitBonus != 0)
-                    {
-                        stringBuilder.Append(", ");
-                        if (NPCModel.SpellcastingSpellHitBonus >= 0)
-                        {
-                            stringBuilder.Append("+" + NPCModel.SpellcastingSpellHitBonus);
-                        }
-                        else
-                        {
-                            stringBuilder.Append(NPCModel.SpellcastingSpellHitBonus);
-                        }
-                        stringBuilder.Append(" to hit with spell attacks).");
-                    }
-                    else
-                    {
-                        stringBuilder.Append(").");
-                    }
-                }
-                if (NPCModel.FlavorText != null)
-                {
-                    stringBuilder.Append(" " + NPCModel.FlavorText);
-                }
-                if (NPCModel.SpellcastingSpellClass == null)
-                {
-                    MessageBox.Show("Spellcasting Class is null. Please select what class the spells are.");
-                    log.Error("Spellcasting Class is null. Please select what class the spells are.");
-                }
-                else
-                {
-                    stringBuilder.Append(" It has the following " + NPCModel.SpellcastingSpellClass.ToLower() + " spells prepared:");
-                }
-                return stringBuilder.ToString();
-            }
-            return "";
-        }
+		public Visibility ShowFirst
+		{
+			get { return NpcModel.FirstLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
 
-        //private string UpdateSpellcastingCantripsLabel()
-        //{
-        //    if (NPCModel.CantripSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("Cantrips (" + NPCModel.CantripSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingFirstLabel()
-        //{
-        //    if (NPCModel.FirstLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("1st level (" + NPCModel.FirstLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingSecondLabel()
-        //{
-        //    if (NPCModel.SecondLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("2nd level (" + NPCModel.SecondLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingThirdLabel()
-        //{
-        //    if (NPCModel.ThirdLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("3rd level (" + NPCModel.ThirdLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingFourthLabel()
-        //{
-        //    if (NPCModel.FourthLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("4th level (" + NPCModel.FourthLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingFifthLabel()
-        //{
-        //    if (NPCModel.FifthLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("5th level (" + NPCModel.FifthLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingSixthLabel()
-        //{
-        //    if (NPCModel.SixthLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("6th level (" + NPCModel.SixthLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingSeventhLabel()
-        //{
-        //    if (NPCModel.SeventhLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("7th level (" + NPCModel.SeventhLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingEighthLabel()
-        //{
-        //    if (NPCModel.EighthLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("8th level (" + NPCModel.EighthLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingNinthLabel()
-        //{
-        //    if (NPCModel.NinthLevelSpellList != null)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("9th level (" + NPCModel.NinthLevelSpells.ToLower() + "):");
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        //private string UpdateSpellcastingMarkedSpells()
-        //{
-        //    if (NPCModel.MarkedSpellsCheck == true)
-        //    {
-        //        StringBuilder stringBuilder = new StringBuilder();
-        //        stringBuilder.Append("* " + NPCModel.MarkedSpells);
-        //        return stringBuilder.ToString();
-        //    }
-        //    return "";
-        //}
-        #endregion
-        public Visibility PresentAction
-        {
-            get
-            {
-                if (NPCModel.NPCActions != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility PresentActionLine
-        {
-            get
-            {
-                if (NPCModel.NPCActions != null)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility PresentReactions
-        {
-            get
-            {
-                if (NPCModel.Reactions.Count >= 1)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility PresentReactionsLine
-        {
-            get
-            {
-                if (NPCModel.Reactions.Count >= 1)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility PresentLegActions
-        {
-            get
-            {
-                if (NPCModel.LegendaryActions.Count >= 1)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility PresentLegActionsLine
-        {
-            get
-            {
-                if (NPCModel.LegendaryActions.Count >= 1)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility PresentLairActions
-        {
-            get
-            {
-                if (NPCModel.LairActions.Count >= 1)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-        public Visibility PresentLairActionsLine
-        {
-            get
-            {
-                if (NPCModel.LairActions.Count >= 1)
-                {
-                    return Visibility.Visible;
-                }
-                return Visibility.Collapsed;
-            }
-        }
-    }
+		public Visibility ShowSecond
+		{
+			get { return NpcModel.SecondLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowThird
+		{
+			get { return NpcModel.ThirdLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowFourth
+		{
+			get { return NpcModel.FourthLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowFifth
+		{
+			get { return NpcModel.FifthLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowSixth
+		{
+			get { return NpcModel.SixthLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowSeventh
+		{
+			get { return NpcModel.SeventhLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowEighth
+		{
+			get { return NpcModel.EighthLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowNinth
+		{
+			get { return NpcModel.NinthLevelSpellList != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility ShowMarked
+		{
+			get { return NpcModel.MarkedSpells != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+		#endregion
+
+		public Visibility PresentAction
+		{
+			get { return NpcModel.NPCActions != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility PresentActionLine
+		{
+			get { return NpcModel.NPCActions != null ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility PresentReactions
+		{
+			get { return NpcModel.Reactions.Count >= 1 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility PresentReactionsLine
+		{
+			get { return NpcModel.Reactions.Count >= 1 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility PresentLegActions
+		{
+			get { return NpcModel.LegendaryActions.Count >= 1 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility PresentLegActionsLine
+		{
+			get { return NpcModel.LegendaryActions.Count >= 1 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility PresentLairActions
+		{
+			get { return NpcModel.LairActions.Count >= 1 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+
+		public Visibility PresentLairActionsLine
+		{
+			get { return NpcModel.LairActions.Count >= 1 ? Visibility.Visible : Visibility.Collapsed; }
+		}
+	}
 }

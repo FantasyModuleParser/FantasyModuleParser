@@ -1483,25 +1483,25 @@ namespace FantasyModuleParser.Exporters
 				else
 					stringBuilder.Append("The " + npcModel.NPCName.ToLower() + " has the following spells prepared:");
 				if (npcModel.CantripSpellList != null)
-					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpells.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
+					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpellSlots.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
 				if (npcModel.FirstLevelSpellList != null)
-					stringBuilder.Append("\\r1st level (" + npcModel.FirstLevelSpells.ToLower() + "): " + npcModel.FirstLevelSpellList.ToLower());
+					stringBuilder.Append("\\r1st level (" + npcModel.FirstLevelSpellSlots.ToLower() + "): " + npcModel.FirstLevelSpellList.ToLower());
 				if (npcModel.SecondLevelSpellList != null)
-					stringBuilder.Append("\\r2nd level (" + npcModel.SecondLevelSpells.ToLower() + "): " + npcModel.SecondLevelSpellList.ToLower());
+					stringBuilder.Append("\\r2nd level (" + npcModel.SecondLevelSpellSlots.ToLower() + "): " + npcModel.SecondLevelSpellList.ToLower());
 				if (npcModel.ThirdLevelSpellList != null)
-					stringBuilder.Append("\\r3rd level (" + npcModel.ThirdLevelSpells.ToLower() + "): " + npcModel.ThirdLevelSpellList.ToLower());
+					stringBuilder.Append("\\r3rd level (" + npcModel.ThirdLevelSpellSlots.ToLower() + "): " + npcModel.ThirdLevelSpellList.ToLower());
 				if (npcModel.FourthLevelSpellList != null)
-					stringBuilder.Append("\\r4th level (" + npcModel.FourthLevelSpells.ToLower() + "): " + npcModel.FourthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r4th level (" + npcModel.FourthLevelSpellSlots.ToLower() + "): " + npcModel.FourthLevelSpellList.ToLower());
 				if (npcModel.FifthLevelSpellList != null)
-					stringBuilder.Append("\\r5th level (" + npcModel.FifthLevelSpells.ToLower() + "): " + npcModel.FifthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r5th level (" + npcModel.FifthLevelSpellSlots.ToLower() + "): " + npcModel.FifthLevelSpellList.ToLower());
 				if (npcModel.SixthLevelSpellList != null)
-					stringBuilder.Append("\\r6th level (" + npcModel.SixthLevelSpells.ToLower() + "): " + npcModel.SixthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r6th level (" + npcModel.SixthLevelSpellSlots.ToLower() + "): " + npcModel.SixthLevelSpellList.ToLower());
 				if (npcModel.SeventhLevelSpellList != null)
-					stringBuilder.Append("\\r7th level (" + npcModel.SeventhLevelSpells.ToLower() + "): " + npcModel.SeventhLevelSpellList.ToLower());
+					stringBuilder.Append("\\r7th level (" + npcModel.SeventhLevelSpellSlots.ToLower() + "): " + npcModel.SeventhLevelSpellList.ToLower());
 				if (npcModel.EighthLevelSpellList != null)
-					stringBuilder.Append("\\r8th level (" + npcModel.EighthLevelSpells.ToLower() + "): " + npcModel.EighthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r8th level (" + npcModel.EighthLevelSpellSlots.ToLower() + "): " + npcModel.EighthLevelSpellList.ToLower());
 				if (npcModel.NinthLevelSpellList != null)
-					stringBuilder.Append("\\r9th level (" + npcModel.NinthLevelSpells.ToLower() + "): " + npcModel.NinthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r9th level (" + npcModel.NinthLevelSpellSlots.ToLower() + "): " + npcModel.NinthLevelSpellList.ToLower());
 				string spellcastingDescription = stringBuilder.ToString();
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 				xmlWriter.WriteStartElement("desc");

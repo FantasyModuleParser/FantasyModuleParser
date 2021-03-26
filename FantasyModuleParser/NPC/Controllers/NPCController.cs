@@ -105,15 +105,17 @@ namespace FantasyModuleParser.NPC.Controllers
 		//	as the function is used in DescriptionUC
 		public string GenerateFantasyGroundsDescriptionXML(string descriptionText)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-			if (!String.IsNullOrEmpty(descriptionText)) 
-			{ 
-				var result = Markdig.Markdown.ToHtml(descriptionText, BuildPipeline());
+			//StringBuilder stringBuilder = new StringBuilder();
+			//if (!String.IsNullOrEmpty(descriptionText)) 
+			//{ 
+			//	var result = Markdig.Markdown.ToHtml(descriptionText, BuildPipeline());
 
-				stringBuilder.Append(_replaceHtmlTagsToFGCompliance(result).Trim());
+			//	stringBuilder.Append(_replaceHtmlTagsToFGCompliance(result).Trim());
 				
-			}
-			return stringBuilder.ToString();
+			//}
+			//return stringBuilder.ToString();
+			return string.IsNullOrEmpty(descriptionText) ? string.Empty :
+				_replaceHtmlTagsToFGCompliance(Markdig.Markdown.ToHtml(descriptionText, BuildPipeline())).Trim();
 		}
 
 		private static MarkdownPipeline BuildPipeline()
