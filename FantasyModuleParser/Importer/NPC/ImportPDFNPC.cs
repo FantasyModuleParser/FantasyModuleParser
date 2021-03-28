@@ -2,8 +2,10 @@
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace FantasyModuleParser.Importer.NPC
 {
@@ -38,8 +40,8 @@ namespace FantasyModuleParser.Importer.NPC
                 line = line.Trim();
                 if (string.IsNullOrEmpty(line)) continue;
 
-                if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") ||
-                    line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
+                // if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
+                if (sizeList.Any(s => line.StartsWith(s, StringComparison.OrdinalIgnoreCase)))
 				{
 					// Line 2 indicates Size, Type, (tag), Alignment
 					ParseSizeAndAlignment(parsedNPCModel, line);

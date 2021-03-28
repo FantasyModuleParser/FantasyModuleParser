@@ -2,7 +2,9 @@
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace FantasyModuleParser.Importer.NPC
 {
@@ -22,28 +24,42 @@ namespace FantasyModuleParser.Importer.NPC
         {
             NPCModel parsedNPCModel = new NPCController().InitializeNPCModel();
             StringReader stringReader = new StringReader(importTextContent);
-            string line = "";
-            int lineNumber = 1;
             resetContinueFlags();
+
+            // The first line indicates the NPC name
+            string line = stringReader.ReadLine();
+            if (line != null)
+            {
+                // Line number one indicates the NPC name
+                parsedNPCModel.NPCName = line;
+            }
+
             while ((line = stringReader.ReadLine()) != null)
             {
-                if (lineNumber == 1)
-                {
-                    // Line number one indicates the NPC name
-                    parsedNPCModel.NPCName = line;
-                }
-                if (line.StartsWith("Tiny") || line.StartsWith("Small") || line.StartsWith("Medium") || line.StartsWith("Large") || line.StartsWith("Huge") || line.StartsWith("Gargantuan"))
+                line = line.Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                if (sizeList.Any(s => line.StartsWith(s, StringComparison.OrdinalIgnoreCase)))
                 {
                     // Line 2 indicates Size, Type, (tag), Alignment
                     ParseSizeAndAlignment(parsedNPCModel, line);
                 }
 
                 if (line.StartsWith("Armor Class", StringComparison.OrdinalIgnoreCase) || line.StartsWith("Armour Class", StringComparison.OrdinalIgnoreCase))
+                {
                     ParseArmorClass(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Hit Points", StringComparison.Ordinal))
+                {
                     ParseHitPoints(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Speed", StringComparison.Ordinal))
+                {
                     ParseSpeedAttributes(parsedNPCModel, line);
+                }
+
                 switch (line)
                 {
                     case "STR":
@@ -65,60 +81,95 @@ namespace FantasyModuleParser.Importer.NPC
                         continueCharismaFlag = true;
                         break;
                 }
+
                 while (continueStrengthFlag == true && !line.Equals("STR", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeStrength(parsedNPCModel, line);
                     resetContinueFlags();
                 }
+
                 while (continueDexterityFlag == true && !line.Equals("DEX", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeDexterity(parsedNPCModel, line);
                     resetContinueFlags();
                 }
+
                 while (continueConstitutionFlag == true && !line.Equals("CON", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeConstitution(parsedNPCModel, line);
                     resetContinueFlags();
                 }
+
                 while (continueIntelligenceFlag == true && !line.Equals("INT", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeIntelligence(parsedNPCModel, line);
                     resetContinueFlags();
                 }
+
                 while (continueWisdomFlag == true && !line.Equals("WIS", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeWisdom(parsedNPCModel, line);
                     resetContinueFlags();
                 }
+
                 while (continueCharismaFlag == true && !line.Equals("CHA", System.StringComparison.OrdinalIgnoreCase))
                 {
                     ParseStatAttributeCharisma(parsedNPCModel, line);
                     resetContinueFlags();
                 }
+
                 if (line.StartsWith("Saving Throws", StringComparison.Ordinal))
+                {
                     ParseSavingThrows(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Skills", StringComparison.Ordinal))
+                {
                     ParseSkillAttributes(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Damage Resistances", StringComparison.Ordinal))
+                {
                     ParseDamageResistances(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
+                {
                     ParseDamageVulnerabilities(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Damage Immunities", StringComparison.Ordinal))
+                {
                     ParseDamageImmunities(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Condition Immunities", StringComparison.Ordinal))
+                {
                     ParseConditionImmunities(parsedNPCModel, line);
+                }
+                
                 if (line.StartsWith("Senses", StringComparison.Ordinal))
+                {
                     ParseVisionAttributes(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Languages", StringComparison.Ordinal))
+                {
                     ParseLanguages(parsedNPCModel, line);
+                }
+
                 if (line.StartsWith("Challenge", StringComparison.Ordinal))
                 {
                     ParseChallengeRatingAndXP(parsedNPCModel, line);
                     continueTraitsFlag = true;
                     continue;
                 }
+
                 if (line.StartsWith("Proficiency Bonus", StringComparison.Ordinal))
+                {
                     continue;
+                }
+
                 if (continueTraitsFlag)
                 {
                     if (line.Equals("Actions", System.StringComparison.OrdinalIgnoreCase))
@@ -213,7 +264,6 @@ namespace FantasyModuleParser.Importer.NPC
                     ParseLegendaryAction(parsedNPCModel, line);
                     continue;
                 }
-                lineNumber++;
             }
 
             return parsedNPCModel;

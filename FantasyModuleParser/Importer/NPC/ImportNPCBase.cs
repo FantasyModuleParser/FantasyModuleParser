@@ -25,11 +25,13 @@ namespace FantasyModuleParser.Importer.NPC
         private static readonly char[] periodSeparator = new char[] { '.' };
         private static readonly char[] commaSeparator = new char[] { ',' };
         private static readonly char[] colonSeparator = new char[] { ':' };
+        private static readonly char[] parenthesizeSeparator = new char[] { '(',')' };
+        public static readonly List<string> sizeList = new List<string>() { "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan" };
 
-		/// <summary>
-		/// Declares all the 'continue' flags used in Importers
-		/// </summary>
-		public bool continueStrengthFlag = false;
+        /// <summary>
+        /// Declares all the 'continue' flags used in Importers
+        /// </summary>
+        public bool continueStrengthFlag = false;
         public bool continueDexterityFlag = false;
         public bool continueConstitutionFlag = false;
         public bool continueIntelligenceFlag = false;
@@ -66,47 +68,98 @@ namespace FantasyModuleParser.Importer.NPC
         }
 
         /// <summary>
-        /// 'Tiny beast (devil), lawful neutral'
+        /// size type [type2] (tag1[, tag2]), alignment [alignment2]
+        /// Acid Ant:           Small monstrosity, unaligned
+        /// Demilich:           Tiny undead, neutral evil
+        /// Bounty Hunter:      Medium humanoid (any race), any alignment
+        /// Acolyte, Dwarf:     Medium humanoid (dwarf), any alignment
+        /// Dragonne:           Large magical beast, unaligned
+        /// Yochlol Elder:      Large fiend (demon, shapechanger), chaotic evil
         /// </summary>
+        /// <param name="npcModel"></param>
+        /// <param name="sizeAndAlignment"></param>
         public void ParseSizeAndAlignment(NPCModel npcModel, string sizeAndAlignment)
         {
-            string[] npcCharacteristics = sizeAndAlignment.Split(' ');
-            npcModel.Size = npcCharacteristics[0];
-            string tag = npcCharacteristics[1].ToLower();
-            if (tag.EndsWith(","))
-                npcModel.NPCType = tag.Substring(0, tag.Length - 1);
-            else
-                npcModel.NPCType = npcCharacteristics[1].ToLower();
+            // This should divide into two: size type (tag), alignment in all use cases
+            int idx = sizeAndAlignment.LastIndexOf(',');
 
-            if (npcCharacteristics.Length <= 2)
-            {
-                log.Error("Failed to parse the line in Size and Alignment :: " + sizeAndAlignment + Environment.NewLine + "The alignment appears to be missing.");
-                throw new ApplicationException(Environment.NewLine +
-                    "Failed to parse the line in Size and Alignment :: " + sizeAndAlignment +
-                    Environment.NewLine + "The alignment appears to be missing." +
-                    Environment.NewLine + "An example would be \"Medium beast, lawful good.\" (without the double quotes)");
-            }
-            else
-            {
-                if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
-                    // includes removing the comma character at the end
-                    npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
-                else if (npcCharacteristics.Length > 3)
-                    npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
-                else
-                    npcModel.Alignment = npcCharacteristics[2];
+            // Alignment should always be the last substring after the last comma
+            npcModel.Alignment = sizeAndAlignment.Substring(idx + 1).Trim(); // sttAndA[1].Trim();
 
-                if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
-                    npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
-                if (npcModel.Tag != null && npcModel.Tag.Length > 0)
-                    if (npcCharacteristics.Length > 4)
-                        if (npcModel.Tag.Contains(","))
-                            npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
-                        else
-                            npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
-                    else
-                        npcModel.Alignment = npcCharacteristics[3];
-            }
+            string[] stt = sizeAndAlignment.Substring(0, idx).Split(parenthesizeSeparator, StringSplitOptions.RemoveEmptyEntries)
+                .Select(p => p.Trim()).Where(p => !string.IsNullOrWhiteSpace(p)).ToArray();
+
+            // We found a tag, the 2nd substring, regardless of how many words (typically 1 or 2) is the tag
+            if (stt.Length == 2) { npcModel.Tag = string.Format("({0})", stt[1].Trim()); }
+
+            // At this point, we should have size and type in stt[0], regardless of if we found a tag
+            string[] st = stt[0].Split(spaceSeparator, 2, StringSplitOptions.RemoveEmptyEntries);
+
+            // first substring should be Size and the remaining string, st[1] is the Type
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+            npcModel.Size = myTI.ToTitleCase(st[0].Trim());    // in all cases, the first substring should be the size
+            npcModel.NPCType = st[1].Trim(); // type can be multi word incuding spaces
+
+   //         string[] npcCharacteristics = sizeAndAlignment.Split(spaceSeparator, StringSplitOptions.RemoveEmptyEntries);
+   //         npcModel.Size = npcCharacteristics[0];
+   //         string tag = npcCharacteristics[1].ToLower();
+			//if (tag.EndsWith(","))
+			//{
+			//	npcModel.NPCType = tag.Substring(0, tag.Length - 1);
+			//}
+			//else
+			//{
+			//	npcModel.NPCType = npcCharacteristics[1].ToLower();
+			//}
+
+			//if (npcCharacteristics.Length <= 2)
+   //         {
+   //             log.Error("Failed to parse the line in Size and Alignment :: " + sizeAndAlignment + Environment.NewLine + "The alignment appears to be missing.");
+   //             throw new ApplicationException(Environment.NewLine +
+   //                 "Failed to parse the line in Size and Alignment :: " + sizeAndAlignment +
+   //                 Environment.NewLine + "The alignment appears to be missing." +
+   //                 Environment.NewLine + "An example would be \"Medium beast, lawful good.\" (without the double quotes)");
+   //         }
+   //         else
+   //         {
+   //             if (npcCharacteristics[2].Contains("(") && npcCharacteristics[2].EndsWith(","))
+   //             {
+   //                 // includes removing the comma character at the end
+   //                 npcModel.Tag = npcCharacteristics[2].ToLower().Substring(0, npcCharacteristics[2].Length - 1);
+   //             }
+   //             else if (npcCharacteristics.Length > 3)
+   //             {
+   //                 npcModel.Alignment = npcCharacteristics[2] + " " + npcCharacteristics[3];
+   //             }
+   //             else
+   //             {
+   //                 npcModel.Alignment = npcCharacteristics[2];
+   //             }
+
+   //             if (npcCharacteristics.Length > 3 && npcCharacteristics[3].Contains(")"))
+   //             {
+   //                 npcModel.Tag = npcModel.Tag + ", " + npcCharacteristics[3].ToLower().Substring(0, npcCharacteristics[3].Length - 1);
+   //             }
+
+   //             if (npcModel.Tag != null && npcModel.Tag.Length > 0)
+   //             {
+   //                 if (npcCharacteristics.Length > 4)
+   //                 {
+   //                     if (npcModel.Tag.Contains(","))
+   //                     {
+   //                         npcModel.Alignment = npcCharacteristics[4] + " " + npcCharacteristics[5];
+   //                     }
+   //                     else
+   //                     {
+   //                         npcModel.Alignment = npcCharacteristics[3] + " " + npcCharacteristics[4];
+   //                     }
+   //                 }
+   //                 else
+   //                 {
+   //                     npcModel.Alignment = npcCharacteristics[3];
+   //                 }
+   //             }
+   //         }
         }
 
         /// <summary>
@@ -274,9 +327,11 @@ namespace FantasyModuleParser.Importer.NPC
 
         public int parseAttributeStringToInt(string savingThrowValue)
         {
-            if (savingThrowValue.Length == 0 || savingThrowValue.Trim().Length == 0)
-                return 0;
-            savingThrowValue = savingThrowValue.Replace('+', ' ');
+			if (savingThrowValue.Length == 0 || savingThrowValue.Trim().Length == 0)
+			{
+				return 0;
+			}
+			savingThrowValue = savingThrowValue.Replace('+', ' ');
             savingThrowValue = savingThrowValue.Replace(',', ' ');
             string savingThrowValueSubstring = savingThrowValue.Trim();
             return int.Parse(savingThrowValueSubstring, CultureInfo.CurrentCulture);
@@ -291,35 +346,38 @@ namespace FantasyModuleParser.Importer.NPC
             npcModel.ParseSkillAttributes(skillAttributes);
         }
 
-        /// <summary>
-        /// 'Damage Vulnerabilities acid, fire, lightning, poison, radiant; bludgeoning and slashing'
-        /// </summary>
-        public void ParseDamageVulnerabilities(NPCModel npcModel, string damageVulnerabilites)
-        {
-            if (damageVulnerabilites.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
-                npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList(damageVulnerabilites);
-            else
-                // Populate with all options deselected
-                npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList("");
-        }
+		/// <summary>
+		/// 'Damage Vulnerabilities acid, fire, lightning, poison, radiant; bludgeoning and slashing'
+		/// </summary>
+		public void ParseDamageVulnerabilities(NPCModel npcModel, string damageVulnerabilites)
+		{
+			if (damageVulnerabilites.StartsWith("Damage Vulnerabilities", StringComparison.Ordinal))
+			{
+				npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList(damageVulnerabilites);
+			}
+			else
+			{
+				// Populate with all options deselected
+				npcModel.DamageVulnerabilityModelList = parseDamageTypeStringToList("");
+			}
+		}
 
-        private List<SelectableActionModel> parseDamageTypeStringToList(string damageTypes)
+		private List<SelectableActionModel> parseDamageTypeStringToList(string damageTypes)
         {
             NPCController npcController = new NPCController();
             List<SelectableActionModel> selectableActionModels = npcController.GetSelectableActionModelList(typeof(DamageType));
-            if (damageTypes.Length == 0)
-                return selectableActionModels;
 
-            foreach (string damageTypeValue in damageTypes.Split(' '))
+			if (damageTypes.Length == 0) { return selectableActionModels; }
+
+			foreach (string damageTypeValue in damageTypes.Split(' '))
             {
                 string damageTypeValueTrimmed = damageTypeValue.Replace(',', ' ').Replace(';', ' ').Trim();
                 SelectableActionModel damageTypeModel = selectableActionModels.FirstOrDefault(
-                    item => item.ActionDescription.ToLower(CultureInfo.CurrentCulture).Equals(damageTypeValueTrimmed.ToLower(CultureInfo.CurrentCulture))
-                    );
-                if (damageTypeModel != null)
-                    damageTypeModel.Selected = true;
-            }
-            return selectableActionModels;
+                    item => item.ActionDescription.ToLower(CultureInfo.CurrentCulture).Equals(damageTypeValueTrimmed.ToLower(CultureInfo.CurrentCulture)));
+
+				if (damageTypeModel != null) { damageTypeModel.Selected = true; }
+			}
+			return selectableActionModels;
         }
 
         /// <summary>
@@ -890,7 +948,7 @@ namespace FantasyModuleParser.Importer.NPC
 
         private string GetDescription(Type EnumType, object enumValue)
         {
-            var descriptionAttribute = EnumType
+			DescriptionAttribute descriptionAttribute = EnumType
                 .GetField(enumValue.ToString())
                 .GetCustomAttributes(typeof(DescriptionAttribute), false)
                 .FirstOrDefault() as DescriptionAttribute;

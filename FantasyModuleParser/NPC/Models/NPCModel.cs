@@ -608,7 +608,7 @@ namespace FantasyModuleParser.NPC
 		/// <returns></returns>
 		public static string GetSpellSlotsString(string lvl, string spellSlotsAtLevel)
 		{
-			if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) return string.Empty;
+            if (string.IsNullOrWhiteSpace(spellSlotsAtLevel)) { return string.Empty; }
 
 			string strLvl = lvl.Equals("Cantrips") || lvl.Equals("* ") ? lvl : lvl + " level";
 
@@ -1014,66 +1014,67 @@ namespace FantasyModuleParser.NPC
 				this.skillAttributes[(SkillAttributes)Enum.Parse(typeof(SkillAttributes), skillAttributeName, true)] = value;
 				continue;
 
-				switch (skillAttributeName)
-				{
-					case "Acrobatics":
-						Acrobatics = value;
-						break;
-					case "Animal":
-						AnimalHandling = value;
-						break;
-					case "Arcana":
-						Arcana = value;
-						break;
-					case "Athletics":
-						Athletics = value;
-						break;
-					case "Deception":
-						Deception = value;
-						break;
-					case "History":
-						History = value;
-						break;
-					case "Insight":
-						Insight = value;
-						break;
-					case "Intimidation":
-						Intimidation = value;
-						break;
-					case "Investigation":
-						Investigation = value;
-						break;
-					case "Medicine":
-						Medicine = value;
-						break;
-					case "Nature":
-						Nature = value;
-						break;
-					case "Perception":
-						Perception = value;
-						break;
-					case "Performance":
-						Performance = value;
-						break;
-					case "Persuasion":
-						Persuasion = value;
-						break;
-					case "Religion":
-						Religion = value;
-						break;
-					case "Sleight":
-						SleightOfHand = value;
-						break;
-					case "Stealth":
-						Stealth = value;
-						break;
-					case "Survival":
-						Survival = value;
-						break;
-					default:
-						// TODO: add error reporting code here
-						break;
-				}
+				// Keep this code here until we are sure that the skillAttributes dictionary works
+				//switch (skillAttributeName)
+				//{
+				//	case "Acrobatics":
+				//		Acrobatics = value;
+				//		break;
+				//	case "Animal":
+				//		AnimalHandling = value;
+				//		break;
+				//	case "Arcana":
+				//		Arcana = value;
+				//		break;
+				//	case "Athletics":
+				//		Athletics = value;
+				//		break;
+				//	case "Deception":
+				//		Deception = value;
+				//		break;
+				//	case "History":
+				//		History = value;
+				//		break;
+				//	case "Insight":
+				//		Insight = value;
+				//		break;
+				//	case "Intimidation":
+				//		Intimidation = value;
+				//		break;
+				//	case "Investigation":
+				//		Investigation = value;
+				//		break;
+				//	case "Medicine":
+				//		Medicine = value;
+				//		break;
+				//	case "Nature":
+				//		Nature = value;
+				//		break;
+				//	case "Perception":
+				//		Perception = value;
+				//		break;
+				//	case "Performance":
+				//		Performance = value;
+				//		break;
+				//	case "Persuasion":
+				//		Persuasion = value;
+				//		break;
+				//	case "Religion":
+				//		Religion = value;
+				//		break;
+				//	case "Sleight":
+				//		SleightOfHand = value;
+				//		break;
+				//	case "Stealth":
+				//		Stealth = value;
+				//		break;
+				//	case "Survival":
+				//		Survival = value;
+				//		break;
+				//	default:
+				//		// TODO: add error reporting code here
+				//		break;
+				//}
 			}
 
 		}
