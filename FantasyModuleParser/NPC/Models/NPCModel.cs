@@ -79,18 +79,26 @@ namespace FantasyModuleParser.NPC
 		#endregion  // Public Variables
 
 		#region Private Variables
+		
+		#region TODO speed class
 		private int _speed;
 		private int _burrow;
 		private int _climb;
 		private int _fly;
 		private bool _hover;
 		private int _swim;
+		#endregion
+
+		#region TODO characteristics class
 		private int _attributeStr;
 		private int _attributeDex;
 		private int _attributeCon;
 		private int _attributeInt;
 		private int _attributeWis;
 		private int _attributeCha;
+		#endregion
+
+		#region TODO saving throws class
 		private int _savingThrowStr;
 		private int _savingThrowDex;
 		private int _savingThrowCon;
@@ -103,12 +111,17 @@ namespace FantasyModuleParser.NPC
 		private bool _savingThrowIntBool;
 		private bool _savingThrowWisBool;
 		private bool _savingThrowChaBool;
+		#endregion
+
+		#region TODO preception class
 		private int _blindsight;
 		private bool _blindBeyond;
 		private int _darkvision;
 		private int _tremorsense;
 		private int _truesight;
 		private int _passivePerception;
+		#endregion
+
 		private string _challengeRating;
 		private int _xp;
 		private bool _conditionOther;

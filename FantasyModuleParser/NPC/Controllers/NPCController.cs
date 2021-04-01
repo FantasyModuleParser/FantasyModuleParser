@@ -105,24 +105,13 @@ namespace FantasyModuleParser.NPC.Controllers
 		//	as the function is used in DescriptionUC
 		public string GenerateFantasyGroundsDescriptionXML(string descriptionText)
 		{
-			//StringBuilder stringBuilder = new StringBuilder();
-			//if (!String.IsNullOrEmpty(descriptionText)) 
-			//{ 
-			//	var result = Markdig.Markdown.ToHtml(descriptionText, BuildPipeline());
-
-			//	stringBuilder.Append(_replaceHtmlTagsToFGCompliance(result).Trim());
-				
-			//}
-			//return stringBuilder.ToString();
 			return string.IsNullOrEmpty(descriptionText) ? string.Empty :
 				_replaceHtmlTagsToFGCompliance(Markdig.Markdown.ToHtml(descriptionText, BuildPipeline())).Trim();
 		}
 
 		private static MarkdownPipeline BuildPipeline()
 		{
-			return new MarkdownPipelineBuilder()
-				.UseSupportedExtensions()
-				.Build();
+			return new MarkdownPipelineBuilder().UseSupportedExtensions().Build();
 		}
 		private string _replaceHtmlTagsToFGCompliance(string input)
 		{
@@ -150,10 +139,7 @@ namespace FantasyModuleParser.NPC.Controllers
 				.GetCustomAttributes(typeof(DescriptionAttribute), false)
 				.FirstOrDefault() as DescriptionAttribute;
 
-
-			return descriptionAttribute != null
-				? descriptionAttribute.Description
-				: enumValue.ToString();
+			return descriptionAttribute != null ? descriptionAttribute.Description : enumValue.ToString();
 		}
 
 		public List<SelectableActionModel> GetSelectableActionModelList(Type EnumType)

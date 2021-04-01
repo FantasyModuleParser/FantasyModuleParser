@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace FantasyModuleParser.Importer.NPC
@@ -26,13 +28,24 @@ namespace FantasyModuleParser.Importer.NPC
         private const string colonStr = ":";
         private const string slashSlashRStr = "\\r";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="importTextContent"></param>
+        /// <returns></returns>
         public string FormatImportContent(string importTextContent)
         {
             StringBuilder formattedTextContent = new StringBuilder();
             StringReader stringReader = new StringReader(importTextContent);
             string line = "";
 
-            ImportNPCState importNPCState = ImportNPCState.NO_STATE;
+            List<string> innateList = new List<string>() { "At will", "1/day each:", "2/day each:", "3/day each:", "4/day each:", "5/day each:" };
+            List<string> innateSelectionList = new List<string>() { "At will", "1/day", "2/day", "3/day", "4/day", "5/day" };
+            List<string> spellList = new List<string>() { "Cantrips", "1st level", "2nd level", "3rd level",
+                "4th level", "5th level", "6th level", "7th level", "8th level", "9th level" };
+
+
+			ImportNPCState importNPCState = ImportNPCState.NO_STATE;
 
             while ((line = stringReader.ReadLine()) != null)
             {
@@ -155,11 +168,12 @@ namespace FantasyModuleParser.Importer.NPC
                             {
                                 _ = formattedTextContent.Append(line);
                             }
-                            else if (
-                                line.StartsWith("At will", StringComparison.OrdinalIgnoreCase) || line.StartsWith("5/day each:", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("4/day each:", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3/day each:", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("2/day each:", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1/day each:", StringComparison.OrdinalIgnoreCase))
-                            {
+                            else if (innateList.Any(s => line.StartsWith(s, StringComparison.OrdinalIgnoreCase)))
+                             //if (
+								//line.StartsWith("At will", StringComparison.OrdinalIgnoreCase) || line.StartsWith("5/day each:", StringComparison.OrdinalIgnoreCase) ||
+								//line.StartsWith("4/day each:", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3/day each:", StringComparison.OrdinalIgnoreCase) ||
+								//line.StartsWith("2/day each:", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1/day each:", StringComparison.OrdinalIgnoreCase))
+							{
                                 _ = formattedTextContent.Append(slashSlashRStr).Append(line);
                                 importNPCState = ImportNPCState.INNATE_SPELLCASTING_SELECTION;
                             }
@@ -181,11 +195,12 @@ namespace FantasyModuleParser.Importer.NPC
                                 _ = formattedTextContent.Append(Environment.NewLine).Append(line);
                                 importNPCState = ImportNPCState.TRAITS;
                             }
-                            else if (
-                                line.StartsWith("At will", StringComparison.OrdinalIgnoreCase) || line.StartsWith("5/day", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("4/day", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3/day", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("2/day", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1/day", StringComparison.OrdinalIgnoreCase))
-                            {
+                            else if (innateSelectionList.Any(s => line.StartsWith(s, StringComparison.OrdinalIgnoreCase)))
+							//if (
+							//	line.StartsWith("At will", StringComparison.OrdinalIgnoreCase) || line.StartsWith("5/day", StringComparison.OrdinalIgnoreCase) ||
+							//	line.StartsWith("4/day", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3/day", StringComparison.OrdinalIgnoreCase) ||
+							//	line.StartsWith("2/day", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1/day", StringComparison.OrdinalIgnoreCase))
+							{
                                 _ = formattedTextContent.Append(slashSlashRStr).Append(line);
                             }
                             else if (line.Equals("actions", StringComparison.OrdinalIgnoreCase))
@@ -206,16 +221,17 @@ namespace FantasyModuleParser.Importer.NPC
                                 _ = formattedTextContent.Append(Environment.NewLine).Append(line).Append(Environment.NewLine);
                                 importNPCState = ImportNPCState.ACTIONS;
                             }
-							else if (
-                                line.StartsWith("Cantrips", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1st level", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("2nd level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3rd level", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("4th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("5th level", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("6th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("7th level", StringComparison.OrdinalIgnoreCase) ||
-                                line.StartsWith("8th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("9th level", StringComparison.OrdinalIgnoreCase))
+							else if (spellList.Any(s => line.StartsWith(s, StringComparison.OrdinalIgnoreCase)))
+							//if (
+							//line.StartsWith("Cantrips", StringComparison.OrdinalIgnoreCase) || line.StartsWith("1st level", StringComparison.OrdinalIgnoreCase) ||
+							//line.StartsWith("2nd level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("3rd level", StringComparison.OrdinalIgnoreCase) ||
+							//line.StartsWith("4th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("5th level", StringComparison.OrdinalIgnoreCase) ||
+							//line.StartsWith("6th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("7th level", StringComparison.OrdinalIgnoreCase) ||
+							//line.StartsWith("8th level", StringComparison.OrdinalIgnoreCase) || line.StartsWith("9th level", StringComparison.OrdinalIgnoreCase))
 							{
 								_ = formattedTextContent.Append(slashSlashRStr).Append(line);
-                            }
-                            else if (checkIfLineMaybeTrait(line))
+							}
+							else if (checkIfLineMaybeTrait(line))
                             {
                                 _ = formattedTextContent.Append(Environment.NewLine).Append(line);
                                 importNPCState = ImportNPCState.TRAITS;
@@ -335,20 +351,24 @@ namespace FantasyModuleParser.Importer.NPC
             }
             return formattedTextContent.ToString();
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         private bool checkIfLineMaybeTrait(string line)
         {
             string[] strArray = line.Split(' ');
             for (int idx = 0; idx < 5; idx++)
             {
-                if (idx >= strArray.Length)
-                    return false;
+				if (idx >= strArray.Length) { return false; }
 
-                // The logic behind this is Trait Names are typically capitialized (e.g. Flyby., Shadow Step.)
-                // If the string found contains a period AND is lowercase, then it's very likely it's not a new trait (e.g. lowered., location.)
-                if (strArray[idx].EndsWith(periodStr))
-                    return !strArray[idx].ToLower().Equals(strArray[idx]);
-            }
-            return false;
+				// The logic behind this is Trait Names are typically capitialized (e.g. Flyby., Shadow Step.)
+				// If the string found contains a period AND is lowercase, then it's very likely it's not a new trait (e.g. lowered., location.)
+				if (strArray[idx].EndsWith(periodStr)) { return !strArray[idx].ToLower().Equals(strArray[idx]); }
+			}
+			return false;
         }
     }
 }

@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FantasyModuleParser.Importer.NPC
 {
     public class ImportPDFNPC : ImportESNPCBase
     {
+        // private static readonly char[] spaceSeparator = new char[] { ' ' };
 
         IFormatContentService formatContentService = new FormatPDFService();
         public ImportPDFNPC()
@@ -24,6 +26,7 @@ namespace FantasyModuleParser.Importer.NPC
             
             string formattedNPCTextData = formatContentService.FormatImportContent(importTextContent);
             StringReader stringReader = new StringReader(formattedNPCTextData);
+
             resetContinueFlags();
 
             // The first line indicates the NPC name
@@ -66,7 +69,8 @@ namespace FantasyModuleParser.Importer.NPC
 					//continue;
 				}
 
-				if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
+                // if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
+                if (rgxCharacteristics.IsMatch(line))
 				{
 					continueBaseStatsFlag = true;
 					continue;
@@ -214,21 +218,6 @@ namespace FantasyModuleParser.Importer.NPC
                 }
             }
             return parsedNPCModel;
-        }
-
-        /// <summary>
-        /// 'STR DEX CON INT WIS CHA 
-        /// 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)'
-        /// </summary>
-        private new static void ParseStatAttributes(NPCModel npcModel, string statAttributes)
-        {
-            string[] splitAttributes = statAttributes.Split(' ');
-            npcModel.AttributeStr = int.Parse(splitAttributes[0], CultureInfo.CurrentCulture);
-            npcModel.AttributeDex = int.Parse(splitAttributes[2], CultureInfo.CurrentCulture);
-            npcModel.AttributeCon = int.Parse(splitAttributes[4], CultureInfo.CurrentCulture);
-            npcModel.AttributeInt = int.Parse(splitAttributes[6], CultureInfo.CurrentCulture);
-            npcModel.AttributeWis = int.Parse(splitAttributes[8], CultureInfo.CurrentCulture);
-            npcModel.AttributeCha = int.Parse(splitAttributes[10], CultureInfo.CurrentCulture);
         }
     }
 }

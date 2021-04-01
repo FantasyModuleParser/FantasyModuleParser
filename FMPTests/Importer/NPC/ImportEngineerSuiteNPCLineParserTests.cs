@@ -194,7 +194,8 @@ namespace FMPTests.Importer.NPC
         private static IEnumerable<object[]> StatAttributeData()
         {
             yield return new object[] { generateNPCModel_StatAttributes(10,11,12,13,14,15), "STR DEX CON INT WIS CHA 10 (+0) 11 (+0) 12 (+1) 13 (+1) 14 (+2) 15 (+2)" };
-            yield return new object[] { generateNPCModel_StatAttributes(20,19,16,14,12,8), "STR DEX CON INT WIS CHA 20 (+5) 19 (+4) 16 (+3) 14 (+2) 12 (+1) 8 (-1)" };
+            yield return new object[] { generateNPCModel_StatAttributes(20, 19, 16, 14, 12, 8), "STR DEX CON INT WIS CHA 20 (+5) 19 (+4) 16 (+3) 14 (+2) 12 (+1) 8 (-1)" };
+            yield return new object[] { generateNPCModel_StatAttributes(20, 19, 16, 14, 12, 8), "STR DEX CON INT WIS CHA 20(+5) 19 (+4) 16(+3) 14  (+2) 12   (+1) 8(-1)" };
         }
         private static NPCModel generateNPCModel_StatAttributes(int str, int dex, int con, int intel, int wis, int cha)
         {
