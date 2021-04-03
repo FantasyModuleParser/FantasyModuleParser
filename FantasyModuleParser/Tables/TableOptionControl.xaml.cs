@@ -20,12 +20,14 @@ namespace FantasyModuleParser.Tables
     {
         private Regex numericValidationRegex = new Regex("[^0-9]+");
 
+        private TableOptionViewModel tableOptionViewModel;
+
         public TableUserControl()
         {
             InitializeComponent();
+            tableOptionViewModel = DataContext as TableOptionViewModel;
             generateContextMenu();
             InitializeTableDataGrid();
-            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             //TableExampleDataGrid.ItemsSource = tableOptionViewModel.Data.DefaultView;
 
         }
@@ -46,7 +48,7 @@ namespace FantasyModuleParser.Tables
             // columns are dynamically generated. Therefore, the columns   
             // must be re-created each time the page is refreshed.
 
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
 
             // Create and add the columns to the collection.
             TableExampleDataGrid.Columns.Clear();
@@ -71,7 +73,7 @@ namespace FantasyModuleParser.Tables
 
         private void generateContextMenu()
         {
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             TableExampleDataGrid.ContextMenu.Items.Add(buildLinkWithinThisProject());
             TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
 
@@ -86,8 +88,11 @@ namespace FantasyModuleParser.Tables
 
             MenuItem deleteRowMenuItem = new MenuItem();
             deleteRowMenuItem.Header = "Delete Row";
-            deleteRowMenuItem.Command = tableOptionViewModel.DeleteRowCommand;
-            deleteRowMenuItem.CommandParameter = TableExampleDataGrid.SelectedItem;
+            deleteRowMenuItem.Click += DeleteRowMenuItem_Click;
+            // NOTE:  For some reason, CurrentItem is not updated when invoking the ICommand function
+            //        But, it is available through the code-behind call to DeleteRowMenuItem_Click
+            //deleteRowMenuItem.Command = tableOptionViewModel.DeleteRowCommand;
+            //deleteRowMenuItem.CommandParameter = TableExampleDataGrid.CurrentItem;
             TableExampleDataGrid.ContextMenu.Items.Add(deleteRowMenuItem);
 
             //MenuItem clearRowMenuItem = new MenuItem();
@@ -121,7 +126,7 @@ namespace FantasyModuleParser.Tables
 
         private void ClearCellMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = TableExampleDataGrid.SelectedItem;
+            var selectedItem = TableExampleDataGrid.CurrentItem;
             TableExampleDataGrid.SelectedValue = "";
         }
 
@@ -139,7 +144,7 @@ namespace FantasyModuleParser.Tables
 
         private void DeleteRowMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            tableOptionViewModel.DeleteRow((TableExampleDataGrid.CurrentItem as DataRowView).Row);
         }
 
         private void InsertRow_Click(object sender, RoutedEventArgs e)
@@ -273,7 +278,7 @@ namespace FantasyModuleParser.Tables
                 return;
 
             // Validate that the viewModel exists and is tied to the TableOptionViewModel for correct reference
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             if (tableOptionViewModel != null && tableOptionViewModel.TableModel != null)
             {
                 // Reset the grid to default both grids to hidden
@@ -331,7 +336,7 @@ namespace FantasyModuleParser.Tables
 
         private void InsertColumn_Click(object sender, RoutedEventArgs e)
         {
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             int currentColumnCount = TableExampleDataGrid.Columns.Count;
             //TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
             TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
