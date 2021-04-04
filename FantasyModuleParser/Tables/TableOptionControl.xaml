@@ -92,7 +92,7 @@
                             <Label Content="Description:" Grid.Row="1" Grid.Column="0"/>
                             <TextBox Text="{Binding TableModel.Description, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="5" TextWrapping="WrapWithOverflow"/>
 
-                            <Label Content="Role Method:" Grid.Row="2" Grid.Column="0"/>
+                            <Label Content="Roll Method:" Grid.Row="2" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding Source={extension:Enumeration {x:Type tableEnum:RollMethodEnum}}}"
                                       SelectedValue="{Binding TableModel.RollMethod}" SelectedValuePath="Value"
                                       DisplayMemberPath="Description" Grid.Row="2" Grid.Column="1"

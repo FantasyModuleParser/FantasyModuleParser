@@ -599,10 +599,12 @@ namespace FantasyModuleParser.Exporters
 					foreach (TableModel tableModel in FatTableList)
 					{
 						xmlWriter.WriteStartElement(TableNameToXMLFormat(tableModel)); // Open <tableModel.Name>
-						WriteLocked(xmlWriter);
+						WriteTableLocked(xmlWriter, tableModel);
 						WriteTableName(xmlWriter, tableModel);
 						WriteTableDescription(xmlWriter, tableModel);
 						WriteTableOutput(xmlWriter, tableModel);
+						WriteTableNotes(xmlWriter, tableModel);
+						WriteTableHideRolls(xmlWriter, tableModel);
 						xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
 					}
 					xmlWriter.WriteEndElement(); // Close </category>
@@ -1212,6 +1214,13 @@ namespace FantasyModuleParser.Exporters
 			string name = tableModel.Name.ToLower();
 			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
 		}
+		static private void WriteTableLocked(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("locked");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(tableModel.IsLocked ? "1" : "0");
+			xmlWriter.WriteEndElement();
+		}
 		static private void WriteTableName(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("name");
@@ -1231,6 +1240,20 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("output");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(tableModel.OutputType.GetDescription().ToLower());
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableNotes(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("notes");
+			xmlWriter.WriteAttributeString("type", "formattedtext");
+			xmlWriter.WriteString(tableModel.Notes);
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableHideRolls(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("hiderollresults");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(tableModel.ShowResultsInChat ? "1" : "0");
 			xmlWriter.WriteEndElement();
 		}
 		#endregion
