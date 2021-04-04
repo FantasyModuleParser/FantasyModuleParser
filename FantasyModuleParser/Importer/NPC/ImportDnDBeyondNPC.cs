@@ -28,16 +28,15 @@ namespace FantasyModuleParser.Importer.NPC
 
             // The first line indicates the NPC name
             string line = stringReader.ReadLine();
-            if (line != null)
-            {
-                // Line number one indicates the NPC name
-                parsedNPCModel.NPCName = line;
+			if (!string.IsNullOrWhiteSpace(line))
+			{
+				// Line number one indicates the NPC name
+				parsedNPCModel.NPCName = line;
             }
 
             while ((line = stringReader.ReadLine()) != null)
             {
-                line = line.Trim();
-                if (string.IsNullOrEmpty(line)) continue;
+                if (string.IsNullOrWhiteSpace(line)) continue;
 
                 if (sizeList.Any(s => line.StartsWith(s, StringComparison.OrdinalIgnoreCase)))
                 {

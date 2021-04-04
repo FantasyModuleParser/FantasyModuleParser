@@ -88,6 +88,7 @@ namespace FantasyModuleParser.Importer.NPC
             // This should divide into two: size type (tag), alignment in all use cases
             int idx = sizeAndAlignment.LastIndexOf(',');
 
+            // TODO validate the string we are using for Alignment, maybe something static in NPCModel
             // Alignment should always be the last substring after the last comma
             npcModel.Alignment = sizeAndAlignment.Substring(idx + 1).Trim(); // sttAndA[1].Trim();
 
@@ -115,7 +116,7 @@ namespace FantasyModuleParser.Importer.NPC
 		{
 			string[] ac = Regex.Split(armorClass, @"^Armo[u]*r\s+Class\s+", RegexOptions.IgnoreCase);
 
-			if (ac.Length != 2) { throw new Exception("Armor class text did not parse correctly"); }
+			if (ac.Length != 2) { throw new ApplicationException("Armor class text did not parse correctly"); }
 
 			npcModel.AC = ac[1];
 
@@ -138,7 +139,7 @@ namespace FantasyModuleParser.Importer.NPC
         {
             string[] hp = Regex.Split(hitPoints, @"^Hit\s+Points\s+", RegexOptions.IgnoreCase);
 
-            if (hp.Length != 2) { throw new Exception("Hit Points text did not parse correctly"); }
+            if (hp.Length != 2) { throw new ApplicationException("Hit Points text did not parse correctly"); }
 
             npcModel.HP = hp[1];
 
@@ -165,7 +166,7 @@ namespace FantasyModuleParser.Importer.NPC
                 splitAttributes = Regex.Split(statAttributes, @"^STR\s+DEX\s+CON\s+INT\s+WIS\s+CHA\s+", RegexOptions.IgnoreCase);
                 
                 // should be 2 substrings
-                if (splitAttributes.Length != 2) { throw new Exception("Attributes match length not correct, should be 2"); }
+                if (splitAttributes.Length != 2) { throw new ApplicationException("Attributes match length not correct, should be 2"); }
 
                 statAttributes = splitAttributes[1]; // the last string, the attributes
             }
@@ -173,7 +174,7 @@ namespace FantasyModuleParser.Importer.NPC
             string pattern = @"(\d+)\s*\([+-–]*\d+\)\s*";
             MatchCollection matches = Regex.Matches(statAttributes, pattern);
 
-            if (matches.Count != 6) { throw new Exception("Attributes match count not correct, should be 6"); }
+            if (matches.Count != 6) { throw new ApplicationException("Attributes match count not correct, should be 6"); }
 
             var captured = matches
                 // linq-ify into list
@@ -311,7 +312,7 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 string[] tmp = Regex.Split(savingThrows, pattern, RegexOptions.IgnoreCase);
 
-                if (tmp.Length != 2) { throw new Exception("Saving Throws text did not parse correctly"); }
+                if (tmp.Length != 2) { throw new ApplicationException("Saving Throws text did not parse correctly"); }
 
                 string[] splitSavingThrows = tmp[1].Split(spaceSeparator);
                 bool isStr = false, isDex = false, isCon = false, isInt = false, isWis = false, isCha = false;

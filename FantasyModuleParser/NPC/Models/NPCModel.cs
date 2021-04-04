@@ -312,6 +312,8 @@ namespace FantasyModuleParser.NPC
 		public int PassivePerception { get { return _passivePerception; } set { Set(ref _passivePerception, value); } }
 		public string ChallengeRating { get { return _challengeRating; } set { Set(ref _challengeRating, value); } }
 		public int XP { get { return _xp; } set { Set(ref _xp, value); } }
+		
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)] 
 		public string NPCToken { get { return _npcToken; } set { Set(ref _npcToken, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
@@ -1162,7 +1164,10 @@ namespace FantasyModuleParser.NPC
 			if (string.IsNullOrEmpty(HP)) { warningMessageDoNotSave.Append(LogAndWarn("Hit Points are missing from ")); }
 			if (string.IsNullOrEmpty(LanguageOptions)) { warningMessageDoNotSave.Append(LogAndWarn("Language Option (usually No special conditions) is missing from ")); }
 			if (Telepathy == true && string.IsNullOrEmpty(TelepathyRange)) { warningMessageDoNotSave.Append(LogAndWarn("Telepathy Range is missing from ")); }
-			if (InnateSpellcastingSection == true && string.IsNullOrEmpty(InnateSpellcastingAbility)) { warningMessageDoNotSave.Append(LogAndWarn("Innate Spellcasting Ability is missing from ")); }
+			if (InnateSpellcastingSection == true && string.IsNullOrEmpty(InnateSpellcastingAbility))
+			{
+				warningMessageDoNotSave.Append(LogAndWarn("Innate Spellcasting Ability is missing from "));
+			}
 
 			// Can we bail out here?
 			if (SpellcastingSection != true) { return warningMessageDoNotSave.ToString(); }

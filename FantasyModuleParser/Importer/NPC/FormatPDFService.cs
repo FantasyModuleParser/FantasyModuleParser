@@ -50,7 +50,7 @@ namespace FantasyModuleParser.Importer.NPC
             while ((line = stringReader.ReadLine()) != null)
             {
                 line = line.Trim();
-                if (string.IsNullOrEmpty(line)) continue;
+                if (string.IsNullOrEmpty(line)) { continue; }
 
                 switch (importNPCState)
                 {
@@ -127,9 +127,12 @@ namespace FantasyModuleParser.Importer.NPC
                             else if (line.EndsWith("prepared:", StringComparison.OrdinalIgnoreCase))
                             {
                                 _ = formattedTextContent.Append(slashSlashRStr);
-                                if (line.StartsWith("Spellcasting. ", StringComparison.OrdinalIgnoreCase)) { importNPCState = ImportNPCState.SPELLCASTING; }
-                            }
-                            else if (line.StartsWith("Spellcasting. ", StringComparison.OrdinalIgnoreCase))
+								if (line.StartsWith("Spellcasting. ", StringComparison.OrdinalIgnoreCase))
+								{
+									importNPCState = ImportNPCState.SPELLCASTING;
+								}
+							}
+							else if (line.StartsWith("Spellcasting. ", StringComparison.OrdinalIgnoreCase))
                             {
                                 importNPCState = ImportNPCState.SPELLCASTING;
                             }
