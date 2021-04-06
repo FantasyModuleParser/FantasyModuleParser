@@ -143,17 +143,17 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("As a bonus action, the aarakocra can expend a spell slot to cause its melee or ranged weapon attacks to magically deal an extra 13 (3d8) lightning or thunder damage to a target on a hit. This benefit lasts until the end of the turn. If the aarakora expends a spell slot of 2nd level or higher, the extra damage increases by 1d8 for each level above 1st (maximum 6d8).", actualNPCModel.Traits[1].ActionDescription);
 
             // Spellcasting
-            Assert.AreEqual("at will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("at will", actualNPCModel.CantripSpellSlots);
             Assert.AreEqual("light, mending, resistance, spare the dying", actualNPCModel.CantripSpellList);
-            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpellSlots);
             Assert.AreEqual("guiding bolt, healing word, protection from evil and good", actualNPCModel.FirstLevelSpellList);
-            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpellSlots);
             Assert.AreEqual("augury, hold person, zone of truth", actualNPCModel.SecondLevelSpellList);
-            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpellSlots);
             Assert.AreEqual("beacon of hope, call lightning, mass healing word", actualNPCModel.ThirdLevelSpellList);
-            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpellSlots);
             Assert.AreEqual("freedom of movement, ice storm", actualNPCModel.FourthLevelSpellList);
-            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpellSlots);
             Assert.AreEqual("conjure (air) elemental", actualNPCModel.FifthLevelSpellList);
             // Action
             Assert.AreEqual(3, actualNPCModel.NPCActions.Count);
@@ -243,22 +243,22 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Cleric", actualNPCModel.SpellcastingSpellClass);
             Assert.AreEqual("", actualNPCModel.FlavorText);
 
-            Assert.AreEqual("at will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("at will", actualNPCModel.CantripSpellSlots);
             Assert.AreEqual("mending, resistance, sacred flame", actualNPCModel.CantripSpellList);
 
-            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpellSlots);
             Assert.AreEqual("command, healing word", actualNPCModel.FirstLevelSpellList);
 
-            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpellSlots);
             Assert.AreEqual("aid, hold person, lesser restoration", actualNPCModel.SecondLevelSpellList);
 
-            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpellSlots);
             Assert.AreEqual("dispel magic, glyph of warding, meld into stone", actualNPCModel.ThirdLevelSpellList);
 
-            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpellSlots);
             Assert.AreEqual("banishment, freedom of movement, stone shape", actualNPCModel.FourthLevelSpellList);
 
-            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpellSlots);
             Assert.AreEqual("flame strike", actualNPCModel.FifthLevelSpellList);
 
         }
@@ -324,11 +324,11 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Wisdom", actualNPCModel.SCSpellcastingAbility);
             Assert.AreEqual(13, actualNPCModel.SpellcastingSpellSaveDC);
             Assert.AreEqual("Ranger", actualNPCModel.SpellcastingSpellClass);
-            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpellSlots);
             Assert.AreEqual("ensnaring strike, hunter's mark", actualNPCModel.FirstLevelSpellList);
-            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpellSlots);
             Assert.AreEqual("cordon of arrows, spike growth", actualNPCModel.SecondLevelSpellList);
-            Assert.AreEqual("2 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("2 slots", actualNPCModel.ThirdLevelSpellSlots);
             Assert.AreEqual("conjure barrage, lightning arrow", actualNPCModel.ThirdLevelSpellList);
         }
 
@@ -351,15 +351,15 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual(15, actualNPCModel.SpellcastingSpellSaveDC);
             Assert.AreEqual(7, actualNPCModel.SpellcastingSpellHitBonus);
             Assert.AreEqual("Sorcerer", actualNPCModel.SpellcastingSpellClass);
-            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpellSlots);
             Assert.AreEqual("charm person, detect magic", actualNPCModel.FirstLevelSpellList);
-            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.SecondLevelSpellSlots);
             Assert.AreEqual("invisibility, web", actualNPCModel.SecondLevelSpellList);
-            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.ThirdLevelSpellSlots);
             Assert.AreEqual("dispel magic, lightning bolt, suggestion", actualNPCModel.ThirdLevelSpellList);
-            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpells);
+            Assert.AreEqual("3 slots", actualNPCModel.FourthLevelSpellSlots);
             Assert.AreEqual("confusion, greater invisibility", actualNPCModel.FourthLevelSpellList);
-            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpells);
+            Assert.AreEqual("1 slot", actualNPCModel.FifthLevelSpellSlots);
             Assert.AreEqual("cone of cold", actualNPCModel.FifthLevelSpellList);
         }
 

@@ -1170,7 +1170,7 @@ namespace FantasyModuleParser.Exporters
         }
 		#endregion
 		#region NPC Methods
-		static private void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			int ChaBonus = -5 + (npcModel.AttributeCha / 2);
 			int ConBonus = -5 + (npcModel.AttributeCon / 2);
@@ -1327,7 +1327,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); // Close </intelligence>
 			xmlWriter.WriteEndElement(); // Close </abilities>
 		}
-		static private void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			string[] acArray = npcModel.AC.Split('(');
 			string acValue = acArray[0].Trim();
@@ -1342,7 +1342,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(acDescription);
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("actions");
 			int actionID = 1;
@@ -1362,14 +1362,14 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("alignment");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.Alignment);
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteConditionImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteConditionImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("conditionimmunities");
@@ -1395,14 +1395,14 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(stringBuilder.ToString().Trim());
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteCR(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteCR(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("cr");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.ChallengeRating);
 			xmlWriter.WriteEndElement();
 		}
-		private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+		public void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damageimmunities");
@@ -1466,7 +1466,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(weaponDamageImmunityString);
 			xmlWriter.WriteEndElement();
 		}
-		private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
+		public void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damageresistances");
@@ -1535,7 +1535,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(weaponDamageResistanceString);
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damagevulnerabilities");
@@ -1558,7 +1558,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(weaponDamageVulnerabilityString);
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			if (npcModel.HP == null)
 			{
@@ -1587,7 +1587,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(hpValue);
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteLairActions(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteLairActions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("lairactions");
 			int actionID = 1;
@@ -1610,7 +1610,7 @@ namespace FantasyModuleParser.Exporters
 			}				
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteLanguages(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteLanguages(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			StringBuilder stringBuilderOption = new StringBuilder();
@@ -1712,7 +1712,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(stringBuilderOption.ToString());
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteLegendaryActions(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteLegendaryActions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("legendaryactions");
 			int actionID = 1;
@@ -1732,14 +1732,14 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteName(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteName(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("name");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.NPCName);
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteReactions(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteReactions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("reactions");
 			int actionID = 1;
@@ -1759,51 +1759,18 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteSavingThrows(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteSavingThrows(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-
-			if (npcModel.SavingThrowStr != 0 || npcModel.SavingThrowStrBool)
-			{
-				stringBuilder.Append("Str ").Append(npcModel.SavingThrowStr >= 0 ? "+" : "").Append(npcModel.SavingThrowStr).Append(", ");
-			}				
-			if (npcModel.SavingThrowDex != 0 || npcModel.SavingThrowDexBool)
-			{
-				stringBuilder.Append("Dex ").Append(npcModel.SavingThrowDex >= 0 ? "+" : "").Append(npcModel.SavingThrowDex).Append(", ");
-			}				
-			if (npcModel.SavingThrowCon != 0 || npcModel.SavingThrowConBool)
-			{
-				stringBuilder.Append("Con ").Append(npcModel.SavingThrowCon >= 0 ? "+" : "").Append(npcModel.SavingThrowCon).Append(", ");
-			}				
-			if (npcModel.SavingThrowInt != 0 || npcModel.SavingThrowIntBool)
-			{
-				stringBuilder.Append("Int ").Append(npcModel.SavingThrowInt >= 0 ? "+" : "").Append(npcModel.SavingThrowInt).Append(", ");
-			}				
-			if (npcModel.SavingThrowWis != 0 || npcModel.SavingThrowWisBool)
-			{
-				stringBuilder.Append("Wis ").Append(npcModel.SavingThrowWis >= 0 ? "+" : "").Append(npcModel.SavingThrowWis).Append(", ");
-			}				
-			if (npcModel.SavingThrowCha != 0 || npcModel.SavingThrowChaBool)
-			{
-				stringBuilder.Append("Cha ").Append(npcModel.SavingThrowCha >= 0 ? "+" : "").Append(npcModel.SavingThrowCha).Append(", ");
-			}			
-
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}				
-			string savingThrowString = stringBuilder.ToString().Trim();
-
 			xmlWriter.WriteStartElement("savingthrows");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteValue(savingThrowString);
+			xmlWriter.WriteString(npcModel.UpdateSavingThrowsString());
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(AppendSenses("darkvision ", npcModel.Darkvision, " ft."));
-			stringBuilder.Append(AppendBlindSenses("blindsight ", npcModel.Blindsight, " ft."));
+			stringBuilder.Append(AppendBlindSenses("blindsight ", npcModel.Blindsight, npcModel.BlindBeyond, " ft."));
 			stringBuilder.Append(AppendSenses("tremorsense ", npcModel.Tremorsense, " ft."));
 			stringBuilder.Append(AppendSenses("truesight ", npcModel.Truesight, " ft."));
 			stringBuilder.Append(AppendSenses("passive perception ", npcModel.PassivePerception, ""));
@@ -1817,7 +1784,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(sensesString);
 			xmlWriter.WriteEndElement();
 		}
-		static private string AppendSenses(string senseName, int senseValue, string senseRange)
+		static public string AppendSenses(string senseName, int senseValue, string senseRange)
 		{
 			if (senseValue != 0)
 			{
@@ -1826,66 +1793,27 @@ namespace FantasyModuleParser.Exporters
 			}
 			return "";
 		}
-		static private string AppendBlindSenses(string senseName, int senseValue, string senseRange)
-		{
-			NPCModel npcModel = new NPCModel();
+		static public string AppendBlindSenses(string senseName, int senseValue, bool blindBeyond, string senseRange)
+		{ 
 			string delimiter = ", ";
-			if (senseValue != 0 && npcModel.BlindBeyond == false)
-			{
-				return senseName + senseValue + senseRange + delimiter;
-			}				
-			else if (senseValue != 0 && npcModel.BlindBeyond == true)
-			{
-				return senseName + senseValue + senseRange + " (blind beyond this radius)" + delimiter;
-			}				
-			return "";
+			return senseValue == 0 ? string.Empty : string.Format("{0}{1}{2}{3}{4}",
+				senseName, senseValue, senseRange, blindBeyond == true ? " (blind beyond this radius)" : string.Empty, delimiter);
 		}
-		static private void WriteSpeed(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteSpeed(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-
-			if (npcModel.Speed > 0)
-			{
-				stringBuilder.Append(npcModel.Speed + " ft.").Append(", ");
-			}				
-			if (npcModel.Burrow > 0)
-			{
-				stringBuilder.Append("burrow " + npcModel.Burrow + " ft.").Append(", ");
-			}				
-			if (npcModel.Climb > 0)
-			{
-				stringBuilder.Append("climb " + npcModel.Climb + " ft.").Append(", ");
-			}				
-			if (npcModel.Hover)
-			{
-				stringBuilder.Append("fly " + npcModel.Fly + " ft. (hover)").Append(", ");
-			}				
-			if (npcModel.Fly > 0 && !npcModel.Hover)
-			{
-				stringBuilder.Append("fly " + npcModel.Fly + " ft.").Append(", ");
-			}				
-			if (npcModel.Swim > 0)
-			{
-				stringBuilder.Append("swim " + npcModel.Swim + " ft.").Append(", ");
-			}				
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}				
-			string speedString = stringBuilder.ToString().Trim();
 			xmlWriter.WriteStartElement("speed");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteValue(speedString);
+			xmlWriter.WriteString(npcModel.GetAllSpeeds());
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteSize(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteSize(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("size");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteValue(npcModel.Size);
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteType(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteType(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(npcModel.NPCType);
@@ -1898,15 +1826,14 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(stringBuilder.ToString());
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteSkills(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteSkills(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			string skillsString = npcModel.SkillAttributesToString();
 			xmlWriter.WriteStartElement("skills");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteValue(skillsString);
+			xmlWriter.WriteString(npcModel.SkillAttributesToString());
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteText(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteText(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			NPCController npcController = new NPCController();
 			xmlWriter.WriteStartElement("text");
@@ -1914,7 +1841,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(npcModel.Description));
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteToken(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
+		static public void WriteToken(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("token");
 			xmlWriter.WriteAttributeString("type", "token");
@@ -1928,7 +1855,7 @@ namespace FantasyModuleParser.Exporters
 			}				
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("traits");
 			int actionID = 1;
@@ -2073,43 +2000,43 @@ namespace FantasyModuleParser.Exporters
 				}					
 				if (npcModel.CantripSpellList != null)
 				{
-					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpells.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
+					stringBuilder.Append("\\rCantrips (" + npcModel.CantripSpellSlots.ToLower() + "): " + npcModel.CantripSpellList.ToLower());
 				}					
 				if (npcModel.FirstLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r1st level (" + npcModel.FirstLevelSpells.ToLower() + "): " + npcModel.FirstLevelSpellList.ToLower());
+					stringBuilder.Append("\\r1st level (" + npcModel.FirstLevelSpellSlots.ToLower() + "): " + npcModel.FirstLevelSpellList.ToLower());
 				}					
 				if (npcModel.SecondLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r2nd level (" + npcModel.SecondLevelSpells.ToLower() + "): " + npcModel.SecondLevelSpellList.ToLower());
+					stringBuilder.Append("\\r2nd level (" + npcModel.SecondLevelSpellSlots.ToLower() + "): " + npcModel.SecondLevelSpellList.ToLower());
 				}				
 				if (npcModel.ThirdLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r3rd level (" + npcModel.ThirdLevelSpells.ToLower() + "): " + npcModel.ThirdLevelSpellList.ToLower());
+					stringBuilder.Append("\\r3rd level (" + npcModel.ThirdLevelSpellSlots.ToLower() + "): " + npcModel.ThirdLevelSpellList.ToLower());
 				}					
 				if (npcModel.FourthLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r4th level (" + npcModel.FourthLevelSpells.ToLower() + "): " + npcModel.FourthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r4th level (" + npcModel.FourthLevelSpellSlots.ToLower() + "): " + npcModel.FourthLevelSpellList.ToLower());
 				}					
 				if (npcModel.FifthLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r5th level (" + npcModel.FifthLevelSpells.ToLower() + "): " + npcModel.FifthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r5th level (" + npcModel.FifthLevelSpellSlots.ToLower() + "): " + npcModel.FifthLevelSpellList.ToLower());
 				}
 				if (npcModel.SixthLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r6th level (" + npcModel.SixthLevelSpells.ToLower() + "): " + npcModel.SixthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r6th level (" + npcModel.SixthLevelSpellSlots.ToLower() + "): " + npcModel.SixthLevelSpellList.ToLower());
 				}					
 				if (npcModel.SeventhLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r7th level (" + npcModel.SeventhLevelSpells.ToLower() + "): " + npcModel.SeventhLevelSpellList.ToLower());
+					stringBuilder.Append("\\r7th level (" + npcModel.SeventhLevelSpellSlots.ToLower() + "): " + npcModel.SeventhLevelSpellList.ToLower());
 				}					
 				if (npcModel.EighthLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r8th level (" + npcModel.EighthLevelSpells.ToLower() + "): " + npcModel.EighthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r8th level (" + npcModel.EighthLevelSpellSlots.ToLower() + "): " + npcModel.EighthLevelSpellList.ToLower());
 				}					
 				if (npcModel.NinthLevelSpellList != null)
 				{
-					stringBuilder.Append("\\r9th level (" + npcModel.NinthLevelSpells.ToLower() + "): " + npcModel.NinthLevelSpellList.ToLower());
+					stringBuilder.Append("\\r9th level (" + npcModel.NinthLevelSpellSlots.ToLower() + "): " + npcModel.NinthLevelSpellList.ToLower());
 				}					
 				string spellcastingDescription = stringBuilder.ToString();
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
@@ -2126,7 +2053,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
-		static private void WriteXP(XmlWriter xmlWriter, NPCModel npcModel)
+		static public void WriteXP(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("xp");
 			xmlWriter.WriteAttributeString("type", "number");
@@ -2137,9 +2064,9 @@ namespace FantasyModuleParser.Exporters
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
 		/// </summary>
-		#pragma warning disable CA1822 // Unable to make static due to Unit Tests
+		// Unable to make static due to Unit Tests
 		public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
-		#pragma warning restore CA1822 // Unable to make static due to Unit Tests
+		// Unable to make static due to Unit Tests
 		{
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))

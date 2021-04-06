@@ -1,9 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Controllers;
+using System.Collections.ObjectModel;
 
 namespace FantasyModuleParser.Main.Models
 {
     public class ModuleModel
     {
+        public NPCController NpcController { get; set; }
+        public NPCModel NpcModel { get; set; }
+        public CategoryModel Categorymodel { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string Author { get; set; }
