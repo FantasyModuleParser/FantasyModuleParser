@@ -17,10 +17,19 @@ namespace FantasyModuleParser.Tables.Models
         public List<string> ColumnHeaderLabels = new List<string>();
         public List<List<string>> BasicStringGridData = new List<List<string>>();
 
+        // Preset Range roll modifiers
+        public int presetRollMinimum;
+        public int presetRollMaximum;
+
+        // Custom Range Roll Modifier
+        // Array of 7 ints;  d4, d6, d8, d10, d12, d20, Modifier
+        public ObservableCollection<int> CustomRangeRollModifier;
+
 
         public TableModel()
         {
-
+            if (CustomRangeRollModifier == null)
+                CustomRangeRollModifier = new ObservableCollection<int>() { 0,0,0,0,0,0,0};
         }
 
         public TableModel CreateDefaultTableModel()

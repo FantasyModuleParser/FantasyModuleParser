@@ -113,6 +113,17 @@ namespace FantasyModuleParser.Tables.ViewModels
             set { Set(ref sourceCollection, value); }
         }
 
+        // Preset Range Modifiers
+        public int PresetRangeMinimum
+        {
+            get => _tableModel.presetRollMinimum;
+            set { Set(ref _tableModel.presetRollMinimum, value); }
+        }
+        public int PresetRangeMaximum
+        {
+            get => _tableModel.presetRollMaximum;
+            set { Set(ref _tableModel.presetRollMaximum, value); }
+        }
 
         public ICommand OnDataGridSizeChangeCommand { get; set; }
 
