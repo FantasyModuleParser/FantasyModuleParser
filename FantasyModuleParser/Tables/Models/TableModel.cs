@@ -4,6 +4,7 @@ using FantasyModuleParser.Tables.ViewModels.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
@@ -65,18 +66,66 @@ namespace FantasyModuleParser.Tables.Models
         public DataTable tableDataTable = new DataTable();
 
         // Preset Range roll modifiers
-        public int presetRollMinimum;
-        public int presetRollMaximum;
+        private int _presetRangeMinimum;
+        public int PresetRangeMinimum
+        {
+            get => _presetRangeMinimum;
+            set => Set(ref _presetRangeMinimum, value);
+        }
+        private int _presetRangeMaximum;
+        public int PresetRangeMaximum
+        {
+            get => _presetRangeMaximum;
+            set => Set(ref _presetRangeMaximum, value);
+        }
 
-        // Custom Range Roll Modifier
-        // Array of 7 ints;  d4, d6, d8, d10, d12, d20, Modifier
-        public ObservableCollection<int> CustomRangeRollModifier;
+        // Custom Range Roll Modifiers
+        private int _customRangeD4;
+        public int CustomRangeD4
+        {
+            get => _customRangeD4;
+            set => Set(ref _customRangeD4, value);
+        }
+        private int _customRangeD6;
+        public int CustomRangeD6
+        {
+            get => _customRangeD6;
+            set => Set(ref _customRangeD6, value);
+        }
+        private int _customRangeD8;
+        public int CustomRangeD8
+        {
+            get => _customRangeD8;
+            set => Set(ref _customRangeD8, value);
+        }
+        private int _customRangeD10;
+        public int CustomRangeD10
+        {
+            get => _customRangeD10;
+            set => Set(ref _customRangeD10, value);
+        }
+        private int _customRangeD12;
+        public int CustomRangeD12
+        {
+            get => _customRangeD12;
+            set => Set(ref _customRangeD12, value);
+        }
+        private int _customRangeD20;
+        public int CustomRangeD20
+        {
+            get => _customRangeD20;
+            set => Set(ref _customRangeD20, value);
+        }
+        private int _customRangeModifier;
+        public int CustomRangeModifier
+        {
+            get => _customRangeModifier;
+            set => Set(ref _customRangeModifier, value);
+        }
 
 
         public TableModel()
         {
-            if (CustomRangeRollModifier == null)
-                CustomRangeRollModifier = new ObservableCollection<int>() { 0,0,0,0,0,0,0};
         }
 
         public TableModel CreateDefaultTableModel()

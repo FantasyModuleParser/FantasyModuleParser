@@ -26,8 +26,13 @@ namespace FantasyModuleParser.Tables.ViewModels
 
         public TableModel TableModel
         {
-            get { return this._tableModel; }
-            set { Set(ref _tableModel, value); }
+            get => this._tableModel;
+            //set { Set(ref _tableModel, value); }
+            set
+            {
+                this._tableModel = value;
+                RaisePropertyChanged(nameof(TableModel));
+            }
         }
         public ModuleModel ModuleModel
         {
@@ -84,17 +89,6 @@ namespace FantasyModuleParser.Tables.ViewModels
             set { Set(ref _dataView, value); }
         }
 
-        // Preset Range Modifiers
-        public int PresetRangeMinimum
-        {
-            get => _tableModel.presetRollMinimum;
-            set { Set(ref _tableModel.presetRollMinimum, value); }
-        }
-        public int PresetRangeMaximum
-        {
-            get => _tableModel.presetRollMaximum;
-            set { Set(ref _tableModel.presetRollMaximum, value); }
-        }
         // This is an attempt at binding the selected item from the DataGrid on the view
         // as to be used to manipulate the DataView object inside this ViewModel
         private object _selectedItem;
