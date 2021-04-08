@@ -5,11 +5,9 @@ using System.Windows;
 using System.Windows.Data;
 using FantasyModuleParser.Tables.ViewModels;
 using FantasyModuleParser.Tables.ViewModels.Enums;
-using System.Collections.ObjectModel;
-using FantasyModuleParser.Tables.Models;
-using System.Text;
-using System.Web.UI.WebControls;
 using System.Data;
+using FantasyModuleParser.Main.Services;
+using System;
 
 namespace FantasyModuleParser.Tables
 {
@@ -21,11 +19,15 @@ namespace FantasyModuleParser.Tables
     public partial class TableUserControl : UserControl
     {
         private Regex numericValidationRegex = new Regex("[^0-9]+");
+
+        private TableOptionViewModel tableOptionViewModel;
+
         public TableUserControl()
         {
             InitializeComponent();
+            tableOptionViewModel = DataContext as TableOptionViewModel;
+            generateContextMenu();
             InitializeTableDataGrid();
-            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             //TableExampleDataGrid.ItemsSource = tableOptionViewModel.Data.DefaultView;
 
         }
@@ -46,20 +48,203 @@ namespace FantasyModuleParser.Tables
             // columns are dynamically generated. Therefore, the columns   
             // must be re-created each time the page is refreshed.
 
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+
             // Create and add the columns to the collection.
+            TableExampleDataGrid.Columns.Clear();
             TableExampleDataGrid.Columns.Add(CreateBoundColumn("From", "From"));
             TableExampleDataGrid.Columns.Add(CreateBoundColumn("To", "To"));
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn("1", ""));
 
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-
-            DataView dv = new DataView(tableOptionViewModel.Data);
-
-            TableExampleDataGrid.ItemsSource = dv;
+            for(int colIdx = 2; colIdx < tableOptionViewModel.TableModel.ColumnHeaderLabels.Count; colIdx++)
+            {
+                TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{colIdx}", tableOptionViewModel.TableModel.ColumnHeaderLabels[colIdx]));
+            }
 
 
 
 
+            //DataView dv = new DataView(tableOptionViewModel.Data);
+
+            //TableExampleDataGrid.ItemsSource = dv;
+
+            // Generate the Context Menu used by the grid
+            //generateContextMenu();
+        }
+
+        private void generateContextMenu()
+        {
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            TableExampleDataGrid.ContextMenu.Items.Add(buildLinkWithinThisProject());
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+
+            TableExampleDataGrid.ContextMenu.Items.Add(buildInternalLink());
+            TableExampleDataGrid.ContextMenu.Items.Add(buildExternalLink());
+
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+            MenuItem insertRowMenuItem = new MenuItem();
+            insertRowMenuItem.Header = "Insert Row";
+            insertRowMenuItem.Command = tableOptionViewModel.InsertRowCommand;
+            TableExampleDataGrid.ContextMenu.Items.Add(insertRowMenuItem);
+
+            MenuItem deleteRowMenuItem = new MenuItem();
+            deleteRowMenuItem.Header = "Delete Row";
+            deleteRowMenuItem.Click += DeleteRowMenuItem_Click;
+            // NOTE:  For some reason, CurrentItem is not updated when invoking the ICommand function
+            //        But, it is available through the code-behind call to DeleteRowMenuItem_Click
+            //deleteRowMenuItem.Command = tableOptionViewModel.DeleteRowCommand;
+            //deleteRowMenuItem.CommandParameter = TableExampleDataGrid.CurrentItem;
+            TableExampleDataGrid.ContextMenu.Items.Add(deleteRowMenuItem);
+
+            //MenuItem clearRowMenuItem = new MenuItem();
+            //clearRowMenuItem.Header = "Clear Row";
+            //clearRowMenuItem.Command = tableOptionViewModel.ClearRowCommand;
+            //TableExampleDataGrid.ContextMenu.Items.Add(clearRowMenuItem);
+
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+
+            MenuItem insertColumnMenuItem = new MenuItem();
+            insertColumnMenuItem.Header = "Insert Column";
+            insertColumnMenuItem.Click += InsertColumn_Click;
+            insertColumnMenuItem.Command = tableOptionViewModel.InsertColumnCommand;
+            TableExampleDataGrid.ContextMenu.Items.Add(insertColumnMenuItem);
+
+            MenuItem deleteColumnMenuItem = new MenuItem();
+            deleteColumnMenuItem.Header = "Delete Column";
+            deleteColumnMenuItem.Click += DeleteColumnMenuItem_Click;
+            deleteColumnMenuItem.Command = tableOptionViewModel.RemoveColumnCommand;
+            deleteColumnMenuItem.CommandParameter = TableExampleDataGrid.CurrentColumn;
+            TableExampleDataGrid.ContextMenu.Items.Add(deleteColumnMenuItem);
+
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+
+            MenuItem clearCellMenuItem = new MenuItem();
+            clearCellMenuItem.Header = "Clear Cell";
+            clearCellMenuItem.Click += ClearCellMenuItem_Click;
+            TableExampleDataGrid.ContextMenu.Items.Add(clearCellMenuItem);
+
+        }
+
+        private void ClearCellMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = TableExampleDataGrid.CurrentItem;
+            TableExampleDataGrid.SelectedValue = "";
+        }
+
+        private void DeleteColumnMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
+            //dataRowView.Delete();
+            TableExampleDataGrid.Columns.Remove(TableExampleDataGrid.CurrentColumn);
+        }
+
+        private void ClearRowMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void DeleteRowMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            tableOptionViewModel.DeleteRow((TableExampleDataGrid.CurrentItem as DataRowView).Row);
+        }
+
+        private void InsertRow_Click(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private MenuItem buildLinkWithinThisProject()
+        {
+            MenuItem miLinkWithinProject = new MenuItem();
+            miLinkWithinProject.Header = "Select link within this Project";
+
+            MenuItem imageMenuItem = new MenuItem();
+            imageMenuItem.Header = "Image";
+
+            // TODO:  Build out a reference of all images within 
+            // this FMP module, if applicable
+
+            MenuItem npcMenuItem = new MenuItem();
+            npcMenuItem.Header = "NPC";
+
+            //TODO:  Build out a reference of all NPCs between categories
+            // with this FMP module
+
+            MenuItem spellMenuItem = new MenuItem();
+            npcMenuItem.Header = "Spell";
+
+            //TODO:  Build out a reference of all NPCs between categories
+            // with this FMP module
+
+            MenuItem tableMenuItem = new MenuItem();
+            npcMenuItem.Header = "Table";
+
+            //TODO:  Build out a reference of all NPCs between categories
+            // with this FMP module
+
+            miLinkWithinProject.Items.Add(imageMenuItem);
+            miLinkWithinProject.Items.Add(npcMenuItem);
+            miLinkWithinProject.Items.Add(spellMenuItem);
+            miLinkWithinProject.Items.Add(tableMenuItem);
+
+            return miLinkWithinProject;
+        }
+
+        private MenuItem buildInternalLink()
+        {
+            MenuItem menuItemBuildInternalLink = new MenuItem();
+            menuItemBuildInternalLink.Header = "Build Internal Link";
+
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Image"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("NPC"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Spell"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Table"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Parcel"));
+            menuItemBuildInternalLink.Items.Add(buildInternalLinkSubMenuItem("Item"));
+
+            return menuItemBuildInternalLink;
+        }
+
+        private MenuItem buildInternalLinkSubMenuItem(string headerValue)
+        {
+            MenuItem subMenuItem = new MenuItem();
+            subMenuItem.Header = headerValue;
+            subMenuItem.Click += BuildInternalLink_MenuItem_ClickEvent;
+
+            return subMenuItem;
+        }
+
+        private void BuildInternalLink_MenuItem_ClickEvent(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private MenuItem buildExternalLink()
+        {
+            MenuItem menuItemBuildExternalLink = new MenuItem();
+            menuItemBuildExternalLink.Header = "Build External Link";
+
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Image"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("NPC"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Spell"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Table"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Parcel"));
+            menuItemBuildExternalLink.Items.Add(buildExternalLinkSubMenuItem("Item"));
+
+            return menuItemBuildExternalLink;
+        }
+
+        private MenuItem buildExternalLinkSubMenuItem(string headerValue)
+        {
+            MenuItem subMenuItem = new MenuItem();
+            subMenuItem.Header = headerValue;
+            subMenuItem.Click += BuildExternalLink_MenuItem_ClickEvent;
+
+            return subMenuItem;
+        }
+
+        private void BuildExternalLink_MenuItem_ClickEvent(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         private DataGridBoundColumn CreateBoundColumn(string DataFieldValue, string HeaderTextValue)
@@ -81,16 +266,6 @@ namespace FantasyModuleParser.Tables
 
         }
 
-        private static int columnNumber = 100;
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-            //tableOptionViewModel.ChangeGridDimesions();
-            //TableExampleDataGrid?.Items.Refresh();
-            //tableOptionViewModel.AddColumn($"Column {columnNumber}");
-            //columnNumber++;
-        }
-
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             e.Handled = numericValidationRegex.IsMatch(e.Text);
@@ -103,7 +278,7 @@ namespace FantasyModuleParser.Tables
                 return;
 
             // Validate that the viewModel exists and is tied to the TableOptionViewModel for correct reference
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             if (tableOptionViewModel != null && tableOptionViewModel.TableModel != null)
             {
                 // Reset the grid to default both grids to hidden
@@ -132,5 +307,62 @@ namespace FantasyModuleParser.Tables
         {
 
         }
+
+        private void LoadTableModule_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsService settingsService = new SettingsService();
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+            
+            openFileDlg.InitialDirectory = settingsService.Load().TableFolderLocation;
+            openFileDlg.Filter = "Table files (*.tbl)|*.tbl|All files (*.*)|*.*";
+            openFileDlg.RestoreDirectory = true;
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+                tableOptionViewModel.TableModel = tableOptionViewModel.TableModel.Load(openFileDlg.FileName);
+               
+
+                tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
+
+                InitializeTableDataGrid();
+            }
+        }
+
+        private void InsertColumn_Click(object sender, RoutedEventArgs e)
+        {
+            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            int currentColumnCount = TableExampleDataGrid.Columns.Count;
+            //TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
+            TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
+        }
+
+        //private void TableExampleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (TableExampleDataGrid.SelectedIndex == -1) //if column selected, cant use .CurrentColumn property
+        //    {
+        //        MessageBox.Show("Please double click on a row");
+        //    }
+        //    else
+        //    {
+        //        DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
+
+        //        dataRowView.Delete();
+
+        //        //DataGridColumn columnHeader = TableExampleDataGrid.CurrentColumn;
+
+        //        //TableExampleDataGrid.Columns.Remove(columnHeader);
+        //        //if (columnHeader != null)
+        //        //{
+        //        //    string input = Interaction.InputBox("Title", "Prompt", "Default", 0, 0);
+        //        //    columnHeader.Header = input;
+        //        //}
+        //    }
+        //}
     }
 }
