@@ -767,7 +767,12 @@ namespace FantasyModuleParser.Importer.NPC
             {
                 npcModel.SpellcastingSection = true;
                 // Start with getting spellcaster level
-                npcModel.SpellcastingCasterLevel = spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4).Trim();
+
+                MatchCollection matches = Regex.Matches(spellCastingAttributes, @"(\d+\w\w)-level", RegexOptions.IgnoreCase);
+
+                if (matches.Count != 1 && matches[0].Groups.Count != 2) { throw new ApplicationException("Spellcasting, can't parse level"); }
+
+                npcModel.SpellcastingCasterLevel = matches[0].Groups[1].Value; // spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4).Trim();
 
                 // Spellcasting Ability
                 int abilityIsIndex = spellCastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
