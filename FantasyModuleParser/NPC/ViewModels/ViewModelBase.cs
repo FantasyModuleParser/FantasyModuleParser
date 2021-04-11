@@ -37,7 +37,8 @@ namespace FantasyModuleParser.NPC.ViewModel
 
             // Setting the backing field and the RaisePropertyChanged
             backingField = value;
-            OnPropertyChanged(propertyname);
+            //OnPropertyChanged(propertyname);
+            RaisePropertyChanged(propertyname);
             return true;
         }
     }

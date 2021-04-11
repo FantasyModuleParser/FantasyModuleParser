@@ -26,8 +26,13 @@ namespace FantasyModuleParser.Tables.ViewModels
 
         public TableModel TableModel
         {
-            get { return this._tableModel; }
-            set { Set(ref _tableModel, value); }
+            get => this._tableModel;
+            //set { Set(ref _tableModel, value); }
+            set
+            {
+                this._tableModel = value;
+                RaisePropertyChanged(nameof(TableModel));
+            }
         }
         public ModuleModel ModuleModel
         {
@@ -201,7 +206,6 @@ namespace FantasyModuleParser.Tables.ViewModels
                 if (_addColumnCommand == null)
                 {
                     _addColumnCommand = new ActionCommand(param => AddColumnToDataTable());
-                    //TODO:  Can add a Predicate command to the ActionCommand, but not sure how that works in practice.....
                 }
                 return _addColumnCommand;
             }
@@ -210,6 +214,11 @@ namespace FantasyModuleParser.Tables.ViewModels
         private void attemptToDeleteLastRow(object param)
         {
                 TableDataView.Delete(TableDataView.Count - 1);
+        }
+
+        public void DeleteRow(DataRow dataRow)
+        {
+            TableDataView.Table.Rows.Remove(dataRow);
         }
 
         private ActionCommand _insertColumnCommand;
