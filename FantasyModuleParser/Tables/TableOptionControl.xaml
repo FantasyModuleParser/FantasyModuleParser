@@ -103,7 +103,7 @@
 
                         </Grid>
 
-                        <!-- Make this visible when the Role Method 'Custom Dice Roll' is selected-->
+                        <!-- Make this visible when the Roll Method 'Custom Dice Roll' is selected-->
                         <Grid Grid.Row="1" Visibility="Hidden" x:Name="CustomDiceRollGrid">
                             <Grid.Resources>
                                 <Style TargetType="Label" x:Key="labelPosition">

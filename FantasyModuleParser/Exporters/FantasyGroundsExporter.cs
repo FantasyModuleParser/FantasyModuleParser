@@ -587,7 +587,7 @@ namespace FantasyModuleParser.Exporters
 					#endregion
 				}
 				#region Tables
-				if (moduleModel.IncludesTables)
+				if (moduleModel.IncludeTables)
 				{
 					xmlWriter.WriteStartElement("tables");
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
@@ -607,6 +607,8 @@ namespace FantasyModuleParser.Exporters
 							WriteTableOutput(xmlWriter, tableModel);
 							WriteTableNotes(xmlWriter, tableModel);
 							WriteTableHideRolls(xmlWriter, tableModel);
+							WriteTableRollModifier(xmlWriter, tableModel);
+							WriteTableRollDice(xmlWriter, tableModel);
 							xmlWriter.WriteEndElement(); // Closes </tableModel.Name>
 						}
 						xmlWriter.WriteEndElement(); // Close </category>
@@ -1257,6 +1259,30 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("hiderollresults");
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteString(tableModel.ShowResultsInChat ? "1" : "0");
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableRollModifier(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("mod");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteValue(tableModel.CustomRangeModifier);
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableRollDice(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			if (tableModel.RollMethod.GetDescription() == "Custom dice roll")
+			{
+				for (int counter = 0; counter < tableModel.CustomRangeD4; counter++) { stringBuilder.Append("d4,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD6; counter++) { stringBuilder.Append("d6,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD8; counter++) { stringBuilder.Append("d8,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD10; counter++) { stringBuilder.Append("d10,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD12; counter++) { stringBuilder.Append("d12,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD20; counter++) { stringBuilder.Append("d20,"); }
+			}
+			xmlWriter.WriteStartElement("dice");
+			xmlWriter.WriteAttributeString("type", "dice");
+			xmlWriter.WriteString(stringBuilder.ToString().TrimEnd(','));
 			xmlWriter.WriteEndElement();
 		}
 		#endregion
@@ -2228,9 +2254,7 @@ namespace FantasyModuleParser.Exporters
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
 		/// </summary>
-		#pragma warning disable CA1822 // Unable to make static due to Unit Tests
 		public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
-		#pragma warning restore CA1822 // Unable to make static due to Unit Tests
 		{
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
