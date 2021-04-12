@@ -587,29 +587,32 @@ namespace FantasyModuleParser.Exporters
 					#endregion
 				}
 				#region Tables
-				xmlWriter.WriteStartElement("tables"); 
-				foreach (CategoryModel categoryModel in moduleModel.Categories)
+				if (moduleModel.IncludesTables)
 				{
-					xmlWriter.WriteStartElement("category");
-					xmlWriter.WriteAttributeString("name", categoryModel.Name);
-					xmlWriter.WriteAttributeString("baseicon", "0");
-					xmlWriter.WriteAttributeString("decalicon", "0");
-
-					//Now, write out each NPC with NPC Name
-					foreach (TableModel tableModel in FatTableList)
+					xmlWriter.WriteStartElement("tables");
+					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
-						xmlWriter.WriteStartElement(TableNameToXMLFormat(tableModel)); // Open <tableModel.Name>
-						WriteTableLocked(xmlWriter, tableModel);
-						WriteTableName(xmlWriter, tableModel);
-						WriteTableDescription(xmlWriter, tableModel);
-						WriteTableOutput(xmlWriter, tableModel);
-						WriteTableNotes(xmlWriter, tableModel);
-						WriteTableHideRolls(xmlWriter, tableModel);
-						xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
+						xmlWriter.WriteStartElement("category");
+						xmlWriter.WriteAttributeString("name", categoryModel.Name);
+						xmlWriter.WriteAttributeString("baseicon", "0");
+						xmlWriter.WriteAttributeString("decalicon", "0");
+
+						//Now, write out each NPC with NPC Name
+						foreach (TableModel tableModel in FatTableList)
+						{
+							xmlWriter.WriteStartElement(TableNameToXMLFormat(tableModel)); // Open <tableModel.Name>
+							WriteTableLocked(xmlWriter, tableModel);
+							WriteTableName(xmlWriter, tableModel);
+							WriteTableDescription(xmlWriter, tableModel);
+							WriteTableOutput(xmlWriter, tableModel);
+							WriteTableNotes(xmlWriter, tableModel);
+							WriteTableHideRolls(xmlWriter, tableModel);
+							xmlWriter.WriteEndElement(); // Closes </tableModel.Name>
+						}
+						xmlWriter.WriteEndElement(); // Close </category>
 					}
-					xmlWriter.WriteEndElement(); // Close </category>
-				}
-				xmlWriter.WriteEndElement(); // Close </npcdata>           
+					xmlWriter.WriteEndElement(); // Close </tables>  
+				}         
 				#endregion
 				xmlWriter.WriteEndElement(); // Close </reference>
                 #endregion

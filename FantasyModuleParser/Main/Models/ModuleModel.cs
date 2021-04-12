@@ -16,5 +16,6 @@ namespace FantasyModuleParser.Main.Models
         public bool IncludeTokens { get; set; }
         public bool IncludeNPCs { get; set; }
         public bool IncludeSpells { get; set; }
+        public bool IncludeTables { get; set; }
     }
 }
