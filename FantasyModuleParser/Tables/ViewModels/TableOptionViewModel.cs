@@ -28,8 +28,13 @@ namespace FantasyModuleParser.Tables.ViewModels
 
         public TableModel TableModel
         {
-            get { return this._tableModel; }
-            set { Set(ref _tableModel, value); }
+            get => this._tableModel;
+            //set { Set(ref _tableModel, value); }
+            set
+            {
+                this._tableModel = value;
+                RaisePropertyChanged(nameof(TableModel));
+            }
         }
         public ModuleModel ModuleModel
         {

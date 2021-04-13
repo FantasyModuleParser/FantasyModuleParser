@@ -129,32 +129,39 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <TextBox Grid.Column="1" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.CustomRangeD4}"/>
                             <Label   Grid.Column="2" Content="d4" Style="{StaticResource labelPosition}"/>
 
                             <TextBox Grid.Column="3" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.CustomRangeD6}"/>
                             <Label   Grid.Column="4" Content="d6" Style="{StaticResource labelPosition}"/>
 
                             <TextBox Grid.Column="5" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.CustomRangeD8}"/>
                             <Label   Grid.Column="6" Content="d8" Style="{StaticResource labelPosition}"/>
 
                             <TextBox Grid.Column="7" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.CustomRangeD10}"/>
                             <Label   Grid.Column="8" Content="d10" Style="{StaticResource labelPosition}"/>
 
                             <TextBox Grid.Column="9" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.CustomRangeD12}"/>
                             <Label   Grid.Column="10" Content="d12" Style="{StaticResource labelPosition}"/>
 
                             <TextBox Grid.Column="11" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.CustomRangeD20}"/>
                             <Label   Grid.Column="12" Content="d20" Style="{StaticResource labelPosition}"/>
 
                             <Label   Grid.Column="13" Content="Mod:"  Style="{StaticResource labelPosition}"/>
                             <TextBox Grid.Column="14" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.CustomRangeModifier}"/>
                         </Grid>
 
                         <!-- Make this visible when the Role Method 'Preset Range' is selected-->
@@ -174,11 +181,13 @@
                                 <ColumnDefinition Width="10*" />
                             </Grid.ColumnDefinitions>
                             <TextBox Grid.Column="1" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.PresetRangeMinimum}"/>
                             <Label   Grid.Column="2" Content="Min" Style="{StaticResource labelPosition}"/>
 
                             <TextBox Grid.Column="3" Style="{StaticResource standardTextBox}" 
-                                    PreviewTextInput="NumberValidationTextBox"/>
+                                    PreviewTextInput="NumberValidationTextBox"
+                                     Text="{Binding TableModel.PresetRangeMaximum}"/>
                             <Label   Grid.Column="4" Content="Max" Style="{StaticResource labelPosition}"/>
                         </Grid>
                         <Grid Grid.Row="2" Margin="5">

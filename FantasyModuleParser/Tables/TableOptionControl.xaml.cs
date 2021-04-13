@@ -326,8 +326,6 @@ namespace FantasyModuleParser.Tables
             {
                 TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
                 tableOptionViewModel.TableModel = tableOptionViewModel.TableModel.Load(openFileDlg.FileName);
-               
-
                 tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
 
                 InitializeTableDataGrid();
