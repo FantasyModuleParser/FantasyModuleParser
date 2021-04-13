@@ -8,6 +8,7 @@ using FantasyModuleParser.NPC.UserControls.Options;
 using FantasyModuleParser.Spells;
 using FantasyModuleParser.Spells.UserControls;
 using FantasyModuleParser.Spells.ViewModels;
+using FantasyModuleParser.Tables.ViewModels;
 using log4net;
 using Microsoft.Win32;
 using System;
@@ -57,9 +58,7 @@ namespace FantasyModuleParser
                 if(File.Exists(lastModuleFilePath)) 
                 {
                     moduleService.Load(Path.Combine(settingsModel.ProjectFolderLocation, settingsModel.LastProject + ".fmp"));
-                    moduleModel = moduleService.GetModuleModel();
-                    npcOptionUserControl.Refresh();
-                    (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
+                    RefreshModuleModelOnDataContext(false);
                 }
             }
         }
@@ -152,15 +151,20 @@ namespace FantasyModuleParser
 
         private void ProjectManagement_OnCloseWindowAction(object sender, EventArgs e)
         {
-            npcOptionUserControl.Refresh();
-            (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
+            RefreshModuleModelOnDataContext(false);
         }
 
         private void ProjectManagement_OnSaveAndCloseAction(object sender, EventArgs e)
         {
+            RefreshModuleModelOnDataContext(true);
+        }
+
+        private void RefreshModuleModelOnDataContext(bool forceRefresh)
+        {
             moduleModel = moduleService.GetModuleModel();
-            npcOptionUserControl.Refresh(true);
+            npcOptionUserControl.Refresh(forceRefresh);
             (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
+            (tableOptionUserControl.DataContext as TableOptionViewModel).Refresh();
         }
 
         private void CreateModule_Click(object sender, RoutedEventArgs e)

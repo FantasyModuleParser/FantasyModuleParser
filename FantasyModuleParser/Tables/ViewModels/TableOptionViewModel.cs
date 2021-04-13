@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Tables.Models;
@@ -23,6 +24,7 @@ namespace FantasyModuleParser.Tables.ViewModels
         private CategoryModel _selectedCategoryModel;
         private DataTable _dataTable;
         private ObservableCollection<DataGridColumn> _dataGridColumns;
+        private ModuleService moduleService;
 
         public TableModel TableModel
         {
@@ -99,12 +101,22 @@ namespace FantasyModuleParser.Tables.ViewModels
         {
             _tableService = new TableService();
             _tableModel = new TableModel();
+
+            // Load the ModuleModel data
+            moduleService = new ModuleService();
+            ModuleModel = moduleService.GetModuleModel();
+
             CreateDefaultDataTable();
 
             TableDataView = new DataView(Data);
             //_dataGridColumns = new ObservableCollection<DataGridColumn>();
             //ChangeGridDimesions();
             //CreateTable();
+        }
+
+        public void Refresh()
+        {
+            ModuleModel = moduleService.GetModuleModel();
         }
 
         public void CreateDefaultDataTable()
