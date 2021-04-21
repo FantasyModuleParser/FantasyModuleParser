@@ -5,12 +5,14 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FantasyModuleParser.Importer.NPC
 {
     public abstract class ImportESNPCBase : ImportNPCBase
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
         /// <summary>
         /// Innate Spellcasting. V1_npc_all's innate spellcasting ability is Wisdom (spell save DC 8, +30 to hit with spell attacks). He can innately cast the following spells, requiring no material components:\rAt will: Super Cantrips\r5/day each: Daylight\r4/day each: False Life\r3/day each: Hunger\r2/day each: Breakfast, Lunch, Dinner\r1/day each: Nom Noms
@@ -132,63 +134,90 @@ namespace FantasyModuleParser.Importer.NPC
             if (spellCastingAttributes.StartsWith("Spellcasting"))
             {
                 npcModel.SpellcastingSection = true;
-                // Start with getting spellcaster level
-                npcModel.SpellcastingCasterLevel = spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4).Trim();
 
-                // Spellcasting Ability
-                int abilityIsIndex = spellCastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
-                int spellSaveDCIndex = spellCastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
-                // 24 is the string length to "spellcasting ability is "
-                npcModel.SCSpellcastingAbility = spellCastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
+                // Get and assign the Spell Caster's level
+                SetSpellcastingCasterLevel(npcModel, spellCastingAttributes);
 
-                // Spell Save DC & Attack Bonus
-                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.Ordinal);
-                if (spellAttacksIndex != -1)
-                {
-                    string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
-                    foreach (string subpart in spellSaveAndAttackData.Split(' '))
+                // Get and assign the Spell Caster's Spellcasting Ability
+                SetTheSCSpellcastingAbility(npcModel, spellCastingAttributes);
+
+				MatchCollection matches = Regex.Matches(spellCastingAttributes, @"DC\s+(\d+),\s+([+-]*\d+)", RegexOptions.IgnoreCase);
+				if (matches.Count != 1)
+				{
+                    // (spell save DC 13)
+                    matches = Regex.Matches(spellCastingAttributes, @"\(spell\s+save\s+DC\s+([+-]*\d+)\)", RegexOptions.IgnoreCase);
+                    if (matches.Count != 1)
                     {
-                        if (subpart.Contains(","))
-                        {
-                            npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
-                        }
-                        if (subpart.Contains('+') || subpart.Contains('-'))
-                        {
-                            npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
-                        }
+                        throw new ApplicationException("Spellcasting, can not parse '(spell save DC N)' in string ::" + spellCastingAttributes);
+                    }
+                    int parseValue;
+                    if (Int32.TryParse(matches[0].Groups[1].Value.Trim(), out parseValue))
+                    {
+                        npcModel.SpellcastingSpellSaveDC = parseValue;
                     }
                 }
-                else
-                {
-                    string spellCastingSaveDCString = spellCastingAttributes.Substring(spellSaveDCIndex);
-                    spellCastingSaveDCString = spellCastingSaveDCString.Substring(0, spellCastingSaveDCString.IndexOf(").", StringComparison.Ordinal));
-                    npcModel.SpellcastingSpellSaveDC = int.Parse(spellCastingSaveDCString.Substring("(spell save DC ".Length), CultureInfo.CurrentCulture);
+				else
+				{
+                    int parseValue;
+                    if(Int32.TryParse(matches[0].Groups[1].Value.Trim(), out parseValue))
+					{
+                        npcModel.SpellcastingSpellSaveDC = parseValue;
+                    }
+
+                    if (Int32.TryParse(matches[0].Groups[2].Value.Trim(), out parseValue))
+                    {
+                        npcModel.SpellcastingSpellHitBonus = parseValue;
+                    }
+
                 }
+
+				// Spell Save DC & Attack Bonus
+				//int spellSaveDCIndex = spellCastingAttributes.IndexOf("(spell save DC ", StringComparison.OrdinalIgnoreCase);
+
+    //            int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks).", StringComparison.OrdinalIgnoreCase);
+    //            if (spellAttacksIndex != -1)
+    //            {
+    //                string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+    //                foreach (string subpart in spellSaveAndAttackData.Split(' '))
+    //                {
+    //                    if (subpart.Contains(","))
+    //                    {
+    //                        npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+    //                    }
+    //                    if (subpart.Contains('+') || subpart.Contains('-'))
+    //                    {
+    //                        npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
+    //                    }
+    //                }
+    //            }
+    //            else
+    //            {
+    //                string spellCastingSaveDCString = spellCastingAttributes.Substring(spellSaveDCIndex);
+    //                spellCastingSaveDCString = spellCastingSaveDCString.Substring(0, spellCastingSaveDCString.IndexOf(").", StringComparison.OrdinalIgnoreCase));
+    //                npcModel.SpellcastingSpellSaveDC = int.Parse(spellCastingSaveDCString.Substring("(spell save DC ".Length), CultureInfo.CurrentCulture);
+    //            }
 
                 // Spell Class
                 int hasTheFollowingIndex = spellCastingAttributes.IndexOf("the following ");
                 int spellsPreparedIndex = spellCastingAttributes.IndexOf(" spells ");
                 if ((spellsPreparedIndex - hasTheFollowingIndex - 14) > 0)
                 {
-                    npcModel.SpellcastingSpellClass = spellCastingAttributes.Substring(hasTheFollowingIndex + 14, spellsPreparedIndex - hasTheFollowingIndex - 14);
+                    npcModel.SpellcastingSpellClass = textInfo.ToTitleCase(
+                        spellCastingAttributes.Substring(hasTheFollowingIndex + 14, spellsPreparedIndex - hasTheFollowingIndex - 14).Trim());
                 }
 
-                if (npcModel.SpellcastingSpellClass != null && npcModel.SpellcastingSpellClass.Length > 0)
-                {
-                    npcModel.SpellcastingSpellClass = ("" + npcModel.SpellcastingSpellClass[0]).ToUpper() + npcModel.SpellcastingSpellClass.Substring(1);
-                }
+                //if (npcModel.SpellcastingSpellClass != null && npcModel.SpellcastingSpellClass.Length > 0)
+                //{
+                //    npcModel.SpellcastingSpellClass = textInfo.ToTitleCase(npcModel.SpellcastingSpellClass.Trim());
+                //    // ("" + npcModel.SpellcastingSpellClass[0]).ToUpper() + npcModel.SpellcastingSpellClass.Substring(1);
+                //}
 
-                if (spellCastingAttributes.IndexOf(" spells prepared:") == -1)
-                {
-                    npcModel.FlavorText = spellCastingAttributes.Substring(spellsPreparedIndex + 8, spellCastingAttributes.IndexOf(":\\r") - (spellsPreparedIndex + 8));
-                }
-                else
-                {
-                    npcModel.FlavorText = "";
-                }
+				npcModel.FlavorText = (spellCastingAttributes.IndexOf(" spells prepared:") == -1) ?
+					spellCastingAttributes.Substring(spellsPreparedIndex + 8, spellCastingAttributes.IndexOf(":\\r") - (spellsPreparedIndex + 8)) :
+					string.Empty;
 
-                // Parse through all the spell slots, based on the phrase "\r"
-                ParseSpellLevelAndList(spellCastingAttributes, npcModel);
+				// Parse through all the spell slots, based on the phrase "\r"
+				ParseSpellLevelAndList(spellCastingAttributes, npcModel);
 
                 // Per Anton & Trivishta unit tests, the gender is parsed here
                 if (spellCastingAttributes.Contains(" His "))
@@ -263,7 +292,7 @@ namespace FantasyModuleParser.Importer.NPC
                         npcModel.NinthLevelSpellList = appendSpellList(spellDataArray, 4);
                         break;
                     default:
-                        if (!spellData.Contains("spellcasting ability is"))
+                        if (!Regex.IsMatch(spellData, @"spellcasting ability (?:modifier\s)*is", RegexOptions.IgnoreCase))
                         {
                             npcModel.MarkedSpells = appendSpellList(spellDataArray, 0);
                         }

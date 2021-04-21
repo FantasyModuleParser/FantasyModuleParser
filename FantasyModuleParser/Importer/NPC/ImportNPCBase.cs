@@ -20,8 +20,9 @@ namespace FantasyModuleParser.Importer.NPC
         public ImportCommonUtils importCommonUtils = new ImportCommonUtils();
         public abstract NPCModel ImportTextToNPCModel(string importTextContent);
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
-		public static readonly char[] spaceSeparator = new char[] { ' ' };
+        public static readonly char[] spaceSeparator = new char[] { ' ' };
         public static readonly char[] periodSeparator = new char[] { '.' };
         public static readonly char[] commaSeparator = new char[] { ',' };
         public static readonly char[] colonSeparator = new char[] { ':' };
@@ -102,7 +103,7 @@ namespace FantasyModuleParser.Importer.NPC
             string[] st = stt[0].Split(spaceSeparator, 2, StringSplitOptions.RemoveEmptyEntries);
 
             // first substring should be Size and the remaining string, st[1] is the Type
-            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            // TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
             npcModel.Size = textInfo.ToTitleCase(st[0].Trim());    // in all cases, the first substring should be the size
             npcModel.NPCType = st[1].Trim(); // type can be multi word incuding spaces
         }
@@ -766,50 +767,122 @@ namespace FantasyModuleParser.Importer.NPC
             if (spellCastingAttributes.StartsWith("Spellcasting", StringComparison.OrdinalIgnoreCase))
             {
                 npcModel.SpellcastingSection = true;
-                // Start with getting spellcaster level
+                
+                MatchCollection matches;
 
-                MatchCollection matches = Regex.Matches(spellCastingAttributes, @"(\d+\w\w)-level", RegexOptions.IgnoreCase);
+                // Get and assign the Spell Caster's level
+                SetSpellcastingCasterLevel(npcModel, spellCastingAttributes);
 
-                if (matches.Count != 1 && matches[0].Groups.Count != 2) { throw new ApplicationException("Spellcasting, can't parse level"); }
-
-                npcModel.SpellcastingCasterLevel = matches[0].Groups[1].Value; // spellCastingAttributes.Substring(spellCastingAttributes.IndexOf("-level", StringComparison.Ordinal) - 4, 4).Trim();
-
-                // Spellcasting Ability
-                int abilityIsIndex = spellCastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
-                int spellSaveDCIndex = spellCastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
-                // 24 is the string length to "spellcasting ability is "
-                npcModel.SCSpellcastingAbility = spellCastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
+                // Get and assign the Spell Caster's Spellcasting Ability
+                SetTheSCSpellcastingAbility(npcModel, spellCastingAttributes);
 
                 // Spell Save DC & Attack Bonus
-                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks)", StringComparison.Ordinal);
+                int spellSaveDCIndex = spellCastingAttributes.IndexOf("(spell save DC ", StringComparison.OrdinalIgnoreCase);
+                if (spellSaveDCIndex == -1)
+                {
+                    throw new ApplicationException("Failed to find string '(spell save DC ' in :: " + spellCastingAttributes);
+                }
+
+                int spellAttacksIndex = spellCastingAttributes.IndexOf(" to hit with spell attacks)", StringComparison.OrdinalIgnoreCase);
+                if (spellAttacksIndex == -1)
+                {
+                    throw new ApplicationException("Failed to find string ' to hit with spell attacks)' in :: " + spellCastingAttributes);
+                }
+
                 string spellSaveAndAttackData = spellCastingAttributes.Substring(spellSaveDCIndex, spellAttacksIndex - spellSaveDCIndex);
+
                 foreach (string subpart in spellSaveAndAttackData.Split(' '))
                 {
-                    if (subpart.Contains(","))
+                    try
                     {
-                        npcModel.SpellcastingSpellSaveDC = int.Parse(subpart.Replace(',', ' '), CultureInfo.CurrentCulture);
+                        if (subpart.Contains(',') || subpart.Contains(';'))
+                        {
+                            npcModel.SpellcastingSpellSaveDC = int.Parse(Regex.Replace(subpart, @"[,;]", " "));
+                        }
+                        if (subpart.Contains('+') || subpart.Contains('-'))
+                        {
+                            npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
+                        }
                     }
-                    if (subpart.Contains('+') || subpart.Contains('-'))
-                    {
-                        npcModel.SpellcastingSpellHitBonus = parseAttributeStringToInt(subpart);
+                    catch (Exception e)
+					{
+                        throw new ApplicationException("Failed to parse int :: " + subpart, e);
                     }
                 }
 
                 // Spell Class
-                int hasTheFollowingIndex = spellCastingAttributes.IndexOf("has the following ");
-                int spellsPreparedIndex = spellCastingAttributes.IndexOf(" spells prepared:");
-                npcModel.SpellcastingSpellClass = spellCastingAttributes.Substring(hasTheFollowingIndex + 18, spellsPreparedIndex - hasTheFollowingIndex - 18);
-                // Fixes a scenario where the DnD Beyond description uses a full lowercase spell class (e.g. cleric).  Needs to be first letter uppercase
-                // e.g. Cleric
-                npcModel.SpellcastingSpellClass = ("" + npcModel.SpellcastingSpellClass[0]).ToUpper() + npcModel.SpellcastingSpellClass.Substring(1);
-                npcModel.FlavorText = "";
+                matches = Regex.Matches(spellCastingAttributes, @"has the following (\w+) spells prepared:", RegexOptions.IgnoreCase);
+                if (matches.Count == 0)
+                {
+                    // The mage knows the following spells from the wizard’s spell list:
+                    matches = Regex.Matches(spellCastingAttributes, @"knows the following spells from the (\w+)\S*? spell list:", RegexOptions.IgnoreCase);
+                    if (matches.Count != 1 && matches[0].Groups.Count != 2)
+                    {
+                        throw new ApplicationException("Spellcasting, cannot parse/find string 'spellcasting ability is' nor 'spellcaster that uses' in :: " + spellCastingAttributes);
+                    }
+                    npcModel.SpellcastingSpellClass = textInfo.ToTitleCase(matches[0].Groups[1].Value);
+                }
+                else if (matches[0].Groups.Count == 2)
+                {
+                    npcModel.SpellcastingSpellClass = textInfo.ToTitleCase(matches[0].Groups[1].Value);
+                }
+                else
+                {
+                    throw new ApplicationException("Spellcasting, can't parse 'spellcasting ability is' :: " + spellCastingAttributes);
+                }
 
+                npcModel.FlavorText = "";
             }
             else
             {
                 ParseSpellLevelAndList(spellCastingAttributes, npcModel);
                 //throw new NotImplementedException();
             }
+        }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="npcModel"></param>
+		/// <param name="spellCastingAttributes"></param>
+		protected void SetTheSCSpellcastingAbility(NPCModel npcModel, string spellCastingAttributes)
+		{
+			// Spellcasting Ability
+			MatchCollection matches = Regex.Matches(spellCastingAttributes, @"spellcasting ability (?:modifier\s)*is (\w+)\b", RegexOptions.IgnoreCase);
+			if (matches.Count == 0)
+			{
+				matches = Regex.Matches(spellCastingAttributes, @"spellcaster that uses (\w+)\b", RegexOptions.IgnoreCase);
+				if (matches.Count != 1 && matches[0].Groups.Count != 2)
+				{
+					throw new ApplicationException("Spellcasting, can't parse 'spellcaster that uses :: '" + spellCastingAttributes);
+				}
+				npcModel.SCSpellcastingAbility = matches[0].Groups[1].Value.Trim();
+			}
+			else if (matches[0].Groups.Count == 2)
+			{
+				npcModel.SCSpellcastingAbility = matches[0].Groups[1].Value.Trim();
+			}
+			else
+			{
+				throw new ApplicationException("Spellcasting, can't parse 'spellcasting ability is :: '" + spellCastingAttributes);
+			}
+		}
+
+		/// <summary>
+		/// Given the string that begins with Spellcasting, retrieve and assign the NPC Caster level
+		/// </summary>
+		/// <param name="npcModel"></param>
+		/// <param name="spellCastingAttributes"></param>
+		protected void SetSpellcastingCasterLevel(NPCModel npcModel, string spellCastingAttributes)
+		{
+            // retrieve the spellcaster level
+            MatchCollection matches = Regex.Matches(spellCastingAttributes, @"(\d+\w\w)-level", RegexOptions.IgnoreCase);
+            if (matches.Count != 1 && matches[0].Groups.Count != 2)
+            {
+                throw new ApplicationException("Spellcasting, can't parse level :: " + spellCastingAttributes);
+            }
+            npcModel.SpellcastingCasterLevel = matches[0].Groups[1].Value.Trim();
+
         }
 
         /// <summary>

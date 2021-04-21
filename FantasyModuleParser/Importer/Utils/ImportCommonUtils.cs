@@ -19,7 +19,7 @@ namespace FantasyModuleParser.Importer.Utils
 
             // Remove the term 'damage'
             if (damagePropertyData.Contains("damage"))
-                damagePropertyData = damagePropertyData.Substring(0, damagePropertyData.IndexOf("damage", StringComparison.Ordinal));
+                damagePropertyData = damagePropertyData.Substring(0, damagePropertyData.IndexOf("damage", StringComparison.Ordinal)).Trim();
 
             // 2d8 + 2) lightning
 
@@ -41,14 +41,14 @@ namespace FantasyModuleParser.Importer.Utils
 
         private int getNumOfDice(string damagePropertyData)
         {
-            string numOfDiceData = damagePropertyData.Substring(0, damagePropertyData.IndexOf('d'));
             try
             {
+                string numOfDiceData = damagePropertyData.Substring(0, damagePropertyData.IndexOf('d'));
                 return int.Parse(numOfDiceData, CultureInfo.CurrentCulture);
             }
             catch (Exception e)
             {
-                throw new Exception("Failed to parse the following snippet :: " + damagePropertyData, e);
+                throw new ApplicationException("Failed to parse the following snippet in getNumOfDice() :: " + damagePropertyData, e);
             }
             
         }
