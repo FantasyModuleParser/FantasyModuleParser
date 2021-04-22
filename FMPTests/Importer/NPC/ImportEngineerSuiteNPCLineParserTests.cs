@@ -768,31 +768,200 @@ namespace FMPTests.Importer.NPC
             Assert.AreEqual(expectedNPCModel.MarkedSpells, actualNPCModel.MarkedSpells);
         }
 
-        private static IEnumerable<object[]> SpellcastingData()
-        {
-            yield return new object[] { 
-                generateNPCModel_Spellcasting("18th", "Constitution", 8, 12, "Sorcerer", "", 
-                "at will", "Cantrips1",
-                "9 slots", "Spell 1st", "8 slots", "Spell 2nd",
-                "7 slots", "Spell 3rd", "6 slots", "Spell 4th",
-                "5 slots", "Spell 5th", "4 slots", "Spell 6th",
-                "3 slots", "Spell 7th", "2 slots", "Spell 8th",
-                "1 slot", "Spell 9th", "*Spell 2nd"),
-                "Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)." +
-                " V1_npc_all has the following Sorcerer spells prepared:" +
-                "\\rCantrips (at will): Cantrips1" +
-                "\\r1st level (9 slots): Spell 1st" +
-                "\\r2nd level (8 slots): Spell 2nd" +
-                "\\r3rd level (7 slots): Spell 3rd" +
-                "\\r4th level (6 slots): Spell 4th" +
-                "\\r5th level (5 slots): Spell 5th" +
-                "\\r6th level (4 slots): Spell 6th" +
-                "\\r7th level (3 slots): Spell 7th" +
-                "\\r8th level (2 slots): Spell 8th" +
-                "\\r9th level (1 slot): Spell 9th" +
-                "\\r*Spell 2nd" };
-        }
-        private static NPCModel generateNPCModel_Spellcasting(
+		private static IEnumerable<object[]> SpellcastingData()
+		{
+			yield return new object[] {
+				generateNPCModel_Spellcasting("18th", "Constitution", 8, 12, "Sorcerer", "",
+				"at will", "Cantrips1",
+				"9 slots", "Spell 1st", "8 slots", "Spell 2nd",
+				"7 slots", "Spell 3rd", "6 slots", "Spell 4th",
+				"5 slots", "Spell 5th", "4 slots", "Spell 6th",
+				"3 slots", "Spell 7th", "2 slots", "Spell 8th",
+				"1 slot", "Spell 9th", "*Spell 2nd"),
+				"Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)." +
+				" V1_npc_all has the following Sorcerer spells prepared:" +
+				"\\rCantrips (at will): Cantrips1" +
+				"\\r1st level (9 slots): Spell 1st" +
+				"\\r2nd level (8 slots): Spell 2nd" +
+				"\\r3rd level (7 slots): Spell 3rd" +
+				"\\r4th level (6 slots): Spell 4th" +
+				"\\r5th level (5 slots): Spell 5th" +
+				"\\r6th level (4 slots): Spell 6th" +
+				"\\r7th level (3 slots): Spell 7th" +
+				"\\r8th level (2 slots): Spell 8th" +
+				"\\r9th level (1 slot): Spell 9th" +
+				"\\r*Spell 2nd" };
+
+			yield return new object[]
+            {
+				new NPCModel()
+				{
+					SpellcastingCasterLevel = "18th",
+					SCSpellcastingAbility = "Constitution",
+					SpellcastingSpellSaveDC = 8,
+					SpellcastingSpellHitBonus = 12,
+					SpellcastingSpellClass = "Sorcerer",
+					FlavorText = "",
+					CantripSpellSlots = "at will",
+					CantripSpellList = "Cantrips1"
+				},
+				"Spellcasting. V1_npc_all is an 18th-level spellcaster. His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)." +
+				" V1_npc_all has the following Sorcerer spells prepared:" +
+				"\\rCantrips (at will): Cantrips1"
+				};
+
+			yield return new object[]
+            {
+				new NPCModel()
+				{
+					SpellcastingCasterLevel = "9th",
+					SCSpellcastingAbility = "Wisdom",
+					SpellcastingSpellSaveDC = 14,
+					SpellcastingSpellHitBonus = 6,
+					SpellcastingSpellClass = "Cleric",
+					FlavorText = "",
+					CantripSpellSlots = "at will",
+					CantripSpellList = "light, mending, resistance, spare the dying",
+					FirstLevelSpellSlots = "4 slots",
+					FirstLevelSpellList = "guiding bolt, healing word, protection from evil and good"
+				},
+
+				"Spellcasting. The aarakocra is a 9th-level spellcaster. Its spellcasting " +
+				"ability is Wisdom (spell save DC 14, +6 to hit with spell attacks). It " +
+				"has the following cleric spells prepared:" +
+				"\\rCantrips (at will): light, mending, resistance, spare the dying" +
+				"\\r1st level (4 slots): guiding bolt, healing word, protection from evil and good"
+				};
+
+			// =================
+			// This unit test came out of a Frog God Games PDF, which does not follow WotC standard formatting
+			// However, the test is here in case we want to test against it.  Otherwise, please comment this out
+			// to continue the test suite
+
+			//yield return new object[]
+			//{
+			//    new NPCModel()
+			//    {
+			//        SpellcastingCasterLevel = "10th",
+			//        SCSpellcastingAbility = "Intelligence",
+			//        SpellcastingSpellSaveDC = 15,
+			//        SpellcastingSpellHitBonus = 7,
+			//        SpellcastingSpellClass = "",
+			//        FlavorText = "",
+			//        CantripSpellSlots = "at will",
+			//        CantripSpellList = "crushing curse, ray of frost",
+			//    },
+			//    "Spellcasting. Anton is a 10th-level spellcaster. His " +
+			//    "spellcasting ability is Intelligence (spell save DC 15, " +
+			//    "+7 to hit with spell attacks). He has prepared the " +
+			//    "following spells (spells marked * are from Deep Magic 3: " +
+			//    "Void Magic): " +
+			//    "\\rCantrips (at will): crushing curse, ray of frost"
+			//};
+
+			// ============================================
+
+			yield return new object[]
+			{
+				new NPCModel()
+				{
+					SpellcastingCasterLevel = "9th",
+					SCSpellcastingAbility = "Wisdom",
+					SpellcastingSpellSaveDC = 13,
+					SpellcastingSpellHitBonus = 0,
+					SpellcastingSpellClass = "Ranger",
+					FlavorText = "",
+					FirstLevelSpellSlots = "4 slots",
+					FirstLevelSpellList = "ensnaring strike, hunter's mark",
+				},
+				"Spellcasting. The drider is a 9th-level spellcaster. Its spellcasting " +
+				"ability is Wisdom (spell save DC 13). It has the following ranger " +
+				"spells prepared:"+
+				"\\r1st level (4 slots): ensnaring strike, hunter's mark"
+			};
+
+			yield return new object[]
+            {
+				new NPCModel()
+				{
+					SpellcastingCasterLevel = "9th",
+					SCSpellcastingAbility = "Wisdom",
+					SpellcastingSpellSaveDC = 13,
+					SpellcastingSpellHitBonus = 0,
+					SpellcastingSpellClass = "Ranger",
+					FlavorText = "",
+					FirstLevelSpellSlots = "4 slots",
+					FirstLevelSpellList = "ensnaring strike, hunter's mark",
+				},
+				"Spellcasting. The drider is a 9th-level spellcaster. Its spellcasting " +
+				"ability is Wisdom (spell save DC 13). It has the following ranger " +
+				"spells prepared:"+
+				"\\r1st level (4 slots): ensnaring strike, hunter's mark"
+			};
+
+			// Its spellcasting ability is Wisdom (spell save DC 12, +4 to hit with spell attacks)
+			yield return new object[]
+            {
+				new NPCModel()
+				{
+					SpellcastingCasterLevel = "9th",
+					SCSpellcastingAbility = "Wisdom",
+					SpellcastingSpellSaveDC = 12,
+					SpellcastingSpellHitBonus = 4,
+					SpellcastingSpellClass = "Sorcerer",
+					FlavorText = "",
+					CantripSpellSlots = "at will",
+					CantripSpellList = "chill touch, minor illusion, mending, poison spray, true strike",
+				},
+				"Spellcasting. The drider is a 9th-level spellcaster. Its spellcasting " +
+				"ability is Wisdom (spell save DC 12, +4 to hit with spell attacks). It " +
+				"has the following sorcerer spells prepared: " +
+				"\\rCantrips (at will): chill touch, minor illusion, mending, poison spray, true strike"
+			};
+
+			// His spellcasting ability is Constitution (spell save DC 8, +12 to hit with spell attacks)
+			yield return new object[]
+            {
+				new NPCModel()
+				{
+					SpellcastingCasterLevel = "9th",
+					SCSpellcastingAbility = "Constitution",
+					SpellcastingSpellSaveDC = 8,
+					SpellcastingSpellHitBonus = 12,
+					SpellcastingSpellClass = "Sorcerer",
+					FlavorText = "",
+					CantripSpellSlots = "at will",
+					CantripSpellList = "chill touch, minor illusion, mending, poison spray, true strike",
+				},
+				"Spellcasting. The drider is a 9th-level spellcaster. His spellcasting " +
+				"ability is Constitution (spell save DC 8, +12 to hit with spell attacks). It " +
+				"has the following sorcerer spells prepared: " +
+				"\\rCantrips (at will): chill touch, minor illusion, mending, poison spray, true strike"
+			};
+
+			// His spellcasting ability modifier is Intelligence (spell save DC 13, +5 to hit with spell attacks)
+			yield return new object[]
+            {
+				new NPCModel()
+				{
+					SpellcastingCasterLevel = "9th",
+					SCSpellcastingAbility = "Intelligence",
+					SpellcastingSpellSaveDC = 13,
+					SpellcastingSpellHitBonus = 5,
+					SpellcastingSpellClass = "Sorcerer",
+					FlavorText = "",
+					CantripSpellSlots = "at will",
+					CantripSpellList = "chill touch, minor illusion, mending, poison spray, true strike",
+				},
+				"Spellcasting. The drider is a 9th-level spellcaster. His spellcasting " +
+				"ability modifier is Intelligence (spell save DC 13, +5 to hit with spell attacks). It " +
+				"has the following sorcerer spells prepared: " +
+				"\\rCantrips (at will): chill touch, minor illusion, mending, poison spray, true strike"
+			};
+
+		}
+
+		private static NPCModel generateNPCModel_Spellcasting(
             string spellCasterLevel, string ability, int saveDC, int hitBonus, string spellClass, string flavorText,
             string cantripSpells, string cantripSpellList, string firstSpells, string firstSpellList,
             string secondSpells, string secondSpellList, string thirdSpells, string thirdSpellList,

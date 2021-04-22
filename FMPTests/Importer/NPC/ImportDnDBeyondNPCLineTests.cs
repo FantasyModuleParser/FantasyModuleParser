@@ -43,6 +43,10 @@ namespace FMPTests.Importer.NPC
                 generateNPCModel_Spellcasting("11th", "Wisdom", 16, 8, "Cleric", ""),
                 "Spellcasting. The naga is an 11th-level spellcaster. Its spellcasting ability is Wisdom (spell save DC 16, +8 to hit with spell attacks), and it needs only verbal components to cast its spells. It has the following cleric spells prepared:"};
 
+            // DnD Beyond - Evil Mage  (https://www.dndbeyond.com/monsters/evil-mage)
+            yield return new object[] {
+                generateNPCModel_Spellcasting("4th", "Intelligence", 13, 5, "Wizard", ""),
+                "Spellcasting. The mage is a 4th-level spellcaster that uses Intelligence as its spellcasting ability (spell save DC 13; +5 to hit with spell attacks). The mage knows the following spells from the wizard’s spell list:" };
         }
         private static NPCModel generateNPCModel_Spellcasting(
             string spellCasterLevel, string ability, int saveDC, int hitBonus, string spellClass, string flavorText
