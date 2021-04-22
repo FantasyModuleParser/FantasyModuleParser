@@ -222,6 +222,33 @@ namespace FantasyModuleParser.Tables.ViewModels
                 return _addColumnCommand;
             }
         }
+        ActionCommand _addToProjectCommand;
+        public ICommand AddToProjectCommand
+        {
+            get
+            {
+                if(_addToProjectCommand == null)
+                {
+                    _addToProjectCommand = new ActionCommand(param => AddTableToProject());
+                }
+                return _addToProjectCommand;
+            }
+        }
+
+        private void AddTableToProject()
+        {
+
+            if (SelectedCategoryModel != null) 
+            {
+                if(SelectedCategoryModel.TableModels == null)
+                {
+                    SelectedCategoryModel.TableModels = new ObservableCollection<TableModel>();
+                }
+
+                moduleService.AddTableToCategory(TableModel, SelectedCategoryModel.Name);
+                
+            }
+        }
 
         private void attemptToDeleteLastRow(object param)
         {

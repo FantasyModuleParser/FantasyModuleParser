@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
+using FantasyModuleParser.Tables.Models;
 using log4net;
 using Newtonsoft.Json;
 using System;
@@ -178,6 +179,36 @@ namespace FantasyModuleParser.Main.Services
                     categoryModel.SpellModels.Add(spellModel);  // The real magic is here
             }
 
+            string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
+            Save(appendedFileName, moduleModel);
+        }
+
+        public void AddTableToCategory(TableModel tableModel, string categoryValue)
+        {
+            if (categoryValue == null || categoryValue.Length == 0)
+            {
+                log.Error("Category value is null;  Cannot save Table");
+                throw new InvalidDataException("Category value is null;  Cannot save Table");
+            }
+            if (tableModel == null)
+            {
+                log.Error(nameof(TableModel) + " data object is null");
+                throw new InvalidDataException(nameof(SpellModel) + " data object is null");
+            }
+            if (String.IsNullOrWhiteSpace(tableModel.Name))
+            {
+                log.Error("Table name is empty!");
+                throw new InvalidDataException("Table name is empty!");
+            }
+            CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
+            if (categoryModel == null)
+            {
+                log.Error("Category Value is not in the Module Model data object!");
+                throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            }
+            
+            if (categoryModel.TableModels.FirstOrDefault(x => x.Name.Equals(tableModel.Name, StringComparison.Ordinal)) == null)
+                categoryModel.TableModels.Add(tableModel);  // The real magic is here
             
             string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
             Save(appendedFileName, moduleModel);

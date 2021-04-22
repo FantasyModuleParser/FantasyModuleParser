@@ -255,7 +255,7 @@
 
                             <!-- Second internal row -->
                             <ComboBox Name="FGCategoryComboBox" ItemsSource="{Binding ModuleModel.Categories}" DisplayMemberPath="Name"
-                                IsSynchronizedWithCurrentItem="True"
+                                IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding SelectedCategoryModel}"
                                 SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
                             <Button x:Name="PrevBtn" Content="Prev Table" Grid.Column="1" Grid.Row="1" Style="{StaticResource standardButton}" />
                             <Button x:Name="NextBtn" Content="Next Table" Grid.Column="2" Grid.Row="1" Style="{StaticResource standardButton}" />
@@ -271,7 +271,7 @@
                             </Grid.ColumnDefinitions>
                             <Button Content="Load Table" Click="LoadTableModule_Click" Grid.Column="1"  Style="{StaticResource standardButton}" />
                             <Button Content="Save Table" Command="{Binding SaveCommand}" Grid.Column="2"  Style="{StaticResource standardButton}" />
-                            <Button Content="Add to Project" Grid.Column="3"  Style="{StaticResource standardButton}"  />
+                            <Button Content="Add to Project" Grid.Column="3" Command="{Binding AddToProjectCommand}" Style="{StaticResource standardButton}"  />
                         </Grid>
                     </Grid>
                 </Grid>
