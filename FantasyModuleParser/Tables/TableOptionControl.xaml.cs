@@ -8,6 +8,7 @@ using FantasyModuleParser.Tables.ViewModels.Enums;
 using System.Data;
 using FantasyModuleParser.Main.Services;
 using System;
+using FantasyModuleParser.Tables.Models;
 
 namespace FantasyModuleParser.Tables
 {
@@ -338,6 +339,14 @@ namespace FantasyModuleParser.Tables
             int currentColumnCount = TableExampleDataGrid.Columns.Count;
             //TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
             TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
+        }
+
+        private void SelectedTableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
+            
+            tableOptionViewModel.TableModel = TableComboBox.SelectedValue as TableModel;
+            tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
         }
 
         //private void TableExampleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

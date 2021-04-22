@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Tables.Models;
@@ -20,6 +21,7 @@ namespace FantasyModuleParser.Tables.ViewModels
 
         private ITableService _tableService;
         private TableModel _tableModel;
+        private TableModel _selectedTableModel;
         private ModuleModel _moduleModel;
         private CategoryModel _selectedCategoryModel;
         private DataTable _dataTable;
@@ -34,6 +36,23 @@ namespace FantasyModuleParser.Tables.ViewModels
             {
                 this._tableModel = value;
                 RaisePropertyChanged(nameof(TableModel));
+            }
+        }
+        public TableModel SelectedTableModel
+        {
+            get => this._selectedTableModel;
+            //set { Set(ref _tableModel, value); }
+            set
+            {
+                if(value != null)
+                { 
+                    this._selectedTableModel = value;
+                
+                    // This enforces a new copy of the selected table from the project
+                    TableModel = CommonMethod.CloneJson(value);
+                    TableDataView = new DataView(TableModel.tableDataTable);
+                    RaisePropertyChanged(nameof(SelectedTableModel));
+                }
             }
         }
         public ModuleModel ModuleModel
@@ -111,9 +130,7 @@ namespace FantasyModuleParser.Tables.ViewModels
             moduleService = new ModuleService();
             ModuleModel = moduleService.GetModuleModel();
 
-            CreateDefaultDataTable();
-
-            TableDataView = new DataView(Data);
+            CreateNewTable();
             //_dataGridColumns = new ObservableCollection<DataGridColumn>();
             //ChangeGridDimesions();
             //CreateTable();
@@ -181,6 +198,26 @@ namespace FantasyModuleParser.Tables.ViewModels
             }
         }
 
+        #region Commands
+        ActionCommand _newTableCommand;
+        public ICommand NewTableCommand
+        {
+            get
+            {
+                if (_newTableCommand == null)
+                {
+                    _newTableCommand = new ActionCommand(param => CreateNewTable());
+                }
+                return _newTableCommand;
+            }
+        }
+        private void CreateNewTable()
+        {
+            TableModel = new TableModel();
+            CreateDefaultDataTable();
+            TableDataView = new DataView(Data);
+        }
+
         // Experimenting with the ActionCommand as a delegate for the button clicks from the View
         ActionCommand _insertRowCommand;
         public ICommand InsertRowCommand
@@ -246,9 +283,73 @@ namespace FantasyModuleParser.Tables.ViewModels
                 }
 
                 moduleService.AddTableToCategory(TableModel, SelectedCategoryModel.Name);
-                
+                SelectedTableModel = SelectedCategoryModel.TableModels[SelectedCategoryModel.TableModels.IndexOf(TableModel)];
             }
         }
+
+        ActionCommand _prevTableCommand;
+        public ICommand PrevTableCommand
+        {
+            get
+            {
+                if (_prevTableCommand == null)
+                {
+                    _prevTableCommand = new ActionCommand(param => SelectPreviousTable(), 
+                        param => SelectedCategoryModel != null && SelectedCategoryModel.TableModels != null && SelectedCategoryModel.TableModels.Count > 0);
+                }
+                return _prevTableCommand;
+            }
+        }
+        private void SelectPreviousTable()
+        {
+            if(SelectedCategoryModel != null && SelectedCategoryModel.TableModels != null && SelectedCategoryModel.TableModels.Count > 0)
+            {
+                // Get index count from the current table
+                int tableModelIndex = SelectedCategoryModel.TableModels.IndexOf(SelectedTableModel);
+                // Either the index is 0 or -1, in which case grab the last TableModel in the collection
+                if(tableModelIndex < 1)
+                {
+                    SelectedTableModel = SelectedCategoryModel.TableModels[SelectedCategoryModel.TableModels.Count - 1];
+                }
+                else
+                {
+                    SelectedTableModel = SelectedCategoryModel.TableModels[tableModelIndex - 1];
+                }
+            }
+        }
+
+        ActionCommand _nextTableCommand;
+        public ICommand NextTableCommand
+        {
+            get
+            {
+                if (_nextTableCommand == null)
+                {
+                    _nextTableCommand = new ActionCommand(param => SelectNextTable(),
+                        param => SelectedCategoryModel != null && SelectedCategoryModel.TableModels != null && SelectedCategoryModel.TableModels.Count > 0);
+                }
+                return _nextTableCommand;
+            }
+        }
+        private void SelectNextTable()
+        {
+            if (SelectedCategoryModel != null && SelectedCategoryModel.TableModels != null && SelectedCategoryModel.TableModels.Count > 0)
+            {
+                // Get index count from the current table
+                int tableModelIndex = SelectedCategoryModel.TableModels.IndexOf(SelectedTableModel);
+                // Either the index is 0 or -1, in which case grab the last TableModel in the collection
+                if (tableModelIndex >= (SelectedCategoryModel.TableModels.Count - 1))
+                {
+                    SelectedTableModel = SelectedCategoryModel.TableModels[0];
+                }
+                else
+                {
+                    SelectedTableModel = SelectedCategoryModel.TableModels[tableModelIndex + 1];
+                }
+            }
+        }
+
+        #endregion
 
         private void attemptToDeleteLastRow(object param)
         {

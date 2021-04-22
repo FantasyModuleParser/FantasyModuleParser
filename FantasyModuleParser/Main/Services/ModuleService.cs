@@ -209,6 +209,17 @@ namespace FantasyModuleParser.Main.Services
             
             if (categoryModel.TableModels.FirstOrDefault(x => x.Name.Equals(tableModel.Name, StringComparison.Ordinal)) == null)
                 categoryModel.TableModels.Add(tableModel);  // The real magic is here
+            else
+            {
+                // Replace the TableModel object based on the name
+                TableModel oldTableModel = categoryModel.TableModels.FirstOrDefault(x => x.Name.Equals(tableModel.Name, StringComparison.Ordinal));
+                int oldTableModelIndex = categoryModel.TableModels.IndexOf(oldTableModel);
+
+                if(oldTableModelIndex != -1)
+                {
+                    categoryModel.TableModels[oldTableModelIndex] = tableModel;
+                }
+            }
             
             string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
             Save(appendedFileName, moduleModel);
