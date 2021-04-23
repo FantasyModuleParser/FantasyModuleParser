@@ -7,6 +7,7 @@ using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
+using FantasyModuleParser.Tables.Models;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -121,6 +122,38 @@ namespace FantasyModuleParser.Exporters
 			}
 			return FatNPCList;
 		}
+		/// <summary>
+		/// Generates a List of all Spells across all Categories in one List<SpellModel> object. Used for Reference Manual material.
+		/// </summary>
+		static private List<SpellModel> GenerateFatSpellList(ModuleModel moduleModel)
+		{
+			List<SpellModel> FatSpellList = new List<SpellModel>();
+			foreach (CategoryModel category in moduleModel.Categories)
+			{
+				foreach (SpellModel spellModel in category.SpellModels)
+				{
+					FatSpellList.Add(spellModel);
+				}
+
+			}
+			return FatSpellList;
+		}
+		/// <summary>
+		/// Generates a List of all Tables across all Categories in one List<TableModel> object. Used for Reference Manual material.
+		/// </summary>
+		static private List<TableModel> GenerateFatTableList(ModuleModel moduleModel)
+		{
+			List<TableModel> FatTableList = new List<TableModel>();
+			foreach (CategoryModel category in moduleModel.Categories)
+			{
+				foreach (TableModel tableModel in category.TableModels)
+				{
+					FatTableList.Add(tableModel);
+				}
+
+			}
+			return FatTableList;
+		}
 		private void DeleteDirectory(string target_dir)
 		{
 			string[] files = Directory.GetFiles(target_dir);
@@ -139,22 +172,6 @@ namespace FantasyModuleParser.Exporters
 
 			Directory.Delete(target_dir, false);
 		}
-		/// <summary>
-		/// Generates a List of all Spells across all Categories in one List<SpellModel> object. Used for Reference Manual material.
-		/// </summary>
-		static private List<SpellModel> GenerateFatSpellList(ModuleModel moduleModel)
-        {
-			List<SpellModel> FatSpellList = new List<SpellModel>();
-			foreach (CategoryModel category in moduleModel.Categories)
-            {
-				foreach (SpellModel spellModel in category.SpellModels)
-				{
-					FatSpellList.Add(spellModel);
-				}
-					
-            }
-			return FatSpellList;
-        }
 		/// <summary>
 		/// Renames the selected thumbnail image to thumbnail.png
 		/// </summary>
@@ -192,9 +209,11 @@ namespace FantasyModuleParser.Exporters
 		{
 			List<NPCModel> FatNPCList = GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = GenerateFatSpellList(moduleModel);
+			List<TableModel> FatTableList = GenerateFatTableList(moduleModel);
 			HashSet<string> UniqueCasterClass = new HashSet<string>();
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
+			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));
 			/// <summary>
 			///  Names all token images to match the NPC name
 			/// </summary>
@@ -568,9 +587,34 @@ namespace FantasyModuleParser.Exporters
 					#endregion
 				}
 				#region Tables
-				//	xmlWriter.WriteStartElement("tables");      
-				//	xmlWriter.WriteString(" ");                 
-				//	xmlWriter.WriteEndElement();                
+				if (moduleModel.IncludeTables)
+				{
+					xmlWriter.WriteStartElement("tables");
+					foreach (CategoryModel categoryModel in moduleModel.Categories)
+					{
+						xmlWriter.WriteStartElement("category");
+						xmlWriter.WriteAttributeString("name", categoryModel.Name);
+						xmlWriter.WriteAttributeString("baseicon", "0");
+						xmlWriter.WriteAttributeString("decalicon", "0");
+
+						//Now, write out each NPC with NPC Name
+						foreach (TableModel tableModel in FatTableList)
+						{
+							xmlWriter.WriteStartElement(TableNameToXMLFormat(tableModel)); // Open <tableModel.Name>
+							WriteTableLocked(xmlWriter, tableModel);
+							WriteTableName(xmlWriter, tableModel);
+							WriteTableDescription(xmlWriter, tableModel);
+							WriteTableOutput(xmlWriter, tableModel);
+							WriteTableNotes(xmlWriter, tableModel);
+							WriteTableHideRolls(xmlWriter, tableModel);
+							WriteTableRollModifier(xmlWriter, tableModel);
+							WriteTableRollDice(xmlWriter, tableModel);
+							xmlWriter.WriteEndElement(); // Closes </tableModel.Name>
+						}
+						xmlWriter.WriteEndElement(); // Close </category>
+					}
+					xmlWriter.WriteEndElement(); // Close </tables>  
+				}         
 				#endregion
 				xmlWriter.WriteEndElement(); // Close </reference>
                 #endregion
@@ -1168,6 +1212,79 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteEndElement();
             xmlWriter.WriteEndElement();
         }
+		#endregion
+		#region Table Methods for Reference Manual
+		static private string TableNameToXMLFormat(TableModel tableModel)
+		{
+			string name = tableModel.Name.ToLower();
+			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
+		}
+		static private void WriteTableLocked(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("locked");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(tableModel.IsLocked ? "1" : "0");
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableName(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("name");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(tableModel.Name);
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableDescription(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(tableModel.Description);
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableOutput(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("output");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(tableModel.OutputType.GetDescription().ToLower());
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableNotes(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("notes");
+			xmlWriter.WriteAttributeString("type", "formattedtext");
+			xmlWriter.WriteString(tableModel.Notes);
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableHideRolls(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("hiderollresults");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(tableModel.ShowResultsInChat ? "1" : "0");
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableRollModifier(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			xmlWriter.WriteStartElement("mod");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteValue(tableModel.CustomRangeModifier);
+			xmlWriter.WriteEndElement();
+		}
+		static private void WriteTableRollDice(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			if (tableModel.RollMethod.GetDescription() == "Custom dice roll")
+			{
+				for (int counter = 0; counter < tableModel.CustomRangeD4; counter++) { stringBuilder.Append("d4,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD6; counter++) { stringBuilder.Append("d6,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD8; counter++) { stringBuilder.Append("d8,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD10; counter++) { stringBuilder.Append("d10,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD12; counter++) { stringBuilder.Append("d12,"); }
+				for (int counter = 0; counter < tableModel.CustomRangeD20; counter++) { stringBuilder.Append("d20,"); }
+			}
+			xmlWriter.WriteStartElement("dice");
+			xmlWriter.WriteAttributeString("type", "dice");
+			xmlWriter.WriteString(stringBuilder.ToString().TrimEnd(','));
+			xmlWriter.WriteEndElement();
+		}
 		#endregion
 		#region NPC Methods
 		static private void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
@@ -2137,9 +2254,7 @@ namespace FantasyModuleParser.Exporters
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
 		/// </summary>
-		#pragma warning disable CA1822 // Unable to make static due to Unit Tests
 		public string GenerateDefinitionXmlContent(ModuleModel moduleModel)
-		#pragma warning restore CA1822 // Unable to make static due to Unit Tests
 		{
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
