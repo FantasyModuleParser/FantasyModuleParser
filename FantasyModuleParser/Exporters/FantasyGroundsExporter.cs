@@ -34,6 +34,9 @@ namespace FantasyModuleParser.Exporters
 		{
 			settingsService = new SettingsService();
 		}
+		/// <summary>
+		/// Check whether the module is meant for only GM's eyes or also players
+		/// </summary>
 		private static string DatabaseXML(ModuleModel moduleModel)
         {
 			if (moduleModel.IsGMOnly)
@@ -49,21 +52,26 @@ namespace FantasyModuleParser.Exporters
 		{
 			SettingsModel settingsModel = settingsService.Load();
 
+			/// <summary>
+			/// Make sure selected Module Folder exists
+			/// </summary>
 			if (string.IsNullOrEmpty(settingsModel.FGModuleFolderLocation))
 			{
 				log.Warn("Create Module -- No Module path has been set. Saved Path :: " + settingsModel.FGModuleFolderLocation);
 				throw new ApplicationException("No Module Path has been set");
 			}
-
+			
+			/// <summary>
+			/// Make sure a name has been given to the Module
+			/// </summary>
 			if (string.IsNullOrEmpty(moduleModel.Name))
 			{
 				log.Warn("Create Module -- No Module name has been saved.");
 				throw new ApplicationException("No Module Name has been set");
 			}
 
-			string moduleFolderPath = Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name);
-
 			// Create the folder all content will go into based on the Module name
+			string moduleFolderPath = Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name);
 			Directory.CreateDirectory(moduleFolderPath);
 
 			// Save Thumbnail to Module Folder
@@ -88,24 +96,21 @@ namespace FantasyModuleParser.Exporters
 				outputFile.WriteLine(definitionXmlFileContent);
 			}
 
-			//TODO:  Write out any other file content below!
-
-			// ============================================
-
-			// Zipping up the folder contents and naming to *.mod
-
-			// First need to check if the file exists;  If so, delete it
+			/// <summary>
+			/// Check whether *.mod file exists
+			/// If it does, delete it.
+			/// Then Zip the Module folder, save to *.mod, and delete Module folder.
+			/// Lastly, put an entry into the Log file stating that it saved correctly and where.
+			/// </summary>
 			if (File.Exists(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod")))
 			{
 				File.Delete(@Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod"));
 			}
 			ZipFile.CreateFromDirectory(moduleFolderPath, Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod"));
-
-			/// Delete created unzipped files
 			DeleteDirectory(moduleFolderPath);
-
 			log.Debug("Module Created!!  Saved to :: " + Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename + ".mod"));
 		}
+
 		/// <summary>
 		/// Generates a List of all NPCs across all Categories in one List<NPCModel> object.  Used for Reference Manual material.
 		/// </summary>
@@ -122,6 +127,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			return FatNPCList;
 		}
+
 		/// <summary>
 		/// Generates a List of all Spells across all Categories in one List<SpellModel> object. Used for Reference Manual material.
 		/// </summary>
@@ -138,6 +144,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			return FatSpellList;
 		}
+
 		/// <summary>
 		/// Generates a List of all Tables across all Categories in one List<TableModel> object. Used for Reference Manual material.
 		/// </summary>
@@ -154,6 +161,10 @@ namespace FantasyModuleParser.Exporters
 			}
 			return FatTableList;
 		}
+
+		/// <summary>
+		/// Makes sure all files in the module folder are deletable and executes the delete command
+		/// </summary>
 		private void DeleteDirectory(string target_dir)
 		{
 			string[] files = Directory.GetFiles(target_dir);
@@ -172,6 +183,7 @@ namespace FantasyModuleParser.Exporters
 
 			Directory.Delete(target_dir, false);
 		}
+
 		/// <summary>
 		/// Renames the selected thumbnail image to thumbnail.png
 		/// </summary>
@@ -181,6 +193,7 @@ namespace FantasyModuleParser.Exporters
 			return ThumbnailFilename;
 
 		}
+
 		/// <summary>
 		/// Checks whether a thumbnail image exists. 
 		/// If the thumbnail image already exists, deletes and copies thumbnail image from PC location to module folder.
@@ -201,9 +214,10 @@ namespace FantasyModuleParser.Exporters
 				}					
 			}
 		}
+
 		/// <summary>
 		/// Generates database file for use in Fantasy Grounds.
-		/// Currently covers NPCs and Spells.
+		/// Currently covers NPCs, Spells, and Tables.
 		/// </summary>
 		public string GenerateDBXmlFile(ModuleModel moduleModel)
 		{
@@ -546,15 +560,6 @@ namespace FantasyModuleParser.Exporters
 
 						spellListId++;
 					}
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id002", "reference.spelllists.bard", "Bard");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id003", "reference.spelllists.cleric", "Cleric");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id004", "reference.spelllists.druid", "Druid");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id005", "reference.spelllists.paladin", "Paladin");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id006", "reference.spelllists.ranger", "Ranger");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id007", "reference.spelllists.sorcerer", "Sorcerer");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id008", "reference.spelllists.warlock", "Warlock");
-					/// WriteIDLinkList(xmlWriter, moduleModel, "id009", "reference.spelllists.wizard", "Wizard");
-
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteEndElement();
 
@@ -570,18 +575,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement();
 					#endregion
 					#region Spell List By Class
-					//foreach (string castByValue in getSortedSpellCasterList(moduleModel))
-					//            {
-					//	xmlWriter.WriteStartElement(castByValue.Replace("(", "").Replace(")", "").Replace(" ", ""));
-					//		xmlWriter.WriteStartElement("description");
-					//			xmlWriter.WriteAttributeString("type", "string");
-					//			xmlWriter.WriteString(castByValue + " Spells");
-					//		xmlWriter.WriteEndElement();
-					//		xmlWriter.WriteStartElement("groups");
 					SpellListByClass(xmlWriter, moduleModel);
-					//		xmlWriter.WriteEndElement();
-					//	xmlWriter.WriteEndElement();
-					//}
 					#endregion
 					xmlWriter.WriteEndElement(); // Close </spelllists>
 					#endregion
@@ -748,10 +742,10 @@ namespace FantasyModuleParser.Exporters
 			foreach (string castByValue in GetSortedSpellCasterList(moduleModel))
 			{
 				xmlWriter.WriteStartElement(castByValue.ToLower().Replace("(", "").Replace(")", "").Replace(" ", ""));  // <castby>
-					xmlWriter.WriteStartElement("description"); // <castby> <description>
+				xmlWriter.WriteStartElement("description"); // <castby> <description>
 				xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString(castByValue + " Spells");
-					xmlWriter.WriteEndElement(); // <castby> </description>
+				xmlWriter.WriteString(castByValue + " Spells");
+				xmlWriter.WriteEndElement(); // <castby> </description>
 				xmlWriter.WriteStartElement("groups"); // <castby> <groups>
 				SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.CompareTo(spellTwo.SpellLevel));
 				var LevelList = SpellList.GroupBy(x => (int)x.SpellLevel).Select(x => x.ToList()).ToList();
@@ -826,7 +820,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteStartElement("recordname");
 				if (moduleModel.IsLockedRecords)
 				{
-					xmlWriter.WriteString("reference.spelldata." + SpellNameToXMLFormat(spell) + "@" + moduleModel.Name);
+					xmlWriter.WriteString("reference.spelldata." + SpellNameToXMLFormat(spell) + '@' + moduleModel.Name);
 				}
 				else
 				{
@@ -890,7 +884,6 @@ namespace FantasyModuleParser.Exporters
 					}
 				}
 			}
-
 			return casterList;
 		}
 		static private IEnumerable<string> GetSortedSpellCasterList(ModuleModel moduleModel)
@@ -981,7 +974,6 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(stringBuilder.ToString());
 			xmlWriter.WriteEndElement();
 		}
-
 		static private void WriteSpellDuration(XmlWriter xmlWriter, SpellModel spellModel)
 		{
 			xmlWriter.WriteStartElement("duration");

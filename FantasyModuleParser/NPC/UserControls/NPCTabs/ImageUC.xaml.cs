@@ -49,6 +49,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
                 if (strNPCImage.Text.StartsWith("file:///"))
                 {
                     strNPCImage.Text = selectedFileName.Remove(0, 8);
+                    (DataContext as NPCModel).NPCImage = selectedFileName;
                 }
             }
         }
