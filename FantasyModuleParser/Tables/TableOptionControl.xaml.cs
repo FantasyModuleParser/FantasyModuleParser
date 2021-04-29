@@ -156,8 +156,6 @@ namespace FantasyModuleParser.Tables
 
         private void DeleteColumnMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
-            //dataRowView.Delete();
             TableExampleDataGrid.Columns.Remove(TableExampleDataGrid.CurrentColumn);
         }
 
@@ -321,17 +319,6 @@ namespace FantasyModuleParser.Tables
             }
         }
 
-        private void TableExampleDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            var columnIndex = e.Column.DisplayIndex;
-            var rowIndex = e.Row.GetIndex();
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void LoadTableModule_Click(object sender, RoutedEventArgs e)
         {
             SettingsService settingsService = new SettingsService();
@@ -372,27 +359,41 @@ namespace FantasyModuleParser.Tables
             tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
         }
 
-        //private void TableExampleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (TableExampleDataGrid.SelectedIndex == -1) //if column selected, cant use .CurrentColumn property
-        //    {
-        //        MessageBox.Show("Please double click on a row");
-        //    }
-        //    else
-        //    {
-        //        DataRowView dataRowView = TableExampleDataGrid.SelectedItem as DataRowView;
+        private void NextTableButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Because the Datagrid is not 100% bound to the Table Model, the view
+            // code-behind needs to be updated
+            if (tableOptionViewModel.NextTableCommand.CanExecute(null))
+            {
+                tableOptionViewModel.NextTableCommand.Execute(null);
 
-        //        dataRowView.Delete();
+                // Note:  This is commented out because the TableComboBox **IS** bound 
+                //      to a list of TableModel objects.  This command updates that selection,
+                //      which in turn invokes the SelectionChanged event (see TableComboBox_SelectionChanged)
+                //InitializeTableDataGrid();
+            }
+        }
 
-        //        //DataGridColumn columnHeader = TableExampleDataGrid.CurrentColumn;
+        private void PreviousTableButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Because the Datagrid is not 100% bound to the Table Model, the view
+            // code-behind needs to be updated
+            if (tableOptionViewModel.PrevTableCommand.CanExecute(null))
+            {
+                tableOptionViewModel.PrevTableCommand.Execute(null);
 
-        //        //TableExampleDataGrid.Columns.Remove(columnHeader);
-        //        //if (columnHeader != null)
-        //        //{
-        //        //    string input = Interaction.InputBox("Title", "Prompt", "Default", 0, 0);
-        //        //    columnHeader.Header = input;
-        //        //}
-        //    }
-        //}
+                // Note:  This is commented out because the TableComboBox **IS** bound 
+                //      to a list of TableModel objects.  This command updates that selection,
+                //      which in turn invokes the SelectionChanged event (see TableComboBox_SelectionChanged)
+                //InitializeTableDataGrid();
+            }
+        }
+
+        private void TableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Because the Datagrid is not 100% bound to the Table Model, the view
+            // code-behind needs to be updated
+            InitializeTableDataGrid();
+        }
     }
 }

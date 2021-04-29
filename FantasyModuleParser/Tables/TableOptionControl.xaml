@@ -253,15 +253,16 @@
                                 IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding SelectedCategoryModel}"
                                 SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
                             <Button x:Name="PrevBtn" Content="Prev Table" Grid.Column="1" Grid.Row="1"
-                                    Command="{Binding PrevTableCommand}"
+                                    Click="PreviousTableButton_Click"
                                     Style="{StaticResource standardButton}" />
-                            <Button x:Name="NextBtn" Content="Next Table" Grid.Column="2" Grid.Row="1" 
-                                    Command="{Binding NextTableCommand}"
+                            <Button x:Name="NextBtn" Content="Next Table" Grid.Column="2" Grid.Row="1"
+                                    Click="NextTableButton_Click"
                                     Style="{StaticResource standardButton}" />
                             <ComboBox x:Name="TableComboBox" ItemsSource="{Binding SelectedCategoryModel.TableModels}"
                                       DisplayMemberPath="Name" Grid.Column="3" Grid.Row="1" 
                                       Style="{StaticResource standardComboBox}"
-                                      SelectedValue="{Binding SelectedTableModel}"/>
+                                      SelectedValue="{Binding SelectedTableModel}"
+                                      SelectionChanged="TableComboBox_SelectionChanged"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
