@@ -603,6 +603,7 @@ namespace FantasyModuleParser.Exporters
 							WriteTableHideRolls(xmlWriter, tableModel);
 							WriteTableRollModifier(xmlWriter, tableModel);
 							WriteTableRollDice(xmlWriter, tableModel);
+							WriteColumnLabels(xmlWriter, tableModel);
 							xmlWriter.WriteEndElement(); // Closes </tableModel.Name>
 						}
 						xmlWriter.WriteEndElement(); // Close </category>
@@ -1276,6 +1277,16 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "dice");
 			xmlWriter.WriteString(stringBuilder.ToString().TrimEnd(','));
 			xmlWriter.WriteEndElement();
+		}
+		static private void WriteColumnLabels(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			for (int columnHeaderIndex = 2; columnHeaderIndex < tableModel.ColumnHeaderLabels.Count; columnHeaderIndex++)
+			{
+				string columnHeaderValue = tableModel.ColumnHeaderLabels[columnHeaderIndex];
+				xmlWriter.WriteStartElement(string.Format("labelcol{0}", columnHeaderIndex - 1));
+				xmlWriter.WriteString(columnHeaderValue);
+				xmlWriter.WriteEndElement();
+			}
 		}
 		#endregion
 		#region NPC Methods
