@@ -9,6 +9,7 @@ using System.Data;
 using FantasyModuleParser.Main.Services;
 using System;
 using FantasyModuleParser.Tables.Models;
+using FantasyModuleParser.Tables.Views;
 
 namespace FantasyModuleParser.Tables
 {
@@ -74,6 +75,15 @@ namespace FantasyModuleParser.Tables
 
         private void generateContextMenu()
         {
+
+            TableExampleDataGrid.ContextMenu = new ContextMenu();
+            MenuItem changeColumnHeaderValueMenuItem = new MenuItem();
+            changeColumnHeaderValueMenuItem.Header = "Change Column Header Value";
+            changeColumnHeaderValueMenuItem.Click += ChangeColumnHeaderValueMenuItem_Click;
+            TableExampleDataGrid.ContextMenu.Items.Add(changeColumnHeaderValueMenuItem);
+            TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
+
+
             //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             TableExampleDataGrid.ContextMenu.Items.Add(buildLinkWithinThisProject());
             TableExampleDataGrid.ContextMenu.Items.Add(new Separator());
@@ -123,6 +133,19 @@ namespace FantasyModuleParser.Tables
             clearCellMenuItem.Click += ClearCellMenuItem_Click;
             TableExampleDataGrid.ContextMenu.Items.Add(clearCellMenuItem);
 
+        }
+
+        private void ChangeColumnHeaderValueMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // 1. Open a popup window requesting to change the column header value
+            ChangeColumnHeaderView changeColumnHeaderView = new ChangeColumnHeaderView(TableExampleDataGrid.CurrentColumn.Header.ToString());
+            changeColumnHeaderView.ShowDialog();
+            // 2. Apply change to column header
+            TableExampleDataGrid.CurrentColumn.Header = changeColumnHeaderView.ColumnHeaderText;
+
+            // 3. Because column header is not directly bound due to dynamic nature of List, 
+            //      need to manually update the Model data
+            tableOptionViewModel.TableModel.ColumnHeaderLabels[TableExampleDataGrid.CurrentColumn.DisplayIndex] = changeColumnHeaderView.ColumnHeaderText;
         }
 
         private void ClearCellMenuItem_Click(object sender, RoutedEventArgs e)
