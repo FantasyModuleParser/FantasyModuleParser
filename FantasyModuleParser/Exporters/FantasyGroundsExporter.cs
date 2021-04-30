@@ -1288,6 +1288,10 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();
 			}
 		}
+		static private void WriteResultsColumn(XmlWriter xmlWriter, TableModel tableModel)
+		{
+			// Do Stuff
+		}
 		#endregion
 		#region NPC Methods
 		static private void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
