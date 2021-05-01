@@ -10,6 +10,8 @@ using FantasyModuleParser.Main.Services;
 using System;
 using FantasyModuleParser.Tables.Models;
 using FantasyModuleParser.Tables.Views;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace FantasyModuleParser.Tables
 {
@@ -137,15 +139,29 @@ namespace FantasyModuleParser.Tables
 
         private void ChangeColumnHeaderValueMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            // 1. Open a popup window requesting to change the column header value
-            ChangeColumnHeaderView changeColumnHeaderView = new ChangeColumnHeaderView(TableExampleDataGrid.CurrentColumn.Header.ToString());
-            changeColumnHeaderView.ShowDialog();
-            // 2. Apply change to column header
-            TableExampleDataGrid.CurrentColumn.Header = changeColumnHeaderView.ColumnHeaderText;
+            ChangeColumnHeaderValueViewAction(TableExampleDataGrid.CurrentColumn);
+        }
 
-            // 3. Because column header is not directly bound due to dynamic nature of List, 
+        private void ChangeColumnHeaderValueViewAction(DataGridColumn dataGridColumn)
+        {
+            // 1.  Check to see if the dataGridColumn has a display index of 0 or 1 and 
+            //      return a message stating that these are static
+
+            if(dataGridColumn.DisplayIndex < 2)
+            {
+                MessageBox.Show(String.Format("Cannot change the column header :: {0}", dataGridColumn.Header));
+                return;
+            }
+
+            // 2. Open a popup window requesting to change the column header value
+            ChangeColumnHeaderView changeColumnHeaderView = new ChangeColumnHeaderView(dataGridColumn.Header.ToString());
+            changeColumnHeaderView.ShowDialog();
+            // 3. Apply change to column header
+            dataGridColumn.Header = changeColumnHeaderView.ColumnHeaderText;
+
+            // 4. Because column header is not directly bound due to dynamic nature of List, 
             //      need to manually update the Model data
-            tableOptionViewModel.TableModel.ColumnHeaderLabels[TableExampleDataGrid.CurrentColumn.DisplayIndex] = changeColumnHeaderView.ColumnHeaderText;
+            tableOptionViewModel.TableModel.ColumnHeaderLabels[dataGridColumn.DisplayIndex] = changeColumnHeaderView.ColumnHeaderText;
         }
 
         private void ClearCellMenuItem_Click(object sender, RoutedEventArgs e)
@@ -394,6 +410,34 @@ namespace FantasyModuleParser.Tables
             // Because the Datagrid is not 100% bound to the Table Model, the view
             // code-behind needs to be updated
             InitializeTableDataGrid();
+        }
+
+        private void TableExampleDataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DependencyObject DepObject = (DependencyObject)e.OriginalSource;
+
+            while ((DepObject != null) && !(DepObject is DataGridColumnHeader)
+&& !(DepObject is DataGridRow))
+            {
+                DepObject = VisualTreeHelper.GetParent(DepObject);
+            }
+
+            if (DepObject == null)
+            {
+                return;
+            }
+
+            if (DepObject is DataGridColumnHeader)
+            {
+                DataGridColumnHeader dataGridColumnHeader = (DataGridColumnHeader)DepObject;
+                TableExampleDataGrid.ContextMenu.Visibility = Visibility.Collapsed;
+
+                ChangeColumnHeaderValueViewAction(dataGridColumnHeader.Column);
+            }
+            else
+            {
+                TableExampleDataGrid.ContextMenu.Visibility = Visibility.Visible;
+            }
         }
     }
 }

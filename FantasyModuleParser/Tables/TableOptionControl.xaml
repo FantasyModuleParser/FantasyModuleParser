@@ -215,7 +215,8 @@
                     <Grid Grid.Row="1" Margin="5">
                         <DataGrid Name="TableExampleDataGrid" HeadersVisibility="Column" 
                                   ItemsSource="{Binding TableDataView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  SelectionMode="Single" SelectionUnit="Cell">
+                                  SelectionMode="Single" SelectionUnit="Cell" PreviewMouseRightButtonDown="TableExampleDataGrid_PreviewMouseRightButtonDown"
+>
                         </DataGrid>
                     </Grid>
                     <Grid Grid.Row="2">
