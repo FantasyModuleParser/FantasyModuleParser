@@ -327,7 +327,7 @@ namespace FantasyModuleParser.NPC
 		#region Begin Skill Attributes Properties
 
 		// Create the dictionary to hold all of the SkillAttributes
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
 		public Dictionary<SkillAttributes, int> skillAttributes; // = new Dictionary<SkillAttributes, int>();  //not populated here
 		
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
@@ -1264,6 +1264,7 @@ namespace FantasyModuleParser.NPC
 
 		protected bool SetAttributes(ref Dictionary<SkillAttributes, int> attributes, int value, [CallerMemberName] string propertyname = null)
 		{
+
 			// Check if the value and backing field are actualy different
 			if (attributes[(SkillAttributes)Enum.Parse(typeof(SkillAttributes), propertyname, true)] == value)
 			{
