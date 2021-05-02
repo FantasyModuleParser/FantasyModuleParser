@@ -588,17 +588,17 @@ namespace FantasyModuleParser.Exporters
 						//Now, write out each NPC with NPC Name
 						foreach (TableModel tableModel in FatTableList)
 						{
-							xmlWriter.WriteStartElement(TableNameToXMLFormat(tableModel)); // Open <tableModel.Name>
-							WriteTableLocked(xmlWriter, tableModel);
-							WriteTableName(xmlWriter, tableModel);
-							WriteTableDescription(xmlWriter, tableModel);
-							WriteTableOutput(xmlWriter, tableModel);
-							WriteTableNotes(xmlWriter, tableModel);
-							WriteTableHideRolls(xmlWriter, tableModel);
-							WriteTableRollModifier(xmlWriter, tableModel);
-							WriteTableRollDice(xmlWriter, tableModel);
-							WriteColumnLabels(xmlWriter, tableModel);
-							WriteResultsColumn(xmlWriter, tableModel);
+							xmlWriter.WriteStartElement(TableExporter.TableNameToXMLFormat(tableModel)); // Open <tableModel.Name>
+							TableExporter.WriteTableLocked(xmlWriter, tableModel);
+							TableExporter.WriteTableName(xmlWriter, tableModel);
+							TableExporter.WriteTableDescription(xmlWriter, tableModel);
+							TableExporter.WriteTableOutput(xmlWriter, tableModel);
+							TableExporter.WriteTableNotes(xmlWriter, tableModel);
+							TableExporter.WriteTableHideRolls(xmlWriter, tableModel);
+							TableExporter.WriteTableRollModifier(xmlWriter, tableModel);
+							TableExporter.WriteTableRollDice(xmlWriter, tableModel);
+							TableExporter.WriteColumnLabels(xmlWriter, tableModel);
+							TableExporter.WriteResultsColumn(xmlWriter, tableModel);
 							xmlWriter.WriteEndElement(); // Closes </tableModel.Name>
 						}
 						xmlWriter.WriteEndElement(); // Close </category>
@@ -887,10 +887,20 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 		#endregion
-		#region Spell Methods for Reference Data XML
-		
-		#endregion
-		#region Common methods for Reference Manual XML
+		#region Common methods
+		static private void WriteLocked(XmlWriter xmlWriter)
+		{
+			ModuleModel moduleModel = new ModuleModel();
+			string lockedRecords = "0";
+			if (moduleModel.IsLockedRecords)
+			{
+				lockedRecords = "1";
+			}
+			xmlWriter.WriteStartElement("locked");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(lockedRecords.ToString());
+			xmlWriter.WriteEndElement();
+		}
 		static private void WriteIDLinkList(XmlWriter xmlWriter, ModuleModel moduleModel, string id, string listId, string listDescription)
 		{
 			xmlWriter.WriteStartElement(id);
@@ -927,112 +937,8 @@ namespace FantasyModuleParser.Exporters
 			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
         }
 		#endregion
-		#region Common Methods
-		static private void WriteLocked(XmlWriter xmlWriter)
-		{
-			ModuleModel moduleModel = new ModuleModel();
-			string lockedRecords = "0";
-			if (moduleModel.IsLockedRecords)
-			{
-				lockedRecords = "1";
-			}				
-			xmlWriter.WriteStartElement("locked");
-			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteString(lockedRecords.ToString());
-			xmlWriter.WriteEndElement();
-		}
-		#endregion
 		#region Table Methods for Reference Manual
-		static private string TableNameToXMLFormat(TableModel tableModel)
-		{
-			string name = tableModel.Name.ToLower();
-			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
-		}
-		static private void WriteTableLocked(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			xmlWriter.WriteStartElement("locked");
-			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteString(tableModel.IsLocked ? "1" : "0");
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteTableName(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(tableModel.Name);
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteTableDescription(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			xmlWriter.WriteStartElement("description");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(tableModel.Description);
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteTableOutput(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			xmlWriter.WriteStartElement("output");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(tableModel.OutputType.GetDescription().ToLower());
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteTableNotes(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			xmlWriter.WriteStartElement("notes");
-			xmlWriter.WriteAttributeString("type", "formattedtext");
-			xmlWriter.WriteString(tableModel.Notes);
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteTableHideRolls(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			xmlWriter.WriteStartElement("hiderollresults");
-			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteString(tableModel.ShowResultsInChat ? "1" : "0");
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteTableRollModifier(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			xmlWriter.WriteStartElement("mod");
-			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteValue(tableModel.CustomRangeModifier);
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteTableRollDice(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			StringBuilder stringBuilder = new StringBuilder();
-			if (tableModel.RollMethod.GetDescription() == "Custom dice roll")
-			{
-				for (int counter = 0; counter < tableModel.CustomRangeD4; counter++) { stringBuilder.Append("d4,"); }
-				for (int counter = 0; counter < tableModel.CustomRangeD6; counter++) { stringBuilder.Append("d6,"); }
-				for (int counter = 0; counter < tableModel.CustomRangeD8; counter++) { stringBuilder.Append("d8,"); }
-				for (int counter = 0; counter < tableModel.CustomRangeD10; counter++) { stringBuilder.Append("d10,"); }
-				for (int counter = 0; counter < tableModel.CustomRangeD12; counter++) { stringBuilder.Append("d12,"); }
-				for (int counter = 0; counter < tableModel.CustomRangeD20; counter++) { stringBuilder.Append("d20,"); }
-			}
-			xmlWriter.WriteStartElement("dice");
-			xmlWriter.WriteAttributeString("type", "dice");
-			xmlWriter.WriteString(stringBuilder.ToString().TrimEnd(','));
-			xmlWriter.WriteEndElement();
-		}
-		static private void WriteColumnLabels(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			for (int columnHeaderIndex = 2; columnHeaderIndex < tableModel.ColumnHeaderLabels.Count; columnHeaderIndex++)
-			{
-				string columnHeaderValue = tableModel.ColumnHeaderLabels[columnHeaderIndex];
-				xmlWriter.WriteStartElement(string.Format("labelcol{0}", columnHeaderIndex - 1));
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString(columnHeaderValue);
-				xmlWriter.WriteEndElement();
-			}
-		}
-		static private void WriteResultsColumn(XmlWriter xmlWriter, TableModel tableModel)
-		{
-			int resultHeaders = tableModel.ColumnHeaderLabels.Count - 2;
-			xmlWriter.WriteStartElement("resultscols");
-			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteValue(resultHeaders);
-			xmlWriter.WriteEndElement();
-		}
+		
 		#endregion
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
