@@ -95,7 +95,7 @@
                 <ListBoxItem Style="{StaticResource Disabled}">Add Skills</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Stories</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Enabled}" Name="optionSpells">Add Spells</ListBoxItem>
-                <ListBoxItem Style="{StaticResource Enabled}" Name="optionTable">Add Tables</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}" Name="optionTable">Add Tables</ListBoxItem>
             </ListBox>
         </StackPanel>
         <StackPanel Name="stackNPC" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
