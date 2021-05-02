@@ -1,4 +1,4 @@
-﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Models.Action;
@@ -17,8 +17,11 @@ namespace FantasyModuleParser.Exporters
     {
         string Immunity;
         string Resistance;
-        private SettingsService settingsService;
+        private readonly SettingsService settingsService;
 
+		/// <summary>
+		/// 
+		/// </summary>
         public FantasyGroundsCampaign()
         {
             settingsService = new SettingsService();
@@ -41,6 +44,7 @@ namespace FantasyModuleParser.Exporters
             string dbXmlFileContent = GenerateDBXmlFile(moduleModel);
             string campaignXmlFileContent = GenerateCampaignXmlContent(moduleModel);
 
+			// TODO place these calls in a try catch block since they may easily throw any of 7 exceptions
 			if (File.Exists(@Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name, "campaign.xml")))
 			{
 				File.Delete(@Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name, "campaign.xml"));
@@ -81,16 +85,17 @@ namespace FantasyModuleParser.Exporters
 						string Filename = Path.GetFileName(npcModel.NPCToken);
 						string NPCTokenFileName = Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name, "tokens", Filename);
 						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name, "tokens");
+						// TODO place these calls in a try catch block since they may throw an exception
 						if (Directory.Exists(NPCTokenDirectory))
 						{
-							if (File.Exists(NPCTokenFileName))
-							{
-								File.Delete(NPCTokenFileName);
+							if (File.Exists(NPCTokenFileName))	
+							{ 
+								File.Delete(NPCTokenFileName); 
 							}
 						}
-						else
-						{
-							Directory.CreateDirectory(NPCTokenDirectory);
+						else 
+						{ 
+							Directory.CreateDirectory(NPCTokenDirectory); 
 						}
 						File.Copy(npcModel.NPCToken, NPCTokenFileName);
 					}
@@ -108,6 +113,8 @@ namespace FantasyModuleParser.Exporters
 						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "");
 						string NPCImageFileName = Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name, "images", Filename);
 						string NPCImageDirectory = Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name, "images");
+
+						// TODO place these calls in a try catch block since they may throw an exception
 						if (Directory.Exists(NPCImageDirectory))
 						{
 							if (File.Exists(NPCImageFileName))
@@ -319,17 +326,22 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("damageimmunities");
 			xmlWriter.WriteAttributeString("type", "string");
 			if (npcModel.DamageImmunityModelList != null)
+			{
 				foreach (SelectableActionModel damageImmunities in npcModel.DamageImmunityModelList)
 				{
-					if (damageImmunities.Selected)
-						stringBuilder.Append(damageImmunities.ActionDescription.ToLower()).Append(", ");
+					if (damageImmunities.Selected) 
+					{ 
+						stringBuilder.Append(damageImmunities.ActionDescription.ToLower()).Append(", "); 
+					}		
 				}
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
+			if (stringBuilder.Length >= 2)	
+			{ 
+				stringBuilder.Remove(stringBuilder.Length - 2, 2); 
 			}
 			stringBuilder.Append("; ");
 			if (npcModel.SpecialWeaponImmunityModelList != null)
+			{
 				foreach (SelectableActionModel specialWeaponImmunity in npcModel.SpecialWeaponImmunityModelList)
 				{
 					if (specialWeaponImmunity.Selected == true && specialWeaponImmunity.ActionName != "NoSpecial")
@@ -351,17 +363,25 @@ namespace FantasyModuleParser.Exporters
 						}
 						foreach (SelectableActionModel specialWeaponDmgImmunity in npcModel.SpecialWeaponDmgImmunityModelList)
 						{
-							if (specialWeaponDmgImmunity.Selected)
-								stringBuilder.Append(specialWeaponDmgImmunity.ActionDescription).Append(", ");
+							if (specialWeaponDmgImmunity.Selected) 
+							{ 
+								stringBuilder.Append(specialWeaponDmgImmunity.ActionDescription).Append(", "); 
+							}
 						}
-						if (stringBuilder.Length >= 2)
-							stringBuilder.Remove(stringBuilder.Length - 2, 2);
+						if (stringBuilder.Length >= 2) 
+						{ 
+							stringBuilder.Remove(stringBuilder.Length - 2, 2); 
+						}
 						stringBuilder.Append(Immunity);
 					}
 				}
+			}
+				
 			string weaponDamageImmunityString = stringBuilder.ToString().Trim();
-			if (weaponDamageImmunityString.EndsWith(";", true, CultureInfo.CurrentCulture))
-				weaponDamageImmunityString = weaponDamageImmunityString.Substring(0, weaponDamageImmunityString.Length - 1);
+			if (weaponDamageImmunityString.EndsWith(";", true, CultureInfo.CurrentCulture)) 
+			{ 
+				weaponDamageImmunityString = weaponDamageImmunityString.Substring(0, weaponDamageImmunityString.Length - 1); 
+			}
 			xmlWriter.WriteString(weaponDamageImmunityString);
 			xmlWriter.WriteEndElement();
 		}
@@ -371,20 +391,26 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("damageresistances");
 			xmlWriter.WriteAttributeString("type", "string");
 			if (npcModel.DamageResistanceModelList != null)
+			{
 				foreach (SelectableActionModel damageResistances in npcModel.DamageResistanceModelList)
 				{
-					if (damageResistances.Selected)
-						stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", ");
+					if (damageResistances.Selected) 
+					{ 
+						stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", "); 
+					}
 				}
-			if (stringBuilder.Length >= 2)
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
+			}				
+			if (stringBuilder.Length >= 2) 
+			{ 
+				stringBuilder.Remove(stringBuilder.Length - 2, 2); 
+			}
 			stringBuilder.Append("; ");
 			if (npcModel.SpecialWeaponResistanceModelList != null)
+			{
 				foreach (SelectableActionModel specialWeaponResistance in npcModel.SpecialWeaponResistanceModelList)
 				{
 					if (specialWeaponResistance.Selected == true && specialWeaponResistance.ActionName != "NoSpecial")
 					{
-
 						switch (specialWeaponResistance.ActionName)
 						{
 							case "Nonmagical":
@@ -403,18 +429,22 @@ namespace FantasyModuleParser.Exporters
 						foreach (SelectableActionModel specialWeaponDmgResistance in npcModel.SpecialWeaponDmgResistanceModelList)
 						{
 							if (specialWeaponDmgResistance.Selected)
+							{
 								stringBuilder.Append(specialWeaponDmgResistance.ActionDescription).Append(", ");
+							}
+								
 						}
 						if (stringBuilder.Length >= 2)
+						{
 							stringBuilder.Remove(stringBuilder.Length - 2, 2);
+						}							
 						stringBuilder.Append(Resistance);
 					}
 				}
+			}				
 			string weaponDamageResistanceString = stringBuilder.ToString().Trim();
-			if (weaponDamageResistanceString.StartsWith(";", true, CultureInfo.CurrentCulture))
-				weaponDamageResistanceString = weaponDamageResistanceString.Remove(0, 1);
-			if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture))
-				weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1);
+			if (weaponDamageResistanceString.StartsWith(";", true, CultureInfo.CurrentCulture)) { weaponDamageResistanceString = weaponDamageResistanceString.Remove(0, 1); }
+			if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture)) { weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1); }				
 			xmlWriter.WriteString(weaponDamageResistanceString);
 			xmlWriter.WriteEndElement();
 		}
@@ -474,7 +504,7 @@ namespace FantasyModuleParser.Exporters
 
 			return settings;
 		}
-		private string writeXmlDocumentToString(XmlDocument xmlDocument)
+		private string WriteXmlDocumentToString(XmlDocument xmlDocument)
 		{
 			XmlWriterSettings settings = GetXmlWriterSettings();
 			string document = "";

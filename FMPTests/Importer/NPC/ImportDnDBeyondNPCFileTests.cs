@@ -352,34 +352,34 @@ namespace FantasyModuleParser.Importer.NPC.Tests
             Assert.AreEqual("Cleric", actualNPCModel.SpellcastingSpellClass);
             Assert.AreEqual("", actualNPCModel.FlavorText);
 
-            Assert.AreEqual("at will", actualNPCModel.CantripSpells);
+            Assert.AreEqual("at will", actualNPCModel.CantripSpellSlots);
             Assert.AreEqual("mending, sacred flame, thaumaturgy", actualNPCModel.CantripSpellList);
 
-            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpells);
+            Assert.AreEqual("4 slots", actualNPCModel.FirstLevelSpellSlots);
             Assert.AreEqual("command, cure wounds, shield of faith", actualNPCModel.FirstLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.SecondLevelSpells, actualNPCModel.SecondLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.SecondLevelSpells, actualNPCModel.SecondLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.SecondLevelSpellList, actualNPCModel.SecondLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.ThirdLevelSpells, actualNPCModel.ThirdLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.ThirdLevelSpells, actualNPCModel.ThirdLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.ThirdLevelSpellList, actualNPCModel.ThirdLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.FourthLevelSpells, actualNPCModel.FourthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.FourthLevelSpells, actualNPCModel.FourthLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.FourthLevelSpellList, actualNPCModel.FourthLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.FifthLevelSpells, actualNPCModel.FifthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.FifthLevelSpells, actualNPCModel.FifthLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.FifthLevelSpellList, actualNPCModel.FifthLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.SixthLevelSpells, actualNPCModel.SixthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.SixthLevelSpells, actualNPCModel.SixthLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.SixthLevelSpellList, actualNPCModel.SixthLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.SeventhLevelSpells, actualNPCModel.SeventhLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.SeventhLevelSpells, actualNPCModel.SeventhLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.SeventhLevelSpellList, actualNPCModel.SeventhLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.EighthLevelSpells, actualNPCModel.EighthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.EighthLevelSpells, actualNPCModel.EighthLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.EighthLevelSpellList, actualNPCModel.EighthLevelSpellList);
 
-            //Assert.AreEqual(expectedNPCModel.NinthLevelSpells, actualNPCModel.NinthLevelSpells);
+            //Assert.AreEqual(expectedNPCModel.NinthLevelSpells, actualNPCModel.NinthLevelSpellSlots);
             //Assert.AreEqual(expectedNPCModel.NinthLevelSpellList, actualNPCModel.NinthLevelSpellList);
         }
 

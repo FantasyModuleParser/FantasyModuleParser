@@ -885,9 +885,6 @@ namespace FantasyModuleParser.Exporters
 			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
         }
 		#endregion
-		#region Table Methods for Reference Manual
-		
-		#endregion
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
 		/// </summary>
