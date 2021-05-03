@@ -12,6 +12,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Main.Models;
 using System.Xml.Linq;
+using FantasyModuleParser.Tables.Models;
 
 namespace FantasyModuleParser.Exporters.Tests
 {
@@ -173,6 +174,50 @@ namespace FantasyModuleParser.Exporters.Tests
 
             // And finally, for the actual integration test run
             exporter.CreateModule(moduleModel);
+        }
+
+        [TestMethod]
+        public void CreateModule_SingleTable()
+        {
+            TableModel tableModel = new TableModel()
+            {
+                Name = "Example Table",
+                Description = "This is an example of the table model",
+                Notes = "<p>Some notes that appear</p><p><b>This should be in bold</b>",
+                RollMethod = Tables.ViewModels.Enums.RollMethodEnum.TableValues,
+                OutputType = Tables.ViewModels.Enums.OutputTypeEnum.Chat,
+                ShowResultsInChat = true,
+                IsLocked = true,
+                ColumnHeaderLabels = new List<string>() { "From","To","Column 1","Equipment Drop"},
+                BasicStringGridData = new List<List<string>>()
+                {
+                    new List<string>(){"1","1","Some Data","Armor Piece 1"},
+                    new List<string>(){"2","6", "A bad time","Cursed Weapon"}
+                }
+            };
+
+            CategoryModel categoryModel = new CategoryModel()
+            {
+                Name = "ExampleCategory",
+                TableModels = new System.Collections.ObjectModel.ObservableCollection<TableModel>()
+                {
+                    tableModel
+                }
+            };
+
+            ModuleModel moduleModel = new ModuleModel()
+            {
+                Name = "TableExampleModule",
+                Author = "E2E_Test",
+                Category = "Testing",
+                Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>()
+                {
+                    categoryModel
+                }
+            };
+
+            exporter.CreateModule(moduleModel);
+            Assert.IsTrue(true);
         }
 
         private static string XmlPrettyPrint(string input)

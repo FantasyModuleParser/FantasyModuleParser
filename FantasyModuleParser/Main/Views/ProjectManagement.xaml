@@ -359,7 +359,7 @@
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Content="Magic Items" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
-                    <CheckBox Content="Tables" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
+                    <CheckBox Content="Tables" IsChecked="{Binding ModuleModel.IncludeTables, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1"/>
                 </Grid>
             </Grid>
         </Grid>
