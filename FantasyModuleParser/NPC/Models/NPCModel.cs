@@ -516,61 +516,75 @@ namespace FantasyModuleParser.NPC
 		public string FlavorText { get { return _FlavorText; } set { Set(ref _FlavorText, value); } }
 
 		#region SpellLists & SpellSlots
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		// Property Name has been set here due to usage w/ older save files (the C# data object was 
+		// renamed from CantripSpells to CantripSpellSlots for clarity reasons).  This applies to
+		// all spell slot data objects for the Casting User control
+		[JsonProperty(
+			DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "CantripSpells")]
 		public string CantripSpellSlots { get { return _CantripSpellSlots; } set { Set(ref _CantripSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string CantripSpellList { get { return _CantripSpellList; } set { Set(ref _CantripSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "FirstLevelSpells")]
 		public string FirstLevelSpellSlots { get { return _FirstLevelSpellSlots; } set { Set(ref _FirstLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string FirstLevelSpellList { get { return _FirstLevelSpellList; } set { Set(ref _FirstLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "SecondLevelSpells")]
 		public string SecondLevelSpellSlots { get { return _SecondLevelSpellSlots; } set { Set(ref _SecondLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string SecondLevelSpellList { get { return _SecondLevelSpellList; } set { Set(ref _SecondLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "ThirdLevelSpells")]
 		public string ThirdLevelSpellSlots { get { return _ThirdLevelSpellSlots; } set { Set(ref _ThirdLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string ThirdLevelSpellList { get { return _ThirdLevelSpellList; } set { Set(ref _ThirdLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "FourthLevelSpells")]
 		public string FourthLevelSpellSlots { get { return _FourthLevelSpellSlots; } set { Set(ref _FourthLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string FourthLevelSpellList { get { return _FourthLevelSpellList; } set { Set(ref _FourthLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "FifthLevelSpells")]
 		public string FifthLevelSpellSlots { get { return _FifthLevelSpellSlots; } set { Set(ref _FifthLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string FifthLevelSpellList { get { return _FifthLevelSpellList; } set { Set(ref _FifthLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "SixthLevelSpells")]
 		public string SixthLevelSpellSlots { get { return _SixthLevelSpellSlots; } set { Set(ref _SixthLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string SixthLevelSpellList { get { return _SixthLevelSpellList; } set { Set(ref _SixthLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "SeventhLevelSpells")]
 		public string SeventhLevelSpellSlots { get { return _SeventhLevelSpellSlots; } set { Set(ref _SeventhLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string SeventhLevelSpellList { get { return _SeventhLevelSpellList; } set { Set(ref _SeventhLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "EighthLevelSpells")]
 		public string EighthLevelSpellSlots { get { return _EighthLevelSpellSlots; } set { Set(ref _EighthLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public string EighthLevelSpellList { get { return _EighthLevelSpellList; } set { Set(ref _EighthLevelSpellList, value); } }
 
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
+			PropertyName = "NinthLevelSpells")]
 		public string NinthLevelSpellSlots { get { return _NinthLevelSpellSlots; } set { Set(ref _NinthLevelSpellSlots, value); } }
 
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
