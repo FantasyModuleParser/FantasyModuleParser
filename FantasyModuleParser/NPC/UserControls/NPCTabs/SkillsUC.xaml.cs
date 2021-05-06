@@ -25,20 +25,20 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         public SkillsUC()
         {
             InitializeComponent();
-            //npcController = new NPCController();
-            //languageController = new LanguageController();
-            ////var npcModel = ((App)Application.Current).NpcModelObject;
-            //var npcModel = npcController.GetNPCModel();
-            //npcModel = initializeLanguageSelection(npcModel);
-            //DataContext = npcController.GetNPCModel();
-            
+            npcController = new NPCController();
+            languageController = new LanguageController();
+            //var npcModel = ((App)Application.Current).NpcModelObject;
+            var npcModel = npcController.GetNPCModel();
+            npcModel = initializeLanguageSelection(npcModel);
+            DataContext = npcController.GetNPCModel();
+
         }
 
         public void Refresh()
         {
-            //var npcModel = npcController.GetNPCModel();
-            //npcModel = initializeLanguageSelection(npcModel);
-            //DataContext = npcController.GetNPCModel();
+            var npcModel = npcController.GetNPCModel();
+            npcModel = initializeLanguageSelection(npcModel);
+            DataContext = npcController.GetNPCModel();
         }
 
         private NPCModel initializeLanguageSelection(NPCModel npcModel)

@@ -48,7 +48,6 @@ namespace FantasyModuleParser.Spells
             if (string.IsNullOrEmpty(spellModel.CastBy))
             {
                 log.Error("Spell " + spellModel.SpellName + " has a null value for CastBy");
-                throw new InvalidDataException("Spell " + spellModel.SpellName + " has no casters listed.\n What good is a spell if you can't be cast by anyone?");
             }
             (DataContext as SpellViewModel).Save();
         }

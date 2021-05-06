@@ -121,7 +121,6 @@ namespace FantasyModuleParser.Spells.ViewModels
             }
             else if (string.IsNullOrEmpty(SpellModel.CastBy))
             {
-                MessageBox.Show("Please select which class can cast spell " + SpellModel.SpellName + " and try again.");
                 log.Warn("No CastBy classes selected for spell " + SpellModel.SpellName);
                 return;
             }
