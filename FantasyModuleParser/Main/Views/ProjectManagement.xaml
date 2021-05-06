@@ -167,7 +167,15 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Title:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleName" Text="{Binding ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationTextRequired}" TextChanged="RequiredTextBox_TextChanged"  Grid.Column="1"/>
+                    <TextBox x:Name="ModuleName" Text="{Binding ModuleModel.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationTextRequired}" TextChanged="RequiredTextBox_TextChanged"  Grid.Column="1">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Give your module a name that will be displayed inside Fantasy Grounds
+                                <LineBreak />
+                                This can include letters, numbers, and special characters.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                 </Grid>
                 <Grid Grid.Row="2" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
@@ -175,7 +183,15 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Category:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleCategory" Style="{StaticResource InformationText}" Text="{Binding ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleCategory" Style="{StaticResource InformationText}" Text="{Binding ModuleModel.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                (Optional) Categorize your module.
+                                <LineBreak />
+                                This is how your module will be listed in the library upon loading.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                 </Grid>
                 <Grid Grid.Row="3" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
@@ -183,7 +199,11 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Author:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleAuthor" Text="{Binding ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleAuthor" Text="{Binding ModuleModel.Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource InformationText}" Grid.Column="1">
+                        <TextBox.ToolTip>
+                            Give the author some credit here.
+                        </TextBox.ToolTip>
+                    </TextBox>
                 </Grid>
                 <Grid Grid.Row="4" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
@@ -192,7 +212,15 @@
                         <ColumnDefinition Width="98" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Module Filename:" Padding="0" Grid.Column="0"/>
-                    <TextBox x:Name="ModuleModFilename" Text="{Binding ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Style="{StaticResource InformationTextRequired}" Grid.Column="1"/>
+                    <TextBox x:Name="ModuleModFilename" Text="{Binding ModuleModel.ModFilename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextChanged="ModuleModFilename_TextChanged" Style="{StaticResource InformationTextRequired}" Grid.Column="1">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Give your module a filename it will be listed as in your Fantasy Grounds Module folder.
+                                <LineBreak/>
+                                This cannot have most special characters (hyphens and underscores are permitted)
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <Label Content=".mod" FontSize="8" VerticalAlignment="Center" Padding="0" Grid.Column="2"/>
                 </Grid>
                 <Grid Grid.Row="5" Style="{StaticResource GridInformationStyle}">
@@ -201,7 +229,13 @@
                         <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Thumbnail Filename:" Padding="0" Grid.Column="0" />
-                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource ThumbnailFileText}" Grid.Column="1" />
+                    <TextBox x:Name="ModuleThumbnameFilename" Text="{Binding ModuleModel.ThumbnailPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource ThumbnailFileText}" Grid.Column="1">
+                        <TextBox.ToolTip>
+                            <TextBlock>
+                                Double click to add a thumbnail.
+                            </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                 </Grid>
                 <Grid Grid.Row="6" Style="{StaticResource GridInformationStyle}">
                     <Grid.ColumnDefinitions>
