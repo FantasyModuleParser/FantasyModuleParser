@@ -191,7 +191,7 @@ namespace FantasyModuleParser.Exporters
 		static public string SpellNameToXMLFormat(SpellModel spellModel)
 		{
 			string name = spellModel.SpellName.ToLower();
-			return name.Replace(" ", "_").Replace(",", "").Replace("'", "").Replace("(", "").Replace(")", "");
+			return name.Replace(" ", "_").Replace(",", "").Replace("'", "").Replace("(", "").Replace(")", "").Replace("&", "");
 		}
 		static public void WriteSpellName(XmlWriter xmlWriter, SpellModel spellModel)
 		{
