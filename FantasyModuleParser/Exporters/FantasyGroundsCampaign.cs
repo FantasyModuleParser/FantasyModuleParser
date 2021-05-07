@@ -38,7 +38,7 @@ namespace FantasyModuleParser.Exporters
                 throw new ApplicationException("No Module Name has been set");
             }
 
-            string campaignFolderPath = Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.Name);
+            string campaignFolderPath = Path.Combine(settingsService.Load().FGCampaignFolderLocation, moduleModel.ModFilename);
             Directory.CreateDirectory(campaignFolderPath);
 
             string dbXmlFileContent = GenerateDBXmlFile(moduleModel);

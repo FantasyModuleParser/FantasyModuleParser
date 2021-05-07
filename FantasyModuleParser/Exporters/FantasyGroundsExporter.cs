@@ -65,7 +65,7 @@ namespace FantasyModuleParser.Exporters
 			}
 
 			// Create the folder all content will go into based on the Module name
-			string moduleFolderPath = Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.Name);
+			string moduleFolderPath = Path.Combine(settingsModel.FGModuleFolderLocation, moduleModel.ModFilename);
 			Directory.CreateDirectory(moduleFolderPath);
 
 			// Save Thumbnail to Module Folder
