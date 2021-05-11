@@ -106,20 +106,6 @@ namespace FantasyModuleParser.Main
             }
         }
 
-        private void NewProject_Click(object sender, RoutedEventArgs e)
-        {
-            (DataContext as ProjectManagementViewModel).NewModuleSetup();
-
-            // For some reason, the fields are not updated automatically.  
-            // TODO:  This is the workaround for now.
-            ModuleName.Text = "";
-            ModuleCategory.Text = "";
-            ModuleAuthor.Text = "";
-            ModuleModFilename.Text = "";
-            ModuleThumbnameFilename.Text = "";
-            ModulePathTB.Text = "";
-        }
-
         public event EventHandler OnCloseWindowAction;
         protected virtual void OnCloseWindowEvent(EventArgs e)
         {

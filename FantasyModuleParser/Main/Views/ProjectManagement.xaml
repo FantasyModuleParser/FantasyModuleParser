@@ -125,7 +125,7 @@
             </Grid.RowDefinitions>
             <Menu x:Name="Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New Project" Click="NewProject_Click" />
+                    <MenuItem Header="_New Project" Command="{Binding NewProjectCommand}" />
                     <MenuItem Header="_Load Project" Click="LoadModule_Click"/>
                     <MenuItem Header="_Save Project" Click="SaveModule_Click"/>
                     <MenuItem Header="_Save Project As..." Click="SaveToModule_Click"/>
@@ -252,7 +252,7 @@
                     <Label Content="Module Path" Padding="0" />
                 </Grid>
                 <Grid Grid.Row="8"  Style="{StaticResource GridInformationStyle}">
-                    <TextBox x:Name="ModulePathTB" Text="{Binding FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Style="{StaticResource ModulePathText}" />
+                    <TextBox x:Name="ModulePathTB" Text="{Binding FullModulePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource ModulePathText}" />
                 </Grid>
                 <Label Content="Use the options under File to manage your project" Padding="0" Grid.Row="10"/>
                 <Label Content="1. 'New Project' resets all fields" Padding="0" Grid.Row="11"/>
@@ -269,7 +269,7 @@
                         <ColumnDefinition Width="70" />
                     </Grid.ColumnDefinitions>
                     <Button Content="Save and Close" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="SaveModuleAndClose_Click" Padding="0" Grid.Column="1" />
-                    <Button Content="Close" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="ESExit_Click" Padding="0" Margin="10,0,0,0" Grid.Column="3" />
+                    <Button Content="Close" VerticalAlignment="Center" VerticalContentAlignment="Center" Command="{Binding CancelCommand}" Click="ESExit_Click" Padding="0" Margin="10,0,0,0" Grid.Column="3" />
                 </Grid>
             </Grid>
             <Grid Grid.Column="1" Grid.Row="1" Margin="5">
