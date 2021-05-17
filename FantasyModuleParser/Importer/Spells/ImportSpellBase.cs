@@ -109,9 +109,7 @@ namespace FantasyModuleParser.Importer.Spells
             return SpellLevel.Cantrip;
 
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest
         public SpellSchool ParseSpellSchool(string importData)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             string importDataLower = importData.ToLower(CultureInfo.CurrentCulture);
             foreach (SpellSchool spellSchoolEnum in Enum.GetValues(typeof(SpellSchool)))
@@ -123,9 +121,7 @@ namespace FantasyModuleParser.Importer.Spells
             }
             return SpellSchool.Abjuration;
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest
         public bool CheckIfRitual(string importData)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             if (!String.IsNullOrWhiteSpace(importData))
 			{
@@ -133,9 +129,7 @@ namespace FantasyModuleParser.Importer.Spells
             }                
             return false;
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest
         public void ParseCastingTime(string importData, SpellModel spellModel)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             string lowerImportData = importData.ToLower(CultureInfo.CurrentCulture);
 
@@ -185,9 +179,7 @@ namespace FantasyModuleParser.Importer.Spells
                 spellModel.CastingTime = actionValue;
             }
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest
         public void ParseRange(string importData, SpellModel spellModel)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             string lowerImportData = importData.ToLower(CultureInfo.CurrentCulture);
 
@@ -252,9 +244,7 @@ namespace FantasyModuleParser.Importer.Spells
                 }
             }
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest
         public void ParseComponents(string importData, SpellModel spellModel)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             if (importData.ToUpper().StartsWith("COMPONENTS:"))
 			{
@@ -274,9 +264,7 @@ namespace FantasyModuleParser.Importer.Spells
                 spellModel.ComponentText = rawComponentText.Substring(0, rawComponentText.Length - 1);
             }
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest
         public void ParseDuration(string importData, SpellModel spellModel)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             string formattedData = importData.Substring("Duration: ".Length);
             if(formattedData.StartsWith("Up to ", StringComparison.OrdinalIgnoreCase))
@@ -337,15 +325,11 @@ namespace FantasyModuleParser.Importer.Spells
             }                
             return DurationUnit.None;
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest 
         public void ParseCastByClasses(string importData, SpellModel spellModel)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             spellModel.CastBy = importData.Substring(9);
         }
-        #pragma warning disable CA1822 // Cannot mark static due to ImportSpellLineParserTest
         public string ParseDescription(string importData)
-        #pragma warning restore CA1822 // Cannot mark static due to ImportSpellLineParserTest
         {
             const string AT_HIGHER_LEVELS = "At Higher Levels";
             if (importData.StartsWith(AT_HIGHER_LEVELS, StringComparison.Ordinal))
