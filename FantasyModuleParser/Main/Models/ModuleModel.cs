@@ -22,5 +22,9 @@ namespace FantasyModuleParser.Main.Models
         public bool IncludeNPCs { get; set; }
         public bool IncludeSpells { get; set; }
         public bool IncludeTables { get; set; }
+        public ModuleModel ShallowCopy()
+        {
+            return (ModuleModel)this.MemberwiseClone();
+        }
     }
 }

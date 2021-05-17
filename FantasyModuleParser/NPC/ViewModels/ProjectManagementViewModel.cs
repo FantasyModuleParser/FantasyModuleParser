@@ -1,7 +1,9 @@
 ﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.ViewModel;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace FantasyModuleParser.NPC.ViewModels
 {
@@ -10,6 +12,11 @@ namespace FantasyModuleParser.NPC.ViewModels
         private ModuleService moduleService;
         private SettingsService settingsService;
         private string _fullModulePath;
+        // This boolean is used when a new project is invoked.  The purpose is
+        // that if the user cancels a new project (currently via the "Close" action), then
+        // the original Module data should repopulate the fields.
+        private bool _isNewProjectInvoked;
+        private ModuleModel _previousModuleModel;
         public string FullModulePath { 
             get
             {
@@ -28,6 +35,7 @@ namespace FantasyModuleParser.NPC.ViewModels
             moduleService = new ModuleService();
             settingsService = new SettingsService();
             ModuleModel = moduleService.GetModuleModel();
+            _previousModuleModel = ModuleModel.ShallowCopy() ;
             SettingsModel = settingsService.Load();
 
             UpdateFullModulePath();
@@ -41,12 +49,61 @@ namespace FantasyModuleParser.NPC.ViewModels
             moduleService.UpdateModuleModel(ModuleModel);
             ModuleModel = moduleService.GetModuleModel();
         }
+
+
+        #region Commands
+        #region New Project Command
+        private ICommand _newProjectCommand;
+        public ICommand NewProjectCommand
+        {
+            get
+            {
+                if(_newProjectCommand == null)
+                {
+                    _newProjectCommand = new ActionCommand(param => NewModuleSetup());
+                }
+                return _newProjectCommand;
+            }
+        }
         public void NewModuleSetup()
         {
+            // If a new project has been invoked, keep track of the original ModuleModel data
+            // in case the user changes their mind
+            if (!_isNewProjectInvoked)
+            {
+                _isNewProjectInvoked = true;
+                _previousModuleModel = moduleService.GetModuleModel();
+            }
+
             moduleService.UpdateModuleModel(new ModuleModel());
             ModuleModel = moduleService.GetModuleModel();
             RaisePropertyChanged(nameof(ModuleModel));
+            
         }
+        #endregion
+
+        #region Close and Revert Command (Cancel)
+        private ICommand _cancelCommand;
+        public ICommand CancelCommand
+        {
+            get
+            {
+                if(_cancelCommand == null)
+                {
+                    _cancelCommand = new ActionCommand(param => RevertToSavedModuleModel());
+                }
+                return _cancelCommand;
+            }
+        }
+        public void RevertToSavedModuleModel()
+        {
+            moduleService.UpdateModuleModel(_previousModuleModel);
+            ModuleModel = moduleService.GetModuleModel();
+            RaisePropertyChanged(nameof(ModuleModel));
+        }
+        #endregion
+        #endregion
+
 
         public void SaveModule(string folderPath, ModuleModel moduleModel)
         {
