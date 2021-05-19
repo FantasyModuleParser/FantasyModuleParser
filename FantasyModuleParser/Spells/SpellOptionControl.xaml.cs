@@ -56,25 +56,31 @@ namespace FantasyModuleParser.Spells
             if (DurationTime != null && DurationUnit != null)
             {
                 SpellModel spellModel = (DataContext as SpellViewModel).SpellModel;
-                switch (spellModel.DurationType)
+                // Darkpool : BugFix #34
+                // When loading a new module, the Spell tab needs to reload, and it is not guaranteed
+                // that a spellModel object exists... Hence a null check
+                if(spellModel != null)
                 {
-                    case Enums.DurationType.Time:
-                    case Enums.DurationType.Concentration:
-                        DurationTime.IsEnabled = true;
-                        DurationTime_TextChanged();
-                        break;
-                    case Enums.DurationType.Instantaneous:
-                    case Enums.DurationType.UntilDispelled:
-                    case Enums.DurationType.UntilDispelledOrTriggered:
-                        spellModel.DurationText = spellModel.DurationType.GetDescription();
-                        DurationText.Text = spellModel.DurationText;
-                        DurationTime.IsEnabled = false;
-                        break;
-                    default:
-                        DurationTime.IsEnabled = false;
-                        break;
+                    switch (spellModel.DurationType)
+                    {
+                        case Enums.DurationType.Time:
+                        case Enums.DurationType.Concentration:
+                            DurationTime.IsEnabled = true;
+                            DurationTime_TextChanged();
+                            break;
+                        case Enums.DurationType.Instantaneous:
+                        case Enums.DurationType.UntilDispelled:
+                        case Enums.DurationType.UntilDispelledOrTriggered:
+                            spellModel.DurationText = spellModel.DurationType.GetDescription();
+                            DurationText.Text = spellModel.DurationText;
+                            DurationTime.IsEnabled = false;
+                            break;
+                        default:
+                            DurationTime.IsEnabled = false;
+                            break;
+                    }
+                    DurationUnit.IsEnabled = DurationTime.IsEnabled;
                 }
-                DurationUnit.IsEnabled = DurationTime.IsEnabled;
             }
         }
 
