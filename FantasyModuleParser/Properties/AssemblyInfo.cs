@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Fantasy Module Parser")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A third-party program to create campaigns and modules for Virtual Tabletops")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fantasy Module Parser")]
 [assembly: AssemblyProduct("Fantasy Module Parser")]
