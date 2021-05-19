@@ -666,6 +666,28 @@ namespace FantasyModuleParser.Exporters
 							xmlWriter.WriteEndElement();
 						}
 					}
+					if (moduleModel.IncludeTables)
+					{
+						if (moduleModel.Categories[0].TableModels.Count > 0)
+						{
+							xmlWriter.WriteStartElement("r04tables");
+							xmlWriter.WriteStartElement("librarylink");
+							xmlWriter.WriteAttributeString("type", "windowreference");
+							xmlWriter.WriteStartElement("class");
+							xmlWriter.WriteString("referenceindex");
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteStartElement("recordname");
+							xmlWriter.WriteString("..");
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteStartElement("name");
+							xmlWriter.WriteAttributeString("type", "string");
+							xmlWriter.WriteString("Tables");
+							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement();
+
+						}
+					}
 					xmlWriter.WriteEndElement();  // close entries                               
 					xmlWriter.WriteEndElement();  // close libraryname                         
 					xmlWriter.WriteEndElement();  // close library                          
