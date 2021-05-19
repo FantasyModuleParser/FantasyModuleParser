@@ -7038,7 +7038,7 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:Fantasy Module Parser"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:A third-party program to create modules and campaigns for Virtual Tabletops"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:_26A2541A1DE643B69B8D0C6F83A9569A"
         "ARPIconIndex" = "3:0"
@@ -7586,7 +7586,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_552293FD273D4FA1AFC44A51168A897D"
             {
-            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\FantasyModuleParser.exe"
+            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Release\\FantasyModuleParser.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7055253964044416A112FCD3B86AA51C"
