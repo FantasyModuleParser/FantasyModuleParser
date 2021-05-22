@@ -972,5 +972,9 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(npcModel.XP);
 			xmlWriter.WriteEndElement();
 		}
+		static public void WriteNPCReferenceManual(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
+		{
+
+		}
 	}
 }
