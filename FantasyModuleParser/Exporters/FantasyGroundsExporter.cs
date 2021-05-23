@@ -584,6 +584,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteStartElement("p");
 					xmlWriter.WriteString("The following NPCs are able to be found in " + moduleModel.Name + ".");
 					xmlWriter.WriteStartElement("linklist");
+					FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 					foreach (NPCModel npcModel in FatNPCList)
 					{
 						xmlWriter.WriteStartElement("link");
