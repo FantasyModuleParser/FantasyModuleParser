@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="FantasyModuleParser.Equipment.UserControls.EquipmentNavigationUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Equipment.UserControls.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style TargetType="ComboBox" x:Key="standardComboBox">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" x:Key="TooltipButton">
+            <Setter Property="ToolTipService.InitialShowDelay" Value="50" />
+            <Setter Property="ToolTipService.ShowDuration" Value="5000" />
+            <Setter Property="ToolTipService.BetweenShowDelay" Value="10000" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <Style TargetType="Button" x:Key="standardButton">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Content="FG Category" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" />
+            <Label Content="Selected Table" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" />
+
+            <!-- Second internal row -->
+            <ComboBox Name="FGCategoryComboBox" DisplayMemberPath="Name"
+                                IsSynchronizedWithCurrentItem="True"
+                                SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
+        <Button x:Name="PrevBtn" Content="{Binding PreviousItemLabel}" Grid.Column="1" Grid.Row="1"
+                                    Click="PrevBtn_Click"   
+                                    Style="{StaticResource standardButton}" />
+        <Button x:Name="NextBtn" Content="{Binding NextItemLabel}" Grid.Column="2" Grid.Row="1"
+                                    Click="NextBtn_Click"
+                                    Style="{StaticResource standardButton}" />
+        <ComboBox x:Name="TableComboBox"
+                                      DisplayMemberPath="Name" Grid.Column="3" Grid.Row="1" 
+                                      Style="{StaticResource standardComboBox}"
+                                      SelectionChanged="TableComboBox_SelectionChanged"/>
+    </Grid>
+</UserControl>

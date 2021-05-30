@@ -233,12 +233,19 @@ namespace FantasyModuleParser
             stackTable.Visibility = Visibility.Visible;
         }
 
+        private void ShowEquipmentUserControl()
+        {
+            HideMainUserControls();
+            stackEquipment.Visibility = Visibility.Visible;
+        }
+
         private void HideMainUserControls()
         {
             stackNPC.Visibility = Visibility.Hidden;
             stackMain.Visibility = Visibility.Hidden;
             stackSpells.Visibility = Visibility.Hidden;
             stackTable.Visibility = Visibility.Hidden;
+            stackEquipment.Visibility = Visibility.Hidden;
         }
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
@@ -251,8 +258,13 @@ namespace FantasyModuleParser
                 ShowSpellUserControl();
             }
             if (optionTable.IsSelected)
+            {
                 ShowTableUserControl();
-
+            }
+            if (optionEquipment.IsSelected)
+            {
+                ShowEquipmentUserControl();
+            }
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {

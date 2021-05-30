@@ -138,9 +138,7 @@
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
-
       <Private>True</Private>
-
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\packages\EnvDTE.16.7.30508.193\lib\net45\EnvDTE.dll</HintPath>
@@ -263,6 +261,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Equipment\EquipmentOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Equipment\UserControls\EquipmentFooterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Equipment\UserControls\EquipmentHeaderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Equipment\UserControls\EquipmentNavigationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\UserControls\CategoriesUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -453,6 +467,28 @@
     </Compile>
     <Compile Include="Converters\LanguageModelConverter.cs" />
     <Compile Include="Converters\SelectableActionModelConverter.cs" />
+    <Compile Include="Equipment\Enums\AdventuringGearEnum.cs" />
+    <Compile Include="Equipment\Enums\AnimalsEnum.cs" />
+    <Compile Include="Equipment\Enums\ArmorEnum.cs" />
+    <Compile Include="Equipment\Enums\PrimaryEquipmentTypeEnum.cs" />
+    <Compile Include="Equipment\Enums\ToolsEnum.cs" />
+    <Compile Include="Equipment\Enums\TreasureEnum.cs" />
+    <Compile Include="Equipment\Enums\VehiclesEnum.cs" />
+    <Compile Include="Equipment\Enums\WeaponEnum.cs" />
+    <Compile Include="Equipment\EquipmentOptionControl.xaml.cs">
+      <DependentUpon>EquipmentOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UserControls\EquipmentFooterUC.xaml.cs">
+      <DependentUpon>EquipmentFooterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UserControls\EquipmentHeaderUC.xaml.cs">
+      <DependentUpon>EquipmentHeaderUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UserControls\EquipmentNavigationUC.xaml.cs">
+      <DependentUpon>EquipmentNavigationUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UserControls\ViewModels\EquipmentNavigationUCViewModel.cs" />
+    <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
     <Compile Include="Exporters\CommonMethods.cs" />
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
     <Compile Include="Exporters\ICampaign.cs" />
@@ -923,6 +959,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Equipment\Models\" />
+    <Folder Include="Equipment\Views\" />
     <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Tables\UserControls\" />
     <Folder Include="Test\" />
