@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Tables.Models;
@@ -575,12 +576,10 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString("NPCs");
 					xmlWriter.WriteEndElement(); // close </name>
 					xmlWriter.WriteStartElement("refpages"); // open <refpages>
-					xmlWriter.WriteStartElement("id-0001"); // open <refpages> <id-0001>
-					xmlWriter.WriteStartElement("blocks"); // open <refpages> <id-0001> <blocks>
-					xmlWriter.WriteStartElement("id-0001"); // open <refpages> <id-0001> <blocks> <id-0001>
-					WriteBlockFormatting(xmlWriter);
-					xmlWriter.WriteStartElement("text");
-					xmlWriter.WriteAttributeString("type", "formattedtext");
+					xmlWriter.WriteStartElement("id-0001"); // open <refpages> <a1>
+					xmlWriter.WriteStartElement("blocks"); // open <refpages> <a1> <blocks>
+					xmlWriter.WriteStartElement("id-0001"); // open <refpages> <a1> <blocks> <id-0001>
+					WriteBlockFormatting(xmlWriter);					
 					xmlWriter.WriteStartElement("p");
 					xmlWriter.WriteString("The following NPCs are able to be found in " + moduleModel.Name + ".");
 					xmlWriter.WriteStartElement("linklist");
@@ -604,6 +603,54 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString(moduleModel.Name + " NPCs"); // <name type=string> * NPCs
 					xmlWriter.WriteEndElement(); // close </name>
 					xmlWriter.WriteEndElement(); // close </id-0001>
+					FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+					int npcID = 2;
+					foreach (NPCModel npcModel in FatNPCList)
+					{
+						NPCController npcController = new NPCController();
+						xmlWriter.WriteStartElement("id-" + npcID.ToString("D4")); // <open id-0002>
+						xmlWriter.WriteStartElement("blocks"); // <npc_name> <blocks>
+						xmlWriter.WriteStartElement("id-0001"); // <npc_name> <blocks> <id-0001>
+						WriteBlockFormatting(xmlWriter);
+						if (npcModel.Description.Length > 2)
+						{
+							xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(npcModel.Description));
+						}
+						else
+						{
+							xmlWriter.WriteStartElement("p"); // <p>
+							xmlWriter.WriteEndElement(); // </p>
+						}						
+						if (npcModel.NPCImage.Length > 2)
+						{
+							xmlWriter.WriteStartElement("link");  // <link>
+							xmlWriter.WriteAttributeString("class", "imagewindow"); // <link class="imagewindow">
+							xmlWriter.WriteAttributeString("recordname", WriteImageXML(npcModel)); // <link class="imagewindow" recordname="image.*">
+							xmlWriter.WriteStartElement("b"); // <b>
+							xmlWriter.WriteString("Image:");
+							xmlWriter.WriteEndElement(); // </b>
+							xmlWriter.WriteEndElement(); // </link>
+							xmlWriter.WriteString(npcModel.NPCName);
+						}					
+						xmlWriter.WriteStartElement("link");  // <link>
+						xmlWriter.WriteAttributeString("class", "npc"); // <link class="npc">
+						xmlWriter.WriteAttributeString("recordname", WriteRecordNameNPC(npcModel)); // <link class="npc" recordname="reference.npcdata.*">
+						xmlWriter.WriteStartElement("b"); // <b>
+						xmlWriter.WriteString("NPC:");
+						xmlWriter.WriteEndElement(); // </b>
+						xmlWriter.WriteEndElement(); // </link>
+						xmlWriter.WriteString(npcModel.NPCName);
+						xmlWriter.WriteEndElement(); // </text>
+						xmlWriter.WriteEndElement(); // </id-0001>
+						xmlWriter.WriteEndElement(); // </blocks>
+						WriteListLink(xmlWriter);
+						xmlWriter.WriteStartElement("name"); // open <name>
+						xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
+						xmlWriter.WriteString(npcModel.NPCName); // <name type=string> NPC Name
+						xmlWriter.WriteEndElement(); // close </name>
+						xmlWriter.WriteEndElement(); // </id-0002>
+						npcID = ++npcID;
+					}
 					xmlWriter.WriteEndElement(); // close </refpages>
 				}
 				else
@@ -910,11 +957,19 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("singletext");
 			xmlWriter.WriteEndElement();
+			xmlWriter.WriteStartElement("text");
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 		}
 		static private string WriteRecordNameNPC(NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append("reference.npcdata." + NPCExporter.NPCNameToXMLFormat(npcModel));
+			return stringBuilder.ToString();
+		}
+		static private string WriteImageXML(NPCModel npcModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
 			return stringBuilder.ToString();
 		}
 		static private void WriteListLink(XmlWriter xmlWriter)
@@ -928,6 +983,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(".."); // <recordname>..
 			xmlWriter.WriteEndElement(); // close </recordname>
 			xmlWriter.WriteEndElement(); // close </listlink>
+		}
+		static private string WriteImageName(NPCModel npcModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append("image." + NPCExporter.NPCNameToXMLFormat(npcModel));
+			return stringBuilder.ToString();
 		}
 		#endregion
 		#region Common methods
