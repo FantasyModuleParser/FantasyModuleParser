@@ -280,5 +280,12 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		static public string WriteSpellXML(SpellModel spellModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			
+
+			return stringBuilder.ToString();
+		}
 	}
 }
