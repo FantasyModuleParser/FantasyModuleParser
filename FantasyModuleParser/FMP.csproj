@@ -265,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Equipment\UserControls\CostAndWeightUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Equipment\UserControls\EquipmentFooterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -477,6 +481,9 @@
     <Compile Include="Equipment\Enums\WeaponEnum.cs" />
     <Compile Include="Equipment\EquipmentOptionControl.xaml.cs">
       <DependentUpon>EquipmentOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UserControls\CostAndWeightUC.xaml.cs">
+      <DependentUpon>CostAndWeightUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment\UserControls\EquipmentFooterUC.xaml.cs">
       <DependentUpon>EquipmentFooterUC.xaml</DependentUpon>

@@ -59,7 +59,7 @@
 
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="130"/>
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
@@ -176,6 +176,14 @@
                         <!-- ================================== -->
                         <!-- Secondary Equipment Type END       -->
                         <!-- ================================== -->
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <equipmentUC:CostAndWeightUC Grid.Row="0"/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>
