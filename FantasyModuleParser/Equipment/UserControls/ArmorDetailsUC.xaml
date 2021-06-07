@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="FantasyModuleParser.Equipment.UserControls.ArmorDetailsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:enum="clr-namespace:FantasyModuleParser.Equipment.Enums"
+             xmlns:model="clr-namespace:FantasyModuleParser.Equipment.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="300">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Label Content="HURRAAAYYY" Grid.Row="0"/>
+
+        <Label Content="{Binding ArmorEnumType}" Grid.Row="1" />
+        <Label Content="Shield has been selected"  Grid.Row="2">
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ArmorEnumType}" 
+                                     Value="{x:Static enum:ArmorEnum.Shield}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+    </Grid>
+</UserControl>

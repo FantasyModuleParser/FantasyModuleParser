@@ -265,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Equipment\UserControls\ArmorDetailsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Equipment\UserControls\CostAndWeightUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -482,6 +486,10 @@
     <Compile Include="Equipment\EquipmentOptionControl.xaml.cs">
       <DependentUpon>EquipmentOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Equipment\Models\EquipmentModel.cs" />
+    <Compile Include="Equipment\UserControls\ArmorDetailsUC.xaml.cs">
+      <DependentUpon>ArmorDetailsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\UserControls\CostAndWeightUC.xaml.cs">
       <DependentUpon>CostAndWeightUC.xaml</DependentUpon>
     </Compile>
@@ -495,7 +503,6 @@
       <DependentUpon>EquipmentNavigationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment\UserControls\ViewModels\EquipmentNavigationUCViewModel.cs" />
-    <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
     <Compile Include="Exporters\CommonMethods.cs" />
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
     <Compile Include="Exporters\ICampaign.cs" />
@@ -966,7 +973,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Equipment\Models\" />
+    <Folder Include="Equipment\ViewModels\" />
     <Folder Include="Equipment\Views\" />
     <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Tables\UserControls\" />
