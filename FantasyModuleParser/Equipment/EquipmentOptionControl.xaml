@@ -196,6 +196,10 @@
                             </Grid.RowDefinitions>
                             <equipmentUC:CostAndWeightUC Grid.Row="0"/>
 
+                            <!-- ===================================== -->
+                            <!-- Item Specific Equipment Details BEGIN -->
+                            <!-- ===================================== -->
+
                             <equipmentUC:ArmorDetailsUC Grid.Row="1">
                                 <equipmentUC:ArmorDetailsUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:ArmorDetailsUC}">
@@ -209,6 +213,24 @@
                                     </Style>
                                 </equipmentUC:ArmorDetailsUC.Style>
                             </equipmentUC:ArmorDetailsUC>
+
+                            <equipmentUC:WeaponUC Grid.Row="1">
+                                <equipmentUC:WeaponUC.Style>
+                                    <Style TargetType="{x:Type equipmentUC:WeaponUC}">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding PrimaryEquipmentType}"
+                                                         Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Weapon}">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </equipmentUC:WeaponUC.Style>
+                            </equipmentUC:WeaponUC>
+
+                            <!-- ===================================== -->
+                            <!-- Item Specific Equipment Details END   -->
+                            <!-- ===================================== -->
                         </Grid>
                     </Grid>
                 </Grid>

@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="FantasyModuleParser.Equipment.UserControls.WeaponUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:weaponEnum="clr-namespace:FantasyModuleParser.NPC.Models.Action.Enums"
+             xmlns:weaponPropEnum="clr-namespace:FantasyModuleParser.Equipment.Enums.Weapon"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="340">
+    <Grid Background="AntiqueWhite">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Damage Labels -->
+        <Label Content="Number" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Die" Grid.Row="0" Grid.Column="2"/>
+        <Label Content="Bonus" Grid.Row="0" Grid.Column="3"/>
+        <Label Content="Damage Type" Grid.Row="0" Grid.Column="4"/>
+        
+        <!-- Primary Damage -->
+        <Label Content="Damage" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Grid.Row="1" Grid.Column="1"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
+                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  Grid.Row="1" Grid.Column="2" />
+        <TextBox Grid.Row="1" Grid.Column="3"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  Grid.Row="1" Grid.Column="4"/>
+        
+        <!-- Bonus Damage -->
+        <Label Content="Bonus" Grid.Row="2" Grid.Column="0"/>
+        <TextBox Grid.Row="2" Grid.Column="1"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
+                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  Grid.Row="2" Grid.Column="2" />
+        <TextBox Grid.Row="2" Grid.Column="3"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  Grid.Row="2" Grid.Column="4"/>
+
+        <Separator Grid.Row="3" Grid.ColumnSpan="10" VerticalAlignment="Top"/>
+
+        <Grid Grid.Row="4" Grid.ColumnSpan="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Label Content="Properties"></Label>
+                <ListBox Margin="0,5,5,5" Grid.Column="1"
+                                 ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponPropertyEnum}}}" 
+                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                </ListBox>
+            </StackPanel>
+            
+        </Grid>
+    </Grid>
+</UserControl>

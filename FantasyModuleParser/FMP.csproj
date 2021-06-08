@@ -285,6 +285,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Equipment\UserControls\WeaponUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\UserControls\CategoriesUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -483,6 +487,8 @@
     <Compile Include="Equipment\Enums\TreasureEnum.cs" />
     <Compile Include="Equipment\Enums\VehiclesEnum.cs" />
     <Compile Include="Equipment\Enums\WeaponEnum.cs" />
+    <Compile Include="Equipment\Enums\Weapon\WeaponMaterialEnum.cs" />
+    <Compile Include="Equipment\Enums\Weapon\WeaponPropertyEnum.cs" />
     <Compile Include="Equipment\EquipmentOptionControl.xaml.cs">
       <DependentUpon>EquipmentOptionControl.xaml</DependentUpon>
     </Compile>
@@ -503,7 +509,11 @@
       <DependentUpon>EquipmentNavigationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment\UserControls\Models\ArmorModel.cs" />
+    <Compile Include="Equipment\UserControls\Models\WeaponModel.cs" />
     <Compile Include="Equipment\UserControls\ViewModels\EquipmentNavigationUCViewModel.cs" />
+    <Compile Include="Equipment\UserControls\WeaponUC.xaml.cs">
+      <DependentUpon>WeaponUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
     <Compile Include="Exporters\CommonMethods.cs" />
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
