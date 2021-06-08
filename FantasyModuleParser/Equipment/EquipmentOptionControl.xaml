@@ -7,10 +7,10 @@
              xmlns:equipmentUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
              xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
              xmlns:equipmentEnum="clr-namespace:FantasyModuleParser.Equipment.Enums"
-             xmlns:model="clr-namespace:FantasyModuleParser.Equipment.Models"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Equipment.ViewModels"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <model:EquipmentModel/>
+        <viewModel:EquipmentOptionControlViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
     <Style TargetType="Button" x:Key="standardButton">
@@ -53,11 +53,11 @@
                         <RowDefinition Height="90"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="10*"/>
-                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
                     <equipmentUC:EquipmentHeaderUC Grid.Row="0"/>
 
-                    <equipmentUC:EquipmentFooterUC Grid.Row="3"/>
+                    <equipmentUC:EquipmentFooterUC Grid.Row="3" SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"/>
                     <!-- Line Separator -->
                     <Separator Grid.Row="1"/>
 
@@ -68,7 +68,7 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <ListBox Name="PrimaryEquipmentTypeListBox" Margin="0,5,5,5"
-                                 ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:PrimaryEquipmentTypeEnum}}}" 
+                                 ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:PrimaryEquipmentEnum}}}" 
                                  SelectedValuePath="Value" DisplayMemberPath="Description"
                                  SelectedValue="{Binding PrimaryEquipmentType}"></ListBox>
                         <!-- ================================== -->
@@ -82,7 +82,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.AdventuringGear}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.AdventuringGear}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -99,7 +99,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.Armor}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Armor}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -115,7 +115,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}" 
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.Weapon}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Weapon}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -131,7 +131,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}" 
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.Tools}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Tools}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -147,7 +147,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.Animals}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Animals}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -163,7 +163,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.Vehicles}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Vehicles}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -179,7 +179,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.Treasure}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Treasure}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -202,7 +202,7 @@
                                         <Setter Property="Visibility" Value="Hidden"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                         Value="{x:Static equipmentEnum:PrimaryEquipmentTypeEnum.Armor}">
+                                                         Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Armor}">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>

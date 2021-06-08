@@ -37,7 +37,14 @@ namespace FantasyModuleParser.Equipment.UserControls
 
         private void SaveEquipment_Click(object sender, RoutedEventArgs e)
         {
+            OnSaveEquipmentAction();
+        }
 
+        public event EventHandler SaveEquipmentAction;
+        protected virtual void OnSaveEquipmentAction()
+        {
+            if (SaveEquipmentAction != null)
+                SaveEquipmentAction(this, EventArgs.Empty);
         }
 
         private void AddToProject_Click(object sender, RoutedEventArgs e)

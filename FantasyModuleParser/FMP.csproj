@@ -478,7 +478,7 @@
     <Compile Include="Equipment\Enums\AdventuringGearEnum.cs" />
     <Compile Include="Equipment\Enums\AnimalsEnum.cs" />
     <Compile Include="Equipment\Enums\ArmorEnum.cs" />
-    <Compile Include="Equipment\Enums\PrimaryEquipmentTypeEnum.cs" />
+    <Compile Include="Equipment\Enums\PrimaryEquipmentEnum.cs" />
     <Compile Include="Equipment\Enums\ToolsEnum.cs" />
     <Compile Include="Equipment\Enums\TreasureEnum.cs" />
     <Compile Include="Equipment\Enums\VehiclesEnum.cs" />
@@ -502,7 +502,9 @@
     <Compile Include="Equipment\UserControls\EquipmentNavigationUC.xaml.cs">
       <DependentUpon>EquipmentNavigationUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Equipment\UserControls\Models\ArmorModel.cs" />
     <Compile Include="Equipment\UserControls\ViewModels\EquipmentNavigationUCViewModel.cs" />
+    <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
     <Compile Include="Exporters\CommonMethods.cs" />
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
     <Compile Include="Exporters\ICampaign.cs" />
@@ -973,7 +975,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Equipment\ViewModels\" />
     <Folder Include="Equipment\Views\" />
     <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Tables\UserControls\" />

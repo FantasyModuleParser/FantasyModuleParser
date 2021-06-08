@@ -2,7 +2,7 @@
 
 namespace FantasyModuleParser.Equipment.Enums
 {
-    public enum PrimaryEquipmentTypeEnum
+    public enum PrimaryEquipmentEnum
     {
 		[Description("Adventuring Gear")]
 		AdventuringGear = 0,

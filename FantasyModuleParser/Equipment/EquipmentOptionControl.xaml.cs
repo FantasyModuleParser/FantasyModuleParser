@@ -16,5 +16,10 @@ namespace FantasyModuleParser.Equipment
         {
 
         }
+
+        private void EquipmentFooterUC_SaveEquipmentAction(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
