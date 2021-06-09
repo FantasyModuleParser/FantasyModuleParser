@@ -22,8 +22,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         
         <!-- Damage Labels -->
@@ -69,7 +68,33 @@
                                  SelectedValuePath="Value" DisplayMemberPath="Description">
                 </ListBox>
             </StackPanel>
-            
+            <StackPanel Grid.Column="1">
+                <Label Content="Material"></Label>
+                <ListBox Margin="0,5,5,5" Grid.Column="1"
+                                 ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponMaterialEnum}}}" 
+                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <Label Content="Range"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Short" Grid.Row="0" Grid.Column="0"/>
+                    <Label Content="Long" Grid.Row="1" Grid.Column="0"/>
+
+                    <TextBox Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
