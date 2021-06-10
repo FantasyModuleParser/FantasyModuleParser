@@ -33,23 +33,27 @@
         
         <!-- Primary Damage -->
         <Label Content="Damage" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Grid.Row="1" Grid.Column="1"/>
-        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
+        <TextBox Text="{Binding PrimaryDamageDieCount}" Grid.Row="1" Grid.Column="1"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}" 
+                  SelectedValue="{Binding PrimaryDieType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
                   Grid.Row="1" Grid.Column="2" />
-        <TextBox Grid.Row="1" Grid.Column="3"/>
+        <TextBox Text="{Binding PrimaryDamageBonus}" Grid.Row="1" Grid.Column="3"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
+                  SelectedValue="{Binding PrimaryDamageType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
                   Grid.Row="1" Grid.Column="4"/>
         
         <!-- Bonus Damage -->
         <Label Content="Bonus" Grid.Row="2" Grid.Column="0"/>
-        <TextBox Grid.Row="2" Grid.Column="1"/>
+        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="2" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
+                  SelectedValue="{Binding SecondaryDieType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
                   Grid.Row="2" Grid.Column="2" />
-        <TextBox Grid.Row="2" Grid.Column="3"/>
+        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="2" Grid.Column="3"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
+                  SelectedValue="{Binding SecondaryDamageType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
                   Grid.Row="2" Grid.Column="4"/>
 
@@ -65,6 +69,7 @@
                 <Label Content="Properties"></Label>
                 <ListBox Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponPropertyEnum}}}" 
+                                 SelectionMode="Multiple"
                                  SelectedValuePath="Value" DisplayMemberPath="Description">
                 </ListBox>
             </StackPanel>

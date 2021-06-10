@@ -15,6 +15,7 @@ namespace FantasyModuleParser.Equipment.Models
         #endregion Secondary Panel Options
 
         public ArmorModel Armor = new ArmorModel();
+        public WeaponModel Weapon = new WeaponModel();
 
         public EquipmentModel()
         {

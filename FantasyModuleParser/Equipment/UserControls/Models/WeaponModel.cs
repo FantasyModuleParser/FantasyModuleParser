@@ -10,5 +10,15 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
         public DamageProperty BonusDamage { get; set; }
 
         public List<WeaponPropertyEnum> WeaponProperties;
+
+        public List<WeaponMaterialEnum> MaterialProperties;
+
+        public int ShortRange;
+        public int LongRange;
+
+        public WeaponModel()
+        {
+            PrimaryDamage = new DamageProperty();
+        }
     }
 }
