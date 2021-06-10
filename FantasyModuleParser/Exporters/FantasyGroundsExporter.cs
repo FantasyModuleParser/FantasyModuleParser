@@ -207,7 +207,11 @@ namespace FantasyModuleParser.Exporters
                 {
 					if (!string.IsNullOrEmpty(npcModel.NPCImage))
 					{
-						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "");
+						if (npcModel.NPCImage.StartsWith("file:///"))
+						{
+							npcModel.NPCImage.Remove(0, 8);
+						}
+						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "").Replace(",", "");
 						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images", Filename);
 						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images");
 						if (Directory.Exists(NPCImageDirectory))
@@ -687,7 +691,7 @@ namespace FantasyModuleParser.Exporters
 					WriteListLink(xmlWriter);
 					xmlWriter.WriteStartElement("name"); // open <name>
 					xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
-					xmlWriter.WriteString(moduleModel.Name + " Spells"); // <name type=string> * Spellss
+					xmlWriter.WriteString(moduleModel.Name + " Spells"); // <name type=string> * Spells
 					xmlWriter.WriteEndElement(); // close </name>
 					xmlWriter.WriteEndElement(); // close </id-0001>
 					FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
@@ -735,20 +739,22 @@ namespace FantasyModuleParser.Exporters
 						xmlWriter.WriteString("Components:");
 						xmlWriter.WriteEndElement();
 						xmlWriter.WriteString(" " + spellModel.ComponentDescription);
-						xmlWriter.WriteEndElement(); // </p>
 						WriteLineBreak(xmlWriter);
 						xmlWriter.WriteStartElement("b");
 						xmlWriter.WriteString("Duration:");
 						xmlWriter.WriteEndElement();
 						xmlWriter.WriteString(" " + spellModel.DurationText);
+						WriteLineBreak(xmlWriter);
 						xmlWriter.WriteStartElement("link");  // <link>
 						xmlWriter.WriteAttributeString("class", "power"); // <link class="power">
 						xmlWriter.WriteAttributeString("recordname", WriteRecordNameSpell(spellModel)); // <link class="power" recordname="reference.spelldata.*">
 						xmlWriter.WriteStartElement("b"); // <b>
-						xmlWriter.WriteString("NPC:");
+						xmlWriter.WriteString("Spell:");
 						xmlWriter.WriteEndElement(); // </b>
 						xmlWriter.WriteEndElement(); // </link>
 						xmlWriter.WriteString(spellModel.SpellName);
+						WriteLineBreak(xmlWriter);
+						xmlWriter.WriteEndElement(); // </p>
 						xmlWriter.WriteEndElement(); // </text>
 						xmlWriter.WriteEndElement(); // </id-0001>
 						xmlWriter.WriteEndElement(); // </blocks>
