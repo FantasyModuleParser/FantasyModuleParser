@@ -230,12 +230,12 @@
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="300" />
-                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="295" />
+                <ColumnDefinition Width="295" />
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
             <Label Content="Information:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" Padding="0,0,5,0" Grid.Column="0"/>
-            <TextBox x:Name="MarkdownTextBox" Text="{Binding SpellModel.Description, UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox x:Name="MarkdownTextBox" Text="{Binding SpellModel.Description, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextBox_TextChanged"
                      VerticalAlignment="Top" Margin="5,5,0,0" Padding="5" Height="170" 
                      VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Grid.Column="1"
                      TextWrapping="WrapWithOverflow"/>
@@ -255,7 +255,7 @@
                 <ColumnDefinition Width="75" />
                 <ColumnDefinition Width="120" />
             </Grid.ColumnDefinitions>
-            <Button Name="btn_bold" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Column="1">
+            <Button Name="btn_bold" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Click="btn_bold_Click" Grid.Column="1">
                 <Image Source="/Resources/Bold.png" />
                 <Button.ToolTip>
                     <TextBlock>
@@ -263,7 +263,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Name="btn_italics" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Column="2" >
+            <Button Name="btn_italics" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Click="btn_italics_Click" Grid.Column="2" >
                 <Image Source="/Resources/italic.png" />
                 <Button.ToolTip>
                     <TextBlock>
@@ -271,7 +271,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Name="btn_underline" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Column="3">
+            <Button Name="btn_underline" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Click="btn_underline_Click" Grid.Column="3">
                 <Image Source="/Resources/underline.png" />
                 <Button.ToolTip>
                     <TextBlock>
@@ -279,7 +279,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Name="btn_bullet" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Column="4">
+            <Button Name="btn_bullet" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Click="btn_bullet_Click" Grid.Column="4">
                 <Image Source="/Resources/Bulleted List.png" />
                 <Button.ToolTip>
                     <TextBlock>
@@ -287,7 +287,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Name="btn_header" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Column="5">
+            <Button Name="btn_header" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Click="btn_header_Click" Grid.Column="5">
                 <Image Source="/Resources/Header.png" />
                 <Button.ToolTip>
                     <TextBlock>
@@ -295,7 +295,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Name="btn_text" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Column="6">
+            <Button Name="btn_text" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Click="btn_text_Click" Grid.Column="6">
                 <Image Source="/Resources/Text Color.png" />
                 <Button.ToolTip>
                     <TextBlock>
@@ -303,7 +303,7 @@
                     </TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Name="btn_chatbox" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Grid.Column="7">
+            <Button Name="btn_chatbox" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Click="btn_chatbox_Click" Grid.Column="7">
                 <Image Source="/Resources/Speech Bubble With Dots.png" />
                 <Button.ToolTip>
                     <TextBlock>

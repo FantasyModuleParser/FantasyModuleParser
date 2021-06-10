@@ -13,6 +13,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Xaml;
 using XamlReader = System.Windows.Markup.XamlReader;
 
@@ -36,7 +37,22 @@ namespace FantasyModuleParser.Spells
             DurationUnit.IsEnabled = spellViewModel.SpellModel.DurationType == Enums.DurationType.Time;
             importTextSpellView = new ImportTextSpellView();
             importTextSpellView.DataContext = this.DataContext;
+            PreviewKeyDown += SpellOptionControl_PreviewKeyDown;
             log.Debug("Spell Option UC Initialized");
+        }
+        private void SpellOptionControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                if (e.Key == Key.B)
+                    btn_bold_Click(sender, e);
+                if (e.Key == Key.I)
+                    btn_italics_Click(sender, e);
+                if (e.Key == Key.U)
+                    btn_underline_Click(sender, e);
+            }
+
+            // If the return key is pressed AND the 
         }
         private void SaveSpellButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -419,19 +435,16 @@ namespace FantasyModuleParser.Spells
                 markdownHelp.Show();
             }
         }
-
         private void MarkdownHelp_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _isMarkdownHelpWindowOpen = false;
         }
-
         private static MarkdownPipeline BuildPipeline()
         {
             return new MarkdownPipelineBuilder()
                 .UseSupportedExtensions()
                 .Build();
         }
-
         class MyXamlSchemaContext : XamlSchemaContext
         {
             public override bool TryGetCompatibleXamlNamespace(string xamlNamespace, out string compatibleNamespace)
