@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Spells.ViewModels;
 using System;
@@ -202,9 +203,10 @@ namespace FantasyModuleParser.Exporters
 		}
 		static public void WriteSpellDescription(XmlWriter xmlWriter, SpellModel spellModel)
 		{
+			NPCController npcController = new NPCController();
 			xmlWriter.WriteStartElement("description");
 			xmlWriter.WriteAttributeString("type", "formattedtext");
-			xmlWriter.WriteString(spellModel.Description);
+			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(spellModel.Description));
 			xmlWriter.WriteEndElement();
 		}
 		static public void WriteSpellLevel(XmlWriter xmlWriter, SpellModel spellModel)

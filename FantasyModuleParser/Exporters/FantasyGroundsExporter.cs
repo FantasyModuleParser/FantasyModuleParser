@@ -698,15 +698,14 @@ namespace FantasyModuleParser.Exporters
 					int spellID = 2;
 					foreach (SpellModel spellModel in FatSpellList)	
 					{
+						NPCController npcController = new NPCController();
 						xmlWriter.WriteStartElement("id-" + spellID.ToString("D4")); // <open id-****>
 						xmlWriter.WriteStartElement("blocks"); // <npc_name> <blocks>
 						xmlWriter.WriteStartElement("id-0001"); // <npc_name> <blocks> <id-0001>
 						WriteBlockFormatting(xmlWriter);
-						xmlWriter.WriteStartElement("p"); // <p>
-						xmlWriter.WriteStartElement("h");
+						xmlWriter.WriteRaw("<p><h>"); // <p><h>
 						xmlWriter.WriteString(spellModel.SpellName);
-						xmlWriter.WriteEndElement();
-						xmlWriter.WriteStartElement("i");;
+						xmlWriter.WriteRaw("</h></p><p><i>"); // </h></p><p><i>
 						if (spellModel.SpellLevel.GetDescription().Equals("cantrip"))
 						{
 							xmlWriter.WriteString(spellModel.SpellSchool + " cantrip");
@@ -719,42 +718,37 @@ namespace FantasyModuleParser.Exporters
 								xmlWriter.WriteString(" (ritual)");
 							}
 						}
-						xmlWriter.WriteEndElement();
-						WriteLineBreak(xmlWriter);
-						xmlWriter.WriteStartElement("b");
+						xmlWriter.WriteRaw("</i></p><p><b>");
 						xmlWriter.WriteString("Casting Time:");
-						xmlWriter.WriteEndElement();
+						xmlWriter.WriteRaw("</b>");
 						xmlWriter.WriteString(" " + spellModel.CastingTime + " " + spellModel.CastingType.GetDescription());
 						if (spellModel.CastingTime > 1)
 						{
 							xmlWriter.WriteString("s");
 						}
-						WriteLineBreak(xmlWriter);
-						xmlWriter.WriteStartElement("b");
+						xmlWriter.WriteRaw("</p><p><b>");
 						xmlWriter.WriteString("Range:");
-						xmlWriter.WriteEndElement();
+						xmlWriter.WriteRaw("</b>");
 						xmlWriter.WriteString(" " + spellModel.RangeDescription);
-						WriteLineBreak(xmlWriter);
-						xmlWriter.WriteStartElement("b");
+						xmlWriter.WriteRaw("</p><p><b>");
 						xmlWriter.WriteString("Components:");
-						xmlWriter.WriteEndElement();
+						xmlWriter.WriteRaw("</b>");
 						xmlWriter.WriteString(" " + spellModel.ComponentDescription);
-						WriteLineBreak(xmlWriter);
-						xmlWriter.WriteStartElement("b");
+						xmlWriter.WriteRaw("</p><p><b>");
 						xmlWriter.WriteString("Duration:");
-						xmlWriter.WriteEndElement();
+						xmlWriter.WriteRaw("</b>");
 						xmlWriter.WriteString(" " + spellModel.DurationText);
-						WriteLineBreak(xmlWriter);
+						xmlWriter.WriteRaw("</p>");
+						xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(spellModel.Description));
 						xmlWriter.WriteStartElement("link");  // <link>
 						xmlWriter.WriteAttributeString("class", "power"); // <link class="power">
 						xmlWriter.WriteAttributeString("recordname", WriteRecordNameSpell(spellModel)); // <link class="power" recordname="reference.spelldata.*">
-						xmlWriter.WriteStartElement("b"); // <b>
+						xmlWriter.WriteRaw("<b>"); // <b>
 						xmlWriter.WriteString("Spell:");
-						xmlWriter.WriteEndElement(); // </b>
+						xmlWriter.WriteRaw("</b>"); // </b>
 						xmlWriter.WriteEndElement(); // </link>
 						xmlWriter.WriteString(spellModel.SpellName);
-						WriteLineBreak(xmlWriter);
-						xmlWriter.WriteEndElement(); // </p>
+						xmlWriter.WriteRaw("</p>"); // </p>
 						xmlWriter.WriteEndElement(); // </text>
 						xmlWriter.WriteEndElement(); // </id-0001>
 						xmlWriter.WriteEndElement(); // </blocks>
