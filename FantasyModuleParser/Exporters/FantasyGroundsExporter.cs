@@ -178,6 +178,7 @@ namespace FantasyModuleParser.Exporters
             {
 				if (moduleModel.IncludeTokens)
                 {
+					#region Token Data
 					if (!string.IsNullOrEmpty(npcModel.NPCToken))
 					{
 						string Filename = Path.GetFileName(npcModel.NPCToken);
@@ -196,6 +197,7 @@ namespace FantasyModuleParser.Exporters
 						}
 						File.Copy(npcModel.NPCToken, NPCTokenFileName);
 					}
+					#endregion
 				}
             }
 			/// <summary>
@@ -205,6 +207,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				if (moduleModel.IncludeImages)
                 {
+					#region Image Data
 					if (!string.IsNullOrEmpty(npcModel.NPCImage))
 					{
 						if (npcModel.NPCImage.StartsWith("file:///"))
@@ -227,7 +230,8 @@ namespace FantasyModuleParser.Exporters
 						}
 						File.Copy(npcModel.NPCImage, NPCImageFileName);
 					}
-				}	
+					#endregion
+				}
 			}
 
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
@@ -526,9 +530,9 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement(); // Close </spelllists>
 					#endregion
 				}
-				#region Tables
 				if (moduleModel.IncludeTables)
 				{
+					#region Tables Data
 					xmlWriter.WriteStartElement("tables");
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
@@ -555,9 +559,10 @@ namespace FantasyModuleParser.Exporters
 						}
 						xmlWriter.WriteEndElement(); // Close </category>
 					}
-					xmlWriter.WriteEndElement(); // Close </tables>  
+					xmlWriter.WriteEndElement(); // Close </tables>
+					#endregion
 				}
-				#endregion
+
 				#region Reference Manual
 				xmlWriter.WriteStartElement("referencemanual"); // open <referencemanual>
 				xmlWriter.WriteStartElement("name"); // open <name>
@@ -572,6 +577,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); // close </name>
 				xmlWriter.WriteStartElement("subchapters"); // open <subchapters>
 				int subchapterID = 0;
+				#region NPC Reference Manual Section
 				if (moduleModel.IncludeNPCs)
 				{
 					xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2")); // open <subchapters> <subchapter_**>
@@ -659,6 +665,8 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement(); // close </subchapter_**>
 					subchapterID = ++subchapterID;
 				}
+				#endregion
+				#region Spell Reference Manual Section
 				if (moduleModel.IncludeSpells)
 				{
 					xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2")); // open <subchapters> <subchapter_**>
@@ -763,12 +771,13 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement(); // </subchapter_**>
 					subchapterID = ++subchapterID;
 				}
+				#endregion
 				xmlWriter.WriteEndElement(); // close </refpages>
 				xmlWriter.WriteEndElement(); // close </subchapter_**>
 				xmlWriter.WriteEndElement(); // close </chapter_**>
 				xmlWriter.WriteEndElement(); // close </chapters>
-				#endregion
 				xmlWriter.WriteEndElement(); // Close </referencemanual>
+				#endregion
 				xmlWriter.WriteEndElement(); // </reference>
                 #endregion
                 
