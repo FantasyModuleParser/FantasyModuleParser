@@ -284,10 +284,7 @@ namespace FantasyModuleParser.Exporters
 		}
 		static public string WriteSpellXML(SpellModel spellModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-			
-
-			return stringBuilder.ToString();
+			throw new NotImplementedException();
 		}
 	}
 }
