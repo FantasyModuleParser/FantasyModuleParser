@@ -67,17 +67,18 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <Label Content="Properties"></Label>
-                <ListBox Margin="0,5,5,5" Grid.Column="1"
-                                 ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponPropertyEnum}}}" 
-                                 SelectionMode="Multiple"
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                <ListBox x:Name="WeaponPropertyListBox" Grid.Column="1"
+                            ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponPropertyEnum}}}" 
+                            SelectionMode="Multiple"
+                            SelectedValuePath="Value" DisplayMemberPath="Description"
+                            Margin="0,5,5,5">
                 </ListBox>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Label Content="Material"></Label>
-                <ListBox Margin="0,5,5,5" Grid.Column="1"
-                                 ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponMaterialEnum}}}" 
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                <ListBox x:Name="MaterialPropertyListBox" Grid.Column="1"
+                            ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponMaterialEnum}}}" 
+                            SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,5,5,5" >
                 </ListBox>
             </StackPanel>
 
@@ -96,8 +97,8 @@
                     <Label Content="Short" Grid.Row="0" Grid.Column="0"/>
                     <Label Content="Long" Grid.Row="1" Grid.Column="0"/>
 
-                    <TextBox Grid.Row="0" Grid.Column="1"/>
-                    <TextBox Grid.Row="1" Grid.Column="1"/>
+                    <TextBox Text="{Binding ShortRange}"  Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Text="{Binding LongRange}" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
             </StackPanel>
         </Grid>

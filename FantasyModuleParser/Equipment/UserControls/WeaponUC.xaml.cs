@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FantasyModuleParser.Equipment.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace FantasyModuleParser.Equipment.UserControls
         public WeaponUC()
         {
             InitializeComponent();
+        }
+
+        public void Refresh()
+        {
+            // Check local DataContext that it's an instance of EquipmentOptionControlViewModel
+            // and refresh the two list boxes accordingly
+            if(DataContext is EquipmentOptionControlViewModel)
+            {
+                EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
+            }
         }
     }
 }

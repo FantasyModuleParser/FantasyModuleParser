@@ -51,5 +51,30 @@ namespace FantasyModuleParser.Equipment.UserControls
         {
 
         }
+
+        private void EquipmentNavigationUC_PrevEquipmentAction(object sender, EventArgs e)
+        {
+            OnPrevEquipmentAction();
+        }
+
+        public event EventHandler PrevEquipmentAction;
+        protected virtual void OnPrevEquipmentAction()
+        {
+            if (PrevEquipmentAction != null)
+                PrevEquipmentAction(this, EventArgs.Empty);
+        }
+
+
+        private void EquipmentNavigationUC_NextEquipmentAction(object sender, EventArgs e)
+        {
+            OnNextEquipmentAction();
+        }
+
+        public event EventHandler NextEquipmentAction;
+        protected virtual void OnNextEquipmentAction()
+        {
+            if (NextEquipmentAction != null)
+                NextEquipmentAction(this, EventArgs.Empty);
+        }
     }
 }

@@ -19,6 +19,10 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
         public WeaponModel()
         {
             PrimaryDamage = new DamageProperty();
+            BonusDamage = new DamageProperty();
+
+            WeaponProperties = new List<WeaponPropertyEnum>();
+            MaterialProperties = new List<WeaponMaterialEnum>();
         }
     }
 }

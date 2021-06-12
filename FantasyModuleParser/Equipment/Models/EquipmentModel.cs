@@ -1,17 +1,24 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.UserControls.Models;
-using FantasyModuleParser.NPC.ViewModel;
-using System.ComponentModel;
+using FantasyModuleParser.Main.Models;
 
 namespace FantasyModuleParser.Equipment.Models
 {
-    public class EquipmentModel : ViewModelBase
+    public class EquipmentModel : ModelBase
     {
+
+        public string Description;
+        public string ImageFilePath;
+
+        public int CostValue;
+        public string CostDenomination;
+        public double Weight;
+
         public PrimaryEquipmentEnum PrimaryEquipmentEnumType;
 
         #region Secondary Panel Options
         public ArmorEnum ArmorEnumType;
-
+        public WeaponEnum WeaponEnumType;
         #endregion Secondary Panel Options
 
         public ArmorModel Armor = new ArmorModel();
@@ -19,6 +26,16 @@ namespace FantasyModuleParser.Equipment.Models
 
         public EquipmentModel()
         {
+        }
+
+        public void Save()
+        {
+
+        }
+
+        public void Load()
+        {
+
         }
     }
 }

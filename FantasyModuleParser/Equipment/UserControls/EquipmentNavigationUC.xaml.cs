@@ -38,12 +38,26 @@ namespace FantasyModuleParser.Equipment.UserControls
 
         private void PrevBtn_Click(object sender, RoutedEventArgs e)
         {
+            OnPrevEquipmentAction();
+        }
 
+        public event EventHandler PrevEquipmentAction;
+        protected virtual void OnPrevEquipmentAction()
+        {
+            if (PrevEquipmentAction != null)
+                PrevEquipmentAction(this, EventArgs.Empty);
         }
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
+            OnNextEquipmentAction();
+        }
 
+        public event EventHandler NextEquipmentAction;
+        protected virtual void OnNextEquipmentAction()
+        {
+            if (NextEquipmentAction != null)
+                NextEquipmentAction(this, EventArgs.Empty);
         }
 
         private void TableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -19,7 +19,7 @@ using System.Windows;
 
 namespace FantasyModuleParser.NPC
 {
-	public class NPCModel
+	public class NPCModel : ModelBase
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(NPCModel));
 

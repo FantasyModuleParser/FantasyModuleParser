@@ -39,6 +39,7 @@ namespace FantasyModuleParser.Main.Services
 
         public void Save(string filePath, ModuleModel moduleModel)
         {
+            Directory.CreateDirectory(@filePath);
             using (StreamWriter file = File.CreateText(@filePath))
             {
                 JsonSerializer serializer = new JsonSerializer();

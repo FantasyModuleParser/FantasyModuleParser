@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace FantasyModuleParser.Main.Models
 {
-    public class ModuleModel
+    public class ModuleModel : ModelBase
     {
         public NPCController NpcController { get; set; }
         public NPCModel NpcModel { get; set; }

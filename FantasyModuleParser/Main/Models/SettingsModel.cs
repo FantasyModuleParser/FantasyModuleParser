@@ -1,6 +1,6 @@
 ﻿namespace FantasyModuleParser.Main.Models
 {
-    public class SettingsModel
+    public class SettingsModel : ModelBase
     {
         public string MainFolderLocation { get; set; }
         public string ProjectFolderLocation { get; set; }

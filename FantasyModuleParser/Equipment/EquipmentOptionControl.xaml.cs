@@ -21,5 +21,15 @@ namespace FantasyModuleParser.Equipment
         {
 
         }
+
+        private void EquipmentFooterUC_PrevEquipmentAction(object sender, System.EventArgs e)
+        {
+            WeaponUserControl.Refresh();
+        }
+
+        private void EquipmentFooterUC_NextEquipmentAction(object sender, System.EventArgs e)
+        {
+            WeaponUserControl.Refresh();
+        }
     }
 }

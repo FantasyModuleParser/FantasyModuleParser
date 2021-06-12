@@ -1,8 +1,10 @@
 ﻿
 using FantasyModuleParser.Equipment.Enums;
+using FantasyModuleParser.Equipment.Enums.Weapon;
 using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.ViewModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace FantasyModuleParser.Equipment.ViewModels
@@ -10,6 +12,25 @@ namespace FantasyModuleParser.Equipment.ViewModels
     public class EquipmentOptionControlViewModel : ViewModelBase
     {
         private EquipmentModel dataModel;
+
+
+        public int CostValue
+        {
+            get { return dataModel.CostValue; }
+            set { Set(ref dataModel.CostValue, value); }
+        }
+
+        public string CostDenomination
+        {
+            get { return dataModel.CostDenomination; }
+            set { Set(ref dataModel.CostDenomination, value); }
+        }
+
+        public double Weight
+        {
+            get { return dataModel.Weight; }
+            set { Set(ref dataModel.Weight, value); }
+        }
 
         [DefaultValue(PrimaryEquipmentEnum.AdventuringGear)]
         public PrimaryEquipmentEnum PrimaryEquipmentType
@@ -129,6 +150,28 @@ namespace FantasyModuleParser.Equipment.ViewModels
                 dataModel.Weapon.BonusDamage.DamageType = value;
                 RaisePropertyChanged(nameof(SecondaryDamageType));
             }
+        }
+
+        public List<WeaponPropertyEnum> SelectedWeaponProperties
+        {
+            get { return dataModel.Weapon.WeaponProperties; }
+        }
+
+        public List<WeaponMaterialEnum> SelectedWeaponMaterials
+        {
+            get { return dataModel.Weapon.MaterialProperties;  }
+        }
+
+        public int ShortRange
+        {
+            get { return dataModel.Weapon.ShortRange; }
+            set { Set(ref dataModel.Weapon.ShortRange, value); }
+        }
+
+        public int LongRange
+        {
+            get { return dataModel.Weapon.LongRange; }
+            set { Set(ref dataModel.Weapon.LongRange, value); }
         }
         #endregion Secondary Damage Attributes
 

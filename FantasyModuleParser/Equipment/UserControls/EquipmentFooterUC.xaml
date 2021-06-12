@@ -20,7 +20,9 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <equipmentUC:EquipmentNavigationUC PreviousItemLabel="Previous Equipment" NextItemLabel="Next Equipment">
+            <equipmentUC:EquipmentNavigationUC PreviousItemLabel="Previous Equipment" NextItemLabel="Next Equipment"
+                                               PrevEquipmentAction="EquipmentNavigationUC_PrevEquipmentAction"
+                                               NextEquipmentAction="EquipmentNavigationUC_NextEquipmentAction">
                 
             </equipmentUC:EquipmentNavigationUC>
         </Grid>

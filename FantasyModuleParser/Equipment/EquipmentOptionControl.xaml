@@ -57,7 +57,9 @@
                     </Grid.RowDefinitions>
                     <equipmentUC:EquipmentHeaderUC Grid.Row="0"/>
 
-                    <equipmentUC:EquipmentFooterUC Grid.Row="3" SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"/>
+                    <equipmentUC:EquipmentFooterUC Grid.Row="3" SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
+                                                   PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
+                                                   NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction"/>
                     <!-- Line Separator -->
                     <Separator Grid.Row="1"/>
 
@@ -200,7 +202,7 @@
                             <!-- Item Specific Equipment Details BEGIN -->
                             <!-- ===================================== -->
 
-                            <equipmentUC:ArmorDetailsUC Grid.Row="1">
+                            <equipmentUC:ArmorDetailsUC Grid.Row="1" x:Name="ArmorDetailUserControl">
                                 <equipmentUC:ArmorDetailsUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:ArmorDetailsUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -214,7 +216,7 @@
                                 </equipmentUC:ArmorDetailsUC.Style>
                             </equipmentUC:ArmorDetailsUC>
 
-                            <equipmentUC:WeaponUC Grid.Row="1">
+                            <equipmentUC:WeaponUC Grid.Row="1" x:Name="WeaponUserControl">
                                 <equipmentUC:WeaponUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:WeaponUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>
