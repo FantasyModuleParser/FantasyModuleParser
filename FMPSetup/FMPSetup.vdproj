@@ -7022,15 +7022,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
-        "ProductCode" = "8:{10A2E899-FA43-4D05-83C5-E8565567574F}"
-        "PackageCode" = "8:{DFD1AFC8-2616-43F3-9827-2466A61CA51C}"
+        "ProductCode" = "8:{E1B4B303-77A6-4C33-8CDA-941BB1765E80}"
+        "PackageCode" = "8:{8141EBD6-A2D5-4DC6-9723-DA4F54EDBA4F}"
         "UpgradeCode" = "8:{527C8601-00FD-40B5-BE90-9E23A1BA76AD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.5"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:Fantasy Module Parser"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -7586,7 +7586,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_552293FD273D4FA1AFC44A51168A897D"
             {
-            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Release\\FantasyModuleParser.exe"
+            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\FantasyModuleParser.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7055253964044416A112FCD3B86AA51C"

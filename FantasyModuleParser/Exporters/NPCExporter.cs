@@ -4,6 +4,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -971,6 +972,10 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(npcModel.XP);
 			xmlWriter.WriteEndElement();
+		}
+		static public void WriteNPCReferenceManual(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
