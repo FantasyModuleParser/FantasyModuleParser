@@ -2117,7 +2117,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\FMPv0216.msi"
+        "OutputFilename" = "8:Release\\FMPv0221.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -7023,7 +7023,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
         "ProductCode" = "8:{E1B4B303-77A6-4C33-8CDA-941BB1765E80}"
-        "PackageCode" = "8:{8141EBD6-A2D5-4DC6-9723-DA4F54EDBA4F}"
+        "PackageCode" = "8:{CE86BA17-18B4-43D6-AA1E-E12B49D9D1ED}"
         "UpgradeCode" = "8:{527C8601-00FD-40B5-BE90-9E23A1BA76AD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -7586,7 +7586,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_552293FD273D4FA1AFC44A51168A897D"
             {
-            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\FantasyModuleParser.exe"
+            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Release\\FantasyModuleParser.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7055253964044416A112FCD3B86AA51C"
