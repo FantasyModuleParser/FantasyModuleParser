@@ -47,6 +47,13 @@ namespace FantasyModuleParser.Equipment.ViewModels
             get { return dataModel.ArmorEnumType; }
             set { Set(ref dataModel.ArmorEnumType, value); }
         }
+
+        [DefaultValue(AnimalsEnum.Mounts)]
+        public AnimalsEnum AnimalsEnumType
+        {
+            get { return dataModel.AnimalsEnumType; }
+            set { Set(ref dataModel.AnimalsEnumType, value); }
+        }
         #endregion Secondary Enum Type Selection Options
 
         #region Armor Bindings

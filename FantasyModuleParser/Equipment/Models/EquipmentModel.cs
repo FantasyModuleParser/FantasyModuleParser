@@ -19,6 +19,7 @@ namespace FantasyModuleParser.Equipment.Models
         #region Secondary Panel Options
         public ArmorEnum ArmorEnumType;
         public WeaponEnum WeaponEnumType;
+        public AnimalsEnum AnimalsEnumType;
         #endregion Secondary Panel Options
 
         public ArmorModel Armor = new ArmorModel();

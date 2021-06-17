@@ -285,6 +285,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Equipment\UserControls\MountUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Equipment\UserControls\WeaponUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -510,6 +514,9 @@
     </Compile>
     <Compile Include="Equipment\UserControls\Models\ArmorModel.cs" />
     <Compile Include="Equipment\UserControls\Models\WeaponModel.cs" />
+    <Compile Include="Equipment\UserControls\MountUC.xaml.cs">
+      <DependentUpon>MountUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\UserControls\ViewModels\EquipmentNavigationUCViewModel.cs" />
     <Compile Include="Equipment\UserControls\WeaponUC.xaml.cs">
       <DependentUpon>WeaponUC.xaml</DependentUpon>

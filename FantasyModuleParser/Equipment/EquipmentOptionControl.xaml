@@ -143,7 +143,8 @@
                         <!-- ================================== -->
                         <ListBox Name="AnimalsListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:AnimalsEnum}}}" 
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding AnimalsEnumType}">
                             <ListBox.Style>
                                 <Style TargetType="ListBox" >
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -229,6 +230,27 @@
                                     </Style>
                                 </equipmentUC:WeaponUC.Style>
                             </equipmentUC:WeaponUC>
+
+                            <equipmentUC:MountUC Grid.Row="1" x:Name="MountUserControl">
+                                <equipmentUC:MountUC.Style>
+                                    <Style TargetType="{x:Type equipmentUC:MountUC}">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding PrimaryEquipmentType}"
+                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Animals}"/>
+                                                    <Condition Binding="{Binding AnimalsEnumType}"
+                                                         Value="{x:Static equipmentEnum:AnimalsEnum.Mounts}"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.Setters>
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </MultiDataTrigger.Setters>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </equipmentUC:MountUC.Style>
+                            </equipmentUC:MountUC>
 
                             <!-- ===================================== -->
                             <!-- Item Specific Equipment Details END   -->
