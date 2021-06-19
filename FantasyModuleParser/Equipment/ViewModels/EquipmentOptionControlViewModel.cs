@@ -14,6 +14,22 @@ namespace FantasyModuleParser.Equipment.ViewModels
         private EquipmentModel dataModel;
 
 
+        public string Name
+        {
+            get { return dataModel.Name; }
+            set { Set(ref dataModel.Name, value); }
+        }
+        public string NonIdName
+        {
+            get { return dataModel.NonIdName; }
+            set { Set(ref dataModel.NonIdName, value); }
+        }
+        public string NonIdDescription
+        {
+            get { return dataModel.NonIdDescription; }
+            set { Set(ref dataModel.NonIdDescription, value); }
+        }
+
         public int CostValue
         {
             get { return dataModel.CostValue; }
@@ -53,6 +69,13 @@ namespace FantasyModuleParser.Equipment.ViewModels
         {
             get { return dataModel.AnimalsEnumType; }
             set { Set(ref dataModel.AnimalsEnumType, value); }
+        }
+
+        [DefaultValue(VehiclesEnum.TackAndHarness)]
+        public VehiclesEnum VehiclesEnumType
+        {
+            get { return dataModel.VehiclesEnumType; }
+            set { Set(ref dataModel.VehiclesEnumType, value); }
         }
         #endregion Secondary Enum Type Selection Options
 
@@ -183,6 +206,16 @@ namespace FantasyModuleParser.Equipment.ViewModels
         #endregion Secondary Damage Attributes
 
         #endregion Weapon Bindings
+
+        public void SaveEquipmentModel()
+        {
+            dataModel.Save();
+        }
+
+        public void LoadEquipmentModel(string @filePath)
+        {
+            dataModel = dataModel.Load(filePath);
+        }
         public EquipmentOptionControlViewModel()
         {
             dataModel = new EquipmentModel();

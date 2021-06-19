@@ -32,7 +32,14 @@ namespace FantasyModuleParser.Equipment.UserControls
 
         private void LoadEquipment_Click(object sender, RoutedEventArgs e)
         {
+            OnLoadEquipmentAction();
+        }
 
+        public event EventHandler LoadEquipmentAction;
+        protected virtual void OnLoadEquipmentAction()
+        {
+            if (LoadEquipmentAction != null)
+                LoadEquipmentAction(this, EventArgs.Empty);
         }
 
         private void SaveEquipment_Click(object sender, RoutedEventArgs e)

@@ -57,7 +57,9 @@
                     </Grid.RowDefinitions>
                     <equipmentUC:EquipmentHeaderUC Grid.Row="0"/>
 
-                    <equipmentUC:EquipmentFooterUC Grid.Row="3" SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
+                    <equipmentUC:EquipmentFooterUC Grid.Row="3" 
+                                                   LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
+                                                   SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
                                                    PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
                                                    NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction"/>
                     <!-- Line Separator -->
@@ -78,7 +80,8 @@
                         <!-- ================================== -->
                         <ListBox Name="AdventuringGearListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:AdventuringGearEnum}}}" 
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding AdventuringGearEnumType}">
                             <ListBox.Style>
                                 <Style TargetType="ListBox" >
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -111,7 +114,8 @@
                         <!-- ================================== -->
                         <ListBox Name="WeaponListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:WeaponEnum}}}" 
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding WeaponEnumType}">
                             <ListBox.Style>
                                 <Style TargetType="ListBox" >
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -127,7 +131,8 @@
                         <!-- ================================== -->
                         <ListBox Name="ToolsListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:ToolsEnum}}}" 
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding ToolsEnumType}">
                             <ListBox.Style>
                                 <Style TargetType="ListBox" >
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -160,7 +165,8 @@
                         <!-- ================================== -->
                         <ListBox Name="VehiclesListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:VehiclesEnum}}}" 
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding VehiclesEnumType}">
                             <ListBox.Style>
                                 <Style TargetType="ListBox" >
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -176,7 +182,8 @@
                         <!-- ================================== -->
                         <ListBox Name="TreasureListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:TreasureEnum}}}" 
-                                 SelectedValuePath="Value" DisplayMemberPath="Description">
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding TreasureEnumType}">
                             <ListBox.Style>
                                 <Style TargetType="ListBox" >
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -236,12 +243,45 @@
                                     <Style TargetType="{x:Type equipmentUC:MountUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                         <Style.Triggers>
+                                            <!-- The Secondary conditions utitlize the MountUC view, which are
+                                                Animals -> Mounts
+                                                Vehicles -> Watercraft
+                                                Vehicles -> Airborne
+                                            --> 
+                                            
+                                            <!-- Animals -> Mounts -->
                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
                                                     <Condition Binding="{Binding PrimaryEquipmentType}"
                                                                Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Animals}"/>
                                                     <Condition Binding="{Binding AnimalsEnumType}"
                                                          Value="{x:Static equipmentEnum:AnimalsEnum.Mounts}"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.Setters>
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </MultiDataTrigger.Setters>
+                                            </MultiDataTrigger>
+                                            
+                                            <!-- Vehicles -> Watercraft -->
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding PrimaryEquipmentType}"
+                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Vehicles}"/>
+                                                    <Condition Binding="{Binding VehiclesEnumType}"
+                                                         Value="{x:Static equipmentEnum:VehiclesEnum.WaterCraft}"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.Setters>
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </MultiDataTrigger.Setters>
+                                            </MultiDataTrigger>
+
+                                            <!-- Vehicles -> Airborne -->
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding PrimaryEquipmentType}"
+                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Vehicles}"/>
+                                                    <Condition Binding="{Binding VehiclesEnumType}"
+                                                         Value="{x:Static equipmentEnum:VehiclesEnum.AirBorne}"/>
                                                 </MultiDataTrigger.Conditions>
                                                 <MultiDataTrigger.Setters>
                                                     <Setter Property="Visibility" Value="Visible"/>

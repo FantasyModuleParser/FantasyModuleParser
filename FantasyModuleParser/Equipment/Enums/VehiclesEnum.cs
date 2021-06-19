@@ -12,9 +12,12 @@ namespace FantasyModuleParser.Equipment.Enums
         DrawnVehicle = 1,
 
         [Description("Saddle")]
-        Saddle = 1,
+        Saddle = 2,
 
-        [Description("Water Craft")]
-        WaterCraft = 1,
+        [Description("Waterborne Craft")]
+        WaterCraft = 3,
+
+        [Description("Airborne Craft")]
+        AirBorne = 4,
     }
 }
