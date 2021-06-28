@@ -132,7 +132,7 @@ namespace FantasyModuleParser.Exporters
 		/// </summary>
 		private string NewThumbnailFileName(ModuleModel moduleModel)
         {
-			string ThumbnailFilename = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.Name, "thumbnail.png");
+			string ThumbnailFilename = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "thumbnail.png");
 			return ThumbnailFilename;
 
 		}
@@ -622,7 +622,7 @@ namespace FantasyModuleParser.Exporters
 						xmlWriter.WriteStartElement("blocks"); // <npc_name> <blocks>
 						xmlWriter.WriteStartElement("id-0001"); // <npc_name> <blocks> <id-0001>
 						WriteBlockFormatting(xmlWriter);
-						if (npcModel.Description.Length > 2)
+						if (!string.IsNullOrEmpty(npcModel.Description) && npcModel.Description.Length > 2)
 						{
 							xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(npcModel.Description));
 						}
