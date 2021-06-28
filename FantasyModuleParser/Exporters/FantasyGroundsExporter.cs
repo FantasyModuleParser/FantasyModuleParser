@@ -447,28 +447,28 @@ namespace FantasyModuleParser.Exporters
 				if (moduleModel.IncludeNPCs)
                 {
 					#region NPC Lists
-					xmlWriter.WriteStartElement("npclists");
-					xmlWriter.WriteStartElement("npcs");
-					xmlWriter.WriteStartElement("name");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("index");
+					xmlWriter.WriteStartElement("npclists"); // <npclists>
+					xmlWriter.WriteStartElement("npcs"); // <npclists> <npcs>
+					xmlWriter.WriteStartElement("name"); // <npclists> <npcs> <name>
+					xmlWriter.WriteAttributeString("type", "string"); // <npclists> <npcs> <name type="string">
+					xmlWriter.WriteString("NPCs"); // <npclists> <npcs> <name type="string">NPCs
+					xmlWriter.WriteEndElement(); // <npclists> <npcs> <name type="string">NPCs</name>
+					xmlWriter.WriteStartElement("index"); // <npclists> <npcs> <index>
 					WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
 					WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
 					WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("byletter");
-					xmlWriter.WriteStartElement("description");
-					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
+					xmlWriter.WriteEndElement(); // <npclists> <npcs> <index> </index>
+					xmlWriter.WriteEndElement(); // <npclists> <npcs> </npcs>
+					xmlWriter.WriteStartElement("byletter"); // <npclists> <byletter>
+					xmlWriter.WriteStartElement("description"); // <npclists> <byletter> <description>
+					xmlWriter.WriteAttributeString("type", "string"); // <npclists> <byletter> <description type="string">
+					xmlWriter.WriteString("NPCs"); // <npclists> <byletter> <description type="string">NPCs
+					xmlWriter.WriteEndElement(); // <npclists> <byletter> <description type="string">NPCs</description>
+					xmlWriter.WriteStartElement("groups"); // <npclists> <byletter> <groups>
 					NPCExporter.CreateReferenceByFirstLetter(xmlWriter, moduleModel, FatNPCList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("bylevel");
+					xmlWriter.WriteEndElement(); // <npclists> <byletter> <groups> </groups>
+					xmlWriter.WriteEndElement(); // <npclists> <byletter> </byletter>
+					xmlWriter.WriteStartElement("bylevel"); // <npclists> <bylevel>
 					xmlWriter.WriteStartElement("description");
 					xmlWriter.WriteAttributeString("type", "string");
 					xmlWriter.WriteString("NPCs");
