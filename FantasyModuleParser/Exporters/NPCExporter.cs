@@ -22,25 +22,25 @@ namespace FantasyModuleParser.Exporters
 		{
 			foreach (NPCModel npc in NPCList)
 			{
-				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npc));
-				xmlWriter.WriteStartElement("link");
+				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npc)); // <npc_name>
+				xmlWriter.WriteStartElement("link"); // <npc_name> <link>
 				xmlWriter.WriteAttributeString("type", "windowreference");
-				xmlWriter.WriteStartElement("class");
+				xmlWriter.WriteStartElement("class"); // <npc_name> <link> <class>
 				xmlWriter.WriteString("npc");
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteStartElement("recordname");
+				xmlWriter.WriteEndElement(); // <npc_name> <link> <class> </class>
+				xmlWriter.WriteStartElement("recordname"); // <npc_name> <link> <recordname>
 				xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteStartElement("description");
-				xmlWriter.WriteStartElement("field");
+				xmlWriter.WriteEndElement(); // <npc_name> <link> <recordname> </recordname>
+				xmlWriter.WriteStartElement("description"); // <npc_name> <link> <description>
+				xmlWriter.WriteStartElement("field"); // <npc_name> <link> <description> <field>
 				xmlWriter.WriteString("name");
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteStartElement("source");
+				xmlWriter.WriteEndElement(); // <npc_name> <link> <description> <field> </field>
+				xmlWriter.WriteEndElement(); // <npc_name> <link> <description> </description>
+				xmlWriter.WriteEndElement(); // <npc_name> <link> </link>
+				xmlWriter.WriteStartElement("source"); // <npc_name> <source>
 				xmlWriter.WriteAttributeString("type", "number");
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement(); // <npc_name> <source> </source>
+				xmlWriter.WriteEndElement(); // <npc_name> </npc_name>
 			}
 		}
 		static public void CreateReferenceByFirstLetter(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
@@ -55,15 +55,15 @@ namespace FantasyModuleParser.Exporters
 		}
 		static private void ProcessNPCListByLetter(XmlWriter xmlWriter, ModuleModel moduleModel, string actualLetter, List<NPCModel> NPCList)
 		{
-			xmlWriter.WriteStartElement("typeletter" + actualLetter);
-			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteStartElement("typeletter" + actualLetter); // <typeletter>
+			xmlWriter.WriteStartElement("description"); // <typeletter> <description>
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(actualLetter);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("index");
+			xmlWriter.WriteEndElement(); // <typeletter> <description> </description>
+			xmlWriter.WriteStartElement("index"); // <typeletter> <index>
 			NPCLocation(xmlWriter, moduleModel, NPCList);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
+			xmlWriter.WriteEndElement(); // <typeletter> <index> </index>
+			xmlWriter.WriteEndElement(); // <typeletter> </typeletter>
 		}
 		static public void CreateReferenceByCR(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
@@ -93,14 +93,14 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("CR" + actualCR);
 			}
-			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteStartElement("description"); // <cr*> <description>
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("CR " + actualCR);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("index");
+			xmlWriter.WriteEndElement(); // <cr*> <description> </description>
+			xmlWriter.WriteStartElement("index"); // <cr*> <index>
 			NPCLocation(xmlWriter, moduleModel, NPCList);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteEndElement();
+			xmlWriter.WriteEndElement(); // <cr*> <index> </index>
+			xmlWriter.WriteEndElement(); // <cr*> </cr*>
 		}
 		static public void CreateReferenceByType(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
