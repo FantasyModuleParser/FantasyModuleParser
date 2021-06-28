@@ -1133,14 +1133,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("reference_colindex");
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("recordname");
-			if (moduleModel.IsLockedRecords)
-			{
-				xmlWriter.WriteString(listId + "@" + moduleModel.Name);
-			}				
-			else
-			{
-				xmlWriter.WriteString(listId);
-			}				
+			xmlWriter.WriteString(listId);				
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("name");
