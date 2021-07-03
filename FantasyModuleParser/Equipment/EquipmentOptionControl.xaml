@@ -70,6 +70,7 @@
                             <ColumnDefinition Width="130"/>
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5"/>
                         </Grid.ColumnDefinitions>
                         <ListBox Name="PrimaryEquipmentTypeListBox" Margin="0,5,5,5"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:PrimaryEquipmentEnum}}}" 
@@ -238,7 +239,7 @@
                                 </equipmentUC:WeaponUC.Style>
                             </equipmentUC:WeaponUC>
 
-                            <equipmentUC:MountUC Grid.Row="1" x:Name="MountUserControl">
+                            <equipmentUC:MountUC Grid.Row="1" VerticalAlignment="Top" x:Name="MountUserControl">
                                 <equipmentUC:MountUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:MountUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>

@@ -13,7 +13,11 @@ namespace FantasyModuleParser.Equipment.ViewModels
     {
         private EquipmentModel dataModel;
 
-
+        public EquipmentModel EquipmentDataModel
+        {
+            get { return dataModel; }
+            set { Set(ref dataModel, value); }
+        }
         public string Name
         {
             get { return dataModel.Name; }
@@ -209,16 +213,20 @@ namespace FantasyModuleParser.Equipment.ViewModels
 
         public void SaveEquipmentModel()
         {
-            dataModel.Save();
+            EquipmentDataModel.Save();
         }
 
         public void LoadEquipmentModel(string @filePath)
         {
             dataModel = dataModel.Load(filePath);
+            if(dataModel != null)
+            {
+                Name = dataModel.Name;
+            }
         }
         public EquipmentOptionControlViewModel()
         {
-            dataModel = new EquipmentModel();
+            EquipmentDataModel = new EquipmentModel();
         }
     }
 }

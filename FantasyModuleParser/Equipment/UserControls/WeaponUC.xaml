@@ -14,6 +14,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
@@ -44,22 +45,25 @@
                   SelectedValuePath="Value" DisplayMemberPath="Description"
                   Grid.Row="1" Grid.Column="4"/>
         
+        <!-- Confirm adding bonus damage -->
+        <Label Content="Add Secondary Damage?" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <CheckBox x:Name="SecondaryDamageCB" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" IsChecked="False"/>
         <!-- Bonus Damage -->
-        <Label Content="Bonus" Grid.Row="2" Grid.Column="0"/>
-        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="2" Grid.Column="1"/>
+        <Label Content="Bonus" Grid.Row="3" Grid.Column="0"  IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}" />
+        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
                   SelectedValue="{Binding SecondaryDieType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
-                  Grid.Row="2" Grid.Column="2" />
-        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="2" Grid.Column="3"/>
+                  Grid.Row="3" Grid.Column="2" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
                   SelectedValue="{Binding SecondaryDamageType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
-                  Grid.Row="2" Grid.Column="4"/>
+                  Grid.Row="3" Grid.Column="4" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
 
-        <Separator Grid.Row="3" Grid.ColumnSpan="10" VerticalAlignment="Top"/>
+        <Separator Grid.Row="4" Grid.ColumnSpan="10" VerticalAlignment="Top"/>
 
-        <Grid Grid.Row="4" Grid.ColumnSpan="6">
+        <Grid Grid.Row="5" Grid.ColumnSpan="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>

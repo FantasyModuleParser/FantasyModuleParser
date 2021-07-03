@@ -19,7 +19,14 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
         public WeaponModel()
         {
             PrimaryDamage = new DamageProperty();
+            PrimaryDamage.NumOfDice = 1;
+            PrimaryDamage.DieType = NPC.Models.Action.Enums.DieType.D6;
+            PrimaryDamage.Bonus = 0;
+
             BonusDamage = new DamageProperty();
+            BonusDamage.NumOfDice = 0;
+            BonusDamage.DieType = NPC.Models.Action.Enums.DieType.D6;
+            BonusDamage.Bonus = 0;
 
             WeaponProperties = new List<WeaponPropertyEnum>();
             MaterialProperties = new List<WeaponMaterialEnum>();
