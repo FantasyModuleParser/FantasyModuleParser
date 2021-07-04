@@ -43,15 +43,15 @@ namespace FantasyModuleParser.Main.Services
         }
         public static SettingsModel Load(string filePath)
         {
+            SettingsModel settingsModel = null;
             if (File.Exists(filePath))
             {
                 string jsonData = File.ReadAllText(@filePath);
-                SettingsModel settingsModel = JsonConvert.DeserializeObject<SettingsModel>(jsonData);
-                return settingsModel;
+               settingsModel = JsonConvert.DeserializeObject<SettingsModel>(jsonData);
             }
             else
             {
-                SettingsModel settingsModel = new SettingsModel();
+                settingsModel = new SettingsModel();
                 settingsModel.MainFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
                 settingsModel.ProjectFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Projects");
                 settingsModel.NPCFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "NPCs");
@@ -66,8 +66,29 @@ namespace FantasyModuleParser.Main.Services
                 settingsModel.DefaultGUISelection = "None";
                 settingsModel.LoadLastProject = false;
                 settingsModel.LastProject = null;
-                return settingsModel;
             }
+
+            _createDirectoryStructure(settingsModel);
+
+            return settingsModel;
+        }
+
+        /// <summary>
+        /// Based on the Settings Model object, creates a directory (or attempts it) for every module folder location
+        /// defined.
+        /// </summary>
+        private static void _createDirectoryStructure(SettingsModel settingsModel)
+        {
+            Directory.CreateDirectory(settingsModel.MainFolderLocation);
+            Directory.CreateDirectory(settingsModel.ProjectFolderLocation );
+            Directory.CreateDirectory(settingsModel.NPCFolderLocation );
+            Directory.CreateDirectory(settingsModel.SpellFolderLocation );
+            Directory.CreateDirectory(settingsModel.EquipmentFolderLocation );
+            Directory.CreateDirectory(settingsModel.ArtifactFolderLocation );
+            Directory.CreateDirectory(settingsModel.TableFolderLocation );
+            Directory.CreateDirectory(settingsModel.ParcelFolderLocation );
+            Directory.CreateDirectory(settingsModel.FGModuleFolderLocation );
+            Directory.CreateDirectory(settingsModel.FGCampaignFolderLocation);
         }
 
         public void ChangeLogLevel()
