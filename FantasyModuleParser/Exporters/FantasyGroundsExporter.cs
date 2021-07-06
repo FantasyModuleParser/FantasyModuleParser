@@ -270,28 +270,28 @@ namespace FantasyModuleParser.Exporters
 								NPCExporter.WriteName(xmlWriter, npcModel);
 								if (!string.IsNullOrEmpty(npcModel.NonID))
                                 {
-									xmlWriter.WriteStartElement("nonid_name");
+									xmlWriter.WriteStartElement("nonid_name"); // <root version="4.0"> <image> <category> <image_name> <nonid_name>
 									xmlWriter.WriteAttributeString("type", "string");
 									xmlWriter.WriteString(npcModel.NonID);
-									xmlWriter.WriteEndElement();
+									xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> <nonid_name> </nonid_name>
 								}
 								if (!string.IsNullOrEmpty(npcModel.NonID))
                                 {
-									xmlWriter.WriteStartElement("isidentified");
+									xmlWriter.WriteStartElement("isidentified"); // <root version="4.0"> <image> <category> <image_name> <isidentified>
 									xmlWriter.WriteAttributeString("type", "number");
 									xmlWriter.WriteString("0");
-									xmlWriter.WriteEndElement();
+									xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> <isidentified> </isidentified>
 								}
-								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> </image_name>
 							}
 						}
-						xmlWriter.WriteEndElement();
+						xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> </category>
 					}
-					xmlWriter.WriteEndElement();
+					xmlWriter.WriteEndElement(); // <root version="4.0"> <image> </image>
 					#endregion
 				}
 				#region Reference Section
-				xmlWriter.WriteStartElement("reference");
+				xmlWriter.WriteStartElement("reference"); // <root version="4.0"> <reference>
 				if (moduleModel.IsLockedRecords)
                 {
 					xmlWriter.WriteAttributeString("static", "true");
@@ -299,12 +299,12 @@ namespace FantasyModuleParser.Exporters
 				if (moduleModel.IncludeNPCs)
                 {
 					#region NPC Data
-					xmlWriter.WriteStartElement("npcdata");
+					xmlWriter.WriteStartElement("npcdata"); // <root version="4.0"> <reference> <npcdata>
 
 					//Category section in the XML generation
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
-						xmlWriter.WriteStartElement("category");
+						xmlWriter.WriteStartElement("category"); // <root version="4.0"> <reference> <npcdata> <category>
 						xmlWriter.WriteAttributeString("name", categoryModel.Name);
 						xmlWriter.WriteAttributeString("baseicon", "0");
 						xmlWriter.WriteAttributeString("decalicon", "0");
@@ -312,7 +312,8 @@ namespace FantasyModuleParser.Exporters
 						//Now, write out each NPC with NPC Name
 						foreach (NPCModel npcModel in FatNPCList)
 						{
-							xmlWriter.WriteStartElement(NPCExporter.NPCNameToXMLFormat(npcModel)); // Open <npcModel.NPCName>
+							xmlWriter.WriteStartElement(NPCExporter.NPCNameToXMLFormat(npcModel)); 
+							/* <root version="4.0"> <reference> <npcdata> <category> <npcModel.NPCName> */
 							WriteLocked(xmlWriter);
 							NPCExporter.WriteAbilities(xmlWriter, npcModel);
 							NPCExporter.WriteAC(xmlWriter, npcModel);
