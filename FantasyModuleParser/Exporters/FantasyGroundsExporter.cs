@@ -786,56 +786,56 @@ namespace FantasyModuleParser.Exporters
                 // For the Blank DB XML unit test, need to check if any NPCs exist
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0)
 				{
-					xmlWriter.WriteStartElement("library");              
-					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); 
-					xmlWriter.WriteStartElement("name");                   
+					xmlWriter.WriteStartElement("library");  /* <library> */            
+					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
+					xmlWriter.WriteStartElement("name"); /* <library> <libname> <name> */
 					xmlWriter.WriteAttributeString("type", "string");          
 					xmlWriter.WriteString(moduleModel.Name + " Reference Library");   
-					xmlWriter.WriteEndElement(); // close name						
-					xmlWriter.WriteStartElement("categoryname");          
+					xmlWriter.WriteEndElement(); /* <library> <libname> <name> </name> */
+					xmlWriter.WriteStartElement("categoryname"); /* <library> <libname> <categoryname> */
 					xmlWriter.WriteAttributeString("type", "string");     
 					xmlWriter.WriteString(moduleModel.Category);             
-					xmlWriter.WriteEndElement();  // close categoryname                                                        
+					xmlWriter.WriteEndElement();  /* <library> <libname> <categoryname> </categoryname> */
 					xmlWriter.WriteStartElement("entries");
 					int libraryID = 1;
 					if (moduleModel.IncludeImages)
                     {
-						xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "images");
-						xmlWriter.WriteStartElement("librarylink");
+						xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "images"); /* <library> <libname> <r**images> */
+						xmlWriter.WriteStartElement("librarylink"); /* <library> <libname> <r**images> <librarylink> */
 						xmlWriter.WriteAttributeString("type", "windowreference");
-						xmlWriter.WriteStartElement("class");
+						xmlWriter.WriteStartElement("class"); /* <library> <libname> <r**images> <librarylink> <class> */
 						xmlWriter.WriteString("reference_colindex");
-						xmlWriter.WriteEndElement();  // close class                           
-						xmlWriter.WriteStartElement("recordname");
+						xmlWriter.WriteEndElement();  /* <library> <libname> <r**images> <librarylink> <class> </class> */
+						xmlWriter.WriteStartElement("recordname"); /* <library> <libname> <r**images> <librarylink> <recordname> */
 						xmlWriter.WriteString("reference.imagelists.bycategory@" + moduleModel.Name);
-						xmlWriter.WriteEndElement();  // close recordname     
-						xmlWriter.WriteEndElement();  // close librarylink
-						xmlWriter.WriteStartElement("name");
+						xmlWriter.WriteEndElement(); /* <library> <libname> <r**images> <librarylink> <recordname> </recordname> */
+						xmlWriter.WriteEndElement(); /* <library> <libname> <r**images> <librarylink> </librarylink> */
+						xmlWriter.WriteStartElement("name"); /* <library> <libname> <r**images> <name> */
 						xmlWriter.WriteAttributeString("type", "string");
 						xmlWriter.WriteString("Images");
-						xmlWriter.WriteEndElement();  // close name            
-						xmlWriter.WriteEndElement();  // close r01images
+						xmlWriter.WriteEndElement(); /* <library> <libname> <r**images> <name> </name> */
+						xmlWriter.WriteEndElement(); /* <library> <libname> <r**images> </r**images> */
 						libraryID = ++libraryID;
 					}
 					if (moduleModel.IncludeNPCs)
                     {
 						if (moduleModel.Categories[0].NPCModels.Count > 0)
 						{
-							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "monsters");
-							xmlWriter.WriteStartElement("librarylink");
+							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "monsters"); /* <library> <libname> <r**monsters> */
+							xmlWriter.WriteStartElement("librarylink"); /* <library> <libname> <r**monsters> <librarylink> */
 							xmlWriter.WriteAttributeString("type", "windowreference");
-							xmlWriter.WriteStartElement("class");
+							xmlWriter.WriteStartElement("class"); /* <library> <libname> <r**monsters> <librarylink> <class> */
 							xmlWriter.WriteString("referenceindex");
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteStartElement("recordname");
+							xmlWriter.WriteEndElement(); /* <library> <libname> <r**monsters> <librarylink> <class> </class> */
+							xmlWriter.WriteStartElement("recordname"); /* <library> <libname> <r**monsters> <librarylink> <recordname> */
 							xmlWriter.WriteString("reference.npclists.npcs@" + moduleModel.Name);
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteStartElement("name");
+							xmlWriter.WriteEndElement(); /* <library> <libname> <r**monsters> <librarylink> <recordname> </recordname> */
+							xmlWriter.WriteEndElement(); /* <library> <libname> <r**monsters> <librarylink> </librarylink> */
+							xmlWriter.WriteStartElement("name"); /* <library> <libname> <r**monsters> <name> */
 							xmlWriter.WriteAttributeString("type", "string");
 							xmlWriter.WriteString("NPCs");
-							xmlWriter.WriteEndElement();
-							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement(); /* <library> <libname> <r**monsters> <name> </name> */
+							xmlWriter.WriteEndElement(); /* <library> <libname> <r**monsters> </r**monsters> */
 							libraryID = ++libraryID;
 						}
 					}
@@ -1191,7 +1191,7 @@ namespace FantasyModuleParser.Exporters
 			XmlWriterSettings settings = new XmlWriterSettings
 			{
 				Encoding = Encoding.UTF8,
-				ConformanceLevel = ConformanceLevel.Document,
+				ConformanceLevel = ConformanceLevel.Auto,
 				OmitXmlDeclaration = false,
 				CloseOutput = true,
 				Indent = true,
