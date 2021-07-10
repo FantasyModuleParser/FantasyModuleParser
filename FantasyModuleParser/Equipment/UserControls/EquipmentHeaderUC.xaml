@@ -13,7 +13,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -24,27 +24,27 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Name:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0"/>
-        <TextBox Text="{Binding Name}" Grid.Row="0" Grid.Column="1" Style="{StaticResource standardTextBox}"/>
+        <TextBox Text="{Binding Path=NameText}" Grid.Row="0" Grid.Column="1" Style="{StaticResource standardTextBox}"/>
         <Label Content="Non-ID Name:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Text="{Binding NonIdName}" Grid.Row="1" Grid.Column="1" Style="{StaticResource standardTextBox}"/>
+        <TextBox Text="{Binding Path=NonIDText}" Grid.Row="1" Grid.Column="1" Style="{StaticResource standardTextBox}"/>
         <Label Content="Non-ID Notes:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0">
             <Label.Style>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="IsEnabled" Value="True"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding NonIdName}" Value="{x:Null}">
+                        <DataTrigger Binding="{Binding Path=NonIDText}" Value="{x:Null}">
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox Text="{Binding NonIdDescription}" Grid.Row="2" Grid.Column="1">
+        <TextBox Text="{Binding Path=NonIDDescriptionText}" Grid.Row="2" Grid.Column="1">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource standardTextBox}">
                     <Setter Property="IsEnabled" Value="True"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding NonIdName}" Value="{x:Null}">
+                        <DataTrigger Binding="{Binding Path=NonIDText}" Value="{x:Null}">
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger>
                     </Style.Triggers>

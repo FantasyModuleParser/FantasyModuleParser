@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Equipment.ViewModels;
+﻿using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Equipment.ViewModels;
 using FantasyModuleParser.Main.Services;
 using log4net;
 using System;
@@ -60,10 +61,12 @@ namespace FantasyModuleParser.Equipment
             if (result == true)
             {
                 EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
-                if(viewModel != null)
+                if (viewModel != null)
                 {
                     viewModel.LoadEquipmentModel(openFileDialog.FileName);
+
                     log.Info("Equipment " + viewModel.Name + " has successfully been loaded");
+
                 }
                 else
                     log.Debug("DataContext is not what it is expected to be :: " + DataContext.GetType());

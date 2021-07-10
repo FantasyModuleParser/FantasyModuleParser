@@ -100,6 +100,13 @@ namespace FantasyModuleParser.Equipment.ViewModels
             set { Set(ref dataModel.Armor.IsStealthDisadvantage, value); }
         }
 
+        private void _raiseArmorBindingProperties()
+        {
+            RaisePropertyChanged(nameof(ArmorValue));
+            RaisePropertyChanged(nameof(StrengthRequirement));
+            RaisePropertyChanged(nameof(IsStealthDisadvantage));
+        }
+
         #endregion Armor Bindings
 
         #region Weapon Bindings
@@ -144,6 +151,14 @@ namespace FantasyModuleParser.Equipment.ViewModels
                 RaisePropertyChanged(nameof(PrimaryDamageType));
             }
         }
+
+        private void _raisePrimaryDamageAttributes()
+        {
+            RaisePropertyChanged(nameof(PrimaryDamageDieCount));
+            RaisePropertyChanged(nameof(PrimaryDieType));
+            RaisePropertyChanged(nameof(PrimaryDamageBonus));
+            RaisePropertyChanged(nameof(PrimaryDamageType));
+        }
         #endregion Primary Damage Attributes
         #region Secondary Damage Attributes
         public int SecondaryDamageDieCount
@@ -186,6 +201,15 @@ namespace FantasyModuleParser.Equipment.ViewModels
             }
         }
 
+        private void _raiseSecondaryDamageAttributes()
+        {
+            RaisePropertyChanged(nameof(SecondaryDamageDieCount));
+            RaisePropertyChanged(nameof(SecondaryDieType));
+            RaisePropertyChanged(nameof(SecondaryDamageBonus));
+            RaisePropertyChanged(nameof(SecondaryDamageType));
+        }
+
+        #endregion Secondary Damage Attributes
         public List<WeaponPropertyEnum> SelectedWeaponProperties
         {
             get { return dataModel.Weapon.WeaponProperties; }
@@ -207,9 +231,29 @@ namespace FantasyModuleParser.Equipment.ViewModels
             get { return dataModel.Weapon.LongRange; }
             set { Set(ref dataModel.Weapon.LongRange, value); }
         }
-        #endregion Secondary Damage Attributes
+
+        private void _raiseOtherWeaponBindingProperties()
+        {
+            RaisePropertyChanged(nameof(SelectedWeaponProperties));
+            RaisePropertyChanged(nameof(SelectedWeaponMaterials));
+            RaisePropertyChanged(nameof(ShortRange));
+            RaisePropertyChanged(nameof(LongRange));
+        }
+
+        private void _raisePropertyChangeOnWeaponBindings()
+        {
+            _raisePrimaryDamageAttributes();
+            _raiseSecondaryDamageAttributes();
+            _raiseOtherWeaponBindingProperties();
+        }
 
         #endregion Weapon Bindings
+
+        public string EquipmentDescription
+        {
+            get { return dataModel.Description; }
+            set { Set(ref dataModel.Description, value); }
+        }
 
         public void SaveEquipmentModel()
         {
@@ -219,10 +263,21 @@ namespace FantasyModuleParser.Equipment.ViewModels
         public void LoadEquipmentModel(string @filePath)
         {
             dataModel = dataModel.Load(filePath);
-            if(dataModel != null)
-            {
-                Name = dataModel.Name;
-            }
+
+            RaisePropertyChanged(nameof(Name));
+            RaisePropertyChanged(nameof(NonIdName));
+            RaisePropertyChanged(nameof(NonIdDescription));
+            RaisePropertyChanged(nameof(CostValue));
+            RaisePropertyChanged(nameof(CostDenomination));
+            RaisePropertyChanged(nameof(Weight));
+            RaisePropertyChanged(nameof(PrimaryEquipmentType));
+            RaisePropertyChanged(nameof(EquipmentDescription));
+            RaisePropertyChanged(nameof(ArmorEnumType));
+            RaisePropertyChanged(nameof(AnimalsEnumType));
+            RaisePropertyChanged(nameof(VehiclesEnumType));
+
+            _raiseArmorBindingProperties();
+            _raisePropertyChangeOnWeaponBindings();
         }
         public EquipmentOptionControlViewModel()
         {

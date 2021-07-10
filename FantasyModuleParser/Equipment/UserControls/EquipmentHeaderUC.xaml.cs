@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.Equipment.UserControls
 {
@@ -20,9 +8,55 @@ namespace FantasyModuleParser.Equipment.UserControls
     /// </summary>
     public partial class EquipmentHeaderUC : UserControl
     {
+        public static DependencyProperty NameTextProperty =
+            DependencyProperty.Register
+            (
+                "NameText",
+                typeof(string),
+                typeof(EquipmentHeaderUC),
+                new PropertyMetadata("")
+            );
+
+        public string NameText
+        {
+            get { return (string)GetValue(NameTextProperty); }
+            set { SetValue(NameTextProperty, value); }
+        }
+
+        public static DependencyProperty NonIDTextProperty =
+            DependencyProperty.Register
+            (
+                "NonIDText",
+                typeof(string),
+                typeof(EquipmentHeaderUC),
+                new PropertyMetadata("")
+            );
+
+        public string NonIDText
+        {
+            get { return (string)GetValue(NonIDTextProperty); }
+            set { SetValue(NonIDTextProperty, value); }
+        }
+
+        public static DependencyProperty NonIDDescriptionTextProperty =
+            DependencyProperty.Register
+            (
+                "NonIDDescriptionText",
+                typeof(string),
+                typeof(EquipmentHeaderUC),
+                new PropertyMetadata("")
+            );
+
+        public string NonIDDescriptionText
+        {
+            get { return (string)GetValue(NonIDDescriptionTextProperty); }
+            set { SetValue(NonIDDescriptionTextProperty, value); }
+        }
+
         public EquipmentHeaderUC()
         {
             InitializeComponent();
+            LayoutRoot.DataContext = this;
         }
     }
 }

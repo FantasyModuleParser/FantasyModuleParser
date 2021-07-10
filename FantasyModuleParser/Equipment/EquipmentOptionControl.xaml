@@ -13,59 +13,64 @@
         <viewModel:EquipmentOptionControlViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-    <Style TargetType="Button" x:Key="standardButton">
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-    <Style TargetType="ComboBox" x:Key="standardComboBox">
-        <Setter Property="Margin" Value="5,0,5,0" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-    <Style TargetType="TextBox" x:Key="standardTextBox">
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="Padding" Value="0,-1,0,0" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-    <Style TargetType="Button" x:Key="TooltipButton">
-        <Setter Property="ToolTipService.InitialShowDelay" Value="50" />
-        <Setter Property="ToolTipService.ShowDuration" Value="5000" />
-        <Setter Property="ToolTipService.BetweenShowDelay" Value="10000" />
-        <Setter Property="Margin" Value="3" />
-    </Style>
-    <ControlTemplate x:Key="validationTemplate">
-        <Grid>
-            <Label Foreground="Red" HorizontalAlignment="Right" VerticalAlignment="Center">Please insert a integer</Label>
-            <Border BorderThickness="1" BorderBrush="Red">
-                <AdornedElementPlaceholder />
-            </Border>
-        </Grid>
-    </ControlTemplate>
+        <Style TargetType="Button" x:Key="standardButton">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="ComboBox" x:Key="standardComboBox">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="standardTextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0,-1,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" x:Key="TooltipButton">
+            <Setter Property="ToolTipService.InitialShowDelay" Value="50" />
+            <Setter Property="ToolTipService.ShowDuration" Value="5000" />
+            <Setter Property="ToolTipService.BetweenShowDelay" Value="10000" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <ControlTemplate x:Key="validationTemplate">
+            <Grid>
+                <Label Foreground="Red" HorizontalAlignment="Right" VerticalAlignment="Center">Please insert a integer</Label>
+                <Border BorderThickness="1" BorderBrush="Red">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </Grid>
+        </ControlTemplate>
     </UserControl.Resources>
     <Grid VerticalAlignment="Top" Background="AliceBlue" Height="700" Width="620">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="660" />
+            <RowDefinition Height="560" />
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="2">
+        <TabControl Grid.Row="1">
             <TabItem Header="Equipment">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="64*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="497*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="90"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="10*"/>
-                        <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
-                    <equipmentUC:EquipmentHeaderUC Grid.Row="0"/>
+                    <equipmentUC:EquipmentHeaderUC
+                        Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,0.333,0"
+                                                   NameText="{Binding Name, Mode=TwoWay}"
+                                                    NonIDText="{Binding NonIdName, Mode=TwoWay}"
+                        NonIDDescriptionText="{Binding NonIdDescription, Mode=TwoWay}"/>
 
-                    <equipmentUC:EquipmentFooterUC Grid.Row="3" 
-                                                   LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
-                                                   SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
-                                                   PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
-                                                   NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction"/>
                     <!-- Line Separator -->
-                    <Separator Grid.Row="1"/>
+                    <Separator Grid.Row="1" Grid.ColumnSpan="4" Margin="0,2,0.333,2"/>
 
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,0.333,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="130"/>
                             <ColumnDefinition Width="150"/>
@@ -248,8 +253,8 @@
                                                 Animals -> Mounts
                                                 Vehicles -> Watercraft
                                                 Vehicles -> Airborne
-                                            --> 
-                                            
+                                            -->
+
                                             <!-- Animals -> Mounts -->
                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
@@ -262,7 +267,7 @@
                                                     <Setter Property="Visibility" Value="Visible"/>
                                                 </MultiDataTrigger.Setters>
                                             </MultiDataTrigger>
-                                            
+
                                             <!-- Vehicles -> Watercraft -->
                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
@@ -300,12 +305,17 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Description" IsEnabled="False">
-
+            <TabItem Header="Description" IsEnabled="True" HorizontalAlignment="Right">
+                <equipmentUC:GenericDescriptionUC DescriptionText="{Binding EquipmentDescription, Mode=TwoWay}"></equipmentUC:GenericDescriptionUC>
             </TabItem>
             <TabItem Header="Image" IsEnabled="False">
-
+                <!--<equipmentUC:GenericImageUserControl />-->
             </TabItem>
         </TabControl>
+        <equipmentUC:EquipmentFooterUC Grid.Row="2" 
+                                                   LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
+                                                   SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
+                                                   PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
+                                                   NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction" Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>
     </Grid>
 </UserControl>

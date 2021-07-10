@@ -273,6 +273,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Equipment\UserControls\GenericDescriptionUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Equipment\UserControls\EquipmentFooterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -284,6 +288,10 @@
     <Page Include="Equipment\UserControls\EquipmentNavigationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Equipment\UserControls\GenericImageUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Equipment\UserControls\MountUC.xaml">
       <SubType>Designer</SubType>
@@ -503,6 +511,9 @@
     <Compile Include="Equipment\UserControls\CostAndWeightUC.xaml.cs">
       <DependentUpon>CostAndWeightUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Equipment\UserControls\GenericDescriptionUC.xaml.cs">
+      <DependentUpon>GenericDescriptionUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\UserControls\EquipmentFooterUC.xaml.cs">
       <DependentUpon>EquipmentFooterUC.xaml</DependentUpon>
     </Compile>
@@ -511,6 +522,9 @@
     </Compile>
     <Compile Include="Equipment\UserControls\EquipmentNavigationUC.xaml.cs">
       <DependentUpon>EquipmentNavigationUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UserControls\GenericImageUserControl.xaml.cs">
+      <DependentUpon>GenericImageUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment\UserControls\Models\ArmorModel.cs" />
     <Compile Include="Equipment\UserControls\Models\WeaponModel.cs" />
