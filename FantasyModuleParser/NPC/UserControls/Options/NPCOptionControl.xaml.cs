@@ -235,7 +235,21 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 
 				CategorySelectedNPCComboBox.SelectedIndex = 0;
 
-				NpcController.UpdateNPCModel(new NPCModel());
+				// Darkpool 07-12-2021:  Bugfix -- When loading a project file, the behavior is to
+				// default to the first selected NPC in the first category.
+				//
+				// Before, the first NPC was populated
+				// in the combobox CategorySelectedNPCComboBox, but the backing NPCModel in NPCController was 
+				// overridden with a new instance of NPCModel.
+				var selectedNPCValue = CategorySelectedNPCComboBox.SelectedValue;
+				if(selectedNPCValue is NPCModel)
+                {
+					NpcController.UpdateNPCModel(selectedNPCValue as NPCModel);
+				}
+				else
+                {
+					NpcController.UpdateNPCModel(new NPCModel());
+				}
 				RefreshUserControls();
 			}
 			else

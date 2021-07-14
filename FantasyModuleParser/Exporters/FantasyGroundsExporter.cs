@@ -800,14 +800,14 @@ namespace FantasyModuleParser.Exporters
 				}
 				#endregion
 				xmlWriter.WriteEndElement(); // close </refpages>
-				xmlWriter.WriteEndElement(); // close </subchapter_**>
 				xmlWriter.WriteEndElement(); // close </chapter_**>
 				xmlWriter.WriteEndElement(); // close </chapters>
 				xmlWriter.WriteEndElement(); // Close </referencemanual>
-				#endregion
-				xmlWriter.WriteEndElement(); // </reference>
                 #endregion
                 
+
+                #endregion
+
                 #region Library
                 // For the Blank DB XML unit test, need to check if any NPCs exist
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0)
