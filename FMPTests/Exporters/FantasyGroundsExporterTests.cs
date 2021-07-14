@@ -79,6 +79,7 @@ namespace FantasyModuleParser.Exporters.Tests
 				Name = "IntegrationTest_Mage1",
 				Author = "Automated MS Test v2",
 				Category = "Automated",
+                ModFilename = "IntegrationTest_Mage1Module",
 				//moduleModel.ModulePath = 
 				//    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "FantasyModuleParser_UnitTests");
 
@@ -213,7 +214,8 @@ namespace FantasyModuleParser.Exporters.Tests
                 Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>()
                 {
                     categoryModel
-                }
+                },
+                ModFilename = "TableExampleModule"
             };
 
             exporter.CreateModule(moduleModel);
