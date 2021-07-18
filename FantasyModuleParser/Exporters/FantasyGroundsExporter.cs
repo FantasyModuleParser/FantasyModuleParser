@@ -243,55 +243,56 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteComment("Written by Theodore Story, Darkpool, and Battlemarch (c) 2021");
 
 				xmlWriter.WriteStartElement("root"); // <root>
-				xmlWriter.WriteAttributeString("version", "4.0"); // <root version="4.0">
+				xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
 				if (moduleModel.IncludeImages)
                 {
 					#region Image XML
-					xmlWriter.WriteStartElement("image"); // <root version="4.0"> <image>
+					xmlWriter.WriteStartElement("image"); /* <root version="4.0"> <image> */
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
-						xmlWriter.WriteStartElement("category"); // <root version="4.0"> <image> <category>
-						xmlWriter.WriteAttributeString("name", categoryModel.Name); // <root version="4.0"> <image> <category>
+						xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <image> <category> */
+						xmlWriter.WriteAttributeString("name", categoryModel.Name); /* <root version="4.0"> <image> <category> */
 						xmlWriter.WriteAttributeString("baseicon", "0"); 
 						xmlWriter.WriteAttributeString("decalicon", "0");
 						foreach (NPCModel npcModel in categoryModel.NPCModels)
 						{
 							if (!string.IsNullOrEmpty(npcModel.NPCImage))
 							{
-								xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "")); // <root version="4.0"> <image> <category> <image_name>
-								xmlWriter.WriteStartElement("image"); // <root version="4.0"> <image> <category> <image_name> <image>
+								xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "")); 
+								/* <root version="4.0"> <image> <category> <image_name> */
+								xmlWriter.WriteStartElement("image"); /* <root version="4.0"> <image> <category> <image_name> <image> */
 								xmlWriter.WriteAttributeString("type", "image");
-								xmlWriter.WriteStartElement("bitmap"); // <root version="4.0"> <image> <category> <image_name> <image> <bitmap>
+								xmlWriter.WriteStartElement("bitmap"); /* <root version="4.0"> <image> <category> <image_name> <image> <bitmap> */
 								xmlWriter.WriteAttributeString("type", "string");
                                 xmlWriter.WriteString("images" + "\\" + Path.GetFileName(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
-								xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> <image> <bitmap> </bitmap>
-								xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> <image> </image>
+								xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> <bitmap> </bitmap> */
+								xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> </image> */
 								WriteLocked(xmlWriter);
 								NPCExporter.WriteName(xmlWriter, npcModel);
 								if (!string.IsNullOrEmpty(npcModel.NonID))
                                 {
-									xmlWriter.WriteStartElement("nonid_name"); // <root version="4.0"> <image> <category> <image_name> <nonid_name>
+									xmlWriter.WriteStartElement("nonid_name"); /* <root version="4.0"> <image> <category> <image_name> <nonid_name> */
 									xmlWriter.WriteAttributeString("type", "string");
 									xmlWriter.WriteString(npcModel.NonID);
-									xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> <nonid_name> </nonid_name>
+									xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <nonid_name> </nonid_name> */
 								}
 								if (!string.IsNullOrEmpty(npcModel.NonID))
                                 {
-									xmlWriter.WriteStartElement("isidentified"); // <root version="4.0"> <image> <category> <image_name> <isidentified>
+									xmlWriter.WriteStartElement("isidentified"); /* <root version="4.0"> <image> <category> <image_name> <isidentified> */
 									xmlWriter.WriteAttributeString("type", "number");
 									xmlWriter.WriteString("0");
-									xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> <isidentified> </isidentified>
+									xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <isidentified> </isidentified> */
 								}
-								xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> <image_name> </image_name>
+								xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> </image_name> */
 							}
 						}
-						xmlWriter.WriteEndElement(); // <root version="4.0"> <image> <category> </category>
+						xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> </category> */
 					}
-					xmlWriter.WriteEndElement(); // <root version="4.0"> <image> </image>
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> </image> */
 					#endregion
 				}
 				#region Reference Section
-				xmlWriter.WriteStartElement("reference"); // <root version="4.0"> <reference>
+				xmlWriter.WriteStartElement("reference"); /* <root version="4.0"> <reference> */
 				if (moduleModel.IsLockedRecords)
                 {
 					xmlWriter.WriteAttributeString("static", "true");
@@ -299,12 +300,12 @@ namespace FantasyModuleParser.Exporters
 				if (moduleModel.IncludeNPCs)
                 {
 					#region NPC Data
-					xmlWriter.WriteStartElement("npcdata"); // <root version="4.0"> <reference> <npcdata>
+					xmlWriter.WriteStartElement("npcdata"); /* <root version="4.0"> <reference> <npcdata> */
 
 					//Category section in the XML generation
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
-						xmlWriter.WriteStartElement("category"); // <root version="4.0"> <reference> <npcdata> <category>
+						xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <npcdata> <category> */
 						xmlWriter.WriteAttributeString("name", categoryModel.Name);
 						xmlWriter.WriteAttributeString("baseicon", "0");
 						xmlWriter.WriteAttributeString("decalicon", "0");
@@ -340,26 +341,27 @@ namespace FantasyModuleParser.Exporters
 							NPCExporter.WriteType(xmlWriter, npcModel);
 							NPCExporter.WriteTraits(xmlWriter, npcModel);
 							NPCExporter.WriteXP(xmlWriter, npcModel);
-							xmlWriter.WriteEndElement(); // Closes </npcModel.NPCName>
+							xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npcdata> <category> <npcModel.NPCName> </npcModel.NPCName> */
 						}
-						xmlWriter.WriteEndElement(); // Close </category>
+						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npcdata> <category> </category> */
 					}
-					xmlWriter.WriteEndElement(); // Close </npcdata>
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npcdata> </npcdata> */
 					#endregion
 				}
 				if (moduleModel.IncludeSpells)
                 {
 					#region Spell Data
-					xmlWriter.WriteStartElement("spelldata");
+					xmlWriter.WriteStartElement("spelldata"); /* <root version="4.0"> <reference> <spelldata> */
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
-						xmlWriter.WriteStartElement("category"); // <category>
-						xmlWriter.WriteAttributeString("name", categoryModel.Name); // <category name="*">
-						xmlWriter.WriteAttributeString("baseicon", "0"); // <category name="*" baseicon="0">
-						xmlWriter.WriteAttributeString("decalicon", "0"); // <category name="*" baseicon="0" decalicon="0">
+						xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <spelldata> <category> */
+						xmlWriter.WriteAttributeString("name", categoryModel.Name);
+						xmlWriter.WriteAttributeString("baseicon", "0");
+						xmlWriter.WriteAttributeString("decalicon", "0");
 						foreach (SpellModel spellModel in FatSpellList)
 						{
-							xmlWriter.WriteStartElement(SpellExporter.SpellNameToXMLFormat(spellModel));
+							xmlWriter.WriteStartElement(SpellExporter.SpellNameToXMLFormat(spellModel)); 
+							/* <root version="4.0"> <reference> <spelldata> <category> <spell_name> */
 							WriteLocked(xmlWriter);
 							SpellExporter.WriteSpellName(xmlWriter, spellModel);
 							SpellExporter.WriteSpellDescription(xmlWriter, spellModel);
@@ -371,123 +373,147 @@ namespace FantasyModuleParser.Exporters
 							SpellExporter.WriteSpellRange(xmlWriter, spellModel);
 							SpellExporter.WriteSpellDuration(xmlWriter, spellModel);
 							SpellExporter.WriteSpellComponents(xmlWriter, spellModel);
-							xmlWriter.WriteEndElement();
+							xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelldata> <category> <spell_name> </spell_name> */
 						}
-						xmlWriter.WriteEndElement(); // </category>
+						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelldata> <category> </category> */
 					}
-					xmlWriter.WriteEndElement();
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelldata> </spelldata> */
 					#endregion
 				}
 				#region Equipment Data
-				//	xmlWriter.WriteStartElement("equipmentdata");      
-				//	xmlWriter.WriteAttributeString("static", "true"); 
-				//	xmlWriter.WriteString(" ");                        
-				//	xmlWriter.WriteEndElement();
+				/*	xmlWriter.WriteStartElement("equipmentdata");
+				 *	xmlWriter.WriteAttributeString("static", "true"); 
+				 *	xmlWriter.WriteString(" ");
+				 *	xmlWriter.WriteEndElement(); */
 				#endregion
 				#region Equipment Lists
-				//	xmlWriter.WriteStartElement("equipmentlists");   
-				//	xmlWriter.WriteStartElement("equipment");           
-				//	xmlWriter.WriteStartElement("name");              
-				//	xmlWriter.WriteAttributeString("type", "string");   
-				//	xmlWriter.WriteString("Equipment");                
-				//	xmlWriter.WriteEndElement();                       
-				//	xmlWriter.WriteEndElement();
-				//	xmlWriter.WriteEndElement();
+				/*	xmlWriter.WriteStartElement("equipmentlists");
+				 *	xmlWriter.WriteStartElement("equipment");
+				 *	xmlWriter.WriteStartElement("name");
+				 *	xmlWriter.WriteAttributeString("type", "string");
+				 *	xmlWriter.WriteString("Equipment");
+				 *	xmlWriter.WriteEndElement();
+				 *	xmlWriter.WriteEndElement();
+				 *	xmlWriter.WriteEndElement(); */
 				#endregion
 				if (moduleModel.IncludeImages)
                 {
 					#region Image Lists
-					xmlWriter.WriteStartElement("imagelists");
-					xmlWriter.WriteStartElement("bycategory");
-					xmlWriter.WriteStartElement("description");
+					xmlWriter.WriteStartElement("imagelists"); /* <root version="4.0"> <reference> <imagelists> */
+					xmlWriter.WriteStartElement("bycategory"); /* <root version="4.0"> <reference> <imagelists> <bycategory> */
+					xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <imagelists> <bycategory> <description> */
 					xmlWriter.WriteAttributeString("type", "string");
 					xmlWriter.WriteString("Images");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <imagelists> <bycategory> <description> </description>*/
+					xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> */
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
-						xmlWriter.WriteStartElement(CategoryNameToXML(categoryModel));
-						xmlWriter.WriteStartElement("description");
+						xmlWriter.WriteStartElement(CategoryNameToXML(categoryModel)); 
+						/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> */
+						xmlWriter.WriteStartElement("description"); 
+						/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <description> */
 						xmlWriter.WriteAttributeString("type", "string");
 						xmlWriter.WriteString(categoryModel.Name);
-						xmlWriter.WriteEndElement();
-						xmlWriter.WriteStartElement("index");
+						xmlWriter.WriteEndElement(); 
+						/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <description> </description> */
+						xmlWriter.WriteStartElement("index"); /* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> */
 						foreach (NPCModel npcModel in categoryModel.NPCModels)
 						{
 							if (!string.IsNullOrEmpty(npcModel.NPCImage))
 							{
 								xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
-								xmlWriter.WriteStartElement("link");
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> */
+								xmlWriter.WriteStartElement("link"); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link> */
 								xmlWriter.WriteAttributeString("type", "windowreference");
-								xmlWriter.WriteStartElement("class");
+								xmlWriter.WriteStartElement("class"); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link> <class> */
 								xmlWriter.WriteString("imagewindow");
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteStartElement("recordname");
+								xmlWriter.WriteEndElement(); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link> <class>
+								 * </class>*/
+								xmlWriter.WriteStartElement("recordname"); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link>
+								 * <recordname> */
 								xmlWriter.WriteString("image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteStartElement("description");
+								xmlWriter.WriteEndElement(); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link>
+								 * <recordname> </recordname>*/
+								xmlWriter.WriteStartElement("description"); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link>
+								 * <description> */
 								xmlWriter.WriteStartElement("field");
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link>
+								 * <description> <field> */
 								xmlWriter.WriteString("name");
 								xmlWriter.WriteEndElement();
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link>
+								 * <description> <field> </field> */
 								xmlWriter.WriteEndElement();
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link>
+								 * <description> </description> */
 								xmlWriter.WriteEndElement();
-								xmlWriter.WriteStartElement("source");
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <link> </link> */
+								xmlWriter.WriteStartElement("source"); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <source> */
 								xmlWriter.WriteAttributeString("type", "string");
-								xmlWriter.WriteEndElement();
-								xmlWriter.WriteEndElement();
+								xmlWriter.WriteEndElement(); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> <source> </source> */
+								xmlWriter.WriteEndElement(); 
+								/* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> <image_name> </image_name> */
 							}
 						}
-						xmlWriter.WriteEndElement();
-						xmlWriter.WriteEndElement();
+						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> <index> </index> */
+						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> <category> </category> */
 					}
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <imagelists> <bycategory> <groups> </groups> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <imagelists> <bycategory> </bycategory> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <imagelists> </imagelists> */
 					#endregion
 				}
 				if (moduleModel.IncludeNPCs)
                 {
 					#region NPC Lists
-					xmlWriter.WriteStartElement("npclists"); // <npclists>
-					xmlWriter.WriteStartElement("npcs"); // <npclists> <npcs>
-					xmlWriter.WriteStartElement("name"); // <npclists> <npcs> <name>
-					xmlWriter.WriteAttributeString("type", "string"); // <npclists> <npcs> <name type="string">
-					xmlWriter.WriteString("NPCs"); // <npclists> <npcs> <name type="string">NPCs
-					xmlWriter.WriteEndElement(); // <npclists> <npcs> <name type="string">NPCs</name>
-					xmlWriter.WriteStartElement("index"); // <npclists> <npcs> <index>
+					xmlWriter.WriteStartElement("npclists"); /* <root version="4.0"> <reference> <npclists> */
+					xmlWriter.WriteStartElement("npcs"); /* <root version="4.0"> <reference> <npclists> <npcs> */
+					xmlWriter.WriteStartElement("name"); /* <root version="4.0"> <reference> <npclists> <npcs> <name> */
+					xmlWriter.WriteAttributeString("type", "string");
+					xmlWriter.WriteString("NPCs");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <name> </name> */
+					xmlWriter.WriteStartElement("index"); /* <root version="4.0"> <reference> <npclists> <npcs> <index> */
 					WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
 					WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
 					WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
-					xmlWriter.WriteEndElement(); // <npclists> <npcs> <index> </index>
-					xmlWriter.WriteEndElement(); // <npclists> <npcs> </npcs>
-					xmlWriter.WriteStartElement("byletter"); // <npclists> <byletter>
-					xmlWriter.WriteStartElement("description"); // <npclists> <byletter> <description>
-					xmlWriter.WriteAttributeString("type", "string"); // <npclists> <byletter> <description type="string">
-					xmlWriter.WriteString("NPCs"); // <npclists> <byletter> <description type="string">NPCs
-					xmlWriter.WriteEndElement(); // <npclists> <byletter> <description type="string">NPCs</description>
-					xmlWriter.WriteStartElement("groups"); // <npclists> <byletter> <groups>
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <index> </index> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> </npcs> */
+					xmlWriter.WriteStartElement("byletter"); /* <root version="4.0"> <reference> <npclists> <byletter> */
+					xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <npclists> <byletter> <description> */
+					xmlWriter.WriteAttributeString("type", "string");
+					xmlWriter.WriteString("NPCs");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <byletter> <description> </description> */
+					xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <npclists> <byletter> <groups> */
 					NPCExporter.CreateReferenceByFirstLetter(xmlWriter, moduleModel, FatNPCList);
-					xmlWriter.WriteEndElement(); // <npclists> <byletter> <groups> </groups>
-					xmlWriter.WriteEndElement(); // <npclists> <byletter> </byletter>
-					xmlWriter.WriteStartElement("bylevel"); // <npclists> <bylevel>
-					xmlWriter.WriteStartElement("description");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <byletter> <groups> </groups> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <byletter> </byletter> */
+					xmlWriter.WriteStartElement("bylevel"); /* <root version="4.0"> <reference> <npclists> <bylevel> */
+					xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <npclists> <bylevel> <description> */
 					xmlWriter.WriteAttributeString("type", "string");
-					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
+					xmlWriter.WriteString("NPCs"); 
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bylevel> <description> </description> */
+					xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <npclists> <bylevel> <groups> */
 					NPCExporter.CreateReferenceByCR(xmlWriter, moduleModel, FatNPCList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("bytype");
-					xmlWriter.WriteStartElement("description");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bylevel> <groups> </groups> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bylevel> </bylevel> */
+					xmlWriter.WriteStartElement("bytype"); /* <root version="4.0"> <reference> <npclists> <bytype> */
+					xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <npclists> <bytype> <description> */
 					xmlWriter.WriteAttributeString("type", "string");
 					xmlWriter.WriteString("NPCs");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bytype> <description> </description> */
+					xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <npclists> <bytype> <groups> */
 					NPCExporter.CreateReferenceByType(xmlWriter, moduleModel, FatNPCList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bytype> <groups> </groups> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bytype> </bytype> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> </npclists> */
 					#endregion
 				}
 				if (moduleModel.IncludeSpells)
@@ -774,19 +800,19 @@ namespace FantasyModuleParser.Exporters
 				}
 				#endregion
 				xmlWriter.WriteEndElement(); // close </refpages>
-				xmlWriter.WriteEndElement(); // close </subchapter_**>
 				xmlWriter.WriteEndElement(); // close </chapter_**>
 				xmlWriter.WriteEndElement(); // close </chapters>
 				xmlWriter.WriteEndElement(); // Close </referencemanual>
-				#endregion
-				xmlWriter.WriteEndElement(); // </reference>
                 #endregion
                 
+
+                #endregion
+
                 #region Library
                 // For the Blank DB XML unit test, need to check if any NPCs exist
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0)
 				{
-					xmlWriter.WriteStartElement("library");  /* <library> */            
+					xmlWriter.WriteStartElement("library");  /* <library> */
 					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
 					xmlWriter.WriteStartElement("name"); /* <library> <libname> <name> */
 					xmlWriter.WriteAttributeString("type", "string");          
@@ -1095,15 +1121,15 @@ namespace FantasyModuleParser.Exporters
 		}
 		static private void WriteListLink(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("listlink");
+			xmlWriter.WriteStartElement("listlink"); /* <listlink> */
 			xmlWriter.WriteAttributeString("type", "windowreference");
-			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteStartElement("class"); /* <listlink> <class> */
 			xmlWriter.WriteString("reference_manualtextwide");
-			xmlWriter.WriteEndElement(); // close </class>
-			xmlWriter.WriteStartElement("recordname"); // open <recordname>
-			xmlWriter.WriteString(".."); // <recordname>..
-			xmlWriter.WriteEndElement(); // close </recordname>
-			xmlWriter.WriteEndElement(); // close </listlink>
+			xmlWriter.WriteEndElement(); /* <listlink> <class> </class> */
+			xmlWriter.WriteStartElement("recordname"); /* <listlink> <recordname> */
+			xmlWriter.WriteString("..");
+			xmlWriter.WriteEndElement(); /* <listlink> <recordname> </recordname> */
+			xmlWriter.WriteEndElement(); /* <listlink> </listlink> */
 		}
 		static private void WriteLineBreak(XmlWriter xmlWriter)
 		{
@@ -1120,28 +1146,28 @@ namespace FantasyModuleParser.Exporters
 			{
 				lockedRecords = "1";
 			}
-			xmlWriter.WriteStartElement("locked"); // <locked>
+			xmlWriter.WriteStartElement("locked"); /* <locked> */
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteString(lockedRecords.ToString());
-			xmlWriter.WriteEndElement(); // <locked> </locked>
+			xmlWriter.WriteEndElement(); /* <locked> </locked> */
 		}
 		static private void WriteIDLinkList(XmlWriter xmlWriter, ModuleModel moduleModel, string id, string listId, string listDescription)
 		{
-			xmlWriter.WriteStartElement(id); // <id>
-			xmlWriter.WriteStartElement("listlink"); // <id> <listlink>
+			xmlWriter.WriteStartElement(id); /* <id> */
+			xmlWriter.WriteStartElement("listlink"); /* <id> <listlink> */
 			xmlWriter.WriteAttributeString("type", "windowreference");
-			xmlWriter.WriteStartElement("class"); // <id> <listlink> <class>
+			xmlWriter.WriteStartElement("class"); /* <id> <listlink> <class> */
 			xmlWriter.WriteString("reference_colindex");
-			xmlWriter.WriteEndElement(); // <id> <listlink> <class> </class>
-			xmlWriter.WriteStartElement("recordname"); // <id> <listlink> <recordname>
+			xmlWriter.WriteEndElement(); /* <id> <listlink> <class> </class> */
+			xmlWriter.WriteStartElement("recordname"); /* <id> <listlink> <recordname> */
 			xmlWriter.WriteString(listId);				
-			xmlWriter.WriteEndElement(); // <id> <listlink> <recordname> </recordname>
-			xmlWriter.WriteEndElement(); // <id> <listlink> </listlink>
-			xmlWriter.WriteStartElement("name"); // <id> <name>
+			xmlWriter.WriteEndElement(); /* <id> <listlink> <recordname> </recordname> */
+			xmlWriter.WriteEndElement(); /* <id> <listlink> </listlink> */
+			xmlWriter.WriteStartElement("name"); /* <id> <name> */
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(listDescription);
-			xmlWriter.WriteEndElement(); // <id> <name> </name>
-			xmlWriter.WriteEndElement(); // <id> </id>
+			xmlWriter.WriteEndElement(); /* <id> <name> </name> */
+			xmlWriter.WriteEndElement(); /* <id> </id> */
 		}
 		static private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
 		{

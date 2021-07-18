@@ -30,7 +30,7 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             //var npcModel = ((App)Application.Current).NpcModelObject;
             var npcModel = npcController.GetNPCModel();
             npcModel = initializeLanguageSelection(npcModel);
-            DataContext = npcController.GetNPCModel();
+            DataContext = npcModel;
 
         }
 
@@ -38,7 +38,8 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
         {
             var npcModel = npcController.GetNPCModel();
             npcModel = initializeLanguageSelection(npcModel);
-            DataContext = npcController.GetNPCModel();
+            //DataContext = npcController.GetNPCModel();
+            DataContext = npcModel;
         }
 
         private NPCModel initializeLanguageSelection(NPCModel npcModel)
@@ -58,6 +59,12 @@ namespace FantasyModuleParser.NPC.UserControls.NPCTabs
             if (npcModel.UserLanguages == null || npcModel.UserLanguages.Count == 0)
             {
                 npcModel.UserLanguages = languageController.GenerateUserLanguages();
+            }
+
+            if (string.IsNullOrWhiteSpace(npcModel.LanguageOptions))
+            {
+                strLanguageOptions.SelectedIndex = 0;
+                npcModel.LanguageOptions = ((ComboBoxItem)strLanguageOptions.SelectedValue).Content.ToString();
             }
             return npcModel;
         }
