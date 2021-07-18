@@ -774,7 +774,7 @@ namespace FantasyModuleParser.Exporters
 						xmlWriter.WriteRaw("</b>");
 						xmlWriter.WriteString(" " + spellModel.DurationText);
 						xmlWriter.WriteRaw("</p>");
-						xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(spellModel.Description));
+						xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(spellModel.Description) + "<p>");
 						xmlWriter.WriteStartElement("link");  // <link>
 						xmlWriter.WriteAttributeString("class", "power"); // <link class="power">
 						xmlWriter.WriteAttributeString("recordname", WriteRecordNameSpell(spellModel)); // <link class="power" recordname="reference.spelldata.*">
