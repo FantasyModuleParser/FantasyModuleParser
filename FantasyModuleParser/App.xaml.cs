@@ -48,14 +48,17 @@ namespace FantasyModuleParser
         private static readonly ILog log = LogManager.GetLogger(typeof(App));
         protected override void OnStartup(StartupEventArgs e) 
         {
+            SettingsService settingService = new SettingsService();
+            SettingsModel settingsModel = settingService.Load();
             #region Log4Net Info
             //log4net.Config.XmlConfigurator.Configure(Log4NetXmlSetup());
-            Log4NetXmlSetup();
+            Directory.CreateDirectory(settingsModel.MainFolderLocation);
+            Directory.CreateDirectory(Path.Combine(settingsModel.MainFolderLocation, "logs"));
+            Log4NetXmlSetup(Path.Combine(settingsModel.MainFolderLocation, "logs"));
             RollingFileAppender fileAppender = LogManager.GetRepository()
                 .GetAppenders().First(appender => appender is RollingFileAppender) as RollingFileAppender;
             #endregion
-            SettingsService settingService = new SettingsService();
-            SettingsModel settingsModel = settingService.Load();
+            
             #region Log4Net Info
             string logFolderPath = settingsModel.LogFolderLocation;
 
@@ -74,9 +77,11 @@ namespace FantasyModuleParser
             #endregion
         }
 
-        private void Log4NetXmlSetup()
+        private void Log4NetXmlSetup(string @logFolderPath)
         {
-            const string xmlData = @" <log4net>
+            string logFilePath = Path.Combine(logFolderPath, "fantasyModuleParser.log");
+
+            string xmlData = string.Format(@" <log4net>
   <root>
     <level value=""DEBUG"" />
     <appender-ref ref= ""console"" />
@@ -89,7 +94,7 @@ namespace FantasyModuleParser
        </appender >
        <appender name = ""file"" type = ""log4net.Appender.RollingFileAppender"" >
             <file type = ""log4net.Util.PatternString""
-    value = ""%envFolderPath{MainFolderLocation}\\logs\\fantasyModuleParser.log"" />
+    value = ""{0}"" />
     <appendToFile value = ""true"" />
      <rollingStyle value = ""Size"" />
       <maxSizeRollBackups value = ""5"" />
@@ -99,7 +104,7 @@ namespace FantasyModuleParser
             <conversionPattern value = ""%date [%thread] %level %logger - %message%newline"" />
            </layout >
                 </appender >
-       </log4net > ";
+       </log4net > ", logFilePath);
 
             //return new MemoryStream(ASCIIEncoding.Default.GetBytes(xmlData));
 

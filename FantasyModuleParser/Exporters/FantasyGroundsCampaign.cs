@@ -285,6 +285,7 @@ namespace FantasyModuleParser.Exporters
 				#endregion
 				if (moduleModel.IncludeTables)
 				{
+					#region Table Data
 					xmlWriter.WriteStartElement("tables");
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
@@ -310,7 +311,8 @@ namespace FantasyModuleParser.Exporters
 						}
 						xmlWriter.WriteEndElement(); // Close </category>
 					}
-					xmlWriter.WriteEndElement(); // Close </tables>  
+					xmlWriter.WriteEndElement(); // Close </tables>
+					#endregion
 				}
 				#endregion
 				xmlWriter.WriteEndElement(); // Closes </root>

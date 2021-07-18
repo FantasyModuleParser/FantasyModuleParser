@@ -191,8 +191,8 @@
                 <ColumnDefinition Width="295" />
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
-            <Label IsEnabled="False" Content="Tables:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
-            <TextBox Name="TablesDefaultFolder" IsEnabled="False" Text="{Binding Path=SettingsModel.TableFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="TablesDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
+            <Label IsEnabled="True" Content="Tables:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,5,0" Grid.Column="1" />
+            <TextBox Name="TablesDefaultFolder" IsEnabled="True" Text="{Binding Path=SettingsModel.TableFolderLocation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="TablesDefaultFolder_MouseDoubleClick" Padding="0" Grid.Column="2" />
             <CheckBox Content="Use helper GUI for links" IsChecked="True" Visibility="Hidden" VerticalContentAlignment="Center" Padding="5,0,0,0" Grid.Column="5" />
         </Grid>
         <Grid Grid.Row="17">
