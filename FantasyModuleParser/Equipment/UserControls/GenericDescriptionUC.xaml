@@ -19,6 +19,7 @@
                          TextChanged="TextBox_TextChanged" 
                          Grid.Column="0" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
 
+
                 <FlowDocumentScrollViewer x:Name="MarkdownViewer" Grid.Column="2" />
             </Grid>
             

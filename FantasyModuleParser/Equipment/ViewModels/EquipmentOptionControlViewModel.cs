@@ -255,6 +255,12 @@ namespace FantasyModuleParser.Equipment.ViewModels
             set { Set(ref dataModel.Description, value); }
         }
 
+        public string EquipmentImageFilePath
+        {
+            get { return dataModel.ImageFilePath; }
+            set { Set(ref dataModel.ImageFilePath, value); }
+        }
+
         public void SaveEquipmentModel()
         {
             EquipmentDataModel.Save();

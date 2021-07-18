@@ -5,114 +5,99 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="20" />
-        </Grid.ColumnDefinitions>
+    <UserControl.Resources>
+        <Style x:Key="stdTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Padding" Value="5,0,0,0" />
+        </Style>
+        <Style x:Key="stdLabel" TargetType="Label">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="ImageUCLayoutRoot"> 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="360" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Label Content="NPC Image:" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"/>
-        <TextBox Name="strNPCImage" Text="{Binding Path=NPCImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="strNPCImage_MouseDoubleClick" Padding="5,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="15">
-            <TextBox.ToolTip>
-                <TextBlock>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="{Binding Path=LabelNameText}" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" />
+            <TextBox Name="strNPCImage" Text="{Binding Path=ImageFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     MouseDoubleClick="strNPCImage_MouseDoubleClick" 
+                     Style="{StaticResource stdTextBox}"
+                     Grid.Column="2">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Double click to select the file location to the JPG image used for the NPC.
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Image Name="ImageBox" Source="{Binding Path=NPCImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.RowSpan="18" Grid.Column="4" Grid.ColumnSpan="21"  />
-        <CheckBox Content="Add NPC Link to Description" IsEnabled="False" Foreground="Gray"  HorizontalAlignment="Center" Padding="5,0,0,0" Grid.Row="22" Grid.Column="1" Grid.ColumnSpan="27">
-            <CheckBox.ToolTip>
-                <TextBlock>
-                    Add the markup and link for an image with the NPC's name.
-                    <LineBreak />
-                    <Italic>This is switched on automatically if you load an image, but can be turned off again.</Italic>
-                </TextBlock>
-            </CheckBox.ToolTip>
-        </CheckBox>
-        <Button Content="Clear Image" Padding="15,0,15,0" Grid.Row="1" Grid.Column="22" Grid.ColumnSpan="6" Click="clearImage_Click">
-            <Button.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <Button Content="Clear Image" Grid.Column="4" Click="clearImage_Click">
+                <Button.ToolTip>
+                    <TextBlock>
                     Clear the image file.
-                </TextBlock>
-            </Button.ToolTip>
-        </Button>
-        <Label Content="Artist Name:" Foreground="Gray" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="24" Grid.Column="4" Grid.ColumnSpan="4"/>
-        <TextBox Padding="5,0,0,0" IsEnabled="False" Grid.Row="24" Grid.Column="9" Grid.ColumnSpan="16">
-            <TextBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            <Image Name="ImageBox" Source="{Binding Path=ImageFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               Grid.Column="1" />
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Artist Name:" Style="{StaticResource stdLabel}" Grid.Row="0" Grid.Column="1"/>
+            <TextBox Style="{StaticResource stdTextBox}" IsEnabled="False" Grid.Row="0" Grid.Column="2">
+                <TextBox.ToolTip>
+                    <TextBlock>
                      Enter the artist's name here.
                     <LineBreak />
                     <Italic>It will be shown on the Reference Manual page for the NPC.</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-        <Label Content="Artist Link:" Foreground="Gray" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="26" Grid.Column="4" Grid.ColumnSpan="4"/>
-        <TextBox Padding="5,0,0,0" IsEnabled="False" Grid.Row="26" Grid.Column="9" Grid.ColumnSpan="16">
-            <TextBox.ToolTip>
-                <TextBlock>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <Label Content="Artist Link:" Style="{StaticResource stdLabel}" Grid.Row="2" Grid.Column="1"/>
+            <TextBox Style="{StaticResource stdTextBox}" IsEnabled="False" Grid.Row="2" Grid.Column="2">
+                <TextBox.ToolTip>
+                    <TextBlock>
                     Enter the artist's email address or web address here.
                     <LineBreak />
                     <Italic>It will be shown on the Reference Manual page for the NPC.</Italic>
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+        </Grid>
     </Grid>
 </UserControl>

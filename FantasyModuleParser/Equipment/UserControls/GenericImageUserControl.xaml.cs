@@ -18,6 +18,7 @@ namespace FantasyModuleParser.Equipment.UserControls
         public GenericImageUserControl()
         {
             InitializeComponent();
+            ImageUCLayoutRoot.DataContext = this;
         }
 
         private void strNPCImage_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -57,6 +58,36 @@ namespace FantasyModuleParser.Equipment.UserControls
         private void clearImage_Click(object sender, RoutedEventArgs e)
         {
             strNPCImage.Text = "";
+        }
+
+        public static readonly DependencyProperty ImageFilePathProperty =
+            DependencyProperty.Register
+            (
+                "ImageFilePath",
+                typeof(string),
+                typeof(GenericDescriptionUC),
+                new PropertyMetadata("")
+            );
+
+        public string ImageFilePath
+        {
+            get { return (string)GetValue(ImageFilePathProperty); }
+            set { SetValue(ImageFilePathProperty, value); }
+        }
+
+        public static readonly DependencyProperty LabelNameTextProperty =
+    DependencyProperty.Register
+    (
+        "LabelNameText",
+        typeof(string),
+        typeof(GenericDescriptionUC),
+        new PropertyMetadata("")
+    );
+
+        public string LabelNameText
+        {
+            get { return (string)GetValue(LabelNameTextProperty); }
+            set { SetValue(LabelNameTextProperty, value); }
         }
     }
 }
