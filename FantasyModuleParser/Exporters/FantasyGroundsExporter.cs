@@ -551,19 +551,17 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <groups> </groups> */
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> </index> */
 					#endregion
-					#region Spell List By Class
 					SpellExporter.SpellListByClass(xmlWriter, moduleModel);
-					#endregion
 					xmlWriter.WriteEndElement(); // Close </spelllists>
 					#endregion
 				}
 				if (moduleModel.IncludeTables)
 				{
 					#region Tables Data
-					xmlWriter.WriteStartElement("tables");
+					xmlWriter.WriteStartElement("tables"); /* <root> <reference> <tables> */
 					foreach (CategoryModel categoryModel in moduleModel.Categories)
 					{
-						xmlWriter.WriteStartElement("category");
+						xmlWriter.WriteStartElement("category"); /* <root> <reference> <tables> <category> */
 						xmlWriter.WriteAttributeString("name", categoryModel.Name);
 						xmlWriter.WriteAttributeString("baseicon", "0");
 						xmlWriter.WriteAttributeString("decalicon", "0");
@@ -571,7 +569,8 @@ namespace FantasyModuleParser.Exporters
 						//Now, write out each NPC with NPC Name
 						foreach (TableModel tableModel in FatTableList)
 						{
-							xmlWriter.WriteStartElement(TableExporter.TableNameToXMLFormat(tableModel)); // Open <tableModel.Name>
+							xmlWriter.WriteStartElement(TableExporter.TableNameToXMLFormat(tableModel)); 
+							/* <root> <reference> <tables> <category> <tableModel.Name> */
 							TableExporter.WriteTableLocked(xmlWriter, tableModel);
 							TableExporter.WriteTableName(xmlWriter, tableModel);
 							TableExporter.WriteTableDescription(xmlWriter, tableModel);
@@ -582,27 +581,27 @@ namespace FantasyModuleParser.Exporters
 							TableExporter.WriteTableRollDice(xmlWriter, tableModel);
 							TableExporter.WriteColumnLabels(xmlWriter, tableModel);
 							TableExporter.WriteResultsColumn(xmlWriter, tableModel);
-							xmlWriter.WriteEndElement(); // Closes </tableModel.Name>
+							xmlWriter.WriteEndElement(); /* <root> <reference> <tables> <category> <tableModel.Name> </tableModel.Name>*/
 						}
-						xmlWriter.WriteEndElement(); // Close </category>
+						xmlWriter.WriteEndElement(); /* <root> <reference> <tables> <category> </category>*/
 					}
-					xmlWriter.WriteEndElement(); // Close </tables>
+					xmlWriter.WriteEndElement(); /* <root> <reference> <tables> </tables>*/
 					#endregion
 				}
 
 				#region Reference Manual
-				xmlWriter.WriteStartElement("referencemanual"); // open <referencemanual>
-				xmlWriter.WriteStartElement("name"); // open <name>
-				xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
+				xmlWriter.WriteStartElement("referencemanual");  /* <root> <reference> <referencemanual */
+				xmlWriter.WriteStartElement("name"); /* <root> <reference> <referencemanual <name> */
+				xmlWriter.WriteAttributeString("type", "string");
 				xmlWriter.WriteString(moduleModel.Name);
-				xmlWriter.WriteEndElement(); // close </name>
-				xmlWriter.WriteStartElement("chapters"); // open <chapters>
-				xmlWriter.WriteStartElement("chapter_00"); // open <chapter_00>
-				xmlWriter.WriteStartElement("name"); // open <name>
-				xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
+				xmlWriter.WriteEndElement(); /* <root> <reference> <referencemanual <name> </name> */
+				xmlWriter.WriteStartElement("chapters"); /* <root> <reference> <referencemanual <chapters> */
+				xmlWriter.WriteStartElement("chapter_00"); /* <root> <reference> <referencemanual <chapters> <chapter_00> */
+				xmlWriter.WriteStartElement("name"); /* <root> <reference> <referencemanual <chapters> <chapter_00> <name> */
+				xmlWriter.WriteAttributeString("type", "string");
 				xmlWriter.WriteString(moduleModel.Name);
-				xmlWriter.WriteEndElement(); // close </name>
-				xmlWriter.WriteStartElement("subchapters"); // open <subchapters>
+				xmlWriter.WriteEndElement(); /* <root> <reference> <referencemanual <chapters> <chapter_00> <name> </name> */
+				xmlWriter.WriteStartElement("subchapters"); /* <root> <reference> <referencemanual <chapters> <chapter_00> <subchapters> */
 				int subchapterID = 0;
 				#region NPC Reference Manual Section
 				if (moduleModel.IncludeNPCs)
@@ -813,7 +812,7 @@ namespace FantasyModuleParser.Exporters
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0)
 				{
 					xmlWriter.WriteStartElement("library");  /* <library> */
-					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
+				xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
 					xmlWriter.WriteStartElement("name"); /* <library> <libname> <name> */
 					xmlWriter.WriteAttributeString("type", "string");          
 					xmlWriter.WriteString(moduleModel.Name + " Reference Library");   
@@ -1243,5 +1242,3 @@ namespace FantasyModuleParser.Exporters
 		}
 	}
 }
-
-
