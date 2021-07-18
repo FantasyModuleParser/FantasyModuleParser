@@ -519,13 +519,13 @@ namespace FantasyModuleParser.Exporters
 				if (moduleModel.IncludeSpells)
                 {
 					#region Spell Lists
-					xmlWriter.WriteStartElement("spelllists");
-					xmlWriter.WriteStartElement("spells");
-					xmlWriter.WriteStartElement("name");
+					xmlWriter.WriteStartElement("spelllists"); /* <root version="4.0"> <reference> <spelllists> */
+					xmlWriter.WriteStartElement("spells"); /* <root version="4.0"> <reference> <spelllists> <spells> */
+					xmlWriter.WriteStartElement("name"); /* <root version="4.0"> <reference> <spelllists> <spells> <name> */
 					xmlWriter.WriteAttributeString("type", "string");
 					xmlWriter.WriteString("Spells");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("index");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <name> </name> */
+					xmlWriter.WriteStartElement("index"); /* <root version="4.0"> <reference> <spelllists> <spells> <index> */
 					WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.spelllists._index_@" + moduleModel.Name, "(Index)");
 					int spellListId = 2;
 					foreach (string castByValue in SpellExporter.GetSortedSpellCasterList(moduleModel))
@@ -537,19 +537,19 @@ namespace FantasyModuleParser.Exporters
 
 						spellListId++;
 					}
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <index> <text> </text> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <index> </index> */
 
 					#region Spell Index
-					xmlWriter.WriteStartElement("_index_");
-					xmlWriter.WriteStartElement("description");
+					xmlWriter.WriteStartElement("_index_"); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> */
+					xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <description> */
 					xmlWriter.WriteAttributeString("type", "string");
 					xmlWriter.WriteString("Spell Index");
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteStartElement("groups");
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <description> </description> */
+					xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <groups> */
 					SpellExporter.CreateSpellReferenceByFirstLetter(xmlWriter, moduleModel, FatSpellList);
-					xmlWriter.WriteEndElement();
-					xmlWriter.WriteEndElement();
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <groups> </groups> */
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> </index> */
 					#endregion
 					#region Spell List By Class
 					SpellExporter.SpellListByClass(xmlWriter, moduleModel);
@@ -1096,15 +1096,15 @@ namespace FantasyModuleParser.Exporters
 		#region Reference Manual XML
 		static private void WriteBlockFormatting(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("align");
+			xmlWriter.WriteStartElement("align"); /* <align> */
 			xmlWriter.WriteAttributeString("type", "string"); 
 			xmlWriter.WriteString("center"); 
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("blocktype");
+			xmlWriter.WriteEndElement(); /* <align> </align> */
+			xmlWriter.WriteStartElement("blocktype"); /* <blocktype> */
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("singletext");
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("text");
+			xmlWriter.WriteEndElement(); /* <blocktype> </blocktype> */
+			xmlWriter.WriteStartElement("text"); /* <text> */
 			xmlWriter.WriteAttributeString("type", "formattedtext");
 		}
 		static private string WriteRecordNameNPC(NPCModel npcModel)
