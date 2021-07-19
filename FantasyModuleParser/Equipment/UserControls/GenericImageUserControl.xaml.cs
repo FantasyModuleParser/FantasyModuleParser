@@ -30,7 +30,9 @@ namespace FantasyModuleParser.Equipment.UserControls
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedFileName = openFileDialog.FileName;
-               // FIXME Expose generated filepath so parent can read property
+                // FIXME Expose generated filepath so parent can read property
+
+                ImageFilePath = @selectedFileName;
             }
         }
 
@@ -65,7 +67,7 @@ namespace FantasyModuleParser.Equipment.UserControls
             (
                 "ImageFilePath",
                 typeof(string),
-                typeof(GenericDescriptionUC),
+                typeof(GenericImageUserControl),
                 new PropertyMetadata("")
             );
 
@@ -80,7 +82,7 @@ namespace FantasyModuleParser.Equipment.UserControls
     (
         "LabelNameText",
         typeof(string),
-        typeof(GenericDescriptionUC),
+        typeof(GenericImageUserControl),
         new PropertyMetadata("")
     );
 

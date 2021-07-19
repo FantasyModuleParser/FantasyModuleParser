@@ -278,12 +278,15 @@ namespace FantasyModuleParser.Equipment.ViewModels
             RaisePropertyChanged(nameof(Weight));
             RaisePropertyChanged(nameof(PrimaryEquipmentType));
             RaisePropertyChanged(nameof(EquipmentDescription));
+            RaisePropertyChanged(nameof(EquipmentImageFilePath));
             RaisePropertyChanged(nameof(ArmorEnumType));
             RaisePropertyChanged(nameof(AnimalsEnumType));
             RaisePropertyChanged(nameof(VehiclesEnumType));
 
             _raiseArmorBindingProperties();
             _raisePropertyChangeOnWeaponBindings();
+
+
         }
         public EquipmentOptionControlViewModel()
         {
