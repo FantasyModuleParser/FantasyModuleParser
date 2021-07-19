@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Exporters;
+﻿using FantasyModuleParser.Equipment.ViewModels;
+using FantasyModuleParser.Exporters;
 using FantasyModuleParser.Main;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
@@ -165,6 +166,7 @@ namespace FantasyModuleParser
             npcOptionUserControl.Refresh(forceRefresh);
             (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
             (tableOptionUserControl.DataContext as TableOptionViewModel).Refresh();
+            (equipmentUserControl.DataContext as EquipmentOptionControlViewModel).Refresh();
         }
 
         private void CreateModule_Click(object sender, RoutedEventArgs e)

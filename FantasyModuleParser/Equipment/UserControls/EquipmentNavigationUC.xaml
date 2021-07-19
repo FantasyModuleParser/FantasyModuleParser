@@ -23,7 +23,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="ModuleNavigationUC">
         <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="2*" />
@@ -38,9 +38,11 @@
             <Label Content="Selected Table" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" />
 
             <!-- Second internal row -->
-            <ComboBox Name="FGCategoryComboBox" DisplayMemberPath="Name"
-                                IsSynchronizedWithCurrentItem="True"
-                                SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
+            <ComboBox Name="FGCategoryComboBox" 
+                      ItemsSource="{Binding Path=ModuleCategoryItemSource}"
+                      DisplayMemberPath="Name"
+                      IsSynchronizedWithCurrentItem="True"
+                        SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
         <Button x:Name="PrevBtn" Content="{Binding PreviousItemLabel}" Grid.Column="1" Grid.Row="1"
                                     Click="PrevBtn_Click"   
                                     Style="{StaticResource standardButton}" />

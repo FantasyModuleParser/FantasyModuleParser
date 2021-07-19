@@ -317,6 +317,8 @@
                                                    LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
                                                    SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
                                                    PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
-                                                   NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction" Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>
+                                                   NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction" 
+                                       ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
+                                       Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>
     </Grid>
 </UserControl>

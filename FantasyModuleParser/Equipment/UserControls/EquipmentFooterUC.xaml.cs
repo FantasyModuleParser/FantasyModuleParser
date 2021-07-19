@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace FantasyModuleParser.Equipment.UserControls
         public EquipmentFooterUC()
         {
             InitializeComponent();
+            ModuleFooterUC.DataContext = this;
         }
 
         private void NewEquipment_Click(object sender, RoutedEventArgs e)
@@ -83,5 +85,16 @@ namespace FantasyModuleParser.Equipment.UserControls
             if (NextEquipmentAction != null)
                 NextEquipmentAction(this, EventArgs.Empty);
         }
+
+        #region Custom Exposed Dependencies
+        public static readonly DependencyProperty ModuleCategoryItemSourceProperty =
+            DependencyProperty.Register("ModuleCategoryItemSource", typeof(IEnumerable), typeof(EquipmentFooterUC));
+
+        public IEnumerable ModuleCategoryItemSource
+        {
+            get { return (IEnumerable)GetValue(ModuleCategoryItemSourceProperty); }
+            set { SetValue(ModuleCategoryItemSourceProperty, value); }
+        }
+        #endregion
     }
 }

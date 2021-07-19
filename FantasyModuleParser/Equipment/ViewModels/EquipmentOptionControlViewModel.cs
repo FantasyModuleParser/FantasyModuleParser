@@ -2,9 +2,12 @@
 using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Enums.Weapon;
 using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Models.Action.Enums;
 using FantasyModuleParser.NPC.ViewModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace FantasyModuleParser.Equipment.ViewModels
@@ -12,6 +15,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
     public class EquipmentOptionControlViewModel : ViewModelBase
     {
         private EquipmentModel dataModel;
+        private ModuleModel _moduleModel;
 
         public EquipmentModel EquipmentDataModel
         {
@@ -261,6 +265,12 @@ namespace FantasyModuleParser.Equipment.ViewModels
             set { Set(ref dataModel.ImageFilePath, value); }
         }
 
+        public ObservableCollection<CategoryModel> ModuleCategoriesSource
+        {
+            get { return _moduleModel?.Categories; }
+            private set { _moduleModel.Categories = value; }
+        }
+
         public void SaveEquipmentModel()
         {
             EquipmentDataModel.Save();
@@ -291,6 +301,15 @@ namespace FantasyModuleParser.Equipment.ViewModels
         public EquipmentOptionControlViewModel()
         {
             EquipmentDataModel = new EquipmentModel();
+
+        }
+
+        public void Refresh()
+        {
+            ModuleService moduleService = new ModuleService();
+            _moduleModel = moduleService.GetModuleModel();
+
+            RaisePropertyChanged(nameof(ModuleCategoriesSource));
         }
     }
 }

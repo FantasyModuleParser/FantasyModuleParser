@@ -1,18 +1,8 @@
 ﻿using FantasyModuleParser.Main.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.Equipment.UserControls
 {
@@ -33,7 +23,7 @@ namespace FantasyModuleParser.Equipment.UserControls
         public EquipmentNavigationUC()
         {
             InitializeComponent();
-            this.DataContext = this;
+            ModuleNavigationUC.DataContext = this;
         }
 
         private void PrevBtn_Click(object sender, RoutedEventArgs e)
@@ -62,7 +52,20 @@ namespace FantasyModuleParser.Equipment.UserControls
 
         private void TableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
+
+        //public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(HeaderedComboBox));
+
+
+        #region Custom Exposed Dependencies
+        public static readonly DependencyProperty ModuleCategoryItemSourceProperty =
+            DependencyProperty.Register( "ModuleCategoryItemSource", typeof(IEnumerable), typeof(EquipmentNavigationUC));
+
+        public IEnumerable ModuleCategoryItemSource
+        {
+            get { return (IEnumerable)GetValue(ModuleCategoryItemSourceProperty); }
+            set { SetValue(ModuleCategoryItemSourceProperty, value); }
+        }
+        #endregion
     }
 }

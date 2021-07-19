@@ -13,7 +13,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="ModuleFooterUC">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
@@ -22,7 +22,8 @@
         <Grid Grid.Row="0">
             <equipmentUC:EquipmentNavigationUC PreviousItemLabel="Previous Equipment" NextItemLabel="Next Equipment"
                                                PrevEquipmentAction="EquipmentNavigationUC_PrevEquipmentAction"
-                                               NextEquipmentAction="EquipmentNavigationUC_NextEquipmentAction">
+                                               NextEquipmentAction="EquipmentNavigationUC_NextEquipmentAction"
+                                               ModuleCategoryItemSource="{Binding Path=ModuleCategoryItemSource}">
                 
             </equipmentUC:EquipmentNavigationUC>
         </Grid>
