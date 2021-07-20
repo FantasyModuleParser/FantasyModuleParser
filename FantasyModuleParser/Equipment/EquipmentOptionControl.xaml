@@ -314,11 +314,13 @@
             </TabItem>
         </TabControl>
         <equipmentUC:EquipmentFooterUC Grid.Row="2" 
-                                                   LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
-                                                   SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
-                                                   PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
-                                                   NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction" 
-                                       ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
-                                       Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>
+                                        AddToProjectAction="EquipmentFooterUC_AddToProjectAction"
+                                        LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
+                                        SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
+                                        PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
+                                        NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction" 
+                                        ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
+                                       SelectedCategoryModel="{Binding SelectedCategoryModel, Mode=TwoWay}"
+                                        Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>
     </Grid>
 </UserControl>

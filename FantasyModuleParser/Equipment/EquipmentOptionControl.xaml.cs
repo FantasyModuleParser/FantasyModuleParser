@@ -73,5 +73,15 @@ namespace FantasyModuleParser.Equipment
 
             }
         }
+
+        private void EquipmentFooterUC_AddToProjectAction(object sender, EventArgs e)
+        {
+            EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
+            if (viewModel != null)
+            {
+                viewModel.AddEquipmentToCategory();
+                log.Info("Equipment " + viewModel.Name + " has successfully been added to Category " + viewModel.SelectedCategoryModel.Name);
+            }
+        }
     }
 }

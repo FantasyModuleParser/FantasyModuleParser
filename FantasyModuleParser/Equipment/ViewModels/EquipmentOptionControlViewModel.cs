@@ -14,9 +14,11 @@ namespace FantasyModuleParser.Equipment.ViewModels
 {
     public class EquipmentOptionControlViewModel : ViewModelBase
     {
+        private ModuleService _moduleService;
+
         private EquipmentModel dataModel;
         private ModuleModel _moduleModel;
-
+        private CategoryModel _categoryModel;
         public EquipmentModel EquipmentDataModel
         {
             get { return dataModel; }
@@ -271,6 +273,12 @@ namespace FantasyModuleParser.Equipment.ViewModels
             private set { _moduleModel.Categories = value; }
         }
 
+        public CategoryModel SelectedCategoryModel
+        {
+            get { return _categoryModel; }
+            set { Set(ref _categoryModel, value); }
+        }
+
         public void SaveEquipmentModel()
         {
             EquipmentDataModel.Save();
@@ -301,15 +309,21 @@ namespace FantasyModuleParser.Equipment.ViewModels
         public EquipmentOptionControlViewModel()
         {
             EquipmentDataModel = new EquipmentModel();
-
+            _moduleService = new ModuleService();
         }
 
         public void Refresh()
         {
-            ModuleService moduleService = new ModuleService();
-            _moduleModel = moduleService.GetModuleModel();
-
+            _moduleModel = _moduleService.GetModuleModel();
+            SelectedCategoryModel = _moduleModel?.Categories.Count > 0? _moduleModel?.Categories[0]: null;
             RaisePropertyChanged(nameof(ModuleCategoriesSource));
+        }
+
+        public void AddEquipmentToCategory()
+        {
+            _moduleService.AddEquipmentToCategory(EquipmentDataModel, SelectedCategoryModel.Name);
+            RaisePropertyChanged(nameof(ModuleCategoriesSource));
+            RaisePropertyChanged(nameof(SelectedCategoryModel));
         }
     }
 }

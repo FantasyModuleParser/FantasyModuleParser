@@ -39,10 +39,11 @@
 
             <!-- Second internal row -->
             <ComboBox Name="FGCategoryComboBox" 
-                      ItemsSource="{Binding Path=ModuleCategoryItemSource}"
-                      DisplayMemberPath="Name"
-                      IsSynchronizedWithCurrentItem="True"
-                        SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
+                            ItemsSource="{Binding Path=ModuleCategoryItemSource}"
+                            DisplayMemberPath="Name"
+                            IsSynchronizedWithCurrentItem="True"
+                            SelectedIndex="0" Grid.Column="0" Grid.Row="1"
+                            SelectionChanged="FGCategoryComboBox_SelectionChanged" Style="{StaticResource standardComboBox}" />
         <Button x:Name="PrevBtn" Content="{Binding PreviousItemLabel}" Grid.Column="1" Grid.Row="1"
                                     Click="PrevBtn_Click"   
                                     Style="{StaticResource standardButton}" />

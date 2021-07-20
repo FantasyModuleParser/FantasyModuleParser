@@ -66,6 +66,25 @@ namespace FantasyModuleParser.Equipment.UserControls
             get { return (IEnumerable)GetValue(ModuleCategoryItemSourceProperty); }
             set { SetValue(ModuleCategoryItemSourceProperty, value); }
         }
+
+        public static readonly DependencyProperty SelectedItemModelProperty =
+            DependencyProperty.Register("SelectedItemModel", typeof(ModelBase), typeof(EquipmentNavigationUC));
+
+        public ModelBase SelectedItemModel
+        {
+            get { return (ModelBase)GetValue(SelectedItemModelProperty); }
+            set { SetValue(SelectedItemModelProperty, value); }
+        }
         #endregion
+
+        private void FGCategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO:  To make this item more generic, need to pass in some variable so that the correct
+            // 'ModelBase' object is passed through (e.g. EquipmentModel)
+
+            // For now, default to passing an 'EquipmentModel' object through, as it is the PoC piece.
+
+            TableComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).EquipmentModels;
+        }
     }
 }
