@@ -55,6 +55,7 @@
             <ComboBox Name="FGCategoryComboBox" 
                             ItemsSource="{Binding Path=ModuleCategoryItemSource}"
                             DisplayMemberPath="Name"
+                            IsSynchronizedWithCurrentItem="True"
                             SelectedIndex="0" Grid.Column="0" Grid.Row="1"
                             SelectedValue="{Binding Path=SelectedCategoryModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             SelectionChanged="FGCategoryComboBox_SelectionChanged" Style="{StaticResource standardComboBox}" />
@@ -65,9 +66,12 @@
                                     Click="NextBtn_Click"
                                     Style="{StaticResource standardButton}" />
             <ComboBox x:Name="TableComboBox"
-                                      DisplayMemberPath="Name" Grid.Column="3" Grid.Row="1" 
-                                      Style="{StaticResource standardComboBox}"
-                                      SelectionChanged="TableComboBox_SelectionChanged"/>
+                      ItemsSource="{Binding Path=SelectedCategoryItemSource}"
+                      DisplayMemberPath="Name"
+                                      Grid.Column="3" Grid.Row="1"
+                      SelectedIndex="0"
+                      SelectedValue="{Binding Path=SelectedItemModel, UpdateSourceTrigger=PropertyChanged}"
+                                      Style="{StaticResource standardComboBox}" />
         </Grid>
 
         <Grid Grid.Row="1">

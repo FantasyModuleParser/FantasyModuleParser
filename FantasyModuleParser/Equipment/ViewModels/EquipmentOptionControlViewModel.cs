@@ -19,6 +19,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
         private EquipmentModel dataModel;
         private ModuleModel _moduleModel;
         private CategoryModel _categoryModel;
+        private ModelBase _footerSelectedModel;
         public EquipmentModel EquipmentDataModel
         {
             get { return dataModel; }
@@ -27,7 +28,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
         public string Name
         {
             get { return dataModel.Name; }
-            set { Set(ref dataModel.Name, value); }
+            set { dataModel.Name = value; RaisePropertyChanged(nameof(Name)); }
         }
         public string NonIdName
         {
@@ -279,6 +280,20 @@ namespace FantasyModuleParser.Equipment.ViewModels
             set { Set(ref _categoryModel, value); }
         }
 
+        public ModelBase SelectedFooterItemModel
+        {
+            get { return _footerSelectedModel; }
+            set 
+            { 
+                if(value is EquipmentModel)
+                {
+                    EquipmentDataModel = (value as EquipmentModel).ShallowCopy();
+                    raiseAllUIProperties();
+                }
+                Set(ref _footerSelectedModel, value);
+            }
+        }
+
         public void SaveEquipmentModel()
         {
             EquipmentDataModel.Save();
@@ -288,6 +303,11 @@ namespace FantasyModuleParser.Equipment.ViewModels
         {
             dataModel = dataModel.Load(filePath);
 
+            raiseAllUIProperties();
+        }
+
+        private void raiseAllUIProperties()
+        {
             RaisePropertyChanged(nameof(Name));
             RaisePropertyChanged(nameof(NonIdName));
             RaisePropertyChanged(nameof(NonIdDescription));
@@ -303,9 +323,8 @@ namespace FantasyModuleParser.Equipment.ViewModels
 
             _raiseArmorBindingProperties();
             _raisePropertyChangeOnWeaponBindings();
-
-
         }
+
         public EquipmentOptionControlViewModel()
         {
             EquipmentDataModel = new EquipmentModel();

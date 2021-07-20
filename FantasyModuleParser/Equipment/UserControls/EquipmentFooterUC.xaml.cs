@@ -1,8 +1,11 @@
-﻿using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Equipment.ViewModels;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC.Commands;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,29 +82,11 @@ namespace FantasyModuleParser.Equipment.UserControls
                 AddToProjectAction(this, EventArgs.Empty);
         }
 
-        private void EquipmentNavigationUC_PrevEquipmentAction(object sender, EventArgs e)
-        {
-            OnPrevEquipmentAction();
-        }
 
-        public event EventHandler PrevEquipmentAction;
-        protected virtual void OnPrevEquipmentAction()
+        public event EventHandler SelectedItemModelChangeAction;
+        protected virtual void OnSelectedItemModelChange()
         {
-            if (PrevEquipmentAction != null)
-                PrevEquipmentAction(this, EventArgs.Empty);
-        }
-
-
-        private void EquipmentNavigationUC_NextEquipmentAction(object sender, EventArgs e)
-        {
-            OnNextEquipmentAction();
-        }
-
-        public event EventHandler NextEquipmentAction;
-        protected virtual void OnNextEquipmentAction()
-        {
-            if (NextEquipmentAction != null)
-                NextEquipmentAction(this, EventArgs.Empty);
+            SelectedItemModelChangeAction?.Invoke(this, EventArgs.Empty);
         }
 
         private void FGCategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -111,21 +96,35 @@ namespace FantasyModuleParser.Equipment.UserControls
 
             // For now, default to passing an 'EquipmentModel' object through, as it is the PoC piece.
 
-            //TableComboBox.ItemsSource = (FGCategoryComboBox.SelectedItem as CategoryModel).EquipmentModels;
+            if (this.DataContext is EquipmentOptionControlViewModel)
+            {
+                EquipmentOptionControlViewModel viewModel = this.DataContext as EquipmentOptionControlViewModel;
+                SelectedCategoryItemSource = viewModel.SelectedCategoryModel.EquipmentModels;
+            }
         }
 
         private void PrevBtn_Click(object sender, RoutedEventArgs e)
         {
-            OnPrevEquipmentAction();
+            int currentSelectedItemIdx = TableComboBox.SelectedIndex - 1;
+
+            if (currentSelectedItemIdx < 0 || currentSelectedItemIdx == TableComboBox.Items.Count + 1)
+                currentSelectedItemIdx = TableComboBox.Items.Count - 1;
+            
+            TableComboBox.SelectedIndex = currentSelectedItemIdx;
+
+            OnSelectedItemModelChange();
         }
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            OnNextEquipmentAction();
-        }
+            int currentSelectedItemIdx = TableComboBox.SelectedIndex;
 
-        private void TableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            if (currentSelectedItemIdx == TableComboBox.Items.Count - 1)
+                TableComboBox.SelectedIndex = 0;
+            else
+                TableComboBox.SelectedIndex++;
+
+            OnSelectedItemModelChange();
         }
 
         #region Custom Exposed Dependencies
@@ -144,7 +143,28 @@ namespace FantasyModuleParser.Equipment.UserControls
         public CategoryModel SelectedCategoryModel
         {
             get { return (CategoryModel)GetValue(SelectedCategoryModelProperty); }
-            set { SetValue(SelectedCategoryModelProperty, value); }
+            set 
+            { 
+                SetValue(SelectedCategoryModelProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty SelectedCategoryItemSourceProperty =
+            DependencyProperty.Register("SelectedCategoryItemSource", typeof(IEnumerable), typeof(EquipmentFooterUC));
+
+        public IEnumerable SelectedCategoryItemSource
+        {
+            get { return (IEnumerable)GetValue(SelectedCategoryItemSourceProperty); }
+            set { SetValue(SelectedCategoryItemSourceProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedItemModelProperty =
+    DependencyProperty.Register("SelectedItemModel", typeof(ModelBase), typeof(EquipmentFooterUC));
+
+        public ModelBase SelectedItemModel
+        {
+            get { return (ModelBase)GetValue(SelectedItemModelProperty); }
+            set { SetValue(SelectedItemModelProperty, value); }
         }
         #endregion
     }

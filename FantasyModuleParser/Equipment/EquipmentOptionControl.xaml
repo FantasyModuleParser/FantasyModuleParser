@@ -317,10 +317,10 @@
                                         AddToProjectAction="EquipmentFooterUC_AddToProjectAction"
                                         LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
                                         SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
-                                        PrevEquipmentAction="EquipmentFooterUC_PrevEquipmentAction"
-                                        NextEquipmentAction="EquipmentFooterUC_NextEquipmentAction" 
+                                       SelectedItemModelChangeAction="EquipmentFooterUC_SelectedItemModelChangeAction"
                                         ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
                                        SelectedCategoryModel="{Binding SelectedCategoryModel, Mode=TwoWay}"
+                                       SelectedItemModel="{Binding SelectedFooterItemModel, Mode=TwoWay}"
                                         Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>
     </Grid>
 </UserControl>

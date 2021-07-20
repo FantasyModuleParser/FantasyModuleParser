@@ -10,7 +10,7 @@ namespace FantasyModuleParser.Equipment.Models
     public class EquipmentModel : ModelBase
     {
 
-        public string Name;
+        public string Name { get; set; }
         public string NonIdName;
         public string NonIdDescription;
 
@@ -65,6 +65,11 @@ namespace FantasyModuleParser.Equipment.Models
                 return JsonConvert.DeserializeObject<EquipmentModel>(jsonData);
             }
             return null;
+        }
+
+        public EquipmentModel ShallowCopy()
+        {
+            return (EquipmentModel)this.MemberwiseClone();
         }
     }
 }

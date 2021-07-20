@@ -285,10 +285,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Equipment\UserControls\EquipmentNavigationUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Equipment\UserControls\GenericImageUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -519,9 +515,6 @@
     </Compile>
     <Compile Include="Equipment\UserControls\EquipmentHeaderUC.xaml.cs">
       <DependentUpon>EquipmentHeaderUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\EquipmentNavigationUC.xaml.cs">
-      <DependentUpon>EquipmentNavigationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment\UserControls\GenericImageUserControl.xaml.cs">
       <DependentUpon>GenericImageUserControl.xaml</DependentUpon>

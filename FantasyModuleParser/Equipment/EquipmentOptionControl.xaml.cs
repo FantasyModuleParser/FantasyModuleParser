@@ -83,5 +83,10 @@ namespace FantasyModuleParser.Equipment
                 log.Info("Equipment " + viewModel.Name + " has successfully been added to Category " + viewModel.SelectedCategoryModel.Name);
             }
         }
+
+        private void EquipmentFooterUC_SelectedItemModelChangeAction(object sender, EventArgs e)
+        {
+
+        }
     }
 }
