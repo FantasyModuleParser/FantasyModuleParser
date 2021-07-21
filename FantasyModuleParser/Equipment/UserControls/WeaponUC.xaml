@@ -55,7 +55,7 @@
                   SelectedValue="{Binding SecondaryDieType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
                   Grid.Row="3" Grid.Column="2" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
-        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <TextBox  Text="{Binding SecondaryDamageBonus}" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
                   SelectedValue="{Binding SecondaryDamageType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"

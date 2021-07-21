@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:equipmentEnum="clr-namespace:FantasyModuleParser.Equipment.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="300">
     <UserControl.Resources>
@@ -33,7 +35,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Grid Background="AliceBlue">
+    <Grid Background="AliceBlue" x:Name="CostAndWeightLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -43,15 +45,12 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Cost" Grid.Column="0" Style="{StaticResource textBoxLabel}"/>
-        <TextBox Text="{Binding CostValue}" Grid.Column="1" Style="{StaticResource standardTextBox}"/>
-        <ComboBox SelectedItem="{Binding CostDenomination}" Grid.Column="2" Style="{StaticResource standardComboBox}">
-            <ComboBoxItem Content="cp"/>
-            <ComboBoxItem Content="ep"/>
-            <ComboBoxItem Content="sp"/>
-            <ComboBoxItem Content="gp" IsSelected="True"/>
-            <ComboBoxItem Content="pp"/>
-        </ComboBox>
+        <TextBox Text="{Binding Path=CostValue}" Grid.Column="1" Style="{StaticResource standardTextBox}"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type equipmentEnum:CurrencyEnum}}}"
+                  SelectedValue="{Binding Path=CostDenomination}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  Grid.Column="2" />
         <Label Content="Weight" Grid.Column="3" Style="{StaticResource textBoxLabel}"/>
-        <TextBox Text="{Binding Weight}" Grid.Column="4" Style="{StaticResource standardTextBox}"/>
+        <TextBox Text="{Binding Path=Weight}" Grid.Column="4" Style="{StaticResource standardTextBox}"/>
     </Grid>
 </UserControl>

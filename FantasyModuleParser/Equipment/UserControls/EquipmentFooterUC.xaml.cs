@@ -78,8 +78,11 @@ namespace FantasyModuleParser.Equipment.UserControls
         public event EventHandler AddToProjectAction;
         protected virtual void OnAddToProjectAction()
         {
+            int selectedItemIdx = TableComboBox.SelectedIndex;
             if (AddToProjectAction != null)
                 AddToProjectAction(this, EventArgs.Empty);
+
+            TableComboBox.SelectedIndex = selectedItemIdx;
         }
 
 

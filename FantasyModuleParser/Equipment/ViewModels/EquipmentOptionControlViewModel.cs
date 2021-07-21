@@ -47,7 +47,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
             set { Set(ref dataModel.CostValue, value); }
         }
 
-        public string CostDenomination
+        public CurrencyEnum CostDenomination
         {
             get { return dataModel.CostDenomination; }
             set { Set(ref dataModel.CostDenomination, value); }

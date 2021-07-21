@@ -490,6 +490,7 @@
     <Compile Include="Equipment\Enums\AdventuringGearEnum.cs" />
     <Compile Include="Equipment\Enums\AnimalsEnum.cs" />
     <Compile Include="Equipment\Enums\ArmorEnum.cs" />
+    <Compile Include="Equipment\Enums\CurrencyEnum.cs" />
     <Compile Include="Equipment\Enums\PrimaryEquipmentEnum.cs" />
     <Compile Include="Equipment\Enums\ToolsEnum.cs" />
     <Compile Include="Equipment\Enums\TreasureEnum.cs" />
