@@ -32,5 +32,13 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); /* </locked> */
 			}
 		}
+
+		static public void EquipmentName(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("name"); /* <name> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(equipmentModel.Name);
+			xmlWriter.WriteEndElement(); /* <name> </name> */
+		}
 	}
 }
