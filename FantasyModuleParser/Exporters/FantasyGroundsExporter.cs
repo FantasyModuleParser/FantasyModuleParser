@@ -401,6 +401,8 @@ namespace FantasyModuleParser.Exporters
 							/* <root version="4.0"> <reference> <npcdata> <category> <equipmentModel.Name> */
 							EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentName(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentType(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentSubtype(xmlWriter, equipmentModel);
 						}
 						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
 					}
