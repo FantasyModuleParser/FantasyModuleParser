@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Extensions;
+﻿using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
@@ -167,10 +168,12 @@ namespace FantasyModuleParser.Exporters
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
 			List<TableModel> FatTableList = CommonMethods.GenerateFatTableList(moduleModel);
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
 			HashSet<string> UniqueCasterClass = new HashSet<string>();
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));
+			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
 			/// <summary>
 			///  Names all token images to match the NPC name
 			/// </summary>
@@ -381,10 +384,28 @@ namespace FantasyModuleParser.Exporters
 					#endregion
 				}
 				#region Equipment Data
-				/*	xmlWriter.WriteStartElement("equipmentdata");
-				 *	xmlWriter.WriteAttributeString("static", "true"); 
-				 *	xmlWriter.WriteString(" ");
-				 *	xmlWriter.WriteEndElement(); */
+				if (moduleModel.IncludesEquipment)
+				{
+					xmlWriter.WriteStartElement("equipmentdata"); /* <root version="4.0"> <reference> <equipmentdata> */
+					foreach (CategoryModel categoryModel in moduleModel.Categories)
+					{
+						xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <equipmentdata> <category> */
+						xmlWriter.WriteAttributeString("name", categoryModel.Name);
+						xmlWriter.WriteAttributeString("baseicon", "0");
+						xmlWriter.WriteAttributeString("decalicon", "0");
+
+						//Now, write out each NPC with NPC Name
+						foreach (EquipmentModel equipmentModel in FatEquipmentList)
+						{
+							xmlWriter.WriteStartElement(EquipmentExporter.EquipmentNameToXML(equipmentModel));
+							/* <root version="4.0"> <reference> <npcdata> <category> <equipmentModel.Name> */
+							EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
+						}
+						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
+					}
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> </equipmentdata> */
+				}
+				
 				#endregion
 				#region Equipment Lists
 				/*	xmlWriter.WriteStartElement("equipmentlists");

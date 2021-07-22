@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Tables.Models;
@@ -61,6 +62,23 @@ namespace FantasyModuleParser.Exporters
 
 			}
 			return FatTableList;
+		}
+
+		/// <summary>
+		/// Generates a List of all Equipment across all Categories in one List<EquipmentModel> object.  Used for Reference Manual material.
+		/// </summary>
+		static public List<EquipmentModel> GenerateFatEquipmentList(ModuleModel moduleModel)
+		{
+			List<EquipmentModel> FatEquipmentList = new List<EquipmentModel>();
+
+			foreach (CategoryModel category in moduleModel.Categories)
+			{
+				foreach (EquipmentModel equipmentModel in category.EquipmentModels)
+				{
+					FatEquipmentList.Add(equipmentModel);
+				}
+			}
+			return FatEquipmentList;
 		}
 	}
 }
