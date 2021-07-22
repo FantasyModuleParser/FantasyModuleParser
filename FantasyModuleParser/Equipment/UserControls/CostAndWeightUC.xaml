@@ -48,7 +48,7 @@
         <TextBox Text="{Binding Path=CostValue}" Grid.Column="1" Style="{StaticResource standardTextBox}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type equipmentEnum:CurrencyEnum}}}"
                   SelectedValue="{Binding Path=CostDenomination}"
-                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" Height="23" Width="50"
                   Grid.Column="2" />
         <Label Content="Weight" Grid.Column="3" Style="{StaticResource textBoxLabel}"/>
         <TextBox Text="{Binding Path=Weight}" Grid.Column="4" Style="{StaticResource standardTextBox}"/>
