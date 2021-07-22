@@ -40,6 +40,16 @@ namespace FantasyModuleParser.Equipment.ViewModels
             get { return dataModel.NonIdDescription; }
             set { Set(ref dataModel.NonIdDescription, value); }
         }
+        public bool IsLocked
+        {
+            get { return dataModel.IsLocked; }
+            set { Set(ref dataModel.IsLocked, value); }
+        }
+        public bool IsIdentified
+        {
+            get { return dataModel.IsIdentified; }
+            set { Set(ref dataModel.IsIdentified, value); }
+        }
 
         public int CostValue
         {
@@ -311,6 +321,8 @@ namespace FantasyModuleParser.Equipment.ViewModels
             RaisePropertyChanged(nameof(Name));
             RaisePropertyChanged(nameof(NonIdName));
             RaisePropertyChanged(nameof(NonIdDescription));
+            RaisePropertyChanged(nameof(IsLocked));
+            RaisePropertyChanged(nameof(IsIdentified));
             RaisePropertyChanged(nameof(CostValue));
             RaisePropertyChanged(nameof(CostDenomination));
             RaisePropertyChanged(nameof(Weight));

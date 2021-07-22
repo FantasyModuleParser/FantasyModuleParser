@@ -65,7 +65,9 @@
                         Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,0.333,0"
                                                    NameText="{Binding Name, Mode=TwoWay}"
                                                     NonIDText="{Binding NonIdName, Mode=TwoWay}"
-                        NonIDDescriptionText="{Binding NonIdDescription, Mode=TwoWay}"/>
+                        NonIDDescriptionText="{Binding NonIdDescription, Mode=TwoWay}"
+                        IsLocked="{Binding IsLocked, Mode=TwoWay}"
+                        IsIdentified="{Binding IsIdentified, Mode=TwoWay}"/>
 
                     <!-- Line Separator -->
                     <Separator Grid.Row="1" Grid.ColumnSpan="4" Margin="0,2,0.333,2"/>

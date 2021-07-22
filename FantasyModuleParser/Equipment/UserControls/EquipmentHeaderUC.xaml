@@ -76,8 +76,8 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <CheckBox Content="Locked" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="0"/>
-            <CheckBox Content="Is Identified" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="1" />
+            <CheckBox Content="Locked" IsChecked="{Binding Path=IsLocked}" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="0"/>
+            <CheckBox Content="Is Identified" IsChecked="{Binding Path=IsIdentified}" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="1" />
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>

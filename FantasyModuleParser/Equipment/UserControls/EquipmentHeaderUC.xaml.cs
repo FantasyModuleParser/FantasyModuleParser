@@ -53,6 +53,24 @@ namespace FantasyModuleParser.Equipment.UserControls
             set { SetValue(NonIDDescriptionTextProperty, value); }
         }
 
+        public static readonly DependencyProperty IsLockedProperty =
+            DependencyProperty.Register("IsLocked", typeof(bool), typeof(EquipmentHeaderUC));
+
+        public bool IsLocked
+        {
+            get { return (bool)GetValue(IsLockedProperty); }
+            set { SetValue(IsLockedProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsIdentifiedProperty =
+            DependencyProperty.Register("IsIdentified", typeof(bool), typeof(EquipmentHeaderUC));
+
+        public bool IsIdentified
+        {
+            get { return (bool)GetValue(IsIdentifiedProperty); }
+            set { SetValue(IsIdentifiedProperty, value); }
+        }
+
         public EquipmentHeaderUC()
         {
             InitializeComponent();

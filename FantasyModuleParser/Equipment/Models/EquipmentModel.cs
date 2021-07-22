@@ -14,6 +14,9 @@ namespace FantasyModuleParser.Equipment.Models
         public string NonIdName;
         public string NonIdDescription;
 
+        public bool IsLocked;
+        public bool IsIdentified;
+
         public string Description;
         public string ImageFilePath;
 
