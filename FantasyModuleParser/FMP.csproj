@@ -492,6 +492,7 @@
     <Compile Include="Equipment\Enums\ArmorEnum.cs" />
     <Compile Include="Equipment\Enums\CurrencyEnum.cs" />
     <Compile Include="Equipment\Enums\PrimaryEquipmentEnum.cs" />
+    <Compile Include="Equipment\Enums\RarityEnum.cs" />
     <Compile Include="Equipment\Enums\ToolsEnum.cs" />
     <Compile Include="Equipment\Enums\TreasureEnum.cs" />
     <Compile Include="Equipment\Enums\VehiclesEnum.cs" />

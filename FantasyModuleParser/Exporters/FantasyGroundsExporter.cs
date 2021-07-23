@@ -403,6 +403,16 @@ namespace FantasyModuleParser.Exporters
 							EquipmentExporter.EquipmentName(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentType(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentSubtype(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentCost(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentRarity(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentWeight(xmlWriter, equipmentModel);
+							if (equipmentModel.PrimaryEquipmentEnumType.Equals("Armor"))
+							{
+								EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentDexBonus(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentStealth(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentStrength(xmlWriter, equipmentModel);
+							}
 						}
 						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
 					}

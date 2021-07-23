@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:equipmentEnum="clr-namespace:FantasyModuleParser.Equipment.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="90" d:DesignWidth="600">
     <UserControl.Resources>
@@ -16,7 +18,7 @@
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="210"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -75,9 +77,20 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <CheckBox Content="Locked" IsChecked="{Binding Path=IsLocked}" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="0"/>
             <CheckBox Content="Is Identified" IsChecked="{Binding Path=IsIdentified}" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="1" />
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Rarity: " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="0"/>
+                <ComboBox Height="23" ItemsSource="{Binding Source={my:Enumeration {x:Type equipmentEnum:RarityEnum}}}"
+                  SelectedValue="{Binding Path=EquipmentRarity}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,0,10,0" Grid.Column="1"/>
+            </Grid>            
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>

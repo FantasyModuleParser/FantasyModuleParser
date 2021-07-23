@@ -2,6 +2,7 @@
 using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using log4net;
+using System;
 using System.Xml;
 
 namespace FantasyModuleParser.Exporters
@@ -83,6 +84,45 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString(equipmentModel.TreasureEnumType.GetDescription());
 			}				
 			xmlWriter.WriteEndElement(); /* <subtype> </subtype> */
+		}
+
+		static public void EquipmentCost(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("cost"); /* <cost> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(equipmentModel.CostValue + " " + equipmentModel.CostDenomination.GetDescription());
+			xmlWriter.WriteEndElement(); /* <cost> </cost> */
+		}
+		static public void EquipmentWeight(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("weight"); /* <weight> */
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteValue(equipmentModel.Weight);
+			xmlWriter.WriteEndElement(); /* <weight> </weight> */
+		}
+
+		static public void EquipmentRarity(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			throw new NotImplementedException();
+		}
+
+		static public void EquipmentBaseAC(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			throw new NotImplementedException();
+		}
+
+		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			throw new NotImplementedException();
+		}
+		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			throw new NotImplementedException();
+		}
+
+		static public void EquipmentStrength(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
