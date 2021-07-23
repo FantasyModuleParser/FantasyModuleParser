@@ -5,7 +5,7 @@ namespace FantasyModuleParser.Equipment.Enums
 	public enum RarityEnum
 	{
 		[Description("Non-Magical")]
-		Mundane = 1,
+		Mundane = 0,
 
 		[Description("Common")]
 		Common = 1,
