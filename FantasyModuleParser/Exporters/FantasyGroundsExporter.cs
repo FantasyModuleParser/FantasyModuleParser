@@ -402,6 +402,8 @@ namespace FantasyModuleParser.Exporters
 							xmlWriter.WriteStartElement(EquipmentExporter.EquipmentNameToXML(equipmentModel));
 							/* <root version="4.0"> <reference> <npcdata> <category> <equipmentModel.Name> */
 							EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentIdentified(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentNonIDName(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentName(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentType(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentSubtype(xmlWriter, equipmentModel);
@@ -414,7 +416,7 @@ namespace FantasyModuleParser.Exporters
 								EquipmentExporter.EquipmentDexBonus(xmlWriter, equipmentModel);
 								EquipmentExporter.EquipmentStealth(xmlWriter, equipmentModel);
 								EquipmentExporter.EquipmentStrength(xmlWriter, equipmentModel);
-							}
+							}							
 						}
 						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
 					}

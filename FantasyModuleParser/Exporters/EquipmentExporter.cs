@@ -104,7 +104,14 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentBaseAC(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			xmlWriter.WriteStartElement("ac"); /* <ac> */
+			if (equipmentModel.ArmorEnumType == ArmorEnum.Shield)
+			{
+				xmlWriter.WriteStartElement("bonus") /* <bonus> */
+			}
+			else
+			{
+				xmlWriter.WriteStartElement("ac"); /* <ac> */
+			}				
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(equipmentModel.Armor.ArmorValue);
 			xmlWriter.WriteEndElement(); /* <ac> </ac> */
@@ -150,6 +157,29 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "formattedtext");
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(equipmentModel.Description));
 			xmlWriter.WriteEndElement(); /* <description> </description> */
+		}
+
+		static public void EquipmentIdentified(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("isidentified"); /* <isidentified> */
+			xmlWriter.WriteAttributeString("type", "number");
+			if (equipmentModel.IsIdentified)
+			{
+				xmlWriter.WriteValue("1");
+			}
+			else
+			{
+				xmlWriter.WriteValue("0");
+			}
+			xmlWriter.WriteEndElement(); /* <isidentified> </isidentified> */
+		}
+
+		static public void EquipmentNonIDName(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("nonid_name"); /* <nonid_name> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(equipmentModel.NonIdName);
+			xmlWriter.WriteEndElement(); /* <nonid_name> </nonid_name> */
 		}
 	}
 }
