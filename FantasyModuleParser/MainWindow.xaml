@@ -84,6 +84,7 @@
                 <ListBoxItem Style="{StaticResource Disabled}">Add Encounters</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Encounters (Random)</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Enabled}" Name="optionEquipment">Add Equipment</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Magical Equipment</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Feats</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Images</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Image Grids</ListBoxItem>
