@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Equipment.Models;
+﻿using FantasyModuleParser.Equipment.Enums;
+using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
@@ -397,6 +398,7 @@ namespace FantasyModuleParser.Exporters
 						//Now, write out each NPC with NPC Name
 						foreach (EquipmentModel equipmentModel in FatEquipmentList)
 						{
+							NPCController npcController = new NPCController();
 							xmlWriter.WriteStartElement(EquipmentExporter.EquipmentNameToXML(equipmentModel));
 							/* <root version="4.0"> <reference> <npcdata> <category> <equipmentModel.Name> */
 							EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
@@ -404,9 +406,9 @@ namespace FantasyModuleParser.Exporters
 							EquipmentExporter.EquipmentType(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentSubtype(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentCost(xmlWriter, equipmentModel);
-							EquipmentExporter.EquipmentRarity(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentWeight(xmlWriter, equipmentModel);
-							if (equipmentModel.PrimaryEquipmentEnumType.Equals("Armor"))
+							EquipmentExporter.EquipmentDescription(xmlWriter, equipmentModel, npcController);
+							if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
 							{
 								EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
 								EquipmentExporter.EquipmentDexBonus(xmlWriter, equipmentModel);
