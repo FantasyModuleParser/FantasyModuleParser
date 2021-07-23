@@ -123,18 +123,32 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
-			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus);
 			xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
 		}
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			throw new NotImplementedException();
+			xmlWriter.WriteStartElement("stealth"); /* <stealth> */
+			xmlWriter.WriteAttributeString("type", "string");
+			if (equipmentModel.Armor.IsStealthDisadvantage)
+			{
+				xmlWriter.WriteString("Disadvantage");
+			}
+			else xmlWriter.WriteString("-");
+			xmlWriter.WriteEndElement(); /* <stealth> </stealth> */
 		}
 
 		static public void EquipmentStrength(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			throw new NotImplementedException();
+			xmlWriter.WriteStartElement("strength"); /* <strength> */
+			xmlWriter.WriteAttributeString("type", "string");
+			if (!string.IsNullOrEmpty(equipmentModel.Armor.StrengthRequirement.ToString()))
+			{
+				xmlWriter.WriteValue(equipmentModel.Armor.StrengthRequirement);
+			}
+			else xmlWriter.WriteString("-");
+			xmlWriter.WriteEndElement(); /* <strength> </strength> */
 		}
 	}
 }
