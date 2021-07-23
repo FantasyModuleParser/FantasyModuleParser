@@ -4,6 +4,7 @@
     {
         public int ArmorValue;
         public int StrengthRequirement;
+        public string DexterityBonus;
         public bool IsStealthDisadvantage;
     }
 }

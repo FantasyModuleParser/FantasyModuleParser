@@ -17,64 +17,83 @@
             <EventSetter Event="PreviewTextInput" Handler="PositiveNumberValidationTextBox" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
+        <Style TargetType="TextBox" x:Key="anyNumberTextbox">
+            <Setter Property="FontSize" Value="10px" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="50"/>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0">
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Content" Value="Armor Class:"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ArmorEnumType}" 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Content" Value="Armor Class:"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ArmorEnumType}" 
                                      Value="{x:Static enum:ArmorEnum.Shield}">
-                            <Setter Property="Content" Value="AC Bonus:"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-
-        <TextBox Text="{Binding ArmorValue}" Style="{StaticResource positiveNumberTextbox}" Grid.Row="0" Grid.Column="1"/>
-
-
-        <Label Content="Strength Req:" Grid.Row="0" Grid.Column="2"/>
-        <TextBox Text="{Binding StrengthRequirement}" Style="{StaticResource positiveNumberTextbox}" Grid.Row="0" Grid.Column="3"/>
-
-        <Label Content="Has Stealth Disadvantage?" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ArmorEnumType}" 
+                                <Setter Property="Content" Value="AC Bonus:"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <TextBox Text="{Binding ArmorValue}" Style="{StaticResource positiveNumberTextbox}" Grid.Column="1"/>
+            <Label Content="Strength Req:" Grid.Column="2"/>
+            <TextBox Text="{Binding StrengthRequirement}" Style="{StaticResource positiveNumberTextbox}" Grid.Column="3"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Dexterity Bonus:" Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0"/>
+            <TextBox Text="{Binding DexterityBonus}" Style="{StaticResource anyNumberTextbox}" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Has Stealth Disadvantage?" Grid.Column="0" Grid.ColumnSpan="2">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ArmorEnumType}" 
                                      Value="{x:Static enum:ArmorEnum.Shield}">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-        <CheckBox IsChecked="{Binding IsStealthDisadvantage}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <CheckBox.Style>
-                <Style TargetType="CheckBox">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ArmorEnumType}" 
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <CheckBox IsChecked="{Binding IsStealthDisadvantage}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ArmorEnumType}" 
                                      Value="{x:Static enum:ArmorEnum.Shield}">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </CheckBox.Style>
-        </CheckBox>
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
+            </CheckBox>
+        </Grid>
     </Grid>
-    
 </UserControl>

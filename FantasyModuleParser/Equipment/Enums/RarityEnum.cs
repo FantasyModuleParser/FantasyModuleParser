@@ -4,22 +4,25 @@ namespace FantasyModuleParser.Equipment.Enums
 {
 	public enum RarityEnum
 	{
+		[Description("Non-Magical")]
+		Mundane = 1,
+
 		[Description("Common")]
-		Common = 0,
+		Common = 1,
 
 		[Description("Uncommon")]
-		Uncommon = 1,
+		Uncommon = 2,
 
 		[Description("Rare")]
-		Rare = 2,
+		Rare = 3,
 
 		[Description("Very Rare")]
-		VeryRare = 3,
+		VeryRare = 4,
 
 		[Description("Legendary")]
-		Legendary = 4,
+		Legendary = 5,
 
 		[Description("Artifact")]
-		Artifact = 5,
+		Artifact = 6,
 	}
 }

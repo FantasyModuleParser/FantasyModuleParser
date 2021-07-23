@@ -1,6 +1,6 @@
-﻿using FantasyModuleParser.Equipment.Models;
+﻿using FantasyModuleParser.Equipment.Enums;
+using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Extensions;
-using FantasyModuleParser.Main.Models;
 using log4net;
 using System;
 using System.Xml;
@@ -55,27 +55,27 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("subtype"); /* <subtype> */
 			xmlWriter.WriteAttributeString("type", "string");
-			if (equipmentModel.PrimaryEquipmentEnumType.GetDescription().Equals("Adventuring Gear"))
+			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.AdventuringGear)
 			{
 				xmlWriter.WriteString(equipmentModel.AdventuringGearEnumType.GetDescription());
 			}
-			else if (equipmentModel.PrimaryEquipmentEnumType.GetDescription().Equals("Armor"))
+			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
 			{
 				xmlWriter.WriteString(equipmentModel.ArmorEnumType.GetDescription());
 			}
-			else if (equipmentModel.PrimaryEquipmentEnumType.GetDescription().Equals("Weapon"))
+			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
 			{
 				xmlWriter.WriteString(equipmentModel.WeaponEnumType.GetDescription());
 			}
-			else if (equipmentModel.PrimaryEquipmentEnumType.GetDescription().Equals("Tools"))
+			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Tools)
 			{
 				xmlWriter.WriteString(equipmentModel.ToolsEnumType.GetDescription());
 			}
-			else if (equipmentModel.PrimaryEquipmentEnumType.GetDescription().Equals("Animals"))
+			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Animals)
 			{
 				xmlWriter.WriteString(equipmentModel.AnimalsEnumType.GetDescription());
 			}
-			else if (equipmentModel.PrimaryEquipmentEnumType.GetDescription().Equals("Vehicles"))
+			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Vehicles)
 			{
 				xmlWriter.WriteString(equipmentModel.VehiclesEnumType.GetDescription());
 			}
@@ -103,17 +103,29 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentRarity(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			throw new NotImplementedException();
+			xmlWriter.WriteStartElement("rarity"); /* <rarity> */
+			xmlWriter.WriteAttributeString("type", "string");
+			if (equipmentModel.EquipmentRarity != RarityEnum.Mundane)
+			{
+				xmlWriter.WriteString(equipmentModel.EquipmentRarity.GetDescription());
+			}			
+			xmlWriter.WriteEndElement(); /* <rarity> </rarity> */
 		}
 
 		static public void EquipmentBaseAC(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			throw new NotImplementedException();
+			xmlWriter.WriteStartElement("ac"); /* <ac> */
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteValue(equipmentModel.Armor.ArmorValue);
+			xmlWriter.WriteEndElement(); /* <ac> </ac> */
 		}
 
 		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			throw new NotImplementedException();
+			xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus);
+			xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
 		}
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
