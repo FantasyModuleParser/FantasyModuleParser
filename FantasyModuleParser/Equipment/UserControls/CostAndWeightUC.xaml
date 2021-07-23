@@ -35,7 +35,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Grid Background="AliceBlue" x:Name="CostAndWeightLayout">
+    <Grid x:Name="CostAndWeightLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>

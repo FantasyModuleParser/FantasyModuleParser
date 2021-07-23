@@ -5,11 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
              xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:model="clr-namespace:FantasyModuleParser.Equipment.UserControls.Models"
              xmlns:weaponEnum="clr-namespace:FantasyModuleParser.NPC.Models.Action.Enums"
              xmlns:weaponPropEnum="clr-namespace:FantasyModuleParser.Equipment.Enums.Weapon"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="340">
-    <Grid Background="AntiqueWhite">
+    <UserControl.Resources>
+        <DataTemplate x:Key="WeaponModelTemplate" DataType="{x:Type model:WeaponModel}" />
+    </UserControl.Resources>
+    <Grid x:Name="WeaponUCLayout">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -34,7 +38,7 @@
         
         <!-- Primary Damage -->
         <Label Content="Damage" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Text="{Binding PrimaryDamageDieCount}" Grid.Row="1" Grid.Column="1"/>
+        <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.NumOfDice}" Grid.Row="1" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}" 
                   SelectedValue="{Binding PrimaryDieType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description"
@@ -70,24 +74,26 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Label Content="Properties"></Label>
+                
+                <Label Content="Properties" FontWeight="Bold"></Label>
                 <ListBox x:Name="WeaponPropertyListBox" Grid.Column="1"
                             ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponPropertyEnum}}}" 
                             SelectionMode="Multiple"
                             SelectedValuePath="Value" DisplayMemberPath="Description"
+                         SelectionChanged="WeaponPropertyListBox_SelectionChanged"
                             Margin="0,5,5,5">
                 </ListBox>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Label Content="Material"></Label>
+                <Label Content="Material" FontWeight="Bold"></Label>
                 <ListBox x:Name="MaterialPropertyListBox" Grid.Column="1"
                             ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponMaterialEnum}}}" 
-                            SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,5,5,5" >
+                            SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,5,0,5" >
                 </ListBox>
             </StackPanel>
 
             <StackPanel Grid.Column="2">
-                <Label Content="Range"/>
+                <Label Content="Range" FontWeight="Bold"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>

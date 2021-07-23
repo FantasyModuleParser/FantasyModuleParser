@@ -1,18 +1,7 @@
-﻿using FantasyModuleParser.Equipment.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FantasyModuleParser.Equipment.UserControls.Models;
+using FantasyModuleParser.Equipment.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.Equipment.UserControls
 {
@@ -24,6 +13,8 @@ namespace FantasyModuleParser.Equipment.UserControls
         public WeaponUC()
         {
             InitializeComponent();
+            WeaponUCLayout.DataContext = this;
+            
         }
 
         public void Refresh()
@@ -34,6 +25,30 @@ namespace FantasyModuleParser.Equipment.UserControls
             {
                 EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
             }
+            var weaponModel = (WeaponModel)GetValue(WeaponModelProperty);
+        }
+
+        private void WeaponPropertyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var weaponModel = (WeaponModel)GetValue(WeaponModelProperty);
+        }
+
+        public static readonly DependencyProperty WeaponModelProperty =
+            DependencyProperty.Register("WeaponModel", typeof(WeaponModel), typeof(WeaponUC));
+
+        public WeaponModel WeaponModel
+        {
+            get { return (WeaponModel)GetValue(WeaponModelProperty); }
+            set { SetValue(WeaponModelProperty, value); }
+        }
+
+        public static readonly DependencyProperty PrimaryDamageDieCountProperty =
+            DependencyProperty.Register("PrimaryDamageDieCount", typeof(WeaponModel), typeof(WeaponUC));
+
+        public int PrimaryDamageDieCount
+        {
+            get { return (int)GetValue(PrimaryDamageDieCountProperty); }
+            set { SetValue(PrimaryDamageDieCountProperty, value); }
         }
     }
 }

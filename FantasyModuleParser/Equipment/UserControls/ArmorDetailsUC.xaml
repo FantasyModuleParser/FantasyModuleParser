@@ -25,7 +25,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Grid Background="White">
+    <Grid x:Name="ArmorUCLayout">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -51,24 +51,26 @@
                     </Style>
                 </Label.Style>
             </Label>
-            <TextBox Text="{Binding ArmorValue}" Style="{StaticResource positiveNumberTextbox}" Grid.Column="1"/>
+            <TextBox Text="{Binding Path=ArmorModelValue.ArmorValue}" Style="{StaticResource positiveNumberTextbox}" Grid.Column="1"/>
             <Label Content="Strength Req:" Grid.Column="2"/>
-            <TextBox Text="{Binding StrengthRequirement}" Style="{StaticResource positiveNumberTextbox}" Grid.Column="3"/>
+            <TextBox Text="{Binding Path=ArmorModelValue.StrengthRequirement}" Style="{StaticResource positiveNumberTextbox}" Grid.Column="3"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Dexterity Bonus:" Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0"/>
-            <TextBox Text="{Binding DexterityBonus}" Style="{StaticResource anyNumberTextbox}" Grid.Column="1"/>
+            <Label Content="Max Dex Bonus:" Margin="0,0,5,0" HorizontalAlignment="Right" Grid.Column="0"/>
+            <TextBox Text="{Binding Path=ArmorModelValue.DexterityBonus}" Style="{StaticResource positiveNumberTextbox}" Grid.Column="1"
+                     SelectionChanged="TextBox_SelectionChanged"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="27.667"/>
+                <ColumnDefinition Width="122.333"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Has Stealth Disadvantage?" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label Content="Has Stealth Disadvantage?" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,-0.333">
                 <Label.Style>
                     <Style TargetType="Label">
                         <Setter Property="Visibility" Value="Visible"/>
@@ -81,7 +83,8 @@
                     </Style>
                 </Label.Style>
             </Label>
-            <CheckBox IsChecked="{Binding IsStealthDisadvantage}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <CheckBox IsChecked="{Binding Path=ArmorModelValue.IsStealthDisadvantage}" 
+                      Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7,0,7.667">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Setter Property="Visibility" Value="Visible"/>

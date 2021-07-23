@@ -2,6 +2,7 @@
 using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Enums.Weapon;
 using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Equipment.UserControls.Models;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.Models.Action.Enums;
@@ -50,6 +51,12 @@ namespace FantasyModuleParser.Equipment.ViewModels
             get { return dataModel.IsIdentified; }
             set { Set(ref dataModel.IsIdentified, value); }
         }
+        [DefaultValue(RarityEnum.Mundane)]
+        public RarityEnum RarityEnumType
+        {
+            get { return dataModel.EquipmentRarity; }
+            set { Set(ref dataModel.EquipmentRarity, value); }
+        }
 
         public int CostValue
         {
@@ -78,6 +85,12 @@ namespace FantasyModuleParser.Equipment.ViewModels
 
 
         #region Secondary Enum Type Selection Options
+        [DefaultValue(AdventuringGearEnum.AdventuringGear)]
+        public AdventuringGearEnum AdventuringGearEnumType
+        {
+            get { return dataModel.AdventuringGearEnumType; }
+            set { Set(ref dataModel.AdventuringGearEnumType, value); }
+        }
         [DefaultValue(ArmorEnum.LightArmor)]
         public ArmorEnum ArmorEnumType
         {
@@ -91,42 +104,72 @@ namespace FantasyModuleParser.Equipment.ViewModels
             get { return dataModel.AnimalsEnumType; }
             set { Set(ref dataModel.AnimalsEnumType, value); }
         }
-
+        [DefaultValue(ToolsEnum.ArtisanTools)]
+        public ToolsEnum ToolsEnumType
+        {
+            get { return dataModel.ToolsEnumType; }
+            set { Set(ref dataModel.ToolsEnumType, value); }
+        }
         [DefaultValue(VehiclesEnum.TackAndHarness)]
         public VehiclesEnum VehiclesEnumType
         {
             get { return dataModel.VehiclesEnumType; }
             set { Set(ref dataModel.VehiclesEnumType, value); }
         }
+        [DefaultValue(TreasureEnum.Art)]
+        public TreasureEnum TreasureEnumType
+        {
+            get { return dataModel.TreasureEnumType; }
+            set { Set(ref dataModel.TreasureEnumType, value); }
+        }
+
+        [DefaultValue(WeaponEnum.MMW)]
+        public WeaponEnum WeaponEnumType
+        {
+            get { return dataModel.WeaponEnumType; }
+            set { Set(ref dataModel.WeaponEnumType, value); }
+        }
         #endregion Secondary Enum Type Selection Options
 
         #region Armor Bindings
-        public int ArmorValue
+        public ArmorModel ArmorModelValue
         {
-            get { return dataModel.Armor.ArmorValue; }
-            set { Set(ref dataModel.Armor.ArmorValue, value); }
+            get { return dataModel.Armor; }
+            set { dataModel.Armor =  value; RaisePropertyChanged(nameof(ArmorModelValue)); }
         }
-        public int StrengthRequirement
-        {
-            get { return dataModel.Armor.StrengthRequirement; }
-            set { Set(ref dataModel.Armor.StrengthRequirement, value); }
-        }
-        public bool IsStealthDisadvantage
-        {
-            get { return dataModel.Armor.IsStealthDisadvantage; }
-            set { Set(ref dataModel.Armor.IsStealthDisadvantage, value); }
-        }
+        //public int ArmorValue
+        //{
+        //    get { return dataModel.Armor.ArmorValue; }
+        //    set { Set(ref dataModel.Armor.ArmorValue, value); }
+        //}
+        //public int StrengthRequirement
+        //{
+        //    get { return dataModel.Armor.StrengthRequirement; }
+        //    set { Set(ref dataModel.Armor.StrengthRequirement, value); }
+        //}
+        //public bool IsStealthDisadvantage
+        //{
+        //    get { return dataModel.Armor.IsStealthDisadvantage; }
+        //    set { Set(ref dataModel.Armor.IsStealthDisadvantage, value); }
+        //}
 
         private void _raiseArmorBindingProperties()
         {
-            RaisePropertyChanged(nameof(ArmorValue));
-            RaisePropertyChanged(nameof(StrengthRequirement));
-            RaisePropertyChanged(nameof(IsStealthDisadvantage));
+            RaisePropertyChanged(nameof(ArmorModelValue));
+            //RaisePropertyChanged(nameof(ArmorValue));
+            //RaisePropertyChanged(nameof(StrengthRequirement));
+            //RaisePropertyChanged(nameof(IsStealthDisadvantage));
         }
 
         #endregion Armor Bindings
 
         #region Weapon Bindings
+
+        public WeaponModel Weapon
+        {
+            get { return dataModel.Weapon; }
+            set { dataModel.Weapon = value; RaisePropertyChanged(nameof(Weapon));}
+        }
 
         #region Primary Damage Attributes
         public int PrimaryDamageDieCount
@@ -259,6 +302,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
 
         private void _raisePropertyChangeOnWeaponBindings()
         {
+            RaisePropertyChanged(nameof(Weapon));
             _raisePrimaryDamageAttributes();
             _raiseSecondaryDamageAttributes();
             _raiseOtherWeaponBindingProperties();
@@ -304,6 +348,12 @@ namespace FantasyModuleParser.Equipment.ViewModels
             }
         }
 
+        public void NewEquipmentModel()
+        {
+            EquipmentDataModel = new EquipmentModel();
+            raiseAllUIProperties();
+        }
+
         public void SaveEquipmentModel()
         {
             EquipmentDataModel.Save();
@@ -323,6 +373,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
             RaisePropertyChanged(nameof(NonIdDescription));
             RaisePropertyChanged(nameof(IsLocked));
             RaisePropertyChanged(nameof(IsIdentified));
+            RaisePropertyChanged(nameof(RarityEnumType));
             RaisePropertyChanged(nameof(CostValue));
             RaisePropertyChanged(nameof(CostDenomination));
             RaisePropertyChanged(nameof(Weight));
@@ -332,6 +383,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
             RaisePropertyChanged(nameof(ArmorEnumType));
             RaisePropertyChanged(nameof(AnimalsEnumType));
             RaisePropertyChanged(nameof(VehiclesEnumType));
+            RaisePropertyChanged(nameof(WeaponEnumType));
 
             _raiseArmorBindingProperties();
             _raisePropertyChangeOnWeaponBindings();

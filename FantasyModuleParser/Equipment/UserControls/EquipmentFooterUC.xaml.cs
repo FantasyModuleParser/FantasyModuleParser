@@ -25,6 +25,53 @@ namespace FantasyModuleParser.Equipment.UserControls
 
         }
 
+        #region New Item Action
+        private ICommand _newItemCommand;
+        public ICommand NewItemCommand
+        {
+            get
+            {
+                if (_newItemCommand == null)
+                {
+                    _newItemCommand = new ActionCommand(param => OnNewItemAction());
+                }
+                return _newItemCommand;
+            }
+        }
+
+        public event EventHandler NewItemAction;
+        protected virtual void OnNewItemAction()
+        {
+            if (NewItemAction != null)
+                NewItemAction(this, EventArgs.Empty);
+        }
+        #endregion
+        #region Import Text Command
+        private ICommand _importItemTextCommand;
+        public ICommand ImportItemTextCommand
+        {
+            get
+            {
+                if (_importItemTextCommand == null)
+                {
+                    // The false placeholder is here because I need to create some binding in order for 
+                    // a popup window to occur, similar to the NPC / Spell text importer
+                    _importItemTextCommand = new ActionCommand(param => OnImportItemTextAction(),
+                        param => false);
+                }
+                return _importItemTextCommand;
+            }
+        }
+
+        public event EventHandler ImportItemTextAction;
+        protected virtual void OnImportItemTextAction()
+        {
+            if (ImportItemTextAction != null)
+                ImportItemTextAction(this, EventArgs.Empty);
+        }
+        #endregion
+
+
         private void LoadEquipment_Click(object sender, RoutedEventArgs e)
         {
             OnLoadEquipmentAction();
@@ -156,6 +203,19 @@ namespace FantasyModuleParser.Equipment.UserControls
         {
             get { return (ModelBase)GetValue(SelectedItemModelProperty); }
             set { SetValue(SelectedItemModelProperty, value); }
+        }
+
+        public static readonly DependencyProperty ActionButtonLabelProperty =
+            DependencyProperty.Register("ActionButtonLabel", typeof(string), typeof(EquipmentFooterUC));
+
+        public string ActionButtonLabel
+        {
+            get { return (string)GetValue(ActionButtonLabelProperty); }
+            set
+            {
+                SetValue(ActionButtonLabelProperty, value);
+                PrevBtn.Content = "Previous " + value;
+            }
         }
         #endregion
     }

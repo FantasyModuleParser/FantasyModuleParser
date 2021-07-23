@@ -67,7 +67,8 @@
                                                     NonIDText="{Binding NonIdName, Mode=TwoWay}"
                         NonIDDescriptionText="{Binding NonIdDescription, Mode=TwoWay}"
                         IsLocked="{Binding IsLocked, Mode=TwoWay}"
-                        IsIdentified="{Binding IsIdentified, Mode=TwoWay}"/>
+                        IsIdentified="{Binding IsIdentified, Mode=TwoWay}"
+                        MagicItemAttributeVisibility="Hidden"/>
 
                     <!-- Line Separator -->
                     <Separator Grid.Row="1" Grid.ColumnSpan="4" Margin="0,2,0.333,2"/>
@@ -218,7 +219,8 @@
                             <!-- Item Specific Equipment Details BEGIN -->
                             <!-- ===================================== -->
 
-                            <equipmentUC:ArmorDetailsUC Grid.Row="1" x:Name="ArmorDetailUserControl">
+                            <equipmentUC:ArmorDetailsUC Grid.Row="1" x:Name="ArmorDetailUserControl"
+                                                        ArmorModelValue="{Binding ArmorModelValue}">
                                 <equipmentUC:ArmorDetailsUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:ArmorDetailsUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -232,7 +234,8 @@
                                 </equipmentUC:ArmorDetailsUC.Style>
                             </equipmentUC:ArmorDetailsUC>
 
-                            <equipmentUC:WeaponUC Grid.Row="1" x:Name="WeaponUserControl">
+                            <equipmentUC:WeaponUC Grid.Row="1" x:Name="WeaponUserControl" WeaponModel="{Binding Weapon}"
+                                                  PrimaryDamageDieCount="{Binding PrimaryDamageDieCount, Mode=TwoWay}">
                                 <equipmentUC:WeaponUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:WeaponUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -316,7 +319,9 @@
             </TabItem>
         </TabControl>
         <equipmentUC:EquipmentFooterUC Grid.Row="2" 
+                                       ActionButtonLabel="Equipment"
                                         AddToProjectAction="EquipmentFooterUC_AddToProjectAction"
+                                       NewItemAction="EquipmentFooterUC_NewItemAction"
                                         LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
                                         SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
                                        SelectedItemModelChangeAction="EquipmentFooterUC_SelectedItemModelChangeAction"

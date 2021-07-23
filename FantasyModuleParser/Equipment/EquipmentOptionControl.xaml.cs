@@ -88,5 +88,15 @@ namespace FantasyModuleParser.Equipment
         {
 
         }
+
+        private void EquipmentFooterUC_NewItemAction(object sender, EventArgs e)
+        {
+            EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
+            if (viewModel != null)
+            {
+                viewModel.NewEquipmentModel();
+                log.Info("Equipment " + viewModel.Name + " has been reset (New Item Action Invoked)");
+            }
+        }
     }
 }

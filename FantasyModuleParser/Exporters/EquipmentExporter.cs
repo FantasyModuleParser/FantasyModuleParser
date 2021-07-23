@@ -124,7 +124,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus);
+			xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus + "");
 			xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
 		}
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)

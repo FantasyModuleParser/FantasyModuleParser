@@ -1,19 +1,8 @@
-﻿using FantasyModuleParser.Equipment.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using FantasyModuleParser.Equipment.UserControls.Models;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.Equipment.UserControls
 {
@@ -45,12 +34,27 @@ namespace FantasyModuleParser.Equipment.UserControls
         public ArmorDetailsUC()
         {
             InitializeComponent();
+            ArmorUCLayout.DataContext = this;
         }
 
         private void PositiveNumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex(@"[^0-9-]+");
             e.Handled = regex.IsMatch(e.Text) || e.Text.Contains("-");
+        }
+
+        public static readonly DependencyProperty ArmorModelProperty =
+            DependencyProperty.Register("ArmorModelValue", typeof(ArmorModel), typeof(ArmorDetailsUC));
+
+        public ArmorModel ArmorModelValue
+        {
+            get { return (ArmorModel)GetValue(ArmorModelProperty); }
+            set { SetValue(ArmorModelProperty, value); }
+        }
+
+        private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

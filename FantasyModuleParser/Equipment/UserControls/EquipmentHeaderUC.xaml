@@ -79,16 +79,25 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <CheckBox Content="Locked" IsChecked="{Binding Path=IsLocked}" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="0"/>
-            <CheckBox Content="Is Identified" IsChecked="{Binding Path=IsIdentified}" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="1" />
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Content="Locked" IsChecked="{Binding Path=IsLocked}" VerticalAlignment="Center" Grid.Column="0"/>
+                <CheckBox Content="Requires Attunement?" IsChecked="{Binding Path=RequiresAttunement}" 
+                          VerticalAlignment="Center" Grid.Column="1"
+                          Visibility="{Binding Path=MagicItemAttributeVisibility}"/>
+            </Grid>
+            <CheckBox Content="Is Identified" IsChecked="{Binding Path=IsIdentified}" VerticalAlignment="Center" Grid.Row="1" />
+            <Grid Grid.Row="2" Visibility="{Binding Path=MagicItemAttributeVisibility}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Rarity: " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="0"/>
                 <ComboBox Height="23" ItemsSource="{Binding Source={my:Enumeration {x:Type equipmentEnum:RarityEnum}}}"
-                  SelectedValue="{Binding Path=EquipmentRarity}"
+                  SelectedValue="{Binding Path=RarityEnumType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,0,10,0" Grid.Column="1"/>
             </Grid>            
         </Grid>

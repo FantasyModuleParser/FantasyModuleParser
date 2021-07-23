@@ -49,7 +49,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Content="FG Category" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" />
-            <Label Content="Selected Table" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" />
+            <Label Content="{Binding Path=ActionButtonLabel}" ContentStringFormat="Selected {0}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3" />
 
             <!-- Second internal row -->
             <ComboBox Name="FGCategoryComboBox" 
@@ -59,10 +59,10 @@
                             SelectedIndex="0" Grid.Column="0" Grid.Row="1"
                             SelectedValue="{Binding Path=SelectedCategoryModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             SelectionChanged="FGCategoryComboBox_SelectionChanged" Style="{StaticResource standardComboBox}" />
-            <Button x:Name="PrevBtn" Content="Previous Equipment" Grid.Column="1" Grid.Row="1"
+            <Button x:Name="PrevBtn" Content="{Binding Path=ActionButtonLabel}" ContentStringFormat="Previous {0}" Grid.Column="1" Grid.Row="1"
                                     Click="PrevBtn_Click"   
                                     Style="{StaticResource standardButton}" />
-            <Button x:Name="NextBtn" Content="Next Equipment" Grid.Column="2" Grid.Row="1"
+            <Button x:Name="NextBtn" Content="{Binding Path=ActionButtonLabel}" ContentStringFormat="Next {0}" Grid.Column="2" Grid.Row="1"
                                     Click="NextBtn_Click"
                                     Style="{StaticResource standardButton}" />
             <ComboBox x:Name="TableComboBox"
@@ -80,11 +80,17 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Content="New Equipment"  Click="NewEquipment_Click"  Grid.Column="0"  Style="{StaticResource standardButton}" />
-            <Button Content="Load Equipment" Click="LoadEquipment_Click" Grid.Column="1"  Style="{StaticResource standardButton}" />
-            <Button Content="Save Equipment" Click="SaveEquipment_Click" Grid.Column="2"  Style="{StaticResource standardButton}" />
-            <Button Content="Add to Project" Command="{Binding Path=AddToProjectCommand}"  Grid.Column="3" Style="{StaticResource standardButton}"  />
+            <Button Content="{Binding Path=ActionButtonLabel}" ContentStringFormat="New {0}"
+                    Command="{Binding Path=NewItemCommand}"  Grid.Column="0"  Style="{StaticResource standardButton}" />
+            <Button Content="{Binding Path=ActionButtonLabel}" ContentStringFormat="Import {0}"
+                    Command="{Binding Path=ImportItemTextCommand}"  Grid.Column="1"  Style="{StaticResource standardButton}" />
+            <Button Content="{Binding Path=ActionButtonLabel}" ContentStringFormat="Load {0}"
+                    Click="LoadEquipment_Click" Grid.Column="2"  Style="{StaticResource standardButton}" />
+            <Button Content="{Binding Path=ActionButtonLabel}" ContentStringFormat="Save {0}" 
+                    Click="SaveEquipment_Click" Grid.Column="3"  Style="{StaticResource standardButton}" />
+            <Button Content="Add to Project" Command="{Binding Path=AddToProjectCommand}"  Grid.Column="4" Style="{StaticResource standardButton}"  />
         </Grid>
     </Grid>
 </UserControl>

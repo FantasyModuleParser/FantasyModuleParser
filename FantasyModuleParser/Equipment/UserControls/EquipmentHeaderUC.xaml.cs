@@ -71,6 +71,15 @@ namespace FantasyModuleParser.Equipment.UserControls
             set { SetValue(IsIdentifiedProperty, value); }
         }
 
+        public static readonly DependencyProperty MagicItemAttributeVisibilityProperty =
+            DependencyProperty.Register("MagicItemAttributeVisibility", typeof(Visibility), typeof(EquipmentHeaderUC));
+
+        public Visibility MagicItemAttributeVisibility
+        {
+            get { return (Visibility)GetValue(MagicItemAttributeVisibilityProperty); }
+            set { SetValue(MagicItemAttributeVisibilityProperty, value); }
+        }
+
         public EquipmentHeaderUC()
         {
             InitializeComponent();

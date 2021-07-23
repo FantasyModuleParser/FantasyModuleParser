@@ -37,8 +37,8 @@ namespace FantasyModuleParser.Equipment.Models
         public TreasureEnum TreasureEnumType;
         #endregion Secondary Panel Options
 
-        public ArmorModel Armor = new ArmorModel();
-        public WeaponModel Weapon = new WeaponModel();
+        public ArmorModel Armor { get; set; } = new ArmorModel();
+        public WeaponModel Weapon { get; set; } = new WeaponModel();
 
         public EquipmentModel()
         {
