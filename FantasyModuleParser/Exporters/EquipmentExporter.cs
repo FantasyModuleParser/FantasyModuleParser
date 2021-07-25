@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Extensions;
+using FantasyModuleParser.NPC.Controllers;
 using log4net;
 using System;
 using System.Xml;
@@ -101,20 +102,16 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <weight> </weight> */
 		}
 
-		static public void EquipmentRarity(XmlWriter xmlWriter, EquipmentModel equipmentModel)
-		{
-			xmlWriter.WriteStartElement("rarity"); /* <rarity> */
-			xmlWriter.WriteAttributeString("type", "string");
-			if (equipmentModel.EquipmentRarity != RarityEnum.Mundane)
-			{
-				xmlWriter.WriteString(equipmentModel.EquipmentRarity.GetDescription());
-			}			
-			xmlWriter.WriteEndElement(); /* <rarity> </rarity> */
-		}
-
 		static public void EquipmentBaseAC(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			xmlWriter.WriteStartElement("ac"); /* <ac> */
+			if (equipmentModel.ArmorEnumType == ArmorEnum.Shield)
+			{
+				xmlWriter.WriteStartElement("bonus") /* <bonus> */
+			}
+			else
+			{
+				xmlWriter.WriteStartElement("ac"); /* <ac> */
+			}				
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(equipmentModel.Armor.ArmorValue);
 			xmlWriter.WriteEndElement(); /* <ac> </ac> */
@@ -122,10 +119,13 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus + "");
-			xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
+			if (!string.IsNullOrEmpty(equipmentModel.Armor.DexterityBonus))
+			{
+				xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus);
+				xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
+			}			
 		}
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
@@ -143,12 +143,43 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("strength"); /* <strength> */
 			xmlWriter.WriteAttributeString("type", "string");
-			if (!string.IsNullOrEmpty(equipmentModel.Armor.StrengthRequirement.ToString()))
+			if (equipmentModel.Armor.StrengthRequirement > 0)
 			{
 				xmlWriter.WriteValue(equipmentModel.Armor.StrengthRequirement);
 			}
 			else xmlWriter.WriteString("-");
 			xmlWriter.WriteEndElement(); /* <strength> </strength> */
+		}
+
+		static public void EquipmentDescription(XmlWriter xmlWriter, EquipmentModel equipmentModel, NPCController npcController)
+		{
+			xmlWriter.WriteStartElement("description"); /* <description> */
+			xmlWriter.WriteAttributeString("type", "formattedtext");
+			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(equipmentModel.Description));
+			xmlWriter.WriteEndElement(); /* <description> </description> */
+		}
+
+		static public void EquipmentIdentified(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("isidentified"); /* <isidentified> */
+			xmlWriter.WriteAttributeString("type", "number");
+			if (equipmentModel.IsIdentified)
+			{
+				xmlWriter.WriteValue("1");
+			}
+			else
+			{
+				xmlWriter.WriteValue("0");
+			}
+			xmlWriter.WriteEndElement(); /* <isidentified> </isidentified> */
+		}
+
+		static public void EquipmentNonIDName(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("nonid_name"); /* <nonid_name> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(equipmentModel.NonIdName);
+			xmlWriter.WriteEndElement(); /* <nonid_name> </nonid_name> */
 		}
 	}
 }
