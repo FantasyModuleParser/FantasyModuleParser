@@ -28,7 +28,7 @@ namespace FantasyModuleParser.Equipment.Models
 
         #region Secondary Panel Options
         public AdventuringGearEnum AdventuringGearEnumType;
-        public ArmorEnum ArmorEnumType;
+        public ArmorEnum ArmorEnumType { get; set; }
         public WeaponEnum WeaponEnumType;
         public AnimalsEnum AnimalsEnumType;
         public VehiclesEnum VehiclesEnumType;

@@ -51,12 +51,6 @@ namespace FantasyModuleParser.Equipment.ViewModels
             get { return dataModel.IsIdentified; }
             set { Set(ref dataModel.IsIdentified, value); }
         }
-        [DefaultValue(RarityEnum.Mundane)]
-        public RarityEnum RarityEnumType
-        {
-            get { return dataModel.EquipmentRarity; }
-            set { Set(ref dataModel.EquipmentRarity, value); }
-        }
 
         public int CostValue
         {
@@ -95,7 +89,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
         public ArmorEnum ArmorEnumType
         {
             get { return dataModel.ArmorEnumType; }
-            set { Set(ref dataModel.ArmorEnumType, value); }
+            set { dataModel.ArmorEnumType = value; RaisePropertyChanged(nameof(ArmorEnumType)); }
         }
 
         [DefaultValue(AnimalsEnum.Mounts)]
@@ -373,7 +367,6 @@ namespace FantasyModuleParser.Equipment.ViewModels
             RaisePropertyChanged(nameof(NonIdDescription));
             RaisePropertyChanged(nameof(IsLocked));
             RaisePropertyChanged(nameof(IsIdentified));
-            RaisePropertyChanged(nameof(RarityEnumType));
             RaisePropertyChanged(nameof(CostValue));
             RaisePropertyChanged(nameof(CostDenomination));
             RaisePropertyChanged(nameof(Weight));

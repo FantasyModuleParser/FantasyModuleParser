@@ -8,8 +8,8 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
         public int ArmorValue { get; set; }
         public int StrengthRequirement { get; set; }
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        [DefaultValue(0)]
-        public int DexterityBonus { get; set; }
+        [DefaultValue("")]
+        public string DexterityBonus { get; set; }
         public bool IsStealthDisadvantage { get; set; }
     }
 }

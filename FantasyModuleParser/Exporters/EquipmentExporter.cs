@@ -106,7 +106,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			if (equipmentModel.ArmorEnumType == ArmorEnum.Shield)
 			{
-				xmlWriter.WriteStartElement("bonus") /* <bonus> */
+				xmlWriter.WriteStartElement("bonus"); /* <bonus> */
 			}
 			else
 			{

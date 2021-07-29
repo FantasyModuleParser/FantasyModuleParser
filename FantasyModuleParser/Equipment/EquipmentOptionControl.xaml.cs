@@ -98,5 +98,11 @@ namespace FantasyModuleParser.Equipment
                 log.Info("Equipment " + viewModel.Name + " has been reset (New Item Action Invoked)");
             }
         }
+
+        private void ArmorListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(ArmorDetailUserControl != null)
+                ArmorDetailUserControl.Refresh();
+        }
     }
 }

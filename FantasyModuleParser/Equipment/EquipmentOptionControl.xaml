@@ -107,7 +107,8 @@
                         <ListBox Name="ArmorListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:ArmorEnum}}}" 
                                  SelectedValuePath="Value" DisplayMemberPath="Description"
-                                 SelectedValue="{Binding ArmorEnumType}">
+                                 SelectedValue="{Binding ArmorEnumType}"
+                                 SelectionChanged="ArmorListBox_SelectionChanged">
                             <ListBox.Style>
                                 <Style TargetType="ListBox" >
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -220,7 +221,8 @@
                             <!-- ===================================== -->
 
                             <equipmentUC:ArmorDetailsUC Grid.Row="1" x:Name="ArmorDetailUserControl"
-                                                        ArmorModelValue="{Binding ArmorModelValue}">
+                                                        ArmorModelValue="{Binding ArmorModelValue}"
+                                                        ArmorDetailsUC_ArmorTypeEnum="{Binding ArmorEnumType}">
                                 <equipmentUC:ArmorDetailsUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:ArmorDetailsUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>

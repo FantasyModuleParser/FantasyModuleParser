@@ -1,4 +1,6 @@
-﻿using FantasyModuleParser.Equipment.UserControls.Models;
+﻿using FantasyModuleParser.Equipment.Enums;
+using FantasyModuleParser.Equipment.UserControls.Models;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,23 +13,16 @@ namespace FantasyModuleParser.Equipment.UserControls
     /// </summary>
     public partial class ArmorDetailsUC : UserControl
     {
-        #region Selected Armor Enum Option
-        public static readonly DependencyProperty SelectedArmorEnumProperty =
-            DependencyProperty.Register
-            (
-                "selectedArmorEnum",
-                typeof(int),
-                typeof(ArmorDetailsUC),
-                new FrameworkPropertyMetadata(0)
-            );
 
+
+        #region Selected Armor Enum Option
         public int selectedArmorEnum
         {
             get { 
-                return (int)GetValue(SelectedArmorEnumProperty);
+                return (int)GetValue(ArmorTypeEnumProperty);
             }
             set { 
-                SetValue(SelectedArmorEnumProperty, value); 
+                SetValue(ArmorTypeEnumProperty, value); 
             }
         }
         #endregion Selected Armor Enum Option
@@ -35,6 +30,14 @@ namespace FantasyModuleParser.Equipment.UserControls
         {
             InitializeComponent();
             ArmorUCLayout.DataContext = this;
+        }
+
+        public void Refresh()
+        {
+            if(ArmorDetailsUC_ArmorTypeEnum == ArmorEnum.Shield)
+            {
+                //IsStealthDisadvantagedCB.Visibility = Visibility.Hidden;
+            }
         }
 
         private void PositiveNumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -50,6 +53,15 @@ namespace FantasyModuleParser.Equipment.UserControls
         {
             get { return (ArmorModel)GetValue(ArmorModelProperty); }
             set { SetValue(ArmorModelProperty, value); }
+        }
+
+        public static readonly DependencyProperty ArmorTypeEnumProperty =
+                DependencyProperty.Register("ArmorDetailsUC_ArmorTypeEnum", typeof(ArmorEnum), typeof(ArmorDetailsUC));
+
+        public ArmorEnum ArmorDetailsUC_ArmorTypeEnum
+        {
+            get { return (ArmorEnum)GetValue(ArmorTypeEnumProperty); }
+            set { SetValue(ArmorTypeEnumProperty, value); }
         }
 
         private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)

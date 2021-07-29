@@ -43,7 +43,7 @@
                     <Style TargetType="Label">
                         <Setter Property="Content" Value="Armor Class:"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ArmorEnumType}" 
+                            <DataTrigger Binding="{Binding Path=ArmorEnumType}" 
                                      Value="{x:Static enum:ArmorEnum.Shield}">
                                 <Setter Property="Content" Value="AC Bonus:"/>
                             </DataTrigger>
@@ -75,7 +75,7 @@
                     <Style TargetType="Label">
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ArmorEnumType}" 
+                            <DataTrigger Binding="{Binding Path=ArmorEnumType}" 
                                      Value="{x:Static enum:ArmorEnum.Shield}">
                                 <Setter Property="Visibility" Value="Hidden"/>
                             </DataTrigger>
@@ -83,13 +83,14 @@
                     </Style>
                 </Label.Style>
             </Label>
-            <CheckBox IsChecked="{Binding Path=ArmorModelValue.IsStealthDisadvantage}" 
+            <CheckBox   x:Name="IsStealthDisadvantagedCB"
+                    IsChecked="{Binding Path=ArmorModelValue.IsStealthDisadvantage}" 
                       Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7,0,7.667">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ArmorEnumType}" 
+                            <DataTrigger Binding="{Binding Path=ArmorEnumType, Mode=TwoWay}" 
                                      Value="{x:Static enum:ArmorEnum.Shield}">
                                 <Setter Property="Visibility" Value="Hidden"/>
                             </DataTrigger>
