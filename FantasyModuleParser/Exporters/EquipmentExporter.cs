@@ -119,11 +119,11 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			if (!string.IsNullOrEmpty(equipmentModel.Armor.DexterityBonus))
+			if (!string.IsNullOrEmpty(equipmentModel.Armor.DexterityBonus.ToString()))
 			{
 				xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
 				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus);
+				xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus.ToString());
 				xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
 			}			
 		}
