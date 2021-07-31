@@ -38,15 +38,15 @@
         
         <!-- Primary Damage -->
         <Label Content="Damage" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.NumOfDice}" Grid.Row="1" Grid.Column="1"/>
+        <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.NumOfDice}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}" 
                   SelectedValue="{Binding PrimaryDieType}"
-                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
                   Grid.Row="1" Grid.Column="2" />
-        <TextBox Text="{Binding PrimaryDamageBonus}" Grid.Row="1" Grid.Column="3"/>
+        <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.Bonus}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
-                  SelectedValue="{Binding PrimaryDamageType}"
-                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  SelectedValue="{Binding Path=WeaponModel.PrimaryDamage.DamageType}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
                   Grid.Row="1" Grid.Column="4"/>
         
         <!-- Confirm adding bonus damage -->
@@ -54,15 +54,15 @@
         <CheckBox x:Name="SecondaryDamageCB" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" IsChecked="False"/>
         <!-- Bonus Damage -->
         <Label Content="Bonus" Grid.Row="3" Grid.Column="0"  IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}" />
-        <TextBox  Text="{Binding SecondaryDamageDieCount}" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <TextBox  Text="{Binding SecondaryDamageDieCount}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
                   SelectedValue="{Binding SecondaryDieType}"
-                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
                   Grid.Row="3" Grid.Column="2" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
-        <TextBox  Text="{Binding SecondaryDamageBonus}" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <TextBox  Text="{Binding SecondaryDamageBonus}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
                   SelectedValue="{Binding SecondaryDamageType}"
-                  SelectedValuePath="Value" DisplayMemberPath="Description"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
                   Grid.Row="3" Grid.Column="4" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
 
         <Separator Grid.Row="4" Grid.ColumnSpan="10" VerticalAlignment="Top"/>
@@ -107,8 +107,8 @@
                     <Label Content="Short" Grid.Row="0" Grid.Column="0"/>
                     <Label Content="Long" Grid.Row="1" Grid.Column="0"/>
 
-                    <TextBox Text="{Binding ShortRange}"  Grid.Row="0" Grid.Column="1"/>
-                    <TextBox Text="{Binding LongRange}" Grid.Row="1" Grid.Column="1"/>
+                    <TextBox Text="{Binding ShortRange}" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Text="{Binding LongRange}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
             </StackPanel>
         </Grid>
