@@ -68,5 +68,27 @@ namespace FantasyModuleParser.Equipment.UserControls
         {
 
         }
+
+        //The purpose of this is that when a WeaponModel object is updated (based on the Parent binding), this 
+        // will allow for fine-tuning of the UI without extensive bindings.  i.e. Add Bonus Damage CB, the list
+        // of weapon attributes & properties
+
+        // Works in combination with OnWeaponModelChanged
+        private static void OnArmorModelPropertyChanged(
+            DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            ArmorDetailsUC c = sender as ArmorDetailsUC;
+            if (c != null)
+            {
+                c.OnArmorModelChanged();
+            }
+        }
+
+        //
+        protected virtual void OnArmorModelChanged()
+        {
+            ArmorModel armorModel = ArmorModelValue;
+
+        }
     }
 }

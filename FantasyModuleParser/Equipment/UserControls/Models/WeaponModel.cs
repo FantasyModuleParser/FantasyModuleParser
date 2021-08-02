@@ -9,12 +9,12 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
         public DamageProperty PrimaryDamage { get; set; }
         public DamageProperty BonusDamage { get; set; }
 
-        public List<WeaponPropertyEnum> WeaponProperties;
+        public HashSet<WeaponPropertyEnum> WeaponProperties;
 
-        public List<WeaponMaterialEnum> MaterialProperties;
+        public HashSet<WeaponMaterialEnum> MaterialProperties;
 
-        public int ShortRange;
-        public int LongRange;
+        public int ShortRange { get; set; }
+        public int LongRange { get; set; }
 
         public WeaponModel()
         {
@@ -28,8 +28,8 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
             BonusDamage.DieType = NPC.Models.Action.Enums.DieType.D6;
             BonusDamage.Bonus = 0;
 
-            WeaponProperties = new List<WeaponPropertyEnum>();
-            MaterialProperties = new List<WeaponMaterialEnum>();
+            WeaponProperties = new HashSet<WeaponPropertyEnum>();
+            MaterialProperties = new HashSet<WeaponMaterialEnum>();
         }
     }
 }

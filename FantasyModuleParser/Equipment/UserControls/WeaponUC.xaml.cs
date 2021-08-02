@@ -1,7 +1,11 @@
-﻿using FantasyModuleParser.Equipment.UserControls.Models;
+﻿using FantasyModuleParser.Equipment.Enums.Weapon;
+using FantasyModuleParser.Equipment.UserControls.Models;
+using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using static FantasyModuleParser.Extensions.EnumerationExtension;
 
 namespace FantasyModuleParser.Equipment.UserControls
 {
@@ -17,29 +21,29 @@ namespace FantasyModuleParser.Equipment.UserControls
             
         }
 
-        public void Refresh()
-        {
-            // Check local DataContext that it's an instance of EquipmentOptionControlViewModel
-            // and refresh the two list boxes accordingly
-
-
-            //if(DataContext is EquipmentOptionControlViewModel)
-            //{
-            //    EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
-            //}
-            //var weaponModel = (WeaponModel)GetValue(WeaponModelProperty);
-        }
-
         private void WeaponPropertyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var selectedItems = WeaponPropertyListBox.SelectedItems;
             var weaponModel = (WeaponModel)GetValue(WeaponModelProperty);
+            foreach(EnumerationMember enumProp in e.AddedItems)
+            {
+                WeaponPropertyEnum weaponPropertyEnum =
+                    (WeaponPropertyEnum)Enum.Parse(typeof(WeaponPropertyEnum), enumProp.Value.ToString());
+                weaponModel.WeaponProperties.Add(weaponPropertyEnum);
+            }
+
+            foreach(EnumerationMember enumProp in e.RemovedItems)
+            {
+                WeaponPropertyEnum weaponPropertyEnum =
+                    (WeaponPropertyEnum)Enum.Parse(typeof(WeaponPropertyEnum), enumProp.Value.ToString());
+                weaponModel.WeaponProperties.Remove(weaponPropertyEnum);
+            }
+
         }
 
         public static readonly DependencyProperty WeaponModelProperty =
-            DependencyProperty.Register("WeaponModel", typeof(WeaponModel), typeof(WeaponUC)
-                , new PropertyMetadata(OnWeaponModelPropertyChanged));
-                //new FrameworkPropertyMetadata(false, 
-                //    new PropertyChangedCallback(OnWeaponModelPropertyChanged)));
+            DependencyProperty.Register("WeaponModel", typeof(WeaponModel), typeof(WeaponUC),
+                new PropertyMetadata(OnWeaponModelPropertyChanged));
 
         public WeaponModel WeaponModel
         {
@@ -47,14 +51,14 @@ namespace FantasyModuleParser.Equipment.UserControls
             set { SetValue(WeaponModelProperty, value); }
         }
 
+        //The purpose of this is that when a WeaponModel object is updated (based on the Parent binding), this 
+        // will allow for fine-tuning of the UI without extensive bindings.  i.e. Add Bonus Damage CB, the list
+        // of weapon attributes & properties
+
+        // Works in combination with OnWeaponModelChanged
         private static void OnWeaponModelPropertyChanged(
             DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            //PropertyChangedEventHandler h = PropertyChanged;
-            //if (h != null)
-            //{
-            //    h(sender, new PropertyChangedEventArgs("Second"));
-            //}
             WeaponUC c = sender as WeaponUC;
             if(c != null)
             {
@@ -62,6 +66,7 @@ namespace FantasyModuleParser.Equipment.UserControls
             }
         }
 
+        //
         protected virtual void OnWeaponModelChanged ()
         {
             WeaponModel weaponModel = WeaponModel;
@@ -70,6 +75,20 @@ namespace FantasyModuleParser.Equipment.UserControls
             if(weaponModel.BonusDamage != null)
             {
                 SecondaryDamageCB.IsChecked = weaponModel.BonusDamage.NumOfDice > 0 || weaponModel.BonusDamage.Bonus > 0;
+            }
+
+            // If there are Weapon Properties available, then configure the UI here with them
+            if(weaponModel.WeaponProperties.Count > 0)
+            {
+                foreach(WeaponPropertyEnum weaponPropertyEnum in weaponModel.WeaponProperties)
+                {
+                    EnumerationMember enumerationMember = new EnumerationMember()
+                    {
+                        Description = "Reach",
+                        Value = 5
+                    };
+                    WeaponPropertyListBox.SelectedItems.Add(enumerationMember);
+                }
             }
         }
     }

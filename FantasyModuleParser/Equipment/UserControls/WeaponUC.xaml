@@ -107,8 +107,8 @@
                     <Label Content="Short" Grid.Row="0" Grid.Column="0"/>
                     <Label Content="Long" Grid.Row="1" Grid.Column="0"/>
 
-                    <TextBox Text="{Binding ShortRange}" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1"/>
-                    <TextBox Text="{Binding LongRange}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                    <TextBox Text="{Binding WeaponModel.ShortRange}" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Text="{Binding WeaponModel.LongRange}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
             </StackPanel>
         </Grid>

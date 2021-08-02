@@ -264,34 +264,20 @@ namespace FantasyModuleParser.Equipment.ViewModels
         }
 
         #endregion Secondary Damage Attributes
-        public List<WeaponPropertyEnum> SelectedWeaponProperties
+        public HashSet<WeaponPropertyEnum> SelectedWeaponProperties
         {
             get { return dataModel.Weapon.WeaponProperties; }
         }
 
-        public List<WeaponMaterialEnum> SelectedWeaponMaterials
+        public HashSet<WeaponMaterialEnum> SelectedWeaponMaterials
         {
             get { return dataModel.Weapon.MaterialProperties;  }
-        }
-
-        public int ShortRange
-        {
-            get { return dataModel.Weapon.ShortRange; }
-            set { Set(ref dataModel.Weapon.ShortRange, value); }
-        }
-
-        public int LongRange
-        {
-            get { return dataModel.Weapon.LongRange; }
-            set { Set(ref dataModel.Weapon.LongRange, value); }
         }
 
         private void _raiseOtherWeaponBindingProperties()
         {
             RaisePropertyChanged(nameof(SelectedWeaponProperties));
             RaisePropertyChanged(nameof(SelectedWeaponMaterials));
-            RaisePropertyChanged(nameof(ShortRange));
-            RaisePropertyChanged(nameof(LongRange));
         }
 
         private void _raisePropertyChangeOnWeaponBindings()
