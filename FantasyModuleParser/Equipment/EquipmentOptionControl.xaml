@@ -236,8 +236,7 @@
                                 </equipmentUC:ArmorDetailsUC.Style>
                             </equipmentUC:ArmorDetailsUC>
 
-                            <equipmentUC:WeaponUC Grid.Row="1" x:Name="WeaponUserControl" WeaponModel="{Binding Weapon}"
-                                                  PrimaryDamageDieCount="{Binding PrimaryDamageDieCount, Mode=TwoWay}">
+                            <equipmentUC:WeaponUC Grid.Row="1" x:Name="WeaponUserControl" WeaponModel="{Binding Weapon}">
                                 <equipmentUC:WeaponUC.Style>
                                     <Style TargetType="{x:Type equipmentUC:WeaponUC}">
                                         <Setter Property="Visibility" Value="Hidden"/>

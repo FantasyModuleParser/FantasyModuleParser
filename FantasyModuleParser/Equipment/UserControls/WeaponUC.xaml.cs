@@ -1,5 +1,5 @@
 ﻿using FantasyModuleParser.Equipment.UserControls.Models;
-using FantasyModuleParser.Equipment.ViewModels;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -21,11 +21,13 @@ namespace FantasyModuleParser.Equipment.UserControls
         {
             // Check local DataContext that it's an instance of EquipmentOptionControlViewModel
             // and refresh the two list boxes accordingly
-            if(DataContext is EquipmentOptionControlViewModel)
-            {
-                EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
-            }
-            var weaponModel = (WeaponModel)GetValue(WeaponModelProperty);
+
+
+            //if(DataContext is EquipmentOptionControlViewModel)
+            //{
+            //    EquipmentOptionControlViewModel viewModel = DataContext as EquipmentOptionControlViewModel;
+            //}
+            //var weaponModel = (WeaponModel)GetValue(WeaponModelProperty);
         }
 
         private void WeaponPropertyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -34,7 +36,10 @@ namespace FantasyModuleParser.Equipment.UserControls
         }
 
         public static readonly DependencyProperty WeaponModelProperty =
-            DependencyProperty.Register("WeaponModel", typeof(WeaponModel), typeof(WeaponUC));
+            DependencyProperty.Register("WeaponModel", typeof(WeaponModel), typeof(WeaponUC)
+                , new PropertyMetadata(OnWeaponModelPropertyChanged));
+                //new FrameworkPropertyMetadata(false, 
+                //    new PropertyChangedCallback(OnWeaponModelPropertyChanged)));
 
         public WeaponModel WeaponModel
         {
@@ -42,13 +47,30 @@ namespace FantasyModuleParser.Equipment.UserControls
             set { SetValue(WeaponModelProperty, value); }
         }
 
-        public static readonly DependencyProperty PrimaryDamageDieCountProperty =
-            DependencyProperty.Register("PrimaryDamageDieCount", typeof(WeaponModel), typeof(WeaponUC));
-
-        public int PrimaryDamageDieCount
+        private static void OnWeaponModelPropertyChanged(
+            DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            get { return (int)GetValue(PrimaryDamageDieCountProperty); }
-            set { SetValue(PrimaryDamageDieCountProperty, value); }
+            //PropertyChangedEventHandler h = PropertyChanged;
+            //if (h != null)
+            //{
+            //    h(sender, new PropertyChangedEventArgs("Second"));
+            //}
+            WeaponUC c = sender as WeaponUC;
+            if(c != null)
+            {
+                c.OnWeaponModelChanged();
+            }
+        }
+
+        protected virtual void OnWeaponModelChanged ()
+        {
+            WeaponModel weaponModel = WeaponModel;
+
+            // Set the 'Bonus Damage" box checked IF the bonus die value > 0 OR bonus damange 'bonus' value > 0
+            if(weaponModel.BonusDamage != null)
+            {
+                SecondaryDamageCB.IsChecked = weaponModel.BonusDamage.NumOfDice > 0 || weaponModel.BonusDamage.Bonus > 0;
+            }
         }
     }
 }

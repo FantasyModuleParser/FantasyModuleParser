@@ -9,7 +9,7 @@
              xmlns:weaponEnum="clr-namespace:FantasyModuleParser.NPC.Models.Action.Enums"
              xmlns:weaponPropEnum="clr-namespace:FantasyModuleParser.Equipment.Enums.Weapon"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="340">
+             d:DesignHeight="400" d:DesignWidth="340" >
     <UserControl.Resources>
         <DataTemplate x:Key="WeaponModelTemplate" DataType="{x:Type model:WeaponModel}" />
     </UserControl.Resources>
@@ -40,7 +40,7 @@
         <Label Content="Damage" Grid.Row="1" Grid.Column="0"/>
         <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.NumOfDice}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}" 
-                  SelectedValue="{Binding PrimaryDieType}"
+                  SelectedValue="{Binding WeaponModel.PrimaryDamage.DieType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
                   Grid.Row="1" Grid.Column="2" />
         <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.Bonus}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3"/>
@@ -54,14 +54,14 @@
         <CheckBox x:Name="SecondaryDamageCB" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" IsChecked="False"/>
         <!-- Bonus Damage -->
         <Label Content="Bonus" Grid.Row="3" Grid.Column="0"  IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}" />
-        <TextBox  Text="{Binding SecondaryDamageDieCount}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <TextBox  Text="{Binding WeaponModel.BonusDamage.NumOfDice}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
-                  SelectedValue="{Binding SecondaryDieType}"
+                  SelectedValue="{Binding WeaponModel.BonusDamage.DieType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
                   Grid.Row="3" Grid.Column="2" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
-        <TextBox  Text="{Binding SecondaryDamageBonus}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <TextBox  Text="{Binding WeaponModel.BonusDamage.Bonus}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
         <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
-                  SelectedValue="{Binding SecondaryDamageType}"
+                  SelectedValue="{Binding WeaponModel.BonusDamage.DamageType}"
                   SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
                   Grid.Row="3" Grid.Column="4" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
 
