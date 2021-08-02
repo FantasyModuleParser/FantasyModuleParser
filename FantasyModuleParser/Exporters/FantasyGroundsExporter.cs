@@ -416,7 +416,11 @@ namespace FantasyModuleParser.Exporters
 								EquipmentExporter.EquipmentDexBonus(xmlWriter, equipmentModel);
 								EquipmentExporter.EquipmentStealth(xmlWriter, equipmentModel);
 								EquipmentExporter.EquipmentStrength(xmlWriter, equipmentModel);
-							}							
+							}
+							if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
+							{
+								EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
+							}
 						}
 						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
 					}

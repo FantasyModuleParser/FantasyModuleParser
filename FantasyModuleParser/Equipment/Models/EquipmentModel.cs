@@ -23,7 +23,7 @@ namespace FantasyModuleParser.Equipment.Models
         public int CostValue;
         public CurrencyEnum CostDenomination;
         public double Weight;
-        public RarityEnum RarityEnumType;
+        public RarityEnum EquipmentRarity;
 
         public PrimaryEquipmentEnum PrimaryEquipmentEnumType;
 

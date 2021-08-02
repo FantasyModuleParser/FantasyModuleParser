@@ -104,7 +104,7 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentBaseAC(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			if (equipmentModel.ArmorEnumType == ArmorEnum.Shield)
+			if (equipmentModel.ArmorEnumType == ArmorEnum.Shield || equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
 			{
 				xmlWriter.WriteStartElement("bonus"); /* <bonus> */
 			}
@@ -113,7 +113,14 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteStartElement("ac"); /* <ac> */
 			}				
 			xmlWriter.WriteAttributeString("type", "number");
-			xmlWriter.WriteValue(equipmentModel.Armor.ArmorValue);
+			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
+			{
+				xmlWriter.WriteValue(equipmentModel.Armor.ArmorValue);
+			}
+			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
+			{
+				xmlWriter.WriteValue(equipmentModel.Weapon.BonusDamage.Bonus);
+			}			
 			xmlWriter.WriteEndElement(); /* <ac> </ac> */
 		}
 
