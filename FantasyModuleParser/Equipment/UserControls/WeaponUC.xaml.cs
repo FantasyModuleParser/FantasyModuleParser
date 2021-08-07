@@ -18,7 +18,6 @@ namespace FantasyModuleParser.Equipment.UserControls
         {
             InitializeComponent();
             WeaponUCLayout.DataContext = this;
-            
         }
 
         private void WeaponPropertyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

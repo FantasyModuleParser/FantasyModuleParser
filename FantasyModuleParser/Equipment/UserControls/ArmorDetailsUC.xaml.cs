@@ -57,6 +57,7 @@ namespace FantasyModuleParser.Equipment.UserControls
 
         public static readonly DependencyProperty ArmorTypeEnumProperty =
                 DependencyProperty.Register("ArmorDetailsUC_ArmorTypeEnum", typeof(ArmorEnum), typeof(ArmorDetailsUC));
+                    //new PropertyMetadata(OnArmorModelPropertyChanged));
 
         public ArmorEnum ArmorDetailsUC_ArmorTypeEnum
         {
@@ -74,21 +75,21 @@ namespace FantasyModuleParser.Equipment.UserControls
         // of weapon attributes & properties
 
         // Works in combination with OnWeaponModelChanged
-        private static void OnArmorModelPropertyChanged(
-            DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            ArmorDetailsUC c = sender as ArmorDetailsUC;
-            if (c != null)
-            {
-                c.OnArmorModelChanged();
-            }
-        }
+        //private static void OnArmorModelPropertyChanged(
+        //    DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    ArmorDetailsUC c = sender as ArmorDetailsUC;
+        //    if (c != null)
+        //    {
+        //        c.OnArmorModelChanged();
+        //    }
+        //}
 
-        //
-        protected virtual void OnArmorModelChanged()
-        {
-            ArmorModel armorModel = ArmorModelValue;
+        ////
+        //protected virtual void OnArmorModelChanged()
+        //{
+        //    ArmorModel armorModel = ArmorModelValue;
 
-        }
+        //}
     }
 }

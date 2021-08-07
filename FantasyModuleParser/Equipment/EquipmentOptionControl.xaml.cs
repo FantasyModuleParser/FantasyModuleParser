@@ -91,8 +91,8 @@ namespace FantasyModuleParser.Equipment
 
         private void ArmorListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ArmorDetailUserControl != null)
-                ArmorDetailUserControl.Refresh();
+            //if(ArmorDetailUserControl != null)
+            //    ArmorDetailUserControl.Refresh();
         }
     }
 }
