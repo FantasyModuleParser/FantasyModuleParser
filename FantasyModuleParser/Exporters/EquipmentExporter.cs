@@ -119,9 +119,9 @@ namespace FantasyModuleParser.Exporters
 			}
 			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
 			{
-				xmlWriter.WriteValue(equipmentModel.Weapon.BonusDamage.Bonus);
+				xmlWriter.WriteValue(equipmentModel.Weapon.PrimaryDamage.Bonus);
 			}			
-			xmlWriter.WriteEndElement(); /* <ac> </ac> */
+			xmlWriter.WriteEndElement(); /* <ac> </ac> or <bonus> </bonus> depending on Equipment Type*/
 		}
 
 		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
