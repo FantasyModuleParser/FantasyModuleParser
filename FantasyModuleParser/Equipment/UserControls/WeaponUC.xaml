@@ -80,7 +80,7 @@
                             ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponPropertyEnum}}}" 
                             SelectionMode="Multiple"
                             SelectedValuePath="Value" DisplayMemberPath="Description"
-                         SelectionChanged="WeaponPropertyListBox_SelectionChanged"
+                            SelectionChanged="WeaponPropertyListBox_SelectionChanged"
                             Margin="0,5,5,5">
                 </ListBox>
             </StackPanel>
@@ -88,7 +88,9 @@
                 <Label Content="Material" FontWeight="Bold"></Label>
                 <ListBox x:Name="MaterialPropertyListBox" Grid.Column="1"
                             ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponMaterialEnum}}}" 
-                            SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,5,0,5" >
+                            SelectionMode="Multiple"   
+                            SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,5,0,5"
+                            SelectionChanged="MaterialPropertyListBox_SelectionChanged">
                 </ListBox>
             </StackPanel>
 

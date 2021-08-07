@@ -77,18 +77,67 @@ namespace FantasyModuleParser.Equipment.UserControls
                 SecondaryDamageCB.IsChecked = weaponModel.BonusDamage.NumOfDice > 0 || weaponModel.BonusDamage.Bonus > 0;
             }
 
+
+            applyWeaponPropertyListbox(weaponModel);
+            applyWeaponMaterialListbox(weaponModel);
+
+        }
+
+        private void applyWeaponPropertyListbox(WeaponModel weaponModel)
+        {
+            var propertyItems = WeaponPropertyListBox.Items;
+            // Clear the existing 
+            WeaponPropertyListBox.SelectedItems.Clear();
             // If there are Weapon Properties available, then configure the UI here with them
-            if(weaponModel.WeaponProperties.Count > 0)
+            if (weaponModel.WeaponProperties.Count > 0)
             {
-                foreach(WeaponPropertyEnum weaponPropertyEnum in weaponModel.WeaponProperties)
+
+                foreach (EnumerationMember weaponProperty in WeaponPropertyListBox.Items)
                 {
-                    EnumerationMember enumerationMember = new EnumerationMember()
+                    WeaponPropertyEnum weaponPropertyEnum = (WeaponPropertyEnum)weaponProperty.Value;
+                    if (weaponModel.WeaponProperties.Contains(weaponPropertyEnum))
                     {
-                        Description = "Reach",
-                        Value = 5
-                    };
-                    WeaponPropertyListBox.SelectedItems.Add(enumerationMember);
+                        WeaponPropertyListBox.SelectedItems.Add(weaponProperty);
+                    }
                 }
+            }
+        }
+
+        private void applyWeaponMaterialListbox(WeaponModel weaponModel)
+        {
+            var propertyItems = MaterialPropertyListBox.Items;
+            // Clear the existing 
+            MaterialPropertyListBox.SelectedItems.Clear();
+            // If there are Weapon Properties available, then configure the UI here with them
+            if (weaponModel.MaterialProperties.Count > 0)
+            {
+                foreach (EnumerationMember materialProperty in MaterialPropertyListBox.Items)
+                {
+                    WeaponMaterialEnum materialPropertyEnum = (WeaponMaterialEnum)materialProperty.Value;
+                    if (weaponModel.MaterialProperties.Contains(materialPropertyEnum))
+                    {
+                        MaterialPropertyListBox.SelectedItems.Add(materialProperty);
+                    }
+                }
+            }
+        }
+
+        private void MaterialPropertyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedItems = MaterialPropertyListBox.SelectedItems;
+            var weaponModel = (WeaponModel)GetValue(WeaponModelProperty);
+            foreach (EnumerationMember enumProp in e.AddedItems)
+            {
+                WeaponMaterialEnum materialPropertyEnum =
+                    (WeaponMaterialEnum)Enum.Parse(typeof(WeaponMaterialEnum), enumProp.Value.ToString());
+                weaponModel.MaterialProperties.Add(materialPropertyEnum);
+            }
+
+            foreach (EnumerationMember enumProp in e.RemovedItems)
+            {
+                WeaponMaterialEnum materialPropertyEnum =
+                    (WeaponMaterialEnum)Enum.Parse(typeof(WeaponMaterialEnum), enumProp.Value.ToString());
+                weaponModel.MaterialProperties.Remove(materialPropertyEnum);
             }
         }
     }
