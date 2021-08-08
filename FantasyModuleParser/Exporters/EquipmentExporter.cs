@@ -191,6 +191,14 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <nonid_name> </nonid_name> */
 		}
 
+		static public void EquipmentNonIDDescription(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("nonidentified"); /* <nonidentified> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(equipmentModel.NonIdDescription);
+			xmlWriter.WriteEndElement(); /* <nonidentified> </nonidentified> */
+		}
+
 		static public void EquipmentDamage(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("damage"); /* <damage> */

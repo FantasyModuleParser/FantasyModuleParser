@@ -404,6 +404,7 @@ namespace FantasyModuleParser.Exporters
 							EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentIdentified(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentNonIDName(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentNonIDDescription(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentName(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentType(xmlWriter, equipmentModel);
 							EquipmentExporter.EquipmentSubtype(xmlWriter, equipmentModel);
