@@ -4,6 +4,7 @@ using FantasyModuleParser.Extensions;
 using FantasyModuleParser.NPC.Controllers;
 using log4net;
 using System;
+using System.Text;
 using System.Xml;
 
 namespace FantasyModuleParser.Exporters
@@ -187,6 +188,35 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.NonIdName);
 			xmlWriter.WriteEndElement(); /* <nonid_name> </nonid_name> */
+		}
+
+		static public void EquipmentDamage(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("damage"); /* <damage> */
+			xmlWriter.WriteAttributeString("type", "string");
+			
+		}
+
+		static public string DamageString(EquipmentModel equipmentModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			if (equipmentModel.Weapon.PrimaryDamage.NumOfDice > 0)
+			{
+				stringBuilder.Append(equipmentModel.Weapon.PrimaryDamage.NumOfDice);
+				stringBuilder.Append(equipmentModel.Weapon.PrimaryDamage.DieType.GetDescription());
+				if (equipmentModel.Weapon.PrimaryDamage.Bonus > 0)
+				{
+					stringBuilder.Append(" + " + equipmentModel.Weapon.PrimaryDamage.Bonus);
+				}
+				if (equipmentModel.Weapon.PrimaryDamage.Bonus < 0)
+				{
+					StringBuilder stringBuilder1 = new StringBuilder();
+					stringBuilder1.Append(equipmentModel.Weapon.PrimaryDamage.Bonus);
+					stringBuilder1.Remove(0, 1);
+					stringBuilder.Append(" - " + stringBuilder1);
+				}
+			}
+			return stringBuilder.ToString();
 		}
 	}
 }
