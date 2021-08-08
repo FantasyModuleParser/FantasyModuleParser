@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Equipment.UserControls;
 using FantasyModuleParser.Extensions;
 using FantasyModuleParser.NPC.Controllers;
 using log4net;
@@ -194,16 +195,27 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("damage"); /* <damage> */
 			xmlWriter.WriteAttributeString("type", "string");
-			
+			xmlWriter.WriteString(DamageString(equipmentModel));
+			xmlWriter.WriteEndElement(); /* <damage> </damage> */
 		}
 
 		static public string DamageString(EquipmentModel equipmentModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append(PrimaryDamage(equipmentModel));
+			if (equipmentModel.Weapon.SecondaryDamage)
+			{
+				stringBuilder.Append(" + " + SecondaryDamage(equipmentModel));
+			}
+			return stringBuilder.ToString();
+		}
+
+		static private string PrimaryDamage(EquipmentModel equipmentModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
 			if (equipmentModel.Weapon.PrimaryDamage.NumOfDice > 0)
 			{
-				stringBuilder.Append(equipmentModel.Weapon.PrimaryDamage.NumOfDice);
-				stringBuilder.Append(equipmentModel.Weapon.PrimaryDamage.DieType.GetDescription());
+				stringBuilder.Append(equipmentModel.Weapon.PrimaryDamage.NumOfDice + equipmentModel.Weapon.PrimaryDamage.DieType.GetDescription());
 				if (equipmentModel.Weapon.PrimaryDamage.Bonus > 0)
 				{
 					stringBuilder.Append(" + " + equipmentModel.Weapon.PrimaryDamage.Bonus);
@@ -215,6 +227,29 @@ namespace FantasyModuleParser.Exporters
 					stringBuilder1.Remove(0, 1);
 					stringBuilder.Append(" - " + stringBuilder1);
 				}
+				stringBuilder.Append(" " + equipmentModel.Weapon.PrimaryDamage.DamageType.GetDescription());
+			}
+			return stringBuilder.ToString();
+		}
+
+		static private string SecondaryDamage(EquipmentModel equipmentModel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			if (equipmentModel.Weapon.BonusDamage.NumOfDice > 0)
+			{
+				stringBuilder.Append(equipmentModel.Weapon.BonusDamage.NumOfDice + equipmentModel.Weapon.BonusDamage.DieType.GetDescription());
+				if (equipmentModel.Weapon.BonusDamage.Bonus > 0)
+				{
+					stringBuilder.Append(" + " + equipmentModel.Weapon.BonusDamage.Bonus);
+				}
+				if (equipmentModel.Weapon.BonusDamage.Bonus < 0)
+				{
+					StringBuilder stringBuilder1 = new StringBuilder();
+					stringBuilder1.Append(equipmentModel.Weapon.BonusDamage.Bonus);
+					stringBuilder1.Remove(0, 1);
+					stringBuilder.Append(" - " + stringBuilder1);
+				}
+				stringBuilder.Append(" " + equipmentModel.Weapon.BonusDamage.DamageType.GetDescription());
 			}
 			return stringBuilder.ToString();
 		}

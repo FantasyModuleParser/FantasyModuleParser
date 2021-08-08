@@ -15,6 +15,7 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
 
         public int ShortRange { get; set; }
         public int LongRange { get; set; }
+        public bool SecondaryDamage { get; set; }
 
         public WeaponModel()
         {
