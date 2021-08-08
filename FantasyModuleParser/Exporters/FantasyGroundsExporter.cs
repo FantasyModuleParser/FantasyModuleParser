@@ -420,6 +420,7 @@ namespace FantasyModuleParser.Exporters
 							if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
 							{
 								EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentDamage(xmlWriter, equipmentModel);
 							}
 						}
 						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
