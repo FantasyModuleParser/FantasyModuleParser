@@ -71,10 +71,7 @@ namespace FantasyModuleParser.Equipment.UserControls
             WeaponModel weaponModel = WeaponModel;
 
             // Set the 'Bonus Damage" box checked IF the bonus die value > 0 OR bonus damange 'bonus' value > 0
-            if(weaponModel.BonusDamage != null)
-            {
-                SecondaryDamageCB.IsChecked = weaponModel.BonusDamage.NumOfDice > 0 || weaponModel.BonusDamage.Bonus > 0;
-            }
+            SecondaryDamageCB.IsChecked = weaponModel.HasSecondaryDamage();
 
 
             applyWeaponPropertyListbox(weaponModel);

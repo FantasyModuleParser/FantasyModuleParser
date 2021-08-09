@@ -31,5 +31,10 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
             WeaponProperties = new HashSet<WeaponPropertyEnum>();
             MaterialProperties = new HashSet<WeaponMaterialEnum>();
         }
+
+        public bool HasSecondaryDamage()
+        {
+            return this.BonusDamage.NumOfDice > 0 || this.BonusDamage.Bonus > 0;
+        }
     }
 }
