@@ -1,5 +1,4 @@
-﻿using FantasyModuleParser.Equipment.Models;
-using FantasyModuleParser.Equipment.ViewModels;
+﻿using FantasyModuleParser.Equipment.ViewModels;
 using FantasyModuleParser.Main.Services;
 using log4net;
 using System;

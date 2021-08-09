@@ -1,6 +1,5 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.UserControls.Models;
-using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;

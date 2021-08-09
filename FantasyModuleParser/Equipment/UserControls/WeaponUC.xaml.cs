@@ -1,8 +1,6 @@
 ﻿using FantasyModuleParser.Equipment.Enums.Weapon;
 using FantasyModuleParser.Equipment.UserControls.Models;
 using System;
-using System.ComponentModel;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using static FantasyModuleParser.Extensions.EnumerationExtension;

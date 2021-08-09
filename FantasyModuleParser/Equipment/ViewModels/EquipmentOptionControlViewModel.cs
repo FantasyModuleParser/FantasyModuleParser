@@ -1,5 +1,4 @@
-﻿
-using FantasyModuleParser.Equipment.Enums;
+﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Enums.Weapon;
 using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Equipment.UserControls.Models;

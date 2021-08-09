@@ -1,6 +1,5 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Models;
-using FantasyModuleParser.Equipment.UserControls.Models;
 using FantasyModuleParser.Extensions;
 using FantasyModuleParser.NPC.Controllers;
 using log4net;
