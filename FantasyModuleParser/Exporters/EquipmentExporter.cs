@@ -1,6 +1,6 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Models;
-using FantasyModuleParser.Equipment.UserControls;
+using FantasyModuleParser.Equipment.UserControls.Models;
 using FantasyModuleParser.Extensions;
 using FantasyModuleParser.NPC.Controllers;
 using log4net;
@@ -260,6 +260,22 @@ namespace FantasyModuleParser.Exporters
 				stringBuilder.Append(" " + equipmentModel.Weapon.BonusDamage.DamageType.GetDescription());
 			}
 			return stringBuilder.ToString();
+		}
+
+		static public void EquipmentProperties(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("properties");
+			xmlWriter.WriteAttributeString("type", "string");
+			
+		}
+
+		static private string WeaponProperty(EquipmentModel equipmentModel)
+		{
+			foreach (Enum property in equipmentModel.Weapon.WeaponProperties)
+			{
+				string.Join(",", property.GetDescription());
+			}
+			return string;
 		}
 	}
 }
