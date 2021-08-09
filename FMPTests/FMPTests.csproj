@@ -91,6 +91,7 @@
     <Compile Include="Importer\Spells\ImportPDFSpellFileTests.cs" />
     <Compile Include="Importer\Spells\ImportSpellLineParserTest.cs" />
     <Compile Include="Importer\Utils\ImportCommonUtilsTests.cs" />
+    <Compile Include="NPC\Models\NPCModelTests.cs" />
     <Compile Include="NPC\ViewModels\DescriptionUCViewModelTests.cs" />
     <Compile Include="NPC\ViewModels\PreviewNPCViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
