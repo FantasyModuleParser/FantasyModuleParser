@@ -15,7 +15,6 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
 
         public int ShortRange { get; set; }
         public int LongRange { get; set; }
-        public bool SecondaryDamage { get; set; }
 
         public WeaponModel()
         {
@@ -33,6 +32,11 @@ namespace FantasyModuleParser.Equipment.UserControls.Models
             MaterialProperties = new HashSet<WeaponMaterialEnum>();
         }
 
+        /// <summary>
+        /// Returns true if the stored data contains any non-zero values for the Bonus Damage 
+        /// for either NumOfDice or Bonus values
+        /// </summary>
+        /// <returns></returns>
         public bool HasSecondaryDamage()
         {
             return this.BonusDamage.NumOfDice > 0 || this.BonusDamage.Bonus > 0;
