@@ -51,7 +51,7 @@
         
         <!-- Confirm adding bonus damage -->
         <Label Content="Add Secondary Damage?" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
-        <CheckBox x:Name="SecondaryDamageCB" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" IsChecked="{Binding Path=SecondaryDamage}"/>
+        <CheckBox x:Name="SecondaryDamageCB" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" IsChecked="False"/>
         <!-- Bonus Damage -->
         <Label Content="Bonus" Grid.Row="3" Grid.Column="0"  IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}" />
         <TextBox  Text="{Binding WeaponModel.BonusDamage.NumOfDice}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>

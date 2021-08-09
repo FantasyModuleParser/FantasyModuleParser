@@ -211,7 +211,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(PrimaryDamage(equipmentModel));
-			if (equipmentModel.Weapon.SecondaryDamage)
+			if (equipmentModel.Weapon.HasSecondaryDamage())
 			{
 				stringBuilder.Append(" + " + SecondaryDamage(equipmentModel));
 			}
