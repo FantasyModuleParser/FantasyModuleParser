@@ -95,6 +95,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(equipmentModel.CostValue + " " + equipmentModel.CostDenomination.GetDescription());
 			xmlWriter.WriteEndElement(); /* <cost> </cost> */
 		}
+		
 		static public void EquipmentWeight(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("weight"); /* <weight> */
@@ -135,6 +136,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
 			}			
 		}
+		
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("stealth"); /* <stealth> */
