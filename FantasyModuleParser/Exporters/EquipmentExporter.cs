@@ -264,18 +264,23 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentProperties(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			xmlWriter.WriteStartElement("properties");
-			xmlWriter.WriteAttributeString("type", "string");
-			
+			if (equipmentModel.Weapon.WeaponProperties.Count > 0)
+			{
+				xmlWriter.WriteStartElement("properties"); /* <properties> */
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString(WeaponProperty(equipmentModel));
+				xmlWriter.WriteEndElement(); /* <properties> </properties> */
+			}			
 		}
 
 		static private string WeaponProperty(EquipmentModel equipmentModel)
 		{
+			StringBuilder stringBuilder = new StringBuilder();
 			foreach (Enum property in equipmentModel.Weapon.WeaponProperties)
 			{
-				string.Join(",", property.GetDescription());
+				stringBuilder.Append(property.GetDescription() + ", ");
 			}
-			return string;
+			return stringBuilder.ToString(0, stringBuilder.Length - 2);
 		}
 	}
 }

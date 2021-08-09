@@ -422,6 +422,7 @@ namespace FantasyModuleParser.Exporters
 							{
 								EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
 								EquipmentExporter.EquipmentDamage(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentProperties(xmlWriter.equipmentModel);
 							}
 						}
 						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
