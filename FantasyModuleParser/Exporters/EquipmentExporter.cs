@@ -264,7 +264,7 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentProperties(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			if (equipmentModel.Weapon.WeaponProperties.Count > 0)
+			if (equipmentModel.Weapon.WeaponProperties.Count > 0 || equipmentModel.Weapon.MaterialProperties.Count > 0)
 			{
 				xmlWriter.WriteStartElement("properties"); /* <properties> */
 				xmlWriter.WriteAttributeString("type", "string");
@@ -279,6 +279,10 @@ namespace FantasyModuleParser.Exporters
 			foreach (Enum property in equipmentModel.Weapon.WeaponProperties)
 			{
 				stringBuilder.Append(property.GetDescription() + ", ");
+			}
+			foreach (Enum material in equipmentModel.Weapon.MaterialProperties)
+			{
+				stringBuilder.Append(material.GetDescription() + ", ");
 			}
 			return stringBuilder.ToString(0, stringBuilder.Length - 2);
 		}
