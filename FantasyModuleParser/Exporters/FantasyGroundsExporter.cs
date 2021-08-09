@@ -432,14 +432,14 @@ namespace FantasyModuleParser.Exporters
 				
 				#endregion
 				#region Equipment Lists
-				/*	xmlWriter.WriteStartElement("equipmentlists");
-				 *	xmlWriter.WriteStartElement("equipment");
-				 *	xmlWriter.WriteStartElement("name");
-				 *	xmlWriter.WriteAttributeString("type", "string");
-				 *	xmlWriter.WriteString("Equipment");
-				 *	xmlWriter.WriteEndElement();
-				 *	xmlWriter.WriteEndElement();
-				 *	xmlWriter.WriteEndElement(); */
+				xmlWriter.WriteStartElement("equipmentlists"); /* <equipmentlists> */
+				xmlWriter.WriteStartElement("equipment"); /* <equipmentlists> <equipment> */
+				xmlWriter.WriteStartElement("name"); /* <equipmentlists> <equipment> <name> */
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString("Equipment");
+				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <name> </name> */
+				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> </equipment> */
+				xmlWriter.WriteEndElement(); /* <equipmentlists> </equipmentlists> */
 				#endregion
 				if (moduleModel.IncludeImages)
                 {
