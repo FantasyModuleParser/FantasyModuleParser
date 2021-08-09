@@ -20,7 +20,7 @@ namespace FantasyModuleParser.Equipment.Models
         public string Description;
         public string ImageFilePath;
 
-        public int CostValue;
+        public string CostValue;
         public CurrencyEnum CostDenomination;
         public double Weight;
         public RarityEnum EquipmentRarity;

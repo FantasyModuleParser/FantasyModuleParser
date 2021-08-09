@@ -264,7 +264,7 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentProperties(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			if (equipmentModel.Weapon.WeaponProperties.Count > 0 || equipmentModel.Weapon.MaterialProperties.Count > 0)
+			if (equipmentModel.Weapon.WeaponProperties.Count > 0 || equipmentModel.Weapon.MaterialProperties.Count > 0 || equipmentModel.WeaponEnumType == WeaponEnum.MRW || equipmentModel.WeaponEnumType == WeaponEnum.SRW)
 			{
 				xmlWriter.WriteStartElement("properties"); /* <properties> */
 				xmlWriter.WriteAttributeString("type", "string");
@@ -276,6 +276,14 @@ namespace FantasyModuleParser.Exporters
 		static private string WeaponProperty(EquipmentModel equipmentModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
+			if (equipmentModel.WeaponEnumType == WeaponEnum.MRW)
+			{
+				stringBuilder.Append("Ammunition (range " + equipmentModel.Weapon.ShortRange + "/" + equipmentModel.Weapon.LongRange + "), ");
+			}
+			if (equipmentModel.WeaponEnumType == WeaponEnum.SRW)
+			{
+				stringBuilder.Append("Thrown (range " + equipmentModel.Weapon.ShortRange + "/" + equipmentModel.Weapon.LongRange + "), ");
+			}
 			foreach (Enum property in equipmentModel.Weapon.WeaponProperties)
 			{
 				stringBuilder.Append(property.GetDescription() + ", ");

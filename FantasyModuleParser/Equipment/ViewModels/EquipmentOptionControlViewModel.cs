@@ -52,7 +52,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
             set { Set(ref dataModel.IsIdentified, value); }
         }
 
-        public int CostValue
+        public string CostValue
         {
             get { return dataModel.CostValue; }
             set { Set(ref dataModel.CostValue, value); }
