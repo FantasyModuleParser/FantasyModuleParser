@@ -16,6 +16,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 
 namespace FantasyModuleParser.NPC
 {
@@ -966,10 +967,22 @@ namespace FantasyModuleParser.NPC
 		private static string UpdateDamageImmunitiesAndResistances(List<SelectableActionModel> damage,
 			List<SelectableActionModel> specialWpn, List<SelectableActionModel> specialWpnDmg)
 		{
-			StringBuilder sb = damage.Aggregate(new StringBuilder(), (sbDmg, dmg) => sbDmg.Append(dmg.Selected ? $"{dmg.ActionDescription}, " : string.Empty));
-			
+			bool bpsDamageTypeFound = false;
+			foreach(SelectableActionModel sam in damage)
+            {
+				if (_isSelectableActionModel_BPS(sam))
+					bpsDamageTypeFound = true;
+            }
+			StringBuilder sb = damage.Aggregate(new StringBuilder(), (sbDmg, dmg) => sbDmg.Append(dmg.Selected && !_isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
+
+			if (sb.Length > 0 && bpsDamageTypeFound)
+				sb.Append("; ");
+
+			damage.Aggregate(sb, (sbDmg, dmg) => sbDmg.Append(dmg.Selected && _isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
+
+
 			if (sb.Length >= 2) { sb.Length -= 2; }  // truncate the last 2 characters, which should be ", "
-			if (sb.Length > 0) { _ = sb.Append("; "); }
+			//if (sb.Length > 0) { _ = sb.Append("; "); }
 
 			string foo = string.Empty;
 			foreach (SelectableActionModel selectableActionModel in specialWpn)
@@ -1004,6 +1017,23 @@ namespace FantasyModuleParser.NPC
 			}
 			return sb.ToString().Trim();
 		}
+
+		/// <summary>
+		/// This does a check against the SelectableActionModel object to see if it's Bludgeoning, Slashing or Piercing.  This is due
+		/// to the format of Damage Vul / Resist / Immunity descriptions where BPS is to the right of all magical elements (e.g. Fire, cold, poison, etc...)
+		/// </summary>
+		/// <param name="selectableActionModel"></param>
+		/// <returns></returns>
+		private static bool _isSelectableActionModel_BPS(SelectableActionModel selectableActionModel)
+        {
+			string bludgeoningName = DamageType.Bludgeoning.ToString().ToUpper();
+			string slashingName = DamageType.Slashing.ToString().ToUpper();
+			string piercingName = DamageType.Piercing.ToString().ToUpper();
+
+			string actionName = selectableActionModel.ActionName.ToUpper();
+
+			return actionName.Equals(bludgeoningName) || actionName.Equals(slashingName) || actionName.Equals(piercingName);
+        }
 
 		/// <summary>
 		/// 
