@@ -13,6 +13,26 @@ namespace FantasyModuleParser.NPC.Tests
     [TestClass()]
     public class NPCModelTests
     {
+
+        #region Constants 
+        const string fire = "fire";
+        const string bludgeoning = "bludgeoning";
+        const string slashing = "slashing";
+        const string piercing = "piercing";
+
+        const string bludgeoningAndSlashing = bludgeoning + " and " + slashing;
+        const string bludgeoningAndPiercing = bludgeoning + " and " + piercing;
+        const string piercingAndSlashing = piercing + " and " + slashing;
+        const string bludgeoningSlashingAndPiercing = bludgeoning + ", " + piercing + " and " + slashing;
+
+        // Special Weapon Property const
+        const string nonmagical = " from nonmagical attacks";
+        const string silvered = " from nonmagical attacks that aren't silvered";
+        const string adamantine = " from nonmagical attacks that aren't adamantine";
+        const string coldForgedIron = " from nonmagical attacks that aren't cold-forged iron";
+        const string magical = " from magic weapons";
+        #endregion
+
         [TestMethod()]
         [DynamicData(nameof(DamageVulnerabilityTestData_Singular), DynamicDataSourceType.Method)]
         [DynamicData(nameof(DamageVulnerabilityTestData_BPS), DynamicDataSourceType.Method)]
@@ -86,35 +106,48 @@ namespace FantasyModuleParser.NPC.Tests
         {
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Bludgeoning, DamageType.Piercing }) }
-                                            , "bludgeoning and piercing" };
+                                            , bludgeoningAndPiercing };
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Bludgeoning, DamageType.Slashing }) }
-                                            , "bludgeoning and slashing" };
+                                            , bludgeoningAndSlashing };
+            yield return new object[] { new NPCModel() {
+                DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Slashing, DamageType.Piercing }) }
+                                            , piercingAndSlashing };
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Bludgeoning, DamageType.Piercing, DamageType.Slashing }) }
-                                            , "bludgeoning, piercing and slashing" };
+                                            , bludgeoningSlashingAndPiercing };
         }
 
         private static IEnumerable<object[]> DamageResistanceTestData_BPS_With_MagicElement()
         {
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Bludgeoning }) }
-                                            , "fire; bludgeoning" };
+                                            , fire + "; " + bludgeoning };
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Slashing }) }
-                                            , "fire; slashing" };
+                                            , fire + "; " + slashing };
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Piercing }) }
-                                            , "fire; piercing" };
+                                            , fire + "; " + piercing };
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Bludgeoning, DamageType.Piercing }) }
-                                            , "fire; bludgeoning and piercing" };
+                                            , fire + "; " + bludgeoningAndPiercing };
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Bludgeoning, DamageType.Slashing }) }
-                                            , "fire; bludgeoning and slashing" };
+                                            , fire + "; " + bludgeoningAndSlashing };
+            yield return new object[] { new NPCModel() {
+                DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Piercing, DamageType.Slashing }) }
+                                            , fire + "; " + piercingAndSlashing };
             yield return new object[] { new NPCModel() {
                 DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Bludgeoning, DamageType.Piercing, DamageType.Slashing }) }
-                                            , "fire; bludgeoning, piercing and slashing" };
+                                            , fire + "; " + bludgeoningSlashingAndPiercing };
+        }
+        
+        private static IEnumerable<object[]> DamageResistanceTestData_BPS_With_SpecialWeaponProperty()
+        {
+            yield return new object[] { new NPCModel() {
+                DamageResistanceModelList = _generateSelectableActionModelList(new List<DamageType>() { DamageType.Fire, DamageType.Bludgeoning }) }
+                                            , fire + "; " + bludgeoning };
         }
 
 

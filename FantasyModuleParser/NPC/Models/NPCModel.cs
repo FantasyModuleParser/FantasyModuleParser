@@ -975,29 +975,29 @@ namespace FantasyModuleParser.NPC
             {
                 if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
                 {
-                    if (selectableActionModel.ActionName == "Nonmagical")
+                    if (selectableActionModel.ActionName.Equals(WeaponResistance.Nonmagical.ToString()))
                     {
                         foo = " from nonmagical attacks";
                     }
-                    else if (selectableActionModel.ActionName == "NonmagicalSilvered")
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.NonmagicalSilvered.ToString()))
                     {
                         foo = " from nonmagical attacks that aren't silvered";
                     }
-                    else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.NonmagicalAdamantine.ToString()))
                     {
                         foo = " from nonmagical attacks that aren't adamantine";
                     }
-                    else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.NonmagicalColdForgedIron.ToString()))
                     {
                         foo = " from nonmagical attacks that aren't cold-forged iron";
                     }
-                    else if (selectableActionModel.ActionName == "Magical") // && specialWpn == this.SpecialWeaponDmgResistanceModelList)
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.Magical.ToString())) // && specialWpn == this.SpecialWeaponDmgResistanceModelList)
                     {
                         foo = " from magic weapons";
                     }
 
                     _ = sb.Append(specialWpnDmg.Aggregate(new StringBuilder(), (sbSWD, swd) => sbSWD.Append(swd.Selected ? $"{swd.ActionDescription}, " : string.Empty)));
-                    if (sb.Length >= 2) { sb.Length -= 2; }
+                    //if (sb.Length >= 2) { sb.Length -= 2; }
                     _ = sb.Append(foo);
                 }
             }
