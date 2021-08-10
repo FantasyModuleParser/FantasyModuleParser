@@ -756,9 +756,10 @@ namespace FantasyModuleParser.NPC
 		/// </summary>
 		/// <returns></returns>
 		public string UpdateDamageVulnerabilities()
-		{
-			return this.DamageVulnerabilityModelList.Aggregate(new StringBuilder(), (sb, dv) =>
-			sb.Append(dv.Selected == true ? dv.ActionName + delimiter : string.Empty)).ToString().Trim().TrimEnd(trimCharsSpaceComma);
+        {
+            //	return this.DamageVulnerabilityModelList.Aggregate(new StringBuilder(), (sb, dv) =>
+            //	sb.Append(dv.Selected == true ? dv.ActionName + delimiter : string.Empty)).ToString().Trim().TrimEnd(trimCharsSpaceComma);
+            return _generateDamageTypeBaseDescription(this.DamageVulnerabilityModelList).ToString().Trim().TrimEnd(trimCharsSpaceComma);
 		}
 
 		/// <summary>
@@ -966,65 +967,103 @@ namespace FantasyModuleParser.NPC
 		/// <returns></returns>
 		private static string UpdateDamageImmunitiesAndResistances(List<SelectableActionModel> damage,
 			List<SelectableActionModel> specialWpn, List<SelectableActionModel> specialWpnDmg)
-		{
-			bool bpsDamageTypeFound = false;
-			foreach(SelectableActionModel sam in damage)
+        {
+            StringBuilder sb = _generateDamageTypeBaseDescription(damage);
+
+            string foo = string.Empty;
+            foreach (SelectableActionModel selectableActionModel in specialWpn)
             {
-				if (_isSelectableActionModel_BPS(sam))
-					bpsDamageTypeFound = true;
+                if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
+                {
+                    if (selectableActionModel.ActionName == "Nonmagical")
+                    {
+                        foo = " from nonmagical attacks";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalSilvered")
+                    {
+                        foo = " from nonmagical attacks that aren't silvered";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
+                    {
+                        foo = " from nonmagical attacks that aren't adamantine";
+                    }
+                    else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
+                    {
+                        foo = " from nonmagical attacks that aren't cold-forged iron";
+                    }
+                    else if (selectableActionModel.ActionName == "Magical") // && specialWpn == this.SpecialWeaponDmgResistanceModelList)
+                    {
+                        foo = " from magic weapons";
+                    }
+
+                    _ = sb.Append(specialWpnDmg.Aggregate(new StringBuilder(), (sbSWD, swd) => sbSWD.Append(swd.Selected ? $"{swd.ActionDescription}, " : string.Empty)));
+                    if (sb.Length >= 2) { sb.Length -= 2; }
+                    _ = sb.Append(foo);
+                }
             }
-			StringBuilder sb = damage.Aggregate(new StringBuilder(), (sbDmg, dmg) => sbDmg.Append(dmg.Selected && !_isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
+            return sb.ToString().Trim();
+        }
 
-			if (sb.Length > 0 && bpsDamageTypeFound)
-				sb.Append("; ");
+        private static StringBuilder _generateDamageTypeBaseDescription(List<SelectableActionModel> damage)
+        {
+            bool bpsDamageTypeFound = false;
+            // Applicable in the final string 
+            bool multipleBPSDamageTypeFound = false;
+            foreach (SelectableActionModel sam in damage)
+            {
+                if (sam.Selected && _isSelectableActionModel_BPS(sam))
+                {
+                    // if bpsDamageTypeFound = true, then this means a second BPS is found
+                    // i.e. bludgeoning and piercing
+                    if (bpsDamageTypeFound)
+                    {
+                        multipleBPSDamageTypeFound = true;
+                    }
 
-			damage.Aggregate(sb, (sbDmg, dmg) => sbDmg.Append(dmg.Selected && _isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
+                    // no matter what, set bpsDamageTypeFound = true;
+                    bpsDamageTypeFound = true;
+                }
+
+            }
+            StringBuilder sb = damage.Aggregate(new StringBuilder(), (sbDmg, dmg) => sbDmg.Append(dmg.Selected && !_isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
+
+            if (sb.Length > 0 && bpsDamageTypeFound)
+            {
+                // Truncate the ', ' at the end of the stringBuilder object and prepare for including the BPS selected options
+                // i.e. fire, 
+                sb.Length -= 2;
+                sb.Append("; ");
+            }
+
+            damage.Aggregate(sb, (sbDmg, dmg) => sbDmg.Append(dmg.Selected && _isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
 
 
-			if (sb.Length >= 2) { sb.Length -= 2; }  // truncate the last 2 characters, which should be ", "
-			//if (sb.Length > 0) { _ = sb.Append("; "); }
+            if (sb.Length >= 2) { sb.Length -= 2; }  // truncate the last 2 characters, which should be ", "
+                                                     //if (sb.Length > 0) { _ = sb.Append("; "); }
 
-			string foo = string.Empty;
-			foreach (SelectableActionModel selectableActionModel in specialWpn)
-			{
-				if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
-				{
-					if (selectableActionModel.ActionName == "Nonmagical")
-					{
-						foo = " from nonmagical attacks";
-					}
-					else if (selectableActionModel.ActionName == "NonmagicalSilvered")
-					{
-						foo = " from nonmagical attacks that aren't silvered";
-					}
-					else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
-					{
-						foo = " from nonmagical attacks that aren't adamantine";
-					}
-					else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
-					{
-						foo = " from nonmagical attacks that aren't cold-forged iron";
-					}
-					else if (selectableActionModel.ActionName == "Magical") // && specialWpn == this.SpecialWeaponDmgResistanceModelList)
-					{
-						foo = " from magic weapons";
-					}
+            // Due to a unique quirk, if two or more BPS options are detected, then the last comma is replaced with ' and '
+            // e.g.  bludgeoning, piercing -->   bludgeoning and piercing
+            if (multipleBPSDamageTypeFound)
+            {
+                // Not sure how to get around this, but outputing sb to a string so it can be manipulated the way I want to
+                string rawValue = sb.ToString();
 
-					_ = sb.Append(specialWpnDmg.Aggregate(new StringBuilder(), (sbSWD, swd) => sbSWD.Append(swd.Selected ? $"{swd.ActionDescription}, " : string.Empty)));
-					if (sb.Length >= 2) { sb.Length -= 2; }
-					_ = sb.Append(foo);
-				}
-			}
-			return sb.ToString().Trim();
-		}
+                int place = rawValue.LastIndexOf(",");
 
-		/// <summary>
-		/// This does a check against the SelectableActionModel object to see if it's Bludgeoning, Slashing or Piercing.  This is due
-		/// to the format of Damage Vul / Resist / Immunity descriptions where BPS is to the right of all magical elements (e.g. Fire, cold, poison, etc...)
-		/// </summary>
-		/// <param name="selectableActionModel"></param>
-		/// <returns></returns>
-		private static bool _isSelectableActionModel_BPS(SelectableActionModel selectableActionModel)
+                string result = rawValue.Remove(place, 1).Insert(place, " and");
+                sb = new StringBuilder(result);
+            }
+
+            return sb;
+        }
+
+        /// <summary>
+        /// This does a check against the SelectableActionModel object to see if it's Bludgeoning, Slashing or Piercing.  This is due
+        /// to the format of Damage Vul / Resist / Immunity descriptions where BPS is to the right of all magical elements (e.g. Fire, cold, poison, etc...)
+        /// </summary>
+        /// <param name="selectableActionModel"></param>
+        /// <returns></returns>
+        private static bool _isSelectableActionModel_BPS(SelectableActionModel selectableActionModel)
         {
 			string bludgeoningName = DamageType.Bludgeoning.ToString().ToUpper();
 			string slashingName = DamageType.Slashing.ToString().ToUpper();
