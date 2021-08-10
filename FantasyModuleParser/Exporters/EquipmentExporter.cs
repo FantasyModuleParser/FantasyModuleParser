@@ -295,5 +295,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			return stringBuilder.ToString(0, stringBuilder.Length - 2);
 		}
+
+
 	}
 }

@@ -170,7 +170,6 @@ namespace FantasyModuleParser.Exporters
 			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
 			List<TableModel> FatTableList = CommonMethods.GenerateFatTableList(moduleModel);
 			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
-			HashSet<string> UniqueCasterClass = new HashSet<string>();
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));

@@ -70,7 +70,6 @@ namespace FantasyModuleParser.Exporters
 		static public List<EquipmentModel> GenerateFatEquipmentList(ModuleModel moduleModel)
 		{
 			List<EquipmentModel> FatEquipmentList = new List<EquipmentModel>();
-
 			foreach (CategoryModel category in moduleModel.Categories)
 			{
 				foreach (EquipmentModel equipmentModel in category.EquipmentModels)
@@ -78,7 +77,10 @@ namespace FantasyModuleParser.Exporters
 					FatEquipmentList.Add(equipmentModel);
 				}
 			}
-			return FatEquipmentList;
+			IEnumerable<EquipmentModel> query = from equipment in FatEquipmentList
+												orderby equipment.PrimaryEquipmentEnumType, equipment.Name
+												select equipment;
+			return query.ToList();
 		}
 	}
 }
