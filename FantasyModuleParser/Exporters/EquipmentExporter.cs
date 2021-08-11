@@ -1,9 +1,12 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Extensions;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC.Controllers;
 using log4net;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -296,6 +299,59 @@ namespace FantasyModuleParser.Exporters
 			return stringBuilder.ToString(0, stringBuilder.Length - 2);
 		}
 
+		static private void NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
+		{
+			foreach (EquipmentModel equip in EquipmentList)
+			{
+				xmlWriter.WriteStartElement(EquipmentNameToXMLFormat(equip)); /* <equipment_name> */
+				xmlWriter.WriteStartElement("link"); /* <equipment_name> <link> */
+				xmlWriter.WriteAttributeString("type", "windowreference");
+				EquipmentClass(xmlWriter);
+				EquipmentRecordname(xmlWriter, equip, moduleModel);
+				xmlWriter.WriteEndElement(); /* <equipment_name> <link> </link> */
+				EquipmentName(xmlWriter, equip);
+				EquipmentCost(xmlWriter, equip);
+				EquipmentWeight(xmlWriter, equip);
+				xmlWriter.WriteEndElement(); /* <equipment_name> </equipment_name> */
+			}
+		}
 
+		static public void EquipmentLists(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
+		{
+			EquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+			var EquipmentByPrimaryList = EquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
+			
+			foreach(List<EquipmentModel> equipmentList in EquipmentByPrimaryList)
+			{
+				string equipType = equipmentList[0].PrimaryEquipmentEnumType.GetDescription();
+				ProcessEquipListByType(xmlWriter, moduleModel, equipType, equipmentList);
+			}
+		}
+
+		static private void ProcessEquipListByType(XmlWriter xmlWriter, ModuleModel moduleModel, string equipType, List<EquipmentModel> EquipmentList)
+		{
+
+			NPCLocation(xmlWriter, moduleModel, EquipmentList);
+		}
+
+		static public string EquipmentNameToXMLFormat(EquipmentModel equipmentModel)
+		{
+			string name = equipmentModel.Name.ToLower();
+			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
+		}
+
+		private static void EquipmentClass(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class"); /* <equipment_name> <link> <class> */
+			xmlWriter.WriteString("reference_equipment");
+			xmlWriter.WriteEndElement(); /* <equipment_name> <link> <class> </class> */
+		}
+
+		static private void EquipmentRecordname(XmlWriter xmlWriter, EquipmentModel equipmentModel, ModuleModel moduleModel)
+		{
+			xmlWriter.WriteStartElement("recordname"); /* <equipment_name> <link> <recordname> */
+			xmlWriter.WriteString("reference.equipmentdata." + EquipmentNameToXMLFormat(equipmentModel) + "@" + moduleModel.Name);
+			xmlWriter.WriteEndElement(); /* <equipment_name> <link> <recordname> </recordname> */
+		}
 	}
 }
