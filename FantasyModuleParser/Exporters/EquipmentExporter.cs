@@ -299,7 +299,7 @@ namespace FantasyModuleParser.Exporters
 			return stringBuilder.ToString(0, stringBuilder.Length - 2);
 		}
 
-		static private void NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
+		static private void EquipmentLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
 		{
 			foreach (EquipmentModel equip in EquipmentList)
 			{
@@ -330,8 +330,13 @@ namespace FantasyModuleParser.Exporters
 
 		static private void ProcessEquipListByType(XmlWriter xmlWriter, ModuleModel moduleModel, string equipType, List<EquipmentModel> EquipmentList)
 		{
-
-			NPCLocation(xmlWriter, moduleModel, EquipmentList);
+			int equipListId = 1;
+			foreach (EquipmentModel equipmentType in EquipmentList)
+			{
+				xmlWriter.WriteStartElement("id-" + equipListId.ToString("D4")); /* <id-*> */
+				xmlWriter.WriteStartElement("linklist"); /* <id-*> <linklist> */
+				xmlWriter.WriteAttributeString("type", "windowreference");
+			}
 		}
 
 		static public string EquipmentNameToXMLFormat(EquipmentModel equipmentModel)
@@ -340,6 +345,12 @@ namespace FantasyModuleParser.Exporters
 			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
 		}
 
+		private static void EquipmentListClass(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class"); /* <class> */
+			xmlWriter.WriteString("reference_" + EquipmentTypeToXMLFormat(EquipmentType) + "table");
+			xmlWriter.WriteEndElement(); /* <class> </class> */
+		}
 		private static void EquipmentClass(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("class"); /* <equipment_name> <link> <class> */
