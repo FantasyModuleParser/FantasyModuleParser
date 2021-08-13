@@ -127,24 +127,6 @@ namespace FantasyModuleParser.NPC
 		private int _xp;
 		private bool _conditionOther;
 		private string _conditionOtherText;
-		//private int _acrobatics;
-		//private int _animalHandling;
-		//private int _arcana;
-		//private int _athletics;
-		//private int _deception;
-		//private int _history;
-		//private int _insight;
-		//private int _intimidation;
-		//private int _investigation;
-		//private int _medicine;
-		//private int _nature;
-		//private int _perception;
-		//private int _performance;
-		//private int _persuasion;
-		//private int _religion;
-		//private int _sleightOfHand;
-		//private int _stealth;
-		//private int _survival;
 
 		#region Innate Spellcasting
 		private bool _innateSpellcastingSection;
@@ -1111,68 +1093,6 @@ namespace FantasyModuleParser.NPC
 				// When skill attributes dictionary is implemented, the following line of code should replace the switch statement
 				this.skillAttributes[(SkillAttributes)Enum.Parse(typeof(SkillAttributes), skillAttributeName, true)] = value;
 				continue;
-
-				// Keep this code here until we are sure that the skillAttributes dictionary works
-				//switch (skillAttributeName)
-				//{
-				//	case "Acrobatics":
-				//		Acrobatics = value;
-				//		break;
-				//	case "Animal":
-				//		AnimalHandling = value;
-				//		break;
-				//	case "Arcana":
-				//		Arcana = value;
-				//		break;
-				//	case "Athletics":
-				//		Athletics = value;
-				//		break;
-				//	case "Deception":
-				//		Deception = value;
-				//		break;
-				//	case "History":
-				//		History = value;
-				//		break;
-				//	case "Insight":
-				//		Insight = value;
-				//		break;
-				//	case "Intimidation":
-				//		Intimidation = value;
-				//		break;
-				//	case "Investigation":
-				//		Investigation = value;
-				//		break;
-				//	case "Medicine":
-				//		Medicine = value;
-				//		break;
-				//	case "Nature":
-				//		Nature = value;
-				//		break;
-				//	case "Perception":
-				//		Perception = value;
-				//		break;
-				//	case "Performance":
-				//		Performance = value;
-				//		break;
-				//	case "Persuasion":
-				//		Persuasion = value;
-				//		break;
-				//	case "Religion":
-				//		Religion = value;
-				//		break;
-				//	case "Sleight":
-				//		SleightOfHand = value;
-				//		break;
-				//	case "Stealth":
-				//		Stealth = value;
-				//		break;
-				//	case "Survival":
-				//		Survival = value;
-				//		break;
-				//	default:
-				//		// TODO: add error reporting code here
-				//		break;
-				//}
 			}
 
 		}
@@ -1204,29 +1124,6 @@ namespace FantasyModuleParser.NPC
 				(sb, kv) => sb.Append(kv.Value != 0 ?
 				$"{NPCModel.GetDescription(typeof(SkillAttributes), kv.Key)} {kv.Value:+#;-#;+0}, " : string.Empty))
 				.ToString().Trim().TrimEnd(trimCharsSpaceComma);
-
-			//StringBuilder stringBuilder = new StringBuilder();
-
-			//if (Acrobatics != 0) { stringBuilder.Append($"Acrobatics {Acrobatics:+#;-#;+0}, "); }
-			//if (AnimalHandling != 0) { stringBuilder.Append($"Animal Handling {AnimalHandling:+#;-#;+0}, "); }
-			//if (Arcana != 0) { stringBuilder.Append($"Arcana {Arcana:+#;-#;+0}, "); }
-			//if (Athletics != 0) { stringBuilder.Append($"Athletics {Athletics:+#;-#;+0}, "); }
-			//if (Deception != 0) { stringBuilder.Append($"Deception {Deception:+#;-#;+0}, "); }
-			//if (History != 0) { stringBuilder.Append($"History {History:+#;-#;+0}, "); }
-			//if (Insight != 0) { stringBuilder.Append($"Insight {Insight:+#;-#;+0}, "); }
-			//if (Intimidation != 0) { stringBuilder.Append($"Intimidation {Intimidation:+#;-#;+0}, "); }
-			//if (Investigation != 0) { stringBuilder.Append($"Investigation {Investigation:+#;-#;+0}, "); }
-			//if (Medicine != 0) { stringBuilder.Append($"Medicine {Medicine:+#;-#;+0}, "); }
-			//if (Nature != 0) { stringBuilder.Append($"Nature {Nature:+#;-#;+0}, "); }
-			//if (Perception != 0) { stringBuilder.Append($"Perception {Perception:+#;-#;+0}, "); }
-			//if (Performance != 0) { stringBuilder.Append($"Performance {Performance:+#;-#;+0}, "); }
-			//if (Persuasion != 0) { stringBuilder.Append($"Persuasion {Persuasion:+#;-#;+0}, "); }
-			//if (Religion != 0) { stringBuilder.Append($"Religion {Religion:+#;-#;+0}, "); }
-			//if (SleightOfHand != 0) { stringBuilder.Append($"Sleight Of Hand {SleightOfHand:+#;-#;+0}, "); }
-			//if (Stealth != 0) { stringBuilder.Append($"Stealth {Stealth:+#;-#;+0}, "); }
-			//if (Survival != 0) { stringBuilder.Append($"Survival {Survival:+#;-#;+0}, "); }
-
-			//return stringBuilder.ToString().TrimEnd(trimCharsSpaceComma);
 		}
 
 		/// <summary>
