@@ -16,6 +16,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using FantasyModuleParser.NPC.Models.Action.Enums;
 
 namespace FantasyModuleParser.NPC
 {
@@ -126,24 +127,6 @@ namespace FantasyModuleParser.NPC
 		private int _xp;
 		private bool _conditionOther;
 		private string _conditionOtherText;
-		//private int _acrobatics;
-		//private int _animalHandling;
-		//private int _arcana;
-		//private int _athletics;
-		//private int _deception;
-		//private int _history;
-		//private int _insight;
-		//private int _intimidation;
-		//private int _investigation;
-		//private int _medicine;
-		//private int _nature;
-		//private int _perception;
-		//private int _performance;
-		//private int _persuasion;
-		//private int _religion;
-		//private int _sleightOfHand;
-		//private int _stealth;
-		//private int _survival;
 
 		#region Innate Spellcasting
 		private bool _innateSpellcastingSection;
@@ -755,9 +738,10 @@ namespace FantasyModuleParser.NPC
 		/// </summary>
 		/// <returns></returns>
 		public string UpdateDamageVulnerabilities()
-		{
-			return this.DamageVulnerabilityModelList.Aggregate(new StringBuilder(), (sb, dv) =>
-			sb.Append(dv.Selected == true ? dv.ActionName + delimiter : string.Empty)).ToString().Trim().TrimEnd(trimCharsSpaceComma);
+        {
+            //	return this.DamageVulnerabilityModelList.Aggregate(new StringBuilder(), (sb, dv) =>
+            //	sb.Append(dv.Selected == true ? dv.ActionName + delimiter : string.Empty)).ToString().Trim().TrimEnd(trimCharsSpaceComma);
+            return _generateDamageTypeBaseDescription(this.DamageVulnerabilityModelList).ToString().Trim().TrimEnd(trimCharsSpaceComma);
 		}
 
 		/// <summary>
@@ -965,45 +949,112 @@ namespace FantasyModuleParser.NPC
 		/// <returns></returns>
 		private static string UpdateDamageImmunitiesAndResistances(List<SelectableActionModel> damage,
 			List<SelectableActionModel> specialWpn, List<SelectableActionModel> specialWpnDmg)
-		{
-			StringBuilder sb = damage.Aggregate(new StringBuilder(), (sbDmg, dmg) => sbDmg.Append(dmg.Selected ? $"{dmg.ActionDescription}, " : string.Empty));
-			
-			if (sb.Length >= 2) { sb.Length -= 2; }  // truncate the last 2 characters, which should be ", "
-			if (sb.Length > 0) { _ = sb.Append("; "); }
+        {
+            StringBuilder sb = _generateDamageTypeBaseDescription(damage);
 
-			string foo = string.Empty;
-			foreach (SelectableActionModel selectableActionModel in specialWpn)
-			{
-				if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
-				{
-					if (selectableActionModel.ActionName == "Nonmagical")
-					{
-						foo = " from nonmagical attacks";
-					}
-					else if (selectableActionModel.ActionName == "NonmagicalSilvered")
-					{
-						foo = " from nonmagical attacks that aren't silvered";
-					}
-					else if (selectableActionModel.ActionName == "NonmagicalAdamantine")
-					{
-						foo = " from nonmagical attacks that aren't adamantine";
-					}
-					else if (selectableActionModel.ActionName == "NonmagicalColdForgedIron")
-					{
-						foo = " from nonmagical attacks that aren't cold-forged iron";
-					}
-					else if (selectableActionModel.ActionName == "Magical") // && specialWpn == this.SpecialWeaponDmgResistanceModelList)
-					{
-						foo = " from magic weapons";
-					}
+            string foo = string.Empty;
+            foreach (SelectableActionModel selectableActionModel in specialWpn)
+            {
+                if (selectableActionModel.Selected == true && selectableActionModel.ActionName != "NoSpecial")
+                {
+                    if (selectableActionModel.ActionName.Equals(WeaponResistance.Nonmagical.ToString()))
+                    {
+                        foo = " from nonmagical attacks";
+                    }
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.NonmagicalSilvered.ToString()))
+                    {
+                        foo = " from nonmagical attacks that aren't silvered";
+                    }
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.NonmagicalAdamantine.ToString()))
+                    {
+                        foo = " from nonmagical attacks that aren't adamantine";
+                    }
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.NonmagicalColdForgedIron.ToString()))
+                    {
+                        foo = " from nonmagical attacks that aren't cold-forged iron";
+                    }
+                    else if (selectableActionModel.ActionName.Equals(WeaponResistance.Magical.ToString())) // && specialWpn == this.SpecialWeaponDmgResistanceModelList)
+                    {
+                        foo = " from magic weapons";
+                    }
 
-					_ = sb.Append(specialWpnDmg.Aggregate(new StringBuilder(), (sbSWD, swd) => sbSWD.Append(swd.Selected ? $"{swd.ActionDescription}, " : string.Empty)));
-					if (sb.Length >= 2) { sb.Length -= 2; }
-					_ = sb.Append(foo);
-				}
-			}
-			return sb.ToString().Trim();
-		}
+                    _ = sb.Append(specialWpnDmg.Aggregate(new StringBuilder(), (sbSWD, swd) => sbSWD.Append(swd.Selected ? $"{swd.ActionDescription}, " : string.Empty)));
+                    //if (sb.Length >= 2) { sb.Length -= 2; }
+                    _ = sb.Append(foo);
+                }
+            }
+            return sb.ToString().Trim();
+        }
+
+        private static StringBuilder _generateDamageTypeBaseDescription(List<SelectableActionModel> damage)
+        {
+            bool bpsDamageTypeFound = false;
+            // Applicable in the final string 
+            bool multipleBPSDamageTypeFound = false;
+            foreach (SelectableActionModel sam in damage)
+            {
+                if (sam.Selected && _isSelectableActionModel_BPS(sam))
+                {
+                    // if bpsDamageTypeFound = true, then this means a second BPS is found
+                    // i.e. bludgeoning and piercing
+                    if (bpsDamageTypeFound)
+                    {
+                        multipleBPSDamageTypeFound = true;
+                    }
+
+                    // no matter what, set bpsDamageTypeFound = true;
+                    bpsDamageTypeFound = true;
+                }
+
+            }
+            StringBuilder sb = damage.Aggregate(new StringBuilder(), (sbDmg, dmg) => sbDmg.Append(dmg.Selected && !_isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
+
+            if (sb.Length > 0 && bpsDamageTypeFound)
+            {
+                // Truncate the ', ' at the end of the stringBuilder object and prepare for including the BPS selected options
+                // i.e. fire, 
+                sb.Length -= 2;
+                sb.Append("; ");
+            }
+
+            damage.Aggregate(sb, (sbDmg, dmg) => sbDmg.Append(dmg.Selected && _isSelectableActionModel_BPS(dmg) ? $"{dmg.ActionDescription}, " : string.Empty));
+
+
+            if (sb.Length >= 2) { sb.Length -= 2; }  // truncate the last 2 characters, which should be ", "
+                                                     //if (sb.Length > 0) { _ = sb.Append("; "); }
+
+            // Due to a unique quirk, if two or more BPS options are detected, then the last comma is replaced with ' and '
+            // e.g.  bludgeoning, piercing -->   bludgeoning and piercing
+            if (multipleBPSDamageTypeFound)
+            {
+                // Not sure how to get around this, but outputing sb to a string so it can be manipulated the way I want to
+                string rawValue = sb.ToString();
+
+                int place = rawValue.LastIndexOf(",");
+
+                string result = rawValue.Remove(place, 1).Insert(place, " and");
+                sb = new StringBuilder(result);
+            }
+
+            return sb;
+        }
+
+        /// <summary>
+        /// This does a check against the SelectableActionModel object to see if it's Bludgeoning, Slashing or Piercing.  This is due
+        /// to the format of Damage Vul / Resist / Immunity descriptions where BPS is to the right of all magical elements (e.g. Fire, cold, poison, etc...)
+        /// </summary>
+        /// <param name="selectableActionModel"></param>
+        /// <returns></returns>
+        private static bool _isSelectableActionModel_BPS(SelectableActionModel selectableActionModel)
+        {
+			string bludgeoningName = DamageType.Bludgeoning.ToString().ToUpper();
+			string slashingName = DamageType.Slashing.ToString().ToUpper();
+			string piercingName = DamageType.Piercing.ToString().ToUpper();
+
+			string actionName = selectableActionModel.ActionName.ToUpper();
+
+			return actionName.Equals(bludgeoningName) || actionName.Equals(slashingName) || actionName.Equals(piercingName);
+        }
 
 		/// <summary>
 		/// 
@@ -1042,68 +1093,6 @@ namespace FantasyModuleParser.NPC
 				// When skill attributes dictionary is implemented, the following line of code should replace the switch statement
 				this.skillAttributes[(SkillAttributes)Enum.Parse(typeof(SkillAttributes), skillAttributeName, true)] = value;
 				continue;
-
-				// Keep this code here until we are sure that the skillAttributes dictionary works
-				//switch (skillAttributeName)
-				//{
-				//	case "Acrobatics":
-				//		Acrobatics = value;
-				//		break;
-				//	case "Animal":
-				//		AnimalHandling = value;
-				//		break;
-				//	case "Arcana":
-				//		Arcana = value;
-				//		break;
-				//	case "Athletics":
-				//		Athletics = value;
-				//		break;
-				//	case "Deception":
-				//		Deception = value;
-				//		break;
-				//	case "History":
-				//		History = value;
-				//		break;
-				//	case "Insight":
-				//		Insight = value;
-				//		break;
-				//	case "Intimidation":
-				//		Intimidation = value;
-				//		break;
-				//	case "Investigation":
-				//		Investigation = value;
-				//		break;
-				//	case "Medicine":
-				//		Medicine = value;
-				//		break;
-				//	case "Nature":
-				//		Nature = value;
-				//		break;
-				//	case "Perception":
-				//		Perception = value;
-				//		break;
-				//	case "Performance":
-				//		Performance = value;
-				//		break;
-				//	case "Persuasion":
-				//		Persuasion = value;
-				//		break;
-				//	case "Religion":
-				//		Religion = value;
-				//		break;
-				//	case "Sleight":
-				//		SleightOfHand = value;
-				//		break;
-				//	case "Stealth":
-				//		Stealth = value;
-				//		break;
-				//	case "Survival":
-				//		Survival = value;
-				//		break;
-				//	default:
-				//		// TODO: add error reporting code here
-				//		break;
-				//}
 			}
 
 		}
@@ -1135,29 +1124,6 @@ namespace FantasyModuleParser.NPC
 				(sb, kv) => sb.Append(kv.Value != 0 ?
 				$"{NPCModel.GetDescription(typeof(SkillAttributes), kv.Key)} {kv.Value:+#;-#;+0}, " : string.Empty))
 				.ToString().Trim().TrimEnd(trimCharsSpaceComma);
-
-			//StringBuilder stringBuilder = new StringBuilder();
-
-			//if (Acrobatics != 0) { stringBuilder.Append($"Acrobatics {Acrobatics:+#;-#;+0}, "); }
-			//if (AnimalHandling != 0) { stringBuilder.Append($"Animal Handling {AnimalHandling:+#;-#;+0}, "); }
-			//if (Arcana != 0) { stringBuilder.Append($"Arcana {Arcana:+#;-#;+0}, "); }
-			//if (Athletics != 0) { stringBuilder.Append($"Athletics {Athletics:+#;-#;+0}, "); }
-			//if (Deception != 0) { stringBuilder.Append($"Deception {Deception:+#;-#;+0}, "); }
-			//if (History != 0) { stringBuilder.Append($"History {History:+#;-#;+0}, "); }
-			//if (Insight != 0) { stringBuilder.Append($"Insight {Insight:+#;-#;+0}, "); }
-			//if (Intimidation != 0) { stringBuilder.Append($"Intimidation {Intimidation:+#;-#;+0}, "); }
-			//if (Investigation != 0) { stringBuilder.Append($"Investigation {Investigation:+#;-#;+0}, "); }
-			//if (Medicine != 0) { stringBuilder.Append($"Medicine {Medicine:+#;-#;+0}, "); }
-			//if (Nature != 0) { stringBuilder.Append($"Nature {Nature:+#;-#;+0}, "); }
-			//if (Perception != 0) { stringBuilder.Append($"Perception {Perception:+#;-#;+0}, "); }
-			//if (Performance != 0) { stringBuilder.Append($"Performance {Performance:+#;-#;+0}, "); }
-			//if (Persuasion != 0) { stringBuilder.Append($"Persuasion {Persuasion:+#;-#;+0}, "); }
-			//if (Religion != 0) { stringBuilder.Append($"Religion {Religion:+#;-#;+0}, "); }
-			//if (SleightOfHand != 0) { stringBuilder.Append($"Sleight Of Hand {SleightOfHand:+#;-#;+0}, "); }
-			//if (Stealth != 0) { stringBuilder.Append($"Stealth {Stealth:+#;-#;+0}, "); }
-			//if (Survival != 0) { stringBuilder.Append($"Survival {Survival:+#;-#;+0}, "); }
-
-			//return stringBuilder.ToString().TrimEnd(trimCharsSpaceComma);
 		}
 
 		/// <summary>
