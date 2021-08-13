@@ -937,7 +937,6 @@ namespace FantasyModuleParser.Exporters
 		#region NPC Methods for Reference Data XML
 		public void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damageimmunities");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.UpdateDamageImmunities());
@@ -945,7 +944,6 @@ namespace FantasyModuleParser.Exporters
 		}
 		public void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damageresistances");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.UpdateDamageResistances());
@@ -953,25 +951,9 @@ namespace FantasyModuleParser.Exporters
 		}
 		public void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damagevulnerabilities");
 			xmlWriter.WriteAttributeString("type", "string");
-			if (npcModel.DamageVulnerabilityModelList != null)
-			{
-				foreach (SelectableActionModel damageVulnerabilities in npcModel.DamageVulnerabilityModelList)
-				{
-					if (damageVulnerabilities.Selected == true)
-					{
-						stringBuilder.Append(damageVulnerabilities.ActionDescription.ToLower()).Append(", ");
-					}
-				}
-			}
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
-			string weaponDamageVulnerabilityString = stringBuilder.ToString().Trim();
-			xmlWriter.WriteValue(weaponDamageVulnerabilityString);
+			xmlWriter.WriteValue(npcModel.UpdateDamageVulnerabilities());
 			xmlWriter.WriteEndElement();
 		}
 		#endregion
