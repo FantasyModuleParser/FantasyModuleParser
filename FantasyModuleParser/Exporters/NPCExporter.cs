@@ -756,7 +756,7 @@ namespace FantasyModuleParser.Exporters
 		}
 		static public void WriteToken(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
-			if (moduleModel.IncludeTokens && !npcModel.NPCToken == null && npcModel.NPCToken.Length > 2 )
+			if (moduleModel.IncludeTokens && npcModel.NPCToken.Length > 2 )
 			{
 				xmlWriter.WriteStartElement("token");
 				xmlWriter.WriteAttributeString("type", "token");
@@ -968,10 +968,6 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(npcModel.XP);
 			xmlWriter.WriteEndElement();
-		}
-		static public void WriteNPCReferenceManual(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
