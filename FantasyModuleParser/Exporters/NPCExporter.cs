@@ -756,17 +756,13 @@ namespace FantasyModuleParser.Exporters
 		}
 		static public void WriteToken(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
-			xmlWriter.WriteStartElement("token");
-			xmlWriter.WriteAttributeString("type", "token");
-			if (npcModel.NPCToken == null || npcModel.NPCToken.Length < 2 || !moduleModel.IncludeTokens)
+			if (moduleModel.IncludeTokens && !npcModel.NPCToken == null && npcModel.NPCToken.Length > 2 )
 			{
-				xmlWriter.WriteString("");
-			}
-			else
-			{
+				xmlWriter.WriteStartElement("token");
+				xmlWriter.WriteAttributeString("type", "token");
 				xmlWriter.WriteValue("tokens\\" + Path.GetFileName(npcModel.NPCToken) + "@" + moduleModel.Name);
-			}
-			xmlWriter.WriteEndElement();
+				xmlWriter.WriteEndElement();
+			}			
 		}
 		static public void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
 		{
