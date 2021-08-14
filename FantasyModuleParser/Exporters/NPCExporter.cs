@@ -758,7 +758,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("token");
 			xmlWriter.WriteAttributeString("type", "token");
-			if (npcModel.NPCToken == null || npcModel.NPCToken == " " || !moduleModel.IncludeTokens)
+			if (npcModel.NPCToken == null || npcModel.NPCToken.Length < 2 || !moduleModel.IncludeTokens)
 			{
 				xmlWriter.WriteString("");
 			}
