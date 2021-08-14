@@ -182,8 +182,8 @@ namespace FantasyModuleParser.Exporters
 					if (!string.IsNullOrEmpty(npcModel.NPCToken))
 					{
 						string Filename = Path.GetFileName(npcModel.NPCToken);
-						string NPCTokenFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "tokens", Filename);
-						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "tokens");
+						string NPCTokenFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "tokens", Filename);
+						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "tokens");
 						if (Directory.Exists(NPCTokenDirectory))
 						{
 							if (File.Exists(NPCTokenFileName))
@@ -215,8 +215,8 @@ namespace FantasyModuleParser.Exporters
 							npcModel.NPCImage.Remove(0, 8);
 						}
 						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "").Replace(",", "");
-						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images", Filename);
-						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images");
+						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images", Filename);
+						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images");
 						if (Directory.Exists(NPCImageDirectory))
 						{
 							if (File.Exists(NPCImageFileName))
