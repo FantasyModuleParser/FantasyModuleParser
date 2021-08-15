@@ -150,9 +150,6 @@ namespace FantasyModuleParser.NPC.Tests
                                             , fire + "; " + bludgeoning };
         }
 
-
-
-
         private static List<SelectableActionModel> _generateSelectableActionModelList(List<DamageType> damageTypes)
         {
             NPCController npcController = new NPCController();
@@ -172,6 +169,8 @@ namespace FantasyModuleParser.NPC.Tests
                 }
             }
             return selectableActionModels;
+        }
+
         [TestMethod()]
         public void UpdateDamageVulnerabilitiesTest()
         {
