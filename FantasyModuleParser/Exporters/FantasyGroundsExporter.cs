@@ -210,10 +210,6 @@ namespace FantasyModuleParser.Exporters
 					#region Image Data
 					if (!string.IsNullOrEmpty(npcModel.NPCImage))
 					{
-						if (npcModel.NPCImage.StartsWith("file:///"))
-						{
-							npcModel.NPCImage.Remove(0, 8);
-						}
 						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "").Replace(",", "");
 						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images", Filename);
 						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images");
@@ -227,6 +223,10 @@ namespace FantasyModuleParser.Exporters
 						else
 						{
 							Directory.CreateDirectory(NPCImageDirectory);
+						}
+						if (npcModel.NPCImage.StartsWith("file:///"))
+						{
+							npcModel.NPCImage = npcModel.NPCImage.Remove(0, 8);
 						}
 						File.Copy(npcModel.NPCImage, NPCImageFileName);
 					}
@@ -481,9 +481,9 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString("NPCs");
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <name> </name> */
 					xmlWriter.WriteStartElement("index"); /* <root version="4.0"> <reference> <npclists> <npcs> <index> */
-					WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id-0002", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id-0003", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <index> </index> */
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> </npcs> */
 					xmlWriter.WriteStartElement("byletter"); /* <root version="4.0"> <reference> <npclists> <byletter> */
@@ -802,6 +802,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); // close </chapter_**>
 				xmlWriter.WriteEndElement(); // close </chapters>
 				xmlWriter.WriteEndElement(); // Close </referencemanual>
+				xmlWriter.WriteEndElement(); // Close </reference>
                 #endregion
                 
 
@@ -812,7 +813,7 @@ namespace FantasyModuleParser.Exporters
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0)
 				{
 					xmlWriter.WriteStartElement("library");  /* <library> */
-				xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
+					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
 					xmlWriter.WriteStartElement("name"); /* <library> <libname> <name> */
 					xmlWriter.WriteAttributeString("type", "string");          
 					xmlWriter.WriteString(moduleModel.Name + " Reference Library");   
@@ -825,7 +826,7 @@ namespace FantasyModuleParser.Exporters
 					int libraryID = 1;
 					if (moduleModel.IncludeImages)
                     {
-						xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "images"); /* <library> <libname> <r**images> */
+						xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4")); /* <library> <libname> <r**images> */
 						xmlWriter.WriteStartElement("librarylink"); /* <library> <libname> <r**images> <librarylink> */
 						xmlWriter.WriteAttributeString("type", "windowreference");
 						xmlWriter.WriteStartElement("class"); /* <library> <libname> <r**images> <librarylink> <class> */
@@ -846,7 +847,7 @@ namespace FantasyModuleParser.Exporters
                     {
 						if (moduleModel.Categories[0].NPCModels.Count > 0)
 						{
-							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "monsters"); /* <library> <libname> <r**monsters> */
+							xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4")); /* <library> <libname> <r**monsters> */
 							xmlWriter.WriteStartElement("librarylink"); /* <library> <libname> <r**monsters> <librarylink> */
 							xmlWriter.WriteAttributeString("type", "windowreference");
 							xmlWriter.WriteStartElement("class"); /* <library> <libname> <r**monsters> <librarylink> <class> */
@@ -868,7 +869,7 @@ namespace FantasyModuleParser.Exporters
                     {
 						if (moduleModel.Categories[0].SpellModels.Count > 0)
 						{
-							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "spells");
+							xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
 							xmlWriter.WriteStartElement("librarylink");
 							xmlWriter.WriteAttributeString("type", "windowreference");
 							xmlWriter.WriteStartElement("class");
@@ -890,7 +891,7 @@ namespace FantasyModuleParser.Exporters
 					{
 						if (moduleModel.Categories[0].TableModels.Count > 0)
 						{
-							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "tables");
+							xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
 							xmlWriter.WriteStartElement("librarylink");
 							xmlWriter.WriteAttributeString("type", "windowreference");
 							xmlWriter.WriteStartElement("class");
@@ -908,7 +909,7 @@ namespace FantasyModuleParser.Exporters
 							libraryID = ++libraryID;
 						}
 					}
-					xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "referencemanual");
+					xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
 					xmlWriter.WriteStartElement("librarylink");
 					xmlWriter.WriteAttributeString("type", "windowreference");
 					xmlWriter.WriteStartElement("class");
@@ -924,8 +925,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement(); // close </name>
 					xmlWriter.WriteEndElement(); // close </r05referencemanual>
 					xmlWriter.WriteEndElement();  // close entries                               
-					xmlWriter.WriteEndElement();  // close libraryname                         
-					xmlWriter.WriteEndElement();  // close library                          
+					xmlWriter.WriteEndElement();  // close libraryname                                                  
 				}
 				#endregion
 				xmlWriter.WriteEndElement(); // Closes </root>
@@ -981,7 +981,7 @@ namespace FantasyModuleParser.Exporters
 		}
 		static private string WriteImageXML(NPCModel npcModel)
 		{
-			return Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
+			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
 		}
 		static private void WriteListLink(XmlWriter xmlWriter)
 		{
