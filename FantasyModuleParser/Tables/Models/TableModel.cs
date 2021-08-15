@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Main.Services;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
 using FantasyModuleParser.Tables.ViewModels.Enums;
 using Newtonsoft.Json;
@@ -13,6 +14,14 @@ namespace FantasyModuleParser.Tables.Models
 {
     public class TableModel : ViewModelBase
     {
+        // Added VersionNumber for generated files for debugging purposes
+        public string VersionNumber
+        {
+            get
+            {
+                return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+        }
         private string _name;
         public string Name
         {

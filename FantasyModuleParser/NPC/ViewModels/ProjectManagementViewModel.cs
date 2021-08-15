@@ -114,8 +114,7 @@ namespace FantasyModuleParser.NPC.ViewModels
                 moduleModel.Categories.Add(new CategoryModel() { Name = moduleModel.Name });
             }
 
-            string appendedFileName = settingsService.Load().ProjectFolderLocation + "\\" + moduleModel.ModFilename + ".fmp";
-            moduleService.Save(appendedFileName, moduleModel);
+            moduleService.Save(moduleModel);
         }
 
         public void LoadModule(string filePath)

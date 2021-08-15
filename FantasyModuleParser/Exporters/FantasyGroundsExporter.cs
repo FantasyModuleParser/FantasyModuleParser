@@ -1,4 +1,6 @@
-﻿using FantasyModuleParser.Extensions;
+﻿using FantasyModuleParser.Equipment.Enums;
+using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
@@ -167,10 +169,11 @@ namespace FantasyModuleParser.Exporters
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
 			List<TableModel> FatTableList = CommonMethods.GenerateFatTableList(moduleModel);
-			HashSet<string> UniqueCasterClass = new HashSet<string>();
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));
+			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
 			/// <summary>
 			///  Names all token images to match the NPC name
 			/// </summary>
@@ -381,20 +384,64 @@ namespace FantasyModuleParser.Exporters
 					#endregion
 				}
 				#region Equipment Data
-				/*	xmlWriter.WriteStartElement("equipmentdata");
-				 *	xmlWriter.WriteAttributeString("static", "true"); 
-				 *	xmlWriter.WriteString(" ");
-				 *	xmlWriter.WriteEndElement(); */
+				if (moduleModel.IncludesEquipment)
+				{
+					xmlWriter.WriteStartElement("equipmentdata"); /* <root version="4.0"> <reference> <equipmentdata> */
+					foreach (CategoryModel categoryModel in moduleModel.Categories)
+					{
+						xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <equipmentdata> <category> */
+						xmlWriter.WriteAttributeString("name", categoryModel.Name);
+						xmlWriter.WriteAttributeString("baseicon", "0");
+						xmlWriter.WriteAttributeString("decalicon", "0");
+
+						//Now, write out each NPC with NPC Name
+						foreach (EquipmentModel equipmentModel in FatEquipmentList)
+						{
+							NPCController npcController = new NPCController();
+							xmlWriter.WriteStartElement(EquipmentExporter.EquipmentNameToXML(equipmentModel));
+							/* <root version="4.0"> <reference> <npcdata> <category> <equipmentModel.Name> */
+							EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentIdentified(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentNonIDName(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentNonIDDescription(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentName(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentType(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentSubtype(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentCost(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentWeight(xmlWriter, equipmentModel);
+							EquipmentExporter.EquipmentDescription(xmlWriter, equipmentModel, npcController);
+							if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
+							{
+								EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentDexBonus(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentStealth(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentStrength(xmlWriter, equipmentModel);
+							}
+							if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
+							{
+								EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentDamage(xmlWriter, equipmentModel);
+								EquipmentExporter.EquipmentProperties(xmlWriter, equipmentModel);
+							}
+						}
+						xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
+					}
+					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> </equipmentdata> */
+				}
+				
 				#endregion
 				#region Equipment Lists
-				/*	xmlWriter.WriteStartElement("equipmentlists");
-				 *	xmlWriter.WriteStartElement("equipment");
-				 *	xmlWriter.WriteStartElement("name");
-				 *	xmlWriter.WriteAttributeString("type", "string");
-				 *	xmlWriter.WriteString("Equipment");
-				 *	xmlWriter.WriteEndElement();
-				 *	xmlWriter.WriteEndElement();
-				 *	xmlWriter.WriteEndElement(); */
+				xmlWriter.WriteStartElement("equipmentlists"); /* <equipmentlists> */
+				xmlWriter.WriteStartElement("equipment"); /* <equipmentlists> <equipment> */
+				xmlWriter.WriteStartElement("name"); /* <equipmentlists> <equipment> <name> */
+				xmlWriter.WriteAttributeString("type", "string");
+				xmlWriter.WriteString("Equipment");
+				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <name> </name> */
+				xmlWriter.WriteStartElement("index"); /* <equipmentlists> <equipment> <index> */
+
+				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <index> </index> */
+				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> </equipment> */
+				xmlWriter.WriteEndElement(); /* <equipmentlists> </equipmentlists> */
 				#endregion
 				if (moduleModel.IncludeImages)
                 {

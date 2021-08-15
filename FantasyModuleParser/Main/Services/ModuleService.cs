@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Converters;
+using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
@@ -39,6 +40,7 @@ namespace FantasyModuleParser.Main.Services
 
         public void Save(string filePath, ModuleModel moduleModel)
         {
+            Directory.CreateDirectory(settingsService.Load().ProjectFolderLocation);
             using (StreamWriter file = File.CreateText(@filePath))
             {
                 JsonSerializer serializer = new JsonSerializer();
@@ -47,6 +49,11 @@ namespace FantasyModuleParser.Main.Services
                 serializer.Converters.Add(new LanguageModelConverter());
                 serializer.Serialize(file, moduleModel);
             }
+        }
+
+        public void Save(ModuleModel moduleModel)
+        {
+            Save(Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp"), moduleModel);
         }
 
         // Loads a FPM Module json file based on a given filePath
@@ -137,8 +144,8 @@ namespace FantasyModuleParser.Main.Services
 				{
                     categoryModel.NPCModels.Add(npcModel);  // The real magic is here
                 }
-                string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
-                Save(appendedFileName, moduleModel);
+
+                Save(moduleModel);
 
                 log.Info(npcModel.NPCName + " has successfully been added to project");
                 MessageBox.Show(npcModel.NPCName + " has been added to the project");
@@ -179,8 +186,7 @@ namespace FantasyModuleParser.Main.Services
                     categoryModel.SpellModels.Add(spellModel);  // The real magic is here
             }
 
-            string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
-            Save(appendedFileName, moduleModel);
+            Save(moduleModel);
         }
 
         public void AddTableToCategory(TableModel tableModel, string categoryValue)
@@ -220,9 +226,49 @@ namespace FantasyModuleParser.Main.Services
                     categoryModel.TableModels[oldTableModelIndex] = tableModel;
                 }
             }
-            
-            string appendedFileName = Path.Combine(settingsService.Load().ProjectFolderLocation, moduleModel.ModFilename + ".fmp");
-            Save(appendedFileName, moduleModel);
+
+            Save(moduleModel);
+        }
+
+        public void AddEquipmentToCategory(EquipmentModel equipmentModel, string categoryValue)
+        {
+            if (categoryValue == null || categoryValue.Length == 0)
+            {
+                log.Error("Category value is null;  Cannot save Equipment");
+                throw new InvalidDataException("Category value is null;  Cannot save Equipment");
+            }
+            if (equipmentModel == null)
+            {
+                log.Error(nameof(EquipmentModel) + " data object is null");
+                throw new InvalidDataException(nameof(EquipmentModel) + " data object is null");
+            }
+            if (String.IsNullOrWhiteSpace(equipmentModel.Name))
+            {
+                log.Error("Equipment name is empty!");
+                throw new InvalidDataException("Table name is empty!");
+            }
+            CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
+            if (categoryModel == null)
+            {
+                log.Error("Category Value is not in the Module Model data object!");
+                throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            }
+
+            if (categoryModel.EquipmentModels.FirstOrDefault(x => x.Name.Equals(equipmentModel.Name, StringComparison.Ordinal)) == null)
+                categoryModel.EquipmentModels.Add(equipmentModel);  // The real magic is here
+            else
+            {
+                // Replace the EquipmentModel object based on the name
+                EquipmentModel oldEquipmentModel = categoryModel.EquipmentModels.FirstOrDefault(x => x.Name.Equals(equipmentModel.Name, StringComparison.Ordinal));
+                int oldEquipmentModelIdx = categoryModel.EquipmentModels.IndexOf(oldEquipmentModel);
+
+                if (oldEquipmentModelIdx != -1)
+                {
+                    categoryModel.EquipmentModels[oldEquipmentModelIdx] = equipmentModel;
+                }
+            }
+
+            Save(moduleModel);
         }
     }
 }

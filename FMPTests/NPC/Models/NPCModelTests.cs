@@ -1,4 +1,4 @@
-﻿using FantasyModuleParser.Extensions;
+using FantasyModuleParser.Extensions;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
@@ -7,13 +7,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FantasyModuleParser.NPC.Tests
 {
     [TestClass()]
     public class NPCModelTests
     {
-
         #region Constants 
         const string fire = "fire";
         const string bludgeoning = "bludgeoning";
@@ -172,6 +172,10 @@ namespace FantasyModuleParser.NPC.Tests
                 }
             }
             return selectableActionModels;
+        [TestMethod()]
+        public void UpdateDamageVulnerabilitiesTest()
+        {
+            //Assert.Fail();
         }
     }
 }

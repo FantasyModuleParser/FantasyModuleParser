@@ -273,7 +273,6 @@ namespace FantasyModuleParser.NPC.UserControls.Options
 				CategorySelectedNPCComboBox.SelectedItem = categoryModel.NPCModels[categoryIndex];
 			}
 			RefreshUserControls();
-
 		}
 
         private void NextNPCInCategory_Button_Click(object sender, RoutedEventArgs e)

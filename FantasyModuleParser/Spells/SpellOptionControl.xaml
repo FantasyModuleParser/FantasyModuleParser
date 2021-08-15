@@ -50,14 +50,14 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="5"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="NewSpellButton" Content="NS" Grid.Column="1" Style="{StaticResource TooltipButton}" ToolTip="Create New Spell" Click="NewSpellButton_Click"/>
-            <Button x:Name="LoadSpellButton" Content="LS" Grid.Column="2" Style="{StaticResource TooltipButton}" ToolTip="Load Spell" Click="LoadSpellButton_Click"/>
-            <Button x:Name="SaveSpellButton" Content="SS" Grid.Column="3" Style="{StaticResource TooltipButton}" ToolTip="Save Spell" Click="SaveSpellButton_Click"/>
+            <Button x:Name="NewSpellButton" Content="New Spell" Grid.Column="1" Style="{StaticResource TooltipButton}" ToolTip="Create New Spell" Click="NewSpellButton_Click"/>
+            <Button x:Name="LoadSpellButton" Content="Load Spell" Grid.Column="2" Style="{StaticResource TooltipButton}" ToolTip="Load Spell" Click="LoadSpellButton_Click"/>
+            <Button x:Name="SaveSpellButton" Content="Save Spell" Grid.Column="3" Style="{StaticResource TooltipButton}" ToolTip="Save Spell" Click="SaveSpellButton_Click"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace FantasyModuleParser.Main.Models
 {
-    public class FMPConfigurationModel
+    public class FMPConfigurationModel : ModelBase
     {
         public ObservableCollection<LanguageModel> UserLanguages { get; set; } = new ObservableCollection<LanguageModel>();
         public ObservableCollection<CustomCastersModel> CustomCasters { get; set; } = new ObservableCollection<CustomCastersModel>();

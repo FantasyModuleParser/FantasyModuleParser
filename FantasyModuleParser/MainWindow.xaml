@@ -1,13 +1,14 @@
 ﻿<Window x:Class="FantasyModuleParser.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
-    xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:npcOptionUserControl="clr-namespace:FantasyModuleParser.NPC.UserControls.Options"
+        xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
         xmlns:tableUserControl="clr-namespace:FantasyModuleParser.Tables"
-    mc:Ignorable="d"
-    Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="CanMinimize" Icon="/Resources/FMP-Logo.ico">
+        xmlns:equipmentUserControl="clr-namespace:FantasyModuleParser.Equipment"
+        mc:Ignorable="d"
+        Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="CanMinimize" Icon="/Resources/FMP-Logo.ico">
     <Window.Resources>
         <Style TargetType="Label" x:Key="Options">
             <Setter Property="FontWeight" Value="Bold"/>
@@ -82,7 +83,8 @@
                 <ListBoxItem Style="{StaticResource Disabled}">Add Classes</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Encounters</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Encounters (Random)</ListBoxItem>
-                <ListBoxItem Style="{StaticResource Disabled}">Add Equipment</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Enabled}" Name="optionEquipment">Add Equipment</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Disabled}">Add Magical Equipment</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Feats</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Images</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Image Grids</ListBoxItem>
@@ -109,6 +111,9 @@
         </StackPanel>
         <StackPanel Name="stackTable" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
             <tableUserControl:TableUserControl x:Name="tableOptionUserControl" Height="750"/>
+        </StackPanel>
+        <StackPanel Name="stackEquipment" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+            <equipmentUserControl:EquipmentOptionControl x:Name="equipmentUserControl" Height="750"/>
         </StackPanel>
         <WrapPanel x:Name="ViewStatBlockPanel" Grid.Column="3" Grid.Row="1" Orientation="Vertical" >
             

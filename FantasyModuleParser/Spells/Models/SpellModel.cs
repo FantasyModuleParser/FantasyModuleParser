@@ -1,10 +1,11 @@
-﻿using FantasyModuleParser.Spells.Enums;
+﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Spells.Enums;
 using Newtonsoft.Json;
 using System.ComponentModel;
 
 namespace FantasyModuleParser.Spells.Models
 {
-    public class SpellModel
+    public class SpellModel : ModelBase
     {
         public string SpellName { get; set; }
         public SpellLevel SpellLevel { get; set; }

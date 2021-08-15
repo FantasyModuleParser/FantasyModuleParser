@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="FantasyModuleParser.Equipment.UserControls.WeaponUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:model="clr-namespace:FantasyModuleParser.Equipment.UserControls.Models"
+             xmlns:weaponEnum="clr-namespace:FantasyModuleParser.NPC.Models.Action.Enums"
+             xmlns:weaponPropEnum="clr-namespace:FantasyModuleParser.Equipment.Enums.Weapon"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="340" >
+    <UserControl.Resources>
+        <DataTemplate x:Key="WeaponModelTemplate" DataType="{x:Type model:WeaponModel}" />
+    </UserControl.Resources>
+    <Grid x:Name="WeaponUCLayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Damage Labels -->
+        <Label Content="Number" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Die" Grid.Row="0" Grid.Column="2"/>
+        <Label Content="Bonus" Grid.Row="0" Grid.Column="3"/>
+        <Label Content="Damage Type" Grid.Row="0" Grid.Column="4"/>
+        
+        <!-- Primary Damage -->
+        <Label Content="Damage" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.NumOfDice}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}" 
+                  SelectedValue="{Binding WeaponModel.PrimaryDamage.DieType}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
+                  Grid.Row="1" Grid.Column="2" />
+        <TextBox Text="{Binding Path=WeaponModel.PrimaryDamage.Bonus}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
+                  SelectedValue="{Binding Path=WeaponModel.PrimaryDamage.DamageType}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
+                  Grid.Row="1" Grid.Column="4"/>
+        
+        <!-- Confirm adding bonus damage -->
+        <Label Content="Add Secondary Damage?" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <CheckBox x:Name="SecondaryDamageCB" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" IsChecked="False"/>
+        <!-- Bonus Damage -->
+        <Label Content="Bonus" Grid.Row="3" Grid.Column="0"  IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}" />
+        <TextBox  Text="{Binding WeaponModel.BonusDamage.NumOfDice}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DieType}}}"  
+                  SelectedValue="{Binding WeaponModel.BonusDamage.DieType}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
+                  Grid.Row="3" Grid.Column="2" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <TextBox  Text="{Binding WeaponModel.BonusDamage.Bonus}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="3" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+        <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type weaponEnum:DamageType}}}"
+                  SelectedValue="{Binding WeaponModel.BonusDamage.DamageType}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" VerticalAlignment="Center"
+                  Grid.Row="3" Grid.Column="4" IsEnabled="{Binding ElementName=SecondaryDamageCB, Path=IsChecked, TargetNullValue=False}"/>
+
+        <Separator Grid.Row="4" Grid.ColumnSpan="10" VerticalAlignment="Top"/>
+
+        <Grid Grid.Row="5" Grid.ColumnSpan="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                
+                <Label Content="Properties" FontWeight="Bold"></Label>
+                <ListBox x:Name="WeaponPropertyListBox" Grid.Column="1"
+                            ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponPropertyEnum}}}" 
+                            SelectionMode="Multiple"
+                            SelectedValuePath="Value" DisplayMemberPath="Description"
+                            SelectionChanged="WeaponPropertyListBox_SelectionChanged"
+                            Margin="0,5,5,5">
+                </ListBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label Content="Material" FontWeight="Bold"></Label>
+                <ListBox x:Name="MaterialPropertyListBox" Grid.Column="1"
+                            ItemsSource="{Binding Source={my:Enumeration {x:Type weaponPropEnum:WeaponMaterialEnum}}}" 
+                            SelectionMode="Multiple"   
+                            SelectedValuePath="Value" DisplayMemberPath="Description" Margin="0,5,0,5"
+                            SelectionChanged="MaterialPropertyListBox_SelectionChanged">
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <Label Content="Range" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Short" Grid.Row="0" Grid.Column="0"/>
+                    <Label Content="Long" Grid.Row="1" Grid.Column="0"/>
+
+                    <TextBox Text="{Binding WeaponModel.ShortRange}" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Text="{Binding WeaponModel.LongRange}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
