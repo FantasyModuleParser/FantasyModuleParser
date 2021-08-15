@@ -185,8 +185,8 @@ namespace FantasyModuleParser.Exporters
 					if (!string.IsNullOrEmpty(npcModel.NPCToken))
 					{
 						string Filename = Path.GetFileName(npcModel.NPCToken);
-						string NPCTokenFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "tokens", Filename);
-						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "tokens");
+						string NPCTokenFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "tokens", Filename);
+						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "tokens");
 						if (Directory.Exists(NPCTokenDirectory))
 						{
 							if (File.Exists(NPCTokenFileName))
@@ -213,13 +213,9 @@ namespace FantasyModuleParser.Exporters
 					#region Image Data
 					if (!string.IsNullOrEmpty(npcModel.NPCImage))
 					{
-						if (npcModel.NPCImage.StartsWith("file:///"))
-						{
-							npcModel.NPCImage.Remove(0, 8);
-						}
 						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "").Replace(",", "");
-						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images", Filename);
-						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.Name, "images");
+						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images", Filename);
+						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images");
 						if (Directory.Exists(NPCImageDirectory))
 						{
 							if (File.Exists(NPCImageFileName))
@@ -230,6 +226,10 @@ namespace FantasyModuleParser.Exporters
 						else
 						{
 							Directory.CreateDirectory(NPCImageDirectory);
+						}
+						if (npcModel.NPCImage.StartsWith("file:///"))
+						{
+							npcModel.NPCImage = npcModel.NPCImage.Remove(0, 8);
 						}
 						File.Copy(npcModel.NPCImage, NPCImageFileName);
 					}
@@ -528,9 +528,9 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteString("NPCs");
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <name> </name> */
 					xmlWriter.WriteStartElement("index"); /* <root version="4.0"> <reference> <npclists> <npcs> <index> */
-					WriteIDLinkList(xmlWriter, moduleModel, "id01", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id02", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
-					WriteIDLinkList(xmlWriter, moduleModel, "id03", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id-0002", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
+					WriteIDLinkList(xmlWriter, moduleModel, "id-0003", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <index> </index> */
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> </npcs> */
 					xmlWriter.WriteStartElement("byletter"); /* <root version="4.0"> <reference> <npclists> <byletter> */
@@ -849,6 +849,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); // close </chapter_**>
 				xmlWriter.WriteEndElement(); // close </chapters>
 				xmlWriter.WriteEndElement(); // Close </referencemanual>
+				xmlWriter.WriteEndElement(); // Close </reference>
                 #endregion
                 
 
@@ -859,7 +860,7 @@ namespace FantasyModuleParser.Exporters
                 if (moduleModel.Categories != null && moduleModel.Categories.Count > 0)
 				{
 					xmlWriter.WriteStartElement("library");  /* <library> */
-				xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
+					xmlWriter.WriteStartElement(WriteLibraryNameLowerCase(moduleModel)); /* <library> <libname> */
 					xmlWriter.WriteStartElement("name"); /* <library> <libname> <name> */
 					xmlWriter.WriteAttributeString("type", "string");          
 					xmlWriter.WriteString(moduleModel.Name + " Reference Library");   
@@ -872,7 +873,7 @@ namespace FantasyModuleParser.Exporters
 					int libraryID = 1;
 					if (moduleModel.IncludeImages)
                     {
-						xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "images"); /* <library> <libname> <r**images> */
+						xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4")); /* <library> <libname> <r**images> */
 						xmlWriter.WriteStartElement("librarylink"); /* <library> <libname> <r**images> <librarylink> */
 						xmlWriter.WriteAttributeString("type", "windowreference");
 						xmlWriter.WriteStartElement("class"); /* <library> <libname> <r**images> <librarylink> <class> */
@@ -893,7 +894,7 @@ namespace FantasyModuleParser.Exporters
                     {
 						if (moduleModel.Categories[0].NPCModels.Count > 0)
 						{
-							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "monsters"); /* <library> <libname> <r**monsters> */
+							xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4")); /* <library> <libname> <r**monsters> */
 							xmlWriter.WriteStartElement("librarylink"); /* <library> <libname> <r**monsters> <librarylink> */
 							xmlWriter.WriteAttributeString("type", "windowreference");
 							xmlWriter.WriteStartElement("class"); /* <library> <libname> <r**monsters> <librarylink> <class> */
@@ -915,7 +916,7 @@ namespace FantasyModuleParser.Exporters
                     {
 						if (moduleModel.Categories[0].SpellModels.Count > 0)
 						{
-							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "spells");
+							xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
 							xmlWriter.WriteStartElement("librarylink");
 							xmlWriter.WriteAttributeString("type", "windowreference");
 							xmlWriter.WriteStartElement("class");
@@ -937,7 +938,7 @@ namespace FantasyModuleParser.Exporters
 					{
 						if (moduleModel.Categories[0].TableModels.Count > 0)
 						{
-							xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "tables");
+							xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
 							xmlWriter.WriteStartElement("librarylink");
 							xmlWriter.WriteAttributeString("type", "windowreference");
 							xmlWriter.WriteStartElement("class");
@@ -955,7 +956,7 @@ namespace FantasyModuleParser.Exporters
 							libraryID = ++libraryID;
 						}
 					}
-					xmlWriter.WriteStartElement("r" + libraryID.ToString("D2") + "referencemanual");
+					xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
 					xmlWriter.WriteStartElement("librarylink");
 					xmlWriter.WriteAttributeString("type", "windowreference");
 					xmlWriter.WriteStartElement("class");
@@ -971,8 +972,7 @@ namespace FantasyModuleParser.Exporters
 					xmlWriter.WriteEndElement(); // close </name>
 					xmlWriter.WriteEndElement(); // close </r05referencemanual>
 					xmlWriter.WriteEndElement();  // close entries                               
-					xmlWriter.WriteEndElement();  // close libraryname                         
-					xmlWriter.WriteEndElement();  // close library                          
+					xmlWriter.WriteEndElement();  // close libraryname                                                  
 				}
 				#endregion
 				xmlWriter.WriteEndElement(); // Closes </root>
@@ -984,158 +984,23 @@ namespace FantasyModuleParser.Exporters
 		#region NPC Methods for Reference Data XML
 		public void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damageimmunities");
 			xmlWriter.WriteAttributeString("type", "string");
-			if (npcModel.DamageImmunityModelList != null)
-			{
-				foreach (SelectableActionModel damageImmunities in npcModel.DamageImmunityModelList)
-				{
-					if (damageImmunities.Selected)
-					{
-						stringBuilder.Append(damageImmunities.ActionDescription.ToLower()).Append(", ");
-					}
-				}
-			}
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
-			stringBuilder.Append("; ");
-			if (npcModel.SpecialWeaponImmunityModelList != null)
-			{
-				foreach (SelectableActionModel specialWeaponImmunity in npcModel.SpecialWeaponImmunityModelList)
-				{
-					if (specialWeaponImmunity.Selected == true && specialWeaponImmunity.ActionName != "NoSpecial")
-					{
-						switch (specialWeaponImmunity.ActionName)
-						{
-							case "Nonmagical":
-								Immunity = " from nonmagical attacks";
-								break;
-							case "NonmagicalSilvered":
-								Immunity = " from nonmagical attacks that aren't silvered";
-								break;
-							case "NonmagicalAdamantine":
-								Immunity = " from nonmagical attacks that aren't adamantine";
-								break;
-							case "NonmagicalColdForgedIron":
-								Immunity = " from nonmagical attacks that aren't cold-forged iron";
-								break;
-						}
-						foreach (SelectableActionModel specialWeaponDmgImmunity in npcModel.SpecialWeaponDmgImmunityModelList)
-						{
-							if (specialWeaponDmgImmunity.Selected)
-							{
-								stringBuilder.Append(specialWeaponDmgImmunity.ActionDescription).Append(", ");
-							}
-						}
-						if (stringBuilder.Length >= 2)
-						{
-							stringBuilder.Remove(stringBuilder.Length - 2, 2);
-						}
-						stringBuilder.Append(Immunity);
-					}
-				}
-			}
-			string weaponDamageImmunityString = stringBuilder.ToString().Trim();
-			if (weaponDamageImmunityString.EndsWith(";", true, CultureInfo.CurrentCulture))
-			{
-				weaponDamageImmunityString = weaponDamageImmunityString.Substring(0, weaponDamageImmunityString.Length - 1);
-			}
-			xmlWriter.WriteString(weaponDamageImmunityString);
+			xmlWriter.WriteString(npcModel.UpdateDamageImmunities());
 			xmlWriter.WriteEndElement();
 		}
 		public void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damageresistances");
 			xmlWriter.WriteAttributeString("type", "string");
-			if (npcModel.DamageResistanceModelList != null)
-			{
-				foreach (SelectableActionModel damageResistances in npcModel.DamageResistanceModelList)
-				{
-					if (damageResistances.Selected)
-					{
-						stringBuilder.Append(damageResistances.ActionDescription.ToLower()).Append(", ");
-					}
-				}
-			}
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
-			stringBuilder.Append("; ");
-			if (npcModel.SpecialWeaponResistanceModelList != null)
-			{
-				foreach (SelectableActionModel specialWeaponResistance in npcModel.SpecialWeaponResistanceModelList)
-				{
-					if (specialWeaponResistance.Selected == true && specialWeaponResistance.ActionName != "NoSpecial")
-					{
-
-						switch (specialWeaponResistance.ActionName)
-						{
-							case "Nonmagical":
-								Resistance = " from nonmagical attacks";
-								break;
-							case "NonmagicalSilvered":
-								Resistance = " from nonmagical attacks that aren't silvered";
-								break;
-							case "NonmagicalAdamantine":
-								Resistance = " from nonmagical attacks that aren't adamantine";
-								break;
-							case "NonmagicalColdForgedIron":
-								Resistance = " from nonmagical attacks that aren't cold-forged iron";
-								break;
-						}
-						foreach (SelectableActionModel specialWeaponDmgResistance in npcModel.SpecialWeaponDmgResistanceModelList)
-						{
-							if (specialWeaponDmgResistance.Selected)
-							{
-								stringBuilder.Append(specialWeaponDmgResistance.ActionDescription).Append(", ");
-							}
-						}
-						if (stringBuilder.Length >= 2)
-						{
-							stringBuilder.Remove(stringBuilder.Length - 2, 2);
-						}
-						stringBuilder.Append(Resistance);
-					}
-				}
-			}
-			string weaponDamageResistanceString = stringBuilder.ToString().Trim();
-			if (weaponDamageResistanceString.StartsWith(";", true, CultureInfo.CurrentCulture))
-			{
-				weaponDamageResistanceString = weaponDamageResistanceString.Remove(0, 1);
-			}
-			if (weaponDamageResistanceString.EndsWith(";", true, CultureInfo.CurrentCulture))
-			{
-				weaponDamageResistanceString = weaponDamageResistanceString.Substring(0, weaponDamageResistanceString.Length - 1);
-			}
-			xmlWriter.WriteString(weaponDamageResistanceString);
+			xmlWriter.WriteString(npcModel.UpdateDamageResistances());
 			xmlWriter.WriteEndElement();
 		}
 		public void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("damagevulnerabilities");
 			xmlWriter.WriteAttributeString("type", "string");
-			if (npcModel.DamageVulnerabilityModelList != null)
-			{
-				foreach (SelectableActionModel damageVulnerabilities in npcModel.DamageVulnerabilityModelList)
-				{
-					if (damageVulnerabilities.Selected == true)
-					{
-						stringBuilder.Append(damageVulnerabilities.ActionDescription.ToLower()).Append(", ");
-					}
-				}
-			}
-			if (stringBuilder.Length >= 2)
-			{
-				stringBuilder.Remove(stringBuilder.Length - 2, 2);
-			}
-			string weaponDamageVulnerabilityString = stringBuilder.ToString().Trim();
-			xmlWriter.WriteValue(weaponDamageVulnerabilityString);
+			xmlWriter.WriteValue(npcModel.UpdateDamageVulnerabilities());
 			xmlWriter.WriteEndElement();
 		}
 		#endregion
@@ -1163,7 +1028,7 @@ namespace FantasyModuleParser.Exporters
 		}
 		static private string WriteImageXML(NPCModel npcModel)
 		{
-			return Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
+			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
 		}
 		static private void WriteListLink(XmlWriter xmlWriter)
 		{
