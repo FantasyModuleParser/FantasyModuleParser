@@ -13,6 +13,7 @@ using FantasyModuleParser.NPC;
 using FantasyModuleParser.Main.Models;
 using System.Xml.Linq;
 using FantasyModuleParser.Tables.Models;
+using FantasyModuleParser.Equipment.Models;
 
 namespace FantasyModuleParser.Exporters.Tests
 {
@@ -177,7 +178,7 @@ namespace FantasyModuleParser.Exporters.Tests
             exporter.CreateModule(moduleModel);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void CreateModule_SingleTable()
         {
             TableModel tableModel = new TableModel()
@@ -221,6 +222,55 @@ namespace FantasyModuleParser.Exporters.Tests
             exporter.CreateModule(moduleModel);
             Assert.IsTrue(true);
         }
+
+
+        [TestMethod]
+        public void CreateModule_MultipleEquipmentItems()
+        {
+            EquipmentModel itemOne = new EquipmentModel()
+            {
+                Name = "Item 1 - Druid Focus",
+                PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.AdventuringGear,
+                AdventuringGearEnumType = Equipment.Enums.AdventuringGearEnum.DruidicFocus,
+                CostValue = "50",
+                CostDenomination = Equipment.Enums.CurrencyEnum.GP,
+                Weight = 10
+            };
+            EquipmentModel itemTwo = new EquipmentModel()
+            {
+                Name = "Item 2 - Dragon Chess",
+                PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.Tools,
+                ToolsEnumType = Equipment.Enums.ToolsEnum.GamingSet,
+                CostValue = "10",
+                CostDenomination = Equipment.Enums.CurrencyEnum.EP,
+                Weight = 5
+            };
+            CategoryModel categoryModel = new CategoryModel()
+            {
+                Name = "ExampleCategory",
+                EquipmentModels = new System.Collections.ObjectModel.ObservableCollection<EquipmentModel>()
+                {
+                    itemOne,
+                    itemTwo
+                }
+            };
+
+            ModuleModel moduleModel = new ModuleModel()
+            {
+                Name = "EquipmentExampleModule",
+                Author = "E2E_Test",
+                Category = "Testing",
+                Categories = new System.Collections.ObjectModel.ObservableCollection<CategoryModel>()
+                {
+                    categoryModel
+                },
+                ModFilename = "EquipmentExampleModule"
+            };
+
+            exporter.CreateModule(moduleModel);
+            Assert.IsTrue(true);
+        }
+
 
         private static string XmlPrettyPrint(string input)
         {

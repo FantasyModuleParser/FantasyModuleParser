@@ -438,7 +438,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteString("Equipment");
 				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <name> </name> */
 				xmlWriter.WriteStartElement("index"); /* <equipmentlists> <equipment> <index> */
-
+				EquipmentExporter.EquipmentLists(xmlWriter, moduleModel, FatEquipmentList);
 				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <index> </index> */
 				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> </equipment> */
 				xmlWriter.WriteEndElement(); /* <equipmentlists> </equipmentlists> */
