@@ -442,6 +442,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <index> </index> */
 				xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> </equipment> */
 				xmlWriter.WriteEndElement(); /* <equipmentlists> </equipmentlists> */
+				EquipmentExporter.IndividualEquipmentClassList(xmlWriter, moduleModel, FatEquipmentList);
 				#endregion
 				if (moduleModel.IncludeImages)
                 {

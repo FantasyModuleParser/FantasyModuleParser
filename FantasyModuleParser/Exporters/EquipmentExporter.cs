@@ -326,7 +326,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				string primaryEquipmentTypeDescription = equipmentList[0].PrimaryEquipmentEnumType.GetDescription();
 				
-				ProcessEquipListByType(xmlWriter, moduleModel,  primaryEquipmentTypeDescription, equipListId);
+				ProcessEquipListByType(xmlWriter, moduleModel, primaryEquipmentTypeDescription, equipListId);
 
 				// Increase the ID by one, which is used in the method ProcessEquipListByType
 				equipListId++;
@@ -370,7 +370,7 @@ namespace FantasyModuleParser.Exporters
 		static private void Equipment_Index_ListLink_Class(string primaryEquipmentTypeDescription, XmlWriter xmlWriter)
         {
 			xmlWriter.WriteStartElement("class");
-			xmlWriter.WriteString("reference_" + (primaryEquipmentTypeDescription.Replace(" ", String.Empty)).ToLower());
+			xmlWriter.WriteString("reference_" + primaryEquipmentTypeDescription.Replace(" ", String.Empty).ToLower());
 			xmlWriter.WriteEndElement();
         }
 
@@ -384,7 +384,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("recordname");
             xmlWriter.WriteString("reference.equipmentlists."
-                + (primaryEquipmentTypeDescription.Replace(" ", String.Empty)).ToLower()
+                + primaryEquipmentTypeDescription.Replace(" ", String.Empty).ToLower()
 				+ "@" + moduleModel.Name);
             xmlWriter.WriteEndElement();
 		}
@@ -395,12 +395,6 @@ namespace FantasyModuleParser.Exporters
 			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
 		}
 
-		private static void EquipmentListClass(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("class"); /* <class> */
-			//xmlWriter.WriteString("reference_" + EquipmentTypeToXMLFormat(EquipmentType) + "table");
-			xmlWriter.WriteEndElement(); /* <class> </class> */
-		}
 		private static void EquipmentClass(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("class"); /* <equipment_name> <link> <class> */
@@ -413,6 +407,38 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("recordname"); /* <equipment_name> <link> <recordname> */
 			xmlWriter.WriteString("reference.equipmentdata." + EquipmentNameToXMLFormat(equipmentModel) + "@" + moduleModel.Name);
 			xmlWriter.WriteEndElement(); /* <equipment_name> <link> <recordname> </recordname> */
+		}
+
+		static public void IndividualEquipmentClassList(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
+		{
+			EquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+			var EquipmentByPrimaryList = EquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
+
+			int equipListId = 1;
+			foreach (List<EquipmentModel> equipmentList in EquipmentByPrimaryList)
+			{
+				string primaryEquipmentTypeDescription = equipmentList[0].PrimaryEquipmentEnumType.GetDescription();
+
+				GenerateEquipmentList(xmlWriter, primaryEquipmentTypeDescription);
+
+				// Increase the ID by one, which is used in the method ProcessEquipListByType
+				equipListId++;
+			}
+		}
+
+		static private void GenerateEquipmentList(XmlWriter xmlWriter, string primaryEquipmentTypeDescription)
+		{
+			xmlWriter.WriteStartElement(primaryEquipmentTypeDescription); /* <equipmenttype> */
+			EquipmentListDescription(xmlWriter, primaryEquipmentTypeDescription);
+			xmlWriter.WriteEndElement(); /* <equipmenttype> </equipmenttype> */
+		}
+
+		static private void EquipmentListDescription(XmlWriter xmlWriter, string primaryEquipmentTypeDescription)
+		{
+			xmlWriter.WriteStartElement("description"); /* <description> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(primaryEquipmentTypeDescription + " Table");
+			xmlWriter.WriteEndElement(); /* <description> </description> */
 		}
 	}
 }
