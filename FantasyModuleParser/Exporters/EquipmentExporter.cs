@@ -409,25 +409,110 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <equipment_name> <link> <recordname> </recordname> */
 		}
 
+		// An Example of what this method would produce:
+
+		/*
+		 *       
+		<adventuringgeartable>
+        <description type="string">Adventuring Gear Table</description>
+        <groups>
+          <section000>
+            <description type="string">Ammunition</description>
+            <equipment>
+              <arrow>
+                <link type="windowreference">
+                  <class>reference_equipment</class>
+                  <recordname>reference.equipmentdata.arrow@*</recordname>
+                </link>
+                <name type="string">Arrow</name>
+                <cost type="string">5 cp</cost>
+                <weight type="number">0.05</weight>
+              </arrow>
+		 */
+
+		// For Developers: The assumption is that EquipmentList is a culmination of ALL equipment items.
+		// This means that the list needs to be grouped by Primary, then each subsequent list is grouped By secondary type
 		static public void IndividualEquipmentClassList(XmlWriter xmlWriter, List<EquipmentModel> EquipmentList)
 		{
-			EquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
-			var EquipmentByPrimaryList = EquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
+			// Just good to check and ensure if EquipmentList is empty;  If true, then just do nothing and return
+			if (EquipmentList.Count <= 0)
+				return;
 
-			int equipListId = 1;
-			foreach (List<EquipmentModel> equipmentList in EquipmentByPrimaryList)
-			{
-				string primaryEquipmentTypeDescription = equipmentList[0].PrimaryEquipmentEnumType.GetDescription();
-				string secondaryEquipmentTypeDescription = getEquipmentSecondaryEnumDescription(equipmentList[0]);
-				
-				ProcessEquipListBySubtype(xmlWriter, primaryEquipmentTypeDescription, equipmentList);
+			// 1. Group by the PrimaryType
+			var EquipmentGroupByPrimaryType = EquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
 
-				// Increase the ID by one, which is used in the method ProcessEquipListByType
-				equipListId++;
-			}
+			foreach(List<EquipmentModel> primaryEquipmentList in EquipmentGroupByPrimaryType)
+            {
+                // 2. Create the non-standard xml tag with the key name matching a no-whitespace, all lower primaryType description
+                // <adventuringgear>, <armor>, etc....
+                xmlWriter.WriteStartElement(primaryEquipmentList[0].PrimaryEquipmentEnumType.GetDescription().Replace(" ", String.Empty).ToLower());
+
+                // 3. Write the Descrption tag
+                EquipmentList_CustomSecondary_Description(xmlWriter, primaryEquipmentList);
+
+                // 4. Group the list by it's secondary Enum, noting that the secondary enum is based on the selected Primary Type enum
+                EquipmentList_CustomSecondary_Groups(xmlWriter, primaryEquipmentList);
+
+            }
+
 		}
 
-		static string getEquipmentSecondaryEnumDescription(EquipmentModel equipmentModel)
+        private static void EquipmentList_CustomSecondary_Groups(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList)
+        {
+            var EquipmentGroupBySecondaryType = primaryEquipmentList.GroupBy(x => getEquipmentSecondaryEnum(x)).Select(x => x.ToList()).ToList();
+
+            xmlWriter.WriteStartElement("groups");
+
+			int sectionId = 0;
+			foreach(List<EquipmentModel> secondaryTypeGroup in EquipmentGroupBySecondaryType)
+            {
+                EquipmentList_CustomSecondary_Groups_Section(xmlWriter, sectionId, secondaryTypeGroup);
+            }
+
+
+            xmlWriter.WriteEndElement();
+        }
+
+        private static void EquipmentList_CustomSecondary_Groups_Section(XmlWriter xmlWriter, int sectionId, List<EquipmentModel> secondaryTypeGroup)
+        {
+            xmlWriter.WriteStartElement("section" + sectionId.ToString("D3"));
+            Description_Tag(xmlWriter, getEquipmentSecondaryEnum(secondaryTypeGroup[0]).ToString());
+
+            EquipmentList_CustomSecondary_Groups_Section_Equipment(xmlWriter, secondaryTypeGroup);
+            xmlWriter.WriteEndElement();
+        }
+
+        private static void EquipmentList_CustomSecondary_Groups_Section_Equipment(XmlWriter xmlWriter, List<EquipmentModel> secondaryTypeGroup)
+        {
+            xmlWriter.WriteStartElement("equipment");
+            foreach (EquipmentModel secondaryEquipmentModelItem in secondaryTypeGroup)
+            {
+				xmlWriter.WriteStartElement(secondaryEquipmentModelItem.Name.Replace(" ", String.Empty).ToLower());
+
+				xmlWriter.WriteEndElement();
+                //TODO
+                /*
+				<arrow>
+					<link type="windowreference">
+					  <class>reference_equipment</class>
+					  <recordname>reference.equipmentdata.arrow@*</recordname>
+					</link>
+					<name type="string">Arrow</name>
+					<cost type="string">5 cp</cost>
+					<weight type="number">0.05</weight>
+				</arrow> 
+				 */
+            }
+
+            xmlWriter.WriteEndElement();
+        }
+
+        private static void EquipmentList_CustomSecondary_Description(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList)
+        {
+			Description_Tag(xmlWriter, getEquipmentSecondaryEnum(primaryEquipmentList[0]).ToString());
+        }
+
+        static string getEquipmentSecondaryEnumDescription(EquipmentModel equipmentModel)
 		{
 			switch (equipmentModel.PrimaryEquipmentEnumType)
 			{
@@ -448,6 +533,30 @@ namespace FantasyModuleParser.Exporters
 				// NOTE that default is required with all switch statements!!
 				default:
 					return "Does not exist!!!";
+			}
+		}
+
+		static Enum getEquipmentSecondaryEnum(EquipmentModel equipmentModel)
+        {
+			switch (equipmentModel.PrimaryEquipmentEnumType)
+			{
+				case PrimaryEquipmentEnum.AdventuringGear:
+					return equipmentModel.AdventuringGearEnumType;
+				case PrimaryEquipmentEnum.Animals:
+					return equipmentModel.AnimalsEnumType;
+				case PrimaryEquipmentEnum.Armor:
+					return equipmentModel.ArmorEnumType;
+				case PrimaryEquipmentEnum.Tools:
+					return equipmentModel.ToolsEnumType;
+				case PrimaryEquipmentEnum.Treasure:
+					return equipmentModel.TreasureEnumType;
+				case PrimaryEquipmentEnum.Vehicles:
+					return equipmentModel.VehiclesEnumType;
+				case PrimaryEquipmentEnum.Weapon:
+					return equipmentModel.WeaponEnumType;
+				// NOTE that default is required with all switch statements!!
+				default:
+					return equipmentModel.AdventuringGearEnumType;
 			}
 		}
 		static private void ProcessEquipListBySubtype(XmlWriter xmlWriter, string primaryEquipmentTypeDescription, List<EquipmentModel> EquipmentList)
@@ -477,6 +586,14 @@ namespace FantasyModuleParser.Exporters
 		static private void EquipmentListSections(XmlWriter xmlWriter, string primaryEquipmentTypeDescription, List<EquipmentModel> EquipmentList, int sectionID)
 		{
 
+		}
+
+		static private void Description_Tag(XmlWriter xmlWriter, string descriptionValue)
+        {
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(descriptionValue);
+			xmlWriter.WriteEndElement();
 		}
 	}
 }

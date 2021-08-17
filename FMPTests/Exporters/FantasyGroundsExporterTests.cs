@@ -245,13 +245,23 @@ namespace FantasyModuleParser.Exporters.Tests
                 CostDenomination = Equipment.Enums.CurrencyEnum.EP,
                 Weight = 5
             };
+            EquipmentModel itemThree = new EquipmentModel()
+            {
+                Name = "Item 3 - Checkers",
+                PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.Tools,
+                ToolsEnumType = Equipment.Enums.ToolsEnum.GamingSet,
+                CostValue = "30",
+                CostDenomination = Equipment.Enums.CurrencyEnum.GP,
+                Weight = 2
+            };
             CategoryModel categoryModel = new CategoryModel()
             {
                 Name = "ExampleCategory",
                 EquipmentModels = new System.Collections.ObjectModel.ObservableCollection<EquipmentModel>()
                 {
                     itemOne,
-                    itemTwo
+                    itemTwo,
+                    itemThree
                 }
             };
 
