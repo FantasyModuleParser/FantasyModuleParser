@@ -453,6 +453,7 @@ namespace FantasyModuleParser.Exporters
                 // 4. Group the list by it's secondary Enum, noting that the secondary enum is based on the selected Primary Type enum
                 EquipmentList_CustomSecondary_Groups(xmlWriter, primaryEquipmentList);
 
+				xmlWriter.WriteEndElement();
             }
 
 		}
@@ -467,7 +468,8 @@ namespace FantasyModuleParser.Exporters
 			foreach(List<EquipmentModel> secondaryTypeGroup in EquipmentGroupBySecondaryType)
             {
                 EquipmentList_CustomSecondary_Groups_Section(xmlWriter, sectionId, secondaryTypeGroup);
-            }
+				sectionId++;
+			}
 
 
             xmlWriter.WriteEndElement();

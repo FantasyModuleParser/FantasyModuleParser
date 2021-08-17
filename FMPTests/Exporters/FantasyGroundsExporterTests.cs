@@ -254,6 +254,15 @@ namespace FantasyModuleParser.Exporters.Tests
                 CostDenomination = Equipment.Enums.CurrencyEnum.GP,
                 Weight = 2
             };
+            EquipmentModel itemFour = new EquipmentModel()
+            {
+                Name = "Item 4 - Paint Brushes",
+                PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.Tools,
+                ToolsEnumType = Equipment.Enums.ToolsEnum.ArtisanTools,
+                CostValue = "30",
+                CostDenomination = Equipment.Enums.CurrencyEnum.GP,
+                Weight = 2
+            };
             CategoryModel categoryModel = new CategoryModel()
             {
                 Name = "ExampleCategory",
@@ -261,7 +270,8 @@ namespace FantasyModuleParser.Exporters.Tests
                 {
                     itemOne,
                     itemTwo,
-                    itemThree
+                    itemThree,
+                    itemFour
                 }
             };
 
