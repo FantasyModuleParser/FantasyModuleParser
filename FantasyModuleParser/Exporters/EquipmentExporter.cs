@@ -419,26 +419,39 @@ namespace FantasyModuleParser.Exporters
 			{
 				string primaryEquipmentTypeDescription = equipmentList[0].PrimaryEquipmentEnumType.GetDescription();
 
-				GenerateEquipmentList(xmlWriter, primaryEquipmentTypeDescription);
+				GenerateEquipmentList(xmlWriter, primaryEquipmentTypeDescription, equipmentList);
 
 				// Increase the ID by one, which is used in the method ProcessEquipListByType
 				equipListId++;
 			}
 		}
 
-		static private void GenerateEquipmentList(XmlWriter xmlWriter, string primaryEquipmentTypeDescription)
+		static private void GenerateEquipmentList(XmlWriter xmlWriter, string primaryEquipmentTypeDescription, List<EquipmentModel> EquipmentList)
 		{
 			xmlWriter.WriteStartElement(primaryEquipmentTypeDescription); /* <equipmenttype> */
-			EquipmentListDescription(xmlWriter, primaryEquipmentTypeDescription);
+			EquipmentListDescription(xmlWriter, primaryEquipmentTypeDescription, EquipmentList);
 			xmlWriter.WriteEndElement(); /* <equipmenttype> </equipmenttype> */
 		}
 
-		static private void EquipmentListDescription(XmlWriter xmlWriter, string primaryEquipmentTypeDescription)
+		static private void EquipmentListDescription(XmlWriter xmlWriter, string primaryEquipmentTypeDescription, List<EquipmentModel> EquipmentList)
 		{
 			xmlWriter.WriteStartElement("description"); /* <description> */
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(primaryEquipmentTypeDescription + " Table");
 			xmlWriter.WriteEndElement(); /* <description> </description> */
+			EquipmentListGroups(xmlWriter, primaryEquipmentTypeDescription, EquipmentList);
+		}
+
+		static private void EquipmentListGroups(XmlWriter xmlWriter, string primaryEquipmentTypeDescription, List<EquipmentModel> EquipmentList)
+		{
+			xmlWriter.WriteStartElement("groups"); /* <groups> */
+			EquipmentListSections(xmlWriter, primaryEquipmentTypeDescription, EquipmentList);
+			xmlWriter.WriteEndElement(); /* <groups> </groups> */
+		}
+
+		static private void EquipmentListSections(XmlWriter xmlWriter, string primaryEquipmentTypeDescription, List<EquipmentModel> EquipmentList)
+		{
+			int sectionID = 0;
 		}
 	}
 }
