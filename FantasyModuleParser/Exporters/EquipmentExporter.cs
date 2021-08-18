@@ -515,7 +515,7 @@ namespace FantasyModuleParser.Exporters
 
 		private static string getEquipmentPrimaryEnum(EquipmentModel equipmentModel)
 		{
-			return equipmentModel.PrimaryEquipmentEnumType.GetDescription();
+			return equipmentModel.PrimaryEquipmentEnumType.GetDescription() + " Table";
 		}
 
 		private static void EquipmentList_CustomSecondary_Description(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList)
