@@ -109,7 +109,7 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentBaseAC(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			if (equipmentModel.ArmorEnumType == ArmorEnum.Shield || equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
+			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
 			{
 				xmlWriter.WriteStartElement("bonus"); /* <bonus> */
 			}
@@ -342,7 +342,6 @@ namespace FantasyModuleParser.Exporters
 			Equipment_Index_ListLink_Class(primaryEquipmentTypeDescription, xmlWriter);
 			Equipment_Index_ListLink_RecordName(primaryEquipmentTypeDescription, moduleModel, xmlWriter);
 			xmlWriter.WriteEndElement(); /* </linklist> */
-			
 		}
 
 		/// <summary>
@@ -452,7 +451,7 @@ namespace FantasyModuleParser.Exporters
             foreach (EquipmentModel secondaryEquipmentModelItem in secondaryTypeGroup)
             {
 				xmlWriter.WriteStartElement(secondaryEquipmentModelItem.Name.Replace(" ", string.Empty).ToLower());
-				EquipmentList_CustomSecondary_Groups_Section_EquipmentLink(xmlWriter, secondaryEquipmentModelItem, moduleModel);
+				EquipmentList_CustomSecondary_Groups_Section_Equipment_Item_Link(xmlWriter, secondaryEquipmentModelItem, moduleModel);
 				xmlWriter.WriteEndElement();
                 //TODO
                 /*
@@ -470,23 +469,49 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteEndElement();
         }
 
-		private static void EquipmentList_CustomSecondary_Groups_Section_EquipmentLink(XmlWriter xmlWriter, EquipmentModel equip, ModuleModel moduleModel)
+		private static void EquipmentList_CustomSecondary_Groups_Section_Equipment_Item_Link(XmlWriter xmlWriter, EquipmentModel equip, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("link");
 			xmlWriter.WriteAttributeString("type", "windowreference");
-			EquipmentList_CustomSecondary_Groups_Section_EquipmentClass(xmlWriter);
-			EquipmentList_CustomSecondary_Groups_Section_EquipmentRecordname(xmlWriter, equip, moduleModel);
+			EquipmentList_CustomSecondary_Groups_Section_Equipment_Item_Class(xmlWriter, equip);
+			EquipmentList_CustomSecondary_Groups_Section_Equipment_Item_Recordname(xmlWriter, equip, moduleModel);
 			xmlWriter.WriteEndElement();
+			EquipmentName(xmlWriter, equip);
+			EquipmentCost(xmlWriter, equip);
+			EquipmentWeight(xmlWriter, equip);
+			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
+			{
+				EquipmentBaseAC(xmlWriter, equip);
+				EquipmentDexBonus(xmlWriter, equip);
+				EquipmentStrength(xmlWriter, equip);
+				EquipmentStealth(xmlWriter, equip);
+			}
+			if(equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
+			{
+				EquipmentDamage(xmlWriter, equip);
+				EquipmentProperties(xmlWriter, equip);
+			}
 		}
 
-		private static void EquipmentList_CustomSecondary_Groups_Section_EquipmentClass(XmlWriter xmlWriter)
+		private static void EquipmentList_CustomSecondary_Groups_Section_Equipment_Item_Class(XmlWriter xmlWriter, EquipmentModel equip)
 		{
 			xmlWriter.WriteStartElement("class");
-			xmlWriter.WriteString("reference_equipment");
+			if(equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.AdventuringGear || equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Tools)
+			{
+				xmlWriter.WriteString("reference_equipment");
+			}
+			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
+			{
+				xmlWriter.WriteString("reference_armor");
+			}
+			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
+			{
+				xmlWriter.WriteString("reference_weapon");
+			}
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void EquipmentList_CustomSecondary_Groups_Section_EquipmentRecordname(XmlWriter xmlWriter, EquipmentModel equip, ModuleModel moduleModel)
+		private static void EquipmentList_CustomSecondary_Groups_Section_Equipment_Item_Recordname(XmlWriter xmlWriter, EquipmentModel equip, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("recordname");
 			xmlWriter.WriteString("reference.equipmentdata." + EquipmentNameToXML(equip) + "@" + moduleModel.Name);
