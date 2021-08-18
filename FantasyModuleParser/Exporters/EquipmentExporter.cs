@@ -378,13 +378,6 @@ namespace FantasyModuleParser.Exporters
 			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
 		}
 
-		private static void EquipmentClass(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("class"); /* <equipment_name> <link> <class> */
-			xmlWriter.WriteString("reference_equipment");
-			xmlWriter.WriteEndElement(); /* <equipment_name> <link> <class> </class> */
-		}
-
 		// An Example of what this method would produce:
 
 		/*
@@ -487,9 +480,17 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("link");
 			xmlWriter.WriteAttributeString("type", "windowreference");
-
+			EquipmentList_CustomSecondary_Groups_Section_EquipmentClass(xmlWriter);
 			xmlWriter.WriteEndElement();
 		}
+
+		private static void EquipmentList_CustomSecondary_Groups_Section_EquipmentClass(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteString("reference_equipment");
+			xmlWriter.WriteEndElement();
+		}
+
 		private static void EquipmentList_CustomPrimary_Description(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList)
 		{
 			Description_Tag(xmlWriter, getEquipmentPrimaryEnum(primaryEquipmentList[0]));
