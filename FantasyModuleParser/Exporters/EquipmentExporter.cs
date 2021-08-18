@@ -481,6 +481,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("link");
 			xmlWriter.WriteAttributeString("type", "windowreference");
 			EquipmentList_CustomSecondary_Groups_Section_EquipmentClass(xmlWriter);
+			EquipmentList_CustomSecondary_Groups_Section_EquipmentRecordname(xmlWriter, equip, moduleModel);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -491,6 +492,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
+		private static void EquipmentList_CustomSecondary_Groups_Section_EquipmentRecordname(XmlWriter xmlWriter, EquipmentModel equip, ModuleModel moduleModel)
+		{
+			xmlWriter.WriteStartElement("recordname");
+			xmlWriter.WriteString("reference.equipmentdata." + EquipmentNameToXMLFormat(equip) + "@" + moduleModel.Name);
+			xmlWriter.WriteEndElement();
+		}
 		private static void EquipmentList_CustomPrimary_Description(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList)
 		{
 			Description_Tag(xmlWriter, getEquipmentPrimaryEnum(primaryEquipmentList[0]));
