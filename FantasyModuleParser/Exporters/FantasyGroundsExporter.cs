@@ -435,9 +435,9 @@ namespace FantasyModuleParser.Exporters
                 #region Equipment Lists
                 xmlWriter.WriteStartElement("equipmentlists"); /* <equipmentlists> */
                 EquipmentLists_Equipment(moduleModel, FatEquipmentList, xmlWriter);
-                
+
                 // Produces custom xml tags and their content, like <adventuringgear>, <armor>, <weapon>, etc....
-                EquipmentExporter.IndividualEquipmentClassList(xmlWriter, FatEquipmentList);
+                EquipmentExporter.IndividualEquipmentClassList(xmlWriter, FatEquipmentList, equipmentModel, moduleModel);
                 xmlWriter.WriteEndElement(); /* <equipmentlists> </equipmentlists> */
                 
                 #endregion
