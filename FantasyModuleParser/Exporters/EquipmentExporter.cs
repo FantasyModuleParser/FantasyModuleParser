@@ -395,7 +395,7 @@ namespace FantasyModuleParser.Exporters
 
 		// For Developers: The assumption is that EquipmentList is a culmination of ALL equipment items.
 		// This means that the list needs to be grouped by Primary, then each subsequent list is grouped By secondary type
-		public static void IndividualEquipmentClassList(XmlWriter xmlWriter, List<EquipmentModel> EquipmentList, EquipmentModel equip, ModuleModel moduleModel)
+		public static void IndividualEquipmentClassList(XmlWriter xmlWriter, List<EquipmentModel> EquipmentList, ModuleModel moduleModel)
 		{
 			// Just good to check and ensure if EquipmentList is empty;  If true, then just do nothing and return
 			if (EquipmentList.Count <= 0)
@@ -414,14 +414,14 @@ namespace FantasyModuleParser.Exporters
 				EquipmentList_CustomPrimary_Description(xmlWriter, primaryEquipmentList);
 
                 // 4. Group the list by it's secondary Enum, noting that the secondary enum is based on the selected Primary Type enum
-                EquipmentList_CustomSecondary_Groups(xmlWriter, primaryEquipmentList, equip, moduleModel);
+                EquipmentList_CustomSecondary_Groups(xmlWriter, primaryEquipmentList, moduleModel);
 
 				xmlWriter.WriteEndElement();
             }
 
 		}
 
-        private static void EquipmentList_CustomSecondary_Groups(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList, EquipmentModel equip, ModuleModel moduleModel)
+        private static void EquipmentList_CustomSecondary_Groups(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList, ModuleModel moduleModel)
         {
             var EquipmentGroupBySecondaryType = primaryEquipmentList.GroupBy(x => getEquipmentSecondaryEnum(x)).Select(x => x.ToList()).ToList();
 
@@ -430,29 +430,29 @@ namespace FantasyModuleParser.Exporters
 			int sectionId = 0;
 			foreach(List<EquipmentModel> secondaryTypeGroup in EquipmentGroupBySecondaryType)
             {
-                EquipmentList_CustomSecondary_Groups_Section(xmlWriter, sectionId, secondaryTypeGroup, equip, moduleModel);
+                EquipmentList_CustomSecondary_Groups_Section(xmlWriter, sectionId, secondaryTypeGroup, moduleModel);
 				sectionId++;
 			}
 
             xmlWriter.WriteEndElement();
         }
 
-		private static void EquipmentList_CustomSecondary_Groups_Section(XmlWriter xmlWriter, int sectionId, List<EquipmentModel> secondaryList, EquipmentModel equip, ModuleModel moduleModel)
+		private static void EquipmentList_CustomSecondary_Groups_Section(XmlWriter xmlWriter, int sectionId, List<EquipmentModel> secondaryList, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("section" + sectionId.ToString("D3"));
 			EquipmentList_CustomSecondary_Description(xmlWriter, secondaryList);
 
-			EquipmentList_CustomSecondary_Groups_Section_Equipment(xmlWriter, secondaryList, equip, moduleModel);
+			EquipmentList_CustomSecondary_Groups_Section_Equipment(xmlWriter, secondaryList, moduleModel);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void EquipmentList_CustomSecondary_Groups_Section_Equipment(XmlWriter xmlWriter, List<EquipmentModel> secondaryTypeGroup, EquipmentModel equip, ModuleModel moduleModel)
+		private static void EquipmentList_CustomSecondary_Groups_Section_Equipment(XmlWriter xmlWriter, List<EquipmentModel> secondaryTypeGroup, ModuleModel moduleModel)
         {
             xmlWriter.WriteStartElement("equipment");
             foreach (EquipmentModel secondaryEquipmentModelItem in secondaryTypeGroup)
             {
 				xmlWriter.WriteStartElement(secondaryEquipmentModelItem.Name.Replace(" ", string.Empty).ToLower());
-				EquipmentList_CustomSecondary_Groups_Section_EquipmentLink(xmlWriter, equip, moduleModel);
+				EquipmentList_CustomSecondary_Groups_Section_EquipmentLink(xmlWriter, secondaryEquipmentModelItem, moduleModel);
 				xmlWriter.WriteEndElement();
                 //TODO
                 /*
