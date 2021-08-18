@@ -372,12 +372,6 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteEndElement();
 		}
 
-		static public string EquipmentNameToXMLFormat(EquipmentModel equipmentModel)
-		{
-			string name = equipmentModel.Name.ToLower();
-			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
-		}
-
 		// An Example of what this method would produce:
 
 		/*
