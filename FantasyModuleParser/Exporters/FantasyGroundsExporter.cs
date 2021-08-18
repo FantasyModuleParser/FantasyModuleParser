@@ -399,7 +399,7 @@ namespace FantasyModuleParser.Exporters
                         {
                             NPCController npcController = new NPCController();
                             xmlWriter.WriteStartElement(EquipmentExporter.EquipmentNameToXML(equipmentModel));
-                            /* <root version="4.0"> <reference> <npcdata> <category> <equipmentModel.Name> */
+                            /* <root version="4.0"> <reference> <equipmentdata> <category> <equipmentModel.Name> */
                             EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
                             EquipmentExporter.EquipmentIdentified(xmlWriter, equipmentModel);
                             EquipmentExporter.EquipmentNonIDName(xmlWriter, equipmentModel);
@@ -423,6 +423,8 @@ namespace FantasyModuleParser.Exporters
                                 EquipmentExporter.EquipmentDamage(xmlWriter, equipmentModel);
                                 EquipmentExporter.EquipmentProperties(xmlWriter, equipmentModel);
                             }
+                            xmlWriter.WriteEndElement(); 
+                            /* <root version="4.0"> <reference> <equipmentdata> <category> <equipmentModel.Name> </equipmentModel.Name */
                         }
                         xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
                     }
