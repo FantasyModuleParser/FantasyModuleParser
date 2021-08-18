@@ -299,23 +299,6 @@ namespace FantasyModuleParser.Exporters
 			return stringBuilder.ToString(0, stringBuilder.Length - 2);
 		}
 
-		static private void EquipmentLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
-		{
-			foreach (EquipmentModel equip in EquipmentList)
-			{
-				xmlWriter.WriteStartElement(EquipmentNameToXMLFormat(equip)); /* <equipment_name> */
-				xmlWriter.WriteStartElement("link"); /* <equipment_name> <link> */
-				xmlWriter.WriteAttributeString("type", "windowreference");
-				EquipmentClass(xmlWriter);
-				EquipmentRecordname(xmlWriter, equip, moduleModel);
-				xmlWriter.WriteEndElement(); /* <equipment_name> <link> </link> */
-				EquipmentName(xmlWriter, equip);
-				EquipmentCost(xmlWriter, equip);
-				EquipmentWeight(xmlWriter, equip);
-				xmlWriter.WriteEndElement(); /* <equipment_name> </equipment_name> */
-			}
-		}
-
 		static public void EquipmentLists(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
 		{
 			EquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
@@ -402,13 +385,6 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <equipment_name> <link> <class> </class> */
 		}
 
-		static private void EquipmentRecordname(XmlWriter xmlWriter, EquipmentModel equipmentModel, ModuleModel moduleModel)
-		{
-			xmlWriter.WriteStartElement("recordname"); /* <equipment_name> <link> <recordname> */
-			xmlWriter.WriteString("reference.equipmentdata." + EquipmentNameToXMLFormat(equipmentModel) + "@" + moduleModel.Name);
-			xmlWriter.WriteEndElement(); /* <equipment_name> <link> <recordname> </recordname> */
-		}
-
 		// An Example of what this method would produce:
 
 		/*
@@ -489,7 +465,7 @@ namespace FantasyModuleParser.Exporters
             foreach (EquipmentModel secondaryEquipmentModelItem in secondaryTypeGroup)
             {
 				xmlWriter.WriteStartElement(secondaryEquipmentModelItem.Name.Replace(" ", string.Empty).ToLower());
-
+				EquipmentList_CustomSecondary_Groups_Section_EquipmentLink(xmlWriter);
 				xmlWriter.WriteEndElement();
                 //TODO
                 /*
@@ -504,10 +480,16 @@ namespace FantasyModuleParser.Exporters
 				</arrow> 
 				 */
             }
-
             xmlWriter.WriteEndElement();
         }
 
+		private static void EquipmentList_CustomSecondary_Groups_Section_EquipmentLink(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("link");
+			xmlWriter.WriteAttributeString("type", "windowreference");
+
+			xmlWriter.WriteEndElement();
+		}
 		private static void EquipmentList_CustomPrimary_Description(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList)
 		{
 			Description_Tag(xmlWriter, getEquipmentPrimaryEnum(primaryEquipmentList[0]));
