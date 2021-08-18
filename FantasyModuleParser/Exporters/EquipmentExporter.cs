@@ -474,16 +474,16 @@ namespace FantasyModuleParser.Exporters
             xmlWriter.WriteEndElement();
         }
 
-        private static void EquipmentList_CustomSecondary_Groups_Section(XmlWriter xmlWriter, int sectionId, List<EquipmentModel> secondaryList)
-        {
-            xmlWriter.WriteStartElement("section" + sectionId.ToString("D3"));
-			Description_Tag(xmlWriter, EquipmentList_CustomSecondary_Description(xmlWriter, secondaryList[0]));
+		private static void EquipmentList_CustomSecondary_Groups_Section(XmlWriter xmlWriter, int sectionId, List<EquipmentModel> secondaryList)
+		{
+			xmlWriter.WriteStartElement("section" + sectionId.ToString("D3"));
+			EquipmentList_CustomSecondary_Description(xmlWriter, secondaryList);
 
-            EquipmentList_CustomSecondary_Groups_Section_Equipment(xmlWriter, secondaryList);
-            xmlWriter.WriteEndElement();
-        }
+			EquipmentList_CustomSecondary_Groups_Section_Equipment(xmlWriter, secondaryList);
+			xmlWriter.WriteEndElement();
+		}
 
-        private static void EquipmentList_CustomSecondary_Groups_Section_Equipment(XmlWriter xmlWriter, List<EquipmentModel> secondaryTypeGroup)
+		private static void EquipmentList_CustomSecondary_Groups_Section_Equipment(XmlWriter xmlWriter, List<EquipmentModel> secondaryTypeGroup)
         {
             xmlWriter.WriteStartElement("equipment");
             foreach (EquipmentModel secondaryEquipmentModelItem in secondaryTypeGroup)
