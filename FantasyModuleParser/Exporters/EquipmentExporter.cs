@@ -489,7 +489,7 @@ namespace FantasyModuleParser.Exporters
 		private static void EquipmentList_CustomSecondary_Groups_Section_EquipmentRecordname(XmlWriter xmlWriter, EquipmentModel equip, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("recordname");
-			xmlWriter.WriteString("reference.equipmentdata." + EquipmentNameToXMLFormat(equip) + "@" + moduleModel.Name);
+			xmlWriter.WriteString("reference.equipmentdata." + EquipmentNameToXML(equip) + "@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 		private static void EquipmentList_CustomPrimary_Description(XmlWriter xmlWriter, List<EquipmentModel> primaryEquipmentList)
