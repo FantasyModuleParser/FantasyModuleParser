@@ -95,10 +95,14 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("cost"); /* <cost> */
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(equipmentModel.CostValue + " " + equipmentModel.CostDenomination.GetDescription());
+			if (equipmentModel.CostDenomination != CurrencyEnum.None)
+			{
+				xmlWriter.WriteString(equipmentModel.CostValue + " " + equipmentModel.CostDenomination.GetDescription());
+			}
+			else xmlWriter.WriteString(equipmentModel.CostValue);
 			xmlWriter.WriteEndElement(); /* <cost> </cost> */
 		}
-		
+
 		static public void EquipmentWeight(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("weight"); /* <weight> */
@@ -139,7 +143,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
 			}			
 		}
-		
+
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("stealth"); /* <stealth> */
@@ -226,6 +230,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(equipmentModel.Capacity);
 			xmlWriter.WriteEndElement();
 		}
+
 		static public string DamageString(EquipmentModel equipmentModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();

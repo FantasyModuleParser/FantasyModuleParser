@@ -5,19 +5,22 @@ namespace FantasyModuleParser.Equipment.Enums
 {
 	public enum CurrencyEnum
 	{
+		[Description("-")]
+		None = 0,
+
 		[Description("cp")]
-		CP = 0,
+		CP = 1,
 
 		[Description("ep")]
-		EP = 1,
+		EP = 2,
 
 		[Description("sp")]
-		SP = 2,
+		SP = 3,
 
 		[Description("gp")]
-		GP = 3,
+		GP = 4,
 
 		[Description("pp")]
-		PP = 4,
+		PP = 5,
 	}
 }
