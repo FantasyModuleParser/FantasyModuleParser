@@ -35,6 +35,7 @@ namespace FantasyModuleParser.Equipment.Models
         public ArmorEnum ArmorEnumType { get; set; }
         public WeaponEnum WeaponEnumType;
         public AnimalsEnum AnimalsEnumType;
+        public TackEnum TackEnumType;
         public VehiclesEnum VehiclesEnumType;
         public ToolsEnum ToolsEnumType;
         public TreasureEnum TreasureEnumType;

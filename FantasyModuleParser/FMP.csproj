@@ -487,6 +487,7 @@
     </Compile>
     <Compile Include="Converters\LanguageModelConverter.cs" />
     <Compile Include="Converters\SelectableActionModelConverter.cs" />
+    <Compile Include="Equipment\Enums\TackEnum.cs" />
     <Compile Include="Equipment\Enums\AdventuringGearEnum.cs" />
     <Compile Include="Equipment\Enums\MeasurementEnum.cs" />
     <Compile Include="Equipment\Enums\AnimalsEnum.cs" />

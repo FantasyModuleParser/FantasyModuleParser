@@ -173,6 +173,23 @@
                             </ListBox.Style>
                         </ListBox>
                         <!-- ================================== -->
+                        <ListBox Name="TackListBox" Margin="0,5,5,5" Grid.Column="1"
+                                 ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:TackEnum}}}" 
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding TackEnumType}">
+                            <ListBox.Style>
+                                <Style TargetType="ListBox" >
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding PrimaryEquipmentType}"
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Tack}">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.Style>
+                        </ListBox>
+                        <!-- ================================== -->
                         <ListBox Name="VehiclesListBox" Margin="0,5,5,5" Grid.Column="1"
                                  ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:VehiclesEnum}}}" 
                                  SelectedValuePath="Value" DisplayMemberPath="Description"
