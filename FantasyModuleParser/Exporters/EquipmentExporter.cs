@@ -211,6 +211,21 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <damage> </damage> */
 		}
 
+		static public void EquipmentSpeed(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("speed");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(equipmentModel.Speed + " " + equipmentModel.Measurement.GetDescription());
+			xmlWriter.WriteEndElement();
+		}
+
+		static public void EquipmentCapacity(XmlWriter xmlWriter, EquipmentModel equipmentModel)
+		{
+			xmlWriter.WriteStartElement("carryingcapacity");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(equipmentModel.Capacity);
+			xmlWriter.WriteEndElement();
+		}
 		static public string DamageString(EquipmentModel equipmentModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -478,7 +493,10 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 			EquipmentName(xmlWriter, equip);
 			EquipmentCost(xmlWriter, equip);
-			EquipmentWeight(xmlWriter, equip);
+			if (equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.Animals || equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.Vehicles)
+			{
+				EquipmentWeight(xmlWriter, equip);
+			}			
 			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
 			{
 				EquipmentBaseAC(xmlWriter, equip);
@@ -490,6 +508,11 @@ namespace FantasyModuleParser.Exporters
 			{
 				EquipmentDamage(xmlWriter, equip);
 				EquipmentProperties(xmlWriter, equip);
+			}
+			if(equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Animals)
+			{
+				EquipmentSpeed(xmlWriter, equip);
+				EquipmentCapacity(xmlWriter, equip);
 			}
 		}
 
@@ -507,6 +530,10 @@ namespace FantasyModuleParser.Exporters
 			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
 			{
 				xmlWriter.WriteString("reference_weapon");
+			}
+			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Animals)
+			{
+				xmlWriter.WriteString("reference_mounts");
 			}
 			xmlWriter.WriteEndElement();
 		}
