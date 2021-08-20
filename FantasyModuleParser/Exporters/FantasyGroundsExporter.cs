@@ -434,7 +434,7 @@ namespace FantasyModuleParser.Exporters
                 #endregion
                 #region Equipment Lists
                 xmlWriter.WriteStartElement("equipmentlists"); /* <equipmentlists> */
-                EquipmentLists_Equipment(moduleModel, FatEquipmentList, xmlWriter);
+                EquipmentExporter.EquipmentLists_Equipment(moduleModel, FatEquipmentList, xmlWriter);
 
                 // Produces custom xml tags and their content, like <adventuringgear>, <armor>, <weapon>, etc....
                 EquipmentExporter.IndividualEquipmentClassList(xmlWriter, FatEquipmentList, moduleModel);
@@ -943,7 +943,7 @@ namespace FantasyModuleParser.Exporters
                             xmlWriter.WriteString("referenceindex");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("recordname");
-                            xmlWriter.WriteString("..");
+                            xmlWriter.WriteString("reference.tables@" + moduleModel.Name);
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("name");
@@ -954,6 +954,28 @@ namespace FantasyModuleParser.Exporters
                             libraryID = ++libraryID;
                         }
                     }
+                    if (moduleModel.IncludesEquipment)
+					{
+                        if (moduleModel.Categories[0].EquipmentModels.Count > 0)
+						{
+                            xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
+                            xmlWriter.WriteStartElement("librarylink");
+                            xmlWriter.WriteAttributeString("type", "windowreference");
+                            xmlWriter.WriteStartElement("class");
+                            xmlWriter.WriteString("referenceindex");
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("recordname");
+                            xmlWriter.WriteString("reference.equipmentlists.equipment@" + moduleModel.Name);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("name");
+                            xmlWriter.WriteAttributeString("type", "string");
+                            xmlWriter.WriteString("Equipment");
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndElement();
+                            libraryID = ++libraryID;
+                        }
+					}
                     xmlWriter.WriteStartElement("id-" + libraryID.ToString("D4"));
                     xmlWriter.WriteStartElement("librarylink");
                     xmlWriter.WriteAttributeString("type", "windowreference");
@@ -980,31 +1002,6 @@ namespace FantasyModuleParser.Exporters
             }
         }
 
-        private static void EquipmentLists_Equipment(ModuleModel moduleModel, List<EquipmentModel> FatEquipmentList, XmlWriter xmlWriter)
-        {
-            xmlWriter.WriteStartElement("equipment"); /* <equipmentlists> <equipment> */
-            EquipmentLists_Equipment_Name(xmlWriter);
-            EquipmentLists_Equipment_Index(moduleModel, FatEquipmentList, xmlWriter);
-            xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> </equipment> */
-        }
-
-        /// <summary>
-        /// <equipmentlists> <equipment> <index>
-        /// </summary>
-        private static void EquipmentLists_Equipment_Index(ModuleModel moduleModel, List<EquipmentModel> FatEquipmentList, XmlWriter xmlWriter)
-        {
-            xmlWriter.WriteStartElement("index"); /* <equipmentlists> <equipment> <index> */
-            EquipmentExporter.EquipmentLists(xmlWriter, moduleModel, FatEquipmentList);
-            xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <index> </index> */
-        }
-
-        private static void EquipmentLists_Equipment_Name(XmlWriter xmlWriter)
-        {
-            xmlWriter.WriteStartElement("name"); /* <equipmentlists> <equipment> <name> */
-            xmlWriter.WriteAttributeString("type", "string");
-            xmlWriter.WriteString("Equipment");
-            xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <name> </name> */
-        }
         #region NPC Methods for Reference Data XML
         public void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{

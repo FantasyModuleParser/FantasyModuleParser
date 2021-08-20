@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <Label Content="Speed" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=Speed}"/>
-        <ComboBox Grid.Column="2" ItemsSource="{Binding Source={my:Enumeration {x:Type equipmentEnum:MeasurementEnum}}}" SelectedValue="{Binding Path=Measurement}" VerticalAlignment="Center">
+        <ComboBox Grid.Column="2" ItemsSource="{Binding Source={my:Enumeration {x:Type equipmentEnum:MeasurementEnum}}}" SelectedValue="{Binding Path=Measurement}" DisplayMemberPath="Description" VerticalAlignment="Center">
         </ComboBox>
         <Label Content="Capacity" VerticalAlignment="Center" Grid.Column="3"/>
         <TextBox Grid.Column="4" VerticalAlignment="Center" Text="{Binding Path=Capacity}"/>
