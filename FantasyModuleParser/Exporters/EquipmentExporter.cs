@@ -121,7 +121,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("ac"); /* <ac> */
 			}				
-			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteAttributeString("type", "string");
 			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
 			{
 				xmlWriter.WriteValue(equipmentModel.Armor.ArmorValue);
@@ -135,13 +135,14 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			if (!string.IsNullOrEmpty(equipmentModel.Armor.DexterityBonus.ToString()))
-			{
+			//if (!string.IsNullOrEmpty(equipmentModel.Armor.DexterityBonus.ToString()))
+			//{
 				xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
 				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus.ToString());
+				//xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus.ToString());
+				xmlWriter.WriteString("Yes");
 				xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
-			}			
+			//}			
 		}
 
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
@@ -162,7 +163,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "string");
 			if (equipmentModel.Armor.StrengthRequirement > 0)
 			{
-				xmlWriter.WriteValue(equipmentModel.Armor.StrengthRequirement);
+				xmlWriter.WriteValue("Str " + equipmentModel.Armor.StrengthRequirement);
 			}
 			else xmlWriter.WriteString("-");
 			xmlWriter.WriteEndElement(); /* <strength> </strength> */
@@ -336,11 +337,19 @@ namespace FantasyModuleParser.Exporters
 				equipListId++;
 			}
 		}
+
 		const string referenceAdventureGearTable = "reference_adventuringgeartable";
 		const string referenceArmorTable = "reference_armortable";
 		const string referenceWeaponTable = "reference_weapontable";
 		const string referenceMountsAndOtherAnimalsTable = "reference_mountsandotheranimalstable";
 		const string referenceWaterVehicles = "reference_waterbornevehiclestable";
+
+		/// <summary>
+		/// Due to an implemenation decision by Smiteworks, the reference Table value is there so Fantasy Grounds knows
+		/// how to display the data in an aggregate fashion.  
+		/// </summary>
+		/// <param name="primaryEquipmentEnum"></param>
+		/// <returns></returns>
 		private static string _getReferenceClassForPrimaryEquipmentEnumType(PrimaryEquipmentEnum primaryEquipmentEnum)
         {
             switch (primaryEquipmentEnum)
@@ -551,7 +560,9 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 			EquipmentName(xmlWriter, equip);
 			EquipmentCost(xmlWriter, equip);
-			if (equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.MountsAndOtherAnimals || equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.WaterborneVehicles)
+			if (equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.MountsAndOtherAnimals &&
+				equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.WaterborneVehicles &&
+				equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.Armor)
 			{
 				EquipmentWeight(xmlWriter, equip);
 			}
@@ -561,6 +572,8 @@ namespace FantasyModuleParser.Exporters
 				EquipmentDexBonus(xmlWriter, equip);
 				EquipmentStrength(xmlWriter, equip);
 				EquipmentStealth(xmlWriter, equip);
+				// Put Weight at the bottom of the list... may be FGU quirk.
+				EquipmentWeight(xmlWriter, equip);
 			}
 			if(equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
 			{
@@ -592,13 +605,13 @@ namespace FantasyModuleParser.Exporters
 				case PrimaryEquipmentEnum.AdventuringGear:
 					return "reference_equipment";
 				case PrimaryEquipmentEnum.MountsAndOtherAnimals:
-					return "reference_mounts";
+					return "reference_mountsandotheranimals";
 				case PrimaryEquipmentEnum.Armor:
 					return "reference_armor";
 				case PrimaryEquipmentEnum.Tools:
 					return "reference_equipment";
 				case PrimaryEquipmentEnum.Treasure:
-					return "reference_treasure";
+					return "reference_equipment";
 				case PrimaryEquipmentEnum.WaterborneVehicles:
 					return getVehiclesSubtype(equip);
 				case PrimaryEquipmentEnum.Weapon:
@@ -613,14 +626,10 @@ namespace FantasyModuleParser.Exporters
 		{
 			switch (equip.VehiclesEnumType)
 			{
-				case VehiclesEnum.TackAndHarness:
-					return "reference_equipment";
-				case VehiclesEnum.Saddle:
-					return "reference_equipment";
 				case VehiclesEnum.WaterCraft:
-					return "reference_vehicles";
+					return "reference_waterbornevehicles";
 				case VehiclesEnum.AirBorne:
-					return "reference_vehicles";
+					return "reference_waterbornevehicles";
 				default:
 					return "reference_equipment";
 			}

@@ -269,13 +269,26 @@ namespace FantasyModuleParser.Exporters.Tests
             };
             EquipmentModel vehicle_Carriage = new EquipmentModel()
             {
-                Name = "Carriage",
+                Name = "Warboat of Speeeeed",
                 PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.WaterborneVehicles,
-                VehiclesEnumType = Equipment.Enums.VehiclesEnum.DrawnVehicle,
+                VehiclesEnumType = Equipment.Enums.VehiclesEnum.WaterCraft,
                 CostValue = "500",
                 CostDenomination = Equipment.Enums.CurrencyEnum.GP,
-                Weight = 2000,
+                Capacity = "3250",
+                Speed = "2 1/2",
+                Measurement = Equipment.Enums.MeasurementEnum.MilesPerHour,
                 Description = "Insert Some Description Here...."
+            };
+            EquipmentModel vehicle_Airplane = new EquipmentModel()
+            {
+                Name = "Air Fortress",
+                PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.WaterborneVehicles,
+                VehiclesEnumType = Equipment.Enums.VehiclesEnum.AirBorne,
+                CostValue = "75000",
+                CostDenomination = Equipment.Enums.CurrencyEnum.GP,
+                Speed = "60",
+                Measurement = Equipment.Enums.MeasurementEnum.MilesPerHour,
+                Description = "Insert Some Description Here for the Air Fortress of DOOOOOM...."
             };
             EquipmentModel animalItemOne = new EquipmentModel()
             {
@@ -284,7 +297,9 @@ namespace FantasyModuleParser.Exporters.Tests
                 AnimalsEnumType = Equipment.Enums.AnimalsEnum.Mounts,
                 CostValue = "500",
                 CostDenomination = Equipment.Enums.CurrencyEnum.GP,
-                Weight = 2000,
+                Speed = "30",
+                Measurement = Equipment.Enums.MeasurementEnum.Feet,
+                Capacity = "500 lbs.",
                 Description = "Insert Some Description Here...."
             };
             EquipmentModel armorItemOne = new EquipmentModel()
@@ -294,31 +309,44 @@ namespace FantasyModuleParser.Exporters.Tests
                 ArmorEnumType = Equipment.Enums.ArmorEnum.LightArmor,
                 Armor = new Equipment.UserControls.Models.ArmorModel()
                 {
-                    ArmorValue = 16,
+                    ArmorValue = 14,
                     DexterityBonus = "2",
-                    IsStealthDisadvantage = false,
-                    StrengthRequirement = 11
+                    IsStealthDisadvantage = false
                 },
-                CostValue = "500",
+                CostValue = "25",
                 CostDenomination = Equipment.Enums.CurrencyEnum.GP,
-                Weight = 2000,
+                Weight = 3,
                 Description = "Insert Some Description Here...."
             };
             EquipmentModel armorItemTwo = new EquipmentModel()
             {
-                Name = "Pure Heavy Metal",
+                Name = "PureHeavyMetal",
                 PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.Armor,
                 ArmorEnumType = Equipment.Enums.ArmorEnum.HeavyArmor,
                 Armor = new Equipment.UserControls.Models.ArmorModel()
                 {
-                    ArmorValue = 16,
+                    ArmorValue = 15,
                     DexterityBonus = "2",
-                    IsStealthDisadvantage = false,
-                    StrengthRequirement = 11
+                    IsStealthDisadvantage = true,
+                    StrengthRequirement = 15
                 },
                 CostValue = "500",
                 CostDenomination = Equipment.Enums.CurrencyEnum.GP,
-                Weight = 2000,
+                Weight = 15,
+                Description = "Insert Some Description Here...."
+            };
+            EquipmentModel armorShieldOne = new EquipmentModel()
+            {
+                Name = "Bone Shield",
+                PrimaryEquipmentEnumType = Equipment.Enums.PrimaryEquipmentEnum.Armor,
+                ArmorEnumType = Equipment.Enums.ArmorEnum.Shield,
+                Armor = new Equipment.UserControls.Models.ArmorModel()
+                {
+                    ArmorValue = 2
+                },
+                CostValue = "2",
+                CostDenomination = Equipment.Enums.CurrencyEnum.SP,
+                Weight = 5,
                 Description = "Insert Some Description Here...."
             };
             EquipmentModel tackItemOne = new EquipmentModel()
@@ -374,6 +402,11 @@ namespace FantasyModuleParser.Exporters.Tests
                         DieType = NPC.Models.Action.Enums.DieType.D8,
                         Bonus = 3,
                         DamageType = NPC.Models.Action.Enums.DamageType.Piercing
+                    },
+                    WeaponProperties = new HashSet<Equipment.Enums.Weapon.WeaponPropertyEnum>()
+                    {
+                        Equipment.Enums.Weapon.WeaponPropertyEnum.Heavy,
+                        Equipment.Enums.Weapon.WeaponPropertyEnum.Ammunition
                     }
                 },
                 CostValue = "10",
@@ -391,6 +424,7 @@ namespace FantasyModuleParser.Exporters.Tests
                     itemThree,
                     itemFour,
                     vehicle_Carriage,
+                    vehicle_Airplane,
                     animalItemOne,
                     armorItemOne,
                     armorItemTwo,
