@@ -76,11 +76,11 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteString(equipmentModel.ToolsEnumType.GetDescription());
 			}
-			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Animals)
+			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.MountsAndOtherAnimals)
 			{
 				xmlWriter.WriteString(equipmentModel.AnimalsEnumType.GetDescription());
 			}
-			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Vehicles)
+			else if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.WaterborneVehicles)
 			{
 				xmlWriter.WriteString(equipmentModel.VehiclesEnumType.GetDescription());
 			}
@@ -327,23 +327,50 @@ namespace FantasyModuleParser.Exporters
 			int equipListId = 1;
 			foreach (List<EquipmentModel> equipmentList in EquipmentByPrimaryList)
 			{
-				string primaryEquipmentTypeDescription = equipmentList[0].PrimaryEquipmentEnumType.GetDescription();
+				//string primaryEquipmentTypeDescription =
+				//	_getReferenceClassForPrimaryEquipmentEnumType(equipmentList[0].PrimaryEquipmentEnumType);
 				
-				ProcessEquipListByType(xmlWriter, moduleModel, primaryEquipmentTypeDescription, equipListId);
+				ProcessEquipListByType(xmlWriter, moduleModel, equipmentList[0], equipListId);
 
 				// Increase the ID by one, which is used in the method ProcessEquipListByType
 				equipListId++;
 			}
 		}
+		const string referenceAdventureGearTable = "reference_adventuringgeartable";
+		const string referenceArmorTable = "reference_armortable";
+		const string referenceWeaponTable = "reference_weapontable";
+		const string referenceMountsAndOtherAnimalsTable = "reference_mountsandotheranimalstable";
+		const string referenceWaterVehicles = "reference_waterbornevehiclestable";
+		private static string _getReferenceClassForPrimaryEquipmentEnumType(PrimaryEquipmentEnum primaryEquipmentEnum)
+        {
+            switch (primaryEquipmentEnum)
+            {
+				case PrimaryEquipmentEnum.AdventuringGear:
+				case PrimaryEquipmentEnum.TackHarnessAndDrawnVehicles:
+				case PrimaryEquipmentEnum.Treasure:
+				case PrimaryEquipmentEnum.Tools:
+					return referenceAdventureGearTable;
+				case PrimaryEquipmentEnum.Armor:
+					return referenceArmorTable;
+				case PrimaryEquipmentEnum.Weapon:
+					return referenceWeaponTable;
+				case PrimaryEquipmentEnum.MountsAndOtherAnimals:
+					return referenceMountsAndOtherAnimalsTable;
+				case PrimaryEquipmentEnum.WaterborneVehicles:
+					return referenceWaterVehicles;
+				default:
+					return "ENUM_NEEDS_REFERENCE";
+            }
+        }
 
-		static private void ProcessEquipListByType(XmlWriter xmlWriter, ModuleModel moduleModel, string primaryEquipmentTypeDescription, int localizedIdValue)
+		static private void ProcessEquipListByType(XmlWriter xmlWriter, ModuleModel moduleModel, EquipmentModel primaryEquipmentModel, int localizedIdValue)
 		{
 
 			xmlWriter.WriteStartElement("id-" + localizedIdValue.ToString("D5")); /* <id-*> */
-			Equipment_Index_ListLink(moduleModel, primaryEquipmentTypeDescription, xmlWriter);
+			Equipment_Index_ListLink(moduleModel, primaryEquipmentModel, xmlWriter);
 
 			// <name type="string">ADVENTURING GEAR</name>
-			Equipment_Index_Name(xmlWriter, primaryEquipmentTypeDescription);
+			Equipment_Index_Name(xmlWriter, primaryEquipmentModel);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -373,20 +400,20 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <name> </name> */
 		}
 
-		private static void Equipment_Index_Name(XmlWriter xmlWriter, string primaryEquipmentTypeDescription)
+		private static void Equipment_Index_Name(XmlWriter xmlWriter, EquipmentModel primaryEquipmentModel)
 		{
 			xmlWriter.WriteStartElement("name");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(primaryEquipmentTypeDescription.ToUpper());
+			xmlWriter.WriteString(primaryEquipmentModel.PrimaryEquipmentEnumType.GetDescription().ToUpper());
 			xmlWriter.WriteEndElement();
 		}
 
-		static private void Equipment_Index_ListLink(ModuleModel moduleModel, string primaryEquipmentTypeDescription, XmlWriter xmlWriter)
+		static private void Equipment_Index_ListLink(ModuleModel moduleModel, EquipmentModel primaryEquipmentModel, XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("listlink"); /* <id-*> <listlink> */
 			xmlWriter.WriteAttributeString("type", "windowreference");
-			Equipment_Index_ListLink_Class(primaryEquipmentTypeDescription, xmlWriter);
-			Equipment_Index_ListLink_RecordName(primaryEquipmentTypeDescription, moduleModel, xmlWriter);
+			Equipment_Index_ListLink_Class(primaryEquipmentModel, xmlWriter);
+			Equipment_Index_ListLink_RecordName(primaryEquipmentModel, moduleModel, xmlWriter);
 			xmlWriter.WriteEndElement(); /* </listlink> */
 		}
 
@@ -395,10 +422,10 @@ namespace FantasyModuleParser.Exporters
 		/// </summary>
 		/// <param name="primaryEquipmentTypeDescription"></param>
 		/// <param name="xmlWriter"></param>
-		static private void Equipment_Index_ListLink_Class(string primaryEquipmentTypeDescription, XmlWriter xmlWriter)
+		static private void Equipment_Index_ListLink_Class(EquipmentModel primaryEquipmentModel, XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("class");
-			xmlWriter.WriteString("reference_" + primaryEquipmentTypeDescription.Replace(" ", String.Empty).ToLower() + "table");
+			xmlWriter.WriteString(_getReferenceClassForPrimaryEquipmentEnumType(primaryEquipmentModel.PrimaryEquipmentEnumType));
 			xmlWriter.WriteEndElement();
 		}
 
@@ -408,11 +435,11 @@ namespace FantasyModuleParser.Exporters
 		/// <param name="primaryEquipmentTypeDescription"></param>
 		/// <param name="moduleModel"></param>
 		/// <param name="xmlWriter"></param>
-		static private void Equipment_Index_ListLink_RecordName(string primaryEquipmentTypeDescription, ModuleModel moduleModel, XmlWriter xmlWriter)
+		static private void Equipment_Index_ListLink_RecordName(EquipmentModel primaryEquipmentModel, ModuleModel moduleModel, XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("recordname");
 			xmlWriter.WriteString("reference.equipmentlists."
-				+ primaryEquipmentTypeDescription.Replace(" ", String.Empty).ToLower()
+				+ primaryEquipmentModel.PrimaryEquipmentEnumType.GetDescription().Replace(" ", String.Empty).ToLower()
 				+ "@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -524,7 +551,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 			EquipmentName(xmlWriter, equip);
 			EquipmentCost(xmlWriter, equip);
-			if (equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.Animals || equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.Vehicles)
+			if (equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.MountsAndOtherAnimals || equip.PrimaryEquipmentEnumType != PrimaryEquipmentEnum.WaterborneVehicles)
 			{
 				EquipmentWeight(xmlWriter, equip);
 			}
@@ -540,12 +567,12 @@ namespace FantasyModuleParser.Exporters
 				EquipmentDamage(xmlWriter, equip);
 				EquipmentProperties(xmlWriter, equip);
 			}
-			if(equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Animals && equip.AnimalsEnumType == AnimalsEnum.Mounts)
+			if(equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.MountsAndOtherAnimals && equip.AnimalsEnumType == AnimalsEnum.Mounts)
 			{
 				EquipmentSpeed(xmlWriter, equip);
 				EquipmentCapacity(xmlWriter, equip);
 			}
-			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Vehicles)
+			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.WaterborneVehicles)
 			{
 				EquipmentSpeed(xmlWriter, equip);
 			}
@@ -564,7 +591,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				case PrimaryEquipmentEnum.AdventuringGear:
 					return "reference_equipment";
-				case PrimaryEquipmentEnum.Animals:
+				case PrimaryEquipmentEnum.MountsAndOtherAnimals:
 					return "reference_mounts";
 				case PrimaryEquipmentEnum.Armor:
 					return "reference_armor";
@@ -572,7 +599,7 @@ namespace FantasyModuleParser.Exporters
 					return "reference_equipment";
 				case PrimaryEquipmentEnum.Treasure:
 					return "reference_treasure";
-				case PrimaryEquipmentEnum.Vehicles:
+				case PrimaryEquipmentEnum.WaterborneVehicles:
 					return getVehiclesSubtype(equip);
 				case PrimaryEquipmentEnum.Weapon:
 					return "reference_weapon";
@@ -629,7 +656,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				case PrimaryEquipmentEnum.AdventuringGear:
 					return equipmentModel.AdventuringGearEnumType.GetDescription();
-				case PrimaryEquipmentEnum.Animals:
+				case PrimaryEquipmentEnum.MountsAndOtherAnimals:
 					return equipmentModel.AnimalsEnumType.GetDescription();
 				case PrimaryEquipmentEnum.Armor:
 					return equipmentModel.ArmorEnumType.GetDescription();
@@ -637,7 +664,7 @@ namespace FantasyModuleParser.Exporters
 					return equipmentModel.ToolsEnumType.GetDescription();
 				case PrimaryEquipmentEnum.Treasure:
 					return equipmentModel.TreasureEnumType.GetDescription();
-				case PrimaryEquipmentEnum.Vehicles:
+				case PrimaryEquipmentEnum.WaterborneVehicles:
 					return equipmentModel.VehiclesEnumType.GetDescription();
 				case PrimaryEquipmentEnum.Weapon:
 					return equipmentModel.WeaponEnumType.GetDescription();

@@ -165,7 +165,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Animals}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.MountsAndOtherAnimals}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -182,7 +182,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Tack}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.TackHarnessAndDrawnVehicles}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -199,7 +199,7 @@
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding PrimaryEquipmentType}"
-                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Vehicles}">
+                                                     Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.WaterborneVehicles}">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -282,7 +282,7 @@
                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
                                                     <Condition Binding="{Binding PrimaryEquipmentType}"
-                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Animals}"/>
+                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.MountsAndOtherAnimals}"/>
                                                     <Condition Binding="{Binding AnimalsEnumType}"
                                                          Value="{x:Static equipmentEnum:AnimalsEnum.Mounts}"/>
                                                 </MultiDataTrigger.Conditions>
@@ -295,7 +295,7 @@
                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
                                                     <Condition Binding="{Binding PrimaryEquipmentType}"
-                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Vehicles}"/>
+                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.WaterborneVehicles}"/>
                                                     <Condition Binding="{Binding VehiclesEnumType}"
                                                          Value="{x:Static equipmentEnum:VehiclesEnum.WaterCraft}"/>
                                                 </MultiDataTrigger.Conditions>
@@ -308,7 +308,7 @@
                                             <MultiDataTrigger>
                                                 <MultiDataTrigger.Conditions>
                                                     <Condition Binding="{Binding PrimaryEquipmentType}"
-                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.Vehicles}"/>
+                                                               Value="{x:Static equipmentEnum:PrimaryEquipmentEnum.WaterborneVehicles}"/>
                                                     <Condition Binding="{Binding VehiclesEnumType}"
                                                          Value="{x:Static equipmentEnum:VehiclesEnum.AirBorne}"/>
                                                 </MultiDataTrigger.Conditions>

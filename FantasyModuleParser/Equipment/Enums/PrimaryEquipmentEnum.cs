@@ -16,14 +16,14 @@ namespace FantasyModuleParser.Equipment.Enums
 		[Description("Tools")]
 		Tools = 3,
 
-		[Description("Mounts & Other Animals")]
-		Animals = 4,
+		[Description("Mounts and Other Animals")]
+		MountsAndOtherAnimals = 4,
 
-		[Description("Tack, Harness, and Drawn Vehicles")]
-		Tack = 5,
+		[Description("Tack Harness and Drawn Vehicles")]
+		TackHarnessAndDrawnVehicles = 5,
 
 		[Description("Waterborne Vehicles")]
-		Vehicles = 6,
+		WaterborneVehicles = 6,
 
 		[Description("Treasure")]
 		Treasure = 7
