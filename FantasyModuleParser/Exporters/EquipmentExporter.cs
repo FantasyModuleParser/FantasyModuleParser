@@ -669,6 +669,8 @@ namespace FantasyModuleParser.Exporters
 					return equipmentModel.AnimalsEnumType.GetDescription();
 				case PrimaryEquipmentEnum.Armor:
 					return equipmentModel.ArmorEnumType.GetDescription();
+				case PrimaryEquipmentEnum.TackHarnessAndDrawnVehicles:
+					return equipmentModel.TackEnumType.GetDescription();
 				case PrimaryEquipmentEnum.Tools:
 					return equipmentModel.ToolsEnumType.GetDescription();
 				case PrimaryEquipmentEnum.Treasure:
