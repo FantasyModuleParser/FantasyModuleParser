@@ -843,6 +843,86 @@ namespace FantasyModuleParser.Exporters
                     subchapterID = ++subchapterID;
                 }
                 #endregion
+                #region Equipment Reference Manual Section
+                if (moduleModel.IncludesEquipment)
+                {
+                    xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2")); // open <subchapters> <subchapter_**>
+                    xmlWriter.WriteStartElement("name"); // open <subchapters> <subchapter_*> <name>
+                    xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
+                    xmlWriter.WriteString("Equipment");
+                    xmlWriter.WriteEndElement(); // close </name>
+                    xmlWriter.WriteStartElement("refpages"); // open <refpages>
+                    xmlWriter.WriteStartElement("id-0001"); // open <refpages> <a1>
+                    xmlWriter.WriteStartElement("blocks"); // open <refpages> <a1> <blocks>
+                    xmlWriter.WriteStartElement("id-0001"); // open <refpages> <a1> <blocks> <id-0001>
+                    WriteBlockFormatting(xmlWriter);
+                    xmlWriter.WriteStartElement("p");
+                    xmlWriter.WriteString("The following Equipment are able to be found in " + moduleModel.Name + ".");
+                    xmlWriter.WriteStartElement("linklist");
+                    FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+                    foreach (EquipmentModel equipmentModel in FatEquipmentList)
+                    {
+                        xmlWriter.WriteStartElement("link");
+                        xmlWriter.WriteAttributeString("class", "item");
+                        xmlWriter.WriteAttributeString("recordname", WriteRecordNameEquipment(equipmentModel));
+                        xmlWriter.WriteString(equipmentModel.Name);
+                        xmlWriter.WriteEndElement();
+                    }
+                    xmlWriter.WriteEndElement(); // close </linklist>
+                    xmlWriter.WriteEndElement(); // close </p>
+                    xmlWriter.WriteEndElement(); // close </text>
+                    xmlWriter.WriteEndElement(); // close </id-0001>
+                    xmlWriter.WriteEndElement(); // close </blocks>
+                    WriteListLink(xmlWriter);
+                    xmlWriter.WriteStartElement("name"); // open <name>
+                    xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
+                    xmlWriter.WriteString(moduleModel.Name + " Equipment"); // <name type=string> * Equipment
+                    xmlWriter.WriteEndElement(); // close </name>
+                    xmlWriter.WriteEndElement(); // close </id-0001>
+                    FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+                    int equipID = 2;
+                    foreach (EquipmentModel equipmentModel in FatEquipmentList)
+                    {
+                        NPCController npcController = new NPCController();
+                        xmlWriter.WriteStartElement("id-" + equipID.ToString("D4")); // <open id-****>
+                        xmlWriter.WriteStartElement("blocks"); // <npc_name> <blocks>
+                        xmlWriter.WriteStartElement("id-0001"); // <npc_name> <blocks> <id-0001>
+                        WriteBlockFormatting(xmlWriter);
+                        xmlWriter.WriteRaw("<p><h>"); // <p><h>
+                        xmlWriter.WriteString(equipmentModel.Name);
+                        xmlWriter.WriteRaw("</h></p><p><i>"); // </h></p><p><i>
+                        if (string.IsNullOrEmpty(equipmentModel.Description))
+                        {
+                        }
+                        else
+                        {
+                            xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(equipmentModel.Description));
+                        }
+                        xmlWriter.WriteRaw("</i></p><p>");
+                        xmlWriter.WriteStartElement("link");  // <link>
+                        xmlWriter.WriteAttributeString("class", "item"); // <link class="power">
+                        xmlWriter.WriteAttributeString("recordname", WriteRecordNameEquipment(equipmentModel)); // <link class="power" recordname="reference.spelldata.*">
+                        xmlWriter.WriteRaw("<b>"); // <b>
+                        xmlWriter.WriteString("Item:");
+                        xmlWriter.WriteRaw("</b>"); // </b>
+                        xmlWriter.WriteEndElement(); // </link>
+                        xmlWriter.WriteString(equipmentModel.Name);
+                        xmlWriter.WriteRaw("</p>"); // </p>
+                        xmlWriter.WriteEndElement(); // </text>
+                        xmlWriter.WriteEndElement(); // </id-0001>
+                        xmlWriter.WriteEndElement(); // </blocks>
+                        WriteListLink(xmlWriter);
+                        xmlWriter.WriteStartElement("name"); // open <name>
+                        xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
+                        xmlWriter.WriteString(equipmentModel.Name); // <name type=string> NPC Name
+                        xmlWriter.WriteEndElement(); // close </name>
+                        xmlWriter.WriteEndElement(); // </id-****>
+                        equipID = ++equipID;
+                    }
+                    xmlWriter.WriteEndElement(); // </subchapter_**>
+                    subchapterID = ++subchapterID;
+                }
+                #endregion
                 xmlWriter.WriteEndElement(); // close </refpages>
                 xmlWriter.WriteEndElement(); // close </chapter_**>
                 xmlWriter.WriteEndElement(); // close </chapters>
@@ -1047,7 +1127,11 @@ namespace FantasyModuleParser.Exporters
 		{
 			return "reference.spelldata." + SpellExporter.SpellNameToXMLFormat(spellModel);
 		}
-		static private string WriteImageXML(NPCModel npcModel)
+        static private string WriteRecordNameEquipment(EquipmentModel equipmentModel)
+        {
+            return "reference.equipmentdata." + EquipmentExporter.EquipmentNameToXML(equipmentModel);
+        }
+        static private string WriteImageXML(NPCModel npcModel)
 		{
 			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
 		}
