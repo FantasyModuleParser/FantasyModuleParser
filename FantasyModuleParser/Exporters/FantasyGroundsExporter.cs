@@ -636,15 +636,49 @@ namespace FantasyModuleParser.Exporters
 
                 #region Reference Manual
                 xmlWriter.WriteStartElement("referencemanual");  /* <root> <reference> <referencemanual */
-                
-                
-                
-                
-                
-                
+                xmlWriter.WriteStartElement("name"); /* <root> <reference> <referencemanual <name> */
+                xmlWriter.WriteAttributeString("type", "string");
+                xmlWriter.WriteString(moduleModel.Name);
+                xmlWriter.WriteEndElement(); /* <root> <reference> <referencemanual <name> </name> */
+                xmlWriter.WriteStartElement("chapters"); /* <root> <reference> <referencemanual <chapters> */
+                xmlWriter.WriteStartElement("chapter_00"); /* <root> <reference> <referencemanual <chapters> <chapter_00> */
+                xmlWriter.WriteStartElement("name"); /* <root> <reference> <referencemanual <chapters> <chapter_00> <name> */
+                xmlWriter.WriteAttributeString("type", "string");
+                xmlWriter.WriteString(moduleModel.Name);
+                xmlWriter.WriteEndElement(); /* <root> <reference> <referencemanual <chapters> <chapter_00> <name> </name> */
+                xmlWriter.WriteStartElement("subchapters"); /* <root> <reference> <referencemanual <chapters> <chapter_00> <subchapters> */
+                int subchapterID = 0;
                 #region NPC Reference Manual Section
                 if (moduleModel.IncludeNPCs)
                 {
+                    xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2")); // open <subchapters> <subchapter_**>
+                    xmlWriter.WriteStartElement("name"); // open <subchapters> <subchapter_*> <name>
+                    xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
+                    xmlWriter.WriteString("NPCs");
+                    xmlWriter.WriteEndElement(); // close </name>
+                    xmlWriter.WriteStartElement("refpages"); // open <refpages>
+                    xmlWriter.WriteStartElement("id-0001"); // open <refpages> <a1>
+                    xmlWriter.WriteStartElement("blocks"); // open <refpages> <a1> <blocks>
+                    xmlWriter.WriteStartElement("id-0001"); // open <refpages> <a1> <blocks> <id-0001>
+                    WriteBlockFormatting(xmlWriter);
+                    xmlWriter.WriteStartElement("p");
+                    xmlWriter.WriteString("The following NPCs are able to be found in " + moduleModel.Name + ".");
+                    xmlWriter.WriteStartElement("linklist");
+                    FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+                    foreach (NPCModel npcModel in FatNPCList)
+                    {
+                        xmlWriter.WriteStartElement("link");
+                        xmlWriter.WriteAttributeString("class", "npc");
+                        xmlWriter.WriteAttributeString("recordname", WriteRecordNameNPC(npcModel));
+                        xmlWriter.WriteString(npcModel.NPCName);
+                        xmlWriter.WriteEndElement();
+                    }
+                    xmlWriter.WriteEndElement(); // close </linklist>
+                    xmlWriter.WriteEndElement(); // close </p>
+                    xmlWriter.WriteEndElement(); // close </text>
+                    xmlWriter.WriteEndElement(); // close </id-0001>
+                    xmlWriter.WriteEndElement(); // close </blocks>
+                    WriteListLink(xmlWriter);
                     xmlWriter.WriteStartElement("name"); // open <name>
                     xmlWriter.WriteAttributeString("type", "string"); // <name type=string>
                     xmlWriter.WriteString(moduleModel.Name + " NPCs"); // <name type=string> * NPCs
@@ -809,13 +843,7 @@ namespace FantasyModuleParser.Exporters
                     subchapterID = ++subchapterID;
                 }
                 #endregion
-                #region Equipment Reference Manual Section
-                if (moduleModel.IncludesEquipment)
-				{
-
-				}
-                    #endregion
-                    xmlWriter.WriteEndElement(); // close </refpages>
+                xmlWriter.WriteEndElement(); // close </refpages>
                 xmlWriter.WriteEndElement(); // close </chapter_**>
                 xmlWriter.WriteEndElement(); // close </chapters>
                 xmlWriter.WriteEndElement(); // Close </referencemanual>
@@ -998,8 +1026,23 @@ namespace FantasyModuleParser.Exporters
 		}
 		#endregion
 		#region Reference Manual XML
-		
-		
+		static private void WriteBlockFormatting(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("align"); /* <align> */
+			xmlWriter.WriteAttributeString("type", "string"); 
+			xmlWriter.WriteString("center"); 
+			xmlWriter.WriteEndElement(); /* <align> </align> */
+			xmlWriter.WriteStartElement("blocktype"); /* <blocktype> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString("singletext");
+			xmlWriter.WriteEndElement(); /* <blocktype> </blocktype> */
+			xmlWriter.WriteStartElement("text"); /* <text> */
+			xmlWriter.WriteAttributeString("type", "formattedtext");
+		}
+		static private string WriteRecordNameNPC(NPCModel npcModel)
+		{
+			return "reference.npcdata." + NPCExporter.NPCNameToXMLFormat(npcModel);
+		}
 		static private string WriteRecordNameSpell(SpellModel spellModel)
 		{
 			return "reference.spelldata." + SpellExporter.SpellNameToXMLFormat(spellModel);
@@ -1008,7 +1051,18 @@ namespace FantasyModuleParser.Exporters
 		{
 			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
 		}
-		
+		static private void WriteListLink(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("listlink"); /* <listlink> */
+			xmlWriter.WriteAttributeString("type", "windowreference");
+			xmlWriter.WriteStartElement("class"); /* <listlink> <class> */
+			xmlWriter.WriteString("reference_manualtextwide");
+			xmlWriter.WriteEndElement(); /* <listlink> <class> </class> */
+			xmlWriter.WriteStartElement("recordname"); /* <listlink> <recordname> */
+			xmlWriter.WriteString("..");
+			xmlWriter.WriteEndElement(); /* <listlink> <recordname> </recordname> */
+			xmlWriter.WriteEndElement(); /* <listlink> </listlink> */
+		}
 		static private void WriteLineBreak(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("br");
