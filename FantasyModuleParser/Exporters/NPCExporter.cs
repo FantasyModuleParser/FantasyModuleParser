@@ -4,7 +4,6 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using log4net;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,6 +16,68 @@ namespace FantasyModuleParser.Exporters
 	public class NPCExporter
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(NPCExporter));
+
+		public static void DatabaseXML_Root_Reference_Npcdata(XmlWriter xmlWriter, ModuleModel module)
+		{
+			if (module.IncludeNPCs)
+			{
+				xmlWriter.WriteStartElement("npcdata"); /* <root version="4.0"> <reference> <npcdata> */
+				NpcData_Category(xmlWriter, module);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		public static void NpcData_Category(XmlWriter xmlWriter, ModuleModel module)
+		{
+			foreach (CategoryModel category in module.Categories)
+			{
+				xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <npcdata> <category> */
+				xmlWriter.WriteAttributeString("name", category.Name);
+				xmlWriter.WriteAttributeString("baseicon", "0");
+				xmlWriter.WriteAttributeString("decalicon", "0");
+				NpcData_Category_NpcName(xmlWriter);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		public static void NpcData_Category_NpcName(XmlWriter xmlWriter)
+		{
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(moduleModel);
+			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+			foreach (NPCModel npcModel in FatNPCList)
+			{
+				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
+				/* TO DO: Make WriteModuleLocked into WriteNPCLocked */
+				CommonMethods.WriteModuleLocked(xmlWriter);
+				WriteAbilities(xmlWriter, npcModel);
+				WriteAC(xmlWriter, npcModel);
+				WriteActions(xmlWriter, npcModel);
+				WriteAlignment(xmlWriter, npcModel);
+				WriteConditionImmunities(xmlWriter, npcModel);
+				WriteCR(xmlWriter, npcModel);
+				/* TO DO: Fix errors in WriteDamage methods */
+				WriteDamageImmunities(xmlWriter, npcModel);
+				WriteDamageResistances(xmlWriter, npcModel);
+				WriteDamageVulnerabilities(xmlWriter, npcModel);
+				WriteHP(xmlWriter, npcModel);
+				WriteLairActions(xmlWriter, npcModel);
+				WriteLanguages(xmlWriter, npcModel);
+				WriteLegendaryActions(xmlWriter, npcModel);
+				WriteName(xmlWriter, npcModel);
+				WriteReactions(xmlWriter, npcModel);
+				WriteSavingThrows(xmlWriter, npcModel);
+				WriteSenses(xmlWriter, npcModel);
+				WriteSize(xmlWriter, npcModel);
+				WriteSkills(xmlWriter, npcModel);
+				WriteSpeed(xmlWriter, npcModel);
+				WriteText(xmlWriter, npcModel);
+				WriteToken(xmlWriter, npcModel, moduleModel);
+				WriteType(xmlWriter, npcModel);
+				WriteTraits(xmlWriter, npcModel);
+				WriteXP(xmlWriter, npcModel);
+				xmlWriter.WriteEndElement();
+			}
+		}
 
 		static private void NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
@@ -967,6 +1028,27 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("xp");
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(npcModel.XP);
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("damageimmunities");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(npcModel.UpdateDamageImmunities());
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("damageresistances");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(npcModel.UpdateDamageResistances());
+			xmlWriter.WriteEndElement();
+		}
+		private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("damagevulnerabilities");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteValue(npcModel.UpdateDamageVulnerabilities());
 			xmlWriter.WriteEndElement();
 		}
 	}

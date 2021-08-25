@@ -13,6 +13,53 @@ namespace FantasyModuleParser.Exporters
 {
 	class SpellExporter
 	{
+		public static void DatabaseXML_Root_Reference_Spelldata(XmlWriter xmlWriter, ModuleModel module)
+		{
+			if (module.IncludeSpells)
+			{
+				#region Spell Data
+				xmlWriter.WriteStartElement("spelldata");
+				Spelldata_Category(xmlWriter, module);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void Spelldata_Category(XmlWriter xmlWriter, ModuleModel module)
+		{
+			foreach (CategoryModel categoryModel in module.Categories)
+			{
+				xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <spelldata> <category> */
+				xmlWriter.WriteAttributeString("name", categoryModel.Name);
+				xmlWriter.WriteAttributeString("baseicon", "0");
+				xmlWriter.WriteAttributeString("decalicon", "0");
+				Spelldata_Category_SpellName(xmlWriter);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void Spelldata_Category_SpellName(XmlWriter xmlWriter)
+		{
+			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
+			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
+			foreach (SpellModel spellModel in FatSpellList)
+			{
+				xmlWriter.WriteStartElement(SpellNameToXMLFormat(spellModel));
+				/* To Do: Create SpellLocked method */
+				CommonMethods.WriteModuleLocked(xmlWriter);
+				WriteSpellName(xmlWriter, spellModel);
+				WriteSpellDescription(xmlWriter, spellModel);
+				WriteSpellLevel(xmlWriter, spellModel);
+				WriteSpellSchool(xmlWriter, spellModel);
+				WriteSpellRitual(xmlWriter, spellModel);
+				WriteSpellSource(xmlWriter, spellModel);
+				WriteCastingTime(xmlWriter, spellModel);
+				WriteSpellRange(xmlWriter, spellModel);
+				WriteSpellDuration(xmlWriter, spellModel);
+				WriteSpellComponents(xmlWriter, spellModel);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
 		static public void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			List<SpellModel> SpellList = GetFatSpellModelList(moduleModel);
