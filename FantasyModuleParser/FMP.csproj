@@ -541,6 +541,7 @@
     <Compile Include="Exporters\ImageExporter.cs" />
     <Compile Include="Exporters\NPCExporter.cs" />
     <Compile Include="Exporters\ReferenceExporter.cs" />
+    <Compile Include="Exporters\ReferenceManualExporter.cs" />
     <Compile Include="Exporters\SpellExporter.cs" />
     <Compile Include="Exporters\TableExporter.cs" />
     <Compile Include="Importer\Enums\ImportSpellState.cs" />

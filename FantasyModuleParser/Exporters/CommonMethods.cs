@@ -168,5 +168,13 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(actualLetter);
 			xmlWriter.WriteEndElement();
 		}
+	
+		public static void Xml_Name_Npcs(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString("NPCs");
+			xmlWriter.WriteEndElement();
+		}
 	}
 }

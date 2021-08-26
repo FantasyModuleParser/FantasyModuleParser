@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
@@ -16,6 +17,7 @@ namespace FantasyModuleParser.Exporters
 	public class NPCExporter
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(NPCExporter));
+		private readonly SettingsService settingsService;
 
 		public static void DatabaseXML_Root_Reference_Npcdata(XmlWriter xmlWriter, ModuleModel module)
 		{
@@ -39,6 +41,76 @@ namespace FantasyModuleParser.Exporters
 				Npclists_ByLevel(xmlWriter, module, FatNPCList);
 				Npclists_ByType(xmlWriter, module, FatNPCList);
 				xmlWriter.WriteEndElement();
+			}
+		}
+
+		public static void Save_NPC_Tokens(ModuleModel module, SettingsService settings)
+		{
+			SettingsModel settingsModel = settings.Load();
+
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
+			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+
+			foreach (NPCModel npcModel in FatNPCList)
+			{
+				if (module.IncludeTokens)
+				{
+					if (!string.IsNullOrEmpty(npcModel.NPCToken))
+					{
+						string Filename = Path.GetFileName(npcModel.NPCToken);
+						string NPCTokenFileName = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "tokens", Filename);
+						string NPCTokenDirectory = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "tokens");
+						if (Directory.Exists(NPCTokenDirectory))
+						{
+							if (File.Exists(NPCTokenFileName))
+							{
+								File.Delete(NPCTokenFileName);
+							}
+						}
+						else
+						{
+							Directory.CreateDirectory(NPCTokenDirectory);
+						}
+						File.Copy(npcModel.NPCToken, NPCTokenFileName);
+					}
+				}
+			}
+		}
+
+		public static void Save_NPC_Images(ModuleModel module, SettingsService settings)
+		{
+			SettingsModel settingsModel = settings.Load();
+
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
+			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+
+			foreach (NPCModel npcModel in FatNPCList)
+			{
+				if (module.IncludeImages)
+				{
+					if (!string.IsNullOrEmpty(npcModel.NPCImage))
+					{
+						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "").Replace(",", "");
+						string NPCImageFileName = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "images", Filename);
+						string NPCImageDirectory = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "images");
+						if (Directory.Exists(NPCImageDirectory))
+						{
+							if (File.Exists(NPCImageFileName))
+							{
+								File.Delete(NPCImageFileName);
+							}
+						}
+						else
+						{
+							Directory.CreateDirectory(NPCImageDirectory);
+						}
+						if (npcModel.NPCImage.StartsWith("file:///"))
+						{
+							npcModel.NPCImage = npcModel.NPCImage.Remove(0, 8);
+						}
+						File.Copy(npcModel.NPCImage, NPCImageFileName);
+					}
+				}
 			}
 		}
 
@@ -150,7 +222,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Npclists_Npcs(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("npcs");
-			Xml_Name_Npcs(xmlWriter);
+			CommonMethods.Xml_Name_Npcs(xmlWriter);
 			Npclists_Npcs_Index(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
@@ -161,14 +233,6 @@ namespace FantasyModuleParser.Exporters
 			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0001", "reference.npclists.byletter@" + module.Name, "NPCs - Alphabetical Index");
 			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0002", "reference.npclists.bylevel@" + module.Name, "NPCs - Challenge Rating Index");
 			CommonMethods.WriteIDLinkList.(xmlWriter, module, "id-0003", "reference.npclists.bytype@" + module.Name, "NPCs - Class Index");
-			xmlWriter.WriteEndElement();
-		}
-
-		private static void Xml_Name_Npcs(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString("NPCs");
 			xmlWriter.WriteEndElement();
 		}
 
@@ -217,6 +281,7 @@ namespace FantasyModuleParser.Exporters
 				ProcessNPCListByLetter(xmlWriter, moduleModel, actualLetter, npcList);
 			}
 		}
+		
 		private static void ProcessNPCListByLetter(XmlWriter xmlWriter, ModuleModel moduleModel, string actualLetter, List<NPCModel> NPCList)
 		{
 			xmlWriter.WriteStartElement("typeletter" + actualLetter);
@@ -233,7 +298,6 @@ namespace FantasyModuleParser.Exporters
 		}
 
 		
-
 		private static void Xml_Description_ActualCR(XmlWriter xmlWriter, string actualCR)
 		{
 			xmlWriter.WriteStartElement("description");
@@ -308,11 +372,13 @@ namespace FantasyModuleParser.Exporters
 			string name = npcModel.NPCName.ToLower();
 			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
 		}
+		
 		private static string NPCTypeToXMLFormat(string actualType)
 		{
 			string npcType = actualType.ToLower();
 			return npcType.Replace(" ", "");
 		}
+		
 		static public void SortNPCListByCategory(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
@@ -345,6 +411,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <source> </source> */
 			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> </npcModel.NPCName> */
 		}
+		
 		static public void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			int ChaBonus = -5 + (npcModel.AttributeCha / 2);

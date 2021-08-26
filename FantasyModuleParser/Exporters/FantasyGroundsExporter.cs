@@ -174,74 +174,16 @@ namespace FantasyModuleParser.Exporters
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));
 			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
-			/// <summary>
-			///  Names all token images to match the NPC name
-			/// </summary>
-			foreach (NPCModel npcModel in FatNPCList)
-            {
-				if (moduleModel.IncludeTokens)
-                {
-					#region Token Data
-					if (!string.IsNullOrEmpty(npcModel.NPCToken))
-					{
-						string Filename = Path.GetFileName(npcModel.NPCToken);
-						string NPCTokenFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "tokens", Filename);
-						string NPCTokenDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "tokens");
-						if (Directory.Exists(NPCTokenDirectory))
-						{
-							if (File.Exists(NPCTokenFileName))
-							{
-								File.Delete(NPCTokenFileName);
-							}
-						}
-						else
-						{
-							Directory.CreateDirectory(NPCTokenDirectory);
-						}
-						File.Copy(npcModel.NPCToken, NPCTokenFileName);
-					}
-					#endregion
-				}
-            }
-			/// <summary>
-			/// Names all images to match NPC name
-			/// </summary>
-			foreach (NPCModel npcModel in FatNPCList)
-			{
-				if (moduleModel.IncludeImages)
-                {
-					#region Image Data
-					if (!string.IsNullOrEmpty(npcModel.NPCImage))
-					{
-						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "").Replace(",", "");
-						string NPCImageFileName = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images", Filename);
-						string NPCImageDirectory = Path.Combine(settingsService.Load().FGModuleFolderLocation, moduleModel.ModFilename, "images");
-						if (Directory.Exists(NPCImageDirectory))
-						{
-							if (File.Exists(NPCImageFileName))
-							{
-								File.Delete(NPCImageFileName);
-							}
-						}
-						else
-						{
-							Directory.CreateDirectory(NPCImageDirectory);
-						}
-						if (npcModel.NPCImage.StartsWith("file:///"))
-						{
-							npcModel.NPCImage = npcModel.NPCImage.Remove(0, 8);
-						}
-						File.Copy(npcModel.NPCImage, NPCImageFileName);
-					}
-					#endregion
-				}
-			}
+
+			NPCExporter.Save_NPC_Tokens(moduleModel, settingsService);
+			NPCExporter.Save_NPC_Images(moduleModel, settingsService);
 
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
             {
 				DatabaseExporter.DatabaseXML(xmlWriter, module, FatEquipmentList, sw);
-            }
+				return sw.ToString();
+			}
         }
 
         #region NPC Methods for Reference Data XML
