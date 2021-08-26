@@ -100,5 +100,73 @@ namespace FantasyModuleParser.Exporters
 			string categoryName = categoryModel.Name;
 			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
 		}
+
+		public static void WriteIDLinkList(XmlWriter xmlWriter, ModuleModel moduleModel, string id, string listId, string listDescription)
+		{
+			xmlWriter.WriteStartElement(id);
+			WriteIDLinkList_Linklist(xmlWriter, listId);
+			WriteIDLinkList_Name(xmlWriter, listDescription);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void WriteIDLinkList_Name(XmlWriter xmlWriter, string listDescription)
+		{
+			xmlWriter.WriteStartElement("name");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(listDescription);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void WriteIDLinkList_Linklist(XmlWriter xmlWriter, string listId)
+		{
+			xmlWriter.WriteStartElement("listlink");
+			xmlWriter.WriteAttributeString("type", "windowreference");
+			WriteIDLinkList_Linklist_Class(xmlWriter);
+			WriteIDLinkList_Linklist_Recordname(xmlWriter, listId);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void WriteIDLinkList_Linklist_Recordname(XmlWriter xmlWriter, string listId)
+		{
+			xmlWriter.WriteStartElement("recordname");
+			xmlWriter.WriteString(listId);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void WriteIDLinkList_Linklist_Class(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteString("reference_colindex");
+			xmlWriter.WriteEndElement();
+		}
+
+		public static void Xml_Description_Field_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("description");
+			Xml_Field_Name(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Field_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("field");
+			xmlWriter.WriteString("name");
+			xmlWriter.WriteEndElement();
+		}
+
+		public static void Xml_Source_TypeNumber_Blank(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("source");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteEndElement();
+		}
+
+		public static void Xml_Description_ActualLetter(XmlWriter xmlWriter, string actualLetter)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(actualLetter);
+			xmlWriter.WriteEndElement();
+		}
 	}
 }

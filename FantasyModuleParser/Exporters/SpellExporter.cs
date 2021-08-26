@@ -59,149 +59,242 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 
-		static public void SpellListByClass(XmlWriter xmlWriter, ModuleModel moduleModel)
+		public static void DatabaseXML_Root_Reference_Spelllists(XmlWriter xmlWriter, ModuleModel module)
+		{
+			if (module.IncludeSpells)
+			{
+				#region Spell Lists
+				xmlWriter.WriteStartElement("spelllists");
+				Reference_SpellLists_Spells(xmlWriter, module);
+				xmlWriter.WriteEndElement();
+				#endregion
+			}
+		}
+
+		private static void Reference_SpellLists_Spells(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("spells");
+			Xml_SpellLists_Spells_Name(xmlWriter);
+			SpellLists_Spells_Index(xmlWriter, module);
+			Spells__Index(xmlWriter, module);
+			SpellListByClass(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Spells__Index(XmlWriter xmlWriter, ModuleModel module)
+		{
+			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(module);
+			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
+
+			xmlWriter.WriteStartElement("_index_");
+			Xml_Description_SpellIndex(xmlWriter);
+			Spells__Index_Groups(xmlWriter, module, FatSpellList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Spells__Index_Groups(XmlWriter xmlWriter, ModuleModel module, List<SpellModel> FatSpellList)
+		{
+			xmlWriter.WriteStartElement("groups");
+			CreateSpellReferenceByFirstLetter(xmlWriter, module, FatSpellList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Description_SpellIndex(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString("Spell Index");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void SpellLists_Spells_Index(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("index");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0001", "reference.spelllists._index_@" + module.Name, "(Index)");
+			int spellListId = 2;
+			foreach (string castByValue in GetSortedSpellCasterList(module))
+			{
+				string referenceId = "reference.spellists.";
+				referenceId += castByValue.Replace(" ", "").Replace("(", "").Replace(")", "").ToLower();
+				referenceId += "@" + module.Name;
+				CommonMethods.WriteIDLinkList(xmlWriter, module, "id-" + spellListId.ToString("D4"), referenceId, castByValue);
+				spellListId++;
+			}
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_SpellLists_Spells_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString("Spells");
+			xmlWriter.WriteEndElement();
+		}
+
+		static public void SpellListByClass(XmlWriter xmlWriter, ModuleModel module)
 		{
 			List<SpellModel> SpellList = GetFatSpellModelList(moduleModel);
 			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
-			//var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
-			foreach (string castByValue in GetSortedSpellCasterList(moduleModel))
+			foreach (string castByValue in GetSortedSpellCasterList(module))
 			{
-				xmlWriter.WriteStartElement(castByValue.ToLower().Replace("(", "").Replace(")", "").Replace(" ", ""));  /* <castby> */
-				xmlWriter.WriteStartElement("description"); /* <castby> <description> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString(castByValue + " Spells");
-				xmlWriter.WriteEndElement(); /* <castby> <description> </description> */
-				xmlWriter.WriteStartElement("groups"); /* <castby> <groups> */
-				SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.CompareTo(spellTwo.SpellLevel));
-				var LevelList = SpellList.GroupBy(x => (int)x.SpellLevel).Select(x => x.ToList()).ToList();
-
-				foreach (SpellModel spellModel in SpellList)
-				{
-					if (spellModel.CastBy.Contains(castByValue))
-					{
-						foreach (List<SpellModel> levelList in LevelList)
-						{
-							xmlWriter.WriteStartElement("level" + (int)levelList[0].SpellLevel); /* <castby> <groups> <level#> */
-							xmlWriter.WriteStartElement("description"); /* <castby> <groups> <level#> <description> */
-							xmlWriter.WriteAttributeString("type", "string");
-							if (levelList[0].SpellLevel == Spells.Enums.SpellLevel.Cantrip)
-							{
-								xmlWriter.WriteString("Cantrips");
-							}
-							else
-							{
-								xmlWriter.WriteString("Level " + (int)levelList[0].SpellLevel + " Spells");
-							}
-							xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <description> </description> */
-							xmlWriter.WriteStartElement("index");   /* <castby> <groups> <level#> <index> */
-							foreach (SpellModel spellLevelList in levelList)
-							{
-								xmlWriter.WriteStartElement(spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
-								/* <castby> <groups> <level#> <index> <spellname> */
-								xmlWriter.WriteStartElement("link"); /* <castby> <groups> <level#> <index> <spellname> <link> */
-								xmlWriter.WriteAttributeString("type", "windowreference");
-								xmlWriter.WriteStartElement("class");  /* <castby> <groups> <level#> <index> <spellname> <link> <class> */
-								xmlWriter.WriteString("reference_spell");
-								xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <index> <spellname> <link> <class> </class> */
-								xmlWriter.WriteStartElement("recordname"); /* <castby> <groups> <level#> <index> <spellname> <link> <recordname> */
-								if (moduleModel.IsLockedRecords)
-								{
-									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", "") + "@" + moduleModel.Name);
-								}
-								else
-								{
-									xmlWriter.WriteString("reference.spelldata." + spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
-								}
-								xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <index> <spellname> <link> <recordname> </recordname> */
-								xmlWriter.WriteStartElement("description"); /* <castby> <groups> <level#> <index> <spellname> <link> <description> */
-								xmlWriter.WriteStartElement("field"); /* <castby> <groups> <level#> <index> <spellname> <link> <description> <field> */
-								xmlWriter.WriteString("name");
-								xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <index> <spellname> <link> <description> <field> </field> */
-								xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <index> <spellname> <link> <description> </description> */
-								xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <index> <spellname> <link> </link> */
-								xmlWriter.WriteStartElement("source"); /* <castby> <groups> <level#> <index> <spellname> <source> */
-								xmlWriter.WriteString("Class " + castByValue);
-								xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <index> <spellname> <source> </source> */
-								xmlWriter.WriteEndElement(); /* <castby> <groups> <level#> <index> <spellname> </spellname> */
-							}
-							xmlWriter.WriteEndElement();  /* <castby> <groups> <level#> <index> </index> */
-							xmlWriter.WriteEndElement();  /* <castby> <groups> <level#> </level#> */
-						}
-					}
-				}
-				xmlWriter.WriteEndElement();  /* <castby> <groups> </groups> */
-				xmlWriter.WriteEndElement();  /* <castby> </castby> */
+				xmlWriter.WriteStartElement(castByValue.ToLower().Replace("(", "").Replace(")", "").Replace(" ", ""));
+				CastyBy_Description(xmlWriter, castByValue);
+				CastBy_Groups(xmlWriter, module, SpellList, castByValue);
+				xmlWriter.WriteEndElement();
 			}
 		}
-		static public void SpellLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<SpellModel> SpellList)
+
+		private static void CastBy_Groups(XmlWriter xmlWriter, ModuleModel moduleModel, List<SpellModel> SpellList, string castByValue)
+		{
+			xmlWriter.WriteStartElement("groups");
+			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellLevel.CompareTo(spellTwo.SpellLevel));
+			var LevelList = SpellList.GroupBy(x => (int)x.SpellLevel).Select(x => x.ToList()).ToList();
+
+			foreach (SpellModel spellModel in SpellList)
+			{
+				if (spellModel.CastBy.Contains(castByValue))
+				{
+					CastBy_Groups_Level(xmlWriter, moduleModel, castByValue, LevelList);
+				}
+			}
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void CastBy_Groups_Level(XmlWriter xmlWriter, ModuleModel moduleModel, string castByValue, List<List<SpellModel>> LevelList)
+		{
+			foreach (List<SpellModel> levelList in LevelList)
+			{
+				xmlWriter.WriteStartElement("level" + (int)levelList[0].SpellLevel);
+				Description_SpellLevel(xmlWriter, levelList);
+				CastBy_Groups_Level_Index(xmlWriter, moduleModel, castByValue, levelList);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void CastBy_Groups_Level_Index(XmlWriter xmlWriter, ModuleModel moduleModel, string castByValue, List<SpellModel> levelList)
+		{
+			xmlWriter.WriteStartElement("index");
+			CastBy_Groups_Level_Index_SpellName(xmlWriter, moduleModel, castByValue, levelList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void CastBy_Groups_Level_Index_SpellName(XmlWriter xmlWriter, ModuleModel moduleModel, string castByValue, List<SpellModel> levelList)
+		{
+			foreach (SpellModel spell in levelList)
+			{
+				xmlWriter.WriteStartElement(spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
+				SpellName_Link(xmlWriter, moduleModel, spell);
+				SpellName_Source(xmlWriter, castByValue);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void SpellName_Source(XmlWriter xmlWriter, string castByValue)
+		{
+			xmlWriter.WriteStartElement("source");
+			xmlWriter.WriteString("Class " + castByValue);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void SpellName_Link(XmlWriter xmlWriter, ModuleModel moduleModel, SpellModel spell)
+		{
+			xmlWriter.WriteStartElement("link");
+			xmlWriter.WriteAttributeString("type", "windowreference");
+			SpellName_Link_Class(xmlWriter);
+			SpellName_Link_RecordName(xmlWriter, moduleModel, spell);
+			CommonMethods.Xml_Description_Field_Name(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void SpellName_Link_RecordName(XmlWriter xmlWriter, ModuleModel moduleModel, SpellModel spell)
+		{
+			xmlWriter.WriteStartElement("recordname");
+			xmlWriter.WriteString("reference.spelldata." + SpellNameToXMLFormat(spell) + "@" + moduleModel.Name);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void SpellName_Link_Class(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteString("reference_spell");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Description_SpellLevel(XmlWriter xmlWriter, List<SpellModel> levelList)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			if (levelList[0].SpellLevel == Spells.Enums.SpellLevel.Cantrip)
+			{
+				xmlWriter.WriteString("Cantrips");
+			}
+			else
+			{
+				xmlWriter.WriteString("Level " + (int)levelList[0].SpellLevel + " Spells");
+			}
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void CastyBy_Description(XmlWriter xmlWriter, string castByValue)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(castByValue + " Spells");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void SpellLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<SpellModel> SpellList)
 		{
 			foreach (SpellModel spell in SpellList)
 			{
-				xmlWriter.WriteStartElement(SpellNameToXMLFormat(spell)); /* <spellname> */
-				xmlWriter.WriteStartElement("link"); /* <spellname> <link> */
-				xmlWriter.WriteAttributeString("type", "windowreference");
-				xmlWriter.WriteStartElement("class"); /* <spellname> <link> <class> */
-				xmlWriter.WriteString("reference_spell");
-				xmlWriter.WriteEndElement(); /* <spellname> <link> <class> </class>*/
-				xmlWriter.WriteStartElement("recordname"); /* <spellname> <link> <recordname> */
-				if (moduleModel.IsLockedRecords)
-				{
-					xmlWriter.WriteString("reference.spelldata." + SpellNameToXMLFormat(spell) + '@' + moduleModel.Name);
-				}
-				else
-				{
-					xmlWriter.WriteString("reference.spelldata." + SpellNameToXMLFormat(spell));
-				}
-				xmlWriter.WriteEndElement(); /* <spellname>  <link> <recordname> </recordname> */
-				xmlWriter.WriteStartElement("description"); /* <spellname> <link> <description> */
-				xmlWriter.WriteStartElement("field"); /* <spellname> <link> <description> <field> */
-				xmlWriter.WriteString("name");
-				xmlWriter.WriteEndElement(); /* <spellname> <link> <description> <field> </field> */
-				xmlWriter.WriteEndElement(); /* <spellname> <link> <description> </description> */
-				xmlWriter.WriteEndElement(); /* <spellname> <link> </link> */
-				xmlWriter.WriteStartElement("source"); /* <spellname> <source> */
-				xmlWriter.WriteAttributeString("type", "number");
-				xmlWriter.WriteEndElement(); /* <spellname> <source> </source> */
-				xmlWriter.WriteEndElement(); /* <spellname> </spellname> */
+				xmlWriter.WriteStartElement(SpellNameToXMLFormat(spell));
+				SpellName_Link(xmlWriter, moduleModel, spell);
+				CommonMethods.Xml_Source_TypeNumber_Blank(xmlWriter);
+				xmlWriter.WriteEndElement();
 			}
 		}
-		static public void CreateSpellReferenceByFirstLetter(XmlWriter xmlWriter, ModuleModel moduleModel, List<SpellModel> SpellList)
+
+		private static void CreateSpellReferenceByFirstLetter(XmlWriter xmlWriter, ModuleModel module, List<SpellModel> SpellList)
 		{
 			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			var AlphabetList = SpellList.GroupBy(x => x.SpellName.ToUpper()[0]).Select(x => x.ToList()).ToList();
 			foreach (List<SpellModel> spellList in AlphabetList)
 			{
 				string actualLetter = spellList[0].SpellName[0] + "";
-				ProcessSpellListByLetter(xmlWriter, moduleModel, actualLetter, spellList);
+				ProcessSpellListByLetter(xmlWriter, module, actualLetter, spellList);
 			}
 		}
-		static public void ProcessSpellListByLetter(XmlWriter xmlWriter, ModuleModel moduleModel, string actualLetter, List<SpellModel> SpellList)
+		
+		private static void ProcessSpellListByLetter(XmlWriter xmlWriter, ModuleModel module, string actualLetter, List<SpellModel> SpellList)
 		{
-			xmlWriter.WriteStartElement("typeletter" + actualLetter); /* <typeletter_*> */
-			xmlWriter.WriteStartElement("description"); /* <typeletter_*> <description> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(actualLetter);
-			xmlWriter.WriteEndElement(); /* <typeletter_*> <description> </description> */
-			xmlWriter.WriteStartElement("index"); /* <typeletter_*> <index> */
-			SpellLocation(xmlWriter, moduleModel, SpellList); /* See Line 90 */
-			xmlWriter.WriteEndElement(); /* <typeletter_*> <index> </index> */
-			xmlWriter.WriteEndElement(); /* <typeletter_*> </typeletter_*> */
+			xmlWriter.WriteStartElement("typeletter" + actualLetter);
+			CommonMethods.Xml_Description_ActualLetter(xmlWriter, actualLetter);
+			Xml_Index_SpellLocation(xmlWriter, module, SpellList);
+			xmlWriter.WriteEndElement();
 		}
-		static public HashSet<string> GenerateSpellCasterList(ModuleModel moduleModel)
+
+		private static void Xml_Index_SpellLocation(XmlWriter xmlWriter, ModuleModel module, List<SpellModel> SpellList)
+		{
+			xmlWriter.WriteStartElement("index");
+			SpellLocation(xmlWriter, module, SpellList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static HashSet<string> GenerateSpellCasterList(ModuleModel module)
 		{
 			HashSet<string> casterList = new HashSet<string>();
 
-			if (moduleModel != null && moduleModel.Categories != null)
+			if (module != null && module.Categories != null)
 			{
-				foreach (CategoryModel categoryModel in moduleModel.Categories)
+				foreach (CategoryModel category in module.Categories)
 				{
-					if (categoryModel.SpellModels != null)
+					if (category.SpellModels != null)
 					{
-						foreach (SpellModel spellModel in categoryModel.SpellModels)
+						foreach (SpellModel spell in category.SpellModels)
 						{
-							if (!String.IsNullOrWhiteSpace(spellModel.CastBy))
+							if (!string.IsNullOrWhiteSpace(spell.CastBy))
 							{
-								foreach (string castByValue in spellModel.CastBy.Split(','))
+								foreach (string castByValue in spell.CastBy.Split(','))
 								{
 									casterList.Add(castByValue.Trim());
 								}
@@ -212,35 +305,39 @@ namespace FantasyModuleParser.Exporters
 			}
 			return casterList;
 		}
-		static public IEnumerable<string> GetSortedSpellCasterList(ModuleModel moduleModel)
+		
+		private static IEnumerable<string> GetSortedSpellCasterList(ModuleModel module)
 		{
-			return GenerateSpellCasterList(moduleModel).OrderBy(item => item);
+			return GenerateSpellCasterList(module).OrderBy(item => item);
 		}
-		static public List<SpellModel> GetFatSpellModelList(ModuleModel moduleModel)
+		
+		static public List<SpellModel> GetFatSpellModelList(ModuleModel module)
 		{
-			List<SpellModel> spellModels = new List<SpellModel>();
-			if (moduleModel.Categories == null)
+			List<SpellModel> spells = new List<SpellModel>();
+			if (module.Categories == null)
 			{
-				return spellModels;
+				return spells;
 			}
-			foreach (CategoryModel categoryModel in moduleModel.Categories)
+			foreach (CategoryModel category in module.Categories)
 			{
-				if (categoryModel.SpellModels == null)
+				if (category.SpellModels == null)
 				{
-					return spellModels;
+					return spells;
 				}
-				foreach (SpellModel spellModel in categoryModel.SpellModels)
+				foreach (SpellModel spell in category.SpellModels)
 				{
-					spellModels.Add(spellModel);
+					spells.Add(spell);
 				}
 			}
-			return spellModels;
+			return spells;
 		}
+		
 		static public string SpellNameToXMLFormat(SpellModel spellModel)
 		{
 			string name = spellModel.SpellName.ToLower();
 			return name.Replace(" ", "_").Replace(",", "").Replace("'", "").Replace("(", "").Replace(")", "").Replace("&", "");
 		}
+
 		static public void WriteSpellName(XmlWriter xmlWriter, SpellModel spellModel)
 		{
 			xmlWriter.WriteStartElement("name"); /* <name> */

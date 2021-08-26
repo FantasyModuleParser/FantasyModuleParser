@@ -240,7 +240,7 @@ namespace FantasyModuleParser.Exporters
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
             {
-				DatabaseExporter.DatabaseXML(xmlWriter, module, npcModel, FatEquipmentList);
+				DatabaseExporter.DatabaseXML(xmlWriter, module, FatEquipmentList, sw);
             }
         }
 
@@ -277,44 +277,10 @@ namespace FantasyModuleParser.Exporters
 		{
 			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
 		}
-		static private void WriteListLink(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("listlink"); /* <listlink> */
-			xmlWriter.WriteAttributeString("type", "windowreference");
-			xmlWriter.WriteStartElement("class"); /* <listlink> <class> */
-			xmlWriter.WriteString("reference_manualtextwide");
-			xmlWriter.WriteEndElement(); /* <listlink> <class> </class> */
-			xmlWriter.WriteStartElement("recordname"); /* <listlink> <recordname> */
-			xmlWriter.WriteString("..");
-			xmlWriter.WriteEndElement(); /* <listlink> <recordname> </recordname> */
-			xmlWriter.WriteEndElement(); /* <listlink> </listlink> */
-		}
-		static private void WriteLineBreak(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("br");
-			xmlWriter.WriteEndElement();
-		}
 		#endregion
 		#region Common methods
 		
-		static private void WriteIDLinkList(XmlWriter xmlWriter, ModuleModel moduleModel, string id, string listId, string listDescription)
-		{
-			xmlWriter.WriteStartElement(id); /* <id> */
-			xmlWriter.WriteStartElement("listlink"); /* <id> <listlink> */
-			xmlWriter.WriteAttributeString("type", "windowreference");
-			xmlWriter.WriteStartElement("class"); /* <id> <listlink> <class> */
-			xmlWriter.WriteString("reference_colindex");
-			xmlWriter.WriteEndElement(); /* <id> <listlink> <class> </class> */
-			xmlWriter.WriteStartElement("recordname"); /* <id> <listlink> <recordname> */
-			xmlWriter.WriteString(listId);				
-			xmlWriter.WriteEndElement(); /* <id> <listlink> <recordname> </recordname> */
-			xmlWriter.WriteEndElement(); /* <id> <listlink> </listlink> */
-			xmlWriter.WriteStartElement("name"); /* <id> <name> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(listDescription);
-			xmlWriter.WriteEndElement(); /* <id> <name> </name> */
-			xmlWriter.WriteEndElement(); /* <id> </id> */
-		}
+		
 		static private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
 		{
 			string libname = moduleModel.Name.ToLower();

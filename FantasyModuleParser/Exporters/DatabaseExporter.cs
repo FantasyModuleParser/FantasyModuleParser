@@ -2,17 +2,18 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace FantasyModuleParser.Exporters
 {
 	public class DatabaseExporter
 	{
-        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, List<EquipmentModel> FatEquipmentList)
+        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, List<EquipmentModel> FatEquipmentList, StringWriter sw)
 		{
 			xmlWriter.WriteStartDocument();
 			DatabaseXML_Comments(xmlWriter);
-			DatabaseXML_Root(xmlWriter, module, npcModel, FatEquipmentList);
+			DatabaseXML_Root(xmlWriter, module, npcModel, FatEquipmentList, npc);
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
 			return sw.ToString();
@@ -29,126 +30,11 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("root"); // <root>
 			xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
 			DatabaseXML_Root_Image(xmlWriter, module, npcModel);
-			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module, FatEquipmentList);
-
-			
-			if (moduleModel.IncludeNPCs)
-			{
-				#region NPC Lists
-				xmlWriter.WriteStartElement("npclists"); /* <root version="4.0"> <reference> <npclists> */
-				xmlWriter.WriteStartElement("npcs"); /* <root version="4.0"> <reference> <npclists> <npcs> */
-				xmlWriter.WriteStartElement("name"); /* <root version="4.0"> <reference> <npclists> <npcs> <name> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString("NPCs");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <name> </name> */
-				xmlWriter.WriteStartElement("index"); /* <root version="4.0"> <reference> <npclists> <npcs> <index> */
-				WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.npclists.byletter@" + moduleModel.Name, "NPCs - Alphabetical Index");
-				WriteIDLinkList(xmlWriter, moduleModel, "id-0002", "reference.npclists.bylevel@" + moduleModel.Name, "NPCs - Challenge Rating Index");
-				WriteIDLinkList(xmlWriter, moduleModel, "id-0003", "reference.npclists.bytype@" + moduleModel.Name, "NPCs - Class Index");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> <index> </index> */
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <npcs> </npcs> */
-				xmlWriter.WriteStartElement("byletter"); /* <root version="4.0"> <reference> <npclists> <byletter> */
-				xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <npclists> <byletter> <description> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString("NPCs");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <byletter> <description> </description> */
-				xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <npclists> <byletter> <groups> */
-				NPCExporter.CreateReferenceByFirstLetter(xmlWriter, moduleModel, FatNPCList);
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <byletter> <groups> </groups> */
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <byletter> </byletter> */
-				xmlWriter.WriteStartElement("bylevel"); /* <root version="4.0"> <reference> <npclists> <bylevel> */
-				xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <npclists> <bylevel> <description> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString("NPCs");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bylevel> <description> </description> */
-				xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <npclists> <bylevel> <groups> */
-				NPCExporter.CreateReferenceByCR(xmlWriter, moduleModel, FatNPCList);
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bylevel> <groups> </groups> */
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bylevel> </bylevel> */
-				xmlWriter.WriteStartElement("bytype"); /* <root version="4.0"> <reference> <npclists> <bytype> */
-				xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <npclists> <bytype> <description> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString("NPCs");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bytype> <description> </description> */
-				xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <npclists> <bytype> <groups> */
-				NPCExporter.CreateReferenceByType(xmlWriter, moduleModel, FatNPCList);
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bytype> <groups> </groups> */
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> <bytype> </bytype> */
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <npclists> </npclists> */
-				#endregion
-			}
-			if (moduleModel.IncludeSpells)
-			{
-				#region Spell Lists
-				xmlWriter.WriteStartElement("spelllists"); /* <root version="4.0"> <reference> <spelllists> */
-				xmlWriter.WriteStartElement("spells"); /* <root version="4.0"> <reference> <spelllists> <spells> */
-				xmlWriter.WriteStartElement("name"); /* <root version="4.0"> <reference> <spelllists> <spells> <name> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString("Spells");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <name> </name> */
-				xmlWriter.WriteStartElement("index"); /* <root version="4.0"> <reference> <spelllists> <spells> <index> */
-				WriteIDLinkList(xmlWriter, moduleModel, "id-0001", "reference.spelllists._index_@" + moduleModel.Name, "(Index)");
-				int spellListId = 2;
-				foreach (string castByValue in SpellExporter.GetSortedSpellCasterList(moduleModel))
-				{
-					string referenceId = "reference.spellists.";
-					referenceId += castByValue.Replace(" ", "").Replace("(", "").Replace(")", "").ToLower();
-					referenceId += "@" + moduleModel.Name;
-					WriteIDLinkList(xmlWriter, moduleModel, "id-" + spellListId.ToString("D4"), referenceId, castByValue);
-
-					spellListId++;
-				}
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <index> <text> </text> */
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <index> </index> */
-
-				#region Spell Index
-				xmlWriter.WriteStartElement("_index_"); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> */
-				xmlWriter.WriteStartElement("description"); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <description> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString("Spell Index");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <description> </description> */
-				xmlWriter.WriteStartElement("groups"); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <groups> */
-				SpellExporter.CreateSpellReferenceByFirstLetter(xmlWriter, moduleModel, FatSpellList);
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> <groups> </groups> */
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelllists> <spells> <_index_> </index> */
-				#endregion
-				SpellExporter.SpellListByClass(xmlWriter, moduleModel);
-				xmlWriter.WriteEndElement(); // Close </spelllists>
-				#endregion
-			}
-			if (moduleModel.IncludeTables)
-			{
-				#region Tables Data
-				xmlWriter.WriteStartElement("tables"); /* <root> <reference> <tables> */
-				foreach (CategoryModel categoryModel in moduleModel.Categories)
-				{
-					xmlWriter.WriteStartElement("category"); /* <root> <reference> <tables> <category> */
-					xmlWriter.WriteAttributeString("name", categoryModel.Name);
-					xmlWriter.WriteAttributeString("baseicon", "0");
-					xmlWriter.WriteAttributeString("decalicon", "0");
-
-					//Now, write out each NPC with NPC Name
-					foreach (TableModel tableModel in FatTableList)
-					{
-						xmlWriter.WriteStartElement(TableExporter.TableNameToXMLFormat(tableModel));
-						/* <root> <reference> <tables> <category> <tableModel.Name> */
-						TableExporter.WriteTableLocked(xmlWriter, tableModel);
-						TableExporter.WriteTableName(xmlWriter, tableModel);
-						TableExporter.WriteTableDescription(xmlWriter, tableModel);
-						TableExporter.WriteTableOutput(xmlWriter, tableModel);
-						TableExporter.WriteTableNotes(xmlWriter, tableModel);
-						TableExporter.WriteTableHideRolls(xmlWriter, tableModel);
-						TableExporter.WriteTableRollModifier(xmlWriter, tableModel);
-						TableExporter.WriteTableRollDice(xmlWriter, tableModel);
-						TableExporter.WriteColumnLabels(xmlWriter, tableModel);
-						TableExporter.WriteResultsColumn(xmlWriter, tableModel);
-						xmlWriter.WriteEndElement(); /* <root> <reference> <tables> <category> <tableModel.Name> </tableModel.Name>*/
-					}
-					xmlWriter.WriteEndElement(); /* <root> <reference> <tables> <category> </category>*/
-				}
-				xmlWriter.WriteEndElement(); /* <root> <reference> <tables> </tables>*/
-				#endregion
-			}
+			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module, FatEquipmentList, npcModel);
+			NPCExporter.DatabaseXML_Root_Reference_NPClists(xmlWriter, module);
+			SpellExporter.DatabaseXML_Root_Reference_Spelllists(xmlWriter, module);
+			TableExporter.DatabaseXML_Root_Reference_Tables(xmlWriter, module);
+		}
 
 			#region Reference Manual
 			xmlWriter.WriteStartElement("referencemanual");  /* <root> <reference> <referencemanual */

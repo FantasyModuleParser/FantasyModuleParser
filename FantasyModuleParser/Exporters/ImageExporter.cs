@@ -7,7 +7,7 @@ namespace FantasyModuleParser.Exporters
 {
 	class ImageExporter
 	{
-		public static void DababaseXML_Reference_Imagelists(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
+		public static void DababaseXML_Root_Reference_Imagelists(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
 		{
 			if (module.IncludeImages)
 			{
