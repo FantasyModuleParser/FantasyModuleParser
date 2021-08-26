@@ -16,7 +16,75 @@ namespace FantasyModuleParser.Exporters
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(EquipmentExporter));
 
-		static public string EquipmentNameToXML(EquipmentModel equipmentModel)
+		public static void DatabaseXML_Root_Reference_Equipmentdata(XmlWriter xmlWriter, ModuleModel module)
+		{
+			if (module.IncludesEquipment)
+			{
+				xmlWriter.WriteStartElement("equipmentdata");
+				EquipmentData_Category(xmlWriter, module);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void EquipmentData_Category(XmlWriter xmlWriter, ModuleModel module)
+		{
+			foreach (CategoryModel categoryModel in module.Categories)
+			{
+				xmlWriter.WriteStartElement("category");
+				xmlWriter.WriteAttributeString("name", categoryModel.Name);
+				xmlWriter.WriteAttributeString("baseicon", "0");
+				xmlWriter.WriteAttributeString("decalicon", "0");
+				EquipmentData_Category_ItemName(xmlWriter);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void EquipmentData_Category_ItemName(XmlWriter xmlWriter)
+		{
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
+			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+			foreach (EquipmentModel equip in FatEquipmentList)
+			{
+				NPCController npcController = new NPCController();
+				xmlWriter.WriteStartElement(EquipmentNameToXML(equip));
+				EquipmentLocked(xmlWriter, equip);
+				EquipmentIdentified(xmlWriter, equip);
+				EquipmentNonIDName(xmlWriter, equip);
+				EquipmentNonIDDescription(xmlWriter, equip);
+				EquipmentName(xmlWriter, equip);
+				EquipmentType(xmlWriter, equip);
+				EquipmentSubtype(xmlWriter, equip);
+				EquipmentCost(xmlWriter, equip);
+				EquipmentWeight(xmlWriter, equip);
+				EquipmentDescription(xmlWriter, equip, npcController);
+				PrmaryEquipmentEnum_Armor(xmlWriter, equip);
+				PrimaryEquipmentEnum_Weapon(xmlWriter, equip);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void PrimaryEquipmentEnum_Weapon(XmlWriter xmlWriter, EquipmentModel equip)
+		{
+			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
+			{
+				EquipmentBaseAC(xmlWriter, equip);
+				EquipmentDamage(xmlWriter, equip);
+				EquipmentProperties(xmlWriter, equip);
+			}
+		}
+
+		private static void PrmaryEquipmentEnum_Armor(XmlWriter xmlWriter, EquipmentModel equip)
+		{
+			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
+			{
+				EquipmentBaseAC(xmlWriter, equip);
+				EquipmentDexBonus(xmlWriter, equip);
+				EquipmentStealth(xmlWriter, equip);
+				EquipmentStrength(xmlWriter, equip);
+			}
+		}
+
+		public static string EquipmentNameToXML(EquipmentModel equipmentModel)
 		{
 			string name = equipmentModel.Name.ToLower();
 			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");

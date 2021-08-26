@@ -17,7 +17,6 @@ namespace FantasyModuleParser.Exporters
 		{
 			if (module.IncludeSpells)
 			{
-				#region Spell Data
 				xmlWriter.WriteStartElement("spelldata");
 				Spelldata_Category(xmlWriter, module);
 				xmlWriter.WriteEndElement();
@@ -28,7 +27,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			foreach (CategoryModel categoryModel in module.Categories)
 			{
-				xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <spelldata> <category> */
+				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", categoryModel.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");

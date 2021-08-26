@@ -28,87 +28,6 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
 			DatabaseXML_Root_Image(xmlWriter, module, npcModel);
 			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module);
-			//if (moduleModel.IncludeSpells)
-			//{
-			//	#region Spell Data
-			//	xmlWriter.WriteStartElement("spelldata"); /* <root version="4.0"> <reference> <spelldata> */
-				//foreach (CategoryModel categoryModel in moduleModel.Categories)
-				//{
-				//	xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <spelldata> <category> */
-				//	xmlWriter.WriteAttributeString("name", categoryModel.Name);
-				//	xmlWriter.WriteAttributeString("baseicon", "0");
-				//	xmlWriter.WriteAttributeString("decalicon", "0");
-				//	foreach (SpellModel spellModel in FatSpellList)
-				//	{
-				//		xmlWriter.WriteStartElement(SpellExporter.SpellNameToXMLFormat(spellModel));
-				//		/* <root version="4.0"> <reference> <spelldata> <category> <spell_name> */
-				//		WriteLocked(xmlWriter);
-				//		SpellExporter.WriteSpellName(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellDescription(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellLevel(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellSchool(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellRitual(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellSource(xmlWriter, spellModel);
-				//		SpellExporter.WriteCastingTime(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellRange(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellDuration(xmlWriter, spellModel);
-				//		SpellExporter.WriteSpellComponents(xmlWriter, spellModel);
-				//		xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelldata> <category> <spell_name> </spell_name> */
-				//	}
-				//	xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelldata> <category> </category> */
-				//}
-				//xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <spelldata> </spelldata> */
-			//	//#endregion
-			//}
-			#region Equipment Data
-			if (moduleModel.IncludesEquipment)
-			{
-				xmlWriter.WriteStartElement("equipmentdata"); /* <root version="4.0"> <reference> <equipmentdata> */
-				foreach (CategoryModel categoryModel in moduleModel.Categories)
-				{
-					xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <reference> <equipmentdata> <category> */
-					xmlWriter.WriteAttributeString("name", categoryModel.Name);
-					xmlWriter.WriteAttributeString("baseicon", "0");
-					xmlWriter.WriteAttributeString("decalicon", "0");
-
-					//Now, write out each NPC with NPC Name
-					foreach (EquipmentModel equipmentModel in FatEquipmentList)
-					{
-						NPCController npcController = new NPCController();
-						xmlWriter.WriteStartElement(EquipmentExporter.EquipmentNameToXML(equipmentModel));
-						/* <root version="4.0"> <reference> <equipmentdata> <category> <equipmentModel.Name> */
-						EquipmentExporter.EquipmentLocked(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentIdentified(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentNonIDName(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentNonIDDescription(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentName(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentType(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentSubtype(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentCost(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentWeight(xmlWriter, equipmentModel);
-						EquipmentExporter.EquipmentDescription(xmlWriter, equipmentModel, npcController);
-						if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
-						{
-							EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
-							EquipmentExporter.EquipmentDexBonus(xmlWriter, equipmentModel);
-							EquipmentExporter.EquipmentStealth(xmlWriter, equipmentModel);
-							EquipmentExporter.EquipmentStrength(xmlWriter, equipmentModel);
-						}
-						if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
-						{
-							EquipmentExporter.EquipmentBaseAC(xmlWriter, equipmentModel);
-							EquipmentExporter.EquipmentDamage(xmlWriter, equipmentModel);
-							EquipmentExporter.EquipmentProperties(xmlWriter, equipmentModel);
-						}
-						xmlWriter.WriteEndElement();
-						/* <root version="4.0"> <reference> <equipmentdata> <category> <equipmentModel.Name> </equipmentModel.Name */
-					}
-					xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> <category> </category> */
-				}
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <reference> <equipmentdata> </equipmentdata> */
-			}
-
-			#endregion
 			#region Equipment Lists
 			xmlWriter.WriteStartElement("equipmentlists"); /* <equipmentlists> */
 			EquipmentExporter.EquipmentLists_Equipment(moduleModel, FatEquipmentList, xmlWriter);
@@ -608,7 +527,7 @@ namespace FantasyModuleParser.Exporters
 			#endregion
 
 
-			#endregion
+
 
 			#region Library
 			// For the Blank DB XML unit test, need to check if any NPCs exist

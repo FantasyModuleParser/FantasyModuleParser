@@ -14,6 +14,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			NPCExporter.DatabaseXML_Root_Reference_Npcdata(xmlWriter, module);
 			SpellExporter.DatabaseXML_Root_Reference_Spelldata(xmlWriter, module);
+			EquipmentExporter.DatabaseXML_Root_Reference_Equipmentdata(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 	}
