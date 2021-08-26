@@ -94,5 +94,11 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(lockedRecords.ToString());
 			xmlWriter.WriteEndElement(); /* <locked> </locked> */
 		}
+
+		public static string CategoryNameToXML(CategoryModel categoryModel)
+		{
+			string categoryName = categoryModel.Name;
+			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
+		}
 	}
 }

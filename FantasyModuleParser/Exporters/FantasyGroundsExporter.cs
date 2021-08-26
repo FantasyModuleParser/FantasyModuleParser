@@ -320,11 +320,7 @@ namespace FantasyModuleParser.Exporters
 			string libname = moduleModel.Name.ToLower();
 			return libname.Replace(" ", "").Replace("'", "");
 		}
-		static private string CategoryNameToXML(CategoryModel categoryModel)
-        {
-			string categoryName = categoryModel.Name;
-			return categoryName.Replace(" ", "").Replace(",", "").Replace("-", "").Replace("'", "").ToLower();
-        }
+		
 		#endregion
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
