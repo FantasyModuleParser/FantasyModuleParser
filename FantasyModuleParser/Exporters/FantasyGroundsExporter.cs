@@ -240,7 +240,7 @@ namespace FantasyModuleParser.Exporters
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
             {
-               
+				DatabaseExporter.DatabaseXML(xmlWriter, module, npcModel, FatEquipmentList);
             }
         }
 

@@ -1,16 +1,18 @@
-﻿using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace FantasyModuleParser.Exporters
 {
 	public class DatabaseExporter
 	{
-        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel)
+        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, List<EquipmentModel> FatEquipmentList)
 		{
 			xmlWriter.WriteStartDocument();
 			DatabaseXML_Comments(xmlWriter);
-			DatabaseXML_Root(xmlWriter, module, npcModel);
+			DatabaseXML_Root(xmlWriter, module, npcModel, FatEquipmentList);
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
 			return sw.ToString();
@@ -22,21 +24,13 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteComment("Written by Theodore Story, Darkpool, and Battlemarch (c) 2021");
 		}
 
-		private static void DatabaseXML_Root(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel)
+		private static void DatabaseXML_Root(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, List<EquipmentModel> FatEquipmentList)
 		{
 			xmlWriter.WriteStartElement("root"); // <root>
 			xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
 			DatabaseXML_Root_Image(xmlWriter, module, npcModel);
-			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module);
-			#region Equipment Lists
-			xmlWriter.WriteStartElement("equipmentlists"); /* <equipmentlists> */
-			EquipmentExporter.EquipmentLists_Equipment(moduleModel, FatEquipmentList, xmlWriter);
+			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module, FatEquipmentList);
 
-			// Produces custom xml tags and their content, like <adventuringgear>, <armor>, <weapon>, etc....
-			EquipmentExporter.IndividualEquipmentClassList(xmlWriter, FatEquipmentList, moduleModel);
-			xmlWriter.WriteEndElement(); /* <equipmentlists> </equipmentlists> */
-
-			#endregion
 			if (moduleModel.IncludeImages)
 			{
 				#region Image Lists

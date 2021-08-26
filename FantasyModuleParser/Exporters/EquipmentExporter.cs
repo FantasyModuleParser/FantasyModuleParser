@@ -63,6 +63,14 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 
+		public static void DatabaseXML_Root_Reference_EquipmentLists(XmlWriter xmlWriter. List<EquipmentModel> FatEquipmentList, ModuleModel moduleModel)
+		{
+			xmlWriter.WriteStartElement("equipmentlists");
+			EquipmentLists_Equipment(moduleModel, FatEquipmentList, xmlWriter);
+			IndividualEquipmentClassList(xmlWriter, FatEquipmentList, moduleModel);
+			xmlWriter.WriteEndElement();
+		}
+		
 		private static void PrimaryEquipmentEnum_Weapon(XmlWriter xmlWriter, EquipmentModel equip)
 		{
 			if (equip.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Weapon)
