@@ -539,6 +539,7 @@
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
     <Compile Include="Exporters\ICampaign.cs" />
     <Compile Include="Exporters\ImageExporter.cs" />
+    <Compile Include="Exporters\LibraryExporter.cs" />
     <Compile Include="Exporters\NPCExporter.cs" />
     <Compile Include="Exporters\ReferenceExporter.cs" />
     <Compile Include="Exporters\ReferenceManualExporter.cs" />

@@ -181,55 +181,11 @@ namespace FantasyModuleParser.Exporters
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
             {
-				DatabaseExporter.DatabaseXML(xmlWriter, module, FatEquipmentList, sw);
+				DatabaseExporter.DatabaseXML(xmlWriter, moduleModel, FatEquipmentList, sw);
 				return sw.ToString();
 			}
         }
 
-        #region NPC Methods for Reference Data XML
-        
-		#endregion
-		#region Reference Manual XML
-		static private void WriteBlockFormatting(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("align"); /* <align> */
-			xmlWriter.WriteAttributeString("type", "string"); 
-			xmlWriter.WriteString("center"); 
-			xmlWriter.WriteEndElement(); /* <align> </align> */
-			xmlWriter.WriteStartElement("blocktype"); /* <blocktype> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString("singletext");
-			xmlWriter.WriteEndElement(); /* <blocktype> </blocktype> */
-			xmlWriter.WriteStartElement("text"); /* <text> */
-			xmlWriter.WriteAttributeString("type", "formattedtext");
-		}
-		static private string WriteRecordNameNPC(NPCModel npcModel)
-		{
-			return "reference.npcdata." + NPCExporter.NPCNameToXMLFormat(npcModel);
-		}
-		static private string WriteRecordNameSpell(SpellModel spellModel)
-		{
-			return "reference.spelldata." + SpellExporter.SpellNameToXMLFormat(spellModel);
-		}
-        static private string WriteRecordNameEquipment(EquipmentModel equipmentModel)
-        {
-            return "reference.equipmentdata." + EquipmentExporter.EquipmentNameToXML(equipmentModel);
-        }
-        static private string WriteImageXML(NPCModel npcModel)
-		{
-			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
-		}
-		#endregion
-		#region Common methods
-		
-		
-		static private string WriteLibraryNameLowerCase(ModuleModel moduleModel)
-		{
-			string libname = moduleModel.Name.ToLower();
-			return libname.Replace(" ", "").Replace("'", "");
-		}
-		
-		#endregion
 		/// <summary>
 		/// Generates the Definition file used in Fantasy Grounds modules
 		/// </summary>

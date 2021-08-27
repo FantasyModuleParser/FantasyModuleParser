@@ -23,7 +23,7 @@ namespace FantasyModuleParser.Exporters
 			NPCExporter.DatabaseXML_Root_Reference_NPClists(xmlWriter, module);
 			SpellExporter.DatabaseXML_Root_Reference_Spelllists(xmlWriter, module);
 			TableExporter.DatabaseXML_Root_Reference_Tables(xmlWriter, module);
-			ReferenceManualExporter.DatabaseXML_Root_Reference_ReferenceManual(xmlWriter);
+			ReferenceManualExporter.DatabaseXML_Root_Reference_ReferenceManual(xmlWriter, module, npc);
 			xmlWriter.WriteEndElement();
 		}
 	}
