@@ -9,7 +9,7 @@ namespace FantasyModuleParser.Exporters
 {
 	class ReferenceExporter
 	{
-		public static void DatabaseXML_Root_Reference(XmlWriter xmlWriter, ModuleModel module, NPCModel npc, SpellModel spell)
+		public static void DatabaseXML_Root_Reference(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("reference"); /* <root version="4.0"> <reference> */
 			if (module.IsLockedRecords)
@@ -20,11 +20,11 @@ namespace FantasyModuleParser.Exporters
 			SpellExporter.DatabaseXML_Root_Reference_Spelldata(xmlWriter, module);
 			EquipmentExporter.DatabaseXML_Root_Reference_Equipmentdata(xmlWriter, module);
 			EquipmentExporter.DatabaseXML_Root_Reference_EquipmentLists(xmlWriter, module);
-			ImageExporter.DababaseXML_Root_Reference_Imagelists(xmlWriter, module, npc);
+			ImageExporter.DababaseXML_Root_Reference_Imagelists(xmlWriter, module);
 			NPCExporter.DatabaseXML_Root_Reference_NPClists(xmlWriter, module);
 			SpellExporter.DatabaseXML_Root_Reference_Spelllists(xmlWriter, module);
 			TableExporter.DatabaseXML_Root_Reference_Tables(xmlWriter, module);
-			ReferenceManualExporter.DatabaseXML_Root_Reference_ReferenceManual(xmlWriter, module, npc, spell);
+			ReferenceManualExporter.DatabaseXML_Root_Reference_ReferenceManual(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 	}

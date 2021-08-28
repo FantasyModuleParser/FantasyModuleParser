@@ -6,6 +6,6 @@ namespace FantasyModuleParser.Exporters
 {
     public interface IExporter
     {
-        void CreateModule(ModuleModel moduleModel, NPCModel npcModel, SpellModel spellModel);
+        void CreateModule(ModuleModel moduleModel);
     }
 }

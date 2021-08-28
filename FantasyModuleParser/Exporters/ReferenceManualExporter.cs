@@ -13,41 +13,41 @@ namespace FantasyModuleParser.Exporters
 {
 	class ReferenceManualExporter
 	{
-		public static void DatabaseXML_Root_Reference_ReferenceManual(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
+		public static void DatabaseXML_Root_Reference_ReferenceManual(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("referencemanual");
 			Xml_Name_ModuleName(xmlWriter, module);
-			ReferenceManual_Chapters(xmlWriter, module, npcModel, spellModel);
+			ReferenceManual_Chapters(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void ReferenceManual_Chapters(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)		
+		private static void ReferenceManual_Chapters(XmlWriter xmlWriter, ModuleModel module)		
 		{
 			xmlWriter.WriteStartElement("chapters");
-			ReferenceManual_Chapters_Chapter_xx(xmlWriter, module, npcModel, spellModel);
+			ReferenceManual_Chapters_Chapter_xx(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void ReferenceManual_Chapters_Chapter_xx(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
+		private static void ReferenceManual_Chapters_Chapter_xx(XmlWriter xmlWriter, ModuleModel module)
 		{
 			int chapterID = 0;
 			xmlWriter.WriteStartElement("chapter_" + chapterID.ToString("D2"));
 			Xml_Name_ModuleName(xmlWriter, module);
-			Chapter_xx_Subchapters(xmlWriter, module, npcModel, spellModel);
+			Chapter_xx_Subchapters(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Chapter_xx_Subchapters(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
+		private static void Chapter_xx_Subchapters(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("subchapters");
-			Chapter_xx_Subchapters_Subchapter_xx(xmlWriter, module, npcModel, spellModel);
+			Chapter_xx_Subchapters_Subchapter_xx(xmlWriter, module);
 		}
 
-		private static void Chapter_xx_Subchapters_Subchapter_xx(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
+		private static void Chapter_xx_Subchapters_Subchapter_xx(XmlWriter xmlWriter, ModuleModel module)
 		{
 			int subchapterID = 0;
-			Subchapter_NPCs(xmlWriter, module, npcModel, subchapterID);
-			Subchapter_Spells(xmlWriter, module, spellModel, subchapterID);
+			Subchapter_NPCs(xmlWriter, module, subchapterID);
+			Subchapter_Spells(xmlWriter, module, subchapterID);
 			Subchapter_Equipment(xmlWriter, module, subchapterID);
 		}
 
@@ -223,30 +223,30 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Subchapter_Spells(XmlWriter xmlWriter, ModuleModel module, SpellModel spell, int subchapterID)
+		private static void Subchapter_Spells(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
 		{
 			if (module.IncludeSpells)
 			{
 				xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
 				Xml_Name_Spells(xmlWriter);
 				int refpagesID = 1;
-				Spells_Refpages(xmlWriter, module, spell, refpagesID);
+				Spells_Refpages(xmlWriter, module, refpagesID);
 				xmlWriter.WriteEndElement();
 				subchapterID = ++subchapterID;
 			}
 		}
 
-		private static void Spells_Refpages(XmlWriter xmlWriter, ModuleModel module, SpellModel spell, int refpagesID)
+		private static void Spells_Refpages(XmlWriter xmlWriter, ModuleModel module, int refpagesID)
 		{
 			xmlWriter.WriteStartElement("refpages");
 			Spells_RefPagesID(xmlWriter, module, refpagesID);
 			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(module);
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			int spellID = 2;
-			foreach (SpellModel spellModel in FatSpellList)
+			foreach (SpellModel spell in FatSpellList)
 			{
 				NPCController npcController = new NPCController();
-				IndividualSpell_IDs(xmlWriter, spell, spellID, spellModel, npcController);
+				IndividualSpell_IDs(xmlWriter, spell, spellID, npcController);
 				spellID = ++spellID;
 			}
 			xmlWriter.WriteEndElement();
@@ -301,54 +301,54 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void IndividualSpell_IDs(XmlWriter xmlWriter, SpellModel spell, int spellID, SpellModel spellModel, NPCController npcController)
+		private static void IndividualSpell_IDs(XmlWriter xmlWriter, SpellModel spell, int spellID, NPCController npcController)
 		{
 			xmlWriter.WriteStartElement("id-" + spellID.ToString("D4"));
 			int blockID = 1;
-			IndividualSpells_Blocks(xmlWriter, spell, spellModel, npcController, blockID);
+			IndividualSpells_Blocks(xmlWriter, spell, npcController, blockID);
 			Xml_WriteListLink(xmlWriter);
-			Xml_Name_SpellName(xmlWriter, spellModel);
+			Xml_Name_SpellName(xmlWriter, spell);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Xml_Name_SpellName(XmlWriter xmlWriter, SpellModel spellModel)
+		private static void Xml_Name_SpellName(XmlWriter xmlWriter, SpellModel spell)
 		{
 			xmlWriter.WriteStartElement("name");
 			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(spellModel.SpellName);
+			xmlWriter.WriteString(spell.SpellName);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void IndividualSpells_Blocks(XmlWriter xmlWriter, SpellModel spell, SpellModel spellModel, NPCController npcController, int blockID)
+		private static void IndividualSpells_Blocks(XmlWriter xmlWriter, SpellModel spell, NPCController npcController, int blockID)
 		{
 			xmlWriter.WriteStartElement("blocks");
-			IndividualSpells_BlockID(xmlWriter, spell, spellModel, npcController, blockID);
+			IndividualSpells_BlockID(xmlWriter, spell, npcController, blockID);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void IndividualSpells_BlockID(XmlWriter xmlWriter, SpellModel spell, SpellModel spellModel, NPCController npcController, int blockID)
+		private static void IndividualSpells_BlockID(XmlWriter xmlWriter, SpellModel spell, NPCController npcController, int blockID)
 		{
 			xmlWriter.WriteStartElement("id-" + blockID.ToString("D4"));
 			Xml_WriteBlockFormatting(xmlWriter);
-			IndividualSpell_Text(xmlWriter, spell, spellModel, npcController);
+			IndividualSpell_Text(xmlWriter, spell, npcController);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void IndividualSpell_Text(XmlWriter xmlWriter, SpellModel spell, SpellModel spellModel, NPCController npcController)
+		private static void IndividualSpell_Text(XmlWriter xmlWriter, SpellModel spell, NPCController npcController)
 		{
 			xmlWriter.WriteStartElement("text");
 			xmlWriter.WriteAttributeString("type", "formattedtext");
 			xmlWriter.WriteRaw("<p><h>");
 			xmlWriter.WriteString(spell.SpellName);
 			xmlWriter.WriteRaw("</h></p><p><i>");
-			if (spellModel.SpellLevel.GetDescription().Equals("cantrip"))
+			if (spell.SpellLevel.GetDescription().Equals("cantrip"))
 			{
-				xmlWriter.WriteString(spellModel.SpellSchool + " cantrip");
+				xmlWriter.WriteString(spell.SpellSchool + " cantrip");
 			}
 			else
 			{
-				xmlWriter.WriteString(spellModel.SpellLevel.GetDescription() + "-level " + spellModel.SpellSchool);
-				if (spellModel.IsRitual.Equals(1))
+				xmlWriter.WriteString(spell.SpellLevel.GetDescription() + "-level " + spell.SpellSchool);
+				if (spell.IsRitual.Equals(1))
 				{
 					xmlWriter.WriteString(" (ritual)");
 				}
@@ -356,27 +356,27 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteRaw("</i></p><p><b>");
 			xmlWriter.WriteString("Casting Time:");
 			xmlWriter.WriteRaw("</b>");
-			xmlWriter.WriteString(" " + spellModel.CastingTime + " " + spellModel.CastingType.GetDescription());
-			if (spellModel.CastingTime > 1)
+			xmlWriter.WriteString(" " + spell.CastingTime + " " + spell.CastingType.GetDescription());
+			if (spell.CastingTime > 1)
 			{
 				xmlWriter.WriteString("s");
 			}
 			xmlWriter.WriteRaw("</p><p><b>");
 			xmlWriter.WriteString("Range:");
 			xmlWriter.WriteRaw("</b>");
-			xmlWriter.WriteString(" " + spellModel.RangeDescription);
+			xmlWriter.WriteString(" " + spell.RangeDescription);
 			xmlWriter.WriteRaw("</p><p><b>");
 			xmlWriter.WriteString("Components:");
 			xmlWriter.WriteRaw("</b>");
-			xmlWriter.WriteString(" " + spellModel.ComponentDescription);
+			xmlWriter.WriteString(" " + spell.ComponentDescription);
 			xmlWriter.WriteRaw("</p><p><b>");
 			xmlWriter.WriteString("Duration:");
 			xmlWriter.WriteRaw("</b>");
-			xmlWriter.WriteString(" " + spellModel.DurationText);
+			xmlWriter.WriteString(" " + spell.DurationText);
 			xmlWriter.WriteRaw("</p>");
-			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(spellModel.Description) + "<p>");
-			Link_Class_Power_Recordname(xmlWriter, spellModel);
-			xmlWriter.WriteString(spellModel.SpellName);
+			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(spell.Description) + "<p>");
+			Link_Class_Power_Recordname(xmlWriter, spell);
+			xmlWriter.WriteString(spell.SpellName);
 			xmlWriter.WriteRaw("</p>");
 			xmlWriter.WriteEndElement();
 		}
@@ -421,23 +421,23 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Subchapter_NPCs(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, int subchapterID)
+		private static void Subchapter_NPCs(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
 		{
 			if (module.IncludeNPCs)
 			{
 				xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
 				CommonMethods.Xml_Name_Npcs(xmlWriter);
-				Subchapter_xx_NPCRefPages(xmlWriter, module, npcModel);
+				Subchapter_xx_NPCRefPages(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 				subchapterID = ++subchapterID;
 			}
 		}
 
-		private static void Subchapter_xx_NPCRefPages(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel)
+		private static void Subchapter_xx_NPCRefPages(XmlWriter xmlWriter, ModuleModel module)
 		{
 			int refpagesID = 1;
 			xmlWriter.WriteStartElement("refpages");
-			RefPages_NPCList(xmlWriter, refpagesID, module, npcModel);
+			RefPages_NPCList(xmlWriter, refpagesID, module);
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			RefPages_IndividualNPCs(xmlWriter, refpagesID, FatNPCList);
@@ -542,7 +542,7 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 
-		private static void RefPages_NPCList(XmlWriter xmlWriter, int refpagesID, ModuleModel module, NPCModel npcModel)
+		private static void RefPages_NPCList(XmlWriter xmlWriter, int refpagesID, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("id-" + refpagesID.ToString("D4"));
 			RefPages_NPCList_Blocks(xmlWriter, module);

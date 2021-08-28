@@ -7,55 +7,55 @@ namespace FantasyModuleParser.Exporters
 {
 	class ImageExporter
 	{
-		public static void DababaseXML_Root_Reference_Imagelists(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
+		public static void DababaseXML_Root_Reference_Imagelists(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludeImages)
 			{
 				xmlWriter.WriteStartElement("imagelists");
-				Imagelists_ByCategory(xmlWriter, module, npc);
+				Imagelists_ByCategory(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void Imagelists_ByCategory(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
+		private static void Imagelists_ByCategory(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("bycategory");
 			Imagelists_ByCategory_Description(xmlWriter);
-			Imagelists_ByCategory_Groups(xmlWriter, module, npc);
+			Imagelists_ByCategory_Groups(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Imagelists_ByCategory_Groups(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
+		private static void Imagelists_ByCategory_Groups(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("groups");
-			Imagelists_ByCategory_Groups_Category(xmlWriter, module, npc);
+			Imagelists_ByCategory_Groups_Category(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Imagelists_ByCategory_Groups_Category(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
+		private static void Imagelists_ByCategory_Groups_Category(XmlWriter xmlWriter, ModuleModel module)
 		{
 			foreach (CategoryModel category in module.Categories)
 			{
 				xmlWriter.WriteStartElement(CommonMethods.CategoryNameToXML(category));
 				Imagelists_ByCategory_Groups_Category_Description(xmlWriter, category);
-				Imagelists_ByCategory_Groups_Category_Index(xmlWriter, category, npc);
+				Imagelists_ByCategory_Groups_Category_Index(xmlWriter, category);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void Imagelists_ByCategory_Groups_Category_Index(XmlWriter xmlWriter, CategoryModel category, NPCModel npcModel)
+		private static void Imagelists_ByCategory_Groups_Category_Index(XmlWriter xmlWriter, CategoryModel category)
 		{
 			xmlWriter.WriteStartElement("index");
 			foreach (NPCModel npc in category.NPCModels)
 			{
-				Index_ImageName(xmlWriter, npcModel, npc);
+				Index_ImageName(xmlWriter, npc);
 			}
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Index_ImageName(XmlWriter xmlWriter, NPCModel npcModel, NPCModel npc)
+		private static void Index_ImageName(XmlWriter xmlWriter, NPCModel npc)
 		{
-			if (!string.IsNullOrEmpty(npcModel.NPCImage))
+			if (!string.IsNullOrEmpty(npc.NPCImage))
 			{
 				xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npc.NPCImage).Replace(" ", "").Replace("-", ""));
 				INdex_ImageName_Link(xmlWriter, npc);

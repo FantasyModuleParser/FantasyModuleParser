@@ -41,7 +41,7 @@ namespace FantasyModuleParser.Exporters
 				return "client.xml";
             }
         }
-		public void CreateModule(ModuleModel moduleModel, NPCModel npcModel, SpellModel spellModel)
+		public void CreateModule(ModuleModel moduleModel)
 		{
 			SettingsModel settingsModel = settingsService.Load();
 
@@ -75,7 +75,7 @@ namespace FantasyModuleParser.Exporters
 			}
 
 			// A blank module consists of two files;  db.xml & definition.xml
-			string dbXmlFileContent = GenerateDBXmlFile(moduleModel, npcModel, spellModel);
+			string dbXmlFileContent = GenerateDBXmlFile(moduleModel);
 			string definitionXmlFileContent = GenerateDefinitionXmlContent(moduleModel);
 
 			// Write the string array to a new file named "WriteLines.txt".
@@ -160,7 +160,7 @@ namespace FantasyModuleParser.Exporters
 		/// Generates database file for use in Fantasy Grounds.
 		/// Currently covers NPCs, Spells, and Tables.
 		/// </summary>
-		public string GenerateDBXmlFile(ModuleModel moduleModel, NPCModel npcModel, SpellModel spellModel)
+		public string GenerateDBXmlFile(ModuleModel moduleModel)
 		{
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
@@ -177,7 +177,7 @@ namespace FantasyModuleParser.Exporters
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
             {
-				DatabaseExporter.DatabaseXML(xmlWriter, moduleModel, npcModel, spellModel);
+				DatabaseExporter.DatabaseXML(xmlWriter, moduleModel);
 				return sw.ToString();
 			}
         }

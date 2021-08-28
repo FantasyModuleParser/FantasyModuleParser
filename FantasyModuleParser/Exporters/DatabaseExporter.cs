@@ -10,11 +10,11 @@ namespace FantasyModuleParser.Exporters
 {
 	public class DatabaseExporter
 	{
-        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
+        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartDocument();
 			DatabaseXML_Comments(xmlWriter);
-			DatabaseXML_Root(xmlWriter, module, npcModel, spellModel);
+			DatabaseXML_Root(xmlWriter, module);
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
 		}
@@ -25,27 +25,27 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteComment("Written by Theodore Story, Darkpool, and Battlemarch (c) 2021");
 		}
 
-		private static void DatabaseXML_Root(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
+		private static void DatabaseXML_Root(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("root"); // <root>
 			xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
-			DatabaseXML_Root_Image(xmlWriter, module, npcModel);
-			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module, npcModel, spellModel);
+			DatabaseXML_Root_Image(xmlWriter, module);
+			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module);
 			LibraryExporter.Database_Library(xmlWriter, module);
 			xmlWriter.WriteEndElement(); // Closes </root>
 		}
 
-		private static void DatabaseXML_Root_Image(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
+		private static void DatabaseXML_Root_Image(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludeImages)
 			{
 				xmlWriter.WriteStartElement("image"); /* <root version="4.0"> <image> */
-				Image_Category(xmlWriter, module, npc);
+				Image_Category(xmlWriter, module);
 				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> </image> */
 			}
 		}
 
-		private static void Image_Category(XmlWriter xmlWriter, ModuleModel module, NPCModel npc)
+		private static void Image_Category(XmlWriter xmlWriter, ModuleModel module)
 		{
 			foreach (CategoryModel category in module.Categories)
 			{
@@ -53,24 +53,24 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteAttributeString("name", category.Name); /* <root version="4.0"> <image> <category> */
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-				Image_Category_ImageName(xmlWriter, category, npc);
+				Image_Category_ImageName(xmlWriter, category);
 				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> </category> */
 			}
 		}
 
-		private static void Image_Category_ImageName(XmlWriter xmlWriter, CategoryModel category, NPCModel npcModel)
+		private static void Image_Category_ImageName(XmlWriter xmlWriter, CategoryModel category)
 		{
 			foreach (NPCModel npc in category.NPCModels)
 			{
-				if (!string.IsNullOrEmpty(npcModel.NPCImage))
+				if (!string.IsNullOrEmpty(npc.NPCImage))
 				{
-					xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
+					xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npc.NPCImage).Replace(" ", "").Replace("-", ""));
 					/* <root version="4.0"> <image> <category> <image_name> */
-					Image_Category_ImageName_Image(xmlWriter, npcModel);
+					Image_Category_ImageName_Image(xmlWriter, npc);
 					CommonMethods.WriteModuleLocked(xmlWriter);
-					NPCExporter.WriteName(xmlWriter, npcModel);
-					Image_Category_ImageName_Image_NonidName(xmlWriter, npcModel);
-					Image_Category_ImageName_Image_Identified(xmlWriter, npcModel);
+					NPCExporter.WriteName(xmlWriter, npc);
+					Image_Category_ImageName_Image_NonidName(xmlWriter, npc);
+					Image_Category_ImageName_Image_Identified(xmlWriter, npc);
 					xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> </image_name> */
 				}
 			}
