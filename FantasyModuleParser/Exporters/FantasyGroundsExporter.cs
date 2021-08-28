@@ -162,15 +162,6 @@ namespace FantasyModuleParser.Exporters
 		/// </summary>
 		public string GenerateDBXmlFile(ModuleModel moduleModel)
 		{
-			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(moduleModel);
-			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
-			List<TableModel> FatTableList = CommonMethods.GenerateFatTableList(moduleModel);
-			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
-			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
-			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
-			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));
-			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
-
 			NPCExporter.Save_NPC_Tokens(moduleModel, settingsService);
 			NPCExporter.Save_NPC_Images(moduleModel, settingsService);
 
