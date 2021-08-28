@@ -1239,23 +1239,23 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 		
-		private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+		static private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("damageimmunities");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.UpdateDamageImmunities());
 			xmlWriter.WriteEndElement();
 		}
-		
-		private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
+
+		static private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("damageresistances");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.UpdateDamageResistances());
 			xmlWriter.WriteEndElement();
 		}
-		
-		private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
+
+		static private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("damagevulnerabilities");
 			xmlWriter.WriteAttributeString("type", "string");
