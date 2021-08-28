@@ -14,12 +14,12 @@ namespace FantasyModuleParser.Exporters
 			if (module.IncludeTables)
 			{
 				xmlWriter.WriteStartElement("tables");
-				Tables_Category(xmlWriter);
+				Tables_Category(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
 		}
 		
-		private static void Tables_Category(XmlWriter xmlWriter, ModuleModel model)
+		private static void Tables_Category(XmlWriter xmlWriter, ModuleModel module)
 		{
 			List<TableModel> FatTableList = CommonMethods.GenerateFatTableList(module);
 			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));

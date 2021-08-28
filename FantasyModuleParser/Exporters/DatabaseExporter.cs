@@ -1,6 +1,7 @@
 ﻿using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
+using FantasyModuleParser.Spells.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -9,11 +10,11 @@ namespace FantasyModuleParser.Exporters
 {
 	public class DatabaseExporter
 	{
-        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, List<EquipmentModel> FatEquipmentList, StringWriter sw)
+        public static void DatabaseXML(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
 		{
 			xmlWriter.WriteStartDocument();
 			DatabaseXML_Comments(xmlWriter);
-			DatabaseXML_Root(xmlWriter, module, npcModel, FatEquipmentList);
+			DatabaseXML_Root(xmlWriter, module, npcModel, spellModel);
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
 		}
@@ -24,12 +25,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteComment("Written by Theodore Story, Darkpool, and Battlemarch (c) 2021");
 		}
 
-		private static void DatabaseXML_Root(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, List<EquipmentModel> FatEquipmentList)
+		private static void DatabaseXML_Root(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
 		{
 			xmlWriter.WriteStartElement("root"); // <root>
 			xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
 			DatabaseXML_Root_Image(xmlWriter, module, npcModel);
-			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module, FatEquipmentList, npcModel);
+			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module, npcModel, spellModel);
 			LibraryExporter.Database_Library(xmlWriter, module);
 			xmlWriter.WriteEndElement(); // Closes </root>
 		}

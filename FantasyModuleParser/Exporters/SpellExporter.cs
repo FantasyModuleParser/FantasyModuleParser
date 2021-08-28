@@ -31,14 +31,14 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteAttributeString("name", categoryModel.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-				Spelldata_Category_SpellName(xmlWriter);
+				Spelldata_Category_SpellName(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void Spelldata_Category_SpellName(XmlWriter xmlWriter)
+		private static void Spelldata_Category_SpellName(XmlWriter xmlWriter, ModuleModel module)
 		{
-			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
+			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(module);
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			foreach (SpellModel spellModel in FatSpellList)
 			{
@@ -133,7 +133,7 @@ namespace FantasyModuleParser.Exporters
 
 		static public void SpellListByClass(XmlWriter xmlWriter, ModuleModel module)
 		{
-			List<SpellModel> SpellList = GetFatSpellModelList(moduleModel);
+			List<SpellModel> SpellList = GetFatSpellModelList(module);
 			SpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			foreach (string castByValue in GetSortedSpellCasterList(module))
 			{
@@ -182,7 +182,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			foreach (SpellModel spell in levelList)
 			{
-				xmlWriter.WriteStartElement(spellLevelList.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
+				xmlWriter.WriteStartElement(spell.SpellName.ToLower().Replace(" ", "").Replace("'", ""));
 				SpellName_Link(xmlWriter, moduleModel, spell);
 				SpellName_Source(xmlWriter, castByValue);
 				xmlWriter.WriteEndElement();

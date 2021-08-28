@@ -1,17 +1,13 @@
 ﻿using FantasyModuleParser.Equipment.Enums;
 using FantasyModuleParser.Equipment.Models;
-using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
-using FantasyModuleParser.NPC.Controllers;
-using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Tables.Models;
 using log4net;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
@@ -45,7 +41,7 @@ namespace FantasyModuleParser.Exporters
 				return "client.xml";
             }
         }
-		public void CreateModule(ModuleModel moduleModel)
+		public void CreateModule(ModuleModel moduleModel, NPCModel npcModel, SpellModel spellModel)
 		{
 			SettingsModel settingsModel = settingsService.Load();
 
@@ -79,7 +75,7 @@ namespace FantasyModuleParser.Exporters
 			}
 
 			// A blank module consists of two files;  db.xml & definition.xml
-			string dbXmlFileContent = GenerateDBXmlFile(moduleModel);
+			string dbXmlFileContent = GenerateDBXmlFile(moduleModel, npcModel, spellModel);
 			string definitionXmlFileContent = GenerateDefinitionXmlContent(moduleModel);
 
 			// Write the string array to a new file named "WriteLines.txt".
@@ -164,7 +160,7 @@ namespace FantasyModuleParser.Exporters
 		/// Generates database file for use in Fantasy Grounds.
 		/// Currently covers NPCs, Spells, and Tables.
 		/// </summary>
-		public string GenerateDBXmlFile(ModuleModel moduleModel)
+		public string GenerateDBXmlFile(ModuleModel moduleModel, NPCModel npcModel, SpellModel spellModel)
 		{
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(moduleModel);
 			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(moduleModel);
@@ -181,7 +177,7 @@ namespace FantasyModuleParser.Exporters
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
             {
-				DatabaseExporter.DatabaseXML(xmlWriter, moduleModel, FatEquipmentList, sw);
+				DatabaseExporter.DatabaseXML(xmlWriter, moduleModel, npcModel, spellModel);
 				return sw.ToString();
 			}
         }

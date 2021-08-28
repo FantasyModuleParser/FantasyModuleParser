@@ -122,14 +122,14 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteAttributeString("name", category.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-				NpcData_Category_NpcName(xmlWriter);
+				NpcData_Category_NpcName(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void NpcData_Category_NpcName(XmlWriter xmlWriter)
+		private static void NpcData_Category_NpcName(XmlWriter xmlWriter, ModuleModel module)
 		{
-			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(moduleModel);
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			foreach (NPCModel npcModel in FatNPCList)
 			{
@@ -158,7 +158,7 @@ namespace FantasyModuleParser.Exporters
 				WriteSkills(xmlWriter, npcModel);
 				WriteSpeed(xmlWriter, npcModel);
 				WriteText(xmlWriter, npcModel);
-				WriteToken(xmlWriter, npcModel, moduleModel);
+				WriteToken(xmlWriter, npcModel, module);
 				WriteType(xmlWriter, npcModel);
 				WriteTraits(xmlWriter, npcModel);
 				WriteXP(xmlWriter, npcModel);

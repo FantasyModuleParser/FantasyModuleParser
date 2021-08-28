@@ -1,4 +1,5 @@
 ﻿using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
@@ -12,34 +13,34 @@ namespace FantasyModuleParser.Exporters
 {
 	class ReferenceManualExporter
 	{
-		public static void DatabaseXML_Root_Reference_ReferenceManual(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel)
+		public static void DatabaseXML_Root_Reference_ReferenceManual(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
 		{
 			xmlWriter.WriteStartElement("referencemanual");
 			Xml_Name_ModuleName(xmlWriter, module);
-			ReferenceManual_Chapters(xmlWriter, module, npcModel);
+			ReferenceManual_Chapters(xmlWriter, module, npcModel, spellModel);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void ReferenceManual_Chapters(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel)		
+		private static void ReferenceManual_Chapters(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)		
 		{
 			xmlWriter.WriteStartElement("chapters");
-			ReferenceManual_Chapters_Chapter_xx(xmlWriter, module, npcModel);
+			ReferenceManual_Chapters_Chapter_xx(xmlWriter, module, npcModel, spellModel);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void ReferenceManual_Chapters_Chapter_xx(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel)
+		private static void ReferenceManual_Chapters_Chapter_xx(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
 		{
 			int chapterID = 0;
 			xmlWriter.WriteStartElement("chapter_" + chapterID.ToString("D2"));
 			Xml_Name_ModuleName(xmlWriter, module);
-			Chapter_xx_Subchapters(xmlWriter, module, npcModel);
+			Chapter_xx_Subchapters(xmlWriter, module, npcModel, spellModel);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Chapter_xx_Subchapters(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel)
+		private static void Chapter_xx_Subchapters(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
 		{
 			xmlWriter.WriteStartElement("subchapters");
-			Chapter_xx_Subchapters_Subchapter_xx(xmlWriter, module, npcModel);
+			Chapter_xx_Subchapters_Subchapter_xx(xmlWriter, module, npcModel, spellModel);
 		}
 
 		private static void Chapter_xx_Subchapters_Subchapter_xx(XmlWriter xmlWriter, ModuleModel module, NPCModel npcModel, SpellModel spellModel)
@@ -67,8 +68,8 @@ namespace FantasyModuleParser.Exporters
 			int refpagesID = 1;
 			xmlWriter.WriteStartElement("refpages"); // open <refpages>
 			Equipment_Refpages_RefpagesID(xmlWriter, module, refpagesID);
-			refpagesID = ++refpagesID
-			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
+			refpagesID = ++refpagesID;
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(module);
 			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
 			foreach (EquipmentModel equipmentModel in FatEquipmentList)
 			{
@@ -189,14 +190,14 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("p");
 			xmlWriter.WriteString("The following Equipment are able to be found in " + module.Name + ".");
-			EquipmentList_Text_P_Linklist(xmlWriter);
+			EquipmentList_Text_P_Linklist(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void EquipmentList_Text_P_Linklist(XmlWriter xmlWriter)
+		private static void EquipmentList_Text_P_Linklist(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("linklist");
-			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(module);
 			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
 			foreach (EquipmentModel equipmentModel in FatEquipmentList)
 			{
@@ -239,6 +240,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("refpages");
 			Spells_RefPagesID(xmlWriter, module, refpagesID);
+			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(module);
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			int spellID = 2;
 			foreach (SpellModel spellModel in FatSpellList)
@@ -585,11 +587,11 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("p");
 			xmlWriter.WriteString("The following NPCs are able to be found in " + module.Name + ".");
-			RefPages_NPCList_Blocks_ID_Text_P_Linklist(xmlWriter);
+			RefPages_NPCList_Blocks_ID_Text_P_Linklist(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void RefPages_NPCList_Blocks_ID_Text_P_Linklist(XmlWriter xmlWriter)
+		private static void RefPages_NPCList_Blocks_ID_Text_P_Linklist(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("linklist");
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);

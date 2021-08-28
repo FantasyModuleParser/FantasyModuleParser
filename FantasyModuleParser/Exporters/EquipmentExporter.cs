@@ -34,14 +34,14 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteAttributeString("name", categoryModel.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-				EquipmentData_Category_ItemName(xmlWriter);
+				EquipmentData_Category_ItemName(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void EquipmentData_Category_ItemName(XmlWriter xmlWriter)
+		private static void EquipmentData_Category_ItemName(XmlWriter xmlWriter, ModuleModel module)
 		{
-			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(module);
 			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
 			foreach (EquipmentModel equip in FatEquipmentList)
 			{
@@ -63,11 +63,11 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 
-		public static void DatabaseXML_Root_Reference_EquipmentLists(XmlWriter xmlWriter. List<EquipmentModel> FatEquipmentList, ModuleModel moduleModel)
+		public static void DatabaseXML_Root_Reference_EquipmentLists(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("equipmentlists");
-			EquipmentLists_Equipment(moduleModel, FatEquipmentList, xmlWriter);
-			IndividualEquipmentClassList(xmlWriter, FatEquipmentList, moduleModel);
+			EquipmentLists_Equipment(moduleModel, xmlWriter);
+			IndividualEquipmentClassList(xmlWriter, moduleModel);
 			xmlWriter.WriteEndElement();
 		}
 		
@@ -396,10 +396,11 @@ namespace FantasyModuleParser.Exporters
 			return stringBuilder.ToString(0, stringBuilder.Length - 2);
 		}
 
-		static public void EquipmentLists(XmlWriter xmlWriter, ModuleModel moduleModel, List<EquipmentModel> EquipmentList)
+		static public void EquipmentLists(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
-			EquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
-			var EquipmentByPrimaryList = EquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
+			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+			var EquipmentByPrimaryList = FatEquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
 
 			int equipListId = 1;
 			foreach (List<EquipmentModel> equipmentList in EquipmentByPrimaryList)
@@ -459,21 +460,21 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		public static void EquipmentLists_Equipment(ModuleModel moduleModel, List<EquipmentModel> FatEquipmentList, XmlWriter xmlWriter)
+		public static void EquipmentLists_Equipment(ModuleModel moduleModel, XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("equipment"); /* <equipmentlists> <equipment> */
 			EquipmentLists_Equipment_Name(xmlWriter);
-			EquipmentLists_Equipment_Index(moduleModel, FatEquipmentList, xmlWriter);
+			EquipmentLists_Equipment_Index(moduleModel, xmlWriter);
 			xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> </equipment> */
 		}
 
 		/// <summary>
 		/// <equipmentlists> <equipment> <index>
 		/// </summary>
-		public static void EquipmentLists_Equipment_Index(ModuleModel moduleModel, List<EquipmentModel> FatEquipmentList, XmlWriter xmlWriter)
+		public static void EquipmentLists_Equipment_Index(ModuleModel moduleModel, XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("index"); /* <equipmentlists> <equipment> <index> */
-			EquipmentLists(xmlWriter, moduleModel, FatEquipmentList);
+			EquipmentLists(xmlWriter, moduleModel);
 			xmlWriter.WriteEndElement(); /* <equipmentlists> <equipment> <index> </index> */
 		}
 
@@ -552,14 +553,17 @@ namespace FantasyModuleParser.Exporters
 
 		// For Developers: The assumption is that EquipmentList is a culmination of ALL equipment items.
 		// This means that the list needs to be grouped by Primary, then each subsequent list is grouped By secondary type
-		public static void IndividualEquipmentClassList(XmlWriter xmlWriter, List<EquipmentModel> EquipmentList, ModuleModel moduleModel)
+		public static void IndividualEquipmentClassList(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(moduleModel);
+			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+
 			// Just good to check and ensure if EquipmentList is empty;  If true, then just do nothing and return
-			if (EquipmentList.Count <= 0)
+			if (FatEquipmentList.Count <= 0)
 				return;
 
 			// 1. Group by the PrimaryType
-			var EquipmentGroupByPrimaryType = EquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
+			var EquipmentGroupByPrimaryType = FatEquipmentList.GroupBy(x => x.PrimaryEquipmentEnumType).Select(x => x.ToList()).ToList();
 
 			foreach(List<EquipmentModel> primaryEquipmentList in EquipmentGroupByPrimaryType)
 			{
