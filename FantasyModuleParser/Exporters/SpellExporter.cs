@@ -13,11 +13,11 @@ namespace FantasyModuleParser.Exporters
 {
 	class SpellExporter
 	{
-		public static void DatabaseXML_Root_Reference_Spelldata(XmlWriter xmlWriter, ModuleModel module)
+		public static void DatabaseXML_Root_Spell(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludeSpells)
 			{
-				xmlWriter.WriteStartElement("spelldata");
+				xmlWriter.WriteStartElement("spell");
 				Spelldata_Category(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
@@ -25,24 +25,25 @@ namespace FantasyModuleParser.Exporters
 
 		private static void Spelldata_Category(XmlWriter xmlWriter, ModuleModel module)
 		{
+			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(module);
+			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
 			foreach (CategoryModel categoryModel in module.Categories)
 			{
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", categoryModel.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-				Spelldata_Category_SpellName(xmlWriter, module);
+				Spelldata_Category_SpellName(xmlWriter, FatSpellList);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void Spelldata_Category_SpellName(XmlWriter xmlWriter, ModuleModel module)
-		{
-			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(module);
-			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
+		private static void Spelldata_Category_SpellName(XmlWriter xmlWriter, List<SpellModel> FatSpellList)
+		{			
+			int spellID = 1;
 			foreach (SpellModel spellModel in FatSpellList)
 			{
-				xmlWriter.WriteStartElement(SpellNameToXMLFormat(spellModel));
+				xmlWriter.WriteStartElement("id-" + spellID.ToString("D4"));
 				/* To Do: Create SpellLocked method */
 				CommonMethods.WriteModuleLocked(xmlWriter);
 				WriteSpellName(xmlWriter, spellModel);
@@ -56,6 +57,7 @@ namespace FantasyModuleParser.Exporters
 				WriteSpellDuration(xmlWriter, spellModel);
 				WriteSpellComponents(xmlWriter, spellModel);
 				xmlWriter.WriteEndElement();
+				spellID++;
 			}
 		}
 

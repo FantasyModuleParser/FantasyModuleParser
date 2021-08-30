@@ -19,11 +19,11 @@ namespace FantasyModuleParser.Exporters
 		private static readonly ILog log = LogManager.GetLogger(typeof(NPCExporter));
 		private readonly SettingsService settingsService;
 
-		public static void DatabaseXML_Root_Reference_Npcdata(XmlWriter xmlWriter, ModuleModel module)
+		public static void DatabaseXML_Root_Npc(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludeNPCs)
 			{
-				xmlWriter.WriteStartElement("npcdata"); /* <root version="4.0"> <reference> <npcdata> */
+				xmlWriter.WriteStartElement("npc"); /* <root version="4.0"> <reference> <npcdata> */
 				NpcData_Category(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
@@ -35,7 +35,7 @@ namespace FantasyModuleParser.Exporters
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			if (module.IncludeNPCs)
 			{
-				xmlWriter.WriteStartElement("npclists");
+				xmlWriter.WriteStartElement("npc");
 				Npclists_Npcs(xmlWriter, module);
 				Npclists_ByLetter(xmlWriter, module, FatNPCList);
 				Npclists_ByLevel(xmlWriter, module, FatNPCList);
@@ -122,18 +122,19 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteAttributeString("name", category.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-				NpcData_Category_NpcName(xmlWriter, module);
+				NpcData_Category_Npc(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void NpcData_Category_NpcName(XmlWriter xmlWriter, ModuleModel module)
+		private static void NpcData_Category_Npc(XmlWriter xmlWriter, ModuleModel module)
 		{
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+			int npcID = 1;
 			foreach (NPCModel npcModel in FatNPCList)
 			{
-				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
+				xmlWriter.WriteStartElement("id-" + npcID.ToString("D4"));
 				/* TO DO: Make WriteModuleLocked into WriteNPCLocked */
 				CommonMethods.WriteModuleLocked(xmlWriter);
 				WriteAbilities(xmlWriter, npcModel);
@@ -142,7 +143,6 @@ namespace FantasyModuleParser.Exporters
 				WriteAlignment(xmlWriter, npcModel);
 				WriteConditionImmunities(xmlWriter, npcModel);
 				WriteCR(xmlWriter, npcModel);
-				/* TO DO: Fix errors in WriteDamage methods */
 				WriteDamageImmunities(xmlWriter, npcModel);
 				WriteDamageResistances(xmlWriter, npcModel);
 				WriteDamageVulnerabilities(xmlWriter, npcModel);
@@ -163,6 +163,7 @@ namespace FantasyModuleParser.Exporters
 				WriteTraits(xmlWriter, npcModel);
 				WriteXP(xmlWriter, npcModel);
 				xmlWriter.WriteEndElement();
+				npcID++;
 			}
 		}
 

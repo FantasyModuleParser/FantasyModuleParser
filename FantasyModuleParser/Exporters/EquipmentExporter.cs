@@ -16,37 +16,39 @@ namespace FantasyModuleParser.Exporters
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(EquipmentExporter));
 
-		public static void DatabaseXML_Root_Reference_Equipmentdata(XmlWriter xmlWriter, ModuleModel module)
+		public static void DatabaseXML_Root_Item(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludesEquipment)
 			{
-				xmlWriter.WriteStartElement("equipmentdata");
-				EquipmentData_Category(xmlWriter, module);
+				xmlWriter.WriteStartElement("item");
+				Item_Category(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void EquipmentData_Category(XmlWriter xmlWriter, ModuleModel module)
+		private static void Item_Category(XmlWriter xmlWriter, ModuleModel module)
 		{
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(module);
+			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
 			foreach (CategoryModel categoryModel in module.Categories)
 			{
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", categoryModel.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-				EquipmentData_Category_ItemName(xmlWriter, module);
+				EquipmentData_Category_ItemName(xmlWriter, FatEquipmentList);
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void EquipmentData_Category_ItemName(XmlWriter xmlWriter, ModuleModel module)
+		private static void EquipmentData_Category_ItemName(XmlWriter xmlWriter, List<EquipmentModel> FatEquipmentList)
 		{
-			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(module);
-			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+			
+			int itemID = 1;
 			foreach (EquipmentModel equip in FatEquipmentList)
 			{
 				NPCController npcController = new NPCController();
-				xmlWriter.WriteStartElement(EquipmentNameToXML(equip));
+				xmlWriter.WriteStartElement("id-" + itemID.ToString("D4"));
 				EquipmentLocked(xmlWriter, equip);
 				EquipmentIdentified(xmlWriter, equip);
 				EquipmentNonIDName(xmlWriter, equip);
@@ -60,6 +62,7 @@ namespace FantasyModuleParser.Exporters
 				PrmaryEquipmentEnum_Armor(xmlWriter, equip);
 				PrimaryEquipmentEnum_Weapon(xmlWriter, equip);
 				xmlWriter.WriteEndElement();
+				itemID++;
 			}
 		}
 

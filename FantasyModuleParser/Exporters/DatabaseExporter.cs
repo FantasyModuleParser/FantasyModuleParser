@@ -29,89 +29,18 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("root"); // <root>
 			xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
-			DatabaseXML_Root_Image(xmlWriter, module);
+			ImageExporter.DatabaseXML_Root_Image(xmlWriter, module);
+			EquipmentExporter.DatabaseXML_Root_Item(xmlWriter, module);
+			NPCExporter.DatabaseXML_Root_Npc(xmlWriter, module);
+			SpellExporter.DatabaseXML_Root_Spell(xmlWriter, module);
+			TableExporter.DatabaseXML_Root_Tables(xmlWriter, module);
+			// EquipmentExporter.DatabaseXML_Root_Reference_EquipmentLists(xmlWriter, module);
+			// ImageExporter.DababaseXML_Root_Reference_Imagelists(xmlWriter, module);
+			// NPCExporter.DatabaseXML_Root_Reference_NPClists(xmlWriter, module);
+			// SpellExporter.DatabaseXML_Root_Reference_Spelllists(xmlWriter, module);
 			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module);
 			LibraryExporter.Database_Library(xmlWriter, module);
 			xmlWriter.WriteEndElement(); // Closes </root>
-		}
-
-		private static void DatabaseXML_Root_Image(XmlWriter xmlWriter, ModuleModel module)
-		{
-			if (module.IncludeImages)
-			{
-				xmlWriter.WriteStartElement("image"); /* <root version="4.0"> <image> */
-				Image_Category(xmlWriter, module);
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> </image> */
-			}
-		}
-
-		private static void Image_Category(XmlWriter xmlWriter, ModuleModel module)
-		{
-			foreach (CategoryModel category in module.Categories)
-			{
-				xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <image> <category> */
-				xmlWriter.WriteAttributeString("name", category.Name); /* <root version="4.0"> <image> <category> */
-				xmlWriter.WriteAttributeString("baseicon", "0");
-				xmlWriter.WriteAttributeString("decalicon", "0");
-				Image_Category_ImageName(xmlWriter, category);
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> </category> */
-			}
-		}
-
-		private static void Image_Category_ImageName(XmlWriter xmlWriter, CategoryModel category)
-		{
-			foreach (NPCModel npc in category.NPCModels)
-			{
-				if (!string.IsNullOrEmpty(npc.NPCImage))
-				{
-					xmlWriter.WriteStartElement(Path.GetFileNameWithoutExtension(npc.NPCImage).Replace(" ", "").Replace("-", ""));
-					/* <root version="4.0"> <image> <category> <image_name> */
-					Image_Category_ImageName_Image(xmlWriter, npc);
-					CommonMethods.WriteModuleLocked(xmlWriter);
-					NPCExporter.WriteName(xmlWriter, npc);
-					Image_Category_ImageName_Image_NonidName(xmlWriter, npc);
-					Image_Category_ImageName_Image_Identified(xmlWriter, npc);
-					xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> </image_name> */
-				}
-			}
-		}
-
-		private static void Image_Category_ImageName_Image_Identified(XmlWriter xmlWriter, NPCModel npcModel)
-		{
-			if (!string.IsNullOrEmpty(npcModel.NonID))
-			{
-				xmlWriter.WriteStartElement("isidentified"); /* <root version="4.0"> <image> <category> <image_name> <isidentified> */
-				xmlWriter.WriteAttributeString("type", "number");
-				xmlWriter.WriteString("0");
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <isidentified> </isidentified> */
-			}
-		}
-
-		private static void Image_Category_ImageName_Image_NonidName(XmlWriter xmlWriter, NPCModel npcModel)
-		{
-			if (!string.IsNullOrEmpty(npcModel.NonID))
-			{
-				xmlWriter.WriteStartElement("nonid_name"); /* <root version="4.0"> <image> <category> <image_name> <nonid_name> */
-				xmlWriter.WriteAttributeString("type", "string");
-				xmlWriter.WriteString(npcModel.NonID);
-				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <nonid_name> </nonid_name> */
-			}
-		}
-
-		private static void Image_Category_ImageName_Image(XmlWriter xmlWriter, NPCModel npcModel)
-		{
-			xmlWriter.WriteStartElement("image"); /* <root version="4.0"> <image> <category> <image_name> <image> */
-			xmlWriter.WriteAttributeString("type", "image");
-			Image_Category_ImageName_Image_Bitmap(xmlWriter, npcModel);
-			xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> </image> */
-		}
-
-		private static void Image_Category_ImageName_Image_Bitmap(XmlWriter xmlWriter, NPCModel npcModel)
-		{
-			xmlWriter.WriteStartElement("bitmap"); /* <root version="4.0"> <image> <category> <image_name> <image> <bitmap> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString("images" + "\\" + Path.GetFileName(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
-			xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> <bitmap> </bitmap> */
 		}
 	}
 }

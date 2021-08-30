@@ -9,7 +9,7 @@ namespace FantasyModuleParser.Exporters
 {
 	class TableExporter
 	{
-		public static void DatabaseXML_Root_Reference_Tables(XmlWriter xmlWriter, ModuleModel module)
+		public static void DatabaseXML_Root_Tables(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludeTables)
 			{
@@ -23,14 +23,12 @@ namespace FantasyModuleParser.Exporters
 		{
 			List<TableModel> FatTableList = CommonMethods.GenerateFatTableList(module);
 			FatTableList.Sort((tableOne, tableTwo) => tableOne.Name.CompareTo(tableTwo.Name));
-
 			foreach (CategoryModel category in module.Categories)
 			{
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", category.Name);
 				xmlWriter.WriteAttributeString("baseicon", "0");
 				xmlWriter.WriteAttributeString("decalicon", "0");
-
 				Tables_Category_TableName(xmlWriter, FatTableList);
 				xmlWriter.WriteEndElement();
 			}
@@ -38,9 +36,10 @@ namespace FantasyModuleParser.Exporters
 
 		private static void Tables_Category_TableName(XmlWriter xmlWriter, List<TableModel> FatTableList)
 		{
+			int tableID = 1;
 			foreach (TableModel tableModel in FatTableList)
 			{
-				xmlWriter.WriteStartElement(TableNameToXMLFormat(tableModel));
+				xmlWriter.WriteStartElement("id-" + tableID.ToString("D4"));
 				WriteTableLocked(xmlWriter, tableModel);
 				WriteTableName(xmlWriter, tableModel);
 				WriteTableDescription(xmlWriter, tableModel);
@@ -52,6 +51,7 @@ namespace FantasyModuleParser.Exporters
 				WriteColumnLabels(xmlWriter, tableModel);
 				WriteResultsColumn(xmlWriter, tableModel);
 				xmlWriter.WriteEndElement();
+				tableID++;
 			}
 		}
 
