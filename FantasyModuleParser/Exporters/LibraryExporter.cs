@@ -59,7 +59,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteStartElement("item");
 				Entry_Equipment_LibraryLink(xmlWriter, moduleModel);
 				Xml_Name_Equipment(xmlWriter);
-				// Xml_RecordType_Item(xmlWriter);
+				Xml_RecordType_Item(xmlWriter);
 				xmlWriter.WriteEndElement();
 			}
 		}
