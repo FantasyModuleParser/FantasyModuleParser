@@ -86,11 +86,11 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> <bitmap> </bitmap> */
 		}
 
-		public static void DababaseXML_Root_Reference_Imagelists(XmlWriter xmlWriter, ModuleModel module)
+		public static void DababaseXML_Root_Lists_Imagelists(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludeImages)
 			{
-				xmlWriter.WriteStartElement("imagelists");
+				xmlWriter.WriteStartElement("image_lists");
 				Imagelists_ByCategory(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 			}

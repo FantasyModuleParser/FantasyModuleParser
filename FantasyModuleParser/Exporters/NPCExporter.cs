@@ -17,7 +17,6 @@ namespace FantasyModuleParser.Exporters
 	public class NPCExporter
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(NPCExporter));
-		private readonly SettingsService settingsService;
 
 		public static void DatabaseXML_Root_Npc(XmlWriter xmlWriter, ModuleModel module)
 		{
@@ -29,13 +28,13 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 
-		public static void DatabaseXML_Root_Reference_NPClists(XmlWriter xmlWriter, ModuleModel module)
+		public static void DatabaseXML_Root_Lists_NPClists(XmlWriter xmlWriter, ModuleModel module)
 		{
 			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
 			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			if (module.IncludeNPCs)
 			{
-				xmlWriter.WriteStartElement("npc");
+				xmlWriter.WriteStartElement("npclists");
 				Npclists_Npcs(xmlWriter, module);
 				Npclists_ByLetter(xmlWriter, module, FatNPCList);
 				Npclists_ByLevel(xmlWriter, module, FatNPCList);
@@ -134,7 +133,7 @@ namespace FantasyModuleParser.Exporters
 			int npcID = 1;
 			foreach (NPCModel npcModel in FatNPCList)
 			{
-				xmlWriter.WriteStartElement("id-" + npcID.ToString("D4"));
+				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
 				/* TO DO: Make WriteModuleLocked into WriteNPCLocked */
 				CommonMethods.WriteModuleLocked(xmlWriter);
 				WriteAbilities(xmlWriter, npcModel);
@@ -231,9 +230,9 @@ namespace FantasyModuleParser.Exporters
 		private static void Npclists_Npcs_Index(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("index");
-			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0001", "reference.npclists.byletter@" + module.Name, "NPCs - Alphabetical Index");
-			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0002", "reference.npclists.bylevel@" + module.Name, "NPCs - Challenge Rating Index");
-			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0003", "reference.npclists.bytype@" + module.Name, "NPCs - Class Index");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0001", "lists.npclists.byletter@" + module.Name, "NPCs - Alphabetical Index");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0002", "lists.npclists.bylevel@" + module.Name, "NPCs - Challenge Rating Index");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0003", "lists.npclists.bytype@" + module.Name, "NPCs - Class Index");
 			xmlWriter.WriteEndElement();
 		}
 
@@ -261,7 +260,7 @@ namespace FantasyModuleParser.Exporters
 		private static void NPC_Recordname(XmlWriter xmlWriter, ModuleModel moduleModel, NPCModel npc)
 		{
 			xmlWriter.WriteStartElement("recordname");
-			xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
+			xmlWriter.WriteString("npc." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 

@@ -43,7 +43,7 @@ namespace FantasyModuleParser.Exporters
 			int spellID = 1;
 			foreach (SpellModel spellModel in FatSpellList)
 			{
-				xmlWriter.WriteStartElement("id-" + spellID.ToString("D4"));
+				xmlWriter.WriteStartElement(SpellNameToXMLFormat(spellModel));
 				/* To Do: Create SpellLocked method */
 				CommonMethods.WriteModuleLocked(xmlWriter);
 				WriteSpellName(xmlWriter, spellModel);
@@ -61,29 +61,29 @@ namespace FantasyModuleParser.Exporters
 			}
 		}
 
-		public static void DatabaseXML_Root_Reference_Spelllists(XmlWriter xmlWriter, ModuleModel module)
+		public static void DatabaseXML_Root_Lists_Spelllists(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludeSpells)
 			{
 				#region Spell Lists
 				xmlWriter.WriteStartElement("spelllists");
-				Reference_SpellLists_Spells(xmlWriter, module);
+				Lists_SpellLists_Spells(xmlWriter, module);
 				xmlWriter.WriteEndElement();
 				#endregion
 			}
 		}
 
-		private static void Reference_SpellLists_Spells(XmlWriter xmlWriter, ModuleModel module)
+		private static void Lists_SpellLists_Spells(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("spells");
 			Xml_SpellLists_Spells_Name(xmlWriter);
 			SpellLists_Spells_Index(xmlWriter, module);
-			Spells__Index(xmlWriter, module);
+			Spells_Index(xmlWriter, module);
 			SpellListByClass(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Spells__Index(XmlWriter xmlWriter, ModuleModel module)
+		private static void Spells_Index(XmlWriter xmlWriter, ModuleModel module)
 		{
 			List<SpellModel> FatSpellList = CommonMethods.GenerateFatSpellList(module);
 			FatSpellList.Sort((spellOne, spellTwo) => spellOne.SpellName.CompareTo(spellTwo.SpellName));
@@ -112,11 +112,11 @@ namespace FantasyModuleParser.Exporters
 		private static void SpellLists_Spells_Index(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("index");
-			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0001", "reference.spelllists._index_@" + module.Name, "(Index)");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0001", "lists.spelllists._index_@" + module.Name, "(Index)");
 			int spellListId = 2;
 			foreach (string castByValue in GetSortedSpellCasterList(module))
 			{
-				string referenceId = "reference.spellists.";
+				string referenceId = "lists.spellists.";
 				referenceId += castByValue.Replace(" ", "").Replace("(", "").Replace(")", "").ToLower();
 				referenceId += "@" + module.Name;
 				CommonMethods.WriteIDLinkList(xmlWriter, module, "id-" + spellListId.ToString("D4"), referenceId, castByValue);
@@ -211,7 +211,7 @@ namespace FantasyModuleParser.Exporters
 		private static void SpellName_Link_RecordName(XmlWriter xmlWriter, ModuleModel moduleModel, SpellModel spell)
 		{
 			xmlWriter.WriteStartElement("recordname");
-			xmlWriter.WriteString("reference.spelldata." + SpellNameToXMLFormat(spell) + "@" + moduleModel.Name);
+			xmlWriter.WriteString("spell." + SpellNameToXMLFormat(spell) + "@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 

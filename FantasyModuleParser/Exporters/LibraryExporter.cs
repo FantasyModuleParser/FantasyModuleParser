@@ -59,7 +59,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteStartElement("item");
 				Entry_Equipment_LibraryLink(xmlWriter, moduleModel);
 				Xml_Name_Equipment(xmlWriter);
-				Xml_RecordType_Item(xmlWriter);
+				// Xml_RecordType_Item(xmlWriter);
 				xmlWriter.WriteEndElement();
 			}
 		}
@@ -179,12 +179,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		//	private static void Xml_Class_ReferenceColIndex(XmlWriter xmlWriter)
-		//	{
-		//		xmlWriter.WriteStartElement("class");
-		//		xmlWriter.WriteString("reference_colindex");
-		//		xmlWriter.WriteEndElement();
-		//	}
+		private static void Xml_Class_ReferenceColIndex(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteString("reference_colindex");
+			xmlWriter.WriteEndElement();
+		}
 
 		// private static void Xml_Class_ReferenceIndex(XmlWriter xmlWriter)
 		// {
@@ -270,10 +270,10 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Xml_RecordName_Equipment(XmlWriter xmlWriter, ModuleModel moduleModel)
+		private static void Xml_RecordName_ItemLists(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("recordname");
-			xmlWriter.WriteString("reference.equipmentlists.equipment@" + moduleModel.Name);
+			xmlWriter.WriteString("lists.item_lists@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -287,7 +287,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_RecordName_NPCList(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("recordname");
-			xmlWriter.WriteString("reference.npclists.npcs@" + moduleModel.Name);
+			xmlWriter.WriteString("lists.npclists.npcs@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -301,7 +301,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_RecordName_SpellList(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("recordname");
-			xmlWriter.WriteString("reference.spelllists.spells@" + moduleModel.Name);
+			xmlWriter.WriteString("lists.spelllists.spells@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 

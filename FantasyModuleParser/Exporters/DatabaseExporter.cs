@@ -27,20 +27,17 @@ namespace FantasyModuleParser.Exporters
 
 		private static void DatabaseXML_Root(XmlWriter xmlWriter, ModuleModel module)
 		{
-			xmlWriter.WriteStartElement("root"); // <root>
-			xmlWriter.WriteAttributeString("version", "4.0"); /* <root version="4.0"> */
+			xmlWriter.WriteStartElement("root");
+			xmlWriter.WriteAttributeString("version", "4.0");
 			ImageExporter.DatabaseXML_Root_Image(xmlWriter, module);
 			EquipmentExporter.DatabaseXML_Root_Item(xmlWriter, module);
+			ListExporter.DatabaseXML_Root_Lists(xmlWriter, module);
 			NPCExporter.DatabaseXML_Root_Npc(xmlWriter, module);
 			SpellExporter.DatabaseXML_Root_Spell(xmlWriter, module);
 			TableExporter.DatabaseXML_Root_Tables(xmlWriter, module);
-			// EquipmentExporter.DatabaseXML_Root_Reference_EquipmentLists(xmlWriter, module);
-			// ImageExporter.DababaseXML_Root_Reference_Imagelists(xmlWriter, module);
-			// NPCExporter.DatabaseXML_Root_Reference_NPClists(xmlWriter, module);
-			// SpellExporter.DatabaseXML_Root_Reference_Spelllists(xmlWriter, module);
 			ReferenceExporter.DatabaseXML_Root_Reference(xmlWriter, module);
 			LibraryExporter.Database_Library(xmlWriter, module);
-			xmlWriter.WriteEndElement(); // Closes </root>
+			xmlWriter.WriteEndElement();
 		}
 	}
 }
