@@ -1,13 +1,7 @@
-﻿using FantasyModuleParser.Equipment.Enums;
-using FantasyModuleParser.Equipment.Models;
-using FantasyModuleParser.Main.Models;
+﻿using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
-using FantasyModuleParser.NPC;
-using FantasyModuleParser.Spells.Models;
-using FantasyModuleParser.Tables.Models;
 using log4net;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
@@ -181,27 +175,10 @@ namespace FantasyModuleParser.Exporters
 			using (StringWriter sw = new StringWriterWithEncoding(Encoding.UTF8))
 			using (XmlWriter xmlWriter = XmlWriter.Create(sw, GetXmlWriterSettings()))
 			{
-				xmlWriter.WriteStartDocument();
-				xmlWriter.WriteStartElement("root");
-				xmlWriter.WriteAttributeString("version", "4");
-				xmlWriter.WriteStartElement("name");
-				xmlWriter.WriteString(moduleModel.Name);
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteStartElement("category");
-				xmlWriter.WriteString(moduleModel.Category);
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteStartElement("author");
-				xmlWriter.WriteString(moduleModel.Author);
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteStartElement("ruleset");
-				xmlWriter.WriteString("5E");
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteEndElement();
-				xmlWriter.WriteEndDocument();
-				xmlWriter.Close();
-				return sw.ToString();
+				return DefinitionExporter.DefinitionXML(moduleModel, sw, xmlWriter);
 			}
 		}
+
 		/// <summary>
 		/// XML Writer settings used to generate modules
 		/// </summary>
