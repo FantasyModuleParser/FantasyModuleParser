@@ -12,9 +12,6 @@ namespace FantasyModuleParser.Exporters
 	public class FantasyGroundsExporter : IExporter
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(FantasyGroundsExporter));
-
-		string Immunity;
-		string Resistance;
 		private readonly SettingsService settingsService;
 
 		public FantasyGroundsExporter()
