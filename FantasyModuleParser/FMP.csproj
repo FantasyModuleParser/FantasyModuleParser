@@ -534,10 +534,16 @@
     </Compile>
     <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
     <Compile Include="Exporters\CommonMethods.cs" />
+    <Compile Include="Exporters\DatabaseExporter.cs" />
     <Compile Include="Exporters\EquipmentExporter.cs" />
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
     <Compile Include="Exporters\ICampaign.cs" />
+    <Compile Include="Exporters\ImageExporter.cs" />
+    <Compile Include="Exporters\LibraryExporter.cs" />
+    <Compile Include="Exporters\ListExporter.cs" />
     <Compile Include="Exporters\NPCExporter.cs" />
+    <Compile Include="Exporters\ReferenceExporter.cs" />
+    <Compile Include="Exporters\ReferenceManualExporter.cs" />
     <Compile Include="Exporters\SpellExporter.cs" />
     <Compile Include="Exporters\TableExporter.cs" />
     <Compile Include="Importer\Enums\ImportSpellState.cs" />
