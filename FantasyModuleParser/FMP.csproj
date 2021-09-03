@@ -535,6 +535,7 @@
     <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
     <Compile Include="Exporters\CommonMethods.cs" />
     <Compile Include="Exporters\DatabaseExporter.cs" />
+    <Compile Include="Exporters\DefinitionExporter.cs" />
     <Compile Include="Exporters\EquipmentExporter.cs" />
     <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
     <Compile Include="Exporters\ICampaign.cs" />
