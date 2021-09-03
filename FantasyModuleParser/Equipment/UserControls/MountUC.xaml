@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:equipmentEnum="clr-namespace:FantasyModuleParser.Equipment.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="340">
     <Grid Background="AntiqueWhite">
@@ -15,12 +17,10 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Speed" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox Grid.Column="1" VerticalAlignment="Center"/>
-        <ComboBox Grid.Column="2" VerticalAlignment="Center">
-            <ComboBoxItem Content="ft." IsSelected="True"/>
-            <ComboBoxItem Content="mph"/>
+        <TextBox Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=Speed}"/>
+        <ComboBox Grid.Column="2" ItemsSource="{Binding Source={my:Enumeration {x:Type equipmentEnum:MeasurementEnum}}}" SelectedValue="{Binding Path=Measurement}" DisplayMemberPath="Description" VerticalAlignment="Center">
         </ComboBox>
         <Label Content="Capacity" VerticalAlignment="Center" Grid.Column="3"/>
-        <TextBox Grid.Column="4" VerticalAlignment="Center" />
+        <TextBox Grid.Column="4" VerticalAlignment="Center" Text="{Binding Path=Capacity}"/>
     </Grid>
 </UserControl>

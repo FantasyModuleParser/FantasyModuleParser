@@ -1,10 +1,10 @@
 ﻿using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using log4net;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,32 +18,260 @@ namespace FantasyModuleParser.Exporters
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(NPCExporter));
 
-		static private void NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
+		public static void DatabaseXML_Root_Npc(XmlWriter xmlWriter, ModuleModel module)
+		{
+			if (module.IncludeNPCs)
+			{
+				xmlWriter.WriteStartElement("npc"); /* <root version="4.0"> <reference> <npcdata> */
+				NpcData_Category(xmlWriter, module);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		public static void DatabaseXML_Root_Lists_NPClists(XmlWriter xmlWriter, ModuleModel module)
+		{
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
+			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+			if (module.IncludeNPCs)
+			{
+				xmlWriter.WriteStartElement("npclists");
+				Npclists_Npcs(xmlWriter, module);
+				Npclists_ByLetter(xmlWriter, module, FatNPCList);
+				Npclists_ByLevel(xmlWriter, module, FatNPCList);
+				Npclists_ByType(xmlWriter, module, FatNPCList);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		public static void Save_NPC_Tokens(ModuleModel module, SettingsService settings)
+		{
+			SettingsModel settingsModel = settings.Load();
+
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
+			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+
+			foreach (NPCModel npcModel in FatNPCList)
+			{
+				if (module.IncludeTokens)
+				{
+					if (!string.IsNullOrEmpty(npcModel.NPCToken))
+					{
+						string Filename = Path.GetFileName(npcModel.NPCToken);
+						string NPCTokenFileName = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "tokens", Filename);
+						string NPCTokenDirectory = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "tokens");
+						if (Directory.Exists(NPCTokenDirectory))
+						{
+							if (File.Exists(NPCTokenFileName))
+							{
+								File.Delete(NPCTokenFileName);
+							}
+						}
+						else
+						{
+							Directory.CreateDirectory(NPCTokenDirectory);
+						}
+						File.Copy(npcModel.NPCToken, NPCTokenFileName);
+					}
+				}
+			}
+		}
+
+		public static void Save_NPC_Images(ModuleModel module, SettingsService settings)
+		{
+			SettingsModel settingsModel = settings.Load();
+
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
+			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+
+			foreach (NPCModel npcModel in FatNPCList)
+			{
+				if (module.IncludeImages)
+				{
+					if (!string.IsNullOrEmpty(npcModel.NPCImage))
+					{
+						string Filename = Path.GetFileName(npcModel.NPCImage).Replace("-", "").Replace(" ", "").Replace(",", "");
+						string NPCImageFileName = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "images", Filename);
+						string NPCImageDirectory = Path.Combine(settingsModel.FGModuleFolderLocation, module.ModFilename, "images");
+						if (Directory.Exists(NPCImageDirectory))
+						{
+							if (File.Exists(NPCImageFileName))
+							{
+								File.Delete(NPCImageFileName);
+							}
+						}
+						else
+						{
+							Directory.CreateDirectory(NPCImageDirectory);
+						}
+						if (npcModel.NPCImage.StartsWith("file:///"))
+						{
+							npcModel.NPCImage = npcModel.NPCImage.Remove(0, 8);
+						}
+						File.Copy(npcModel.NPCImage, NPCImageFileName);
+					}
+				}
+			}
+		}
+
+		private static void NpcData_Category(XmlWriter xmlWriter, ModuleModel module)
+		{
+			foreach (CategoryModel category in module.Categories)
+			{
+				xmlWriter.WriteStartElement("category");
+				xmlWriter.WriteAttributeString("name", category.Name);
+				xmlWriter.WriteAttributeString("baseicon", "0");
+				xmlWriter.WriteAttributeString("decalicon", "0");
+				NpcData_Category_Npc(xmlWriter, module);
+				xmlWriter.WriteEndElement();
+			}
+		}
+
+		private static void NpcData_Category_Npc(XmlWriter xmlWriter, ModuleModel module)
+		{
+			List<NPCModel> FatNPCList = CommonMethods.GenerateFatNPCList(module);
+			FatNPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
+			int npcID = 1;
+			foreach (NPCModel npcModel in FatNPCList)
+			{
+				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
+				/* TO DO: Make WriteModuleLocked into WriteNPCLocked */
+				CommonMethods.WriteModuleLocked(xmlWriter);
+				WriteAbilities(xmlWriter, npcModel);
+				WriteAC(xmlWriter, npcModel);
+				WriteActions(xmlWriter, npcModel);
+				WriteAlignment(xmlWriter, npcModel);
+				WriteConditionImmunities(xmlWriter, npcModel);
+				WriteCR(xmlWriter, npcModel);
+				WriteDamageImmunities(xmlWriter, npcModel);
+				WriteDamageResistances(xmlWriter, npcModel);
+				WriteDamageVulnerabilities(xmlWriter, npcModel);
+				WriteHP(xmlWriter, npcModel);
+				WriteLairActions(xmlWriter, npcModel);
+				WriteLanguages(xmlWriter, npcModel);
+				WriteLegendaryActions(xmlWriter, npcModel);
+				WriteName(xmlWriter, npcModel);
+				WriteReactions(xmlWriter, npcModel);
+				WriteSavingThrows(xmlWriter, npcModel);
+				WriteSenses(xmlWriter, npcModel);
+				WriteSize(xmlWriter, npcModel);
+				WriteSkills(xmlWriter, npcModel);
+				WriteSpeed(xmlWriter, npcModel);
+				WriteText(xmlWriter, npcModel);
+				WriteToken(xmlWriter, npcModel, module);
+				WriteType(xmlWriter, npcModel);
+				WriteTraits(xmlWriter, npcModel);
+				WriteXP(xmlWriter, npcModel);
+				xmlWriter.WriteEndElement();
+				npcID++;
+			}
+		}
+
+		private static void Npclists_ByType(XmlWriter xmlWriter, ModuleModel module, List<NPCModel> FatNPCList)
+		{
+			xmlWriter.WriteStartElement("bytype");
+			Xml_Description_Npcs(xmlWriter);
+			Npclists_ByType_Groups(xmlWriter, module, FatNPCList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Npclists_ByType_Groups(XmlWriter xmlWriter, ModuleModel module, List<NPCModel> FatNPCList)
+		{
+			xmlWriter.WriteStartElement("groups");
+			CreateReferenceByType(xmlWriter, module, FatNPCList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Npclists_ByLevel(XmlWriter xmlWriter, ModuleModel module, List<NPCModel> FatNPCList)
+		{
+			xmlWriter.WriteStartElement("bylevel");
+			Xml_Description_Npcs(xmlWriter);
+			Npclists_ByLevel_Groups(xmlWriter, module, FatNPCList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Npclists_ByLevel_Groups(XmlWriter xmlWriter, ModuleModel module, List<NPCModel> FatNPCList)
+		{
+			xmlWriter.WriteStartElement("groups");
+			CreateReferenceByCR(xmlWriter, module, FatNPCList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Npclists_ByLetter(XmlWriter xmlWriter, ModuleModel module, List<NPCModel> FatNPCList)
+		{
+			xmlWriter.WriteStartElement("byletter");
+			Xml_Description_Npcs(xmlWriter);
+			Npclists_ByLetter_Groups(xmlWriter, module, FatNPCList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Npclists_ByLetter_Groups(XmlWriter xmlWriter, ModuleModel module, List<NPCModel> FatNPCList)
+		{
+			xmlWriter.WriteStartElement("groups");
+			CreateReferenceByFirstLetter(xmlWriter, module, FatNPCList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Description_Npcs(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString("NPCs");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Npclists_Npcs(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("npcs");
+			CommonMethods.Xml_Name_Npcs(xmlWriter);
+			Npclists_Npcs_Index(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Npclists_Npcs_Index(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("index");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0001", "lists.npclists.byletter@" + module.Name, "NPCs - Alphabetical Index");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0002", "lists.npclists.bylevel@" + module.Name, "NPCs - Challenge Rating Index");
+			CommonMethods.WriteIDLinkList(xmlWriter, module, "id-0003", "lists.npclists.bytype@" + module.Name, "NPCs - Class Index");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			foreach (NPCModel npc in NPCList)
 			{
-				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npc)); /* <npc_name> */
-				xmlWriter.WriteStartElement("link"); /* <npc_name> <link> */
-				xmlWriter.WriteAttributeString("type", "windowreference");
-				xmlWriter.WriteStartElement("class"); /* <npc_name> <link> <class> */
-				xmlWriter.WriteString("npc");
-				xmlWriter.WriteEndElement(); /* <npc_name> <link> <class> </class> */
-				xmlWriter.WriteStartElement("recordname"); /* <npc_name> <link> <recordname> */
-				xmlWriter.WriteString("reference.npcdata." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
-				xmlWriter.WriteEndElement(); /* <npc_name> <link> <recordname> </recordname> */
-				xmlWriter.WriteStartElement("description"); /* <npc_name> <link> <description> */
-				xmlWriter.WriteStartElement("field"); /* <npc_name> <link> <description> <field> */
-				xmlWriter.WriteString("name");
-				xmlWriter.WriteEndElement(); /* <npc_name> <link> <description> <field> </field> */
-				xmlWriter.WriteEndElement(); /* <npc_name> <link> <description> </description> */
-				xmlWriter.WriteEndElement(); /* <npc_name> <link> </link> */
-				xmlWriter.WriteStartElement("source"); /* <npc_name> <source> */
-				xmlWriter.WriteAttributeString("type", "number");
-				xmlWriter.WriteEndElement(); /* <npc_name> <source> </source> */
-				xmlWriter.WriteEndElement(); /* <npc_name> </npc_name> */
+				xmlWriter.WriteStartElement(NPCNameToXMLFormat(npc));
+				Npcname_Link(xmlWriter, moduleModel, npc);
+				CommonMethods.Xml_Source_TypeNumber_Blank(xmlWriter);
+				xmlWriter.WriteEndElement();
 			}
 		}
-		static public void CreateReferenceByFirstLetter(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
+
+		private static void Npcname_Link(XmlWriter xmlWriter, ModuleModel moduleModel, NPCModel npc)
+		{
+			xmlWriter.WriteStartElement("link");
+			xmlWriter.WriteAttributeString("type", "windowreference");
+			Class_NPC(xmlWriter);
+			NPC_Recordname(xmlWriter, moduleModel, npc);
+			CommonMethods.Xml_Description_Field_Name(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void NPC_Recordname(XmlWriter xmlWriter, ModuleModel moduleModel, NPCModel npc)
+		{
+			xmlWriter.WriteStartElement("recordname");
+			xmlWriter.WriteString("npc." + NPCNameToXMLFormat(npc) + "@" + moduleModel.Name);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_NPC(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteString("npc");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void CreateReferenceByFirstLetter(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
 			var AlphabetList = NPCList.GroupBy(x => x.NPCName.ToUpper()[0]).Select(x => x.ToList()).ToList();
@@ -53,19 +281,39 @@ namespace FantasyModuleParser.Exporters
 				ProcessNPCListByLetter(xmlWriter, moduleModel, actualLetter, npcList);
 			}
 		}
-		static private void ProcessNPCListByLetter(XmlWriter xmlWriter, ModuleModel moduleModel, string actualLetter, List<NPCModel> NPCList)
+		
+		private static void ProcessNPCListByLetter(XmlWriter xmlWriter, ModuleModel moduleModel, string actualLetter, List<NPCModel> NPCList)
 		{
-			xmlWriter.WriteStartElement("typeletter" + actualLetter); /* <typeletter> */
-			xmlWriter.WriteStartElement("description"); /* <typeletter> <description> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(actualLetter);
-			xmlWriter.WriteEndElement(); /* <typeletter> <description> </description> */
-			xmlWriter.WriteStartElement("index"); /* <typeletter> <index> */
-			NPCLocation(xmlWriter, moduleModel, NPCList);
-			xmlWriter.WriteEndElement(); /* <typeletter> <index> </index> */
-			xmlWriter.WriteEndElement(); /* <typeletter> </typeletter> */
+			xmlWriter.WriteStartElement("typeletter" + actualLetter);
+			CommonMethods.Xml_Description_ActualLetter(xmlWriter, actualLetter);
+			Xml_Index_NPCLocation(xmlWriter, moduleModel, NPCList);
+			xmlWriter.WriteEndElement();
 		}
-		static public void CreateReferenceByCR(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
+
+		private static void Xml_Index_NPCLocation(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
+		{
+			xmlWriter.WriteStartElement("index");
+			NPCLocation(xmlWriter, moduleModel, NPCList);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Description_ActualCR(XmlWriter xmlWriter, string actualCR)
+		{
+			xmlWriter.WriteStartElement("description");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString("CR " + actualCR);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Description_ActualType(XmlWriter xmlWriter, string actualType)
+		{
+			xmlWriter.WriteStartElement("description"); /* <type_NPCType> <description> */
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(actualType);
+			xmlWriter.WriteEndElement(); /* <type_NPCType> <description> </description> */
+		}
+
+		private static void CreateReferenceByCR(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.ChallengeRating.CompareTo(npcTwo.ChallengeRating));
 			var CRList = NPCList.GroupBy(x => x.ChallengeRating.ToUpper()[0]).Select(x => x.ToList()).ToList();
@@ -75,7 +323,8 @@ namespace FantasyModuleParser.Exporters
 				ProcessNPCListByCR(xmlWriter, moduleModel, actualCR, npcList);
 			}
 		}
-		static private void ProcessNPCListByCR(XmlWriter xmlWriter, ModuleModel moduleModel, string actualCR, List<NPCModel> NPCList)
+		
+		private static void ProcessNPCListByCR(XmlWriter xmlWriter, ModuleModel moduleModel, string actualCR, List<NPCModel> NPCList)
 		{
 			if (actualCR == "1/8")
 			{
@@ -93,16 +342,12 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("CR" + actualCR);
 			}
-			xmlWriter.WriteStartElement("description"); /* <cr*> <description> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString("CR " + actualCR);
-			xmlWriter.WriteEndElement(); /* <cr*> <description> </description> */
-			xmlWriter.WriteStartElement("index"); /* <cr*> <index> */
-			NPCLocation(xmlWriter, moduleModel, NPCList);
-			xmlWriter.WriteEndElement(); /* <cr*> <index> </index> */
-			xmlWriter.WriteEndElement(); /* <cr*> </cr*> */
+			Xml_Description_ActualCR(xmlWriter, actualCR);
+			Xml_Index_NPCLocation(xmlWriter, moduleModel, NPCList);
+			xmlWriter.WriteEndElement();
 		}
-		static public void CreateReferenceByType(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
+
+		private static void CreateReferenceByType(XmlWriter xmlWriter, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.NPCType.CompareTo(npcTwo.NPCType));
 			var TypeList = NPCList.GroupBy(x => x.NPCType.ToLower()[0]).Select(x => x.ToList()).ToList();
@@ -112,28 +357,27 @@ namespace FantasyModuleParser.Exporters
 				ProcessNPCListByType(xmlWriter, moduleModel, actualType, npcList);
 			}
 		}
-		static private void ProcessNPCListByType(XmlWriter xmlWriter, ModuleModel moduleModel, string actualType, List<NPCModel> NPCList)
+		
+		private static void ProcessNPCListByType(XmlWriter xmlWriter, ModuleModel moduleModel, string actualType, List<NPCModel> NPCList)
 		{
-			xmlWriter.WriteStartElement("type_" + NPCTypeToXMLFormat(actualType)); /* <type_NPCType> */
-			xmlWriter.WriteStartElement("description"); /* <type_NPCType> <description> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteString(actualType);
-			xmlWriter.WriteEndElement(); /* <type_NPCType> <description> </description> */
-			xmlWriter.WriteStartElement("index"); /* <type_NPCType> <index> */
-			NPCLocation(xmlWriter, moduleModel, NPCList);
-			xmlWriter.WriteEndElement(); /* <type_NPCType> <index> </index>*/
-			xmlWriter.WriteEndElement(); /* <type_NPCType> </type_NPCType> */
+			xmlWriter.WriteStartElement("type_" + NPCTypeToXMLFormat(actualType));
+			Xml_Description_ActualType(xmlWriter, actualType);
+			Xml_Index_NPCLocation(xmlWriter, moduleModel, NPCList);
+			xmlWriter.WriteEndElement();
 		}
+
 		static public string NPCNameToXMLFormat(NPCModel npcModel)
 		{
 			string name = npcModel.NPCName.ToLower();
 			return name.Replace(" ", "_").Replace(",", "").Replace("(", "_").Replace(")", "");
 		}
-		static private string NPCTypeToXMLFormat(string actualType)
+		
+		private static string NPCTypeToXMLFormat(string actualType)
 		{
 			string npcType = actualType.ToLower();
 			return npcType.Replace(" ", "");
 		}
+		
 		static public void SortNPCListByCategory(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel, List<NPCModel> NPCList)
 		{
 			NPCList.Sort((npcOne, npcTwo) => npcOne.NPCName.CompareTo(npcTwo.NPCName));
@@ -144,6 +388,7 @@ namespace FantasyModuleParser.Exporters
 				ProcessNPCListByCategoryLetter(xmlWriter, npcModel, moduleModel);
 			}
 		}
+		
 		static private void ProcessNPCListByCategoryLetter(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel)); /* <npcModel.NPCName> */
@@ -166,6 +411,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <source> </source> */
 			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> </npcModel.NPCName> */
 		}
+		
 		static public void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			int ChaBonus = -5 + (npcModel.AttributeCha / 2);
@@ -323,6 +569,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); // Close </intelligence>
 			xmlWriter.WriteEndElement(); // Close </abilities>
 		}
+		
 		static public void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			string[] acArray = npcModel.AC.Split('(');
@@ -338,6 +585,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(acDescription);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteActions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("actions");
@@ -358,6 +606,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("alignment");
@@ -365,6 +614,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(npcModel.Alignment);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteConditionImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -391,6 +641,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(stringBuilder.ToString().Trim());
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteCR(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("cr");
@@ -398,6 +649,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(npcModel.ChallengeRating);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteHP(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			if (npcModel.HP == null)
@@ -427,6 +679,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(hpValue);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteLairActions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("lairactions");
@@ -450,6 +703,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteLanguages(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -552,6 +806,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(stringBuilderOption.ToString());
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteLegendaryActions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("legendaryactions");
@@ -572,6 +827,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteName(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("name");
@@ -579,6 +835,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString(npcModel.NPCName);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteReactions(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("reactions");
@@ -599,6 +856,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteSavingThrows(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -639,6 +897,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(savingThrowString);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteSenses(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -657,6 +916,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(sensesString);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static private string AppendSenses(string senseName, int senseValue, string senseRange)
 		{
 			if (senseValue != 0)
@@ -666,6 +926,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			return "";
 		}
+		
 		static private string AppendBlindSenses(string senseName, int senseValue, string senseRange)
 		{
 			NPCModel npcModel = new NPCModel();
@@ -680,6 +941,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			return "";
 		}
+		
 		static public void WriteSpeed(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -718,6 +980,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(speedString);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteSize(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("size");
@@ -725,6 +988,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(npcModel.Size);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteType(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -738,6 +1002,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(stringBuilder.ToString());
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteSkills(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			string skillsString = npcModel.SkillAttributesToString();
@@ -746,6 +1011,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(skillsString);
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteText(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			NPCController npcController = new NPCController();
@@ -754,6 +1020,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(npcModel.Description));
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteToken(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
 			if (moduleModel.IncludeTokens && npcModel.NPCToken.Length > 2 )
@@ -764,6 +1031,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();
 			}			
 		}
+		
 		static public void WriteTraits(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("traits");
@@ -962,11 +1230,36 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		
 		static public void WriteXP(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("xp");
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(npcModel.XP);
+			xmlWriter.WriteEndElement();
+		}
+		
+		static private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("damageimmunities");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(npcModel.UpdateDamageImmunities());
+			xmlWriter.WriteEndElement();
+		}
+
+		static private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("damageresistances");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString(npcModel.UpdateDamageResistances());
+			xmlWriter.WriteEndElement();
+		}
+
+		static private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("damagevulnerabilities");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteValue(npcModel.UpdateDamageVulnerabilities());
 			xmlWriter.WriteEndElement();
 		}
 	}

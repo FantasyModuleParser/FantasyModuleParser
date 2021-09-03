@@ -103,7 +103,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
             get { return dataModel.ToolsEnumType; }
             set { Set(ref dataModel.ToolsEnumType, value); }
         }
-        [DefaultValue(VehiclesEnum.TackAndHarness)]
+        [DefaultValue(VehiclesEnum.WaterCraft)]
         public VehiclesEnum VehiclesEnumType
         {
             get { return dataModel.VehiclesEnumType; }

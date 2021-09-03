@@ -24,6 +24,9 @@ namespace FantasyModuleParser.Equipment.Models
         public CurrencyEnum CostDenomination;
         public double Weight;
         public RarityEnum EquipmentRarity;
+        public string Speed;
+        public MeasurementEnum Measurement;
+        public string Capacity;
 
         public PrimaryEquipmentEnum PrimaryEquipmentEnumType;
 
@@ -32,6 +35,7 @@ namespace FantasyModuleParser.Equipment.Models
         public ArmorEnum ArmorEnumType { get; set; }
         public WeaponEnum WeaponEnumType;
         public AnimalsEnum AnimalsEnumType;
+        public TackEnum TackEnumType;
         public VehiclesEnum VehiclesEnumType;
         public ToolsEnum ToolsEnumType;
         public TreasureEnum TreasureEnumType;
