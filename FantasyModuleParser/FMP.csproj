@@ -261,6 +261,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Classes\ClassOptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\ClassFirstLevelUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\ClassListBoxUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\ClassHeaderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Equipment\EquipmentOptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -484,6 +500,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\ClassOptionControl.xaml.cs">
+      <DependentUpon>ClassOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\ClassFirstLevelUC.xaml.cs">
+      <DependentUpon>ClassFirstLevelUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\ClassListBoxUC.xaml.cs">
+      <DependentUpon>ClassListBoxUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\ClassHeaderUC.xaml.cs">
+      <DependentUpon>ClassHeaderUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\LanguageModelConverter.cs" />
     <Compile Include="Converters\SelectableActionModelConverter.cs" />
@@ -858,6 +886,7 @@
     </EmbeddedResource>
     <None Include=".gitignore" />
     <None Include="CHANGELOG.json" />
+    <None Include="Classes\Breakdown_of_Structure.md" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

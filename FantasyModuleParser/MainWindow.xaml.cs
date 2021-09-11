@@ -240,6 +240,11 @@ namespace FantasyModuleParser
             HideMainUserControls();
             stackEquipment.Visibility = Visibility.Visible;
         }
+        private void ShowClassesUserControl()
+        {
+            HideMainUserControls();
+            stackClasses.Visibility = Visibility.Visible;
+        }
 
         private void HideMainUserControls()
         {
@@ -267,6 +272,10 @@ namespace FantasyModuleParser
             {
                 ShowEquipmentUserControl();
             }
+            if (optionClasses.IsSelected)
+			{
+                ShowClassesUserControl();
+			}
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {

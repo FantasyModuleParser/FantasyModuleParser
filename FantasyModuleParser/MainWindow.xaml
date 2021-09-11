@@ -7,6 +7,7 @@
         xmlns:spellOptionUserControl="clr-namespace:FantasyModuleParser.Spells"
         xmlns:tableUserControl="clr-namespace:FantasyModuleParser.Tables"
         xmlns:equipmentUserControl="clr-namespace:FantasyModuleParser.Equipment"
+        xmlns:classesUserConrol="clr-namespace:FantasyModuleParser.Classes"
         mc:Ignorable="d"
         Title="Fantasy Module Parser" Height="760" Width="810" ResizeMode="CanMinimize" Icon="/Resources/FMP-Logo.ico">
     <Window.Resources>
@@ -80,7 +81,7 @@
             <Label Content="Options" Style="{StaticResource Options}"></Label>
             <ListBox SelectionChanged="listBoxItem_Selected">
                 <ListBoxItem Style="{StaticResource Disabled}">Add Backgrounds</ListBoxItem>
-                <ListBoxItem Style="{StaticResource Disabled}">Add Classes</ListBoxItem>
+                <ListBoxItem Style="{StaticResource Enabled}" Name="optionClasses">Add Classes</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Encounters</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}">Add Encounters (Random)</ListBoxItem>
                 <ListBoxItem Style="{StaticResource Disabled}" Name="optionEquipment">Add Equipment</ListBoxItem>
@@ -114,6 +115,9 @@
         </StackPanel>
         <StackPanel Name="stackEquipment" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
             <equipmentUserControl:EquipmentOptionControl x:Name="equipmentUserControl" Height="750"/>
+        </StackPanel>
+        <StackPanel Name="stackClasses" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+            <classesUserConrol:ClassOptionControl x:Name="classesUserControl" Height="750"/>
         </StackPanel>
         <WrapPanel x:Name="ViewStatBlockPanel" Grid.Column="3" Grid.Row="1" Orientation="Vertical" >
             

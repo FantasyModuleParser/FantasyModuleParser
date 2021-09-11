@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="FantasyModuleParser.Classes.UserControls.ClassHeaderUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="620">
+    <Grid>
+        <Grid Background="AliceBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Class Name" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="1" />
+                <TextBox Text="Test Class Name" VerticalAlignment="Center" Grid.Column="2" />
+                <CheckBox Content="Locked" Grid.Column="3" Margin="5,0,0,0" VerticalAlignment="Center" />
+            </Grid>
+            <Grid Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="210" />
+                    <ColumnDefinition Width="210" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Hit Die per Level" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="1" />
+                <TextBox Text="1d8 per Class level" VerticalAlignment="Center" Grid.Column="2" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
