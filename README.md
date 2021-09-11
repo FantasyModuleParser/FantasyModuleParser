@@ -2,8 +2,8 @@
 A massive undertaking in the C# language to allow users to create module files for Fantasy Grounds, owned by Smiteworks.
 
 ## Parts of Fantasy Module Parser
-- [Backgrounds](###Backgrounds)
-- [Classes](###Classes)
+- [Backgrounds](#Backgrounds)
+- [Classes](#Classes)
 - Encounters
 - Random Encounters
 - Feats
