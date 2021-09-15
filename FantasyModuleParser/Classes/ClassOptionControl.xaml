@@ -27,7 +27,7 @@
                 <ClassUC:ClassListBoxUC />
             </Grid>
             <Grid Grid.Column="1">
-                <ClassUC:ClassFirstLevelUC />
+                <ClassUC:ClassMultiClassUC />
             </Grid>
         </Grid>
     </Grid>

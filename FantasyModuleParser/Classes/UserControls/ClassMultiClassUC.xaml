@@ -14,7 +14,30 @@
             <RowDefinition Height="530" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Label Content="Armor" VerticalAlignment="Center" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <TextBox Width="250" Height="23"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Label Content="Weapons" VerticalAlignment="Center" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <TextBox Width="250" Height="23"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
