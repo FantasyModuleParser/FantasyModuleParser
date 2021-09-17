@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Classes"
              xmlns:ClassUC="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             xmlns:equipmentUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="620">
     <Grid Background="AliceBlue">
@@ -13,7 +14,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
-            <RowDefinition Height="640" />
+            <RowDefinition Height="480" />
+            <RowDefinition Height="160" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <ClassUC:ClassHeaderUC />
@@ -24,11 +26,33 @@
                 <ColumnDefinition Width="470" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <ClassUC:ClassListBoxUC />
+                <ListBox>
+                    <ListBoxItem Content="Proficiency Bonus" />
+                    <ListBoxItem Content="Spell Slots" />
+                    <ListBoxItem Content="Proficiencies" />
+                    <ListBoxItem Content="Multiclass Proficiencies" />
+                    <ListBoxItem Content="Class Features" />
+                    <ListBoxItem Content="Unique Class Paths" />
+                    <ListBoxItem Content="Starting Equipment" />
+                </ListBox>
             </Grid>
             <Grid Grid.Column="1">
                 <ClassUC:ClassMultiClassUC />
             </Grid>
         </Grid>
+        <!--<equipmentUC:EquipmentFooterUC Grid.Row="2" 
+                                       ActionButtonLabel="Equipment"
+                                        AddToProjectAction="EquipmentFooterUC_AddToProjectAction"
+                                       NewItemAction="EquipmentFooterUC_NewItemAction"
+                                        LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
+                                        SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
+                                       SelectedItemModelChangeAction="EquipmentFooterUC_SelectedItemModelChangeAction"
+                                        ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
+                                       SelectedCategoryModel="{Binding SelectedCategoryModel, Mode=TwoWay}"
+                                       SelectedItemModel="{Binding SelectedFooterItemModel, Mode=TwoWay}"
+                                        Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>-->
+        <!-- FIXME:  Missing all of the UI implementation code for interaction!! See above commented out code for examples-->
+        <!-- Note that this comes from the Equipment UserControl folder for more code reference -->
+        <equipmentUC:EquipmentFooterUC Grid.Row="2" ActionButtonLabel="Class"/>
     </Grid>
 </UserControl>

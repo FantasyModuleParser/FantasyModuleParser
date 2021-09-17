@@ -265,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Classes\UserControls\ClassFeatureUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Classes\UserControls\ClassFirstLevelUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -507,6 +511,10 @@
     </Compile>
     <Compile Include="Classes\ClassOptionControl.xaml.cs">
       <DependentUpon>ClassOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Enums\ClassHitDieEnum.cs" />
+    <Compile Include="Classes\UserControls\ClassFeatureUC.xaml.cs">
+      <DependentUpon>ClassFeatureUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\UserControls\ClassFirstLevelUC.xaml.cs">
       <DependentUpon>ClassFirstLevelUC.xaml</DependentUpon>

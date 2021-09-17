@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="620">
     <Grid>
@@ -14,25 +16,25 @@
             </Grid.RowDefinitions>
             <Grid Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="220" />
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
-                <Label Content="Class Name" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="1" />
-                <TextBox Text="Test Class Name" VerticalAlignment="Center" Grid.Column="2" />
-                <CheckBox Content="Locked" Grid.Column="3" Margin="5,0,0,0" VerticalAlignment="Center" />
+                <Label Content="Class Name" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBox Text="Test Class Name" VerticalAlignment="Center" Grid.Column="1" />
+                <CheckBox Content="Locked" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
             <Grid Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="210" />
-                    <ColumnDefinition Width="210" />
+                    <ColumnDefinition Width="120" />
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
-                <Label Content="Hit Die per Level" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="1" />
-                <TextBox Text="1d8 per Class level" VerticalAlignment="Center" Grid.Column="2" />
+                <Label Content="Hit Die per Level" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
+                <!-- TODO: Need to map to a Model object attribute  -->
+                <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type classEnum:ClassHitDieEnum}}}"
+                  SelectedValue="{Binding Path=ClassHitDie}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="1" Margin="0,3,0,3" />
             </Grid>
         </Grid>
     </Grid>
