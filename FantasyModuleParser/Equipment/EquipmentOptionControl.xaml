@@ -48,7 +48,7 @@
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <TabControl Grid.Row="1">
-            <TabItem Header="Equipment">
+            <TabItem Header="Item">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="47*"/>
