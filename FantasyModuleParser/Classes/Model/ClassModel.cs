@@ -22,6 +22,8 @@ namespace FantasyModuleParser.Classes.Model
         public string UniqueArmorProficencies;
 
         public ObservableCollection<ClassFeature> ClassFeatures;
+
+        public string ClassSpecializationDescription;
         public ObservableCollection<ClassSpecialization> ClassSpecializations;
 
         // The following attributes are catch-alls, in that there's no hardcoded way to generate
