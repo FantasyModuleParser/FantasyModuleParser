@@ -77,14 +77,13 @@ namespace FantasyModuleParser.Equipment.UserControls
             set { SetValue(ImageFilePathProperty, value); }
         }
 
-        public static readonly DependencyProperty LabelNameTextProperty =
-    DependencyProperty.Register
-    (
-        "LabelNameText",
-        typeof(string),
-        typeof(GenericImageUserControl),
-        new PropertyMetadata("")
-    );
+        public static readonly DependencyProperty LabelNameTextProperty = DependencyProperty.Register
+        (
+            "LabelNameText",
+            typeof(string),
+            typeof(GenericImageUserControl),
+            new PropertyMetadata("")
+        );
 
         public string LabelNameText
         {

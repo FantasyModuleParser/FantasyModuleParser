@@ -333,7 +333,7 @@
             </TabItem>
             <TabItem Header="Image" IsEnabled="True">
                 <equipmentUC:GenericImageUserControl ImageFilePath="{Binding EquipmentImageFilePath, Mode=TwoWay}"
-                                                     LabelNameText="Equipment Image Filepath:"/>
+                                                     LabelNameText="Item Image Filepath:"/>
             </TabItem>
         </TabControl>
         <equipmentUC:EquipmentFooterUC Grid.Row="2" 
