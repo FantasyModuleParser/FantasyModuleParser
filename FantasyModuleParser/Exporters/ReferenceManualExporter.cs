@@ -4,7 +4,6 @@ using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.Spells.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -13,7 +12,7 @@ namespace FantasyModuleParser.Exporters
 {
 	class ReferenceManualExporter
 	{
-		public static void DatabaseXML_Root_Reference_ReferenceManual(XmlWriter xmlWriter, ModuleModel module)
+		public static void DatabaseXML_Root_ReferenceManual(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("referencemanual");
 			Xml_Name_ModuleName(xmlWriter, module);
