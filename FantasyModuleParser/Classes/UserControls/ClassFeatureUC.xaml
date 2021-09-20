@@ -4,9 +4,71 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             xmlns:sharedUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="480" d:DesignWidth="470">
+             d:DesignHeight="480" d:DesignWidth="600">
     <Grid>
-            
+            <!-- The Class Features will require the following to be tracked: -->
+        <!-- 1. The name of the feature -->
+        <!-- 2. The Level at which the feature is enabled -->
+        <!-- 3. The specialization the feature belongs to (OPTIONAL) -->
+        <!-- 4. A description of the feature -->
+        
+        <!-- To note, in FGU reference data, a Class Feature is linked as 'classfeature', whereas a class specialization 
+             is linked as a 'classability' -->
+        <TabControl>
+            <TabItem Header="Class Feature" IsEnabled="True" HorizontalAlignment="Left">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Class Feature Name" Grid.Row="0" Grid.Column="0" />
+                        <TextBox Grid.Row="0" Grid.Column="1" />
+
+                        <Label Content="Level" Grid.Row="1" Grid.Column="0" />
+                        <ComboBox Grid.Row="1" Grid.Column="1">
+                            <ComboBoxItem Content="1" IsSelected="True" />
+                            <ComboBoxItem Content="2" />
+                            <ComboBoxItem Content="3" />
+                            <ComboBoxItem Content="4" />
+                            <ComboBoxItem Content="5" />
+                            <ComboBoxItem Content="6" />
+                        </ComboBox>
+
+                        <TextBlock Text="Subclass Feature (OPTIONAL)" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" IsEnabled="False" />
+
+                        <Button Grid.Row="3" Grid.Column="1"  Content="Add / Update Feature" HorizontalAlignment="Right" />
+                    </Grid>
+                    <Separator Grid.Row="1" />
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Existing Class Features" Grid.Row="0" FontWeight="Bold" />
+                        <ListBox Grid.Row="1"/>
+                    </Grid>
+                </Grid>
+                
+            </TabItem>
+            <TabItem Header="Description" IsEnabled="True" HorizontalAlignment="Left">
+                <sharedUC:GenericDescriptionUC />
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
