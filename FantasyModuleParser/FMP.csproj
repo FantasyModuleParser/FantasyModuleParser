@@ -583,6 +583,7 @@
       <DependentUpon>WeaponUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
+    <Compile Include="Exporters\ClassExporter.cs" />
     <Compile Include="Exporters\CommonMethods.cs" />
     <Compile Include="Exporters\DatabaseExporter.cs" />
     <Compile Include="Exporters\DefinitionExporter.cs" />
