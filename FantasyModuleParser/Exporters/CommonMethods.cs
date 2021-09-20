@@ -176,5 +176,11 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("NPCs");
 			xmlWriter.WriteEndElement();
 		}
+
+		public static void BaseIcon_DecalIcon(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("baseicon", "0");
+			xmlWriter.WriteAttributeString("decalicon", "0");
+		}
 	}
 }
