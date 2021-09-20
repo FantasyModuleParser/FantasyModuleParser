@@ -92,9 +92,9 @@ namespace FantasyModuleParser.Exporters
 					FatClassList.Add(classModel);
 				}
 			}
-			IEnumerable<ClassModel> query = from class in FatEquipmentList
-												orderby equipment.PrimaryEquipmentEnumType, equipment.Name
-												select equipment;
+			IEnumerable<ClassModel> query = from classModel in FatClassList
+												orderby classModel.Name
+												select classModel;
 			return query.ToList();
 		}
 

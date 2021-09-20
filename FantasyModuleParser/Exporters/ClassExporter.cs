@@ -29,10 +29,24 @@ namespace FantasyModuleParser.Exporters
 				int classID = 0;
 				foreach (ClassModel classModel in FatClassList)
 				{
-
+					Classes_Category_Class(xmlWriter, classID);
 				}
 				xmlWriter.WriteEndElement();
 			}							
+		}
+
+		private static void Classes_Category_Class(XmlWriter xmlWriter, int classID)
+		{
+			xmlWriter.WriteStartElement("id-" + classID.ToString("D4"));
+			Class_Abilities(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Abilities(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("abilities");
+
+			xmlWriter.WriteEndElement();
 		}
 	}
 }
