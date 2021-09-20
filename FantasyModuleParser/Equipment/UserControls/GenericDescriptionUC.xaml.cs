@@ -58,22 +58,6 @@ namespace FantasyModuleParser.Equipment.UserControls
             get { return (string)GetValue(DescriptionTextProperty); }
             set { SetValue(DescriptionTextProperty, value); }
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var markdown = MarkdownTextBox.Text;
-            var xaml = Markdig.Wpf.Markdown.ToXaml(markdown, BuildPipeline());
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml)))
-            {
-                using (var reader = new XamlXmlReader(stream, new MyXamlSchemaContext()))
-                {
-                    if (XamlReader.Load(reader) is FlowDocument document)
-                    {
-                        MarkdownViewer.Document = document;
-                    }
-                }
-            }
-        }
         private void MarkdownHelp_Click(object sender, RoutedEventArgs e)
         {
             if (!_isMarkdownHelpWindowOpen)

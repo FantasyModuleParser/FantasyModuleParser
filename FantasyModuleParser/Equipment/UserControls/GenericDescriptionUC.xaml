@@ -3,11 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:markdig="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="560" d:DesignWidth="600">
-    <Grid x:Name="LayoutRoot">
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="250,455,0,0" VerticalAlignment="Top" Width="160"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="420,455,0,0" VerticalAlignment="Top" Width="165"/>
+             d:DesignHeight="480" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type FlowDocument}" x:Key="{x:Static markdig:Styles.DocumentStyleKey}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="LineHeight" Value="1" />
+            <Setter Property="TextAlignment" Value="Left" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" >
+        <!--<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="250,455,0,0" VerticalAlignment="Top" Width="160"/>-->
+        <!--<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="420,455,0,0" VerticalAlignment="Top" Width="165"/>-->
         <StackPanel Orientation="Vertical">
             <Grid Width="590" Height="400">
                 <Grid.ColumnDefinitions>
@@ -15,12 +25,11 @@
                     <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="MarkdownTextBox" Text="{Binding Path=DescriptionText}"
-                         TextChanged="TextBox_TextChanged" 
+                <TextBox x:Name="MarkdownTextBox" Text="{Binding Path=DescriptionText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          Grid.Column="0" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
 
-
-                <FlowDocumentScrollViewer x:Name="MarkdownViewer" Grid.Column="2" />
+                <markdig:MarkdownViewer Markdown="{Binding Path=DescriptionText, UpdateSourceTrigger=PropertyChanged}"
+                                         Grid.Column="2"/>
             </Grid>
             
             <!--<RichTextBox Name="descriptionRTB" TextChanged="descriptionRTB_TextChanged" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
@@ -144,7 +153,7 @@
                         </TextBlock>
                     </TextBox.ToolTip>
                 </TextBox>
-                <StackPanel Orientation="Vertical">
+                <!--<StackPanel Orientation="Vertical">
                     <Label FontWeight="Bold" Foreground="Gray" Content="Elements" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                     <CheckBox Content="Add Descriptive Text" IsChecked="True" Margin="40,5,0,0" IsEnabled="False"/>
                     <CheckBox Content="Add Title" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
@@ -155,7 +164,7 @@
                     <CheckBox Content="Apply Common Fixes" IsChecked="True" Margin="40,5,0,0" IsEnabled="False"/>
                     <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" IsEnabled="False" />
                     <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
-                </StackPanel>
+                </StackPanel>-->
             </StackPanel>
         </StackPanel>
     </Grid>
