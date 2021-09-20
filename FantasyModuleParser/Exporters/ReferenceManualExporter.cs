@@ -660,17 +660,17 @@ namespace FantasyModuleParser.Exporters
 
 		private static string WriteRecordNameNPC(NPCModel npcModel)
 		{
-			return "reference.npcdata." + NPCExporter.NPCNameToXMLFormat(npcModel);
+			return "npc." + NPCExporter.NPCNameToXMLFormat(npcModel);
 		}
 		
 		private static string WriteRecordNameSpell(SpellModel spellModel)
 		{
-			return "reference.spelldata." + SpellExporter.SpellNameToXMLFormat(spellModel);
+			return "spell." + SpellExporter.SpellNameToXMLFormat(spellModel);
 		}
 		
 		private static string WriteRecordNameEquipment(EquipmentModel equipmentModel)
 		{
-			return "reference.equipmentdata." + EquipmentExporter.EquipmentNameToXML(equipmentModel);
+			return "item." + EquipmentExporter.EquipmentNameToXML(equipmentModel);
 		}
 		
 		private static string WriteImageXML(NPCModel npcModel)
