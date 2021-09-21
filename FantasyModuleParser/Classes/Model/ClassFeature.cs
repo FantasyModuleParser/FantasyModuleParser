@@ -6,6 +6,7 @@ namespace FantasyModuleParser.Classes.Model
     {
         public string Name;
         public int Level;
+        public string Description;
 
         public void AddToClassSpecialization(ClassSpecialization classSpecialization)
         {

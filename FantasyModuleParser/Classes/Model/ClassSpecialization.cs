@@ -6,6 +6,7 @@ namespace FantasyModuleParser.Classes.Model
     {
         public string Name;
         public string Description;
+        public int Level;
 
         public ObservableCollection<ClassFeature> ClassFeatures;
     }
