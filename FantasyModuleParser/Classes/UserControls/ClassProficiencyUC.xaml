@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="FantasyModuleParser.Classes.UserControls.ClassProficiencyUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450">
+    <Grid x:Name="ProfBonusLayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label Content="Proficiency Bonus per Level" Grid.Row="0" />
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Path=ProfBonusValues}" >
+        </DataGrid>
+    </Grid>
+</UserControl>

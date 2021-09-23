@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using FantasyModuleParser.Classes.ViewModels;
+using System.Windows.Controls;
 
 namespace FantasyModuleParser.Classes
 {
@@ -11,5 +12,13 @@ namespace FantasyModuleParser.Classes
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void EquipmentFooterUC_SaveEquipmentAction(object sender, System.EventArgs e)
+        {
+			if(DataContext is ClassOptionControllViewModel)
+            {
+				((ClassOptionControllViewModel)DataContext).Save();
+            }
+        }
+    }
 }

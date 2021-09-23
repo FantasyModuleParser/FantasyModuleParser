@@ -9,6 +9,7 @@
              xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
              xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
              xmlns:classViewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
+             xmlns:sharedUserControl="clr-namespace:FantasyModuleParser.Equipment.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="600">
     <UserControl.DataContext>
@@ -45,8 +46,35 @@
                 <!-- Class Option Menu - User Controls -->
                 <!-- ================================== -->
 
-                <!-- TODO:  Proficiency Bonus -->
-                <!-- TODO:  Spell Slots -->
+                <!-- Proficiency Bonus -->
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficiencyBonusUserControl">
+                    <ClassUC:ClassProficiencyUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ProficiencyBonus}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassProficiencyUC.Style>
+                </ClassUC:ClassProficiencyUC>
+                
+                <!-- Spell Slots -->
+                <ClassUC:ClassSpellSlotUC x:Name="ClassSpellSlotUserControl">
+                    <ClassUC:ClassSpellSlotUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassSpellSlotUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.SpellSlots}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassSpellSlotUC.Style>
+                </ClassUC:ClassSpellSlotUC>
                 <!-- TODO:  Proficiencies -->
                 <!-- TODO:  Multiclass Proficiencies -->
                 <!-- Class Features -->
@@ -63,8 +91,25 @@
                         </Style>
                     </ClassUC:ClassFeatureUC.Style>
                 </ClassUC:ClassFeatureUC>
-                
-                <!--<ClassUC:ClassMultiClassUC />-->
+
+                <!-- TODO:  Class Specialization -->
+                <!-- TODO:  Starting Equipment -->
+
+                <!-- TODO:  Class Description -->
+                <sharedUserControl:GenericDescriptionUC x:Name="ClassDescriptionUserControl">
+                    <sharedUserControl:GenericDescriptionUC.Style>
+                        <Style TargetType="{x:Type sharedUserControl:GenericDescriptionUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassDescription}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </sharedUserControl:GenericDescriptionUC.Style>
+                </sharedUserControl:GenericDescriptionUC>
+                <!-- TODO:  Class Image -->
             </Grid>
         </Grid>
         <!--<equipmentUC:EquipmentFooterUC Grid.Row="2" 
@@ -80,6 +125,7 @@
                                         Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>-->
         <!-- FIXME:  Missing all of the UI implementation code for interaction!! See above commented out code for examples-->
         <!-- Note that this comes from the Equipment UserControl folder for more code reference -->
-        <equipmentUC:EquipmentFooterUC Grid.Row="2" ActionButtonLabel="Class"/>
+        <equipmentUC:EquipmentFooterUC Grid.Row="2" ActionButtonLabel="Class"
+                                       SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"/>
     </Grid>
 </UserControl>

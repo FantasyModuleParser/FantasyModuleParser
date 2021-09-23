@@ -23,6 +23,12 @@ namespace FantasyModuleParser.Classes.Enums
 		ClassSpecialization,
 
 		[Description("Starting Equipment")]
-		StartingEquipment
-    }
+		StartingEquipment,
+
+		[Description("Class Description")]
+		ClassDescription,
+
+		[Description("Class Image")]
+		ClassImage,
+	}
 }
