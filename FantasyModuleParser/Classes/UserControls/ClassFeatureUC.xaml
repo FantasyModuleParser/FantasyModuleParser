@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
              xmlns:sharedUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="480" d:DesignWidth="600">
+             d:DesignHeight="480" d:DesignWidth="480">
     <Grid>
             <!-- The Class Features will require the following to be tracked: -->
         <!-- 1. The name of the feature -->
@@ -67,7 +67,7 @@
                 
             </TabItem>
             <TabItem Header="Description" IsEnabled="True" HorizontalAlignment="Left">
-                <sharedUC:GenericDescriptionUC />
+                <sharedUC:GenericDescriptionUC Margin="0" Padding="0" />
             </TabItem>
         </TabControl>
     </Grid>

@@ -253,6 +253,7 @@ namespace FantasyModuleParser
             stackSpells.Visibility = Visibility.Hidden;
             stackTable.Visibility = Visibility.Hidden;
             stackEquipment.Visibility = Visibility.Hidden;
+            stackClasses.Visibility = Visibility.Hidden;
         }
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
