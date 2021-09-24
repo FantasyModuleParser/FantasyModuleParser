@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.Classes.Model;
 using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.NPC.Controllers;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -56,6 +57,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteStartElement(SpecializationToXML(specialization));
 				Abilities_Specializations_Level(xmlWriter, specialization);
 				Abilities_Specializations_Name(xmlWriter, specialization);
+				Abilities_Text(xmlWriter, specialization, classModel);
 				xmlWriter.WriteEndElement();
 			}
 		}
@@ -74,10 +76,47 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
+		private static void Abilities_Text(XmlWriter xmlWriter, ClassSpecialization specialization, ClassModel classModel)
+		{
+			NPCController npcController = new NPCController();
+			xmlWriter.WriteStartElement("text");
+			xmlWriter.WriteAttributeString("text", "formattedtext");
+			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(specialization.Description));
+			Text_Features(xmlWriter);
+			Text_Linklist(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Text_Features(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("h");
+			xmlWriter.WriteString("Features");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Text_Linklist(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("linklist");
+			foreach (ClassFeature classFeature in classModel.ClassFeatures)
+			{
+				xmlWriter.WriteStartElement("link");
+				xmlWriter.WriteAttributeString("class", "reference_classfeature");
+				xmlWriter.WriteAttributeString("recordname", ClassFeatureToXml(classFeature));
+				xmlWriter.WriteEndElement();
+			}
+			xmlWriter.WriteEndElement();
+		}
+
 		private static string SpecializationToXML(ClassSpecialization specialization)
 		{
 			string SpecNameToXML = specialization.Name.Replace(" ", "").Replace("'", "").ToLower();
 			return SpecNameToXML;
+		}
+
+		private static string ClassFeatureToXml(ClassFeature classFeature)
+		{
+			string feature = classFeature.Name.Replace(" ", "").Replace("'", "").Replace("-", "").ToLower();
+			return "...." + "features." + feature + classFeature.Level;
 		}
 	}
 }
