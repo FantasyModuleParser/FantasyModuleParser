@@ -285,11 +285,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Classes\UserControls\ClassProficiencyBonusUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Classes\UserControls\ClassProficiencyUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Classes\UserControls\ClassProficiency\StartingArmorOptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\ClassProficiency\StartingSkillsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\ClassProficiency\StartingToolsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\ClassProficiency\StartingWeaponOptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\ClassSpecializationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Classes\UserControls\ClassSpellSlotUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\UserControls\MultiClassProficiencyUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -522,8 +550,10 @@
     </Compile>
     <Compile Include="Classes\Enums\ClassHitDieEnum.cs" />
     <Compile Include="Classes\Enums\ClassMenuOptionEnum.cs" />
+    <Compile Include="Classes\Enums\ClassStartingToolEnum.cs" />
     <Compile Include="Classes\Enums\SavingThrowAttributeEnum.cs" />
     <Compile Include="Classes\Enums\SkillAttributeEnum.cs" />
+    <Compile Include="Classes\Enums\Tools\ArtisanToolEnum.cs" />
     <Compile Include="Classes\Model\ClassFeature.cs" />
     <Compile Include="Classes\Model\ClassModel.cs" />
     <Compile Include="Classes\Model\ClassSpecialization.cs" />
@@ -544,11 +574,32 @@
     <Compile Include="Classes\UserControls\ClassMultiClassUC.xaml.cs">
       <DependentUpon>ClassMultiClassUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiencyBonusUC.xaml.cs">
+      <DependentUpon>ClassProficiencyBonusUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\UserControls\ClassProficiencyUC.xaml.cs">
       <DependentUpon>ClassProficiencyUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingArmorOptionUC.xaml.cs">
+      <DependentUpon>StartingArmorOptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingSkillsUC.xaml.cs">
+      <DependentUpon>StartingSkillsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingToolsUC.xaml.cs">
+      <DependentUpon>StartingToolsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingWeaponOptionUC.xaml.cs">
+      <DependentUpon>StartingWeaponOptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\ClassSpecializationUC.xaml.cs">
+      <DependentUpon>ClassSpecializationUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\UserControls\ClassSpellSlotUC.xaml.cs">
       <DependentUpon>ClassSpellSlotUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\UserControls\MultiClassProficiencyUC.xaml.cs">
+      <DependentUpon>MultiClassProficiencyUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\ViewModels\ClassOptionControllViewModel.cs" />
     <Compile Include="Converters\LanguageModelConverter.cs" />

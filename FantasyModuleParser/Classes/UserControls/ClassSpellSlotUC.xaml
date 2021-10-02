@@ -10,11 +10,37 @@
     <Grid x:Name="SpellSlotLayout">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Label Content="Spell Slots per Level" Grid.Row="0" />
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Path=SpellSlotValues}" AutoGenerateColumns="False"
+        <StackPanel Orientation="Horizontal">
+            <Label VerticalAlignment="Center">Enable Spell Slots?</Label>
+            <CheckBox x:Name="EnableSpellSlotsCB" VerticalAlignment="Center"></CheckBox>
+        </StackPanel>
+        <Label Content="Spell Slots per Level" Grid.Row="1">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=EnableSpellSlotsCB}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Path=SpellSlotValues}" AutoGenerateColumns="False"
                   CanUserResizeColumns="False" CanUserResizeRows="False">
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=EnableSpellSlotsCB}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Style>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Level" Binding="{Binding Level}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Cantrips" Binding="{Binding Cantrips}" />

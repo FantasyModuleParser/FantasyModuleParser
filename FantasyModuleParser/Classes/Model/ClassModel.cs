@@ -36,6 +36,7 @@ namespace FantasyModuleParser.Classes.Model
 
         public string ToolProficiencies;
         public string WeaponProficiencies;
+        public string StartingEquipment;
 
         public void PrePopulateProficiencyBonusValues()
         {
@@ -53,6 +54,11 @@ namespace FantasyModuleParser.Classes.Model
             {
                 this.SpellSlotValues.Add(new SpellSlotModel(i + 1));
             }
+        }
+
+        public void PrePopulateStartingEquipment()
+        {
+            this.StartingEquipment = "You start with the following equipment, in addition to the equipment granted by your background:\n\n* Item 1\n\n* Item 2";
         }
 
         public void RemoveClassFeature(ClassFeature classFeature)

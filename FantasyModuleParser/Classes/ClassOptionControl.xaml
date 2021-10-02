@@ -47,9 +47,9 @@
                 <!-- ================================== -->
 
                 <!-- Proficiency Bonus -->
-                <ClassUC:ClassProficiencyUC x:Name="ClassProficiencyBonusUserControl">
-                    <ClassUC:ClassProficiencyUC.Style>
-                        <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
+                <ClassUC:ClassProficiencyBonusUC x:Name="ClassProficiencyBonusUserControl">
+                    <ClassUC:ClassProficiencyBonusUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassProficiencyBonusUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
@@ -58,8 +58,8 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </ClassUC:ClassProficiencyUC.Style>
-                </ClassUC:ClassProficiencyUC>
+                    </ClassUC:ClassProficiencyBonusUC.Style>
+                </ClassUC:ClassProficiencyBonusUC>
                 
                 <!-- Spell Slots -->
                 <ClassUC:ClassSpellSlotUC x:Name="ClassSpellSlotUserControl">
@@ -75,8 +75,36 @@
                         </Style>
                     </ClassUC:ClassSpellSlotUC.Style>
                 </ClassUC:ClassSpellSlotUC>
-                <!-- TODO:  Proficiencies -->
+                <!-- Proficiencies -->
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl">
+                    <ClassUC:ClassProficiencyUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.Proficiencies}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassProficiencyUC.Style>
+                </ClassUC:ClassProficiencyUC>
+                
                 <!-- TODO:  Multiclass Proficiencies -->
+                <ClassUC:MultiClassProficiencyUC x:Name="MultiClassProficencyUserControl">
+                    <ClassUC:MultiClassProficiencyUC.Style>
+                        <Style TargetType="{x:Type ClassUC:MultiClassProficiencyUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.MulticlassProficiencies}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:MultiClassProficiencyUC.Style>
+                </ClassUC:MultiClassProficiencyUC>
+                
                 <!-- Class Features -->
                 <ClassUC:ClassFeatureUC x:Name="ClassFeatureUserControl">
                     <ClassUC:ClassFeatureUC.Style>
@@ -93,7 +121,34 @@
                 </ClassUC:ClassFeatureUC>
 
                 <!-- TODO:  Class Specialization -->
+                <ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl">
+                    <ClassUC:ClassSpecializationUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassSpecializationUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassSpecialization}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassSpecializationUC.Style>
+                </ClassUC:ClassSpecializationUC>
                 <!-- TODO:  Starting Equipment -->
+                <sharedUserControl:GenericDescriptionUC x:Name="StartingEquipmentUserControl" DescriptionText="{Binding StartingEquipment}" >
+                    <sharedUserControl:GenericDescriptionUC.Style>
+                        <Style TargetType="{x:Type sharedUserControl:GenericDescriptionUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.StartingEquipment}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </sharedUserControl:GenericDescriptionUC.Style>
+                </sharedUserControl:GenericDescriptionUC>
+
 
                 <!-- TODO:  Class Description -->
                 <sharedUserControl:GenericDescriptionUC x:Name="ClassDescriptionUserControl">
@@ -109,7 +164,21 @@
                         </Style>
                     </sharedUserControl:GenericDescriptionUC.Style>
                 </sharedUserControl:GenericDescriptionUC>
+                
                 <!-- TODO:  Class Image -->
+                <sharedUserControl:GenericImageUserControl x:Name="ClassImageUserControl" LabelNameText="Class Image Filepath:">
+                    <sharedUserControl:GenericImageUserControl.Style>
+                        <Style TargetType="{x:Type sharedUserControl:GenericImageUserControl}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassImage}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </sharedUserControl:GenericImageUserControl.Style>
+                </sharedUserControl:GenericImageUserControl>
             </Grid>
         </Grid>
         <!--<equipmentUC:EquipmentFooterUC Grid.Row="2" 

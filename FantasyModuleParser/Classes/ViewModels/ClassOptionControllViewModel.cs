@@ -28,11 +28,18 @@ namespace FantasyModuleParser.Classes.ViewModels
             get { return this._classModel.SpellSlotValues; }
         }
 
+        public string StartingEquipment
+        {
+            get { return _classModel.StartingEquipment; }
+            set { Set(ref _classModel.StartingEquipment, value); }
+        }
+
         public ClassOptionControllViewModel()
         {
             this._classModel = new ClassModel();
             this._classModel.PrePopulateProficiencyBonusValues();
             this._classModel.PrePopulateSpellSlotValues();
+            this._classModel.PrePopulateStartingEquipment();
         }
 
         public void Save()
