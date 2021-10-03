@@ -40,6 +40,8 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("id-" + classID.ToString("D4"));
 			Class_Abilities(xmlWriter, classModel);
+			Class_Equipment(xmlWriter);
+			Class_Features(xmlWriter, classModel);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -47,6 +49,27 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("abilities");
 			Class_Abilities_Specializations(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Equipment(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("equipment");
+			Equipment_Standard(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Features(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("features");
+			foreach (ClassFeature classFeature in classModel.ClassFeatures)
+			{
+				xmlWriter.WriteStartElement(ClassFeatureNametoXml(classFeature));
+				Features_Level(xmlWriter, classFeature);
+				Features_Name(xmlWriter, classFeature);
+				Features_Text(xmlWriter, classFeature);
+				xmlWriter.WriteEndElement();
+			}
 			xmlWriter.WriteEndElement();
 		}
 
@@ -107,6 +130,43 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
+		private static void Equipment_Standard(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("standard");
+			Equipment_Standard_Group(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Equipment_Standard_Group(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("group");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteString("standard");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Features_Level(XmlWriter xmlWriter, ClassFeature classFeature)
+		{
+			xmlWriter.WriteStartElement("level");
+			xmlWriter.WriteString(classFeature.Level.ToString());
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Features_Name(XmlWriter xmlWriter, ClassFeature classFeature)
+		{
+			xmlWriter.WriteStartElement("name");
+			xmlWriter.WriteString(classFeature.Name);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Features_Text(XmlWriter xmlWriter, ClassFeature classFeature)
+		{
+			NPCController npcController = new NPCController();
+			xmlWriter.WriteStartElement("text");
+			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(classFeature.Description));
+			xmlWriter.WriteEndElement();
+		}
+
 		private static string SpecializationToXML(ClassSpecialization specialization)
 		{
 			string SpecNameToXML = specialization.Name.Replace(" ", "").Replace("'", "").ToLower();
@@ -116,7 +176,13 @@ namespace FantasyModuleParser.Exporters
 		private static string ClassFeatureToXml(ClassFeature classFeature)
 		{
 			string feature = classFeature.Name.Replace(" ", "").Replace("'", "").Replace("-", "").ToLower();
-			return "...." + "features." + feature + classFeature.Level;
+			return "....features." + feature + classFeature.Level;
+		}
+
+		private static string ClassFeatureNametoXml(ClassFeature classFeature)
+		{
+			string feature = classFeature.Name.Replace(" ", "").Replace("'", "").Replace("-", "").ToLower();
+			return feature + classFeature.Level;
 		}
 	}
 }
