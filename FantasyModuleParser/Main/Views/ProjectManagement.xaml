@@ -384,7 +384,7 @@
                         <ColumnDefinition Width="190" />
                         <ColumnDefinition Width="230" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Equipment" IsChecked="{Binding ModuleModel.IncludesEquipment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="0" />
+                    <CheckBox Content="Items" IsChecked="{Binding ModuleModel.IncludesEquipment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{StaticResource CheckboxParser}" Grid.Column="0" />
                     <CheckBox Content="Reference Manual" Style="{StaticResource CheckboxParserDisabled}" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="13">
