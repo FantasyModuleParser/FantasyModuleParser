@@ -1,19 +1,10 @@
-﻿using FantasyModuleParser.Classes.Model;
+﻿using FantasyModuleParser.Classes.Enums;
+using FantasyModuleParser.Classes.Model;
 using FantasyModuleParser.NPC.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FantasyModuleParser.Classes.UserControls
 {
@@ -43,8 +34,6 @@ namespace FantasyModuleParser.Classes.UserControls
             {
                 ClassModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<Enums.SavingThrowAttributeEnum>();
             }
-
-
         }
 
         private ICommand _savingThrowSelectCommand;
@@ -54,17 +43,38 @@ namespace FantasyModuleParser.Classes.UserControls
             {
                 if (_savingThrowSelectCommand == null)
                 {
-                    _savingThrowSelectCommand = new ActionCommand(param => OnSavingThrowSelectAction(param));
+                    _savingThrowSelectCommand = new ActionCommand(param => OnSavingThrowSelectAction(param),
+                        param => IsSavingThrowCheckboxEnabled(param));
                 }
                 return _savingThrowSelectCommand;
             }
         }
 
-        public event EventHandler SavingThrowSelectAction;
+        protected virtual bool IsSavingThrowCheckboxEnabled(object param)
+        {
+            if (!(param is SavingThrowAttributeEnum))
+                return false;
+
+            SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
+            if(ClassModelValue.SavingThrowAttributes?.Count >= 2)
+            {
+                return ClassModelValue.SavingThrowAttributes.Contains(savingThrow);
+            }
+
+            return true;
+        }
+
         protected virtual void OnSavingThrowSelectAction(object param)
         {
-            if (SavingThrowSelectAction != null)
-                SavingThrowSelectAction(this, EventArgs.Empty);
+            SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
+
+            if (ClassModelValue.SavingThrowAttributes == null)
+                ClassModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<SavingThrowAttributeEnum>();
+
+            if (ClassModelValue.SavingThrowAttributes.Contains(savingThrow))
+                ClassModelValue.SavingThrowAttributes.Remove(savingThrow);
+            else
+                ClassModelValue.SavingThrowAttributes.Add(savingThrow);
         }
     }
 }

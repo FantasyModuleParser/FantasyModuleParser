@@ -4,9 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
-             xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:converter="clr-namespace:FantasyModuleParser.Converters"
              xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
-             xmlns:classToolsEnum="clr-namespace:FantasyModuleParser.Classes.Enums.Tools"
              xmlns:classProfUC="clr-namespace:FantasyModuleParser.Classes.UserControls.ClassProficiency"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="450">
@@ -39,6 +38,7 @@
         <Style TargetType="Label">
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+        <converter:EnumConverter x:Key="enumConverter"/>
     </UserControl.Resources>
     <Grid x:Name="ProficencyLayout" Background="AliceBlue">
         <Grid.RowDefinitions>
@@ -63,34 +63,41 @@
             <Label Grid.Row="0" Grid.Column="0">Saving Throws</Label>
             <CheckBox Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" 
                       HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
-                      Command="{Binding Path=SavingThrowSelectAction}" CommandParameter="{x:Static classEnum:SavingThrowAttributeEnum.Strength}">
-                <TextBlock Text="Strength" HorizontalAlignment="Left"/>
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Strength}}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Strength}}" HorizontalAlignment="Left"/>
             </CheckBox>
             <CheckBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" 
                       HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
-                      Click="SavingThrow_Click">
-                <TextBlock Text="Dexerity" HorizontalAlignment="Left"/>
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Dexerity}}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Dexerity}}" HorizontalAlignment="Left"/>
             </CheckBox>
             <CheckBox Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" 
                       HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
-                      Click="SavingThrow_Click">
-                <TextBlock Text="Constitution" HorizontalAlignment="Left"/>
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Constitution}}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Constitution}}" HorizontalAlignment="Left"/>
             </CheckBox>
             <CheckBox Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" 
                       HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
-                      Click="SavingThrow_Click">
-                <TextBlock Text="Intelligence" HorizontalAlignment="Left"/>
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Intelligence}}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Intelligence}}" HorizontalAlignment="Left"/>
             </CheckBox>
             <CheckBox Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" 
                       HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
-                      Click="SavingThrow_Click">
-                <TextBlock Text="Wisdom" HorizontalAlignment="Left"/>
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Wisdom}}">
+                <!-- For some reason, the XAML designer does not like the use of Binding Source, and refuses to preview the XAML -->
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Wisdom}}" HorizontalAlignment="Left"/>
             </CheckBox>
 
             <CheckBox Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center" 
                       HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
-                      Click="SavingThrow_Click">
-                <TextBlock Text="Charisma" HorizontalAlignment="Left"/>
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Charisma}}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Charisma}}" HorizontalAlignment="Left"/>
             </CheckBox>
 
             <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" />
