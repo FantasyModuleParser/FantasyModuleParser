@@ -11,6 +11,12 @@ namespace FantasyModuleParser.Classes.ViewModels
         private ClassModel _classModel;
         private ClassMenuOptionEnum _classMenuOptionEnum;
 
+        public ClassModel ClassModelValue
+        {
+            get { return _classModel; }
+            set { Set(ref _classModel, value); }
+        }
+
         [DefaultValue(ClassMenuOptionEnum.Proficiencies)]
         public ClassMenuOptionEnum ClassMenuOptionEnum
         {
@@ -18,21 +24,32 @@ namespace FantasyModuleParser.Classes.ViewModels
             set { Set(ref _classMenuOptionEnum, value); }
         }
 
+        #region Proficiency Bonus
         public ObservableCollection<ProficiencyBonusModel> ProfBonusValues
         {
             get { return this._classModel.ProfBonusValues; }
         }
+        #endregion
 
+        #region Spell Slots 
+        public bool HasSpellSlots
+        {
+            get { return _classModel.HasSpellSlots; }
+            set { Set(ref _classModel.HasSpellSlots, value); }
+        }
         public ObservableCollection<SpellSlotModel> SpellSlotValues
         {
             get { return this._classModel.SpellSlotValues; }
         }
+        #endregion
 
         public string StartingEquipment
         {
             get { return _classModel.StartingEquipment; }
             set { Set(ref _classModel.StartingEquipment, value); }
         }
+
+
 
         public ClassOptionControllViewModel()
         {

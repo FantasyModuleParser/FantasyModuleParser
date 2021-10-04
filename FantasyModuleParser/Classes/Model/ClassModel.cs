@@ -13,6 +13,7 @@ namespace FantasyModuleParser.Classes.Model
 
         public ObservableCollection<ProficiencyBonusModel> ProfBonusValues;
 
+        public bool HasSpellSlots;
         public ObservableCollection<SpellSlotModel> SpellSlotValues;
 
         public ObservableCollection<SavingThrowAttributeEnum> SavingThrowAttributes;

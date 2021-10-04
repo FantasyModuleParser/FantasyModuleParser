@@ -61,23 +61,35 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0">Saving Throws</Label>
-            <CheckBox Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}">
+            <CheckBox Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding Path=SavingThrowSelectAction}" CommandParameter="{x:Static classEnum:SavingThrowAttributeEnum.Strength}">
                 <TextBlock Text="Strength" HorizontalAlignment="Left"/>
             </CheckBox>
-            <CheckBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}">
+            <CheckBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Click="SavingThrow_Click">
                 <TextBlock Text="Dexerity" HorizontalAlignment="Left"/>
             </CheckBox>
-            <CheckBox Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}">
+            <CheckBox Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Click="SavingThrow_Click">
                 <TextBlock Text="Constitution" HorizontalAlignment="Left"/>
             </CheckBox>
-            <CheckBox Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}">
+            <CheckBox Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Click="SavingThrow_Click">
                 <TextBlock Text="Intelligence" HorizontalAlignment="Left"/>
             </CheckBox>
-            <CheckBox Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}">
+            <CheckBox Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Click="SavingThrow_Click">
                 <TextBlock Text="Wisdom" HorizontalAlignment="Left"/>
             </CheckBox>
 
-            <CheckBox Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}">
+            <CheckBox Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Click="SavingThrow_Click">
                 <TextBlock Text="Charisma" HorizontalAlignment="Left"/>
             </CheckBox>
 

@@ -76,7 +76,7 @@
                     </ClassUC:ClassSpellSlotUC.Style>
                 </ClassUC:ClassSpellSlotUC>
                 <!-- Proficiencies -->
-                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl">
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ClassModelValue="{Binding ClassModelValue}">
                     <ClassUC:ClassProficiencyUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
