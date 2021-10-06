@@ -110,7 +110,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <classProfUC:StartingArmorOptionUC Grid.Row="0" ></classProfUC:StartingArmorOptionUC>
+            <classProfUC:StartingArmorOptionUC Grid.Row="0" ClassModelValue="{Binding Path=ClassModelValue}"></classProfUC:StartingArmorOptionUC>
 
             <!--<Label Grid.Row="0" Grid.Column="0" Content="Armor" VerticalAlignment="Center"/>
             <TextBox Grid.Row="0" Grid.Column="1"/>
