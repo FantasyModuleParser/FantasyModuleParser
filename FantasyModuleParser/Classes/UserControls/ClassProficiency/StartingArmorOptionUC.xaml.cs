@@ -20,8 +20,6 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
         public static readonly DependencyProperty ClassModelProperty =
             DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(StartingArmorOptionUC));
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ClassModel ClassModelValue
         {
             get { return (ClassModel)GetValue(ClassModelProperty); }
@@ -91,6 +89,7 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
                 ClassModelValue.ArmorProficiencies.Remove(armorEnum);
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName = "")
         {
             var handler = PropertyChanged;

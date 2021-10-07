@@ -50,8 +50,10 @@ namespace FantasyModuleParser.Classes.UserControls
             }
         }
 
-        protected virtual bool IsSavingThrowCheckboxEnabled(object param)
+        public bool IsSavingThrowCheckboxEnabled(object param)
         {
+            if (param == null)
+                return false;
             if (!(param is SavingThrowAttributeEnum))
                 return false;
 
