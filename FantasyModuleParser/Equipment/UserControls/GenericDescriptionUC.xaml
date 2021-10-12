@@ -16,10 +16,13 @@
         </Style>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" >
-        <!--<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="250,455,0,0" VerticalAlignment="Top" Width="160"/>-->
-        <!--<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="420,455,0,0" VerticalAlignment="Top" Width="165"/>-->
-        <StackPanel Orientation="Vertical">
-            <Grid Width="590" Height="400">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="1*" MinHeight="30"/>
+            <RowDefinition Height="1*" MinHeight="30"/>
+            <RowDefinition Height="1*" MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="5"/>
@@ -39,7 +42,7 @@
                     </TextBlock>
                 </RichTextBox.ToolTip>
             </RichTextBox>-->
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btn_bold_Click">
                     <Image Source="/Resources/Bold.png" />
                     <Button.ToolTip>
@@ -106,7 +109,7 @@
                     </Button.ToolTip>
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Click="btn_header_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Image Source="/Resources/Header.png" />
                     <Button.ToolTip>
@@ -142,18 +145,18 @@
                     </Button.ToolTip>
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <TextBox x:Name="NonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="180" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
-                    <TextBox.ToolTip>
-                        <TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Visibility="Collapsed">
+            <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox x:Name="NonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="180" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox.ToolTip>
+                    <TextBlock>
                             (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.
                             <LineBreak />
                             If this is left blank, the NPC's name will always show.
-                        </TextBlock>
-                    </TextBox.ToolTip>
-                </TextBox>
-                <!--<StackPanel Orientation="Vertical">
+                    </TextBlock>
+                </TextBox.ToolTip>
+            </TextBox>
+            <!--<StackPanel Orientation="Vertical">
                     <Label FontWeight="Bold" Foreground="Gray" Content="Elements" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                     <CheckBox Content="Add Descriptive Text" IsChecked="True" Margin="40,5,0,0" IsEnabled="False"/>
                     <CheckBox Content="Add Title" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
@@ -165,7 +168,6 @@
                     <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" IsEnabled="False" />
                     <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
                 </StackPanel>-->
-            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

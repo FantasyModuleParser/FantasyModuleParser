@@ -58,6 +58,22 @@ namespace FantasyModuleParser.Equipment.UserControls
             get { return (string)GetValue(DescriptionTextProperty); }
             set { SetValue(DescriptionTextProperty, value); }
         }
+
+        public static readonly DependencyProperty CollapseNonIdFieldProperty =
+            DependencyProperty.Register
+            (
+                "CollapseNonIdField",
+                typeof(bool),
+                typeof(GenericDescriptionUC),
+                new PropertyMetadata(false)
+            );
+
+        public bool CollapseNonIdField
+        {
+            get { return (bool)GetValue(CollapseNonIdFieldProperty); }
+            set { SetValue(CollapseNonIdFieldProperty, value); }
+        }
+
         private void MarkdownHelp_Click(object sender, RoutedEventArgs e)
         {
             if (!_isMarkdownHelpWindowOpen)
