@@ -2,6 +2,7 @@
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Tables.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Xml;
 
@@ -50,6 +51,7 @@ namespace FantasyModuleParser.Exporters
 				WriteTableRollDice(xmlWriter, tableModel);
 				WriteColumnLabels(xmlWriter, tableModel);
 				WriteResultsColumn(xmlWriter, tableModel);
+				WriteTableRows(xmlWriter, tableModel.tableDataTable);
 				xmlWriter.WriteEndElement();
 				tableID++;
 			}
@@ -153,6 +155,105 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("resultscols");
 			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(resultHeaders);
+			xmlWriter.WriteEndElement();
+		}
+
+		static private void WriteTableRows(XmlWriter xmlWriter, DataTable dataTable)
+        {
+			xmlWriter.WriteStartElement("tablerows");
+
+			for(int rowIdx = 0; rowIdx < dataTable.Rows.Count; rowIdx++)
+            {
+				WriteTableRows_RowId(xmlWriter, dataTable, rowIdx);
+            }
+
+			xmlWriter.WriteEndElement();
+        }
+
+		static private void WriteTableRows_RowId(XmlWriter xmlWriter, DataTable dataTable, int rowIdx)
+        {
+			xmlWriter.WriteStartElement("id-" + (rowIdx + 1).ToString("D5"));
+			WriteTableRows_RowData(xmlWriter, dataTable, rowIdx);
+			xmlWriter.WriteEndElement();
+		}
+
+		//Special Note:  Since columns 0 and 1 are guaranteed, data extraction starts at index 2 in the DataRow
+		static private void WriteTableRows_RowData(XmlWriter xmlWriter, DataTable dataTable, int rowIdx)
+		{
+			WriteTableRows_RowData_FromRange(xmlWriter, dataTable.Rows[rowIdx]);
+			for(int cellIdx = 2; cellIdx < dataTable.Columns.Count; cellIdx++)
+            {
+				WriteTableRows_RowData_CellId(xmlWriter, dataTable.Rows[rowIdx], cellIdx);
+			}
+			WriteTableRows_RowData_ToRange(xmlWriter, dataTable.Rows[rowIdx]);
+		}
+
+		static private void WriteTableRows_RowData_FromRange(XmlWriter xmlWriter, DataRow dataRow)
+		{
+			xmlWriter.WriteStartElement("fromrange");
+			xmlWriter.WriteAttributeString("type", "number");
+			xmlWriter.WriteValue(dataRow[0].ToString());
+			xmlWriter.WriteEndElement();
+		}
+
+		static private void WriteTableRows_RowData_ToRange(XmlWriter xmlWriter, DataRow dataRow)
+		{
+			xmlWriter.WriteStartElement("torange");
+			xmlWriter.WriteAttributeString("type", "number");
+			// Null check
+			int toRangeValue = dataRow[1] == null ? 0 : int.Parse(dataRow[1].ToString());
+			xmlWriter.WriteValue(toRangeValue);
+			xmlWriter.WriteEndElement();
+		}
+
+		/// <summary>
+		/// Special Note:  Since columns 0 and 1 are guaranteed, data extraction starts at index 2 in the DataRow
+		/// </summary>
+		/// <param name="xmlWriter"></param>
+		/// <param name="dataRow"></param>
+		/// <param name="cellIdx"></param>
+		static private void WriteTableRows_RowData_CellId(XmlWriter xmlWriter, DataRow dataRow, int cellIdx)
+		{
+			xmlWriter.WriteStartElement("id-" + (cellIdx - 1).ToString("D5"));
+			WriteTableRows_RowData_CellData_Result(xmlWriter, dataRow, cellIdx);
+			WriteTableRows_RowData_CellData_ResultLink(xmlWriter, dataRow, cellIdx);
+			xmlWriter.WriteEndElement();
+		}
+
+		static private void WriteTableRows_RowData_CellData_Result(XmlWriter xmlWriter, DataRow dataRow, int cellIdx)
+		{
+			xmlWriter.WriteStartElement("result");
+			xmlWriter.WriteAttributeString("type", "string");
+			xmlWriter.WriteValue(dataRow[cellIdx].ToString());
+			xmlWriter.WriteEndElement();
+		}
+
+		/// <summary>
+		/// TODO:  This becomes relevant when linking other source material!!!
+		/// 
+		/// For now, this returns a hard-coded result
+		/// </summary>
+		/// <param name="xmlWriter"></param>
+		/// <param name="dataRow"></param>
+		/// <param name="cellIdx"></param>
+		static private void WriteTableRows_RowData_CellData_ResultLink(XmlWriter xmlWriter, DataRow dataRow, int cellIdx)
+		{
+			xmlWriter.WriteStartElement("resultlink");
+			xmlWriter.WriteAttributeString("type", "windowreference");
+			WriteTableRows_RowData_CellData_ResultLink_Class(xmlWriter, dataRow, cellIdx);
+			WriteTableRows_RowData_CellData_ResultLink_RecordName(xmlWriter, dataRow, cellIdx);
+			xmlWriter.WriteEndElement();
+		}
+
+		static private void WriteTableRows_RowData_CellData_ResultLink_Class(XmlWriter xmlWriter, DataRow dataRow, int cellIdx)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteEndElement();
+		}
+
+		static private void WriteTableRows_RowData_CellData_ResultLink_RecordName(XmlWriter xmlWriter, DataRow dataRow, int cellIdx)
+		{
+			xmlWriter.WriteStartElement("recordname");
 			xmlWriter.WriteEndElement();
 		}
 	}
