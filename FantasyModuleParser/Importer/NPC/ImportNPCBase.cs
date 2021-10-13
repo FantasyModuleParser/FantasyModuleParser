@@ -590,9 +590,19 @@ namespace FantasyModuleParser.Importer.NPC
             if (Regex.IsMatch(challengeRatingAndXP, @"^Challenge\s*", RegexOptions.IgnoreCase))
             {
                 string[] splitArray = challengeRatingAndXP.Split(' ');
+
+                if(splitArray.Length < 3)
+                {
+                    throw new ApplicationException("Challenge Rating is unreadable;  Format is :: \nChallenge ## ( #### XP)");
+                }
+
                 npcModel.ChallengeRating = splitArray[1];
                 string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(' && c != ')').ToArray());
                 npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
+            } 
+            else if(Regex.IsMatch(challengeRatingAndXP, @"^Challenge"))
+            {
+                throw new ApplicationException("Challenge Rating is unreadable;  Format is :: \nChallenge ## ( #### XP)");
             }
         }
 
@@ -771,10 +781,10 @@ namespace FantasyModuleParser.Importer.NPC
                 MatchCollection matches;
 
                 // Get and assign the Spell Caster's level
-                SetSpellcastingCasterLevel(npcModel, spellCastingAttributes);
+                ParseSpellcastingCasterLevel(npcModel, spellCastingAttributes);
 
                 // Get and assign the Spell Caster's Spellcasting Ability
-                SetTheSCSpellcastingAbility(npcModel, spellCastingAttributes);
+                ParseTheSCSpellcastingAbility(npcModel, spellCastingAttributes);
 
                 // Spell Save DC & Attack Bonus
                 int spellSaveDCIndex = spellCastingAttributes.IndexOf("(spell save DC ", StringComparison.OrdinalIgnoreCase);
@@ -845,7 +855,7 @@ namespace FantasyModuleParser.Importer.NPC
 		/// </summary>
 		/// <param name="npcModel"></param>
 		/// <param name="spellCastingAttributes"></param>
-		protected void SetTheSCSpellcastingAbility(NPCModel npcModel, string spellCastingAttributes)
+		protected void ParseTheSCSpellcastingAbility(NPCModel npcModel, string spellCastingAttributes)
 		{
 			// Spellcasting Ability
 			MatchCollection matches = Regex.Matches(spellCastingAttributes, @"spellcasting ability (?:modifier\s)*is (\w+)\b", RegexOptions.IgnoreCase);
@@ -873,11 +883,12 @@ namespace FantasyModuleParser.Importer.NPC
 		/// </summary>
 		/// <param name="npcModel"></param>
 		/// <param name="spellCastingAttributes"></param>
-		protected void SetSpellcastingCasterLevel(NPCModel npcModel, string spellCastingAttributes)
+		protected void ParseSpellcastingCasterLevel(NPCModel npcModel, string spellCastingAttributes)
 		{
             // retrieve the spellcaster level
             MatchCollection matches = Regex.Matches(spellCastingAttributes, @"(\d+\w\w)-level", RegexOptions.IgnoreCase);
-            if (matches.Count != 1 && matches[0].Groups.Count != 2)
+           
+            if ((matches.Count == 0) || (matches.Count != 1 && matches[0].Groups.Count != 2))
             {
                 throw new ApplicationException("Spellcasting, can't parse level :: " + spellCastingAttributes);
             }

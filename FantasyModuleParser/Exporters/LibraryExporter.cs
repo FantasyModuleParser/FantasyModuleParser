@@ -48,7 +48,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				Entry_Equipment(xmlWriter, moduleModel);
 			}
-			// Entry_ReferenceManual(xmlWriter, moduleModel);
+			Entry_ReferenceManual(xmlWriter, moduleModel);
 			xmlWriter.WriteEndElement();                             
 		}
 
@@ -167,7 +167,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("librarylink");
 			xmlWriter.WriteAttributeString("type", "windowreference");
 			Xml_Class_ReferenceManual(xmlWriter);
-			Xml_RecordName_Blank(xmlWriter);
+			Xml_Recordname_ReferenceManual(xmlWriter, moduleModel);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -186,12 +186,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		// private static void Xml_Class_ReferenceIndex(XmlWriter xmlWriter)
-		// {
-		//		xmlWriter.WriteStartElement("class");
-		//		xmlWriter.WriteString("referenceindex");
-		//	 	xmlWriter.WriteEndElement();
-		//	}
+		private static void Xml_Class_ReferenceIndex(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteString("referenceindex");
+		 	xmlWriter.WriteEndElement();
+		}
 
 		private static void Xml_Class_ReferenceList(XmlWriter xmlWriter)
 		{
@@ -294,7 +294,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Recordname_ReferenceManual(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("recordname");
-			xmlWriter.WriteString("reference.referencemanual@" + moduleModel.Name);
+			xmlWriter.WriteString("referencemanual@" + moduleModel.Name);
 			xmlWriter.WriteEndElement();
 		}
 

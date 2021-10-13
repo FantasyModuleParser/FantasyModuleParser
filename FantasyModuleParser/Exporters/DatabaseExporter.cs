@@ -1,9 +1,4 @@
-﻿using FantasyModuleParser.Equipment.Models;
-using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.NPC;
-using FantasyModuleParser.Spells.Models;
-using System.Collections.Generic;
-using System.IO;
+﻿using FantasyModuleParser.Main.Models;
 using System.Xml;
 
 namespace FantasyModuleParser.Exporters
