@@ -181,10 +181,12 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteTableRows_RowData(XmlWriter xmlWriter, DataTable dataTable, int rowIdx)
 		{
 			WriteTableRows_RowData_FromRange(xmlWriter, dataTable.Rows[rowIdx]);
+			xmlWriter.WriteStartElement("results");
 			for(int cellIdx = 2; cellIdx < dataTable.Columns.Count; cellIdx++)
             {
 				WriteTableRows_RowData_CellId(xmlWriter, dataTable.Rows[rowIdx], cellIdx);
 			}
+			xmlWriter.WriteEndElement();
 			WriteTableRows_RowData_ToRange(xmlWriter, dataTable.Rows[rowIdx]);
 		}
 
