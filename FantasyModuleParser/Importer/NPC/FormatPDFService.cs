@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FantasyModuleParser.Importer.NPC
 {
@@ -317,7 +318,7 @@ namespace FantasyModuleParser.Importer.NPC
                         break;
                     case ImportNPCState.NO_STATE:
                         { 
-                            if (line.StartsWith("Challenge ", StringComparison.OrdinalIgnoreCase))
+                            if (Regex.IsMatch(line, @"^Challenge\s?"))
                             {
                                 importNPCState = ImportNPCState.CHALLENGE;
                                 _ = formattedTextContent.Append(Environment.NewLine).Append(line).Append(Environment.NewLine);

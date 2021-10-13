@@ -590,9 +590,19 @@ namespace FantasyModuleParser.Importer.NPC
             if (Regex.IsMatch(challengeRatingAndXP, @"^Challenge\s*", RegexOptions.IgnoreCase))
             {
                 string[] splitArray = challengeRatingAndXP.Split(' ');
+
+                if(splitArray.Length < 3)
+                {
+                    throw new ApplicationException("Challenge Rating is unreadable;  Format is :: \nChallenge ## ( #### XP)");
+                }
+
                 npcModel.ChallengeRating = splitArray[1];
                 string xpString = new string(splitArray[2].Where(c => !Char.IsWhiteSpace(c) && c != '(' && c != ')').ToArray());
                 npcModel.XP = int.Parse(xpString, NumberStyles.AllowThousands, CultureInfo.CurrentCulture);
+            } 
+            else if(Regex.IsMatch(challengeRatingAndXP, @"^Challenge"))
+            {
+                throw new ApplicationException("Challenge Rating is unreadable;  Format is :: \nChallenge ## ( #### XP)");
             }
         }
 
