@@ -240,6 +240,11 @@ namespace FantasyModuleParser
             HideMainUserControls();
             stackEquipment.Visibility = Visibility.Visible;
         }
+        private void ShowClassesUserControl()
+        {
+            HideMainUserControls();
+            stackClasses.Visibility = Visibility.Visible;
+        }
 
         private void HideMainUserControls()
         {
@@ -248,6 +253,7 @@ namespace FantasyModuleParser
             stackSpells.Visibility = Visibility.Hidden;
             stackTable.Visibility = Visibility.Hidden;
             stackEquipment.Visibility = Visibility.Hidden;
+            stackClasses.Visibility = Visibility.Hidden;
         }
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
@@ -267,6 +273,10 @@ namespace FantasyModuleParser
             {
                 ShowEquipmentUserControl();
             }
+            if (optionClasses.IsSelected)
+			{
+                ShowClassesUserControl();
+			}
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {

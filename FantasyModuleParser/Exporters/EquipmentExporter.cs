@@ -34,8 +34,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", categoryModel.Name);
-				xmlWriter.WriteAttributeString("baseicon", "0");
-				xmlWriter.WriteAttributeString("decalicon", "0");
+				CommonMethods.BaseIcon_DecalIcon(xmlWriter);
 				Item_Category_ItemName(xmlWriter, FatEquipmentList);
 				xmlWriter.WriteEndElement();
 			}

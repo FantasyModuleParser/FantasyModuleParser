@@ -15,7 +15,7 @@ namespace FantasyModuleParser.Equipment.ViewModels
     public class EquipmentOptionControlViewModel : ViewModelBase
     {
         private ModuleService _moduleService;
-
+        
         private EquipmentModel dataModel;
         private ModuleModel _moduleModel;
         private CategoryModel _categoryModel;

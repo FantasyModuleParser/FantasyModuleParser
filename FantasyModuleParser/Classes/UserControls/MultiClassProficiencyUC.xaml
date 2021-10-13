@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="FantasyModuleParser.Classes.UserControls.MultiClassProficiencyUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
+             xmlns:classToolsEnum="clr-namespace:FantasyModuleParser.Classes.Enums.Tools"
+             xmlns:classProfUC="clr-namespace:FantasyModuleParser.Classes.UserControls.ClassProficiency"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="TextAlignLeft" TargetType="CheckBox">
+            <Style.Resources>
+                <Style TargetType="Path">
+                    <Setter Property="FlowDirection" Value="LeftToRight" />
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FlowDirection" Value="LeftToRight" />
+                </Style>
+            </Style.Resources>
+
+            <Setter Property="Margin" Value="5,0,25,0"/>
+            <Setter Property="FlowDirection" Value="RightToLeft" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="ProficencyLayout" Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+        <!-- Saving Throws-->
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <classProfUC:StartingArmorOptionUC Grid.Row="0"></classProfUC:StartingArmorOptionUC>
+
+            <!--<Label Grid.Row="0" Grid.Column="0" Content="Armor" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1"/>
+            <Button IsEnabled="False" Content="Armor Options" Grid.Row="0" Grid.Column="2" />-->
+
+            <classProfUC:StartingWeaponOptionUC Grid.Row="1"></classProfUC:StartingWeaponOptionUC>
+        </Grid>
+        <!-- Armor -->
+        <!-- Weapon -->
+
+        <!-- Skills and Tools via ListBoxes-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="80"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1*" MinWidth="80"/>
+            </Grid.ColumnDefinitions>
+
+            <classProfUC:StartingSkillsUC Grid.Column="0"/>
+
+            <Separator Grid.Column="1">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+
+            <classProfUC:StartingToolsUC Grid.Column="2" />
+
+        </Grid>
+
+        <!-- Armor -->
+        <Grid Grid.Row="2">
+
+        </Grid>
+        <!-- Weapons -->
+        <Grid Grid.Row="3">
+
+        </Grid>
+    </Grid>
+</UserControl>

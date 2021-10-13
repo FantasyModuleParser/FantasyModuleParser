@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="FantasyModuleParser.Classes.ClassOptionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Classes"
+             xmlns:ClassUC="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             xmlns:equipmentUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
+             xmlns:classViewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
+             xmlns:sharedUserControl="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="600">
+    <UserControl.DataContext>
+        <classViewModel:ClassOptionControllViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="480" />
+            <RowDefinition Height="160" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ClassUC:ClassHeaderUC />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="450" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+
+                <!--                        <ListBox Name="PrimaryEquipmentTypeListBox" Margin="0,5,5,5"
+                                 ItemsSource="{Binding Source={extension:Enumeration {x:Type equipmentEnum:PrimaryEquipmentEnum}}}" 
+                                 SelectedValuePath="Value" DisplayMemberPath="Description"
+                                 SelectedValue="{Binding PrimaryEquipmentType}"></ListBox> -->
+                <ListBox Name="ClassMenuOptionListBox"
+                         ItemsSource="{Binding Source={extension:Enumeration {x:Type classEnum:ClassMenuOptionEnum}}}"
+                         SelectedValuePath="Value" DisplayMemberPath="Description"
+                         SelectedValue="{Binding ClassMenuOptionEnum}"/>
+            </Grid>
+            <Grid Grid.Column="1">
+
+                <!-- ================================== -->
+                <!-- Class Option Menu - User Controls -->
+                <!-- ================================== -->
+
+                <!-- Proficiency Bonus -->
+                <ClassUC:ClassProficiencyBonusUC x:Name="ClassProficiencyBonusUserControl">
+                    <ClassUC:ClassProficiencyBonusUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassProficiencyBonusUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ProficiencyBonus}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassProficiencyBonusUC.Style>
+                </ClassUC:ClassProficiencyBonusUC>
+                
+                <!-- Spell Slots -->
+                <ClassUC:ClassSpellSlotUC x:Name="ClassSpellSlotUserControl">
+                    <ClassUC:ClassSpellSlotUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassSpellSlotUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.SpellSlots}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassSpellSlotUC.Style>
+                </ClassUC:ClassSpellSlotUC>
+                <!-- Proficiencies -->
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ClassModelValue="{Binding ClassModelValue}">
+                    <ClassUC:ClassProficiencyUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.Proficiencies}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassProficiencyUC.Style>
+                </ClassUC:ClassProficiencyUC>
+                
+                <!-- TODO:  Multiclass Proficiencies -->
+                <ClassUC:MultiClassProficiencyUC x:Name="MultiClassProficencyUserControl">
+                    <ClassUC:MultiClassProficiencyUC.Style>
+                        <Style TargetType="{x:Type ClassUC:MultiClassProficiencyUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.MulticlassProficiencies}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:MultiClassProficiencyUC.Style>
+                </ClassUC:MultiClassProficiencyUC>
+                
+                <!-- Class Features -->
+                <ClassUC:ClassFeatureUC x:Name="ClassFeatureUserControl">
+                    <ClassUC:ClassFeatureUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassFeatureUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassFeatures}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassFeatureUC.Style>
+                </ClassUC:ClassFeatureUC>
+
+                <!-- TODO:  Class Specialization -->
+                <ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl">
+                    <ClassUC:ClassSpecializationUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassSpecializationUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassSpecialization}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ClassUC:ClassSpecializationUC.Style>
+                </ClassUC:ClassSpecializationUC>
+                <!-- TODO:  Starting Equipment -->
+                <sharedUserControl:GenericDescriptionUC x:Name="StartingEquipmentUserControl" DescriptionText="{Binding StartingEquipment}" >
+                    <sharedUserControl:GenericDescriptionUC.Style>
+                        <Style TargetType="{x:Type sharedUserControl:GenericDescriptionUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.StartingEquipment}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </sharedUserControl:GenericDescriptionUC.Style>
+                </sharedUserControl:GenericDescriptionUC>
+
+
+                <!-- TODO:  Class Description -->
+                <sharedUserControl:GenericDescriptionUC x:Name="ClassDescriptionUserControl">
+                    <sharedUserControl:GenericDescriptionUC.Style>
+                        <Style TargetType="{x:Type sharedUserControl:GenericDescriptionUC}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassDescription}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </sharedUserControl:GenericDescriptionUC.Style>
+                </sharedUserControl:GenericDescriptionUC>
+                
+                <!-- TODO:  Class Image -->
+                <sharedUserControl:GenericImageUserControl x:Name="ClassImageUserControl" LabelNameText="Class Image Filepath:">
+                    <sharedUserControl:GenericImageUserControl.Style>
+                        <Style TargetType="{x:Type sharedUserControl:GenericImageUserControl}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassImage}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </sharedUserControl:GenericImageUserControl.Style>
+                </sharedUserControl:GenericImageUserControl>
+            </Grid>
+        </Grid>
+        <!--<equipmentUC:EquipmentFooterUC Grid.Row="2" 
+                                       ActionButtonLabel="Equipment"
+                                        AddToProjectAction="EquipmentFooterUC_AddToProjectAction"
+                                       NewItemAction="EquipmentFooterUC_NewItemAction"
+                                        LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
+                                        SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"
+                                       SelectedItemModelChangeAction="EquipmentFooterUC_SelectedItemModelChangeAction"
+                                        ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
+                                       SelectedCategoryModel="{Binding SelectedCategoryModel, Mode=TwoWay}"
+                                       SelectedItemModel="{Binding SelectedFooterItemModel, Mode=TwoWay}"
+                                        Grid.ColumnSpan="2" Margin="0,0,0.333,0"/>-->
+        <!-- FIXME:  Missing all of the UI implementation code for interaction!! See above commented out code for examples-->
+        <!-- Note that this comes from the Equipment UserControl folder for more code reference -->
+        <equipmentUC:EquipmentFooterUC Grid.Row="2" ActionButtonLabel="Class"
+                                       SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"/>
+    </Grid>
+</UserControl>
