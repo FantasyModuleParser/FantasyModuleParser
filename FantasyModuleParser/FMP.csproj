@@ -886,9 +886,6 @@
     <Resource Include="Resources\FMP-Logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <EmbeddedResource Include="Resources\Grim_Press_Banner.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\npce_logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -1014,7 +1011,6 @@
     <Folder Include="Equipment\Views\" />
     <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Tables\UserControls\" />
-    <Folder Include="Test\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" />
