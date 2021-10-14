@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Main.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="260" d:DesignWidth="400">
+    <UserControl.DataContext>
+        <viewModel:CategoriesUCViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -30,7 +34,22 @@
                 <ColumnDefinition Width="300" />
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
-            <ListBox ItemsSource="{Binding Path=ModuleModel.Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" Grid.Column="1" />
+            <ListBox ItemsSource="{Binding Path=ModuleModel.Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="280">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Path=Name}" Grid.Column="0" />
+                            <Button Command="{Binding DataContext.RemoveCategoryCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                    CommandParameter="{Binding}"
+                                    Grid.Column="1">Remove</Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
         
         

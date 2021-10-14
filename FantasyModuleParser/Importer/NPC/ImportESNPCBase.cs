@@ -32,6 +32,15 @@ namespace FantasyModuleParser.Importer.NPC
                 // Innate Spellcasting Ability
                 int abilityIsIndex = innateSpellcastingAttributes.IndexOf("spellcasting ability is ", StringComparison.Ordinal);
                 int spellSaveDCIndex = innateSpellcastingAttributes.IndexOf("(spell save DC ", StringComparison.Ordinal);
+
+                if(abilityIsIndex == -1)
+                {
+                    throw new ApplicationException("The line 'spellcasting ability is' is likely on two separate lines;  Please remove the newline character");
+                }
+                if (spellSaveDCIndex == -1)
+                {
+                    throw new ApplicationException("The line 'spell save DC ##' is likely on two separate lines;  Please remove the newline character");
+                }
                 // 24 is the string length to "spellcasting ability is "
                 npcModel.InnateSpellcastingAbility = innateSpellcastingAttributes.Substring(abilityIsIndex + 24, spellSaveDCIndex - abilityIsIndex - 25);
 
@@ -136,10 +145,10 @@ namespace FantasyModuleParser.Importer.NPC
                 npcModel.SpellcastingSection = true;
 
                 // Get and assign the Spell Caster's level
-                SetSpellcastingCasterLevel(npcModel, spellCastingAttributes);
+                ParseSpellcastingCasterLevel(npcModel, spellCastingAttributes);
 
                 // Get and assign the Spell Caster's Spellcasting Ability
-                SetTheSCSpellcastingAbility(npcModel, spellCastingAttributes);
+                ParseTheSCSpellcastingAbility(npcModel, spellCastingAttributes);
 
 				MatchCollection matches = Regex.Matches(spellCastingAttributes, @"DC\s+(\d+),\s+([+-]*\d+)", RegexOptions.IgnoreCase);
 				if (matches.Count != 1)
