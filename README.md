@@ -38,3 +38,6 @@ System.Reflection.Metadata | System.Runtime.CompilerServices.Unsafe
 System.Text.Encoding.CodePages | System.Text.Encodings.Web
 System.Text.Json | System.Threading.Tasks.Extensions
 System.ValueTuple |
+
+## Extensions Required
+Microsoft Visual Studio Installer Projects
