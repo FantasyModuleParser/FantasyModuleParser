@@ -17,7 +17,7 @@ First, you will need to download the [Visual Studio 2019 Community Edition](http
 Next, click the Green Code button and choose "Open with Visual Studio". This will create a local version of Fantasy Module Parser on your PC that you are able to edit.
 When editing Fantasy Module Parser, **DO NOT** edit the *public* branch directly. Create a separate branch for any later merges. *If you have any questions, do not be afraid to ask Darkpool or Theodore in the [Discord Server](https://discord.gg/78SdFgg).
 
-# NuGet Packages Required
+## NuGet Packages Required
 First Column | Second Column
 ------------ | -------------
 BouncyCastle | EnvDTE
