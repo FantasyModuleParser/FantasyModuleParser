@@ -18,26 +18,20 @@ Next, click the Green Code button and choose "Open with Visual Studio". This wil
 When editing Fantasy Module Parser, **DO NOT** edit the *public* branch directly. Create a separate branch for any later merges. *If you have any questions, do not be afraid to ask Darkpool or Theodore in the [Discord Server](https://discord.gg/78SdFgg).
 
 ## NuGet Packages Required
-First Column | Second Column
------------- | -------------
-BouncyCastle | EnvDTE
-Google.Protobuf | K4os.Compression.LZ4
-K4os.Compression.LZ4.Streams | K4os.Hash.xxHash
-log4net | Markdig  
-Markdig.Wpf | Microsoft.Bcl.AsyncInterfaces  
-Microsoft.CodeAnalysis.Analyzers | Microsoft.CodeAnalysis.Common  
-Microsoft.CodeAnalysis.CSharp | Microsoft.CodeAnalysis.NetAnalyzers  
-Microsoft.Data.Edm | Microsoft.Toolkit  
-Microsoft.Toolkit.Parsers | Microsoft.VisualStudio.SDK.EmbedInteropTypes  
-MSTest.TestAdapter | MSTest.TestFramework  
-MySql.Data | Newtonsoft.Json
-SSH.NET | stdole
-System.Buffers | System.Collections.Immutable
-System.Memory | System.Numerics.Vectors
-System.Reflection.Metadata | System.Runtime.CompilerServices.Unsafe
-System.Text.Encoding.CodePages | System.Text.Encodings.Web
-System.Text.Json | System.Threading.Tasks.Extensions
-System.ValueTuple |
+1 | 2 | 3
+------------ | ------------- | -------------
+BouncyCastle | EnvDTE | Google.Protobuf
+K4os.Compression.LZ4 | K4os.Compression.LZ4.Streams | K4os.Hash.xxHash
+log4net | Markdig | Markdig.Wpf
+Microsoft.Bcl.AsyncInterfaces | Microsoft.CodeAnalysis.Analyzers | Microsoft.CodeAnalysis.Common
+Microsoft.CodeAnalysis.CSharp | Microsoft.CodeAnalysis.NetAnalyzers | Microsoft.Data.Edm
+Microsoft.Toolkit | Microsoft.Toolkit.Parsers | Microsoft.VisualStudio.SDK.EmbedInteropTypes
+MSTest.TestAdapter | MSTest.TestFramework | MySql.Data
+Newtonsoft.Json | SSH.NET | stdole
+System.Buffers | System.Collections.Immutable | System.Memory
+System.Numerics.Vectors | System.Reflection.Metadata | System.Runtime.CompilerServices.Unsafe
+System.Text.Encoding.CodePages | System.Text.Encodings.Web | System.Text.Json
+System.Threading.Tasks.Extensions | System.ValueTuple |
 
 ## Extensions Required
 Microsoft Visual Studio Installer Projects
