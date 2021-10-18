@@ -39,6 +39,14 @@ namespace FantasyModuleParser.Classes.Model
         public string WeaponProficiencies;
         public string StartingEquipment;
 
+        public ClassModel()
+        {
+            PrePopulateProficiencyBonusValues();
+            PrePopulateSpellSlotValues();
+            PrePopulateStartingEquipment();
+            SkillAttributeOptions = new ObservableCollection<SkillAttributeEnum>();
+        }
+
         public void PrePopulateProficiencyBonusValues()
         {
             this.ProfBonusValues = new ObservableCollection<ProficiencyBonusModel>();

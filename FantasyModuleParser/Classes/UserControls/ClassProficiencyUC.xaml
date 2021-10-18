@@ -129,7 +129,7 @@
                 <ColumnDefinition Width="1*" MinWidth="80"/>
             </Grid.ColumnDefinitions>
 
-            <classProfUC:StartingSkillsUC Grid.Column="0"/>
+            <classProfUC:StartingSkillsUC Grid.Column="0" ClassModelValue="{Binding ClassModelValue}"/>
 
             <Separator Grid.Column="1">
                 <Separator.LayoutTransform>

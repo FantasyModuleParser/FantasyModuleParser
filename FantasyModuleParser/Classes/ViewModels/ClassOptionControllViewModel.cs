@@ -54,9 +54,7 @@ namespace FantasyModuleParser.Classes.ViewModels
         public ClassOptionControllViewModel()
         {
             this._classModel = new ClassModel();
-            this._classModel.PrePopulateProficiencyBonusValues();
-            this._classModel.PrePopulateSpellSlotValues();
-            this._classModel.PrePopulateStartingEquipment();
+
         }
 
         public void Save()

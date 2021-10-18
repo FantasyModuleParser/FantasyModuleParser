@@ -31,7 +31,7 @@ namespace FantasyModuleParser.Exporters
 			NPCExporter.DatabaseXML_Root_Npc(xmlWriter, module);
 			SpellExporter.DatabaseXML_Root_Spell(xmlWriter, module);
 			TableExporter.DatabaseXML_Root_Tables(xmlWriter, module);
-			ReferenceManualExporter.DatabaseXML_Root_Reference_ReferenceManual(xmlWriter, module);
+			ReferenceManualExporter.DatabaseXML_Root_ReferenceManual(xmlWriter, module);
 			LibraryExporter.Database_Library(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
