@@ -13,7 +13,7 @@
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0" Content="Weapon" VerticalAlignment="Center"/>
-        <TextBox Grid.Column="1"/>
+        <TextBox Grid.Column="1" Text="{Binding Path=WeaponProficiencies}"/>
         <Button IsEnabled="False" Content="Weapon Options" Grid.Column="2" />
     </Grid>
 </UserControl>

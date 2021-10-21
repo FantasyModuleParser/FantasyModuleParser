@@ -8,7 +8,7 @@
              xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="620">
-    <Grid>
+    <Grid x:Name="ClassHeaderLayout">
         <Grid Background="AliceBlue">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
@@ -22,7 +22,7 @@
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
                 <Label Content="Class Name" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Text="Test Class Name" VerticalAlignment="Center" Grid.Column="1" />
+                <TextBox Text="{Binding Path=ClassName}" VerticalAlignment="Center" Grid.Column="1" />
                 <CheckBox Content="Locked" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
             <Grid Row="1">
@@ -33,7 +33,7 @@
                 <Label Content="Hit Die per Level" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
                 <!-- TODO: Need to map to a Model object attribute  -->
                 <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type classEnum:ClassHitDieEnum}}}"
-                  SelectedValue="{Binding Path=ClassHitDie}"
+                  SelectedValue="{Binding Path=HitPointDiePerLevel}"
                   SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="1" Margin="0,3,0,3" />
             </Grid>
         </Grid>

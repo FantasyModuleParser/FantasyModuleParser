@@ -10,6 +10,7 @@ namespace FantasyModuleParser.Classes.Model
         public string Name;
         public string Description;
         public ClassHitDieEnum HitPointDiePerLevel;
+        public bool IsLocked;
 
         public ObservableCollection<ProficiencyBonusModel> ProfBonusValues;
 
@@ -21,6 +22,10 @@ namespace FantasyModuleParser.Classes.Model
         // Typically this number ranges from 0 -> 3;
         public int NumberOfSkillsToChoose;
         public ObservableCollection<SkillAttributeEnum> SkillAttributeOptions;
+
+        public ObservableCollection<ClassStartingToolEnum> ClassStartingToolOptions;
+        public int NumberOfGamingSets;
+        public int NumberOfMusicalInstruments;
 
         // Re-Use the ArmorEnum from the Equipment Module portion
         public ObservableCollection<ArmorEnum> ArmorProficiencies;
@@ -45,6 +50,7 @@ namespace FantasyModuleParser.Classes.Model
             PrePopulateSpellSlotValues();
             PrePopulateStartingEquipment();
             SkillAttributeOptions = new ObservableCollection<SkillAttributeEnum>();
+            ClassStartingToolOptions = new ObservableCollection<ClassStartingToolEnum>();
         }
 
         public void PrePopulateProficiencyBonusValues()

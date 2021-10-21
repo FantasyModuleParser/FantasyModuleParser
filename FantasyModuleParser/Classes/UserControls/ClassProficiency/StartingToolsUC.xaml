@@ -8,7 +8,16 @@
              xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
-    <Grid>
+    <UserControl.Resources>
+        <Style TargetType="TextBox" x:Key="positiveNumberTextbox">
+            <Setter Property="FontSize" Value="10px" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+            <EventSetter Event="PreviewTextInput" Handler="PositiveNumberValidationTextBox" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="StartingToolLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"/>
             <ColumnDefinition Width="150*"/>
@@ -24,17 +33,18 @@
 
         <ListBox Name="StartingToolsListBox" Grid.Row="1" Grid.ColumnSpan="2" 
                          ItemsSource="{Binding Source={extension:Enumeration {x:Type classEnum:ClassStartingToolEnum}}}"
-                         SelectedValuePath="Value" DisplayMemberPath="Description" SelectionMode="Multiple"/>
+                         SelectedValuePath="Value" DisplayMemberPath="Description" SelectionMode="Multiple"
+                         SelectionChanged="StartingToolsListBox_OnSelectionChanged"/>
 
         <!-- Number of Gaming Sets -->
         <StackPanel Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" >
                 <Label Content="Number of Gaming Sets" />
-                <TextBox Width="30"/>
+                <TextBox Width="30" Text="{Binding Path=NumberOfGamingSets}" Style="{StaticResource positiveNumberTextbox}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
                 <Label Content="Number of Musical Instruments" />
-                <TextBox Width="30"/>
+                <TextBox Width="30" Text="{Binding Path=NumberOfMusicalInstruments}" Style="{StaticResource positiveNumberTextbox}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

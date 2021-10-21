@@ -22,7 +22,7 @@
             <RowDefinition Height="160" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <ClassUC:ClassHeaderUC />
+            <ClassUC:ClassHeaderUC ClassModelValue="{Binding ClassModelValue}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

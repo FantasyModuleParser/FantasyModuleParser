@@ -116,7 +116,7 @@
             <TextBox Grid.Row="0" Grid.Column="1"/>
             <Button IsEnabled="False" Content="Armor Options" Grid.Row="0" Grid.Column="2" />-->
 
-            <classProfUC:StartingWeaponOptionUC Grid.Row="1"></classProfUC:StartingWeaponOptionUC>
+            <classProfUC:StartingWeaponOptionUC Grid.Row="1" ClassModelValue="{Binding Path=ClassModelValue}"></classProfUC:StartingWeaponOptionUC>
         </Grid>
         <!-- Armor -->
         <!-- Weapon -->
@@ -124,9 +124,9 @@
         <!-- Skills and Tools via ListBoxes-->
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="80"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="1*" MinWidth="80"/>
+                <ColumnDefinition Width="223*" MinWidth="80"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="222*" MinWidth="80"/>
             </Grid.ColumnDefinitions>
 
             <classProfUC:StartingSkillsUC Grid.Column="0" ClassModelValue="{Binding ClassModelValue}"/>
@@ -137,7 +137,7 @@
                 </Separator.LayoutTransform>
             </Separator>
 
-            <classProfUC:StartingToolsUC Grid.Column="2" />
+            <classProfUC:StartingToolsUC Grid.Column="2" ClassModelValue="{Binding ClassModelValue}" />
 
         </Grid>
 
