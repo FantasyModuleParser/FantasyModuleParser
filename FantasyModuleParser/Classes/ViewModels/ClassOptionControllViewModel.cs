@@ -3,12 +3,14 @@ using FantasyModuleParser.Classes.Model;
 using FantasyModuleParser.NPC.ViewModel;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using FantasyModuleParser.Main.Services;
 
 namespace FantasyModuleParser.Classes.ViewModels
 {
     public class ClassOptionControllViewModel : ViewModelBase
     {
         private ClassModel _classModel;
+        private ModuleService _moduleService;
         private ClassMenuOptionEnum _classMenuOptionEnum;
 
         public ClassModel ClassModelValue
@@ -62,15 +64,50 @@ namespace FantasyModuleParser.Classes.ViewModels
 
 
 
-        public ClassOptionControllViewModel()
+        public ClassOptionControllViewModel() : base()
         {
             this._classModel = new ClassModel();
+            this._moduleService = new ModuleService();
 
         }
 
         public void Save()
         {
 
+        }
+        private void raiseAllUIProperties()
+        {
+            RaisePropertyChanged(nameof(ClassModelValue));
+            RaisePropertyChanged(nameof(HasSpellSlots));
+            RaisePropertyChanged(nameof(StartingEquipment));
+            RaisePropertyChanged(nameof(Proficiency));
+            RaisePropertyChanged(nameof(MultiProficiency));
+            RaisePropertyChanged(nameof(ClassMenuOptionEnum));
+        }
+
+        public void NewClassModel()
+        {
+            ClassModelValue = new ClassModel();
+            raiseAllUIProperties();
+        }
+
+        public void SaveClassModel()
+        {
+            ClassModelValue.Save();
+        }
+
+        public void LoadClassModel(string @filePath)
+        {
+            ClassModelValue = ClassModelValue.Load(filePath);
+
+            raiseAllUIProperties();
+        }
+
+        public void AddClassToCategory()
+        {
+            _moduleService.AddClassToCategory(ClassModelValue, SelectedCategoryModel.Name);
+            RaisePropertyChanged(nameof(ModuleCategoriesSource));
+            RaisePropertyChanged(nameof(SelectedCategoryModel));
         }
     }
 }
