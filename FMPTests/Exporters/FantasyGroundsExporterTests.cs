@@ -178,9 +178,11 @@ namespace FantasyModuleParser.Exporters.Tests
             exporter.CreateModule(moduleModel);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void CreateModule_SingleTable()
         {
+            TableModel tableModel = new TableModel().CreateDefaultTableModel();
+
             TableModel tableModel = new TableModel()
             {
                 Name = "Example Table",
@@ -216,7 +218,8 @@ namespace FantasyModuleParser.Exporters.Tests
                 {
                     categoryModel
                 },
-                ModFilename = "TableExampleModule"
+                ModFilename = "TableExampleModule",
+                IncludeTables = true
             };
 
             exporter.CreateModule(moduleModel);
