@@ -20,13 +20,13 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
             StartingToolLayout.DataContext = this;
         }
 
-        public static readonly DependencyProperty ClassModelProperty =
-            DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(StartingToolsUC));
+        public static readonly DependencyProperty ProficiencyModelProperty =
+            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(StartingToolsUC));
 
-        public ClassModel ClassModelValue
+        public ProficiencyModel ProficiencyModelValue
         {
-            get { return (ClassModel)GetValue(ClassModelProperty); }
-            set { SetValue(ClassModelProperty, value); }
+            get { return (ProficiencyModel)GetValue(ProficiencyModelProperty); }
+            set { SetValue(ProficiencyModelProperty, value); }
         }
 
 
@@ -40,7 +40,7 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
                     ClassStartingToolEnum choice;
                     if (ClassStartingToolEnum.TryParse(enumerationMember.Value.ToString(), out choice))
                     {
-                        ClassModelValue.ClassStartingToolOptions.Add(choice);
+                        ProficiencyModelValue.ClassStartingToolOptions.Add(choice);
                     }
                 }
             }
@@ -52,26 +52,26 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
                     ClassStartingToolEnum choice;
                     if (ClassStartingToolEnum.TryParse(enumerationMember.Value.ToString(), out choice))
                     {
-                        ClassModelValue.ClassStartingToolOptions.Remove(choice);
+                        ProficiencyModelValue.ClassStartingToolOptions.Remove(choice);
                     }
                 }
             }
         }
         public int NumberOfGamingSets
         {
-            get => ClassModelValue != null ? ClassModelValue.NumberOfGamingSets : 0; 
+            get => ProficiencyModelValue != null ? ProficiencyModelValue.NumberOfGamingSets : 0; 
             set
             {
-                ClassModelValue.NumberOfGamingSets = value;
+                ProficiencyModelValue.NumberOfGamingSets = value;
                 RaisePropertyChanged(nameof(NumberOfGamingSets));
             }
         }
         public int NumberOfMusicalInstruments
         {
-            get => ClassModelValue != null ? ClassModelValue.NumberOfMusicalInstruments : 0;
+            get => ProficiencyModelValue != null ? ProficiencyModelValue.NumberOfMusicalInstruments : 0;
             set
             {
-                ClassModelValue.NumberOfMusicalInstruments = value;
+                ProficiencyModelValue.NumberOfMusicalInstruments = value;
                 RaisePropertyChanged(nameof(NumberOfMusicalInstruments));
             }
         }

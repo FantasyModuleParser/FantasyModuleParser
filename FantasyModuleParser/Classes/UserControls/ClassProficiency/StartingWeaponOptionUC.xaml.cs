@@ -16,21 +16,21 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
             StartingWeaponOptionLayout.DataContext = this;
         }
 
-        public static readonly DependencyProperty ClassModelProperty =
-            DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(StartingWeaponOptionUC));
+        public static readonly DependencyProperty ProficiencyModelProperty =
+            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(StartingWeaponOptionUC));
 
-        public ClassModel ClassModelValue
+        public ProficiencyModel ProficiencyModelValue
         {
-            get { return (ClassModel)GetValue(ClassModelProperty); }
-            set { SetValue(ClassModelProperty, value); }
+            get { return (ProficiencyModel)GetValue(ProficiencyModelProperty); }
+            set { SetValue(ProficiencyModelProperty, value); }
         }
 
         public string WeaponProficiencies
         {
-            get => ClassModelValue != null ? ClassModelValue.WeaponProficiencies : string.Empty;
+            get => ProficiencyModelValue != null ? ProficiencyModelValue.WeaponProficiencies : string.Empty;
             set
             {
-                ClassModelValue.WeaponProficiencies = value;
+                ProficiencyModelValue.WeaponProficiencies = value;
                 RaisePropertyChanged(nameof(WeaponProficiencies));
             }
         }

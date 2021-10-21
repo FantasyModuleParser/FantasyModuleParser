@@ -17,6 +17,17 @@ namespace FantasyModuleParser.Classes.ViewModels
             set { Set(ref _classModel, value); }
         }
 
+        public ProficiencyModel Proficiency
+        {
+            get { return _classModel.Proficiency; }
+            set { Set(ref _classModel.Proficiency, value); }
+        }
+        public ProficiencyModel MultiProficiency
+        {
+            get { return _classModel.MultiProficiency; }
+            set { Set(ref _classModel.MultiProficiency, value); }
+        }
+
         [DefaultValue(ClassMenuOptionEnum.Proficiencies)]
         public ClassMenuOptionEnum ClassMenuOptionEnum
         {

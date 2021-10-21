@@ -1,7 +1,6 @@
 ﻿using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Classes.Model;
 using FantasyModuleParser.NPC.Commands;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,20 +18,29 @@ namespace FantasyModuleParser.Classes.UserControls
             ProficencyLayout.DataContext = this;
         }
 
-        public static readonly DependencyProperty ClassModelProperty =
-            DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(ClassProficiencyUC));
+        public static readonly DependencyProperty ProficiencyModelProperty =
+            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(ClassProficiencyUC));
 
-        public ClassModel ClassModelValue
+        public ProficiencyModel ProficiencyModelValue
         {
-            get { return (ClassModel)GetValue(ClassModelProperty); }
-            set { SetValue(ClassModelProperty, value); }
+            get { return (ProficiencyModel)GetValue(ProficiencyModelProperty); }
+            set { SetValue(ProficiencyModelProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsMultiProficiencyOptionProperty =
+            DependencyProperty.Register("IsMultiProficiencyOptionValue", typeof(Visibility), typeof(ClassProficiencyUC), new PropertyMetadata(Visibility.Visible));
+
+        public Visibility IsMultiProficiencyOptionValue
+        {
+            get { return (Visibility)GetValue(IsMultiProficiencyOptionProperty); }
+            set { SetValue(IsMultiProficiencyOptionProperty, value); }
         }
 
         private void SavingThrow_Click(object sender, RoutedEventArgs e)
         {
-            if(ClassModelValue.SavingThrowAttributes == null)
+            if(ProficiencyModelValue.SavingThrowAttributes == null)
             {
-                ClassModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<Enums.SavingThrowAttributeEnum>();
+                ProficiencyModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<Enums.SavingThrowAttributeEnum>();
             }
         }
 
@@ -58,9 +66,9 @@ namespace FantasyModuleParser.Classes.UserControls
                 return false;
 
             SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
-            if(ClassModelValue.SavingThrowAttributes?.Count >= 2)
+            if(ProficiencyModelValue?.SavingThrowAttributes?.Count >= 2)
             {
-                return ClassModelValue.SavingThrowAttributes.Contains(savingThrow);
+                return ProficiencyModelValue.SavingThrowAttributes.Contains(savingThrow);
             }
 
             return true;
@@ -70,13 +78,13 @@ namespace FantasyModuleParser.Classes.UserControls
         {
             SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
 
-            if (ClassModelValue.SavingThrowAttributes == null)
-                ClassModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<SavingThrowAttributeEnum>();
+            if (ProficiencyModelValue.SavingThrowAttributes == null)
+                ProficiencyModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<SavingThrowAttributeEnum>();
 
-            if (ClassModelValue.SavingThrowAttributes.Contains(savingThrow))
-                ClassModelValue.SavingThrowAttributes.Remove(savingThrow);
+            if (ProficiencyModelValue.SavingThrowAttributes.Contains(savingThrow))
+                ProficiencyModelValue.SavingThrowAttributes.Remove(savingThrow);
             else
-                ClassModelValue.SavingThrowAttributes.Add(savingThrow);
+                ProficiencyModelValue.SavingThrowAttributes.Add(savingThrow);
         }
     }
 }

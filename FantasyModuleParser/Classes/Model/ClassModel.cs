@@ -17,20 +17,8 @@ namespace FantasyModuleParser.Classes.Model
         public bool HasSpellSlots;
         public ObservableCollection<SpellSlotModel> SpellSlotValues;
 
-        public ObservableCollection<SavingThrowAttributeEnum> SavingThrowAttributes;
-
-        // Typically this number ranges from 0 -> 3;
-        public int NumberOfSkillsToChoose;
-        public ObservableCollection<SkillAttributeEnum> SkillAttributeOptions;
-
-        public ObservableCollection<ClassStartingToolEnum> ClassStartingToolOptions;
-        public int NumberOfGamingSets;
-        public int NumberOfMusicalInstruments;
-
-        // Re-Use the ArmorEnum from the Equipment Module portion
-        public ObservableCollection<ArmorEnum> ArmorProficiencies;
-        // Data to capture unique rules (e.g. Druids cannot use armor or shields made of metal)
-        public string UniqueArmorProficencies;
+        public ProficiencyModel Proficiency;
+        public ProficiencyModel MultiProficiency;
 
         public ObservableCollection<ClassFeature> ClassFeatures;
 
@@ -41,7 +29,6 @@ namespace FantasyModuleParser.Classes.Model
         // the required data, such as custom weapons / tools in a campaign setting:
 
         public string ToolProficiencies;
-        public string WeaponProficiencies;
         public string StartingEquipment;
 
         public ClassModel()
@@ -49,8 +36,8 @@ namespace FantasyModuleParser.Classes.Model
             PrePopulateProficiencyBonusValues();
             PrePopulateSpellSlotValues();
             PrePopulateStartingEquipment();
-            SkillAttributeOptions = new ObservableCollection<SkillAttributeEnum>();
-            ClassStartingToolOptions = new ObservableCollection<ClassStartingToolEnum>();
+            Proficiency = new ProficiencyModel();
+            MultiProficiency = new ProficiencyModel();
         }
 
         public void PrePopulateProficiencyBonusValues()

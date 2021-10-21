@@ -21,13 +21,13 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
             StartingSkillsUCLayout.DataContext = this;
         }
 
-        public static readonly DependencyProperty ClassModelProperty =
-            DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(StartingSkillsUC));
+        public static readonly DependencyProperty ProficiencyModelProperty =
+            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(StartingSkillsUC));
 
-        public ClassModel ClassModelValue
+        public ProficiencyModel ProficiencyModelValue
         {
-            get { return (ClassModel)GetValue(ClassModelProperty); }
-            set { SetValue(ClassModelProperty, value); }
+            get { return (ProficiencyModel)GetValue(ProficiencyModelProperty); }
+            set { SetValue(ProficiencyModelProperty, value); }
         }
 
         private void SkillAttributeEnumListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,7 +39,7 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
                     SkillAttributeEnum choice;
                     if (SkillAttributeEnum.TryParse(enumerationMember.Value.ToString(), out choice))
                     {
-                        ClassModelValue.SkillAttributeOptions.Add(choice);
+                        ProficiencyModelValue.SkillAttributeOptions.Add(choice);
                     }
                 }
             }
@@ -51,7 +51,7 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
                     SkillAttributeEnum choice;
                     if (SkillAttributeEnum.TryParse(enumerationMember.Value.ToString(), out choice))
                     {
-                        ClassModelValue.SkillAttributeOptions.Remove(choice);
+                        ProficiencyModelValue.SkillAttributeOptions.Remove(choice);
                     }
                 }
             }
@@ -59,10 +59,10 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
 
         public int NumberOfSkillsToChoose
         {
-            get { return ClassModelValue != null ? ClassModelValue.NumberOfSkillsToChoose : 0;}
+            get { return ProficiencyModelValue != null ? ProficiencyModelValue.NumberOfSkillsToChoose : 0;}
             set
             {
-                ClassModelValue.NumberOfSkillsToChoose = value;
+                ProficiencyModelValue.NumberOfSkillsToChoose = value;
                 RaisePropertyChanged(nameof(NumberOfSkillsToChoose));
             }
         }

@@ -317,10 +317,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Classes\UserControls\MultiClassProficiencyUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Equipment\EquipmentOptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -557,6 +553,7 @@
     <Compile Include="Classes\Model\ClassFeature.cs" />
     <Compile Include="Classes\Model\ClassModel.cs" />
     <Compile Include="Classes\Model\ClassSpecialization.cs" />
+    <Compile Include="Classes\Model\ProficiencyModel.cs" />
     <Compile Include="Classes\Model\ProficiencyBonusModel.cs" />
     <Compile Include="Classes\Model\SpellSlotModel.cs" />
     <Compile Include="Classes\UserControls\ClassFeatureUC.xaml.cs">
@@ -597,9 +594,6 @@
     </Compile>
     <Compile Include="Classes\UserControls\ClassSpellSlotUC.xaml.cs">
       <DependentUpon>ClassSpellSlotUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\UserControls\MultiClassProficiencyUC.xaml.cs">
-      <DependentUpon>MultiClassProficiencyUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\ViewModels\ClassOptionControllViewModel.cs" />
     <Compile Include="Converters\LanguageModelConverter.cs" />

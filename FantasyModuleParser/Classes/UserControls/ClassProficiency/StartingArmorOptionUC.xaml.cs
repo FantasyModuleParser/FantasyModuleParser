@@ -17,13 +17,13 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
             StartingArmorOptionLayout.DataContext = this;
         }
 
-        public static readonly DependencyProperty ClassModelProperty =
-            DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(StartingArmorOptionUC));
+        public static readonly DependencyProperty ProficiencyModelProperty =
+            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(StartingArmorOptionUC));
 
-        public ClassModel ClassModelValue
+        public ProficiencyModel ProficiencyModelValue
         {
-            get { return (ClassModel)GetValue(ClassModelProperty); }
-            set { SetValue(ClassModelProperty, value); }
+            get { return (ProficiencyModel)GetValue(ProficiencyModelProperty); }
+            set { SetValue(ProficiencyModelProperty, value); }
         }
 
         public bool HasLightArmor
@@ -61,32 +61,32 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
 
         public string UniqueArmorProperty
         {
-            get { return ClassModelValue?.UniqueArmorProficencies;}
-            set { ClassModelValue.UniqueArmorProficencies = value; 
+            get { return ProficiencyModelValue?.UniqueArmorProficencies;}
+            set { ProficiencyModelValue.UniqueArmorProficencies = value; 
                 RaisePropertyChanged(nameof(UniqueArmorProperty)); }
         }
 
         private bool _checkContainsArmorEnum(ArmorEnum armorEnum)
         {
-            if (ClassModelValue == null)
+            if (ProficiencyModelValue == null)
                 return false;
-            if (ClassModelValue.ArmorProficiencies == null)
+            if (ProficiencyModelValue.ArmorProficiencies == null)
                 return false;
 
-            return ClassModelValue.ArmorProficiencies.Contains(armorEnum);
+            return ProficiencyModelValue.ArmorProficiencies.Contains(armorEnum);
         }
 
         private void _setArmorProf(ArmorEnum armorEnum, bool isSet)
         {
-            if(ClassModelValue.ArmorProficiencies == null)
+            if(ProficiencyModelValue.ArmorProficiencies == null)
             {
-                ClassModelValue.ArmorProficiencies = new System.Collections.ObjectModel.ObservableCollection<ArmorEnum>();
+                ProficiencyModelValue.ArmorProficiencies = new System.Collections.ObjectModel.ObservableCollection<ArmorEnum>();
             }
 
             if (isSet)
-                ClassModelValue.ArmorProficiencies.Add(armorEnum);
+                ProficiencyModelValue.ArmorProficiencies.Add(armorEnum);
             else
-                ClassModelValue.ArmorProficiencies.Remove(armorEnum);
+                ProficiencyModelValue.ArmorProficiencies.Remove(armorEnum);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

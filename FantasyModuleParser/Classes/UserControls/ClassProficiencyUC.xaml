@@ -48,7 +48,7 @@
             <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
         <!-- Saving Throws-->
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Visibility="{Binding Path=IsMultiProficiencyOptionValue}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
@@ -110,13 +110,13 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <classProfUC:StartingArmorOptionUC Grid.Row="0" ClassModelValue="{Binding Path=ClassModelValue}"></classProfUC:StartingArmorOptionUC>
+            <classProfUC:StartingArmorOptionUC Grid.Row="0" ProficiencyModelValue="{Binding Path=ProficiencyModelValue}"></classProfUC:StartingArmorOptionUC>
 
             <!--<Label Grid.Row="0" Grid.Column="0" Content="Armor" VerticalAlignment="Center"/>
             <TextBox Grid.Row="0" Grid.Column="1"/>
             <Button IsEnabled="False" Content="Armor Options" Grid.Row="0" Grid.Column="2" />-->
 
-            <classProfUC:StartingWeaponOptionUC Grid.Row="1" ClassModelValue="{Binding Path=ClassModelValue}"></classProfUC:StartingWeaponOptionUC>
+            <classProfUC:StartingWeaponOptionUC Grid.Row="1" ProficiencyModelValue="{Binding Path=ProficiencyModelValue}"></classProfUC:StartingWeaponOptionUC>
         </Grid>
         <!-- Armor -->
         <!-- Weapon -->
@@ -129,7 +129,7 @@
                 <ColumnDefinition Width="222*" MinWidth="80"/>
             </Grid.ColumnDefinitions>
 
-            <classProfUC:StartingSkillsUC Grid.Column="0" ClassModelValue="{Binding ClassModelValue}"/>
+            <classProfUC:StartingSkillsUC Grid.Column="0" ProficiencyModelValue="{Binding ProficiencyModelValue}"/>
 
             <Separator Grid.Column="1">
                 <Separator.LayoutTransform>
@@ -137,7 +137,7 @@
                 </Separator.LayoutTransform>
             </Separator>
 
-            <classProfUC:StartingToolsUC Grid.Column="2" ClassModelValue="{Binding ClassModelValue}" />
+            <classProfUC:StartingToolsUC Grid.Column="2" ProficiencyModelValue="{Binding ProficiencyModelValue}" />
 
         </Grid>
 

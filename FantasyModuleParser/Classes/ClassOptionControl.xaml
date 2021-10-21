@@ -76,7 +76,7 @@
                     </ClassUC:ClassSpellSlotUC.Style>
                 </ClassUC:ClassSpellSlotUC>
                 <!-- Proficiencies -->
-                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ClassModelValue="{Binding ClassModelValue}">
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ProficiencyModelValue="{Binding Proficiency}" IsMultiProficiencyOptionValue="Visible">
                     <ClassUC:ClassProficiencyUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -91,9 +91,9 @@
                 </ClassUC:ClassProficiencyUC>
                 
                 <!-- TODO:  Multiclass Proficiencies -->
-                <ClassUC:MultiClassProficiencyUC x:Name="MultiClassProficencyUserControl">
-                    <ClassUC:MultiClassProficiencyUC.Style>
-                        <Style TargetType="{x:Type ClassUC:MultiClassProficiencyUC}">
+                <ClassUC:ClassProficiencyUC x:Name="MultiClassProficencyUserControl" ProficiencyModelValue="{Binding MultiProficiency}" IsMultiProficiencyOptionValue="Hidden">
+                    <ClassUC:ClassProficiencyUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
@@ -102,8 +102,8 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </ClassUC:MultiClassProficiencyUC.Style>
-                </ClassUC:MultiClassProficiencyUC>
+                    </ClassUC:ClassProficiencyUC.Style>
+                </ClassUC:ClassProficiencyUC>
                 
                 <!-- Class Features -->
                 <ClassUC:ClassFeatureUC x:Name="ClassFeatureUserControl">
