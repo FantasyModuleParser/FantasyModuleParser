@@ -64,7 +64,7 @@ namespace FantasyModuleParser.Classes
             if (viewModel != null)
             {
                 viewModel.AddClassToCategory();
-                log.Info("Equipment " + viewModel.Name + " has successfully been added to Category " + viewModel.SelectedCategoryModel.Name);
+                log.Info("Class " + viewModel.ClassModelValue.Name + " has successfully been added to Category " + viewModel.SelectedCategoryModel.Name);
             }
         }
 
@@ -79,7 +79,7 @@ namespace FantasyModuleParser.Classes
             if (viewModel != null)
             {
                 viewModel.NewClassModel();
-                log.Info("Equipment " + viewModel.Name + " has been reset (New Item Action Invoked)");
+                log.Info("Class " + viewModel.ClassModelValue.Name + " has been reset (New Item Action Invoked)");
             }
         }
     }

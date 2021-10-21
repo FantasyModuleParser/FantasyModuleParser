@@ -59,21 +59,21 @@ namespace FantasyModuleParser.Equipment.UserControls
             set { SetValue(DescriptionTextProperty, value); }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public static readonly DependencyProperty CollapseNonIdFieldProperty =
+            DependencyProperty.Register
+            (
+                "CollapseNonIdField",
+                typeof(bool),
+                typeof(GenericDescriptionUC),
+                new PropertyMetadata(false)
+            );
+
+        public bool CollapseNonIdField
         {
-            var markdown = MarkdownTextBox.Text;
-            var xaml = Markdig.Wpf.Markdown.ToXaml(markdown, BuildPipeline());
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml)))
-            {
-                using (var reader = new XamlXmlReader(stream, new MyXamlSchemaContext()))
-                {
-                    if (XamlReader.Load(reader) is FlowDocument document)
-                    {
-                        MarkdownViewer.Document = document;
-                    }
-                }
-            }
+            get { return (bool)GetValue(CollapseNonIdFieldProperty); }
+            set { SetValue(CollapseNonIdFieldProperty, value); }
         }
+
         private void MarkdownHelp_Click(object sender, RoutedEventArgs e)
         {
             if (!_isMarkdownHelpWindowOpen)

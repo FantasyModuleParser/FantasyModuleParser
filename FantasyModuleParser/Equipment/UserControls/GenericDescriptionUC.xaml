@@ -3,172 +3,151 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:markdig="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="520" d:DesignWidth="400">
+             d:DesignHeight="480" d:DesignWidth="600">
     <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="0,8,3,8"  />
+        <Style TargetType="{x:Type FlowDocument}" x:Key="{x:Static markdig:Styles.DocumentStyleKey}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="LineHeight" Value="1" />
+            <Setter Property="TextAlignment" Value="Left" />
         </Style>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="1*" MinHeight="30"/>
+            <RowDefinition Height="1*" MinHeight="30"/>
+            <RowDefinition Height="1*" MinHeight="30"/>
         </Grid.RowDefinitions>
-        <!--<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="250,455,0,0" VerticalAlignment="Top" Width="160"/>-->
-        <!--<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="420,455,0,0" VerticalAlignment="Top" Width="165"/>-->
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="5"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <TextBox x:Name="MarkdownTextBox" Text="{Binding Path=DescriptionText}"
-                         TextChanged="TextBox_TextChanged"
-                         Grid.Column="0" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Margin="2"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="MarkdownTextBox" Text="{Binding Path=DescriptionText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         Grid.Column="0" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
 
+            <markdig:MarkdownViewer Markdown="{Binding Path=DescriptionText, UpdateSourceTrigger=PropertyChanged}"
+                                         Grid.Column="2"/>
+        </Grid>
 
-                <FlowDocumentScrollViewer x:Name="MarkdownViewer" Grid.Column="2" Margin="2" />
-            </Grid>
-
-            <!--<RichTextBox Name="descriptionRTB" TextChanged="descriptionRTB_TextChanged" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
+        <!--<RichTextBox Name="descriptionRTB" TextChanged="descriptionRTB_TextChanged" Width="590" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.ToolTip>
                     <TextBlock>
                         This box contains the formatted descriptive text that will be added to your NPC.
                     </TextBlock>
                 </RichTextBox.ToolTip>
             </RichTextBox>-->
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" MinHeight="30"/>
-                <RowDefinition Height="1*" MinHeight="30"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="80" />
-                <ColumnDefinition Width="2*" MinWidth="80" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20" MinHeight="20" />
-                    <RowDefinition Height="20" MinHeight="20" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" MinWidth="20" MaxWidth="30" />
-                    <ColumnDefinition Width="1*" MinWidth="20" MaxWidth="30"/>
-                    <ColumnDefinition Width="1*" MinWidth="20" MaxWidth="30"/>
-                    <ColumnDefinition Width="1*" MinWidth="20" MaxWidth="30"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Name="btn_bold" Grid.Row="0" Grid.Column="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                          Click="btn_bold_Click">
-                    <Image Source="/Resources/Bold.png" />
-                    <Button.ToolTip>
-                        <TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Name="btn_bold" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btn_bold_Click">
+                <Image Source="/Resources/Bold.png" />
+                <Button.ToolTip>
+                    <TextBlock>
                             Make the selected text bold.
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-
-                <Button Name="btn_italics" Grid.Row="0" Grid.Column="1" 
-                            Click="btn_italics_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                    <Image Source="/Resources/italic.png" />
-                    <Button.ToolTip>
-                        <TextBlock>
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_italics" Width="20" Height="20" BorderThickness="0" Click="btn_italics_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="/Resources/italic.png" />
+                <Button.ToolTip>
+                    <TextBlock>
                             Make the selected text italicized.
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-
-                <Button Name="btn_underline" Grid.Row="0" Grid.Column="2"
-                            Click="btn_underline_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                    <Image Source="/Resources/underline.png" />
-                    <Button.ToolTip>
-                        <TextBlock>
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_underline" Width="20" Height="20" BorderThickness="0" Click="btn_underline_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="/Resources/underline.png" />
+                <Button.ToolTip>
+                    <TextBlock>
                             Make the selected text underlined.
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-
-                <Button Name="btn_header" Grid.Row="1" Grid.Column="0"
-                            Click="btn_header_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                    <Image Source="/Resources/Header.png" />
-                    <Button.ToolTip>
-                        <TextBlock>
-                            Format the selected text as a header.
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-                <Button Name="btn_text" Grid.Row="1" Grid.Column="1" 
-                            Click="btn_text_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                    <Image Source="/Resources/Text Color.png" />
-                    <Button.ToolTip>
-                        <TextBlock>
-                            Format the selected text as body text.
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-                <Button Name="btn_chatbox" Grid.Row="1" Grid.Column="2"
-                            Click="btn_chatbox_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                    <Image Source="/Resources/Speech Bubble With Dots.png" />
-                    <Button.ToolTip>
-                        <TextBlock>
-                            Format the selected paragraphs as 'Chat Frame Text'. This will indent the paragraph(s) in NPC Engineer as a visual cue that they have been modified.
-                            <LineBreak />
-                            <Italic>Note that if two or more paragraphs are selected, Fantasy Grounds will treat it as a continuous single paragraph.</Italic>
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-                <Button Name="btn_bullet" Grid.Row="1" Grid.Column="3"
-                            Click="btn_bullet_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                    <Image Source="/Resources/Bulleted List.png" />
-                    <Button.ToolTip>
-                        <TextBlock>
-                            Format the selected paragraphs as a bulleted list.
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-
-
-            </Grid>
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" MinWidth="80"  />
-                    <ColumnDefinition Width="1*" MinWidth="100"/>
-                    <ColumnDefinition Width="1*" MinWidth="80"  />
-                </Grid.ColumnDefinitions>
-                <Button Content="Clear Text" Click="btn_ClearText_Click">
-                    <Button.ToolTip>
-                        <TextBlock>
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_undo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="150,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden">
+                <Image Source="/Resources/undo.png" />
+                <Button.ToolTip>
+                    <TextBlock>
+                            Undo action
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_redo" Width="20" Height="20" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden">
+                <Image Source="/Resources/redo.png" />
+                <Button.ToolTip>
+                    <TextBlock>
+                            Redo action
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Content="Clear Text" Padding="0" Margin="50,5,0,0" Height="20" Width="70" Click="btn_ClearText_Click">
+                <Button.ToolTip>
+                    <TextBlock>
                             Clear all text from the window above.
                             <LineBreak />
                             <Italic>This is not recoverable; be sure you want to do this!</Italic>
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-                <Button Content="Markdown Help" Click="MarkdownHelp_Click" 
-                            Grid.Column="1">
-                    <Button.ToolTip>
-                        <TextBlock>
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Content="Markdown Help" Padding="0" Margin="10,5,0,0" Height="20" Width="100" Click="MarkdownHelp_Click">
+                <Button.ToolTip>
+                    <TextBlock>
                             Opens a new window with all the code for markdown.
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-                <Button Content="Validate XML" Click="ValidateXML" IsEnabled="False"
-                            Grid.Column="2">
-                    <Button.ToolTip>
-                        <TextBlock>
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Content="Validate XML" Padding="0" Margin="10,5,0,0" Height="20" Width="75" Click="ValidateXML" IsEnabled="False">
+                <Button.ToolTip>
+                    <TextBlock>
                             This will display the above text in the format that Fantasy Grounds will see.
                             <LineBreak />
                             <Italic>You can use this to verify your descriptive text will display correctly with Fantasy Grounds.</Italic>
-                        </TextBlock>
-                    </Button.ToolTip>
-                </Button>
-            </Grid>
-            <Label Content="Non-ID:" Grid.Row="1" Grid.Column="0"/>
-            <TextBox x:Name="NonID" Text="{Binding NonID}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="70,5,5,5">
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Button Name="btn_header" Width="20" Height="20" BorderThickness="0" Click="btn_header_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="10,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="/Resources/Header.png" />
+                <Button.ToolTip>
+                    <TextBlock>
+                            Format the selected text as a header.
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_text" Width="20" Height="20" BorderThickness="0" Click="btn_text_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="/Resources/Text Color.png" />
+                <Button.ToolTip>
+                    <TextBlock>
+                            Format the selected text as body text.
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_chatbox" Width="20" Height="20" BorderThickness="0" Click="btn_chatbox_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="/Resources/Speech Bubble With Dots.png" />
+                <Button.ToolTip>
+                    <TextBlock>
+                            Format the selected paragraphs as 'Chat Frame Text'. This will indent the paragraph(s) in NPC Engineer as a visual cue that they have been modified.
+                            <LineBreak />
+                            <Italic>Note that if two or more paragraphs are selected, Fantasy Grounds will treat it as a continuous single paragraph.</Italic>
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_bullet" Width="20" Height="20" BorderThickness="0" Click="btn_bullet_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="0" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="/Resources/Bulleted List.png" />
+                <Button.ToolTip>
+                    <TextBlock>
+                            Format the selected paragraphs as a bulleted list.
+                    </TextBlock>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Visibility="Collapsed">
+            <Label Content="Non-ID:" Padding="0" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox x:Name="NonID" Text="{Binding NonID}" Margin="5,9,0,0" Width="180" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <TextBox.ToolTip>
                     <TextBlock>
                             (OPTIONAL) Any text put will show up instead of the NPC's name until the GM ID's the NPC in Fantasy Grounds.
@@ -177,6 +156,18 @@
                     </TextBlock>
                 </TextBox.ToolTip>
             </TextBox>
-        </Grid>
+            <!--<StackPanel Orientation="Vertical">
+                    <Label FontWeight="Bold" Foreground="Gray" Content="Elements" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <CheckBox Content="Add Descriptive Text" IsChecked="True" Margin="40,5,0,0" IsEnabled="False"/>
+                    <CheckBox Content="Add Title" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
+                    <CheckBox Content="Include Spell List" Margin="40,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label FontWeight="Bold" Foreground="Gray" Content="Paste Edits" Margin="20,10,0,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <CheckBox Content="Apply Common Fixes" IsChecked="True" Margin="40,5,0,0" IsEnabled="False"/>
+                    <CheckBox Content="Strip 'New Line' codes" IsChecked="True" Margin="40,0,0,0" IsEnabled="False" />
+                    <CheckBox Content="Pick Out Titles" IsChecked="True" Margin="40,0,0,0" IsEnabled="False"/>
+                </StackPanel>-->
+        </StackPanel>
     </Grid>
 </UserControl>
