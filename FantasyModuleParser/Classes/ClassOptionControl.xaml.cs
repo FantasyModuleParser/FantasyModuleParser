@@ -1,5 +1,9 @@
-﻿using FantasyModuleParser.Classes.ViewModels;
+﻿using System;
+using FantasyModuleParser.Classes.ViewModels;
 using System.Windows.Controls;
+using FantasyModuleParser.Equipment.ViewModels;
+using FantasyModuleParser.Main.Services;
+using log4net;
 
 namespace FantasyModuleParser.Classes
 {
@@ -7,17 +11,75 @@ namespace FantasyModuleParser.Classes
 	/// Interaction logic for ClassOptionControl.xaml
 	/// </summary>
 	public partial class ClassOptionControl : UserControl
-	{
-		public ClassOptionControl()
+    {
+        private SettingsService settingsService;
+
+        private static readonly ILog log = LogManager.GetLogger(typeof(ClassOptionControl));
+        public ClassOptionControl()
 		{
 			InitializeComponent();
-		}
+            settingsService = new SettingsService();
+        }
 
         private void EquipmentFooterUC_SaveEquipmentAction(object sender, System.EventArgs e)
         {
 			if(DataContext is ClassOptionControllViewModel)
             {
 				((ClassOptionControllViewModel)DataContext).Save();
+            }
+        }
+
+        private void EquipmentFooterUC_LoadEquipmentAction(object sender, System.EventArgs e)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                InitialDirectory = settingsService.Load().EquipmentFolderLocation,
+                Filter = "Equipment files (*.json)|*.json|All files (*.*)|*.*"
+            };
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDialog.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                ClassOptionControllViewModel viewModel = DataContext as ClassOptionControllViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.LoadClassModel(openFileDialog.FileName);
+
+                    log.Info("Class " + viewModel.ClassModelValue.Name + " has successfully been loaded");
+
+                }
+                else
+                    log.Debug("DataContext is not what it is expected to be :: " + DataContext.GetType());
+
+            }
+        }
+
+        private void EquipmentFooterUC_AddToProjectAction(object sender, EventArgs e)
+        {
+            ClassOptionControllViewModel viewModel = DataContext as ClassOptionControllViewModel;
+            if (viewModel != null)
+            {
+                viewModel.AddClassToCategory();
+                log.Info("Class " + viewModel.ClassModelValue.Name + " has successfully been added to Category " + viewModel.SelectedCategoryModel.Name);
+            }
+        }
+
+        private void EquipmentFooterUC_SelectedItemModelChangeAction(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EquipmentFooterUC_NewItemAction(object sender, EventArgs e)
+        {
+            ClassOptionControllViewModel viewModel = DataContext as ClassOptionControllViewModel;
+            if (viewModel != null)
+            {
+                viewModel.NewClassModel();
+                log.Info("Class " + viewModel.ClassModelValue.Name + " has been reset (New Item Action Invoked)");
             }
         }
     }

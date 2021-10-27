@@ -195,6 +195,7 @@
         <!-- FIXME:  Missing all of the UI implementation code for interaction!! See above commented out code for examples-->
         <!-- Note that this comes from the Equipment UserControl folder for more code reference -->
         <equipmentUC:EquipmentFooterUC Grid.Row="2" ActionButtonLabel="Class"
+                                       AddToProjectAction="EquipmentFooterUC_AddToProjectAction"
                                        SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"/>
     </Grid>
 </UserControl>

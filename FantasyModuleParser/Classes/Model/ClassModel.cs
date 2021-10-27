@@ -2,6 +2,10 @@
 using FantasyModuleParser.Equipment.Enums;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using FantasyModuleParser.Equipment.Models;
+using FantasyModuleParser.Main.Services;
+using Newtonsoft.Json;
 
 namespace FantasyModuleParser.Classes.Model
 {
@@ -70,6 +74,40 @@ namespace FantasyModuleParser.Classes.Model
         public void RemoveClassSpecialization(ClassSpecialization classSpecialization)
         {
             throw new NotImplementedException();
+        }
+
+
+        public void Save()
+        {
+            SettingsService settingsService = new SettingsService();
+            string folderPath = settingsService.Load().ClassFolderLocation;
+
+            Save(folderPath);
+        }
+        public void Save(string folderPath)
+        {
+            Directory.CreateDirectory(folderPath);
+            using (StreamWriter file = File.CreateText(Path.Combine(folderPath, this.Name + ".json")))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Formatting = Formatting.Indented;
+                serializer.Serialize(file, this);
+            }
+        }
+
+        public ClassModel Load(string @filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                string jsonData = File.ReadAllText(@filePath);
+                return JsonConvert.DeserializeObject<ClassModel>(jsonData);
+            }
+            return null;
+        }
+
+        public ClassModel ShallowCopy()
+        {
+            return (ClassModel)this.MemberwiseClone();
         }
     }
 }

@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using FantasyModuleParser.Classes.Model;
 
 namespace FantasyModuleParser.Main.Services
 {
@@ -265,6 +266,47 @@ namespace FantasyModuleParser.Main.Services
                 if (oldEquipmentModelIdx != -1)
                 {
                     categoryModel.EquipmentModels[oldEquipmentModelIdx] = equipmentModel;
+                }
+            }
+
+            Save(moduleModel);
+        }
+
+        public void AddClassToCategory(ClassModel classModel, string categoryValue)
+        {
+            if (categoryValue == null || categoryValue.Length == 0)
+            {
+                log.Error("Category value is null;  Cannot save Equipment");
+                throw new InvalidDataException("Category value is null;  Cannot save Class");
+            }
+            if (classModel == null)
+            {
+                log.Error(nameof(EquipmentModel) + " data object is null");
+                throw new InvalidDataException(nameof(EquipmentModel) + " data object is null");
+            }
+            if (String.IsNullOrWhiteSpace(classModel.Name))
+            {
+                log.Error("Class name is empty!");
+                throw new InvalidDataException("Table name is empty!");
+            }
+            CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
+            if (categoryModel == null)
+            {
+                log.Error("Category Value is not in the Module Model data object!");
+                throw new InvalidDataException("Category Value is not in the Module Model data object!");
+            }
+
+            if (categoryModel.ClassModels.FirstOrDefault(x => x.Name.Equals(classModel.Name, StringComparison.Ordinal)) == null)
+                categoryModel.ClassModels.Add(classModel);  // The real magic is here
+            else
+            {
+                // Replace the EquipmentModel object based on the name
+                ClassModel oldClassModel = categoryModel.ClassModels.FirstOrDefault(x => x.Name.Equals(classModel.Name, StringComparison.Ordinal));
+                int oldClassModelIdx = categoryModel.ClassModels.IndexOf(oldClassModel);
+
+                if (oldClassModelIdx != -1)
+                {
+                    categoryModel.ClassModels[oldClassModelIdx] = classModel;
                 }
             }
 
