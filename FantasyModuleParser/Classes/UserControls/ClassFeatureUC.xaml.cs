@@ -46,6 +46,11 @@ namespace FantasyModuleParser.Classes.UserControls
             }
         }
 
+        public string SelectedClassFeatureDescription
+        {
+            get { return SelectedClassFeature.Name + " - Description"; }
+        }
+
         private ICommand _addClassFeatureCommand;
         public ICommand AddClassFeatureCommand
         {
@@ -66,11 +71,10 @@ namespace FantasyModuleParser.Classes.UserControls
             {
                 ClassModelValue.ClassFeatures = new ObservableCollection<ClassFeature>();
             }
-            ClassModelValue.ClassFeatures.Add(SelectedClassFeature);
+            ClassModelValue.ClassFeatures.Add(SelectedClassFeature.ShallowCopy());
             RaisePropertyChanged(nameof(ClassModelValue));
             RaisePropertyChanged(nameof(ClassModelValue.ClassFeatures));
         }
-
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -89,6 +93,23 @@ namespace FantasyModuleParser.Classes.UserControls
         {
             _selectedClassFeature = new ClassFeature();
             RaisePropertyChanged(nameof(SelectedClassFeature));
+        }
+
+        private void FeatureListBoxOnSelectorChangeOnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                _selectedClassFeature = e.AddedItems[0] as ClassFeature;
+                IsFeatureSelected = true;
+            }
+            else
+            {
+                _selectedClassFeature = new ClassFeature();
+                IsFeatureSelected = false;
+            }
+            RaisePropertyChanged(nameof(SelectedClassFeature));
+            RaisePropertyChanged(nameof(SelectedClassFeatureDescription));
+            RaisePropertyChanged(nameof(IsFeatureSelected));
         }
     }
 }

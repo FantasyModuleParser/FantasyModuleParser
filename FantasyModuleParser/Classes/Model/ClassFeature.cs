@@ -17,5 +17,10 @@ namespace FantasyModuleParser.Classes.Model
         {
             throw new NotImplementedException();
         }
+
+        public ClassFeature ShallowCopy()
+        {
+            return (ClassFeature)this.MemberwiseClone();
+        }
     }
 }

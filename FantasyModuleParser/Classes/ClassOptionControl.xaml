@@ -151,7 +151,7 @@
 
 
                 <!-- TODO:  Class Description -->
-                <sharedUserControl:GenericDescriptionUC x:Name="ClassDescriptionUserControl">
+                <sharedUserControl:GenericDescriptionUC x:Name="ClassDescriptionUserControl" DescriptionText="{Binding ClassModelValue.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <sharedUserControl:GenericDescriptionUC.Style>
                         <Style TargetType="{x:Type sharedUserControl:GenericDescriptionUC}">
                             <Setter Property="Visibility" Value="Hidden"/>

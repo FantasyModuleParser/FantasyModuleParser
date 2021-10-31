@@ -10,7 +10,7 @@ namespace FantasyModuleParser.Classes.Model
 {
     public class ClassModel : ModelBase
     {
-        public string Description;
+        public string Description { get; set; }
         public ClassHitDieEnum HitPointDiePerLevel { get; set; }
         public bool IsLocked { get; set; }
 
@@ -22,7 +22,7 @@ namespace FantasyModuleParser.Classes.Model
         public ProficiencyModel Proficiency;
         public ProficiencyModel MultiProficiency;
 
-        public ObservableCollection<ClassFeature> ClassFeatures;
+        public ObservableCollection<ClassFeature> ClassFeatures { get; set; }
 
         public string ClassSpecializationDescription;
         public ObservableCollection<ClassSpecialization> ClassSpecializations;
