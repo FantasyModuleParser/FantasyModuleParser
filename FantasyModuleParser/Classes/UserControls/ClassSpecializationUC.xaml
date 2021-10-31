@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
              xmlns:sharedUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:classModel="clr-namespace:FantasyModuleParser.Classes.Model"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="450">
-    <Grid>
+    <Grid x:Name="ClassSpecializationLayout">
         <TabControl>
             <TabItem Header="Class Feature" IsEnabled="True" HorizontalAlignment="Left">
                 <Grid>
@@ -26,9 +27,11 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Class Specialization Name" Grid.Row="0" Grid.Column="0" />
-                        <TextBox Grid.Row="0" Grid.Column="1" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=SelectedClassSpecialization.Name, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <Button Grid.Row="1" Grid.Column="1"  Content="Add Specialization" HorizontalAlignment="Right" />
+                        <Button Grid.Row="1" Grid.Column="1"  Content="Add / Update Specialization" 
+                                HorizontalAlignment="Right" Padding="5,0"
+                                Command="{Binding Path=AddClassSpecializationCommand}"/>
                     </Grid>
                     <Separator Grid.Row="1" />
                     <Grid Grid.Row="2">
@@ -37,31 +40,49 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="221*"/>
                             <ColumnDefinition Width="2"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="96*"/>
+                            <ColumnDefinition Width="125*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Content="Existing Class Specializations" Grid.Row="0" FontWeight="Bold" />
-                        
+                        <Label Content="Existing Class Specializations" Grid.Row="0" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,1.667,0" />
+
                         <!-- TODO:  For each item in this list box, there should two buttons that are right justified:
                                     1. Rename
                                     2. Remove
                         -->
-                        
-                        <ListBox Grid.Row="1"/>
 
-                        <Label Content="Features from Selected Specialization" Grid.Row="0" Grid.Column="2" FontWeight="Bold" />
-                        
+                        <!-- <ListBox Grid.Row="1"/> -->
+                        <ListBox Grid.Row="1" ItemsSource="{Binding Path=ClassModelValue.ClassSpecializations}"
+                                 SelectionMode="Single" HorizontalContentAlignment="Stretch"
+                                 SelectionChanged="OnClassSpecializationListBox_SelectionChangedEvent" Grid.ColumnSpan="2" Margin="0,0,1.667,0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type classModel:ClassSpecialization}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Name}"  />
+                                        <Button Content="Remove" Grid.Column="1"></Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Label Content="Features from Selected Specialization" Grid.Row="0" Grid.Column="2" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0.333,0,0.334,0" />
+
                         <!-- TODO:  This listbox is populated by the selected Specialization's attached features -->
                         <!-- TODO:  Consider an 'Unassigned' option for Specialization... or maybe the Class name as a default option? -->
-                        <ListBox Grid.Row="1" Grid.Column="2"/>
+                        <ListBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" />
                     </Grid>
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Description" IsEnabled="True" HorizontalAlignment="Left">
-                <sharedUC:GenericDescriptionUC Margin="0" Padding="0" />
+            <TabItem Header="{Binding Path=TabDescriptionLabel}" IsEnabled="{Binding Path=IsClassSpecialSelected}" HorizontalAlignment="Left">
+                <sharedUC:GenericDescriptionUC Margin="0" Padding="0"
+                                               DescriptionText="{Binding SelectedClassSpecialization.Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }"/>
             </TabItem>
         </TabControl>
     </Grid>

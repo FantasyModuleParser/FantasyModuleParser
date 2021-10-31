@@ -121,7 +121,7 @@
                 </ClassUC:ClassFeatureUC>
 
                 <!-- TODO:  Class Specialization -->
-                <ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl">
+                <ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl" ClassModelValue="{Binding ClassModelValue, Mode=TwoWay}">
                     <ClassUC:ClassSpecializationUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassSpecializationUC}">
                             <Setter Property="Visibility" Value="Hidden"/>

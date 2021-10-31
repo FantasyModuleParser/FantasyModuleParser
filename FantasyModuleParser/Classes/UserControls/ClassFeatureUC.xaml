@@ -39,10 +39,10 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Class Feature Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Path=SelectedClassFeature.Name, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,-0.667,0" />
+                        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Path=SelectedClassFeature.Name, UpdateSourceTrigger=PropertyChanged}" />
 
                         <Label Content="Level" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding Path=SelectedClassFeature.Level}" SelectedIndex="0" Margin="0,0,0.333,0">
+                        <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding Path=SelectedClassFeature.Level}" SelectedIndex="0">
                             <sys:Int32>1</sys:Int32>
                             <sys:Int32>2</sys:Int32>
                             <sys:Int32>3</sys:Int32>

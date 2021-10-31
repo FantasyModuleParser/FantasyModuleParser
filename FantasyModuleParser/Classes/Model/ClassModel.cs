@@ -17,15 +17,15 @@ namespace FantasyModuleParser.Classes.Model
         public ObservableCollection<ProficiencyBonusModel> ProfBonusValues { get; set; }
 
         public bool HasSpellSlots;
-        public ObservableCollection<SpellSlotModel> SpellSlotValues;
+        public ObservableCollection<SpellSlotModel> SpellSlotValues { get; set; }
 
         public ProficiencyModel Proficiency;
         public ProficiencyModel MultiProficiency;
 
         public ObservableCollection<ClassFeature> ClassFeatures { get; set; }
 
-        public string ClassSpecializationDescription;
-        public ObservableCollection<ClassSpecialization> ClassSpecializations;
+        public string ClassSpecializationDescription { get; set; }
+        public ObservableCollection<ClassSpecialization> ClassSpecializations { get; set; }
 
         // The following attributes are catch-alls, in that there's no hardcoded way to generate
         // the required data, such as custom weapons / tools in a campaign setting:
