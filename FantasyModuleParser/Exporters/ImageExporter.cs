@@ -23,7 +23,8 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <image> <category> */
 				xmlWriter.WriteAttributeString("name", category.Name); /* <root version="4.0"> <image> <category> */
-				CommonMethods.BaseIcon_DecalIcon(xmlWriter);
+				xmlWriter.WriteAttributeString("baseicon", "0");
+				xmlWriter.WriteAttributeString("decalicon", "0");
 				Image_Category_ImageName(xmlWriter, category);
 				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> </category> */
 			}
