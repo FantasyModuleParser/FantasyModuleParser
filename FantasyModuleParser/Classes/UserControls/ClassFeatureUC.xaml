@@ -3,11 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
              xmlns:sharedUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
+             xmlns:classModel="clr-namespace:FantasyModuleParser.Classes.Model"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="480">
-    <Grid>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type classModel:ClassFeature}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" />
+                <TextBox Text="{Binding Level}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Name="ClassFeatureLayout">
             <!-- The Class Features will require the following to be tracked: -->
         <!-- 1. The name of the feature -->
         <!-- 2. The Level at which the feature is enabled -->
@@ -36,22 +46,39 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Class Feature Name" Grid.Row="0" Grid.Column="0" />
-                        <TextBox Grid.Row="0" Grid.Column="1" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=SelectedClassFeature.Name, UpdateSourceTrigger=PropertyChanged}" />
 
                         <Label Content="Level" Grid.Row="1" Grid.Column="0" />
-                        <ComboBox Grid.Row="1" Grid.Column="1">
-                            <ComboBoxItem Content="1" IsSelected="True" />
-                            <ComboBoxItem Content="2" />
-                            <ComboBoxItem Content="3" />
-                            <ComboBoxItem Content="4" />
-                            <ComboBoxItem Content="5" />
-                            <ComboBoxItem Content="6" />
+                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Path=SelectedClassFeature.Level}">
+                            <sys:Int32>1</sys:Int32>
+                            <sys:Int32>2</sys:Int32>
+                            <sys:Int32>3</sys:Int32>
+                            <sys:Int32>4</sys:Int32>
+                            <sys:Int32>5</sys:Int32>
+                            <sys:Int32>6</sys:Int32>
+                            <sys:Int32>7</sys:Int32>
+                            <sys:Int32>8</sys:Int32>
+                            <sys:Int32>9</sys:Int32>
+                            <sys:Int32>10</sys:Int32>
+                            <sys:Int32>11</sys:Int32>
+                            <sys:Int32>12</sys:Int32>
+                            <sys:Int32>13</sys:Int32>
+                            <sys:Int32>14</sys:Int32>
+                            <sys:Int32>15</sys:Int32>
+                            <sys:Int32>16</sys:Int32>
+                            <sys:Int32>17</sys:Int32>
+                            <sys:Int32>18</sys:Int32>
+                            <sys:Int32>19</sys:Int32>
+                            <sys:Int32>20</sys:Int32>
                         </ComboBox>
 
                         <TextBlock Text="Subclass Feature (OPTIONAL)" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap"/>
                         <ComboBox Grid.Row="2" Grid.Column="1" IsEnabled="False" />
 
-                        <Button Grid.Row="3" Grid.Column="1"  Content="Add / Update Feature" HorizontalAlignment="Right" />
+                        <Button Grid.Row="3" Grid.Column="1"  Content="Clear Feature" HorizontalAlignment="Left"
+                                Click="ClearClassFeatureButton_OnClick"/>
+                        <Button Grid.Row="3" Grid.Column="1"  Content="Add / Update Feature" HorizontalAlignment="Right"
+                                Command="{Binding Path=AddClassFeatureCommand}"/>
                     </Grid>
                     <Separator Grid.Row="1" />
                     <Grid Grid.Row="2">
@@ -61,12 +88,13 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Existing Class Features" Grid.Row="0" FontWeight="Bold" />
-                        <ListBox Grid.Row="1"/>
+                        <ListBox Grid.Row="1" ItemsSource="{Binding Path=ClassModelValue.ClassFeatures}"
+                                 SelectionMode="Single"/>
                     </Grid>
                 </Grid>
                 
             </TabItem>
-            <TabItem Header="Description" IsEnabled="True" HorizontalAlignment="Left">
+            <TabItem Header="Description" IsEnabled="{Binding Path=IsFeatureSelected}" HorizontalAlignment="Left" >
                 <sharedUC:GenericDescriptionUC Margin="0" Padding="0" />
             </TabItem>
         </TabControl>

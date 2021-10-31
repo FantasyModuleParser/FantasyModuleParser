@@ -301,17 +301,17 @@ namespace FantasyModuleParser.Equipment.ViewModels
             set { Set(ref dataModel.ImageFilePath, value); }
         }
 
-        public ObservableCollection<CategoryModel> ModuleCategoriesSource
-        {
-            get { return _moduleModel?.Categories; }
-            private set { _moduleModel.Categories = value; }
-        }
-
-        public CategoryModel SelectedCategoryModel
-        {
-            get { return _categoryModel; }
-            set { Set(ref _categoryModel, value); }
-        }
+        // public ObservableCollection<CategoryModel> ModuleCategoriesSource
+        // {
+        //     get { return _moduleModel?.Categories; }
+        //     private set { _moduleModel.Categories = value; }
+        // }
+        //
+        // public CategoryModel SelectedCategoryModel
+        // {
+        //     get { return _categoryModel; }
+        //     set { Set(ref _categoryModel, value); }
+        // }
 
         public ModelBase SelectedFooterItemModel
         {
@@ -371,13 +371,6 @@ namespace FantasyModuleParser.Equipment.ViewModels
         {
             EquipmentDataModel = new EquipmentModel();
             _moduleService = new ModuleService();
-        }
-
-        public void Refresh()
-        {
-            _moduleModel = _moduleService.GetModuleModel();
-            SelectedCategoryModel = _moduleModel?.Categories.Count > 0? _moduleModel?.Categories[0]: null;
-            RaisePropertyChanged(nameof(ModuleCategoriesSource));
         }
 
         public void AddEquipmentToCategory()

@@ -58,7 +58,7 @@ namespace FantasyModuleParser.Classes
             }
         }
 
-        private void EquipmentFooterUC_AddToProjectAction(object sender, EventArgs e)
+        private void AddToProjectAction(object sender, EventArgs e)
         {
             ClassOptionControllViewModel viewModel = DataContext as ClassOptionControllViewModel;
             if (viewModel != null)
@@ -68,12 +68,12 @@ namespace FantasyModuleParser.Classes
             }
         }
 
-        private void EquipmentFooterUC_SelectedItemModelChangeAction(object sender, EventArgs e)
+        private void SelectedItemModelChangeAction(object sender, EventArgs e)
         {
 
         }
 
-        private void EquipmentFooterUC_NewItemAction(object sender, EventArgs e)
+        private void NewItemAction(object sender, EventArgs e)
         {
             ClassOptionControllViewModel viewModel = DataContext as ClassOptionControllViewModel;
             if (viewModel != null)

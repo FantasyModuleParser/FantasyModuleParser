@@ -1,22 +1,20 @@
 ﻿using FantasyModuleParser.Classes.Enums;
-using FantasyModuleParser.Equipment.Enums;
+using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using FantasyModuleParser.Equipment.Models;
-using FantasyModuleParser.Main.Services;
-using Newtonsoft.Json;
 
 namespace FantasyModuleParser.Classes.Model
 {
-    public class ClassModel
+    public class ClassModel : ModelBase
     {
-        public string Name;
         public string Description;
-        public ClassHitDieEnum HitPointDiePerLevel;
-        public bool IsLocked;
+        public ClassHitDieEnum HitPointDiePerLevel { get; set; }
+        public bool IsLocked { get; set; }
 
-        public ObservableCollection<ProficiencyBonusModel> ProfBonusValues;
+        public ObservableCollection<ProficiencyBonusModel> ProfBonusValues { get; set; }
 
         public bool HasSpellSlots;
         public ObservableCollection<SpellSlotModel> SpellSlotValues;
@@ -37,9 +35,9 @@ namespace FantasyModuleParser.Classes.Model
 
         public ClassModel()
         {
-            PrePopulateProficiencyBonusValues();
-            PrePopulateSpellSlotValues();
-            PrePopulateStartingEquipment();
+            // PrePopulateProficiencyBonusValues();
+            // PrePopulateSpellSlotValues();
+            // PrePopulateStartingEquipment();
             Proficiency = new ProficiencyModel();
             MultiProficiency = new ProficiencyModel();
         }

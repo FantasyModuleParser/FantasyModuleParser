@@ -181,7 +181,6 @@ namespace FantasyModuleParser.Exporters.Tests
         [TestMethod]
         public void CreateModule_SingleTable()
         {
-            TableModel tableModel = new TableModel().CreateDefaultTableModel();
 
             TableModel tableModel = new TableModel()
             {

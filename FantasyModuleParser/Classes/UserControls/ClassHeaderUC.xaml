@@ -22,8 +22,8 @@
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
                 <Label Content="Class Name" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Text="{Binding Path=ClassName}" VerticalAlignment="Center" Grid.Column="1" />
-                <CheckBox Content="Locked" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding Path=ClassModelValue.Name}" VerticalAlignment="Center" Grid.Column="1" />
+                <CheckBox Content="Locked" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Path=ClassModelValue.IsLocked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <Grid Row="1">
                 <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
                 <Label Content="Hit Die per Level" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
                 <!-- TODO: Need to map to a Model object attribute  -->
                 <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type classEnum:ClassHitDieEnum}}}"
-                  SelectedValue="{Binding Path=HitPointDiePerLevel}"
+                  SelectedValue="{Binding Path=ClassModelValue.HitPointDiePerLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="1" Margin="0,3,0,3" />
             </Grid>
         </Grid>

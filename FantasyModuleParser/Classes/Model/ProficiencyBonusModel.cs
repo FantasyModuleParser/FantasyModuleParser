@@ -20,13 +20,16 @@ namespace FantasyModuleParser.Classes.Model
             set { this._bonus = value; RaiseProperChanged(); }
         }
 
+        public ProficiencyBonusModel()
+        {
+        }
 
-        public ProficiencyBonusModel(int level)
+        public ProficiencyBonusModel(int level = default)
         {
             Level = level;
         }
 
-        public ProficiencyBonusModel(int level, int bonus) : this(level)
+        public ProficiencyBonusModel(int level = default, int bonus = default) : this(level)
         {
             Bonus = bonus;
         }

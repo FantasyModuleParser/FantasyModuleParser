@@ -281,13 +281,13 @@ namespace FantasyModuleParser.Main.Services
             }
             if (classModel == null)
             {
-                log.Error(nameof(EquipmentModel) + " data object is null");
-                throw new InvalidDataException(nameof(EquipmentModel) + " data object is null");
+                log.Error(nameof(ClassModel) + " data object is null");
+                throw new InvalidDataException(nameof(ClassModel) + " data object is null");
             }
             if (String.IsNullOrWhiteSpace(classModel.Name))
             {
                 log.Error("Class name is empty!");
-                throw new InvalidDataException("Table name is empty!");
+                throw new InvalidDataException("Class name is empty!");
             }
             CategoryModel categoryModel = moduleModel.Categories.FirstOrDefault(item => item.Name.Equals(categoryValue));
             if (categoryModel == null)

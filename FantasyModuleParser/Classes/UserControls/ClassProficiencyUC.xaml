@@ -137,7 +137,7 @@
                 </Separator.LayoutTransform>
             </Separator>
 
-            <classProfUC:StartingToolsUC Grid.Column="2" ProficiencyModelValue="{Binding ProficiencyModelValue}" />
+            <classProfUC:StartingToolsUC Grid.Column="2" ProficiencyModelValue="{Binding  ProficiencyModelValue}" />
 
         </Grid>
 

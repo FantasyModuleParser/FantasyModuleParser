@@ -8,20 +8,20 @@ namespace FantasyModuleParser.Classes.Model
     {
         public ObservableCollection<SavingThrowAttributeEnum> SavingThrowAttributes;
         // Typically this number ranges from 0 -> 3;
-        public int NumberOfSkillsToChoose;
+        public int NumberOfSkillsToChoose { get; set; }
         public ObservableCollection<SkillAttributeEnum> SkillAttributeOptions;
 
         public ObservableCollection<ClassStartingToolEnum> ClassStartingToolOptions;
-        public int NumberOfGamingSets;
-        public int NumberOfMusicalInstruments;
+        public int NumberOfGamingSets { get; set; }
+        public int NumberOfMusicalInstruments { get; set; }
 
         // Re-Use the ArmorEnum from the Equipment Module portion
         public ObservableCollection<ArmorEnum> ArmorProficiencies;
         // Data to capture unique rules (e.g. Druids cannot use armor or shields made of metal)
-        public string UniqueArmorProficencies;
+        public string UniqueArmorProficencies { get; set; }
 
 
-        public string WeaponProficiencies;
+        public string WeaponProficiencies { get; set; }
 
         public ProficiencyModel()
         {

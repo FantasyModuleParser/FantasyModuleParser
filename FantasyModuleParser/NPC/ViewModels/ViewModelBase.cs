@@ -10,13 +10,14 @@ namespace FantasyModuleParser.NPC.ViewModel
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         private ModuleService _moduleService;
-        private ModuleModel _moduleModel;
-        private CategoryModel _categoryModel;
         protected ViewModelBase()
         {
             _moduleService = new ModuleService();
         }
 
+        #region Tab Footer Common Items
+        private ModuleModel _moduleModel;
+        private CategoryModel _categoryModel;
         public ObservableCollection<CategoryModel> ModuleCategoriesSource
         {
             get { return _moduleModel?.Categories; }
@@ -28,6 +29,7 @@ namespace FantasyModuleParser.NPC.ViewModel
             get { return _categoryModel; }
             set { Set(ref _categoryModel, value); }
         }
+        #endregion
 
         public void Refresh()
         {
@@ -71,5 +73,6 @@ namespace FantasyModuleParser.NPC.ViewModel
             RaisePropertyChanged(propertyname);
             return true;
         }
+        
     }
 }

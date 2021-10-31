@@ -1,9 +1,10 @@
 ﻿using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Classes.Model;
+using FantasyModuleParser.Main.Models;
+using FantasyModuleParser.Main.Services;
 using FantasyModuleParser.NPC.ViewModel;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using FantasyModuleParser.Main.Services;
 
 namespace FantasyModuleParser.Classes.ViewModels
 {
@@ -11,6 +12,8 @@ namespace FantasyModuleParser.Classes.ViewModels
     {
         private ClassModel _classModel;
         private ModuleService _moduleService;
+        // private ModuleModel _moduleModel;
+        // private CategoryModel _categoryModel;
         private ClassMenuOptionEnum _classMenuOptionEnum;
 
         public ClassModel ClassModelValue
@@ -38,10 +41,10 @@ namespace FantasyModuleParser.Classes.ViewModels
         }
 
         #region Proficiency Bonus
-        public ObservableCollection<ProficiencyBonusModel> ProfBonusValues
-        {
-            get { return this._classModel.ProfBonusValues; }
-        }
+        // public ObservableCollection<ProficiencyBonusModel> ProfBonusValues
+        // {
+        //     get { return this._classModel.ProfBonusValues; }
+        // }
         #endregion
 
         #region Spell Slots 
@@ -63,6 +66,21 @@ namespace FantasyModuleParser.Classes.ViewModels
         }
 
 
+
+        private ModelBase _footerSelectedModel;
+        public ModelBase SelectedFooterItemModel
+        {
+            get { return _footerSelectedModel; }
+            set
+            {
+                if (value is ClassModel)
+                {
+                    ClassModelValue = (value as ClassModel).ShallowCopy();
+                    raiseAllUIProperties();
+                }
+                Set(ref _footerSelectedModel, value);
+            }
+        }
 
         public ClassOptionControllViewModel() : base()
         {
@@ -87,7 +105,11 @@ namespace FantasyModuleParser.Classes.ViewModels
 
         public void NewClassModel()
         {
-            ClassModelValue = new ClassModel();
+            var tempClassModel = new ClassModel();
+            tempClassModel.PrePopulateProficiencyBonusValues();
+            tempClassModel.PrePopulateSpellSlotValues();
+            tempClassModel.PrePopulateStartingEquipment();
+            ClassModelValue = tempClassModel;
             raiseAllUIProperties();
         }
 
@@ -99,13 +121,12 @@ namespace FantasyModuleParser.Classes.ViewModels
         public void LoadClassModel(string @filePath)
         {
             ClassModelValue = ClassModelValue.Load(filePath);
-
             raiseAllUIProperties();
         }
 
         public void AddClassToCategory()
         {
-            _moduleService.AddClassToCategory(ClassModelValue, SelectedCategoryModel.Name);
+             _moduleService.AddClassToCategory(ClassModelValue, SelectedCategoryModel.Name);
             RaisePropertyChanged(nameof(ModuleCategoriesSource));
             RaisePropertyChanged(nameof(SelectedCategoryModel));
         }

@@ -16,6 +16,7 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using FantasyModuleParser.Classes.ViewModels;
 
 namespace FantasyModuleParser
 {
@@ -167,6 +168,7 @@ namespace FantasyModuleParser
             (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
             (tableOptionUserControl.DataContext as TableOptionViewModel).Refresh();
             (equipmentUserControl.DataContext as EquipmentOptionControlViewModel).Refresh();
+            (classesUserControl.DataContext as ClassOptionControllViewModel).Refresh();
         }
 
         private void CreateModule_Click(object sender, RoutedEventArgs e)

@@ -22,7 +22,7 @@
             <RowDefinition Height="160" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <ClassUC:ClassHeaderUC ClassModelValue="{Binding ClassModelValue}"/>
+            <ClassUC:ClassHeaderUC ClassModelValue="{Binding ClassModelValue, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -47,7 +47,7 @@
                 <!-- ================================== -->
 
                 <!-- Proficiency Bonus -->
-                <ClassUC:ClassProficiencyBonusUC x:Name="ClassProficiencyBonusUserControl">
+                <ClassUC:ClassProficiencyBonusUC x:Name="ClassProficiencyBonusUserControl" ClassModelValue="{Binding ClassModelValue, Mode=TwoWay}">
                     <ClassUC:ClassProficiencyBonusUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassProficiencyBonusUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -76,7 +76,7 @@
                     </ClassUC:ClassSpellSlotUC.Style>
                 </ClassUC:ClassSpellSlotUC>
                 <!-- Proficiencies -->
-                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ProficiencyModelValue="{Binding Proficiency}" IsMultiProficiencyOptionValue="Visible">
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ProficiencyModelValue="{Binding Proficiency, Mode=TwoWay}" IsMultiProficiencyOptionValue="Visible">
                     <ClassUC:ClassProficiencyUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -106,7 +106,7 @@
                 </ClassUC:ClassProficiencyUC>
                 
                 <!-- Class Features -->
-                <ClassUC:ClassFeatureUC x:Name="ClassFeatureUserControl">
+                <ClassUC:ClassFeatureUC x:Name="ClassFeatureUserControl" ClassModelValue="{Binding ClassModelValue, Mode=TwoWay}">
                     <ClassUC:ClassFeatureUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassFeatureUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -195,7 +195,12 @@
         <!-- FIXME:  Missing all of the UI implementation code for interaction!! See above commented out code for examples-->
         <!-- Note that this comes from the Equipment UserControl folder for more code reference -->
         <equipmentUC:EquipmentFooterUC Grid.Row="2" ActionButtonLabel="Class"
-                                       AddToProjectAction="EquipmentFooterUC_AddToProjectAction"
+                                       AddToProjectAction="AddToProjectAction"
+                                       NewItemAction="NewItemAction"
+                                       SelectedItemModelChangeAction="SelectedItemModelChangeAction"
+                                       ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
+                                       SelectedCategoryModel="{Binding SelectedCategoryModel, Mode=TwoWay}"
+                                       SelectedItemModel="{Binding SelectedFooterItemModel, Mode=TwoWay}"
                                        SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"/>
     </Grid>
 </UserControl>
