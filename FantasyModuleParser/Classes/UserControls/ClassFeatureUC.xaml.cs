@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace FantasyModuleParser.Classes.UserControls
             IsFeatureSelected = false;
             InitializeComponent();
             ClassFeatureLayout.DataContext = this;
+            SelectedClassSpecialization = new ClassSpecialization();
         }
 
         public static readonly DependencyProperty ClassModelProperty =
@@ -34,6 +36,8 @@ namespace FantasyModuleParser.Classes.UserControls
         }
 
         public bool IsFeatureSelected { get; set; }
+
+        public ClassSpecialization SelectedClassSpecialization { get; set; }
 
         private ClassFeature _selectedClassFeature;
         public ClassFeature SelectedClassFeature
@@ -76,6 +80,69 @@ namespace FantasyModuleParser.Classes.UserControls
             RaisePropertyChanged(nameof(ClassModelValue.ClassFeatures));
         }
 
+        private ICommand _assignClassSpecializationCommand;
+        public ICommand AssignClassSpecializationCommand
+        {
+            get
+            {
+                if (_assignClassSpecializationCommand == null)
+                {
+                    _assignClassSpecializationCommand = new ActionCommand(param => OnAssignClassSpecializationAction(param),
+                        param => ClassModelValue.ClassSpecializations.Count > 0);
+                }
+                return _assignClassSpecializationCommand;
+            }
+        }
+
+        protected virtual void OnAssignClassSpecializationAction(object param)
+        {
+            ClassSpecialization classSpecialization = param as ClassSpecialization;
+            
+            if(classSpecialization != null)
+                SelectedClassFeature.AddToClassSpecialization(ClassModelValue, classSpecialization);
+        }
+
+        private ICommand _unAssignClassSpecializationCommand;
+        public ICommand UnAssignClassSpecializationCommand
+        {
+            get
+            {
+                if (_unAssignClassSpecializationCommand == null)
+                {
+                    _unAssignClassSpecializationCommand = new ActionCommand(param => OnUnAssignClassSpecializationAction(param),
+                        param => _isSelectedClassFeaturePartOfAClassSpecialization(SelectedClassFeature));
+                }
+                return _unAssignClassSpecializationCommand;
+            }
+        }
+
+        protected virtual void OnUnAssignClassSpecializationAction(object param)
+        {
+            if(SelectedClassFeature != null)
+                SelectedClassFeature.RemoveFromClassSpecialization(ClassModelValue);
+        }
+
+        private bool _isSelectedClassFeaturePartOfAClassSpecialization(ClassFeature classFeature)
+        {
+            foreach (ClassSpecialization internalClassSpec in ClassModelValue.ClassSpecializations)
+            {
+                if (internalClassSpec.ClassFeatures == null || internalClassSpec.ClassFeatures.Count == 0)
+                    continue;
+
+                ClassFeature checkClassFeature = internalClassSpec.ClassFeatures.FirstOrDefault(item =>
+                    item.Name.Equals(SelectedClassFeature.Name, StringComparison.Ordinal));
+
+                // If a ClassFeature object is found, then remove it from the discovered ClassSpecialization
+                // so that it can be 'transferred' to the new Class Specialization
+                if (checkClassFeature != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName = "")
@@ -110,6 +177,11 @@ namespace FantasyModuleParser.Classes.UserControls
             RaisePropertyChanged(nameof(SelectedClassFeature));
             RaisePropertyChanged(nameof(SelectedClassFeatureDescription));
             RaisePropertyChanged(nameof(IsFeatureSelected));
+        }
+
+        private void FrameworkElement_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

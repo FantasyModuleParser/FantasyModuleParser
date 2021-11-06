@@ -65,13 +65,16 @@
                             <sys:Int32>20</sys:Int32>
                         </ComboBox>
 
-                        <TextBlock Text="Subclass Feature (OPTIONAL)" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
-                        <ComboBox Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="0,0,0.333,0" />
+                        <!-- <TextBlock Text="Subclass Feature (OPTIONAL)" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Grid.ColumnSpan="2"/> -->
+                        <!-- <ComboBox Grid.Row="2" Grid.Column="2" IsEnabled="True" -->
+                        <!--           ItemsSource="{Binding Path=ClassModelValue.ClassSpecializations}" -->
+                        <!--           SelectedValue="{Binding Path=SelectedClassSpecialization}" -->
+                        <!--           DisplayMemberPath="Name"/> -->
 
                         <Button Grid.Row="3" Grid.Column="2"  Content="Clear Feature" HorizontalAlignment="Left"
                                 Click="ClearClassFeatureButton_OnClick"/>
                         <Button Grid.Row="3" Grid.Column="2"  Content="Add / Update Feature" HorizontalAlignment="Right"
-                                Command="{Binding Path=AddClassFeatureCommand}" Margin="0,0,0.333,0"/>
+                                Command="{Binding Path=AddClassFeatureCommand}"/>
                     </Grid>
                     <Separator Grid.Row="1" />
                     <Grid Grid.Row="2">
@@ -100,6 +103,26 @@
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Unassigned"
+                                              Command="{Binding Path=UnAssignClassSpecializationCommand}"
+                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},
+                                                    Path=SelectedValue}"></MenuItem>
+                                    <MenuItem Header="Assign To Specialization"
+                                              ItemsSource="{Binding Path=ClassModelValue.ClassSpecializations}"
+                                              DisplayMemberPath="Name">
+                                        <MenuItem.ItemContainerStyle>
+                                            <Style TargetType="{x:Type MenuItem}">
+                                                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}, 
+                                                    Path=PlacementTarget.DataContext.AssignClassSpecializationCommand}"/>
+                                                <Setter Property="CommandParameter"
+                                                        Value="{Binding}" />
+                                            </Style>
+                                        </MenuItem.ItemContainerStyle>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
                         </ListBox>
                     </Grid>
                 </Grid>
