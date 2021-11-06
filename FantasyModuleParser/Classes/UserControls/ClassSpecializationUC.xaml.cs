@@ -94,6 +94,28 @@ namespace FantasyModuleParser.Classes.UserControls
             RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
         }
 
+        private ICommand _removeClassSpecializationCommand;
+        public ICommand RemoveClassSpecializationCommand
+        {
+            get
+            {
+                if (_removeClassSpecializationCommand == null)
+                {
+                    _removeClassSpecializationCommand = new ActionCommand(param => 
+                        OnRemoveClassSpecializationAction(param as ClassSpecialization));
+                }
+                return _removeClassSpecializationCommand;
+            }
+        }
+
+        protected virtual void OnRemoveClassSpecializationAction(ClassSpecialization classSpecialization)
+        {
+            ClassModelValue.ClassSpecializations.Remove(classSpecialization);
+
+            RaisePropertyChanged(nameof(ClassModelValue));
+            RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName = "")
@@ -105,6 +127,26 @@ namespace FantasyModuleParser.Classes.UserControls
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button == null)
+                return;
+
+
+            if (button.DataContext is ClassSpecialization selectedSpecialization)
+                ClassModelValue.ClassSpecializations.Remove(selectedSpecialization);
+
+            RaisePropertyChanged(nameof(ClassModelValue));
+            RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
+        }
+
+        private void ClearClassFeatureButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _selectedClassSpecialization = new ClassSpecialization();
+            RaisePropertyChanged(nameof(SelectedClassSpecialization));
         }
     }
 }

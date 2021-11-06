@@ -124,6 +124,9 @@ namespace FantasyModuleParser.Classes.UserControls
 
         private bool _isSelectedClassFeaturePartOfAClassSpecialization(ClassFeature classFeature)
         {
+            if (ClassModelValue.ClassSpecializations == null)
+                return false;
+
             foreach (ClassSpecialization internalClassSpec in ClassModelValue.ClassSpecializations)
             {
                 if (internalClassSpec.ClassFeatures == null || internalClassSpec.ClassFeatures.Count == 0)
@@ -181,7 +184,33 @@ namespace FantasyModuleParser.Classes.UserControls
 
         private void FrameworkElement_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
-            throw new NotImplementedException();
+            // In a twist, at the Opening of the context menu, we want to get the Specialization name for a 
+            // selected class feature if one exists.
+
+            ListBox listBox = sender as ListBox;
+
+            if (listBox.SelectedValue is ClassFeature localClassFeature)
+            {
+                if (_isSelectedClassFeaturePartOfAClassSpecialization(localClassFeature))
+                {
+                    foreach (ClassSpecialization intClassSpecialization in ClassModelValue.ClassSpecializations)
+                    {
+                        if (intClassSpecialization.ClassFeatures.FirstOrDefault(
+                            item => item.Name.Equals(localClassFeature.Name,StringComparison.Ordinal)) != null)
+                        {
+                            FeaturnSpecialNameMenuItem.Header = intClassSpecialization.Name;
+                            FeaturnSpecialNameMenuItem.Visibility = Visibility.Visible;
+                            return;
+                        }
+                    }
+
+                    
+                }
+            }
+
+            // If the break point is hit, then that means no class features are assigned 
+            // to a class specialization
+            FeaturnSpecialNameMenuItem.Visibility = Visibility.Collapsed;
         }
     }
 }
