@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <Label VerticalAlignment="Center">Enable Spell Slots?</Label>
-            <CheckBox x:Name="EnableSpellSlotsCB" VerticalAlignment="Center"></CheckBox>
+            <CheckBox x:Name="EnableSpellSlotsCB" VerticalAlignment="Center"
+                      IsChecked="{Binding Path=ClassModelValue.HasSpellSlots}"></CheckBox>
         </StackPanel>
         <Label Content="Spell Slots per Level" Grid.Row="1">
             <Label.Style>
@@ -29,7 +30,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <DataGrid Grid.Row="2" ItemsSource="{Binding Path=SpellSlotValues}" AutoGenerateColumns="False"
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Path=ClassModelValue.SpellSlotValues}" AutoGenerateColumns="False"
                   CanUserResizeColumns="False" CanUserResizeRows="False">
             <DataGrid.Style>
                 <Style TargetType="DataGrid">

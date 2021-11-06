@@ -48,11 +48,11 @@ namespace FantasyModuleParser.Classes.ViewModels
         #endregion
 
         #region Spell Slots 
-        public bool HasSpellSlots
-        {
-            get { return _classModel.HasSpellSlots; }
-            set { Set(ref _classModel.HasSpellSlots, value); }
-        }
+        // public bool HasSpellSlots
+        // {
+        //     get { return _classModel.HasSpellSlots; }
+        //     set { Set(ref _classModel.HasSpellSlots, value); }
+        // }
         public ObservableCollection<SpellSlotModel> SpellSlotValues
         {
             get { return this._classModel.SpellSlotValues; }
@@ -96,7 +96,7 @@ namespace FantasyModuleParser.Classes.ViewModels
         private void raiseAllUIProperties()
         {
             RaisePropertyChanged(nameof(ClassModelValue));
-            RaisePropertyChanged(nameof(HasSpellSlots));
+            // RaisePropertyChanged(nameof(HasSpellSlots));
             RaisePropertyChanged(nameof(StartingEquipment));
             RaisePropertyChanged(nameof(Proficiency));
             RaisePropertyChanged(nameof(MultiProficiency));

@@ -16,7 +16,7 @@ namespace FantasyModuleParser.Classes.Model
 
         public ObservableCollection<ProficiencyBonusModel> ProfBonusValues { get; set; }
 
-        public bool HasSpellSlots;
+        public bool HasSpellSlots { get; set; }
         public ObservableCollection<SpellSlotModel> SpellSlotValues { get; set; }
 
         public ProficiencyModel Proficiency;

@@ -62,7 +62,7 @@
                 </ClassUC:ClassProficiencyBonusUC>
                 
                 <!-- Spell Slots -->
-                <ClassUC:ClassSpellSlotUC x:Name="ClassSpellSlotUserControl">
+                <ClassUC:ClassSpellSlotUC x:Name="ClassSpellSlotUserControl" ClassModelValue="{Binding ClassModelValue, Mode=TwoWay}">
                     <ClassUC:ClassSpellSlotUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassSpellSlotUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
