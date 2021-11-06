@@ -58,6 +58,7 @@ namespace FantasyModuleParser.Main.Services
                 settingsModel.SpellFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Spells");
                 settingsModel.EquipmentFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Equipment");
                 settingsModel.ArtifactFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Artifacts");
+                settingsModel.ClassFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Classes");
                 settingsModel.TableFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Tables");
                 settingsModel.ParcelFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Parcels");
                 settingsModel.FGModuleFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "modules");
@@ -80,14 +81,15 @@ namespace FantasyModuleParser.Main.Services
         private static void _createDirectoryStructure(SettingsModel settingsModel)
         {
             Directory.CreateDirectory(settingsModel.MainFolderLocation);
-            Directory.CreateDirectory(settingsModel.ProjectFolderLocation );
-            Directory.CreateDirectory(settingsModel.NPCFolderLocation );
-            Directory.CreateDirectory(settingsModel.SpellFolderLocation );
-            Directory.CreateDirectory(settingsModel.EquipmentFolderLocation );
-            Directory.CreateDirectory(settingsModel.ArtifactFolderLocation );
-            Directory.CreateDirectory(settingsModel.TableFolderLocation );
-            Directory.CreateDirectory(settingsModel.ParcelFolderLocation );
-            Directory.CreateDirectory(settingsModel.FGModuleFolderLocation );
+            Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
+            Directory.CreateDirectory(settingsModel.NPCFolderLocation);
+            Directory.CreateDirectory(settingsModel.SpellFolderLocation);
+            Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
+            Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
+            Directory.CreateDirectory(settingsModel.ClassFolderLocation);
+            Directory.CreateDirectory(settingsModel.TableFolderLocation);
+            Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
+            Directory.CreateDirectory(settingsModel.FGModuleFolderLocation);
             Directory.CreateDirectory(settingsModel.FGCampaignFolderLocation);
         }
 
