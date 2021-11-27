@@ -80,17 +80,32 @@ namespace FantasyModuleParser.Main.Services
         /// </summary>
         private static void _createDirectoryStructure(SettingsModel settingsModel)
         {
-            Directory.CreateDirectory(settingsModel.MainFolderLocation);
-            Directory.CreateDirectory(settingsModel.ProjectFolderLocation);
-            Directory.CreateDirectory(settingsModel.NPCFolderLocation);
-            Directory.CreateDirectory(settingsModel.SpellFolderLocation);
-            Directory.CreateDirectory(settingsModel.EquipmentFolderLocation);
-            Directory.CreateDirectory(settingsModel.ArtifactFolderLocation);
-            Directory.CreateDirectory(settingsModel.ClassFolderLocation);
-            Directory.CreateDirectory(settingsModel.TableFolderLocation);
-            Directory.CreateDirectory(settingsModel.ParcelFolderLocation);
-            Directory.CreateDirectory(settingsModel.FGModuleFolderLocation);
-            Directory.CreateDirectory(settingsModel.FGCampaignFolderLocation);
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.MainFolderLocation, String.Empty));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ProjectFolderLocation, "Projects"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.NPCFolderLocation, "NPCs"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.SpellFolderLocation, "Spells"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.EquipmentFolderLocation, "Equipment"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ArtifactFolderLocation, "Artifacts"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ClassFolderLocation, "Classes"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.TableFolderLocation, "Tables"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ParcelFolderLocation, "Parcels"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.FGModuleFolderLocation, "modules"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.FGCampaignFolderLocation, "campaigns"));
+        }
+
+        private static string _getDirectoryPath(string directoryPath, string subFolder)
+        {
+            if(settingsModel.MainFolderLocation == null)
+            {
+                settingsModel.MainFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
+            }
+
+            if(directoryPath == null)
+            {
+                return Path.Combine(settingsModel.MainFolderLocation, subFolder);
+            }
+
+            return directoryPath;
         }
 
         public void ChangeLogLevel()

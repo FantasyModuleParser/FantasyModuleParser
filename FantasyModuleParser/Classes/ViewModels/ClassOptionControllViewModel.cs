@@ -2,9 +2,12 @@
 using FantasyModuleParser.Classes.Model;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
+using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.ViewModel;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace FantasyModuleParser.Classes.ViewModels
 {
@@ -16,7 +19,7 @@ namespace FantasyModuleParser.Classes.ViewModels
         // private CategoryModel _categoryModel;
         private ClassMenuOptionEnum _classMenuOptionEnum;
 
-        public ClassModel ClassModelValue
+        public ClassModel ParentClassModel
         {
             get { return _classModel; }
             set { Set(ref _classModel, value); }
@@ -75,18 +78,26 @@ namespace FantasyModuleParser.Classes.ViewModels
             {
                 if (value is ClassModel)
                 {
-                    ClassModelValue = (value as ClassModel).ShallowCopy();
+                    ParentClassModel = (value as ClassModel).ShallowCopy();
                     raiseAllUIProperties();
                 }
                 Set(ref _footerSelectedModel, value);
             }
         }
 
+        private ClassFeature _selectedClassFeature;
+        public ClassFeature SelectedClassFeature
+        {
+            get { return this._selectedClassFeature; }
+            set { Set(ref _selectedClassFeature, value); RaisePropertyChanged(nameof(SelectedClassFeatureDescription)); }
+        }
+
         public ClassOptionControllViewModel() : base()
         {
-            this._classModel = new ClassModel();
+            NewClassModel();
+            SelectedFooterItemModel = ParentClassModel;
+            SelectedClassFeature = new ClassFeature();
             this._moduleService = new ModuleService();
-
         }
 
         public void Save()
@@ -95,12 +106,16 @@ namespace FantasyModuleParser.Classes.ViewModels
         }
         private void raiseAllUIProperties()
         {
-            RaisePropertyChanged(nameof(ClassModelValue));
+            RaisePropertyChanged(nameof(ParentClassModel));
             // RaisePropertyChanged(nameof(HasSpellSlots));
             RaisePropertyChanged(nameof(StartingEquipment));
             RaisePropertyChanged(nameof(Proficiency));
             RaisePropertyChanged(nameof(MultiProficiency));
             RaisePropertyChanged(nameof(ClassMenuOptionEnum));
+            RaisePropertyChanged(nameof(ParentClassModel.ClassFeatures));
+            RaisePropertyChanged(nameof(SelectedClassFeature));
+
+            
         }
 
         public void NewClassModel()
@@ -109,26 +124,104 @@ namespace FantasyModuleParser.Classes.ViewModels
             tempClassModel.PrePopulateProficiencyBonusValues();
             tempClassModel.PrePopulateSpellSlotValues();
             tempClassModel.PrePopulateStartingEquipment();
-            ClassModelValue = tempClassModel;
+            ParentClassModel = tempClassModel;
             raiseAllUIProperties();
         }
 
         public void SaveClassModel()
         {
-            ClassModelValue.Save();
+            ParentClassModel.Save();
         }
 
         public void LoadClassModel(string @filePath)
         {
-            ClassModelValue = ClassModelValue.Load(filePath);
+            ParentClassModel = ParentClassModel.Load(filePath);
             raiseAllUIProperties();
         }
 
         public void AddClassToCategory()
         {
-             _moduleService.AddClassToCategory(ClassModelValue, SelectedCategoryModel.Name);
+             _moduleService.AddClassToCategory(ParentClassModel, SelectedCategoryModel.Name);
             RaisePropertyChanged(nameof(ModuleCategoriesSource));
             RaisePropertyChanged(nameof(SelectedCategoryModel));
         }
+
+        #region Class Features
+        private ICommand _addClassFeatureCommand;
+        public ICommand AddClassFeatureCommand
+        {
+            get
+            {
+                if (_addClassFeatureCommand == null)
+                {
+                    _addClassFeatureCommand = new ActionCommand(param => OnAddClassFeatureAction(),
+                        //param => !String.IsNullOrWhiteSpace(SelectedClassFeature?.Name));
+                        param => OnAddClassFeatureEnableAction(param as String));
+                }
+                return _addClassFeatureCommand;
+            }
+        }
+
+        protected virtual void OnAddClassFeatureAction()
+        {
+            if(ParentClassModel.ClassFeatures == null)
+            {
+                ParentClassModel.ClassFeatures = new ObservableCollection<ClassFeature>();
+            }
+            ParentClassModel.ClassFeatures.Add(SelectedClassFeature.ShallowCopy());
+            RaisePropertyChanged(nameof(ParentClassModel));
+        }
+
+        protected virtual bool OnAddClassFeatureEnableAction(string param)
+        {
+            return !String.IsNullOrWhiteSpace(param);
+        }
+
+        private ICommand _removeClassFeatureCommand;
+        public ICommand RemoveClassFeatureCommand
+        {
+            get
+            {
+                if (_removeClassFeatureCommand == null)
+                {
+                    _removeClassFeatureCommand = new ActionCommand(
+                        param => OnRemoveClassFeature(param as ClassFeature));
+                }
+                return _removeClassFeatureCommand;
+            }
+        }
+
+        protected virtual void OnRemoveClassFeature(ClassFeature classFeature)
+        {
+            if (classFeature == null)
+                return;
+
+            ParentClassModel.ClassFeatures.Remove(classFeature);
+        }
+
+        private ICommand _clearSelectedFeatureCommand;
+        public ICommand ClearSelectedClassFeatureCommand
+        {
+            get
+            {
+                if (_clearSelectedFeatureCommand == null)
+                {
+                    _clearSelectedFeatureCommand = new ActionCommand(
+                        param => OnClearSelectedClassFeatureCommand());
+                }
+                return _clearSelectedFeatureCommand;
+            }
+        }
+
+        protected virtual void OnClearSelectedClassFeatureCommand()
+        {
+            SelectedClassFeature = new ClassFeature();
+        }
+
+        public string SelectedClassFeatureDescription
+        {
+            get { return SelectedClassFeature?.Name + " - Description"; }
+        }
+        #endregion
     }
 }

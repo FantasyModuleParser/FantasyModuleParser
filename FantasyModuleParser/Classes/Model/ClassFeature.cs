@@ -1,14 +1,26 @@
-﻿using System;
+﻿using FantasyModuleParser.NPC.ViewModel;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace FantasyModuleParser.Classes.Model
 {
-    public class ClassFeature
+    public class ClassFeature : ViewModelBase
     {
-        public string Name { get; set; }
-        public int Level { get; set; }
-        public string Description { get; set; }
+        private string _name;
+        public string Name { get { return this._name; } set { Set(ref _name, value); } }
+        private int _level;
+        public int Level
+        {
+            get { return this._level; }
+            set { Set(ref _level, value); }
+        }
+        private string _description;  
+        public string Description
+        {
+            get { return this._description; }
+            set { Set(ref _description, value); }
+        }
 
         public void AddToClassSpecialization(ClassModel classModel, ClassSpecialization classSpecialization)
         {

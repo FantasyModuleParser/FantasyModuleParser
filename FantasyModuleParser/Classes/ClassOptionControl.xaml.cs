@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using FantasyModuleParser.Equipment.ViewModels;
 using FantasyModuleParser.Main.Services;
 using log4net;
+using System.Windows;
+using FantasyModuleParser.Classes.Model;
 
 namespace FantasyModuleParser.Classes
 {
@@ -49,7 +51,7 @@ namespace FantasyModuleParser.Classes
                 {
                     viewModel.LoadClassModel(openFileDialog.FileName);
 
-                    log.Info("Class " + viewModel.ClassModelValue.Name + " has successfully been loaded");
+                    log.Info("Class " + viewModel.ParentClassModel.Name + " has successfully been loaded");
 
                 }
                 else
@@ -64,13 +66,13 @@ namespace FantasyModuleParser.Classes
             if (viewModel != null)
             {
                 viewModel.AddClassToCategory();
-                log.Info("Class " + viewModel.ClassModelValue.Name + " has successfully been added to Category " + viewModel.SelectedCategoryModel.Name);
+                log.Info("Class " + viewModel.ParentClassModel.Name + " has successfully been added to Category " + viewModel.SelectedCategoryModel.Name);
             }
         }
 
         private void SelectedItemModelChangeAction(object sender, EventArgs e)
         {
-
+            //ClassFeatureUserControl.ClassFeatureListBox.Items.Refresh();
         }
 
         private void NewItemAction(object sender, EventArgs e)
@@ -79,7 +81,7 @@ namespace FantasyModuleParser.Classes
             if (viewModel != null)
             {
                 viewModel.NewClassModel();
-                log.Info("Class " + viewModel.ClassModelValue.Name + " has been reset (New Item Action Invoked)");
+                log.Info("Class " + viewModel.ParentClassModel.Name + " has been reset (New Item Action Invoked)");
             }
         }
     }
