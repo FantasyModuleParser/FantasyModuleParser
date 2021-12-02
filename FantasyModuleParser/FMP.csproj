@@ -563,6 +563,7 @@
     <Compile Include="Exporters\SpellExporter.cs" />
     <Compile Include="Exporters\TableExporter.cs" />
     <Compile Include="Importer\Enums\ImportSpellState.cs" />
+    <Compile Include="Importer\Spells\FormatSpellDnDBeyondService.cs" />
     <Compile Include="Importer\Spells\FormatSpellPDFService.cs" />
     <Compile Include="Importer\Spells\IImportSpell.cs" />
     <Compile Include="Importer\Spells\ImportSpellBase.cs" />
