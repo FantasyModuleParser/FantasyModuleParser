@@ -9,6 +9,11 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer Project", "Instal
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
+		All|ARM = All|ARM
+		All|ARM64 = All|ARM64
+		All|x64 = All|x64
+		All|x86 = All|x86
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|ARM64 = Debug|ARM64
@@ -21,6 +26,16 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|Any CPU.Build.0 = Release|Any CPU
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|ARM.ActiveCfg = Release|Any CPU
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|ARM.Build.0 = Release|Any CPU
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|ARM64.ActiveCfg = Release|Any CPU
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|ARM64.Build.0 = Release|Any CPU
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|x64.ActiveCfg = Release|x64
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|x64.Build.0 = Release|x64
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|x86.ActiveCfg = Debug|x86
+		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.All|x86.Build.0 = Debug|x86
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -41,6 +56,16 @@ Global
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Release|x64.Build.0 = Release|x64
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Release|x86.ActiveCfg = Release|x86
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Release|x86.Build.0 = Release|x86
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|Any CPU.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|Any CPU.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM64.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM64.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x64.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x64.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x86.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x86.Build.0 = Debug
 		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|Any CPU.ActiveCfg = Release
 		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|Any CPU.Build.0 = Release
 		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|ARM.ActiveCfg = Debug
