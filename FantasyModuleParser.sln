@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMP", "FantasyModuleParser\FMP.csproj", "{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer Project", "Installer Project\Installer Project.vdproj", "{E01D550F-101A-4054-84E4-7D7FE4FF0993}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -54,6 +56,27 @@ Global
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Release|x64.Build.0 = Release|x64
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Release|x86.ActiveCfg = Release|x86
 		{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}.Release|x86.Build.0 = Release|x86
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|Any CPU.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|Any CPU.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM64.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|ARM64.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x64.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x64.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x86.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.All|x86.Build.0 = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|Any CPU.ActiveCfg = Release
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|Any CPU.Build.0 = Release
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|ARM.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|ARM64.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|x64.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Debug|x86.ActiveCfg = Debug
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Release|Any CPU.ActiveCfg = Release
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Release|ARM.ActiveCfg = Release
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Release|ARM64.ActiveCfg = Release
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Release|x64.ActiveCfg = Release
+		{E01D550F-101A-4054-84E4-7D7FE4FF0993}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
