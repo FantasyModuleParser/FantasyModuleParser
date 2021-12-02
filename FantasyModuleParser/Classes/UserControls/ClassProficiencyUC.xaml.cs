@@ -1,6 +1,10 @@
 ﻿using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Classes.Model;
 using FantasyModuleParser.NPC.Commands;
+using log4net;
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,8 +14,9 @@ namespace FantasyModuleParser.Classes.UserControls
     /// <summary>
     /// Interaction logic for ClassProficiencyUC.xaml
     /// </summary>
-    public partial class ClassProficiencyUC : UserControl
+    public partial class ClassProficiencyUC : UserControl, INotifyPropertyChanged
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(ClassProficiencyUC));
         public ClassProficiencyUC()
         {
             InitializeComponent();
@@ -19,7 +24,19 @@ namespace FantasyModuleParser.Classes.UserControls
         }
 
         public static readonly DependencyProperty ProficiencyModelProperty =
-            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(ClassProficiencyUC));
+            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(ClassProficiencyUC),
+                 new PropertyMetadata(new ProficiencyModel(), new PropertyChangedCallback(OnProficiencyModelPropertyChanged)));
+
+        private static void OnProficiencyModelPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            log.Info(string.Format("Proficency Model Value has changed!!!!"));
+            
+        }
+
+        private void OnProficiencyModelPropertyChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
 
         public ProficiencyModel ProficiencyModelValue
         {
@@ -64,7 +81,6 @@ namespace FantasyModuleParser.Classes.UserControls
                 return false;
             if (!(param is SavingThrowAttributeEnum))
                 return false;
-
             SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
             if(ProficiencyModelValue?.SavingThrowAttributes?.Count >= 2)
             {
@@ -85,6 +101,32 @@ namespace FantasyModuleParser.Classes.UserControls
                 ProficiencyModelValue.SavingThrowAttributes.Remove(savingThrow);
             else
                 ProficiencyModelValue.SavingThrowAttributes.Add(savingThrow);
+            RaisePropertyChanged(nameof(SavingThrowStrength));
+        }
+
+        public bool SavingThrowStrength
+        {
+            get { if (ProficiencyModelValue == null)
+                {
+                    return false;
+                }
+                if (ProficiencyModelValue.SavingThrowAttributes == null)
+                    return false;
+                return ProficiencyModelValue.SavingThrowAttributes.Contains(SavingThrowAttributeEnum.Strength);
+                }
+            set { }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propertyName = "")
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

@@ -17,7 +17,8 @@ namespace FantasyModuleParser.Classes.ViewModels
         private ModuleService _moduleService;
         // private ModuleModel _moduleModel;
         // private CategoryModel _categoryModel;
-        private ClassMenuOptionEnum _classMenuOptionEnum;
+
+        private ClassMenuOptionEnum _classMenuOptionEnum = ClassMenuOptionEnum.ClassFeatures;
 
         public ClassModel ParentClassModel
         {
@@ -36,7 +37,6 @@ namespace FantasyModuleParser.Classes.ViewModels
             set { Set(ref _classModel.MultiProficiency, value); }
         }
 
-        [DefaultValue(ClassMenuOptionEnum.Proficiencies)]
         public ClassMenuOptionEnum ClassMenuOptionEnum
         {
             get { return _classMenuOptionEnum; }

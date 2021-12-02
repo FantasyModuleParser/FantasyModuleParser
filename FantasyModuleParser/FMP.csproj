@@ -552,6 +552,7 @@
     <Compile Include="Classes\Model\ProficiencyModel.cs" />
     <Compile Include="Classes\Model\ProficiencyBonusModel.cs" />
     <Compile Include="Classes\Model\SpellSlotModel.cs" />
+    <Compile Include="Classes\Converters\ProficiencySavingThrowConverter.cs" />
     <Compile Include="Classes\UserControls\ClassFirstLevelUC.xaml.cs">
       <DependentUpon>ClassFirstLevelUC.xaml</DependentUpon>
     </Compile>

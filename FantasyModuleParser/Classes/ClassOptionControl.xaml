@@ -25,7 +25,9 @@
             <RowDefinition Height="160" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <ClassUC:ClassHeaderUC ClassModelValue="{Binding ParentClassModel, Mode=TwoWay}"/>
+            <ClassUC:ClassHeaderUC ClassModelName="{Binding ParentClassModel.Name}"
+                                   HitDiePerLevel="{Binding ParentClassModel.HitPointDiePerLevel}"
+                                   IsLocked="{Binding ParentClassModel.IsLocked, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -79,7 +81,7 @@
                     </ClassUC:ClassSpellSlotUC.Style>
                 </ClassUC:ClassSpellSlotUC>
                 <!-- Proficiencies -->
-                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ProficiencyModelValue="{Binding Proficiency, Mode=TwoWay}" IsMultiProficiencyOptionValue="Visible">
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ProficiencyModelValue="{Binding Proficiency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsMultiProficiencyOptionValue="Visible">
                     <ClassUC:ClassProficiencyUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -108,7 +110,7 @@
                     </ClassUC:ClassProficiencyUC.Style>
                 </ClassUC:ClassProficiencyUC>
 
-
+                <!-- Class Features -->
                 <TabControl>
                     <TabControl.Style>
                         <Style TargetType="{x:Type TabControl}">
@@ -247,21 +249,6 @@
                         <sharedUC:GenericDescriptionUC Margin="0" Padding="0" DescriptionText="{Binding SelectedClassFeature.Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" />
                     </TabItem>
                 </TabControl>
-
-                <!-- Class Features -->
-                <!--<ClassUC:ClassFeatureUC x:Name="ClassFeatureUserControl" ClassModelValue="{Binding ParentClassModel, Mode=TwoWay}">
-                    <ClassUC:ClassFeatureUC.Style>
-                        <Style TargetType="{x:Type ClassUC:ClassFeatureUC}">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
-                                                         Value="{x:Static classEnum:ClassMenuOptionEnum.ClassFeatures}">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ClassUC:ClassFeatureUC.Style>
-                </ClassUC:ClassFeatureUC>-->
 
                 <!-- TODO:  Class Specialization -->
                 <ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl" ClassModelValue="{Binding ParentClassModel, Mode=TwoWay}">
