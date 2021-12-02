@@ -7,6 +7,8 @@ namespace FantasyModuleParser.Importer.Spells
     {
         SpellModel ImportTextToSpellModel(string importData);
 
+        SpellModel ImportDnDTextToSpellModel(string importData);
+
         SpellLevel ParseSpellLevel(string importDataLine);
     }
 }
