@@ -22,16 +22,20 @@ namespace FantasyModuleParser.Spells
 
         private void ImportTextAndReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            IImportSpell importSpell = new ImportSpellBase();
+            IImportSpell importSpell = null;
             switch (ImportSelector.SelectedIndex)
             {
                 case 0:
-                    (DataContext as SpellViewModel).SpellModel = new ImportSpellBase().ImportTextToSpellModel(ImportTextBox.Text);
+                    importSpell = new ImportSpellPDF();
+                    //(DataContext as SpellViewModel).SpellModel = new ImportSpellBase().ImportTextToSpellModel(ImportTextBox.Text);
                     break;
                 case 1:
-                    (DataContext as SpellViewModel).SpellModel = new ImportSpellBase().ImportDnDTextToSpellModel(ImportTextBox.Text);
+                    importSpell = new ImportSpellDnDBeyond();
+                    //(DataContext as SpellViewModel).SpellModel = new ImportSpellBase().ImportDnDTextToSpellModel(ImportTextBox.Text);
                     break;
             }
+
+            (DataContext as SpellViewModel).SpellModel = importSpell.ImportTextToSpellModel(ImportTextBox.Text);
             this.Visibility = Visibility.Hidden;
         }
     }

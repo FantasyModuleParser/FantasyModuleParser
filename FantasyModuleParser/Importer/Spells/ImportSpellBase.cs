@@ -1,5 +1,4 @@
 ﻿using FantasyModuleParser.Extensions;
-using FantasyModuleParser.Importer.Enums;
 using FantasyModuleParser.Spells.Enums;
 using FantasyModuleParser.Spells.Models;
 using System;
@@ -14,240 +13,244 @@ namespace FantasyModuleParser.Importer.Spells
 
         public SpellModel ImportTextToSpellModel(string importData)
         {
-            SpellModel resultSpellModel = new SpellModel();
 
-            string formattedImportData = FormatSpellPDFService.FormatData(importData);
+            throw new NotSupportedException();
+            //SpellModel resultSpellModel = new SpellModel();
 
-            ImportSpellState importStatEnum = ImportSpellState.INITIAL;
+            //string formattedImportData = FormatSpellPDFService.FormatData(importData);
 
-            StringReader stringReader = new StringReader(formattedImportData);
-            string line = "";
-            while ((line = stringReader.ReadLine()) != null)
-            {
-                //importStatEnum = getImportStateEnum(importStatEnum, importData);
-                switch (importStatEnum)
-                {
-                    case ImportSpellState.INITIAL:
-                        resultSpellModel.SpellName = line;
-                        importStatEnum = ImportSpellState.LEVEL_SCHOOL;
-                        break;
-                    case ImportSpellState.LEVEL_SCHOOL:
-                        resultSpellModel.SpellLevel = ParseSpellLevel(line);
-                        resultSpellModel.SpellSchool = ParseSpellSchool(line);
-                        resultSpellModel.IsRitual = CheckIfRitual(line);
-                        importStatEnum = ImportSpellState.CASTING_TIME;
-                        break;
-                    case ImportSpellState.CASTING_TIME:
-                        ParseCastingTime(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.RANGE;
-                        break;
-                    case ImportSpellState.RANGE:
-                        ParseRange(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.COMPONENTS;
-                        break;
-                    case ImportSpellState.COMPONENTS:
-                        ParseComponents(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.DURATION;
-                        break;
-                    case ImportSpellState.DURATION:
-                        ParseDuration(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.CAST_BY;
-                        break;
-                    case ImportSpellState.CAST_BY:
-                        if (line.StartsWith("Classes:"))
-                        {
-                            ParseCastByClasses(line, resultSpellModel);
-                        }
-                        else
-                        {
-                            resultSpellModel.Description = line + " "; // No character class to associate with
-                        }
-                        importStatEnum = ImportSpellState.DESCRIPTION;
-                        break;
-                    case ImportSpellState.DESCRIPTION:
-                        if (line.EndsWith(".", StringComparison.Ordinal))
-                        {
-                            resultSpellModel.Description += line;
-                            resultSpellModel.Description += Environment.NewLine;
-                        }
-                        else if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
-                        {
-                            resultSpellModel.Description += "**At Higher Levels.**";
-                            resultSpellModel.Description += line.Substring(17);
-                        }
-                        else
-                        {
-                            resultSpellModel.Description += line;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //ImportSpellState importStatEnum = ImportSpellState.INITIAL;
 
-            // Trim off the Description, as it will have a leading newLine character
-            resultSpellModel.Description = resultSpellModel.Description.TrimEnd();
+            //StringReader stringReader = new StringReader(formattedImportData);
+            //string line = "";
+            //while ((line = stringReader.ReadLine()) != null)
+            //{
+            //    //importStatEnum = getImportStateEnum(importStatEnum, importData);
+            //    switch (importStatEnum)
+            //    {
+            //        case ImportSpellState.INITIAL:
+            //            resultSpellModel.SpellName = line;
+            //            importStatEnum = ImportSpellState.LEVEL_SCHOOL;
+            //            break;
+            //        case ImportSpellState.LEVEL_SCHOOL:
+            //            resultSpellModel.SpellLevel = ParseSpellLevel(line);
+            //            resultSpellModel.SpellSchool = ParseSpellSchool(line);
+            //            resultSpellModel.IsRitual = CheckIfRitual(line);
+            //            importStatEnum = ImportSpellState.CASTING_TIME;
+            //            break;
+            //        case ImportSpellState.CASTING_TIME:
+            //            ParseCastingTime(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.RANGE;
+            //            break;
+            //        case ImportSpellState.RANGE:
+            //            ParseRange(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.COMPONENTS;
+            //            break;
+            //        case ImportSpellState.COMPONENTS:
+            //            ParseComponents(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.DURATION;
+            //            break;
+            //        case ImportSpellState.DURATION:
+            //            ParseDuration(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.CAST_BY;
+            //            break;
+            //        case ImportSpellState.CAST_BY:
+            //            if (line.StartsWith("Classes:"))
+            //            {
+            //                ParseCastByClasses(line, resultSpellModel);
+            //            }
+            //            else
+            //            {
+            //                resultSpellModel.Description = line + " "; // No character class to associate with
+            //            }
+            //            importStatEnum = ImportSpellState.DESCRIPTION;
+            //            break;
+            //        case ImportSpellState.DESCRIPTION:
+            //            if (line.EndsWith(".", StringComparison.Ordinal))
+            //            {
+            //                resultSpellModel.Description += line;
+            //                resultSpellModel.Description += Environment.NewLine;
+            //            }
+            //            else if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
+            //            {
+            //                resultSpellModel.Description += "**At Higher Levels.**";
+            //                resultSpellModel.Description += line.Substring(17);
+            //            }
+            //            else
+            //            {
+            //                resultSpellModel.Description += line;
+            //            }
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
 
-            return resultSpellModel;
+            //// Trim off the Description, as it will have a leading newLine character
+            //resultSpellModel.Description = resultSpellModel.Description.TrimEnd();
+
+            //return resultSpellModel;
         }
 
         public SpellModel ImportDnDTextToSpellModel(string importData)
         {
-            SpellModel resultSpellModel = new SpellModel();
+            throw new NotSupportedException();
 
-            string formattedImportData = FormatSpellDnDBeyondService.FormatData(importData);
+            //SpellModel resultSpellModel = new SpellModel();
 
-            ImportSpellState importStatEnum = ImportSpellState.INITIAL;
+            //string formattedImportData = FormatSpellDnDBeyondService.FormatData(importData);
 
-            StringReader stringReader = new StringReader(formattedImportData);
-            string line = "";
-            while ((line = stringReader.ReadLine()) != null)
-            {
-                //importStatEnum = getImportStateEnum(importStatEnum, importData);
-                switch (importStatEnum)
-                {
-                    case ImportSpellState.INITIAL:
-                        if (line.ToLower().StartsWith("homebrew"))
-                        {
-                            resultSpellModel.SpellName = line.Remove(0, 9).Trim();
-                        }
-                        else if (line.ToLower().EndsWith("concentration"))
-                        {
-                            resultSpellModel.SpellName = line.Remove(line.Length - 14).Trim();
-                        }
-                        else if (line.ToLower().EndsWith("ritual"))
-                        {
-                            resultSpellModel.SpellName = line.Remove(line.Length - 7).Trim();
-                        }
-                        else resultSpellModel.SpellName = line.Trim();
-                        importStatEnum = ImportSpellState.LEVEL;
-                        break;
-                    case ImportSpellState.LEVEL:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Contains("level"))
-                        {
-                            break;
-                        }
-                        else resultSpellModel.SpellLevel = ParseSpellLevel(line);
-                        importStatEnum = ImportSpellState.CASTING_TIME;
-                        break;
-                    case ImportSpellState.CASTING_TIME:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Contains("casting time"))
-                        {
-                            break;
-                        }
-                        ParseDnDCastingTime(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.RANGE;
-                        break;
-                    case ImportSpellState.RANGE:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Contains("range/area"))
-                        {
-                            break;
-                        }
-                        ParseDnDRange(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.COMPONENTS;
-                        break;
-                    case ImportSpellState.COMPONENTS:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Contains("components"))
-                        {
-                            break;
-                        }
-                        ParseDnDComponents(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.DURATION;
-                        break;
-                    case ImportSpellState.DURATION:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Contains("duration"))
-                        {
-                            break;
-                        }
-                        ParseDnDDuration(line, resultSpellModel);
-                        importStatEnum = ImportSpellState.SCHOOL;
-                        break;
-                    case ImportSpellState.SCHOOL:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Contains("school"))
-                        {
-                            break;
-                        }
-                        resultSpellModel.SpellSchool = ParseSpellSchool(line);
-                        importStatEnum = ImportSpellState.ATTACK;
-                        break;
-                    case ImportSpellState.ATTACK:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Equals("attack/save"))
-                        {
-                            break;
-                        }
-                        if (!line.ToLower(CultureInfo.CurrentCulture).Equals("attack/save"))
-                        {
-                            importStatEnum = ImportSpellState.DAMAGE;
-                            break;
-                        }
-                        break;
-                    case ImportSpellState.DAMAGE:
-                        if (line.ToLower(CultureInfo.CurrentCulture).Equals("damage/effect"))
-                        {
-                            break;
-                        }
-                        if (!line.ToLower(CultureInfo.CurrentCulture).Equals("damage/effect"))
-                        {
-                            importStatEnum = ImportSpellState.DESCRIPTION;
-                            break;
-                        }
-                        break;
-                    case ImportSpellState.DESCRIPTION:
-                        if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
-                        {
-                            resultSpellModel.Description += Environment.NewLine;
-                            resultSpellModel.Description += "**At Higher Levels.**";
-                            resultSpellModel.Description += line.Substring(17);
-                        }
-                        else if (line.StartsWith("Spell Tags"))
-                        {
-                            importStatEnum = ImportSpellState.TAGS;
-                            break;
-                        }
-                        else if (line.StartsWith("Available For:"))
-                        {
-                            importStatEnum = ImportSpellState.CAST_BY;
-                            break;
-                        }
-                        else if (line.EndsWith(".", StringComparison.Ordinal))
-                        {
-                            resultSpellModel.Description += line;
-                            resultSpellModel.Description += Environment.NewLine;
-                            break;
-                        }
-                        else if (line.StartsWith("*"))
-                        {
-                            resultSpellModel.ComponentText = line.Remove(0, 4);
-                            importStatEnum = ImportSpellState.TAGS;
-                            break;
-                        }
-                        else
-                        {
-                            resultSpellModel.Description += line;
-                        }
-                        resultSpellModel.Description = resultSpellModel.Description.Trim();
-                        importStatEnum = ImportSpellState.TAGS;
-                        break;
-                    case ImportSpellState.TAGS:
-                        if (line.StartsWith("Spell Tags"))
-                        {
-                            importStatEnum = ImportSpellState.CAST_BY;
-                            break;
-                        }
-                        importStatEnum = ImportSpellState.CAST_BY;
-                        break;
-                    case ImportSpellState.CAST_BY:
-                        if (line.StartsWith("Available For:"))
-                        {
-                            break;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //ImportSpellState importStatEnum = ImportSpellState.INITIAL;
 
-            return resultSpellModel;
+            //StringReader stringReader = new StringReader(formattedImportData);
+            //string line = "";
+            //while ((line = stringReader.ReadLine()) != null)
+            //{
+            //    //importStatEnum = getImportStateEnum(importStatEnum, importData);
+            //    switch (importStatEnum)
+            //    {
+            //        case ImportSpellState.INITIAL:
+            //            if (line.ToLower().StartsWith("homebrew"))
+            //            {
+            //                resultSpellModel.SpellName = line.Remove(0, 9).Trim();
+            //            }
+            //            else if (line.ToLower().EndsWith("concentration"))
+            //            {
+            //                resultSpellModel.SpellName = line.Remove(line.Length - 14).Trim();
+            //            }
+            //            else if (line.ToLower().EndsWith("ritual"))
+            //            {
+            //                resultSpellModel.SpellName = line.Remove(line.Length - 7).Trim();
+            //            }
+            //            else resultSpellModel.SpellName = line.Trim();
+            //            importStatEnum = ImportSpellState.LEVEL;
+            //            break;
+            //        case ImportSpellState.LEVEL:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Contains("level"))
+            //            {
+            //                break;
+            //            }
+            //            else resultSpellModel.SpellLevel = ParseSpellLevel(line);
+            //            importStatEnum = ImportSpellState.CASTING_TIME;
+            //            break;
+            //        case ImportSpellState.CASTING_TIME:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Contains("casting time"))
+            //            {
+            //                break;
+            //            }
+            //            ParseDnDCastingTime(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.RANGE;
+            //            break;
+            //        case ImportSpellState.RANGE:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Contains("range/area"))
+            //            {
+            //                break;
+            //            }
+            //            ParseDnDRange(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.COMPONENTS;
+            //            break;
+            //        case ImportSpellState.COMPONENTS:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Contains("components"))
+            //            {
+            //                break;
+            //            }
+            //            ParseDnDComponents(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.DURATION;
+            //            break;
+            //        case ImportSpellState.DURATION:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Contains("duration"))
+            //            {
+            //                break;
+            //            }
+            //            ParseDnDDuration(line, resultSpellModel);
+            //            importStatEnum = ImportSpellState.SCHOOL;
+            //            break;
+            //        case ImportSpellState.SCHOOL:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Contains("school"))
+            //            {
+            //                break;
+            //            }
+            //            resultSpellModel.SpellSchool = ParseSpellSchool(line);
+            //            importStatEnum = ImportSpellState.ATTACK;
+            //            break;
+            //        case ImportSpellState.ATTACK:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Equals("attack/save"))
+            //            {
+            //                break;
+            //            }
+            //            if (!line.ToLower(CultureInfo.CurrentCulture).Equals("attack/save"))
+            //            {
+            //                importStatEnum = ImportSpellState.DAMAGE;
+            //                break;
+            //            }
+            //            break;
+            //        case ImportSpellState.DAMAGE:
+            //            if (line.ToLower(CultureInfo.CurrentCulture).Equals("damage/effect"))
+            //            {
+            //                break;
+            //            }
+            //            if (!line.ToLower(CultureInfo.CurrentCulture).Equals("damage/effect"))
+            //            {
+            //                importStatEnum = ImportSpellState.DESCRIPTION;
+            //                break;
+            //            }
+            //            break;
+            //        case ImportSpellState.DESCRIPTION:
+            //            if (line.StartsWith("At Higher Levels.", StringComparison.Ordinal))
+            //            {
+            //                resultSpellModel.Description += Environment.NewLine;
+            //                resultSpellModel.Description += "**At Higher Levels.**";
+            //                resultSpellModel.Description += line.Substring(17);
+            //            }
+            //            else if (line.StartsWith("Spell Tags"))
+            //            {
+            //                importStatEnum = ImportSpellState.TAGS;
+            //                break;
+            //            }
+            //            else if (line.StartsWith("Available For:"))
+            //            {
+            //                importStatEnum = ImportSpellState.CAST_BY;
+            //                break;
+            //            }
+            //            else if (line.EndsWith(".", StringComparison.Ordinal))
+            //            {
+            //                resultSpellModel.Description += line;
+            //                resultSpellModel.Description += Environment.NewLine;
+            //                break;
+            //            }
+            //            else if (line.StartsWith("*"))
+            //            {
+            //                resultSpellModel.ComponentText = line.Remove(0, 4);
+            //                importStatEnum = ImportSpellState.TAGS;
+            //                break;
+            //            }
+            //            else
+            //            {
+            //                resultSpellModel.Description += line;
+            //            }
+            //            resultSpellModel.Description = resultSpellModel.Description.Trim();
+            //            importStatEnum = ImportSpellState.TAGS;
+            //            break;
+            //        case ImportSpellState.TAGS:
+            //            if (line.StartsWith("Spell Tags"))
+            //            {
+            //                importStatEnum = ImportSpellState.CAST_BY;
+            //                break;
+            //            }
+            //            importStatEnum = ImportSpellState.CAST_BY;
+            //            break;
+            //        case ImportSpellState.CAST_BY:
+            //            if (line.StartsWith("Available For:"))
+            //            {
+            //                break;
+            //            }
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
+
+            //return resultSpellModel;
         }
 
         public SpellLevel ParseSpellLevel(string importData)
