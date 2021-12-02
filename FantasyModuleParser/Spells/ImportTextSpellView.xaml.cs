@@ -9,6 +9,7 @@ namespace FantasyModuleParser.Spells
     /// </summary>
     public partial class ImportTextSpellView : Window
     {
+
         public ImportTextSpellView()
         {
             InitializeComponent();
@@ -22,9 +23,15 @@ namespace FantasyModuleParser.Spells
         private void ImportTextAndReturnButton_Click(object sender, RoutedEventArgs e)
         {
             IImportSpell importSpell = new ImportSpellBase();
-
-            (DataContext as SpellViewModel).SpellModel = new ImportSpellBase().ImportTextToSpellModel(ImportTextBox.Text);
-
+            switch (ImportSelector.SelectedIndex)
+            {
+                case 0:
+                    (DataContext as SpellViewModel).SpellModel = new ImportSpellBase().ImportTextToSpellModel(ImportTextBox.Text);
+                    break;
+                case 1:
+                    (DataContext as SpellViewModel).SpellModel = new ImportSpellBase().ImportDnDTextToSpellModel(ImportTextBox.Text);
+                    break;
+            }
             this.Visibility = Visibility.Hidden;
         }
     }
