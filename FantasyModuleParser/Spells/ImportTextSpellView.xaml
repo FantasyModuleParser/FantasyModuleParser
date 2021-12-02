@@ -21,6 +21,7 @@
         <TextBox x:Name="ImportTextBox" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible"  TextWrapping="Wrap" AcceptsReturn="True"/>
         <ComboBox x:Name="ImportSelector" Grid.Row="2" Grid.Column="1" Width="200" Height="25" HorizontalAlignment="Right" Margin="5">
             <ComboBoxItem IsSelected="True">PDF (Spell)</ComboBoxItem>
+            <ComboBoxItem>DnD Beyond (Spell)</ComboBoxItem>
         </ComboBox>
 
         <Grid Grid.Row="3" Grid.Column="1">
