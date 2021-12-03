@@ -4,6 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FantasyModuleParser.Importer.Utils
 {
@@ -13,13 +15,27 @@ namespace FantasyModuleParser.Importer.Utils
         public DamageProperty ParseDamageProperty(string weaponAttackData)
         {
             DamageProperty damageProperty = new DamageProperty();
+            Regex DamageRegex = new Regex(@".*d.*?damage");
 
             // Massage data for usage going forward
             string damagePropertyData = weaponAttackData.Substring(weaponAttackData.IndexOf('(') + 1).Trim();
 
             // Remove the term 'damage'
             if (damagePropertyData.Contains("damage"))
-                damagePropertyData = damagePropertyData.Substring(0, damagePropertyData.IndexOf("damage", StringComparison.Ordinal)).Trim();
+            {
+                if (DamageRegex.IsMatch(damagePropertyData))
+                {
+                    damagePropertyData = damagePropertyData.Substring(0, damagePropertyData.IndexOf("damage", StringComparison.Ordinal)).Trim();
+                }
+                else
+                {
+                    StringBuilder buildDamage = new StringBuilder();
+                    string[] splitDamage = damagePropertyData.Split(' ');
+                    buildDamage.Append(splitDamage[0]).Append("d1) ").Append(splitDamage[1]);
+                    damagePropertyData = buildDamage.ToString();
+                }
+            }
+
 
             // 2d8 + 2) lightning
 
