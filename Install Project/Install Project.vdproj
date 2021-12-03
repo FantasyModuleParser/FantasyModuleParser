@@ -1468,12 +1468,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B151AC4918E6B92A8FC018DEA2E123B1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2363,6 +2357,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C3902FEEFD116795B8D8616BC2DD8B8C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B151AC4918E6B92A8FC018DEA2E123B1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -8026,15 +8026,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
-        "ProductCode" = "8:{46E4A085-DE35-4F53-A7DD-DC2A158C8D42}"
-        "PackageCode" = "8:{26319E78-D8CC-4142-9AC5-148A8E71E496}"
+        "ProductCode" = "8:{755FB021-941F-4D51-B852-4E22F15D70F1}"
+        "PackageCode" = "8:{E55F2E82-9046-438C-BA45-D34B36042CF7}"
         "UpgradeCode" = "8:{B65CE23A-B50E-4395-80F0-B723F2A65232}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Fantasy Module Parser"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
