@@ -33,12 +33,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0702A8C1FD0E43ADB4822D0ECD265883"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0994C85942363FF4D4B337EA9996570B"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,12 +41,6 @@
         {
         "MsmKey" = "8:_09965F86C6EA7780D1A40B5DAA6B1BA3"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_09D8FDBEE5964DAE885914128FF4C7B7"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -99,12 +87,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_100FD4E3CD9248D197522F42D4C60279"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1128E2D8BF5414F73BED30A03040E1B2"
         "OwnerKey" = "8:_D27F14FA81CF94ED806190993EB50C98"
         "MsmSig" = "8:_UNDEFINED"
@@ -147,12 +129,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_171AA82B84004ACCB8CAC02EE860EFAA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1981F598074C0994428A9C195DC6D900"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -179,12 +155,6 @@
         {
         "MsmKey" = "8:_1BA30D2FC78D97C2189304902BBD59BF"
         "OwnerKey" = "8:_15089F08D66C69C77CB359934CA7F952"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1D3666416A9A47E1B5D97EC88B76EC2C"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -239,18 +209,6 @@
         {
         "MsmKey" = "8:_2B7AAE297EEB7797F8EA1CA48E63B65A"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_31085C1D0A6E4F0BA7B8A00897A5C863"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_34961CA8953944029837C7BEB6024AEB"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -435,20 +393,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_557342E624AD4B96830BE0E63B8D267F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_587655A2149B0232A820E2098F3751B0"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5A94866DC2F84D009115AF84B7E15408"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -473,12 +419,6 @@
         {
         "MsmKey" = "8:_5D83542073EAF05CA6329C95CD1102DC"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5FAACC86C461408A81CD27AC5D2F7D5A"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -537,12 +477,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6A56FDBE1E5D43B98D69AC1CB7340253"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6BBDF9F960395B0E03A718D424D9530D"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -581,12 +515,6 @@
         {
         "MsmKey" = "8:_6CC3EEE39F8F52826F94776A4A3A5538"
         "OwnerKey" = "8:_D27F14FA81CF94ED806190993EB50C98"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6CDA83CB4216426DA5ECB8619D584CBE"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -669,18 +597,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_79DD305F8AB14C8A8C3B26F996396484"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_79ECF5FCD60D4F1AB63DAA9242C220AC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7B54CBCA8AAE5F8D716D746CCB8B9CE0"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -741,20 +657,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8412A28F3F66475BA973E8B6731D5776"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_849C5EBED6579585CC26BCB5A4CB38C7"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8A362613C95C42B7A591108C441C3D0E"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -867,12 +771,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9738979D662447A4B1EE81A6CFB91A2B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9CE6AAE473890677F5384A287B392238"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -891,12 +789,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9D3E30F60E7D443E9CBBB7FC03436401"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9F549E23CA30D669FFD579B7BD74A801"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -905,12 +797,6 @@
         {
         "MsmKey" = "8:_A0D304B55B29911C6C1B2E034A3E9C2A"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A1CD0ACAEF8647C48FC1616D015B4FB3"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -953,12 +839,6 @@
         {
         "MsmKey" = "8:_AB92294DEC197706749BA9EFEDD2DA02"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_ABC258B2DD2E406292C3AF8232DACB3F"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1029,12 +909,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B6EF72B67AD4417DA6A7F1F7F5921B54"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B7082773453CBD56A0403BDAC22B9680"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -1067,12 +941,6 @@
         {
         "MsmKey" = "8:_B939B05163D434ED2F0BA7029E0691E5"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B97968F0018347E7A711DC5896B43B3E"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1143,12 +1011,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C40C9C01BD84496A9E2F14AA630DBD36"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C71D985BBE515A94BDBC07E5E9443D19"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -1209,20 +1071,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CD9D8A6C1B90405E868A9123CF571AB5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CDB52647BB312FA8C442708460A8B3EB"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CE570E06311A4DD980B0C94C70568CF0"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1251,18 +1101,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D1376D2EC3254CAA9EB22154B84C5F24"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D18AC4EC47604E1F8047083A3047F274"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D27F14FA81CF94ED806190993EB50C98"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
         "MsmSig" = "8:_UNDEFINED"
@@ -1281,26 +1119,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D49AFD1117DF483CA4B4201E21E12A84"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D7D64895E7B3821B120EB9651F14F83D"
         "OwnerKey" = "8:_D27F14FA81CF94ED806190993EB50C98"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D8CF1DC347E5469DB4945ABDB88F3DFE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D97E139A70A44F14AA9815AC3114AB63"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1371,20 +1191,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EA70C478C2ED4B4EB230F5B9972363BC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_EC7C7D3EB6C26CBCB2C17A7EAF6D2C82"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_ECC9309100AA43B680662089970CAFD9"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1415,12 +1223,6 @@
         {
         "MsmKey" = "8:_F304172D9E0504F9D8DDE544E501A471"
         "OwnerKey" = "8:_2445AA9AA14142809656DA1BBE11A361"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F4DCF6ABDBBB4199A9605FD119C2AE19"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2553,26 +2355,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0702A8C1FD0E43ADB4822D0ECD265883"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Azer.json"
-            "TargetName" = "8:Azer.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0994C85942363FF4D4B337EA9996570B"
             {
             "AssemblyRegister" = "3:1"
@@ -2633,26 +2415,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09D8FDBEE5964DAE885914128FF4C7B7"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Aboleth.json"
-            "TargetName" = "8:Aboleth.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_09FEB2FE1329CAA3B079BCFE6433CD52"
@@ -2839,26 +2601,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_100FD4E3CD9248D197522F42D4C60279"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Green Dragon.json"
-            "TargetName" = "8:Ancient Green Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1128E2D8BF5414F73BED30A03040E1B2"
@@ -3078,26 +2820,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_171AA82B84004ACCB8CAC02EE860EFAA"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Allosaurus.json"
-            "TargetName" = "8:Allosaurus.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1981F598074C0994428A9C195DC6D900"
             {
             "AssemblyRegister" = "3:1"
@@ -3189,26 +2911,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1D3666416A9A47E1B5D97EC88B76EC2C"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Bronze Dragon.json"
-            "TargetName" = "8:Adult Bronze Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1F7E6F55DB34230507B29D8FE70DE74B"
@@ -3457,46 +3159,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_31085C1D0A6E4F0BA7B8A00897A5C863"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Red Dragon.json"
-            "TargetName" = "8:Adult Red Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_34961CA8953944029837C7BEB6024AEB"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Copper Dragon.json"
-            "TargetName" = "8:Adult Copper Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_35B440BB2C6683573B0CA11ECDBAEE0A"
@@ -4088,26 +3750,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_557342E624AD4B96830BE0E63B8D267F"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Brass Dragon.json"
-            "TargetName" = "8:Adult Brass Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_587655A2149B0232A820E2098F3751B0"
             {
             "AssemblyRegister" = "3:1"
@@ -4137,26 +3779,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A94866DC2F84D009115AF84B7E15408"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Air Elemental.json"
-            "TargetName" = "8:Air Elemental.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5BAEA274657655702AB2A8FDD46E1AD7"
@@ -4281,26 +3903,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5FAACC86C461408A81CD27AC5D2F7D5A"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Animated Armor.json"
-            "TargetName" = "8:Animated Armor.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6203316350446EC7F0BFE360FAA23A79"
@@ -4520,26 +4122,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A56FDBE1E5D43B98D69AC1CB7340253"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Black Dragon.json"
-            "TargetName" = "8:Ancient Black Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6BBDF9F960395B0E03A718D424D9530D"
             {
             "AssemblyRegister" = "3:1"
@@ -4693,26 +4275,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6CDA83CB4216426DA5ECB8619D584CBE"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Awakened Shrub.json"
-            "TargetName" = "8:Awakened Shrub.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6D898462AF16E88CF23146053152C0C6"
@@ -4932,46 +4494,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79DD305F8AB14C8A8C3B26F996396484"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Silver Dragon.json"
-            "TargetName" = "8:Ancient Silver Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79ECF5FCD60D4F1AB63DAA9242C220AC"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Green Dragon.json"
-            "TargetName" = "8:Adult Green Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7B54CBCA8AAE5F8D716D746CCB8B9CE0"
             {
             "AssemblyRegister" = "3:1"
@@ -5127,26 +4649,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8412A28F3F66475BA973E8B6731D5776"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Gold Dragon.json"
-            "TargetName" = "8:Adult Gold Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_849C5EBED6579585CC26BCB5A4CB38C7"
             {
             "AssemblyRegister" = "3:1"
@@ -5176,26 +4678,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A362613C95C42B7A591108C441C3D0E"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Copper Dragon.json"
-            "TargetName" = "8:Ancient Copper Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8B1D49D1B00F2AD39749B6D6E7220008"
@@ -5415,26 +4897,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9738979D662447A4B1EE81A6CFB91A2B"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Blue Dragon.json"
-            "TargetName" = "8:Ancient Blue Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9CE6AAE473890677F5384A287B392238"
             {
             "AssemblyRegister" = "3:1"
@@ -5497,26 +4959,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D3E30F60E7D443E9CBBB7FC03436401"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Bronze Dragon.json"
-            "TargetName" = "8:Ancient Bronze Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F549E23CA30D669FFD579B7BD74A801"
             {
             "AssemblyRegister" = "3:1"
@@ -5577,26 +5019,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A1CD0ACAEF8647C48FC1616D015B4FB3"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ape.json"
-            "TargetName" = "8:Ape.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A36CA70A4541E08FEE0FF776BEB34F2A"
@@ -5783,26 +5205,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ABC258B2DD2E406292C3AF8232DACB3F"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Axe Beak.json"
-            "TargetName" = "8:Axe Beak.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AECD964374E43C2807AFB8A93B4C7EB2"
@@ -6022,26 +5424,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6EF72B67AD4417DA6A7F1F7F5921B54"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient White Dragon.json"
-            "TargetName" = "8:Ancient White Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B7082773453CBD56A0403BDAC22B9680"
             {
             "AssemblyRegister" = "3:1"
@@ -6195,26 +5577,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B97968F0018347E7A711DC5896B43B3E"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult White Dragon.json"
-            "TargetName" = "8:Adult White Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B99829C821B0C1276A891E8AC493B715"
@@ -6496,26 +5858,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C40C9C01BD84496A9E2F14AA630DBD36"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Blue Dragon.json"
-            "TargetName" = "8:Adult Blue Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C71D985BBE515A94BDBC07E5E9443D19"
             {
             "AssemblyRegister" = "3:1"
@@ -6795,26 +6137,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CD9D8A6C1B90405E868A9123CF571AB5"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Red Dragon.json"
-            "TargetName" = "8:Ancient Red Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CDB52647BB312FA8C442708460A8B3EB"
             {
             "AssemblyRegister" = "3:1"
@@ -6844,26 +6166,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE570E06311A4DD980B0C94C70568CF0"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Brass Dragon.json"
-            "TargetName" = "8:Ancient Brass Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CEF0A02378AD6E06A0F6F4FC3D3DDB35"
@@ -6990,46 +6292,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D1376D2EC3254CAA9EB22154B84C5F24"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Silver Dragon.json"
-            "TargetName" = "8:Adult Silver Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D18AC4EC47604E1F8047083A3047F274"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Androsphinx.json"
-            "TargetName" = "8:Androsphinx.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D27F14FA81CF94ED806190993EB50C98"
             {
             "AssemblyRegister" = "3:1"
@@ -7092,26 +6354,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D49AFD1117DF483CA4B4201E21E12A84"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Awakened Tree.json"
-            "TargetName" = "8:Awakened Tree.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D7D64895E7B3821B120EB9651F14F83D"
             {
             "AssemblyRegister" = "3:1"
@@ -7141,46 +6383,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D8CF1DC347E5469DB4945ABDB88F3DFE"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Baboon.json"
-            "TargetName" = "8:Baboon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D97E139A70A44F14AA9815AC3114AB63"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ankylosaurus.json"
-            "TargetName" = "8:Ankylosaurus.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DA784A4C6183DE33215E7174F4E24680"
@@ -7524,26 +6726,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA70C478C2ED4B4EB230F5B9972363BC"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ancient Gold Dragon.json"
-            "TargetName" = "8:Ancient Gold Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EC7C7D3EB6C26CBCB2C17A7EAF6D2C82"
             {
             "AssemblyRegister" = "3:1"
@@ -7573,26 +6755,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ECC9309100AA43B680662089970CAFD9"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Adult Black Dragon.json"
-            "TargetName" = "8:Adult Black Dragon.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ED322D19FDA91A9C696FBC5F7241AC7D"
@@ -7717,26 +6879,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F4DCF6ABDBBB4199A9605FD119C2AE19"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\FMP\\NPCs\\Ankheg.json"
-            "TargetName" = "8:Ankheg.json"
-            "Tag" = "8:"
-            "Folder" = "8:_976CBB0215D44FC58ADAB21A54E98C36"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F605E7D11E1449D3B896EA9D16CC271F"
@@ -8027,7 +7169,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
         "ProductCode" = "8:{755FB021-941F-4D51-B852-4E22F15D70F1}"
-        "PackageCode" = "8:{E55F2E82-9046-438C-BA45-D34B36042CF7}"
+        "PackageCode" = "8:{88D0DFC3-F601-4F5B-B0E3-BE7820A7E3C9}"
         "UpgradeCode" = "8:{B65CE23A-B50E-4395-80F0-B723F2A65232}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
