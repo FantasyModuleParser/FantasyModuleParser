@@ -15,7 +15,7 @@ namespace FantasyModuleParser.Importer.Utils
         public DamageProperty ParseDamageProperty(string weaponAttackData)
         {
             DamageProperty damageProperty = new DamageProperty();
-            Regex DamageRegex = new Regex(@".*d.*?damage");
+            Regex DamageRegex = new Regex(@".*\dd\d.* damage");
 
             // Massage data for usage going forward
             string damagePropertyData = weaponAttackData.Substring(weaponAttackData.IndexOf('(') + 1).Trim();
