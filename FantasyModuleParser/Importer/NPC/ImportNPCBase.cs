@@ -1111,7 +1111,6 @@ namespace FantasyModuleParser.Importer.NPC
                     else
                     {
                         weaponAttackModel.WeaponRangeShort = int.Parse(rangeStringValue, CultureInfo.CurrentCulture);
-
                     }
                 }
                 if (weaponDescriptionData.Contains("one target"))
