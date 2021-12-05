@@ -116,9 +116,12 @@ namespace FantasyModuleParser.NPC.Models.Action
 			}
 
 			stringBuilder.Append(" ft., " + TargetType.GetDescription() + ". Hit: ");
-			if (PrimaryDamage.NumOfDice > 0)
+			if (PrimaryDamage.NumOfDice > 0 && PrimaryDamage.DieType != DieType.D1)
+			{
 				stringBuilder.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
-			
+			}
+			else stringBuilder.Append(PrimaryDamageTotal);
+
 			AddPrimaryDamageToStringBuilder(stringBuilder);
 
 			if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.WA)
@@ -189,7 +192,12 @@ namespace FantasyModuleParser.NPC.Models.Action
 			else if (PrimaryDamage.Bonus < 0 || PrimaryDamage.NumOfDice == 0)
 				stringBuilder.Append(" " + PrimaryDamage.Bonus);
 
-			stringBuilder.Append(") ");
+			if (PrimaryDamage.NumOfDice > 0 && PrimaryDamage.DieType != DieType.D1)
+			{
+				stringBuilder.Append(") ");
+			}
+			else stringBuilder.Append(" ");
+
 			stringBuilder.Append(PrimaryDamage.DamageType.GetDescription().ToLower());
 			if (IsSilver)
 				stringBuilder.Append(", silver");
