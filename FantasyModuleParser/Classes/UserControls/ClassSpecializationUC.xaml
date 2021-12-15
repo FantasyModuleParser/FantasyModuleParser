@@ -6,8 +6,12 @@
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
              xmlns:sharedUC="clr-namespace:FantasyModuleParser.Equipment.UserControls"
              xmlns:classModel="clr-namespace:FantasyModuleParser.Classes.Model"
+             xmlns:vm="clr-namespace:FantasyModuleParser.Classes.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="450">
+    <UserControl.DataContext>
+        <vm:ClassSpecializationViewModel></vm:ClassSpecializationViewModel>
+    </UserControl.DataContext>
     <Grid x:Name="ClassSpecializationLayout">
         <TabControl>
             <TabItem Header="Class Feature" IsEnabled="True" HorizontalAlignment="Left">
@@ -34,7 +38,7 @@
 
                         <Button Grid.Row="1" Grid.Column="1"  Content="Add / Update Specialization" 
                                 HorizontalAlignment="Right" Padding="5,0"
-                                Command="{Binding Path=AddClassSpecializationCommand}"/>
+                                Command="{Binding AddClassSpecializationCommand}"/>
                     </Grid>
                     <Separator Grid.Row="1" />
                     <Grid Grid.Row="2">
@@ -51,13 +55,13 @@
 
                         <Label Content="Existing Class Specializations" Grid.Row="0" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,1.667,0" />
 
-                        <!-- TODO:  For each item in this list box, there should two buttons that are right justified:
+                         <!--TODO:  For each item in this list box, there should two buttons that are right justified:
                                     1. Rename
-                                    2. Remove
-                        -->
+                                    2. Remove-->
+                        
 
-                        <!-- <ListBox Grid.Row="1"/> -->
-                        <ListBox Grid.Row="1" ItemsSource="{Binding Path=ClassModelValue.ClassSpecializations}"
+                         <ListBox Grid.Row="1"/>
+                        <ListBox Grid.Row="1" ItemsSource="{Binding ClassModelValue.ClassSpecializations }"
                                  SelectionMode="Single" HorizontalContentAlignment="Stretch"
                                  SelectionChanged="OnClassSpecializationListBox_SelectionChangedEvent" Grid.ColumnSpan="2" >
                             <ListBox.ItemTemplate>
@@ -68,7 +72,10 @@
                                             <ColumnDefinition Width="80"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding Name}"  />
-                                        <Button Content="Remove" Grid.Column="1" Click="ButtonBase_OnClick"></Button>
+                                        <Button Content="Remove" Grid.Column="3"
+                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}, 
+                                                            Path=DataContext.RemoveClassSpecializationCommand}"
+                                                CommandParameter="{Binding}"></Button> 
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -76,8 +83,8 @@
 
                         <Label Content="Features from Selected Specialization" Grid.Row="0" Grid.Column="2" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0.333,0,0.334,0" />
 
-                        <!-- TODO:  This listbox is populated by the selected Specialization's attached features -->
-                        <!-- TODO:  Consider an 'Unassigned' option for Specialization... or maybe the Class name as a default option? -->
+                         <!--TODO:  This listbox is populated by the selected Specialization's attached features--> 
+                         <!--TODO:  Consider an 'Unassigned' option for Specialization... or maybe the Class name as a default option?--> 
                         <ListBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" 
                                  ItemsSource="{Binding Path=SelectedClassSpecialization.ClassFeatures, Mode=TwoWay}"
                                  DisplayMemberPath="Name"/>

@@ -78,7 +78,8 @@ namespace FantasyModuleParser.Classes.Model
         public void Save()
         {
             SettingsService settingsService = new SettingsService();
-            string folderPath = settingsService.Load().ClassFolderLocation;
+            SettingsModel settingsModel = settingsService.Load();
+            string folderPath = settingsModel.ClassFolderLocation;
 
             Save(folderPath);
         }

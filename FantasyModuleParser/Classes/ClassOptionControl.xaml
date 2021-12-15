@@ -81,12 +81,12 @@
                     </ClassUC:ClassSpellSlotUC.Style>
                 </ClassUC:ClassSpellSlotUC>
                 <!-- Proficiencies -->
-                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" ProficiencyModelValue="{Binding Proficiency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsMultiProficiencyOptionValue="Visible">
+                <ClassUC:ClassProficiencyUC x:Name="ClassProficencyUserControl" DataContext="{Binding ClassProficiencyViewModel}">
                     <ClassUC:ClassProficiencyUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                <DataTrigger Binding="{Binding Path=DataContext.ClassMenuOptionEnum, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                                          Value="{x:Static classEnum:ClassMenuOptionEnum.Proficiencies}">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
@@ -96,12 +96,12 @@
                 </ClassUC:ClassProficiencyUC>
                 
                 <!-- TODO:  Multiclass Proficiencies -->
-                <ClassUC:ClassProficiencyUC x:Name="MultiClassProficencyUserControl" ProficiencyModelValue="{Binding MultiProficiency}" IsMultiProficiencyOptionValue="Hidden">
+                <ClassUC:ClassProficiencyUC x:Name="MultiClassProficencyUserControl" DataContext="{Binding ClassMultiClassProficiencyViewModel}">
                     <ClassUC:ClassProficiencyUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassProficiencyUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                <DataTrigger Binding="{Binding Path=DataContext.ClassMenuOptionEnum, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                                          Value="{x:Static classEnum:ClassMenuOptionEnum.MulticlassProficiencies}">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
@@ -251,12 +251,13 @@
                 </TabControl>
 
                 <!-- TODO:  Class Specialization -->
-                <ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl" ClassModelValue="{Binding ParentClassModel, Mode=TwoWay}">
+                <!--<ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl" ClassModelValue="{Binding ParentClassModel, Mode=TwoWay}">-->
+                <ClassUC:ClassSpecializationUC DataContext="{Binding ClassSpecializationViewModel}">
                     <ClassUC:ClassSpecializationUC.Style>
                         <Style TargetType="{x:Type ClassUC:ClassSpecializationUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                <DataTrigger Binding="{Binding Path=DataContext.ClassMenuOptionEnum, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                                          Value="{x:Static classEnum:ClassMenuOptionEnum.ClassSpecialization}">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>

@@ -605,6 +605,8 @@
       <DependentUpon>ClassSpellSlotUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\ViewModels\ClassOptionControllViewModel.cs" />
+    <Compile Include="Classes\ViewModels\ClassProficiencyViewModel.cs" />
+    <Compile Include="Classes\ViewModels\ClassSpecializationViewModel.cs" />
     <Compile Include="Converters\LanguageModelConverter.cs" />
     <Compile Include="Converters\SelectableActionModelConverter.cs" />
     <Compile Include="Equipment\Enums\TackEnum.cs" />

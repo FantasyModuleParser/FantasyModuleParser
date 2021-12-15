@@ -14,119 +14,98 @@ namespace FantasyModuleParser.Classes.UserControls
     /// <summary>
     /// Interaction logic for ClassProficiencyUC.xaml
     /// </summary>
-    public partial class ClassProficiencyUC : UserControl, INotifyPropertyChanged
+    public partial class ClassProficiencyUC : UserControl
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(ClassProficiencyUC));
         public ClassProficiencyUC()
         {
             InitializeComponent();
-            ProficencyLayout.DataContext = this;
         }
 
-        public static readonly DependencyProperty ProficiencyModelProperty =
-            DependencyProperty.Register("ProficiencyModelValue", typeof(ProficiencyModel), typeof(ClassProficiencyUC),
-                 new PropertyMetadata(new ProficiencyModel(), new PropertyChangedCallback(OnProficiencyModelPropertyChanged)));
+       
+        //public static readonly DependencyProperty IsMultiProficiencyOptionProperty =
+        //    DependencyProperty.Register("IsMultiProficiencyOptionValue", typeof(Visibility), typeof(ClassProficiencyUC), new PropertyMetadata(Visibility.Visible));
 
-        private static void OnProficiencyModelPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            log.Info(string.Format("Proficency Model Value has changed!!!!"));
-            
-        }
+        //public Visibility IsMultiProficiencyOptionValue
+        //{
+        //    get { return (Visibility)GetValue(IsMultiProficiencyOptionProperty); }
+        //    set { SetValue(IsMultiProficiencyOptionProperty, value); }
+        //}
 
-        private void OnProficiencyModelPropertyChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            
-        }
+        //private void SavingThrow_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if(ProficiencyModelValue.SavingThrowAttributes == null)
+        //    {
+        //        ProficiencyModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<Enums.SavingThrowAttributeEnum>();
+        //    }
+        //}
 
-        public ProficiencyModel ProficiencyModelValue
-        {
-            get { return (ProficiencyModel)GetValue(ProficiencyModelProperty); }
-            set { SetValue(ProficiencyModelProperty, value); }
-        }
+        //private ICommand _savingThrowSelectCommand;
+        //public ICommand SavingThrowSelectCommand
+        //{
+        //    get
+        //    {
+        //        if (_savingThrowSelectCommand == null)
+        //        {
+        //            _savingThrowSelectCommand = new ActionCommand(param => OnSavingThrowSelectAction(param),
+        //                param => IsSavingThrowCheckboxEnabled(param));
+        //        }
+        //        return _savingThrowSelectCommand;
+        //    }
+        //}
 
-        public static readonly DependencyProperty IsMultiProficiencyOptionProperty =
-            DependencyProperty.Register("IsMultiProficiencyOptionValue", typeof(Visibility), typeof(ClassProficiencyUC), new PropertyMetadata(Visibility.Visible));
+        //private bool IsSavingThrowCheckboxEnabled(object param)
+        //{
+        //    if (param == null)
+        //        return false;
+        //    if (!(param is SavingThrowAttributeEnum))
+        //        return false;
+        //    SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
+        //    if(ProficiencyModelValue?.SavingThrowAttributes?.Count >= 2)
+        //    {
+        //        return ProficiencyModelValue.SavingThrowAttributes.Contains(savingThrow);
+        //    }
 
-        public Visibility IsMultiProficiencyOptionValue
-        {
-            get { return (Visibility)GetValue(IsMultiProficiencyOptionProperty); }
-            set { SetValue(IsMultiProficiencyOptionProperty, value); }
-        }
+        //    return true;
+        //}
 
-        private void SavingThrow_Click(object sender, RoutedEventArgs e)
-        {
-            if(ProficiencyModelValue.SavingThrowAttributes == null)
-            {
-                ProficiencyModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<Enums.SavingThrowAttributeEnum>();
-            }
-        }
+        //protected virtual void OnSavingThrowSelectAction(object param)
+        //{
+        //    SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
 
-        private ICommand _savingThrowSelectCommand;
-        public ICommand SavingThrowSelectCommand
-        {
-            get
-            {
-                if (_savingThrowSelectCommand == null)
-                {
-                    _savingThrowSelectCommand = new ActionCommand(param => OnSavingThrowSelectAction(param),
-                        param => IsSavingThrowCheckboxEnabled(param));
-                }
-                return _savingThrowSelectCommand;
-            }
-        }
+        //    if (ProficiencyModelValue.SavingThrowAttributes == null)
+        //        ProficiencyModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<SavingThrowAttributeEnum>();
 
-        private bool IsSavingThrowCheckboxEnabled(object param)
-        {
-            if (param == null)
-                return false;
-            if (!(param is SavingThrowAttributeEnum))
-                return false;
-            SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
-            if(ProficiencyModelValue?.SavingThrowAttributes?.Count >= 2)
-            {
-                return ProficiencyModelValue.SavingThrowAttributes.Contains(savingThrow);
-            }
+        //    if (ProficiencyModelValue.SavingThrowAttributes.Contains(savingThrow))
+        //        ProficiencyModelValue.SavingThrowAttributes.Remove(savingThrow);
+        //    else
+        //        ProficiencyModelValue.SavingThrowAttributes.Add(savingThrow);
+        //    RaisePropertyChanged(nameof(SavingThrowStrength));
+        //}
 
-            return true;
-        }
+        //public bool SavingThrowStrength
+        //{
+        //    get { if (ProficiencyModelValue == null)
+        //        {
+        //            return false;
+        //        }
+        //        if (ProficiencyModelValue.SavingThrowAttributes == null)
+        //            return false;
+        //        return ProficiencyModelValue.SavingThrowAttributes.Contains(SavingThrowAttributeEnum.Strength);
+        //        }
+        //    set { }
+        //}
 
-        protected virtual void OnSavingThrowSelectAction(object param)
-        {
-            SavingThrowAttributeEnum savingThrow = (SavingThrowAttributeEnum)param;
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //protected void RaisePropertyChanged(string propertyName = "")
+        //{
+        //    var handler = PropertyChanged;
+        //    if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
-            if (ProficiencyModelValue.SavingThrowAttributes == null)
-                ProficiencyModelValue.SavingThrowAttributes = new System.Collections.ObjectModel.ObservableCollection<SavingThrowAttributeEnum>();
-
-            if (ProficiencyModelValue.SavingThrowAttributes.Contains(savingThrow))
-                ProficiencyModelValue.SavingThrowAttributes.Remove(savingThrow);
-            else
-                ProficiencyModelValue.SavingThrowAttributes.Add(savingThrow);
-            RaisePropertyChanged(nameof(SavingThrowStrength));
-        }
-
-        public bool SavingThrowStrength
-        {
-            get { if (ProficiencyModelValue == null)
-                {
-                    return false;
-                }
-                if (ProficiencyModelValue.SavingThrowAttributes == null)
-                    return false;
-                return ProficiencyModelValue.SavingThrowAttributes.Contains(SavingThrowAttributeEnum.Strength);
-                }
-            set { }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName = "")
-        {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        //protected void OnPropertyChanged([CallerMemberName] string name = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        //}
     }
 }
