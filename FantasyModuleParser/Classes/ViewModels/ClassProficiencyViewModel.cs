@@ -1,5 +1,6 @@
 ﻿using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Classes.Model;
+using FantasyModuleParser.Classes.UserControls.ClassProficiency;
 using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.ViewModel;
 using System.Windows;
@@ -10,11 +11,23 @@ namespace FantasyModuleParser.Classes.ViewModels
     public class ClassProficiencyViewModel : ViewModelBase
     {
         public ProficiencyModel proficiencyModel { get; set; }
+
+        #region Child ViewModels
+        public StartingArmorOptionViewModel startingArmorOptionViewModel { get; set; } 
+        public StartingWeaponOptionViewModel startingWeaponOptionViewModel { get; set; }
+        public StartingSkillsViewModel startingSkillsViewModel { get; set; }
+        public StartingToolsViewModel startingToolsViewModel { get; set; }  
+        #endregion
+
         public bool IsMultiClassSelected { get; set; }
         public Visibility IsMultiProficiencyOptionValue { get; set; }
 
         public ClassProficiencyViewModel() :base()
         {
+            startingArmorOptionViewModel = new StartingArmorOptionViewModel();
+            startingWeaponOptionViewModel = new StartingWeaponOptionViewModel();
+            startingSkillsViewModel = new StartingSkillsViewModel();
+            startingToolsViewModel = new StartingToolsViewModel();
         }
 
         public ClassProficiencyViewModel(ProficiencyModel proficiencyModel, bool isMultiClassSelected) :base()
@@ -25,6 +38,11 @@ namespace FantasyModuleParser.Classes.ViewModels
                 IsMultiProficiencyOptionValue = Visibility.Hidden;
             else
                 IsMultiProficiencyOptionValue = Visibility.Visible;
+
+            startingArmorOptionViewModel = new StartingArmorOptionViewModel(proficiencyModel);
+            startingWeaponOptionViewModel = new StartingWeaponOptionViewModel(proficiencyModel);
+            startingSkillsViewModel = new StartingSkillsViewModel(proficiencyModel);
+            startingToolsViewModel= new StartingToolsViewModel(proficiencyModel);
         }
 
         public bool IsStrengthSavingThrowChecked

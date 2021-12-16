@@ -17,6 +17,9 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <local:StartingToolsViewModel></local:StartingToolsViewModel>
+    </UserControl.DataContext>
     <Grid x:Name="StartingToolLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"/>
@@ -32,9 +35,15 @@
         <Label Content="Tools" Grid.Row="0" />
 
         <ListBox Name="StartingToolsListBox" Grid.Row="1" Grid.ColumnSpan="2" 
-                         ItemsSource="{Binding Source={extension:Enumeration {x:Type classEnum:ClassStartingToolEnum}}}"
+                         ItemsSource="{Binding StartingToolsList}"
                          SelectedValuePath="Value" DisplayMemberPath="Description" SelectionMode="Multiple"
-                         SelectionChanged="StartingToolsListBox_OnSelectionChanged"/>
+                         SelectionChanged="StartingToolsListBox_OnSelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
 
         <!-- Number of Gaming Sets -->
         <StackPanel Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Vertical">

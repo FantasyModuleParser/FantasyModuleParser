@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls.ClassProficiency"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="450">
+    <UserControl.DataContext>
+        <local:StartingWeaponOptionViewModel></local:StartingWeaponOptionViewModel>
+    </UserControl.DataContext>
     <Grid x:Name="StartingWeaponOptionLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>

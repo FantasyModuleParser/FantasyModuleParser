@@ -7,8 +7,12 @@
              xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls.ClassProficiency"
              xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
              xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
+             xmlns:model="clr-namespace:FantasyModuleParser.Classes.Model"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
+    <UserControl.DataContext>
+        <local:StartingSkillsViewModel></local:StartingSkillsViewModel>
+    </UserControl.DataContext>
     <Grid x:Name="StartingSkillsUCLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"/>
@@ -22,7 +26,7 @@
         <Label Content="# of Skills" Grid.Row="0" />
         <ComboBox Grid.Row="0" Grid.Column="1"
                   SelectedIndex="0"
-                  SelectedValue="{Binding Path=NumberOfSkillsToChoose, Mode=TwoWay}">
+                  SelectedValue="{Binding NumberOfSkillsToChoose}">
             <sys:Int32>0</sys:Int32>
             <sys:Int32>1</sys:Int32>
             <sys:Int32>2</sys:Int32>
@@ -32,8 +36,14 @@
         </ComboBox>
 
         <ListBox Name="SkillAttributeEnumListBox" Grid.Row="2" Grid.ColumnSpan="2" 
-                         ItemsSource="{Binding Source={extension:Enumeration {x:Type classEnum:SkillAttributeEnum}}}"
+                         ItemsSource="{Binding SkillsList}"
                          SelectedValuePath="Value" DisplayMemberPath="Description" SelectionMode="Multiple"
-                         SelectionChanged="SkillAttributeEnumListBox_OnSelectionChanged"/>
+                         SelectionChanged="SkillAttributeEnumListBox_OnSelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
     </Grid>
 </UserControl>

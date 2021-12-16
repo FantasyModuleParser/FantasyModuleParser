@@ -566,6 +566,7 @@
     <Compile Include="Classes\Model\ClassSpecialization.cs" />
     <Compile Include="Classes\Model\ProficiencyModel.cs" />
     <Compile Include="Classes\Model\ProficiencyBonusModel.cs" />
+    <Compile Include="Classes\Model\SelectableItem.cs" />
     <Compile Include="Classes\Model\SpellSlotModel.cs" />
     <Compile Include="Classes\Converters\ProficiencySavingThrowConverter.cs" />
     <Compile Include="Classes\UserControls\ClassFirstLevelUC.xaml.cs">
@@ -586,18 +587,22 @@
     <Compile Include="Classes\UserControls\ClassProficiencyUC.xaml.cs">
       <DependentUpon>ClassProficiencyUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\ClassProficiencyViewModelBase.cs" />
     <Compile Include="Classes\UserControls\ClassProficiency\StartingArmorOptionUC.xaml.cs">
       <DependentUpon>StartingArmorOptionUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\UserControls\ClassProficiency\StartingSkillsUC.xaml.cs">
       <DependentUpon>StartingSkillsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingSkillsViewModel.cs" />
     <Compile Include="Classes\UserControls\ClassProficiency\StartingToolsUC.xaml.cs">
       <DependentUpon>StartingToolsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingToolsViewModel.cs" />
     <Compile Include="Classes\UserControls\ClassProficiency\StartingWeaponOptionUC.xaml.cs">
       <DependentUpon>StartingWeaponOptionUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingWeaponOptionViewModel.cs" />
     <Compile Include="Classes\UserControls\ClassSpecializationUC.xaml.cs">
       <DependentUpon>ClassSpecializationUC.xaml</DependentUpon>
     </Compile>
@@ -606,6 +611,7 @@
     </Compile>
     <Compile Include="Classes\ViewModels\ClassOptionControllViewModel.cs" />
     <Compile Include="Classes\ViewModels\ClassProficiencyViewModel.cs" />
+    <Compile Include="Classes\UserControls\ClassProficiency\StartingArmorOptionViewModel.cs" />
     <Compile Include="Classes\ViewModels\ClassSpecializationViewModel.cs" />
     <Compile Include="Converters\LanguageModelConverter.cs" />
     <Compile Include="Converters\SelectableActionModelConverter.cs" />

@@ -21,6 +21,9 @@
             <Setter Property="FlowDirection" Value="RightToLeft" />
         </Style>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <local:StartingArmorOptionViewModel></local:StartingArmorOptionViewModel>
+    </UserControl.DataContext>
     <Grid x:Name="StartingArmorOptionLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>

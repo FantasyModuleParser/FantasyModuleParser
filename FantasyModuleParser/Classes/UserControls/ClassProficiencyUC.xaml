@@ -129,13 +129,13 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <classProfUC:StartingArmorOptionUC Grid.Row="0" ProficiencyModelValue="{Binding Path=ProficiencyModelValue}"></classProfUC:StartingArmorOptionUC>
+            <classProfUC:StartingArmorOptionUC Grid.Row="0" DataContext="{Binding startingArmorOptionViewModel}"></classProfUC:StartingArmorOptionUC>
 
             <!--<Label Grid.Row="0" Grid.Column="0" Content="Armor" VerticalAlignment="Center"/>
             <TextBox Grid.Row="0" Grid.Column="1"/>
             <Button IsEnabled="False" Content="Armor Options" Grid.Row="0" Grid.Column="2" />-->
 
-            <classProfUC:StartingWeaponOptionUC Grid.Row="1" ProficiencyModelValue="{Binding Path=ProficiencyModelValue}"></classProfUC:StartingWeaponOptionUC>
+            <classProfUC:StartingWeaponOptionUC Grid.Row="1" DataContext="{Binding startingWeaponOptionViewModel}"></classProfUC:StartingWeaponOptionUC>
         </Grid>
         <!-- Armor -->
         <!-- Weapon -->
@@ -148,7 +148,7 @@
                 <ColumnDefinition Width="222*" MinWidth="80"/>
             </Grid.ColumnDefinitions>
 
-            <classProfUC:StartingSkillsUC Grid.Column="0" ProficiencyModelValue="{Binding ProficiencyModelValue}"/>
+            <classProfUC:StartingSkillsUC Grid.Column="0" DataContext="{Binding startingSkillsViewModel}"/>
 
             <Separator Grid.Column="1">
                 <Separator.LayoutTransform>
@@ -156,7 +156,7 @@
                 </Separator.LayoutTransform>
             </Separator>
 
-            <classProfUC:StartingToolsUC Grid.Column="2" ProficiencyModelValue="{Binding  ProficiencyModelValue}" />
+            <classProfUC:StartingToolsUC Grid.Column="2" DataContext="{Binding startingToolsViewModel}" />
 
         </Grid>
 
