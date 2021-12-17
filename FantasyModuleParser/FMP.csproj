@@ -280,6 +280,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Classes\UserControls\ClassFeatureUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Classes\UserControls\ClassFirstLevelUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -569,6 +573,9 @@
     <Compile Include="Classes\Model\SelectableItem.cs" />
     <Compile Include="Classes\Model\SpellSlotModel.cs" />
     <Compile Include="Classes\Converters\ProficiencySavingThrowConverter.cs" />
+    <Compile Include="Classes\UserControls\ClassFeatureUC.xaml.cs">
+      <DependentUpon>ClassFeatureUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\UserControls\ClassFirstLevelUC.xaml.cs">
       <DependentUpon>ClassFirstLevelUC.xaml</DependentUpon>
     </Compile>
@@ -609,6 +616,7 @@
     <Compile Include="Classes\UserControls\ClassSpellSlotUC.xaml.cs">
       <DependentUpon>ClassSpellSlotUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\ViewModels\ClassFeatureViewModel.cs" />
     <Compile Include="Classes\ViewModels\ClassOptionControllViewModel.cs" />
     <Compile Include="Classes\ViewModels\ClassProficiencyViewModel.cs" />
     <Compile Include="Classes\UserControls\ClassProficiency\StartingArmorOptionViewModel.cs" />

@@ -111,145 +111,20 @@
                 </ClassUC:ClassProficiencyUC>
 
                 <!-- Class Features -->
-                <TabControl>
-                    <TabControl.Style>
-                        <Style TargetType="{x:Type TabControl}">
+                <ClassUC:ClassFeatureUC DataContext="{Binding ClassFeatureViewModel}">
+                    <ClassUC:ClassFeatureUC.Style>
+                        <Style TargetType="{x:Type ClassUC:ClassFeatureUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ClassMenuOptionEnum}"
+                                <DataTrigger Binding="{Binding Path=DataContext.ClassMenuOptionEnum, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                                          Value="{x:Static classEnum:ClassMenuOptionEnum.ClassFeatures}">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </TabControl.Style>
-                    <TabItem Header="Class Feature" IsEnabled="True" HorizontalAlignment="Left">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="120"/>
-                                <RowDefinition Height="5"/>
-                                <RowDefinition Height="1*" />
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="1*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="86.667" />
-                                    <ColumnDefinition Width="33.333"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Content="Class Feature Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-                                <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding SelectedClassFeature.Name, UpdateSourceTrigger=PropertyChanged}" />
-
-                                <Label Content="Level" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
-                                <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding SelectedClassFeature.Level}" SelectedIndex="0">
-                                    <sys:Int32>1</sys:Int32>
-                                    <sys:Int32>2</sys:Int32>
-                                    <sys:Int32>3</sys:Int32>
-                                    <sys:Int32>4</sys:Int32>
-                                    <sys:Int32>5</sys:Int32>
-                                    <sys:Int32>6</sys:Int32>
-                                    <sys:Int32>7</sys:Int32>
-                                    <sys:Int32>8</sys:Int32>
-                                    <sys:Int32>9</sys:Int32>
-                                    <sys:Int32>10</sys:Int32>
-                                    <sys:Int32>11</sys:Int32>
-                                    <sys:Int32>12</sys:Int32>
-                                    <sys:Int32>13</sys:Int32>
-                                    <sys:Int32>14</sys:Int32>
-                                    <sys:Int32>15</sys:Int32>
-                                    <sys:Int32>16</sys:Int32>
-                                    <sys:Int32>17</sys:Int32>
-                                    <sys:Int32>18</sys:Int32>
-                                    <sys:Int32>19</sys:Int32>
-                                    <sys:Int32>20</sys:Int32>
-                                </ComboBox>
-
-                                <!-- <TextBlock Text="Subclass Feature (OPTIONAL)" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Grid.ColumnSpan="2"/> -->
-                                <!-- <ComboBox Grid.Row="2" Grid.Column="2" IsEnabled="True" -->
-                                <!--           ItemsSource="{Binding Path=ClassModelValue.ClassSpecializations}" -->
-                                <!--           SelectedValue="{Binding Path=SelectedClassSpecialization}" -->
-                                <!--           DisplayMemberPath="Name"/> -->
-
-                                <Button Grid.Row="3" Grid.Column="2"  Content="Clear Feature" HorizontalAlignment="Left"
-                                        Command="{Binding ClearSelectedClassFeatureCommand}"/>
-                                <Button Grid.Row="3" Grid.Column="2"  Content="Add / Update Feature" HorizontalAlignment="Right"
-                                        Command="{Binding AddClassFeatureCommand}"
-                                        CommandParameter="{Binding SelectedClassFeature.Name}"/>
-                            </Grid>
-                            <Separator Grid.Row="1" />
-                            <Grid Grid.Row="2">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-
-                                <Label Content="Existing Class Features" Grid.Row="0" FontWeight="Bold" />
-                                <ListBox x:Name="ClassFeatureListBox"
-                                 Grid.Row="1" ItemsSource="{Binding ParentClassModel.ClassFeatures, Mode=TwoWay}"
-                                 SelectionMode="Single" HorizontalContentAlignment="Stretch"
-                                         SelectedValue="{Binding SelectedClassFeature}">
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate DataType="{x:Type classModel:ClassFeature}">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                    <ColumnDefinition Width="80"></ColumnDefinition>
-                                                    <ColumnDefinition Width="30"></ColumnDefinition>
-                                                    <ColumnDefinition Width="80"></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Text="{Binding Name}"  />
-                                                <Label Content="Level: " Grid.Column="1" />
-                                                <TextBlock Text="{Binding Level}" Grid.Column="2" />
-                                                <Button Content="Remove" Grid.Column="3"
-                                                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}, 
-                                                                    Path=DataContext.RemoveClassFeatureCommand}"
-                                                        CommandParameter="{Binding}"></Button>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                    <ListBox.ContextMenu>
-                                        <ContextMenu>
-                                            <MenuItem Name="FeaturnSpecialNameMenuItem">
-                                                <MenuItem.Style>
-                                                    <Style TargetType="{x:Type MenuItem}">
-                                                        <Setter Property="FontWeight" Value="Bold" />
-                                                        <Setter Property="Background" Value="Yellow"></Setter>
-                                                    </Style>
-                                                </MenuItem.Style>
-                                            </MenuItem>
-                                            <MenuItem Header="Un-Assign"
-                                              Command="{Binding Path=UnAssignClassSpecializationCommand}"
-                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},
-                                                    Path=SelectedValue}"></MenuItem>
-                                            <MenuItem Header="Assign To Specialization"
-                                              ItemsSource="{Binding Path=ClassModelValue.ClassSpecializations}"
-                                              DisplayMemberPath="Name">
-                                                <MenuItem.ItemContainerStyle>
-                                                    <Style TargetType="{x:Type MenuItem}">
-                                                        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}, 
-                                                    Path=PlacementTarget.DataContext.AssignClassSpecializationCommand}"/>
-                                                        <Setter Property="CommandParameter"
-                                                        Value="{Binding}" />
-                                                    </Style>
-                                                </MenuItem.ItemContainerStyle>
-                                            </MenuItem>
-                                        </ContextMenu>
-                                    </ListBox.ContextMenu>
-                                </ListBox>
-                            </Grid>
-                        </Grid>
-
-                    </TabItem>
-                    <TabItem Header="{Binding SelectedClassFeatureDescription}" HorizontalAlignment="Left" >
-                        <sharedUC:GenericDescriptionUC Margin="0" Padding="0" DescriptionText="{Binding SelectedClassFeature.Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" />
-                    </TabItem>
-                </TabControl>
-
+                    </ClassUC:ClassFeatureUC.Style>
+                </ClassUC:ClassFeatureUC>
+                
                 <!-- TODO:  Class Specialization -->
                 <!--<ClassUC:ClassSpecializationUC x:Name="ClassSpecializationUserControl" ClassModelValue="{Binding ParentClassModel, Mode=TwoWay}">-->
                 <ClassUC:ClassSpecializationUC DataContext="{Binding ClassSpecializationViewModel}">
@@ -266,7 +141,7 @@
                     </ClassUC:ClassSpecializationUC.Style>
                 </ClassUC:ClassSpecializationUC>
                 <!-- TODO:  Starting Equipment -->
-                <sharedUserControl:GenericDescriptionUC x:Name="StartingEquipmentUserControl" DescriptionText="{Binding StartingEquipment}" >
+                <sharedUserControl:GenericDescriptionUC x:Name="StartingEquipmentUserControl" DescriptionText="{Binding ParentClassModel.StartingEquipment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                     <sharedUserControl:GenericDescriptionUC.Style>
                         <Style TargetType="{x:Type sharedUserControl:GenericDescriptionUC}">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -297,7 +172,7 @@
                 </sharedUserControl:GenericDescriptionUC>
                 
                 <!-- TODO:  Class Image -->
-                <sharedUserControl:GenericImageUserControl x:Name="ClassImageUserControl" LabelNameText="Class Image Filepath:">
+                <sharedUserControl:GenericImageUserControl x:Name="ClassImageUserControl" LabelNameText="Class Image Filepath:" ImageFilePath="{Binding ParentClassModel.ImageFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <sharedUserControl:GenericImageUserControl.Style>
                         <Style TargetType="{x:Type sharedUserControl:GenericImageUserControl}">
                             <Setter Property="Visibility" Value="Hidden"/>

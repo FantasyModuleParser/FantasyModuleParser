@@ -30,8 +30,9 @@ namespace FantasyModuleParser.Classes.Model
         // The following attributes are catch-alls, in that there's no hardcoded way to generate
         // the required data, such as custom weapons / tools in a campaign setting:
 
-        public string ToolProficiencies;
-        public string StartingEquipment;
+        public string ToolProficiencies { get; set; }
+        public string StartingEquipment { get; set; }
+        public string ImageFilePath { get; set; }
 
         public ClassModel()
         {

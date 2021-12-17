@@ -169,6 +169,11 @@ namespace FantasyModuleParser.Equipment.UserControls
             PreviewKeyDown += DescriptionUC_PreviewKeyDown;
             LayoutRoot.DataContext = this;
 
+            //if(DescriptionText == null || DescriptionText.Length == 0)
+            //{
+            //    DescriptionText = DescriptionDefaultText;
+            //}
+
             // Below is a proof of concept in styling the Markdown equivalent of the description
             // found from within Fantasy Grounds Unity
 
