@@ -31,10 +31,9 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Class Specialization Name" Grid.Row="0" Grid.Column="0" />
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=SelectedClassSpecialization.Name, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedClassSpecializationName, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <Button Grid.Row="1" Grid.Column="1"  Content="Clear Feature" HorizontalAlignment="Left"
-                                Click="ClearClassFeatureButton_OnClick"/>
+                        <Button Grid.Row="1" Grid.Column="1"  Content="Clear Feature" HorizontalAlignment="Left" />
 
                         <Button Grid.Row="1" Grid.Column="1"  Content="Add / Update Specialization" 
                                 HorizontalAlignment="Right" Padding="5,0"
@@ -63,7 +62,8 @@
                          <ListBox Grid.Row="1"/>
                         <ListBox Grid.Row="1" ItemsSource="{Binding ClassModelValue.ClassSpecializations }"
                                  SelectionMode="Single" HorizontalContentAlignment="Stretch"
-                                 SelectionChanged="OnClassSpecializationListBox_SelectionChangedEvent" Grid.ColumnSpan="2" >
+                                 SelectedValue="{Binding SelectedClassSpecialization}"
+                                 Grid.ColumnSpan="2" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type classModel:ClassSpecialization}">
                                     <Grid>
@@ -86,15 +86,15 @@
                          <!--TODO:  This listbox is populated by the selected Specialization's attached features--> 
                          <!--TODO:  Consider an 'Unassigned' option for Specialization... or maybe the Class name as a default option?--> 
                         <ListBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" 
-                                 ItemsSource="{Binding Path=SelectedClassSpecialization.ClassFeatures, Mode=TwoWay}"
+                                 ItemsSource="{Binding SelectedClassSpecialization.ClassFeatures}"
                                  DisplayMemberPath="Name"/>
                     </Grid>
                 </Grid>
 
             </TabItem>
-            <TabItem Header="{Binding Path=TabDescriptionLabel}" IsEnabled="{Binding Path=IsClassSpecialSelected}" HorizontalAlignment="Left">
+            <TabItem Header="{Binding TabDescriptionLabel}" IsEnabled="{Binding IsClassSpecialSelected}" HorizontalAlignment="Left">
                 <sharedUC:GenericDescriptionUC Margin="0" Padding="0"
-                                               DescriptionText="{Binding SelectedClassSpecialization.Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }"/>
+                                               DescriptionText="{Binding SelectedClassSpecializationDescription, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </TabItem>
         </TabControl>
     </Grid>

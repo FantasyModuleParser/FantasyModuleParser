@@ -30,9 +30,24 @@ namespace FantasyModuleParser.Classes.ViewModels
             get { return _classModelValue; }
             set { _classModelValue = value; }
         }
+        public string SelectedClassSpecializationName
+        {
+            get { return SelectedClassSpecialization?.Name; }
+            set { SelectedClassSpecialization.Name = value;
+                RaisePropertyChanged(nameof(SelectedClassSpecializationName));
+            }
+        }
+        public string SelectedClassSpecializationDescription
+        {
+            get { return SelectedClassSpecialization?.Description; }
+            set { SelectedClassSpecialization.Description = value;
+            RaisePropertyChanged(nameof(SelectedClassSpecializationDescription));
+            }
+        }
 
-
-        public bool IsClassSpecialSelected { get; set; }
+        public bool IsClassSpecialSelected { get { return SelectedClassSpecialization != null; }
+            private set { }
+        }
 
         public string TabDescriptionLabel
         {
@@ -48,6 +63,11 @@ namespace FantasyModuleParser.Classes.ViewModels
             {
                 this._selectedClassSpecialization = value;
                 RaisePropertyChanged(nameof(SelectedClassSpecialization));
+                RaisePropertyChanged(nameof(SelectedClassSpecialization.ClassFeatures));
+                RaisePropertyChanged(nameof(TabDescriptionLabel));
+                RaisePropertyChanged(nameof(IsClassSpecialSelected));
+                RaisePropertyChanged(nameof(SelectedClassSpecializationName));
+                RaisePropertyChanged(nameof(SelectedClassSpecializationDescription));
             }
         }
 
@@ -109,7 +129,8 @@ namespace FantasyModuleParser.Classes.ViewModels
 
         protected virtual void OnRemoveClassSpecializationAction(ClassSpecialization classSpecialization)
         {
-            ClassModelValue.ClassSpecializations.Remove(classSpecialization);
+            ClassModelValue.RemoveClassSpecialization(classSpecialization);
+            RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
         }
 
 

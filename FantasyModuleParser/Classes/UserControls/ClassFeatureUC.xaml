@@ -35,7 +35,7 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Class Feature Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding SelectedClassFeature.Name, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding SelectedClassFeatureName, UpdateSourceTrigger=PropertyChanged}" />
 
                         <Label Content="Level" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
                         <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding SelectedClassFeature.Level}" SelectedIndex="0">

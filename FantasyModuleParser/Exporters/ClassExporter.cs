@@ -75,6 +75,8 @@ namespace FantasyModuleParser.Exporters
 
 		private static void Class_Abilities_Specializations(XmlWriter xmlWriter, ClassModel classModel)
 		{
+			if (classModel.ClassSpecializations == null)
+				return;
 			foreach (ClassSpecialization specialization in classModel.ClassSpecializations)
 			{
 				xmlWriter.WriteStartElement(SpecializationToXML(specialization));

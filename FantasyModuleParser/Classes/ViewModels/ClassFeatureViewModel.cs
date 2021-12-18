@@ -13,11 +13,13 @@ namespace FantasyModuleParser.Classes.ViewModels
         public ClassFeatureViewModel() : base ()
         {
             classModel = new ClassModel();
+            SelectedClassFeature = new ClassFeature();
         }
 
         public ClassFeatureViewModel(ClassModel classModel) : base()
         {
             this.classModel = classModel;
+            SelectedClassFeature = new ClassFeature();
         }
 
         private ClassFeature _selectedClassFeature;
@@ -72,10 +74,8 @@ namespace FantasyModuleParser.Classes.ViewModels
 
         protected virtual void OnRemoveClassFeature(ClassFeature classFeature)
         {
-            if (classFeature == null)
-                return;
-
-            classModel.ClassFeatures.Remove(classFeature);
+            classModel.RemoveClassFeature(classFeature);
+            RaisePropertyChanged(nameof(classModel.ClassFeatures));
         }
 
         private ICommand _clearSelectedFeatureCommand;
@@ -128,6 +128,14 @@ namespace FantasyModuleParser.Classes.ViewModels
         public string SelectedClassFeatureDescription
         {
             get { return SelectedClassFeature?.Name + " - Description"; }
+        }
+
+        public string SelectedClassFeatureName
+        {
+            get { return SelectedClassFeature?.Name; }
+            set { SelectedClassFeature.Name = value;
+            RaisePropertyChanged(nameof(SelectedClassFeatureName));
+            }
         }
     }
 }

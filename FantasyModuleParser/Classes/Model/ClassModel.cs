@@ -68,11 +68,17 @@ namespace FantasyModuleParser.Classes.Model
 
         public void RemoveClassFeature(ClassFeature classFeature)
         {
-            throw new NotImplementedException();
+            if (classFeature == null)
+                return;
+
+            ClassFeatures.Remove(classFeature);
+
+            foreach (ClassSpecialization classSpecialization in ClassSpecializations)
+                classSpecialization.ClassFeatures.Remove(classFeature);
         }
         public void RemoveClassSpecialization(ClassSpecialization classSpecialization)
         {
-            throw new NotImplementedException();
+            ClassSpecializations.Remove(classSpecialization);
         }
 
 
