@@ -133,6 +133,29 @@ namespace FantasyModuleParser.Classes.ViewModels
             RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
         }
 
+        private ICommand _removeClassFeatureCommand;
+        public ICommand RemoveClassFeatureCommand
+        {
+            get
+            {
+                if (_removeClassFeatureCommand == null)
+                {
+                    _removeClassFeatureCommand = new ActionCommand(param =>
+                        OnRemoveClassFeatureAction(param as ClassFeature));
+                }
+                return _removeClassFeatureCommand;
+            }
+        }
+
+        protected virtual void OnRemoveClassFeatureAction(ClassFeature classFeature)
+        {
+            if(SelectedClassSpecialization != null)
+            {
+                SelectedClassSpecialization.ClassFeatures.Remove(classFeature);
+            }
+            RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
+        }
+
 
         //** ================ DELETE EVERYTHING BELOW HERE ==================== **//
 

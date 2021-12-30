@@ -2,8 +2,10 @@
 using FantasyModuleParser.NPC.Commands;
 using FantasyModuleParser.NPC.ViewModel;
 using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace FantasyModuleParser.Classes.ViewModels
 {
@@ -26,7 +28,18 @@ namespace FantasyModuleParser.Classes.ViewModels
         public ClassFeature SelectedClassFeature
         {
             get { return this._selectedClassFeature; }
-            set { Set(ref _selectedClassFeature, value); RaisePropertyChanged(nameof(SelectedClassFeatureDescription)); }
+            set { Set(ref _selectedClassFeature, value);
+
+                // Re-sort the Class Features based on the Level value (Ascending)
+                if(this.classModel != null && this.classModel.ClassFeatures != null)
+                { 
+                    this.classModel.ClassFeatures = this.classModel.ClassFeatures.OrderBy(_ => _.Level).ToList();
+                }
+                RaisePropertyChanged(nameof(this.classModel.ClassFeatures));
+                RaisePropertyChanged(nameof(SelectedClassFeatureName));
+                RaisePropertyChanged(nameof(SelectedClassFeatureDescription));
+                RaisePropertyChanged(nameof(GetClassSpecializationNameForSelectedClassFeature));
+            }
         }
         private ICommand _addClassFeatureCommand;
         public ICommand AddClassFeatureCommand
@@ -47,9 +60,10 @@ namespace FantasyModuleParser.Classes.ViewModels
         {
             if (classModel.ClassFeatures == null)
             {
-                classModel.ClassFeatures = new ObservableCollection<ClassFeature>();
+                classModel.ClassFeatures = new List<ClassFeature>();
             }
             classModel.ClassFeatures.Add(SelectedClassFeature.ShallowCopy());
+            classModel.ClassFeatures = classModel.ClassFeatures.OrderBy(_ => _.Level).ToList();
             RaisePropertyChanged(nameof(classModel));
         }
 
@@ -105,7 +119,8 @@ namespace FantasyModuleParser.Classes.ViewModels
                 if (_assignClassSpecializationCommand == null)
                 {
                     _assignClassSpecializationCommand = new ActionCommand(
-                        param => OnAssignClassSpecializationCommand(param as ClassSpecialization));
+                        param => OnAssignClassSpecializationCommand(param as ClassSpecialization), 
+                        param => !IsSelectedClassFeatureAssignedToSpecialization());
                 }
                 return _assignClassSpecializationCommand;
             }
@@ -136,6 +151,60 @@ namespace FantasyModuleParser.Classes.ViewModels
             set { SelectedClassFeature.Name = value;
             RaisePropertyChanged(nameof(SelectedClassFeatureName));
             }
+        }
+
+        private ICommand _unassignClassSpecializationCommand;
+        public ICommand UnassignClassSpecializationCommand
+        {
+            get
+            {
+                if (_unassignClassSpecializationCommand == null)
+                {
+                    _unassignClassSpecializationCommand = new ActionCommand(param => OnUnassignClassSpecializationAction(),
+                        //param => !String.IsNullOrWhiteSpace(SelectedClassFeature?.Name));
+                        param => IsSelectedClassFeatureAssignedToSpecialization());
+                }
+                return _unassignClassSpecializationCommand;
+            }
+        }
+
+        protected virtual void OnUnassignClassSpecializationAction()
+        {
+            foreach (ClassSpecialization classSpecialization in this.classModel.ClassSpecializations)
+            {
+                List<ClassFeature> classFeatureList = classSpecialization.ClassFeatures
+                    .Where(_ => _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                foreach(ClassFeature removeClassFeature in classFeatureList)
+                {
+                    classSpecialization.ClassFeatures.Remove(removeClassFeature);
+                }
+            }
+        }
+
+        protected virtual bool IsSelectedClassFeatureAssignedToSpecialization()
+        {
+            foreach(ClassSpecialization classSpecialization in this.classModel.ClassSpecializations)
+            {
+                if (classSpecialization.ClassFeatures
+                    .FirstOrDefault(_ => _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)
+                    return true;
+            }
+            return false;
+        }
+
+        public string GetClassSpecializationNameForSelectedClassFeature
+        {
+            get { 
+                foreach (ClassSpecialization classSpecialization in this.classModel.ClassSpecializations)
+                {
+                    if (classSpecialization.ClassFeatures
+                        .FirstOrDefault(_ => _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)
+                        return String.Format("Un-Assign from {0}", classSpecialization.Name);
+                }
+                return "";
+            }
+            private set { }
         }
     }
 }

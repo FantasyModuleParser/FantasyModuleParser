@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Equipment.Enums;
 
@@ -9,9 +10,9 @@ namespace FantasyModuleParser.Classes.Model
         public ObservableCollection<SavingThrowAttributeEnum> SavingThrowAttributes;
         // Typically this number ranges from 0 -> 3;
         public int NumberOfSkillsToChoose { get; set; }
-        public ObservableCollection<SkillAttributeEnum> SkillAttributeOptions;
+        public HashSet<SkillAttributeEnum> SkillAttributeOptions;
 
-        public ObservableCollection<ClassStartingToolEnum> ClassStartingToolOptions;
+        public HashSet<ClassStartingToolEnum> ClassStartingToolOptions;
         public int NumberOfGamingSets { get; set; }
         public int NumberOfMusicalInstruments { get; set; }
 
@@ -26,8 +27,8 @@ namespace FantasyModuleParser.Classes.Model
         public ProficiencyModel()
         {
             SavingThrowAttributes = new ObservableCollection<SavingThrowAttributeEnum>();
-            SkillAttributeOptions = new ObservableCollection<SkillAttributeEnum>();
-            ClassStartingToolOptions = new ObservableCollection<ClassStartingToolEnum>();
+            SkillAttributeOptions = new HashSet<SkillAttributeEnum>();
+            ClassStartingToolOptions = new HashSet<ClassStartingToolEnum>();
             ArmorProficiencies = new ObservableCollection<ArmorEnum>();
         }
     }

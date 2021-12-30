@@ -13,6 +13,9 @@
     <UserControl.DataContext>
         <viewModel:ClassFeatureViewModel></viewModel:ClassFeatureViewModel>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Class Feature" IsEnabled="True" HorizontalAlignment="Left">
@@ -38,7 +41,7 @@
                         <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding SelectedClassFeatureName, UpdateSourceTrigger=PropertyChanged}" />
 
                         <Label Content="Level" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding SelectedClassFeature.Level}" SelectedIndex="0">
+                        <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding SelectedClassFeature.Level, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0">
                             <sys:Int32>1</sys:Int32>
                             <sys:Int32>2</sys:Int32>
                             <sys:Int32>3</sys:Int32>
@@ -105,20 +108,25 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                             <ListBox.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Un-Assign"
-                                              Command="{Binding Path=UnAssignClassSpecializationCommand}"
-                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},
-                                                    Path=SelectedValue}"></MenuItem>
+                                <ContextMenu >
+                                    <MenuItem
+                                                Header="{Binding GetClassSpecializationNameForSelectedClassFeature}"
+                                              Command="{Binding UnassignClassSpecializationCommand}"
+                                              CommandParameter="{Binding Path=DataContext.SelectedClassFeature}"
+                                                      Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={StaticResource booleanToVisibilityConverter}}" >
+                                    </MenuItem>
                                     <MenuItem Header="Assign To Specialization"
                                               ItemsSource="{Binding classModel.ClassSpecializations, Mode=TwoWay}"
-                                              DisplayMemberPath="Name">
+                                              DisplayMemberPath="Name"
+                                              Command="{Binding AssignClassSpecializationCommand}"
+                                              Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={StaticResource booleanToVisibilityConverter}}">
                                         <MenuItem.ItemContainerStyle>
                                             <Style TargetType="{x:Type MenuItem}">
                                                 <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}, 
                                                     Path=PlacementTarget.DataContext.AssignClassSpecializationCommand}"/>
                                                 <Setter Property="CommandParameter"
                                                         Value="{Binding}" />
+                                                <Setter Property="Visibility" Value="Visible"/>
                                             </Style>
                                         </MenuItem.ItemContainerStyle>
                                     </MenuItem>

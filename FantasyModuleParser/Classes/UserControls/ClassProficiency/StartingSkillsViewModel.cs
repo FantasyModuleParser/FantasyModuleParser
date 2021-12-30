@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using static FantasyModuleParser.Extensions.EnumerationExtension;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
 {
@@ -21,7 +22,7 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
                 return;
 
             if (proficiencyModel.SkillAttributeOptions == null)
-                proficiencyModel.SkillAttributeOptions = new ObservableCollection<SkillAttributeEnum>();
+                proficiencyModel.SkillAttributeOptions = new HashSet<SkillAttributeEnum>();
 
             var skillAttributeOptions = (SkillAttributeEnum[])Enum.GetValues(typeof(SkillAttributeEnum));
             foreach (var skillAttributeOption in skillAttributeOptions)

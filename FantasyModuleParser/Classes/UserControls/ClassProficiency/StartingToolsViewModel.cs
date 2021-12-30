@@ -19,7 +19,7 @@ namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
         public StartingToolsViewModel(ProficiencyModel proficiencyModel) : base(proficiencyModel)
         {
             if (proficiencyModel.ClassStartingToolOptions == null)
-                proficiencyModel.ClassStartingToolOptions = new ObservableCollection<ClassStartingToolEnum>();
+                proficiencyModel.ClassStartingToolOptions = new HashSet<ClassStartingToolEnum>();
 
             var classStartingToolOptions = (ClassStartingToolEnum[])Enum.GetValues(typeof(ClassStartingToolEnum));
             foreach (var classStartingToolOption in classStartingToolOptions)

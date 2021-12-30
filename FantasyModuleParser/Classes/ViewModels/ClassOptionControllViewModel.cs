@@ -15,6 +15,8 @@ namespace FantasyModuleParser.Classes.ViewModels
     {
         private ClassModel _classModel;
         private ModuleService _moduleService;
+
+        private bool _isAddToProjectActionUsed = false;
         // private ModuleModel _moduleModel;
         // private CategoryModel _categoryModel;
 
@@ -94,7 +96,7 @@ namespace FantasyModuleParser.Classes.ViewModels
             get { return _footerSelectedModel; }
             set
             {
-                if (value is ClassModel)
+                if (value is ClassModel && !_isAddToProjectActionUsed)
                 {
                     ParentClassModel = (value as ClassModel).ShallowCopy();
                     ClassSpecializationViewModel = new ClassSpecializationViewModel(ParentClassModel);
@@ -103,6 +105,7 @@ namespace FantasyModuleParser.Classes.ViewModels
                     ClassFeatureViewModel = new ClassFeatureViewModel(ParentClassModel);
                     raiseAllUIProperties();
                 }
+                _isAddToProjectActionUsed = false;
                 Set(ref _footerSelectedModel, value);
             }
         }
@@ -158,6 +161,7 @@ namespace FantasyModuleParser.Classes.ViewModels
              _moduleService.AddClassToCategory(ParentClassModel, SelectedCategoryModel.Name);
             RaisePropertyChanged(nameof(ModuleCategoriesSource));
             RaisePropertyChanged(nameof(SelectedCategoryModel));
+            _isAddToProjectActionUsed = true;
         }
     }
 }

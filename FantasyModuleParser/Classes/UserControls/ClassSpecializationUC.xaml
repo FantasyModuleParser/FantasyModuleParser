@@ -48,8 +48,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="221*"/>
                             <ColumnDefinition Width="2"/>
-                            <ColumnDefinition Width="96*"/>
-                            <ColumnDefinition Width="125*"/>
+                            <ColumnDefinition Width="220*"/>
                         </Grid.ColumnDefinitions>
 
                         <Label Content="Existing Class Specializations" Grid.Row="0" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,1.667,0" />
@@ -62,7 +61,7 @@
                          <ListBox Grid.Row="1"/>
                         <ListBox Grid.Row="1" ItemsSource="{Binding ClassModelValue.ClassSpecializations }"
                                  SelectionMode="Single" HorizontalContentAlignment="Stretch"
-                                 SelectedValue="{Binding SelectedClassSpecialization}"
+                                 SelectedValue="{Binding SelectedClassSpecialization, UpdateSourceTrigger=PropertyChanged}"
                                  Grid.ColumnSpan="2" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type classModel:ClassSpecialization}">
@@ -84,10 +83,26 @@
                         <Label Content="Features from Selected Specialization" Grid.Row="0" Grid.Column="2" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0.333,0,0.334,0" />
 
                          <!--TODO:  This listbox is populated by the selected Specialization's attached features--> 
-                         <!--TODO:  Consider an 'Unassigned' option for Specialization... or maybe the Class name as a default option?--> 
-                        <ListBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" 
-                                 ItemsSource="{Binding SelectedClassSpecialization.ClassFeatures}"
-                                 DisplayMemberPath="Name"/>
+                         <!--TODO:  Consider an 'Unassigned' option for Specialization... or maybe the Class name as a default option?-->
+                        <ListBox Grid.Row="1" Grid.Column="2"
+                                 SelectionMode="Single" HorizontalContentAlignment="Stretch"
+                                 ItemsSource="{Binding SelectedClassSpecialization.ClassFeatures}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type classModel:ClassFeature}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Name}"  />
+                                        <Button Content="Remove" Grid.Column="1"
+                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}, 
+                                                            Path=DataContext.RemoveClassFeatureCommand}"
+                                                CommandParameter="{Binding}"></Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </Grid>
                 </Grid>
 

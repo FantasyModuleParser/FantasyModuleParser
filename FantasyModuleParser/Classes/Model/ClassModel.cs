@@ -3,6 +3,7 @@ using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 
@@ -22,7 +23,7 @@ namespace FantasyModuleParser.Classes.Model
         public ProficiencyModel Proficiency;
         public ProficiencyModel MultiProficiency;
 
-        public ObservableCollection<ClassFeature> ClassFeatures { get; set; }
+        public List<ClassFeature> ClassFeatures { get; set; }
 
         public string ClassSpecializationDescription { get; set; }
         public ObservableCollection<ClassSpecialization> ClassSpecializations { get; set; }
