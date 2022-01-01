@@ -85,7 +85,7 @@
 
                         <Label Content="Existing Class Features" Grid.Row="0" FontWeight="Bold" />
                         <ListBox x:Name="ClassFeatureListBox"
-                                 Grid.Row="1" ItemsSource="{Binding classModel.ClassFeatures, Mode=TwoWay}"
+                                 Grid.Row="1" ItemsSource="{Binding classModel.ClassFeatures, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  SelectionMode="Single" HorizontalContentAlignment="Stretch"
                                          SelectedValue="{Binding SelectedClassFeature}">
                             <ListBox.ItemTemplate>

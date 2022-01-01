@@ -25,9 +25,10 @@
             <RowDefinition Height="160" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <ClassUC:ClassHeaderUC ClassModelName="{Binding ParentClassModel.Name}"
+            <!--<ClassUC:ClassHeaderUC ClassModelName="{Binding ParentClassModel.Name, UpdateSourceTrigger=PropertyChanged}"
                                    HitDiePerLevel="{Binding ParentClassModel.HitPointDiePerLevel}"
-                                   IsLocked="{Binding ParentClassModel.IsLocked, Mode=TwoWay}"/>
+                                   IsLocked="{Binding ParentClassModel.IsLocked, Mode=TwoWay}"/>-->
+            <ClassUC:ClassHeaderUC DataContext="{Binding ClassHeaderViewModel}"></ClassUC:ClassHeaderUC>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

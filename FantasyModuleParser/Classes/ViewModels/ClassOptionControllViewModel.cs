@@ -47,6 +47,13 @@ namespace FantasyModuleParser.Classes.ViewModels
             set { SetProperty(ref _classFeatureViewModel, value); }
         }
 
+        private ClassHeaderViewModel _classHeaderViewModel;
+        public ClassHeaderViewModel ClassHeaderViewModel
+        {
+            get { return _classHeaderViewModel; }
+            set { SetProperty(ref _classHeaderViewModel, value); }
+        }
+
         private ClassMenuOptionEnum _classMenuOptionEnum = ClassMenuOptionEnum.ClassSpecialization;
 
         public ClassModel ParentClassModel
@@ -99,10 +106,8 @@ namespace FantasyModuleParser.Classes.ViewModels
                 if (value is ClassModel && !_isAddToProjectActionUsed)
                 {
                     ParentClassModel = (value as ClassModel).ShallowCopy();
-                    ClassSpecializationViewModel = new ClassSpecializationViewModel(ParentClassModel);
-                    ClassProficiencyViewModel = new ClassProficiencyViewModel(ParentClassModel.Proficiency, false);
-                    ClassMultiClassProficiencyViewModel = new ClassProficiencyViewModel(ParentClassModel.MultiProficiency, true);
-                    ClassFeatureViewModel = new ClassFeatureViewModel(ParentClassModel);
+                    _resetAllViewModel(ParentClassModel);
+
                     raiseAllUIProperties();
                 }
                 _isAddToProjectActionUsed = false;
@@ -115,7 +120,16 @@ namespace FantasyModuleParser.Classes.ViewModels
             NewClassModel();
             SelectedFooterItemModel = ParentClassModel;
             this._moduleService = new ModuleService();
+            _resetAllViewModel(ParentClassModel);
+        }
+
+        private void _resetAllViewModel(ClassModel ParentClassModel)
+        {
             ClassSpecializationViewModel = new ClassSpecializationViewModel(ParentClassModel);
+            ClassHeaderViewModel = new ClassHeaderViewModel(ParentClassModel);
+            ClassProficiencyViewModel = new ClassProficiencyViewModel(ParentClassModel.Proficiency, false);
+            ClassMultiClassProficiencyViewModel = new ClassProficiencyViewModel(ParentClassModel.MultiProficiency, true);
+            ClassFeatureViewModel = new ClassFeatureViewModel(ParentClassModel);
         }
 
         public void Save()
@@ -131,8 +145,6 @@ namespace FantasyModuleParser.Classes.ViewModels
             RaisePropertyChanged(nameof(ClassMenuOptionEnum));
             RaisePropertyChanged(nameof(ParentClassModel.ClassFeatures));
             RaisePropertyChanged(nameof(ParentClassModel.Description));
-
-
         }
 
         public void NewClassModel()

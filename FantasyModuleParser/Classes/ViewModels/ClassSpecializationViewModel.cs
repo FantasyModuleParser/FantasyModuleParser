@@ -33,14 +33,18 @@ namespace FantasyModuleParser.Classes.ViewModels
         public string SelectedClassSpecializationName
         {
             get { return SelectedClassSpecialization?.Name; }
-            set { SelectedClassSpecialization.Name = value;
+            set {
+                if (SelectedClassSpecialization == null) SelectedClassSpecialization = new ClassSpecialization();
+                SelectedClassSpecialization.Name = value;
                 RaisePropertyChanged(nameof(SelectedClassSpecializationName));
             }
         }
         public string SelectedClassSpecializationDescription
         {
             get { return SelectedClassSpecialization?.Description; }
-            set { SelectedClassSpecialization.Description = value;
+            set {
+                if (SelectedClassSpecialization == null) SelectedClassSpecialization = new ClassSpecialization();
+                SelectedClassSpecialization.Description = value;
             RaisePropertyChanged(nameof(SelectedClassSpecializationDescription));
             }
         }

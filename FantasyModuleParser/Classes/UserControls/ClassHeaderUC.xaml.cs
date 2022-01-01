@@ -11,103 +11,103 @@ namespace FantasyModuleParser.Classes.UserControls
     /// <summary>
     /// Interaction logic for ClassHeaderUC.xaml
     /// </summary>
-    public partial class ClassHeaderUC : UserControl, INotifyPropertyChanged
+    public partial class ClassHeaderUC : UserControl
 	{
         private static readonly ILog log = LogManager.GetLogger(typeof(ClassHeaderUC));
         public ClassHeaderUC()
 		{
 			InitializeComponent();
-            ClassHeaderLayout.DataContext = this;
+            //ClassHeaderLayout.DataContext = this;
         }
 
-        public static readonly DependencyProperty ClassModelProperty =
-            DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(ClassHeaderUC));
+        //public static readonly DependencyProperty ClassModelProperty =
+        //    DependencyProperty.Register("ClassModelValue", typeof(ClassModel), typeof(ClassHeaderUC));
 
 
-        public ClassModel ClassModelValue
-        {
-            get { return (ClassModel)GetValue(ClassModelProperty); }
-            set { SetValue(ClassModelProperty, value); }
-        }
+        //public ClassModel ClassModelValue
+        //{
+        //    get { return (ClassModel)GetValue(ClassModelProperty); }
+        //    set { SetValue(ClassModelProperty, value); }
+        //}
 
-        public static readonly DependencyProperty ClassModelNameProperty =
-            DependencyProperty.Register("ClassModelName", typeof(string), typeof(ClassHeaderUC));
-
-
-        public string ClassModelName
-        {
-            get { return (string)GetValue(ClassModelNameProperty); }
-            set { SetValue(ClassModelNameProperty, value); }
-        }
-
-        public static readonly DependencyProperty HitDiePerLevelEnumProperty =
-            DependencyProperty.Register("HitDiePerLevel", typeof(ClassHitDieEnum), typeof(ClassHeaderUC), 
-                new PropertyMetadata(ClassHitDieEnum.D6, new PropertyChangedCallback((sender, e) =>
-                {
-                    // Darkpool -- Useful for as a way to determine if stuff is changing!!
-
-                    log.Info(string.Format("Hit Die Per Level changed to {0}", e.NewValue));
-                } )));
+        //public static readonly DependencyProperty ClassModelNameProperty =
+        //    DependencyProperty.Register("ClassModelName", typeof(string), typeof(ClassHeaderUC));
 
 
-        public ClassHitDieEnum HitDiePerLevel
-        {
-            get { return (ClassHitDieEnum)GetValue(HitDiePerLevelEnumProperty); }
-            set { SetValue(HitDiePerLevelEnumProperty, value); }
-        }
+        //public string ClassModelName
+        //{
+        //    get { return (string)GetValue(ClassModelNameProperty); }
+        //    set { SetValue(ClassModelNameProperty, value); }
+        //}
 
-        public static readonly DependencyProperty IsLockedProperty =
-            DependencyProperty.Register("IsLocked", typeof(bool), typeof(ClassHeaderUC));
+        //public static readonly DependencyProperty HitDiePerLevelEnumProperty =
+        //    DependencyProperty.Register("HitDiePerLevel", typeof(ClassHitDieEnum), typeof(ClassHeaderUC), 
+        //        new PropertyMetadata(ClassHitDieEnum.D6, new PropertyChangedCallback((sender, e) =>
+        //        {
+        //            // Darkpool -- Useful for as a way to determine if stuff is changing!!
 
-
-        public bool IsLocked
-        {
-            get { return (bool)GetValue(IsLockedProperty); }
-            set { SetValue(IsLockedProperty, value); }
-        }
-
+        //            log.Info(string.Format("Hit Die Per Level changed to {0}", e.NewValue));
+        //        } )));
 
 
-        // public string Name
-        // {
-        //     get => ClassModelValue != null ? ClassModelValue.Name : string.Empty;
-        //     set
-        //     {
-        //         ClassModelValue.Name = value;
-        //         RaisePropertyChanged(nameof(Name));
-        //     }
-        // }
-        // public bool IsLocked
-        // {
-        //     get => ClassModelValue != null ? ClassModelValue.IsLocked : false;
-        //     set
-        //     {
-        //         ClassModelValue.IsLocked = value;
-        //         RaisePropertyChanged(nameof(IsLocked));
-        //     }
-        // }
+        //public ClassHitDieEnum HitDiePerLevel
+        //{
+        //    get { return (ClassHitDieEnum)GetValue(HitDiePerLevelEnumProperty); }
+        //    set { SetValue(HitDiePerLevelEnumProperty, value); }
+        //}
 
-        // public ClassHitDieEnum HitPointDiePerLevel
-        // {
-        //     get => ClassModelValue != null ? ClassModelValue.HitPointDiePerLevel : ClassHitDieEnum.D6;
-        //     set
-        //     {
-        //         ClassModelValue.HitPointDiePerLevel = value;
-        //         RaisePropertyChanged(nameof(HitPointDiePerLevel));
-        //     }
-        // }
+        //public static readonly DependencyProperty IsLockedProperty =
+        //    DependencyProperty.Register("IsLocked", typeof(bool), typeof(ClassHeaderUC));
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName = "")
-        {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //public bool IsLocked
+        //{
+        //    get { return (bool)GetValue(IsLockedProperty); }
+        //    set { SetValue(IsLockedProperty, value); }
+        //}
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+
+
+        //// public string Name
+        //// {
+        ////     get => ClassModelValue != null ? ClassModelValue.Name : string.Empty;
+        ////     set
+        ////     {
+        ////         ClassModelValue.Name = value;
+        ////         RaisePropertyChanged(nameof(Name));
+        ////     }
+        //// }
+        //// public bool IsLocked
+        //// {
+        ////     get => ClassModelValue != null ? ClassModelValue.IsLocked : false;
+        ////     set
+        ////     {
+        ////         ClassModelValue.IsLocked = value;
+        ////         RaisePropertyChanged(nameof(IsLocked));
+        ////     }
+        //// }
+
+        //// public ClassHitDieEnum HitPointDiePerLevel
+        //// {
+        ////     get => ClassModelValue != null ? ClassModelValue.HitPointDiePerLevel : ClassHitDieEnum.D6;
+        ////     set
+        ////     {
+        ////         ClassModelValue.HitPointDiePerLevel = value;
+        ////         RaisePropertyChanged(nameof(HitPointDiePerLevel));
+        ////     }
+        //// }
+
+
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //protected void RaisePropertyChanged(string propertyName = "")
+        //{
+        //    var handler = PropertyChanged;
+        //    if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        //protected void OnPropertyChanged([CallerMemberName] string name = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        //}
     }
 }

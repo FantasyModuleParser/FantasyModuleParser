@@ -24,6 +24,16 @@ namespace FantasyModuleParser.Classes.ViewModels
             SelectedClassFeature = new ClassFeature();
         }
 
+        public ObservableCollection<ClassFeature> ClassFeatures
+        {
+            get { return classModel.ClassFeatures; }
+            set
+            {
+                classModel.ClassFeatures = value;
+                RaisePropertyChanged(nameof(ClassFeatures));
+            }
+        }
+
         private ClassFeature _selectedClassFeature;
         public ClassFeature SelectedClassFeature
         {
@@ -33,7 +43,8 @@ namespace FantasyModuleParser.Classes.ViewModels
                 // Re-sort the Class Features based on the Level value (Ascending)
                 if(this.classModel != null && this.classModel.ClassFeatures != null)
                 { 
-                    this.classModel.ClassFeatures = this.classModel.ClassFeatures.OrderBy(_ => _.Level).ToList();
+                    this.classModel.ClassFeatures = 
+                        new ObservableCollection<ClassFeature>( this.classModel.ClassFeatures.OrderBy(_ => _.Level).ToList());
                 }
                 RaisePropertyChanged(nameof(this.classModel.ClassFeatures));
                 RaisePropertyChanged(nameof(SelectedClassFeatureName));
@@ -60,10 +71,10 @@ namespace FantasyModuleParser.Classes.ViewModels
         {
             if (classModel.ClassFeatures == null)
             {
-                classModel.ClassFeatures = new List<ClassFeature>();
+                classModel.ClassFeatures = new ObservableCollection<ClassFeature>();
             }
             classModel.ClassFeatures.Add(SelectedClassFeature.ShallowCopy());
-            classModel.ClassFeatures = classModel.ClassFeatures.OrderBy(_ => _.Level).ToList();
+            classModel.ClassFeatures = new ObservableCollection<ClassFeature>(classModel.ClassFeatures.OrderBy(_ => _.Level).ToList());
             RaisePropertyChanged(nameof(classModel));
         }
 

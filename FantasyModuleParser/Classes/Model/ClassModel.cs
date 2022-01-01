@@ -23,7 +23,7 @@ namespace FantasyModuleParser.Classes.Model
         public ProficiencyModel Proficiency;
         public ProficiencyModel MultiProficiency;
 
-        public List<ClassFeature> ClassFeatures { get; set; }
+        public ObservableCollection<ClassFeature> ClassFeatures { get; set; }
 
         public string ClassSpecializationDescription { get; set; }
         public ObservableCollection<ClassSpecialization> ClassSpecializations { get; set; }
@@ -74,8 +74,14 @@ namespace FantasyModuleParser.Classes.Model
 
             ClassFeatures.Remove(classFeature);
 
-            foreach (ClassSpecialization classSpecialization in ClassSpecializations)
-                classSpecialization.ClassFeatures.Remove(classFeature);
+            if(ClassSpecializations != null)
+                foreach (ClassSpecialization classSpecialization in ClassSpecializations)
+                {
+                    if(classSpecialization.ClassFeatures != null && classSpecialization.ClassFeatures.Count > 0)
+                    {
+                        classSpecialization.ClassFeatures.Remove(classFeature);
+                    }
+                }
         }
         public void RemoveClassSpecialization(ClassSpecialization classSpecialization)
         {

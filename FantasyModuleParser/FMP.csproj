@@ -617,6 +617,7 @@
       <DependentUpon>ClassSpellSlotUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\ViewModels\ClassFeatureViewModel.cs" />
+    <Compile Include="Classes\ViewModels\ClassHeaderViewModel.cs" />
     <Compile Include="Classes\ViewModels\ClassOptionControllViewModel.cs" />
     <Compile Include="Classes\ViewModels\ClassProficiencyViewModel.cs" />
     <Compile Include="Classes\UserControls\ClassProficiency\StartingArmorOptionViewModel.cs" />
