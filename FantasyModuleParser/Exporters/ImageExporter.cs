@@ -74,16 +74,70 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("image"); /* <root version="4.0"> <image> <category> <image_name> <image> */
 			xmlWriter.WriteAttributeString("type", "image");
-			Image_Category_ImageName_Image_Bitmap(xmlWriter, npcModel);
+			Image_Color(xmlWriter);
+			Image_Layers(xmlWriter, npcModel);
 			xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> </image> */
 		}
 
-		private static void Image_Category_ImageName_Image_Bitmap(XmlWriter xmlWriter, NPCModel npcModel)
+		private static void Image_Color(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("bitmap"); /* <root version="4.0"> <image> <category> <image_name> <image> <bitmap> */
+			xmlWriter.WriteStartElement("color");
+			xmlWriter.WriteString("#000000");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Image_Layers(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("layers");
+			Image_Layers_Layer(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Image_Layers_Layer(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("layer");
+			Layer_Name(xmlWriter, npcModel);
+			Layer_ID(xmlWriter);
+			Layer_ParentID(xmlWriter);
+			Layer_Type(xmlWriter);
+			Layer_Bitmap(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Layer_Name(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("name");
+			xmlWriter.WriteString(Path.GetFileName(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Layer_ID(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("id");
+			xmlWriter.WriteString("0");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Layer_ParentID(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("parentid");
+			xmlWriter.WriteString("-1");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Layer_Type(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("type");
+			xmlWriter.WriteString("image");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Layer_Bitmap(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("bitmap");
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("images" + "\\" + Path.GetFileName(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
-			xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> <bitmap> </bitmap> */
+			xmlWriter.WriteEndElement();
 		}
 
 		public static void DababaseXML_Root_Lists_Imagelists(XmlWriter xmlWriter, ModuleModel module)

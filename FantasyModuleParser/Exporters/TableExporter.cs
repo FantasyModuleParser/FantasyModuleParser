@@ -28,8 +28,6 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", category.Name);
-				xmlWriter.WriteAttributeString("baseicon", "0");
-				xmlWriter.WriteAttributeString("decalicon", "0");
 				Tables_Category_TableName(xmlWriter, FatTableList);
 				xmlWriter.WriteEndElement();
 			}
@@ -41,15 +39,15 @@ namespace FantasyModuleParser.Exporters
 			foreach (TableModel tableModel in FatTableList)
 			{
 				xmlWriter.WriteStartElement("id-" + tableID.ToString("D4"));
-				WriteTableLocked(xmlWriter, tableModel);
-				WriteTableName(xmlWriter, tableModel);
 				WriteTableDescription(xmlWriter, tableModel);
-				WriteTableOutput(xmlWriter, tableModel);
-				WriteTableNotes(xmlWriter, tableModel);
-				WriteTableHideRolls(xmlWriter, tableModel);
-				WriteTableRollModifier(xmlWriter, tableModel);
 				WriteTableRollDice(xmlWriter, tableModel);
+				WriteTableHideRolls(xmlWriter, tableModel);
 				WriteColumnLabels(xmlWriter, tableModel);
+				WriteTableLocked(xmlWriter, tableModel);
+				WriteTableRollModifier(xmlWriter, tableModel);
+				WriteTableName(xmlWriter, tableModel);
+				WriteTableNotes(xmlWriter, tableModel);
+				WriteTableOutput(xmlWriter, tableModel);
 				WriteResultsColumn(xmlWriter, tableModel);
 				WriteTableRows(xmlWriter, tableModel.tableDataTable);
 				xmlWriter.WriteEndElement();

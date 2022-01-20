@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Equipment.Models;
+﻿using FantasyModuleParser.Classes.Model;
+using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
@@ -78,6 +79,22 @@ namespace FantasyModuleParser.Exporters
 			IEnumerable<EquipmentModel> query = from equipment in FatEquipmentList
 												orderby equipment.PrimaryEquipmentEnumType, equipment.Name
 												select equipment;
+			return query.ToList();
+		}
+
+		public static List<ClassModel> GenerateFatClassList(ModuleModel moduleModel)
+		{
+			List<ClassModel> FatClassList = new List<ClassModel>();
+			foreach (CategoryModel category in moduleModel.Categories)
+			{
+				foreach (ClassModel classModel in category.ClassModels)
+				{
+					FatClassList.Add(classModel);
+				}
+			}
+			IEnumerable<ClassModel> query = from classModel in FatClassList
+												orderby classModel.Name
+												select classModel;
 			return query.ToList();
 		}
 
@@ -175,6 +192,12 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("NPCs");
 			xmlWriter.WriteEndElement();
+		}
+
+		public static void BaseIcon_DecalIcon(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("baseicon", "0");
+			xmlWriter.WriteAttributeString("decalicon", "0");
 		}
 	}
 }
