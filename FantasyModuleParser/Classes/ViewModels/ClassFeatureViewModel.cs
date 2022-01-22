@@ -38,10 +38,14 @@ namespace FantasyModuleParser.Classes.ViewModels
         public ClassFeature SelectedClassFeature
         {
             get { return this._selectedClassFeature; }
-            set { Set(ref _selectedClassFeature, value);
+            set { 
+                if(value != null)
+                    Set(ref _selectedClassFeature, value);
+                else
+                    Set(ref _selectedClassFeature, new ClassFeature());
 
                 // Re-sort the Class Features based on the Level value (Ascending)
-                if(this.classModel != null && this.classModel.ClassFeatures != null)
+                if (this.classModel != null && this.classModel.ClassFeatures != null)
                 { 
                     this.classModel.ClassFeatures = 
                         new ObservableCollection<ClassFeature>( this.classModel.ClassFeatures.OrderBy(_ => _.Level).ToList());
@@ -50,6 +54,15 @@ namespace FantasyModuleParser.Classes.ViewModels
                 RaisePropertyChanged(nameof(SelectedClassFeatureName));
                 RaisePropertyChanged(nameof(SelectedClassFeatureDescription));
                 RaisePropertyChanged(nameof(GetClassSpecializationNameForSelectedClassFeature));
+                RaisePropertyChanged(nameof(AddUpdateButtonContent));
+            }
+        }
+
+        public string AddUpdateButtonContent
+        {
+            get { if ((classModel.ClassFeatures != null && classModel.ClassFeatures.Contains(SelectedClassFeature)))
+                    return "Updating Feature";
+                return "Add Feature";
             }
         }
         private ICommand _addClassFeatureCommand;
@@ -73,14 +86,19 @@ namespace FantasyModuleParser.Classes.ViewModels
             {
                 classModel.ClassFeatures = new ObservableCollection<ClassFeature>();
             }
-            classModel.ClassFeatures.Add(SelectedClassFeature.ShallowCopy());
-            classModel.ClassFeatures = new ObservableCollection<ClassFeature>(classModel.ClassFeatures.OrderBy(_ => _.Level).ToList());
-            RaisePropertyChanged(nameof(classModel));
+            if (!classModel.ClassFeatures.Contains(SelectedClassFeature))
+            {           
+                classModel.ClassFeatures.Add(SelectedClassFeature.ShallowCopy());
+                //classModel.ClassFeatures = new ObservableCollection<ClassFeature>(classModel.ClassFeatures.OrderBy(_ => _.Level).ToList());
+                RaisePropertyChanged(nameof(classModel));
+                RaisePropertyChanged(nameof(classModel.ClassFeatures));
+            }
         }
 
         protected virtual bool OnAddClassFeatureEnableAction(string param)
         {
-            return !String.IsNullOrWhiteSpace(param);
+            return !String.IsNullOrWhiteSpace(param) && 
+                !(classModel.ClassFeatures != null && classModel.ClassFeatures.Contains(SelectedClassFeature));
         }
 
         private ICommand _removeClassFeatureCommand;
@@ -100,6 +118,7 @@ namespace FantasyModuleParser.Classes.ViewModels
         protected virtual void OnRemoveClassFeature(ClassFeature classFeature)
         {
             classModel.RemoveClassFeature(classFeature);
+            RaisePropertyChanged(nameof(classModel));
             RaisePropertyChanged(nameof(classModel.ClassFeatures));
         }
 
@@ -160,7 +179,8 @@ namespace FantasyModuleParser.Classes.ViewModels
         {
             get { return SelectedClassFeature?.Name; }
             set { SelectedClassFeature.Name = value;
-            RaisePropertyChanged(nameof(SelectedClassFeatureName));
+                RaisePropertyChanged(nameof(SelectedClassFeatureName));
+                RaisePropertyChanged(nameof(AddUpdateButtonContent));
             }
         }
 
@@ -184,7 +204,7 @@ namespace FantasyModuleParser.Classes.ViewModels
             foreach (ClassSpecialization classSpecialization in this.classModel.ClassSpecializations)
             {
                 List<ClassFeature> classFeatureList = classSpecialization.ClassFeatures
-                    .Where(_ => _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)).ToList();
+                    .Where(_ => _ != null && _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 foreach(ClassFeature removeClassFeature in classFeatureList)
                 {
@@ -198,7 +218,8 @@ namespace FantasyModuleParser.Classes.ViewModels
             foreach(ClassSpecialization classSpecialization in this.classModel.ClassSpecializations)
             {
                 if (classSpecialization.ClassFeatures
-                    .FirstOrDefault(_ => _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)
+                    .FirstOrDefault(
+                        _ => _ != null && _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)
                     return true;
             }
             return false;
@@ -209,8 +230,11 @@ namespace FantasyModuleParser.Classes.ViewModels
             get { 
                 foreach (ClassSpecialization classSpecialization in this.classModel.ClassSpecializations)
                 {
+                    if (classSpecialization.ClassFeatures == null)
+                        classSpecialization.ClassFeatures = new ObservableCollection<ClassFeature>();
                     if (classSpecialization.ClassFeatures
-                        .FirstOrDefault(_ => _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)
+                        .FirstOrDefault(
+                            _ => _ != null &&_.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)
                         return String.Format("Un-Assign from {0}", classSpecialization.Name);
                 }
                 return "";

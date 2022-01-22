@@ -72,7 +72,7 @@
 
                         <Button Grid.Row="3" Grid.Column="2"  Content="Clear Feature" HorizontalAlignment="Left"
                                         Command="{Binding ClearSelectedClassFeatureCommand}"/>
-                        <Button Grid.Row="3" Grid.Column="2"  Content="Add / Update Feature" HorizontalAlignment="Right"
+                        <Button Grid.Row="3" Grid.Column="2"  Content="{Binding AddUpdateButtonContent}" HorizontalAlignment="Right"
                                         Command="{Binding AddClassFeatureCommand}"
                                         CommandParameter="{Binding SelectedClassFeature.Name}"/>
                     </Grid>
@@ -85,7 +85,7 @@
 
                         <Label Content="Existing Class Features" Grid.Row="0" FontWeight="Bold" />
                         <ListBox x:Name="ClassFeatureListBox"
-                                 Grid.Row="1" ItemsSource="{Binding classModel.ClassFeatures, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Grid.Row="1" ItemsSource="{Binding classModel.ClassFeatures}"
                                  SelectionMode="Single" HorizontalContentAlignment="Stretch"
                                          SelectedValue="{Binding SelectedClassFeature}">
                             <ListBox.ItemTemplate>
