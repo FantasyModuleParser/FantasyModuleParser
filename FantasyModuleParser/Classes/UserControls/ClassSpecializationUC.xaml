@@ -33,9 +33,9 @@
                         <Label Content="Class Specialization Name" Grid.Row="0" Grid.Column="0" />
                         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedClassSpecializationName, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <Button Grid.Row="1" Grid.Column="1"  Content="Clear Feature" HorizontalAlignment="Left" />
+                        <!--<Button Grid.Row="1" Grid.Column="1"  Content="Clear Feature" HorizontalAlignment="Left" />-->
 
-                        <Button Grid.Row="1" Grid.Column="1"  Content="Add / Update Specialization" 
+                        <Button Grid.Row="1" Grid.Column="1"  Content="{Binding AddUpdateButtonContent}" 
                                 HorizontalAlignment="Right" Padding="5,0"
                                 Command="{Binding AddClassSpecializationCommand}"/>
                     </Grid>
@@ -59,9 +59,10 @@
                         
 
                          <ListBox Grid.Row="1"/>
-                        <ListBox Grid.Row="1" ItemsSource="{Binding ClassModelValue.ClassSpecializations }"
+                        <ListBox Grid.Row="1" x:Name="ClassSpecializationListBox" 
+                                 ItemsSource="{Binding ClassModelValue.ClassSpecializations}"
                                  SelectionMode="Single" HorizontalContentAlignment="Stretch"
-                                 SelectedValue="{Binding SelectedClassSpecialization, UpdateSourceTrigger=PropertyChanged}"
+                                 SelectedValue="{Binding SelectedClassSpecialization}"
                                  Grid.ColumnSpan="2" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type classModel:ClassSpecialization}">

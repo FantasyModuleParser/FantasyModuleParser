@@ -217,7 +217,8 @@ namespace FantasyModuleParser.Classes.ViewModels
         {
             foreach(ClassSpecialization classSpecialization in this.classModel.ClassSpecializations)
             {
-                if (classSpecialization.ClassFeatures
+
+                if (classSpecialization.ClassFeatures?
                     .FirstOrDefault(
                         _ => _ != null && _.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)
                     return true;
@@ -232,6 +233,7 @@ namespace FantasyModuleParser.Classes.ViewModels
                 {
                     if (classSpecialization.ClassFeatures == null)
                         classSpecialization.ClassFeatures = new ObservableCollection<ClassFeature>();
+
                     if (classSpecialization.ClassFeatures
                         .FirstOrDefault(
                             _ => _ != null &&_.Name.Equals(SelectedClassFeature.Name, StringComparison.OrdinalIgnoreCase)) != null)

@@ -22,7 +22,9 @@ namespace FantasyModuleParser.Classes.ViewModels
         {
             this.ClassModelValue = classModel;
             SelectedClassSpecialization = new ClassSpecialization();
+            RaisePropertyChanged(nameof(this.ClassModelValue));
             RaisePropertyChanged(nameof(this.ClassModelValue.ClassSpecializations));
+
         }
 
         public ClassModel ClassModelValue
@@ -36,7 +38,9 @@ namespace FantasyModuleParser.Classes.ViewModels
             set {
                 if (SelectedClassSpecialization == null) SelectedClassSpecialization = new ClassSpecialization();
                 SelectedClassSpecialization.Name = value;
-                RaisePropertyChanged(nameof(SelectedClassSpecializationName));
+                RaisePropertyChanged(nameof(ClassModelValue));
+                RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
+                RaisePropertyChanged(nameof(SelectedClassSpecialization));
             }
         }
         public string SelectedClassSpecializationDescription
@@ -45,7 +49,9 @@ namespace FantasyModuleParser.Classes.ViewModels
             set {
                 if (SelectedClassSpecialization == null) SelectedClassSpecialization = new ClassSpecialization();
                 SelectedClassSpecialization.Description = value;
-            RaisePropertyChanged(nameof(SelectedClassSpecializationDescription));
+                RaisePropertyChanged(nameof(ClassModelValue));
+                RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
+                RaisePropertyChanged(nameof(SelectedClassSpecializationDescription));
             }
         }
 
@@ -66,12 +72,25 @@ namespace FantasyModuleParser.Classes.ViewModels
             set
             {
                 this._selectedClassSpecialization = value;
+                RaisePropertyChanged(nameof(ClassModelValue));
+                RaisePropertyChanged(nameof(ClassModelValue.ClassSpecializations));
                 RaisePropertyChanged(nameof(SelectedClassSpecialization));
                 RaisePropertyChanged(nameof(SelectedClassSpecialization.ClassFeatures));
                 RaisePropertyChanged(nameof(TabDescriptionLabel));
-                RaisePropertyChanged(nameof(IsClassSpecialSelected));
+                //RaisePropertyChanged(nameof(IsClassSpecialSelected));
                 RaisePropertyChanged(nameof(SelectedClassSpecializationName));
                 RaisePropertyChanged(nameof(SelectedClassSpecializationDescription));
+            }
+        }
+
+        public string AddUpdateButtonContent
+        {
+            get
+            {
+                if ((ClassModelValue.ClassSpecializations != null 
+                    && ClassModelValue.ClassSpecializations.Contains(SelectedClassSpecialization)))
+                    return "Updating Specialization";
+                return "Add Specialization";
             }
         }
 
@@ -100,7 +119,9 @@ namespace FantasyModuleParser.Classes.ViewModels
                 if (_addClassSpecializationCommand == null)
                 {
                     _addClassSpecializationCommand = new ActionCommand(param => OnAddClassSpecializationAction(),
-                        param => !String.IsNullOrWhiteSpace(SelectedClassSpecialization?.Name));
+                        param => !String.IsNullOrWhiteSpace(SelectedClassSpecialization?.Name)
+                            && !(ClassModelValue.ClassSpecializations != null 
+                                && ClassModelValue.ClassSpecializations.Contains(SelectedClassSpecialization)));
                 }
                 return _addClassSpecializationCommand;
             }
