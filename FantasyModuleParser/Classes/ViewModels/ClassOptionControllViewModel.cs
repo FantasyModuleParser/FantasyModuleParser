@@ -145,6 +145,7 @@ namespace FantasyModuleParser.Classes.ViewModels
             RaisePropertyChanged(nameof(ClassMenuOptionEnum));
             RaisePropertyChanged(nameof(ParentClassModel.ClassFeatures));
             RaisePropertyChanged(nameof(ParentClassModel.Description));
+            _resetAllViewModel(ParentClassModel);
         }
 
         public void NewClassModel()

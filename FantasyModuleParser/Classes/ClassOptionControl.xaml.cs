@@ -36,8 +36,8 @@ namespace FantasyModuleParser.Classes
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
             {
-                InitialDirectory = settingsService.Load().EquipmentFolderLocation,
-                Filter = "Equipment files (*.json)|*.json|All files (*.*)|*.*"
+                InitialDirectory = settingsService.Load().ClassFolderLocation,
+                Filter = "Class files (*.json)|*.json|All files (*.*)|*.*"
             };
 
             // Launch OpenFileDialog by calling ShowDialog method
