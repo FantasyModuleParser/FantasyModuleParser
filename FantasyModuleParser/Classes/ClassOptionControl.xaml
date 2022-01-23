@@ -208,6 +208,7 @@
                                        ModuleCategoryItemSource="{Binding ModuleCategoriesSource}"
                                        SelectedCategoryModel="{Binding SelectedCategoryModel, Mode=TwoWay}"
                                        SelectedItemModel="{Binding SelectedFooterItemModel, Mode=TwoWay}"
+                                       LoadEquipmentAction="EquipmentFooterUC_LoadEquipmentAction"
                                        SaveEquipmentAction="EquipmentFooterUC_SaveEquipmentAction"/>
     </Grid>
 </UserControl>
