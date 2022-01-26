@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Equipment.Enums;
+using System.Linq;
+using FantasyModuleParser.Extensions;
 
 namespace FantasyModuleParser.Classes.Model
 {
@@ -30,6 +33,18 @@ namespace FantasyModuleParser.Classes.Model
             SkillAttributeOptions = new HashSet<SkillAttributeEnum>();
             ClassStartingToolOptions = new HashSet<ClassStartingToolEnum>();
             ArmorProficiencies = new ObservableCollection<ArmorEnum>();
+        }
+
+        public string GetArmorProficienciesForExporter()
+        {
+            string delimiter = ", ";
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach(ArmorEnum armor in ArmorProficiencies)
+            {
+                stringBuilder.Append(armor.GetDescription()).Append(delimiter);
+            }
+            return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length); 
         }
     }
 }
