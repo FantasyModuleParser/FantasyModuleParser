@@ -6,7 +6,6 @@ using System.Windows.Navigation;
 using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Classes.Model;
 using FantasyModuleParser.Extensions;
-using Google.Protobuf.WellKnownTypes;
 
 namespace FantasyModuleParser.Classes.UserControls.ClassProficiency
 {
