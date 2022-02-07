@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A60F22BCBD0845A4982CB867BDC7EB02"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -37,6 +43,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -53,6 +67,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -84,6 +106,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_990E6B8A95EF46F497BC461DBCAE8671"
+            {
+            "SourcePath" = "8:..\\FantasyModuleParser\\Resources\\FMP-Logo.ico"
+            "TargetName" = "8:FMP-Logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_764E45B56180430DB1358A368DA20CF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -283,7 +325,7 @@
             "Target" = "8:_A60F22BCBD0845A4982CB867BDC7EB02"
             "Folder" = "8:_AD858BAB667043BDAA40005E2E9F276D"
             "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
-            "Icon" = "8:"
+            "Icon" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B85BDEC2CF3848D88E1B480B19AE64A5"
@@ -297,7 +339,7 @@
             "Target" = "8:_A60F22BCBD0845A4982CB867BDC7EB02"
             "Folder" = "8:_01F47E4D083E40CDA2824D1183EBEB21"
             "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
-            "Icon" = "8:"
+            "Icon" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
             "Feature" = "8:"
             }
         }
