@@ -144,6 +144,128 @@
                 {
                 }
             }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_A457582DB53D48D1B74375505B68FC5B"
+            {
+            "DefaultLocation" = "8:[AppDataFolder]"
+            "Name" = "8:AppData"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:NEWPROPERTY1"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_688F8CB25C2649F29A554F62C3367383"
+                    {
+                    "Name" = "8:FMP"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_C5F25C1AD55244C7A37C797FE73AE3BC"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_00BA92F341EC4A78966D3B8420B04C4D"
+                            {
+                            "Name" = "8:Artifacts"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_A7B383DDA5CD45E2992D4BAE5076D9D9"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_0D8790345CF84775BFD64383F6F697BE"
+                            {
+                            "Name" = "8:Parcels"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_622DCE76A81640999181B663C7AFAEBE"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_55A4AC03D024477A8057A60849C57CAB"
+                            {
+                            "Name" = "8:Classes"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_71EB7C26208C49809FEEE691806BED3E"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_5B84DB52A8E844979639FDF9A3284794"
+                            {
+                            "Name" = "8:Spells"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_3D44E6A5ED1749E49B6491399BAAA944"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_6A3D1D3822CA441BBC820DA5CCCEAD76"
+                            {
+                            "Name" = "8:NPCs"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_E72CF0FD7CF24A8E9EF1E40267E38130"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_84A7C53AAD3441E28F99888AE73F61AD"
+                            {
+                            "Name" = "8:Tables"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_10075097023C45A990A06E88A159EC51"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_8878B9ED47E94657AA24423B01D954C1"
+                            {
+                            "Name" = "8:logs"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_F12C2BFBFB61446D8C2CFF1EEEC73A5C"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_B4E9596AD9CB45E4A5A02769BAF68619"
+                            {
+                            "Name" = "8:Projects"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_983341793E7C4F08A726177EA64623F5"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_F154AB7AE11F463AA1728A89690A85FF"
+                            {
+                            "Name" = "8:Equipment"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_3D99A7E34E9C41E19F0E146D8F15AEDA"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_AD858BAB667043BDAA40005E2E9F276D"
             {
             "Name" = "8:#1916"
