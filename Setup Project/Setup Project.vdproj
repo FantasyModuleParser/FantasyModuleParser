@@ -176,7 +176,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
@@ -370,7 +370,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fantasy Module Parser"
         "ProductCode" = "8:{F36527B4-9289-4631-B9DA-F650CD9E89D6}"
-        "PackageCode" = "8:{4E08CD8E-2083-463F-BA45-6191AAB8BB36}"
+        "PackageCode" = "8:{0C5785F2-47E5-4F99-B9CC-E57668092E1B}"
         "UpgradeCode" = "8:{DD8E3C92-6803-4906-8AC8-43FADDB2F6FB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -490,21 +490,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_632E36D7A46C40268CA36856F8356480"
-            {
-            "Name" = "8:Uninstall FMP"
-            "Arguments" = "8:/x {F36527B4-9289-4631-B9DA-F650CD9E89D6}"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_D5F8BC5D4A42493085F4ACE2A3C49575"
-            "Folder" = "8:_01F47E4D083E40CDA2824D1183EBEB21"
-            "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7DF0AB6E19604C5F964CE9C64A9BE93C"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7BA4D2100F3F4A17BA0F3C56222C5BED"
             {
             "Name" = "8:Fantasy Module Parser"
             "Arguments" = "8:"
@@ -512,13 +498,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_AD858BAB667043BDAA40005E2E9F276D"
+            "Target" = "8:_CFE13DA713AA46E0AC378AC1D19FF108"
+            "Folder" = "8:_01F47E4D083E40CDA2824D1183EBEB21"
             "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
             "Icon" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B85BDEC2CF3848D88E1B480B19AE64A5"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B2D2AB669FF647A09ADD40378853761E"
             {
             "Name" = "8:Fantasy Module Parser"
             "Arguments" = "8:"
@@ -526,8 +512,8 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_01F47E4D083E40CDA2824D1183EBEB21"
+            "Target" = "8:_CFE13DA713AA46E0AC378AC1D19FF108"
+            "Folder" = "8:_AD858BAB667043BDAA40005E2E9F276D"
             "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
             "Icon" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
             "Feature" = "8:"
