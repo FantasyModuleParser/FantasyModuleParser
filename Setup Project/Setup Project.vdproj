@@ -21,7 +21,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A60F22BCBD0845A4982CB867BDC7EB02"
+        "MsmKey" = "8:_CFE13DA713AA46E0AC378AC1D19FF108"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D5F8BC5D4A42493085F4ACE2A3C49575"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -50,6 +56,34 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.3.1.x64"
+                    {
+                    "Name" = "8:.NET Core Runtime 3.1.22 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.3.1.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.3.1.x86"
+                    {
+                    "Name" = "8:.NET Core Runtime 3.1.22 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.3.1.x86"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x64"
+                    {
+                    "Name" = "8:.NET Desktop Runtime 6.0.1 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x86"
+                    {
+                    "Name" = "8:.NET Desktop Runtime 6.0.1 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x86"
+                    }
+                }
             }
         }
         "Release"
@@ -110,6 +144,26 @@
             {
             "SourcePath" = "8:..\\FantasyModuleParser\\Resources\\FMP-Logo.ico"
             "TargetName" = "8:FMP-Logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_764E45B56180430DB1358A368DA20CF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D5F8BC5D4A42493085F4ACE2A3C49575"
+            {
+            "SourcePath" = "8:C:\\Windows\\System32\\msiexec.exe"
+            "TargetName" = "8:msiexec.exe"
             "Tag" = "8:"
             "Folder" = "8:_764E45B56180430DB1358A368DA20CF2"
             "Condition" = "8:"
@@ -314,26 +368,26 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup Project"
+        "ProductName" = "8:Fantasy Module Parser"
         "ProductCode" = "8:{F36527B4-9289-4631-B9DA-F650CD9E89D6}"
-        "PackageCode" = "8:{19120857-B645-483C-817B-6D24A3CC751C}"
+        "PackageCode" = "8:{4E08CD8E-2083-463F-BA45-6191AAB8BB36}"
         "UpgradeCode" = "8:{DD8E3C92-6803-4906-8AC8-43FADDB2F6FB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:Fantasy Module Parser"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup Project"
+        "Title" = "8:Fantasy Module Parser Installer"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Theodore Story, Darkpool, and Battlemarch"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPURLINFOABOUT" = "8:https://www.fantasymoduleparser.tech"
+        "ARPPRODUCTICON" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -436,6 +490,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_632E36D7A46C40268CA36856F8356480"
+            {
+            "Name" = "8:Uninstall FMP"
+            "Arguments" = "8:/x {F36527B4-9289-4631-B9DA-F650CD9E89D6}"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_D5F8BC5D4A42493085F4ACE2A3C49575"
+            "Folder" = "8:_01F47E4D083E40CDA2824D1183EBEB21"
+            "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7DF0AB6E19604C5F964CE9C64A9BE93C"
             {
             "Name" = "8:Fantasy Module Parser"
@@ -444,7 +512,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A60F22BCBD0845A4982CB867BDC7EB02"
+            "Target" = "8:"
             "Folder" = "8:_AD858BAB667043BDAA40005E2E9F276D"
             "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
             "Icon" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
@@ -458,7 +526,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A60F22BCBD0845A4982CB867BDC7EB02"
+            "Target" = "8:"
             "Folder" = "8:_01F47E4D083E40CDA2824D1183EBEB21"
             "WorkingFolder" = "8:_764E45B56180430DB1358A368DA20CF2"
             "Icon" = "8:_990E6B8A95EF46F497BC461DBCAE8671"
@@ -863,9 +931,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A60F22BCBD0845A4982CB867BDC7EB02"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CFE13DA713AA46E0AC378AC1D19FF108"
             {
-            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\net6.0-windows\\FantasyModuleParser.dll"
+            "SourcePath" = "8:..\\FantasyModuleParser\\obj\\Debug\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_764E45B56180430DB1358A368DA20CF2"
@@ -884,7 +952,7 @@
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
+            "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
