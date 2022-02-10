@@ -265,9 +265,9 @@ namespace FantasyModuleParser.Exporters
 
 		private static void Proficiencies_Skills(XmlWriter xmlWriter, ClassModel classModel)
 		{
-			xmlWriter.WriteStartElement("savingthrows");
-			SavingThrows_Name(xmlWriter);
-			SavingThrows_Text(xmlWriter, classModel);
+			xmlWriter.WriteStartElement("skills");
+			Skills_Name(xmlWriter);
+			Skills_Text(xmlWriter, classModel);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -275,15 +275,16 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("name");
 			Common_Type_String(xmlWriter);
-			xmlWriter.WriteString("Saving Throws");
+			xmlWriter.WriteString("Skills");
 			xmlWriter.WriteEndElement();
 		}
 
 		private static void Skills_Text(XmlWriter xmlWriter, ClassModel classModel)
 		{
+			int switchval = classModel.Proficiency.NumberOfSkillsToChoose;
 			xmlWriter.WriteStartElement("text");
 			Common_Type_String(xmlWriter);
-			xmlWriter.WriteString(classModel.Proficiency.GetSavingThrowProficienciesForExporter());
+			xmlWriter.WriteString(classModel.Proficiency.GetSkillProficienciesForExporter(switchval));
 			xmlWriter.WriteEndElement();
 		}
 

@@ -71,13 +71,14 @@ namespace FantasyModuleParser.Classes.Model
             return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
         }
 
-        public void GetSkillProficienciesForExporter(int switchval)
+        public string GetSkillProficienciesForExporter(int switchval)
 		{
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("Choose ");
             stringBuilder.Append(NumberOfSkills(switchval));
             stringBuilder.Append("from ");
-            stringBuilder.Append(ListOfSkills());
+            stringBuilder.Append(AddAndToListOfSkills());
+            return stringBuilder.ToString();
 		}
 
         public string NumberOfSkills(int switchval)
@@ -85,18 +86,18 @@ namespace FantasyModuleParser.Classes.Model
             StringBuilder stringBuilder = new StringBuilder();
             return switchval switch
             {
-                0 => NoSkills(),
+                0 => stringBuilder.Append("").ToString(),
                 1 => stringBuilder.Append("one ").ToString(),
                 2 => stringBuilder.Append("two ").ToString(),
                 3 => stringBuilder.Append("three ").ToString(),
                 4 => stringBuilder.Append("four ").ToString(),
                 5 => stringBuilder.Append("five ").ToString(),
-                _ => NoSkills(),
+                _ => stringBuilder.Append("").ToString(),
             };
         }
 
         public string ListOfSkills()
-		{
+        {
             string delimiter = ", ";
             StringBuilder stringBuilder = new StringBuilder();
             foreach (SkillAttributeEnum skills in SkillAttributeOptions)
@@ -106,9 +107,15 @@ namespace FantasyModuleParser.Classes.Model
             return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
         }
 
-        public string NoSkills()
-		{
-            return "";
-		}
+        public string AddAndToListOfSkills()
+        {
+            var test = ListOfSkills();
+            var lastComma = test.LastIndexOf(',');
+            if (lastComma != -1)
+            {
+                test = test.Remove(lastComma, 1).Insert(lastComma, ", and");
+            }
+            return test;
+        }
     }
 }
