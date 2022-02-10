@@ -83,6 +83,11 @@ namespace FantasyModuleParser.Classes.Model
                     }
                 }
         }
+
+        public void Features(ClassModel classModel)
+		{
+            
+        }
         public void RemoveClassSpecialization(ClassSpecialization classSpecialization)
         {
             ClassSpecializations.Remove(classSpecialization);
