@@ -46,5 +46,57 @@ namespace FantasyModuleParser.Classes.Model
             }
             return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length); 
         }
+
+        public string GetToolProficienciesForExporter()
+        {
+            string delimiter = ", ";
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (ClassStartingToolEnum tool in ClassStartingToolOptions)
+            {
+                stringBuilder.Append(tool.GetDescription()).Append(delimiter);
+            }
+            return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
+        }
+
+        public void GetSkillProficienciesForExporter(int switchval)
+		{
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("Choose ");
+            stringBuilder.Append(NumberOfSkills(switchval));
+            stringBuilder.Append("from ");
+            stringBuilder.Append(ListOfSkills());
+		}
+
+        public string NumberOfSkills(int switchval)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            return switchval switch
+            {
+                0 => NoSkills(),
+                1 => stringBuilder.Append("one ").ToString(),
+                2 => stringBuilder.Append("two ").ToString(),
+                3 => stringBuilder.Append("three ").ToString(),
+                4 => stringBuilder.Append("four ").ToString(),
+                5 => stringBuilder.Append("five ").ToString(),
+                _ => NoSkills(),
+            };
+        }
+
+        public string ListOfSkills()
+		{
+            string delimiter = ", ";
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (SkillAttributeEnum skills in SkillAttributeOptions)
+            {
+                stringBuilder.Append(skills.GetDescription()).Append(delimiter);
+            }
+            return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
+        }
+
+        public string NoSkills()
+		{
+            return "";
+		}
     }
 }

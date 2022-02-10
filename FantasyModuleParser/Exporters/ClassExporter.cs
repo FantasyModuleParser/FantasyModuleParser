@@ -1,13 +1,23 @@
 ﻿using FantasyModuleParser.Classes.Model;
+using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC.Controllers;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Xml;
 
 namespace FantasyModuleParser.Exporters
 {
 	class ClassExporter
 	{
+		#region Common Used XML
+		public static void Common_Type_String(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("type", "string");
+		}
+
+		#endregion
 		public static void DatabaseXML_Root_Classes(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludesClasses)
@@ -33,15 +43,197 @@ namespace FantasyModuleParser.Exporters
 					Classes_Category_Class(xmlWriter, classID, classModel);
 				}
 				xmlWriter.WriteEndElement();
-			}							
+			}
 		}
 
 		private static void Classes_Category_Class(XmlWriter xmlWriter, int classID, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("id-" + classID.ToString("D4"));
+			Class_Name(xmlWriter, classModel);
+			Class_Text(xmlWriter, classModel);
+			Class_HP(xmlWriter, classModel);
+			Class_Proficiencies(xmlWriter, classModel);
 			Class_Abilities(xmlWriter, classModel);
 			Class_Equipment(xmlWriter);
 			Class_Features(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Name(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteValue(classModel.Name);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			NPCController npcController = new NPCController();
+			xmlWriter.WriteStartElement("text");
+			xmlWriter.WriteAttributeString("type", "formattedtext");
+			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(classModel.Description));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_HP(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("hp");
+			Class_HP_HitDice(xmlWriter, classModel);
+			Class_HP_HPAt1stLevel(xmlWriter, classModel);
+			Class_HP_HPAtHigherLevels(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_HP_HitDice(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("hitdice");
+			HitDice_Name(xmlWriter);
+			HitDice_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void HitDice_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Hit Dice");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void HitDice_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("1" + classModel.HitPointDiePerLevel.GetDescription().ToString() + " per " + classModel.Name.ToLower() + " level");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_HP_HPAt1stLevel(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("hitpointsat1stlevel");
+			HP1stLevel_Name(xmlWriter);
+			HP1stLevel_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void HP1stLevel_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Hit Points at 1st Level");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void HP1stLevel_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("1" + classModel.HitPointDiePerLevel.GetDescription() + " + your Constitution modifier");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_HP_HPAtHigherLevels(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			HPHigherLevels_Name(xmlWriter);
+			HPHigherLevels_Text(xmlWriter, classModel);
+		}
+
+		private static void HPHigherLevels_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Hit Points at Higher Levels");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void HPHigherLevels_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			int average = ((int)classModel.HitPointDiePerLevel / 2) + 1;
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("1" + classModel.HitPointDiePerLevel.GetDescription() + " (or " + average + ") + your Constitution modifier per " + classModel.Name.ToLower() + " level after 1st");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Proficiencies(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("proficiencies");
+			Proficiencies_Armor(xmlWriter, classModel);
+			Proficiencies_Weapons(xmlWriter, classModel);
+			Proficiencies_Tools(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Proficiencies_Armor(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("armor");
+			Armor_Name(xmlWriter);
+			Armor_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Armor_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Armor");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Armor_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.Proficiency.GetArmorProficienciesForExporter());
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Proficiencies_Weapons(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("weapons");
+			Weapons_Name(xmlWriter);
+			Weapons_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Weapons_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Weapons");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Weapons_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.Proficiency.WeaponProficiencies);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Proficiencies_Tools(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("tools");
+			Tools_Name(xmlWriter);
+			Tools_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Tools_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Tools");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Tools_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.Proficiency.GetToolProficienciesForExporter());
 			xmlWriter.WriteEndElement();
 		}
 
@@ -86,7 +278,7 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteEndElement();
 			}
 		}
-		
+
 		private static void Abilities_Specializations_Level(XmlWriter xmlWriter, ClassSpecialization specialization)
 		{
 			xmlWriter.WriteStartElement("level");
