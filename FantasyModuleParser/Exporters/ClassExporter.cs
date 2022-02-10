@@ -162,6 +162,8 @@ namespace FantasyModuleParser.Exporters
 			Proficiencies_Armor(xmlWriter, classModel);
 			Proficiencies_Weapons(xmlWriter, classModel);
 			Proficiencies_Tools(xmlWriter, classModel);
+			Proficiencies_SavingThrows(xmlWriter, classModel);
+			Proficiencies_Skills(xmlWriter, classModel);
 			xmlWriter.WriteEndElement();
 		}
 
@@ -234,6 +236,54 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("text");
 			Common_Type_String(xmlWriter);
 			xmlWriter.WriteString(classModel.Proficiency.GetToolProficienciesForExporter());
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Proficiencies_SavingThrows(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("savingthrows");
+			SavingThrows_Name(xmlWriter);
+			SavingThrows_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void SavingThrows_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Saving Throws");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void SavingThrows_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.Proficiency.GetSavingThrowProficienciesForExporter());
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Proficiencies_Skills(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("savingthrows");
+			SavingThrows_Name(xmlWriter);
+			SavingThrows_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Skills_Name(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString("Saving Throws");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Skills_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			Common_Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.Proficiency.GetSavingThrowProficienciesForExporter());
 			xmlWriter.WriteEndElement();
 		}
 

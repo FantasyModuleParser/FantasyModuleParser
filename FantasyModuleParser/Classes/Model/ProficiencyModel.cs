@@ -59,6 +59,18 @@ namespace FantasyModuleParser.Classes.Model
             return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
         }
 
+        public string GetSavingThrowProficienciesForExporter()
+        {
+            string delimiter = ", ";
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (SavingThrowAttributeEnum saves in SavingThrowAttributes)
+            {
+                stringBuilder.Append(saves.GetDescription()).Append(delimiter);
+            }
+            return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
+        }
+
         public void GetSkillProficienciesForExporter(int switchval)
 		{
             StringBuilder stringBuilder = new StringBuilder();
