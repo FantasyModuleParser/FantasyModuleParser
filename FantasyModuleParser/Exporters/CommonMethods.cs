@@ -199,5 +199,30 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("baseicon", "0");
 			xmlWriter.WriteAttributeString("decalicon", "0");
 		}
+
+		public static void Type_String(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("type", "string");
+		}
+
+		public static void Type_Number(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("type", "number");
+		}
+
+		public static void Type_FormattedText(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("type", "formattedtext");
+		}
+
+		public static void Type_WindowReference(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("type", "windowreference");
+		}
+
+		public static void Type_Image(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteAttributeString("type", "image");
+		}
 	}
 }

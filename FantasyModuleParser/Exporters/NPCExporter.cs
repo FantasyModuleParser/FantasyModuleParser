@@ -213,7 +213,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Description_Npcs(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("description");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("NPCs");
 			xmlWriter.WriteEndElement();
 		}
@@ -249,7 +249,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Npcname_Link(XmlWriter xmlWriter, ModuleModel moduleModel, NPCModel npc)
 		{
 			xmlWriter.WriteStartElement("link");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			Class_NPC(xmlWriter);
 			NPC_Recordname(xmlWriter, moduleModel, npc);
 			CommonMethods.Xml_Description_Field_Name(xmlWriter);
@@ -299,7 +299,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Description_ActualCR(XmlWriter xmlWriter, string actualCR)
 		{
 			xmlWriter.WriteStartElement("description");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("CR " + actualCR);
 			xmlWriter.WriteEndElement();
 		}
@@ -307,7 +307,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Description_ActualType(XmlWriter xmlWriter, string actualType)
 		{
 			xmlWriter.WriteStartElement("description"); /* <type_NPCType> <description> */
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(actualType);
 			xmlWriter.WriteEndElement(); /* <type_NPCType> <description> </description> */
 		}
@@ -390,27 +390,57 @@ namespace FantasyModuleParser.Exporters
 		
 		static private void ProcessNPCListByCategoryLetter(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
 		{
-			xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel)); /* <npcModel.NPCName> */
-			xmlWriter.WriteStartElement("link"); /* <npcModel.NPCName> <link> */
-			xmlWriter.WriteAttributeString("type", "windowreference");
-			xmlWriter.WriteStartElement("class"); /* <npcModel.NPCName> <link> <class> */
-			xmlWriter.WriteString("imagewindow");
-			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <link> <class> </class> */
-			xmlWriter.WriteStartElement("recordname"); /* <npcModel.NPCName> <link> <recordname> */
-			xmlWriter.WriteString("image." + NPCNameToXMLFormat(npcModel) + "@" + moduleModel.Name);
-			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <link> <recordname> </recordname> */
-			xmlWriter.WriteStartElement("description"); /* <npcModel.NPCName> <link> <description> */
-			xmlWriter.WriteStartElement("field"); /* <npcModel.NPCName> <link> <description> <field> */
-			xmlWriter.WriteString("name");
-			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <link> <description> <field> </field> */
-			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <link> <description> </description> */
-			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <link> </link>> */
-			xmlWriter.WriteStartElement("source"); /* <npcModel.NPCName> <source> */
-			xmlWriter.WriteAttributeString("type", "string");
-			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> <source> </source> */
-			xmlWriter.WriteEndElement(); /* <npcModel.NPCName> </npcModel.NPCName> */
+			xmlWriter.WriteStartElement(NPCNameToXMLFormat(npcModel));
+			NPCName_Link(xmlWriter, npcModel, moduleModel);
+			NPCName_Source(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void NPCName_Link(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
+		{
+			xmlWriter.WriteStartElement("link");
+			CommonMethods.Type_WindowReference(xmlWriter);
+			Link_Class(xmlWriter);
+			Link_RecordName(xmlWriter, npcModel, moduleModel);
+			Link_Description(xmlWriter);
+			xmlWriter.WriteEndElement();
 		}
 		
+		private static void Link_Class(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("class");
+			xmlWriter.WriteString("imagewindow");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Link_RecordName(XmlWriter xmlWriter, NPCModel npcModel, ModuleModel moduleModel)
+		{
+			xmlWriter.WriteStartElement("recordname");
+			xmlWriter.WriteString("image." + NPCNameToXMLFormat(npcModel) + "@" + moduleModel.Name);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Link_Description(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("description");
+			Description_Field(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Description_Field(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("field");
+			xmlWriter.WriteString("name");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void NPCName_Source(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("source");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteEndElement();
+		}
+
 		static public void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			int ChaBonus = -5 + (npcModel.AttributeCha / 2);
@@ -484,85 +514,85 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("abilities"); /* <abilities> */
 			xmlWriter.WriteStartElement("charisma"); /* <abilities> <charisma> */
 			xmlWriter.WriteStartElement("bonus"); /* <abilities> <charisma> <bonus> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(ChaBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <charisma> <bonus> </bonus> */
 			xmlWriter.WriteStartElement("modifier"); /* <abilities> <charisma> <modifier> */
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(ChaModifier + ChaBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <charisma> <modifier> </modifier> */
 			xmlWriter.WriteStartElement("score"); /* <abilities> <charisma> <score> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(npcModel.AttributeCha);
 			xmlWriter.WriteEndElement(); /* <abilities> <charisma> <score> </score> */
 			xmlWriter.WriteEndElement(); /* <abilities> <charisma> </charisma>> */
 			xmlWriter.WriteStartElement("constitution"); /* <abilities> <constitution> */
 			xmlWriter.WriteStartElement("bonus"); /* <abilities> <constitution> <bonus> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(ConBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <constitution> <bonus> </bonus> */
 			xmlWriter.WriteStartElement("modifier"); /* <abilities> <constitution> <modifier> */
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(ConModifier + ConBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <constitution> <modifier> </modifier> */
 			xmlWriter.WriteStartElement("score"); /* <abilities> <constitution> <score> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(npcModel.AttributeCon);
 			xmlWriter.WriteEndElement(); /* <abilities> <constitution> <score> </score>*/
 			xmlWriter.WriteEndElement(); /* <abilities> <constitution> </constitution> */
 			xmlWriter.WriteStartElement("dexterity"); /* <abilities> <dexterity> */
 			xmlWriter.WriteStartElement("bonus"); /* <abilities> <dexterity> <bonus> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(DexBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> <bonus> </bonus> */
 			xmlWriter.WriteStartElement("modifier"); /* <abilities> <dexterity> <modifier> */
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(DexModifier + DexBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> <modifier> </modifier> */
 			xmlWriter.WriteStartElement("score"); /* <abilities> <dexterity> <score> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(npcModel.AttributeDex);
 			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> <score> </score> */
 			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> </dexterity> */
 			xmlWriter.WriteStartElement("intelligence"); /* <abilities> <intelligence> */
 			xmlWriter.WriteStartElement("bonus"); /* <abilities> <intelligence> <bonus> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(IntBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> <bonus> </bonus> */
 			xmlWriter.WriteStartElement("modifier"); /* <abilities> <intelligence> <modifier> */
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(IntModifier + IntBonus);
 			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> <modifier> </modifier> */
 			xmlWriter.WriteStartElement("score"); /* <abilities> <intelligence> <score> */
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(npcModel.AttributeInt);
 			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> <score> </score> */
 			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> </intelligence> */
 			xmlWriter.WriteStartElement("strength");
 			xmlWriter.WriteStartElement("bonus");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(StrBonus);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("modifier");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(StrModifier + StrBonus);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("score");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(npcModel.AttributeStr); // Add Attibute value
 			xmlWriter.WriteEndElement(); // Close </score>
 			xmlWriter.WriteEndElement(); // Close </strength>
 			xmlWriter.WriteStartElement("wisdom"); // Open <wisdom>
 			xmlWriter.WriteStartElement("bonus"); // Open <bonus>
-			xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(WisBonus); // Add bonus value
 			xmlWriter.WriteEndElement(); // Close </bonus>
 			xmlWriter.WriteStartElement("modifier"); // Open <modifier>
-			xmlWriter.WriteAttributeString("type", "string"); // Add type="string"
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(WisModifier + WisBonus); // Add bonus value with + or minus
 			xmlWriter.WriteEndElement(); // Close </modifier>
 			xmlWriter.WriteStartElement("score"); // Open <score>
-			xmlWriter.WriteAttributeString("type", "number"); // Add type="number"
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(npcModel.AttributeWis); // Add Attibute value
 			xmlWriter.WriteEndElement(); // Close </score>
 			xmlWriter.WriteEndElement(); // Close </intelligence>
@@ -576,11 +606,11 @@ namespace FantasyModuleParser.Exporters
 			string acDescription = acArray.Length >= 2 ? "(" + acArray[1] : "";
 
 			xmlWriter.WriteStartElement("ac");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(acValue);
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("actext");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(acDescription);
 			xmlWriter.WriteEndElement();
 		}
@@ -593,11 +623,11 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 				xmlWriter.WriteStartElement("desc");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(action.ActionDescription);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("name");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(action.ActionName);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
@@ -609,7 +639,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteAlignment(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("alignment");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(npcModel.Alignment);
 			xmlWriter.WriteEndElement();
 		}
@@ -618,7 +648,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			xmlWriter.WriteStartElement("conditionimmunities");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			if (npcModel.ConditionImmunityModelList != null)
 			{
 				foreach (SelectableActionModel condition in npcModel.ConditionImmunityModelList)
@@ -644,7 +674,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteCR(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("cr");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(npcModel.ChallengeRating);
 			xmlWriter.WriteEndElement();
 		}
@@ -663,7 +693,7 @@ namespace FantasyModuleParser.Exporters
 				hpDieBreakdown = "(" + hpArray[1];
 			}
 			xmlWriter.WriteStartElement("hd");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			if (hpArray.Length == 2)
 			{
 				xmlWriter.WriteString(hpDieBreakdown);
@@ -674,7 +704,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 			xmlWriter.WriteStartElement("hp");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteString(hpValue);
 			xmlWriter.WriteEndElement();
 		}
@@ -689,11 +719,11 @@ namespace FantasyModuleParser.Exporters
 				{
 					xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 					xmlWriter.WriteStartElement("desc");
-					xmlWriter.WriteAttributeString("type", "string");
+					CommonMethods.Type_String(xmlWriter);
 					xmlWriter.WriteString(lairaction.ActionDescription);
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteStartElement("name");
-					xmlWriter.WriteAttributeString("type", "string");
+					CommonMethods.Type_String(xmlWriter);
 					xmlWriter.WriteString(lairaction.ActionName);
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteEndElement();
@@ -801,7 +831,7 @@ namespace FantasyModuleParser.Exporters
 				stringBuilderOption.Remove(stringBuilderOption.Length - 2, 2);
 			}
 			xmlWriter.WriteStartElement("languages");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(stringBuilderOption.ToString());
 			xmlWriter.WriteEndElement();
 		}
@@ -814,11 +844,11 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 				xmlWriter.WriteStartElement("desc");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(legendaryaction.ActionDescription);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("name");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(legendaryaction.ActionName);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
@@ -830,7 +860,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteName(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(npcModel.NPCName);
 			xmlWriter.WriteEndElement();
 		}
@@ -843,11 +873,11 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 				xmlWriter.WriteStartElement("desc");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(reaction.ActionDescription);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("name");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(reaction.ActionName);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
@@ -892,7 +922,7 @@ namespace FantasyModuleParser.Exporters
 			string savingThrowString = stringBuilder.ToString().Trim();
 
 			xmlWriter.WriteStartElement("savingthrows");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(savingThrowString);
 			xmlWriter.WriteEndElement();
 		}
@@ -911,7 +941,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			string sensesString = stringBuilder.ToString().Trim();
 			xmlWriter.WriteStartElement("senses");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(sensesString);
 			xmlWriter.WriteEndElement();
 		}
@@ -975,7 +1005,7 @@ namespace FantasyModuleParser.Exporters
 			}
 			string speedString = stringBuilder.ToString().Trim();
 			xmlWriter.WriteStartElement("speed");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(speedString);
 			xmlWriter.WriteEndElement();
 		}
@@ -983,7 +1013,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteSize(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("size");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(npcModel.Size);
 			xmlWriter.WriteEndElement();
 		}
@@ -997,7 +1027,7 @@ namespace FantasyModuleParser.Exporters
 				stringBuilder.Append(" " + npcModel.Tag);
 			}
 			xmlWriter.WriteStartElement("type");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(stringBuilder.ToString());
 			xmlWriter.WriteEndElement();
 		}
@@ -1006,7 +1036,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			string skillsString = npcModel.SkillAttributesToString();
 			xmlWriter.WriteStartElement("skills");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(skillsString);
 			xmlWriter.WriteEndElement();
 		}
@@ -1015,7 +1045,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			NPCController npcController = new NPCController();
 			xmlWriter.WriteStartElement("text");
-			xmlWriter.WriteAttributeString("type", "formattedtext");
+			CommonMethods.Type_FormattedText(xmlWriter);
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(npcModel.Description));
 			xmlWriter.WriteEndElement();
 		}
@@ -1044,11 +1074,11 @@ namespace FantasyModuleParser.Exporters
 				{
 					xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 					xmlWriter.WriteStartElement("desc");
-					xmlWriter.WriteAttributeString("type", "string");
+					CommonMethods.Type_String(xmlWriter);
 					xmlWriter.WriteString(traits.ActionDescription);
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteStartElement("name");
-					xmlWriter.WriteAttributeString("type", "string");
+					CommonMethods.Type_String(xmlWriter);
 					xmlWriter.WriteString(traits.ActionName);
 					xmlWriter.WriteEndElement();
 					xmlWriter.WriteEndElement();
@@ -1119,11 +1149,11 @@ namespace FantasyModuleParser.Exporters
 
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 				xmlWriter.WriteStartElement("desc");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(innateCastingDescription);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("name");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(innateName);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
@@ -1217,11 +1247,11 @@ namespace FantasyModuleParser.Exporters
 				string spellcastingDescription = stringBuilder.ToString();
 				xmlWriter.WriteStartElement("id-" + actionID.ToString("D4"));
 				xmlWriter.WriteStartElement("desc");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(spellcastingDescription);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteStartElement("name");
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(spellcastingName);
 				xmlWriter.WriteEndElement();
 				xmlWriter.WriteEndElement();
@@ -1233,7 +1263,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteXP(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("xp");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(npcModel.XP);
 			xmlWriter.WriteEndElement();
 		}
@@ -1241,7 +1271,7 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteDamageImmunities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("damageimmunities");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(npcModel.UpdateDamageImmunities());
 			xmlWriter.WriteEndElement();
 		}
@@ -1249,7 +1279,7 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteDamageResistances(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("damageresistances");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(npcModel.UpdateDamageResistances());
 			xmlWriter.WriteEndElement();
 		}
@@ -1257,7 +1287,7 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteDamageVulnerabilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("damagevulnerabilities");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(npcModel.UpdateDamageVulnerabilities());
 			xmlWriter.WriteEndElement();
 		}

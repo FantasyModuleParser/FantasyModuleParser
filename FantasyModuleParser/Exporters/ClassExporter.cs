@@ -2,32 +2,13 @@
 using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC.Controllers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 
 namespace FantasyModuleParser.Exporters
 {
 	class ClassExporter
 	{
-		#region Common Used XML
-		public static void Common_Type_String(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteAttributeString("type", "string");
-		}
-
-		public static void Common_Type_Number(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteAttributeString("type", "number");
-		}
-
-		public static void Common_Type_FormattedText(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteAttributeString("type", "formattedtext");
-		}
-
-		#endregion
 		public static void DatabaseXML_Root_Classes(XmlWriter xmlWriter, ModuleModel module)
 		{
 			if (module.IncludesClasses)
@@ -72,7 +53,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Class_Name(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(classModel.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -81,7 +62,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			NPCController npcController = new NPCController();
 			xmlWriter.WriteStartElement("text");
-			xmlWriter.WriteAttributeString("type", "formattedtext");
+			CommonMethods.Type_FormattedText(xmlWriter);
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(classModel.Description));
 			xmlWriter.WriteEndElement();
 		}
@@ -106,7 +87,7 @@ namespace FantasyModuleParser.Exporters
 		private static void HitDice_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Hit Dice");
 			xmlWriter.WriteEndElement();
 		}
@@ -114,7 +95,7 @@ namespace FantasyModuleParser.Exporters
 		private static void HitDice_Text(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("1" + classModel.HitPointDiePerLevel.GetDescription().ToLower().ToString() + " per " + classModel.Name.ToLower() + " level");
 			xmlWriter.WriteEndElement();
 		}
@@ -130,7 +111,7 @@ namespace FantasyModuleParser.Exporters
 		private static void HP1stLevel_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Hit Points at 1st Level");
 			xmlWriter.WriteEndElement();
 		}
@@ -138,7 +119,7 @@ namespace FantasyModuleParser.Exporters
 		private static void HP1stLevel_Text(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("1" + classModel.HitPointDiePerLevel.GetDescription() + " + your Constitution modifier");
 			xmlWriter.WriteEndElement();
 		}
@@ -152,7 +133,7 @@ namespace FantasyModuleParser.Exporters
 		private static void HPHigherLevels_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Hit Points at Higher Levels");
 			xmlWriter.WriteEndElement();
 		}
@@ -161,7 +142,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			int average = ((int)classModel.HitPointDiePerLevel / 2) + 1;
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("1" + classModel.HitPointDiePerLevel.GetDescription() + " (or " + average + ") + your Constitution modifier per " + classModel.Name.ToLower() + " level after 1st");
 			xmlWriter.WriteEndElement();
 		}
@@ -188,7 +169,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Armor_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Armor");
 			xmlWriter.WriteEndElement();
 		}
@@ -196,7 +177,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Armor_Text(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(classModel.Proficiency.GetArmorProficienciesForExporter());
 			xmlWriter.WriteEndElement();
 		}
@@ -212,7 +193,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Weapons_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Weapons");
 			xmlWriter.WriteEndElement();
 		}
@@ -220,7 +201,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Weapons_Text(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(classModel.Proficiency.WeaponProficiencies);
 			xmlWriter.WriteEndElement();
 		}
@@ -236,7 +217,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Tools_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Tools");
 			xmlWriter.WriteEndElement();
 		}
@@ -244,7 +225,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Tools_Text(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(classModel.Proficiency.GetToolProficienciesForExporter());
 			xmlWriter.WriteEndElement();
 		}
@@ -260,7 +241,7 @@ namespace FantasyModuleParser.Exporters
 		private static void SavingThrows_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Saving Throws");
 			xmlWriter.WriteEndElement();
 		}
@@ -268,7 +249,7 @@ namespace FantasyModuleParser.Exporters
 		private static void SavingThrows_Text(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(classModel.Proficiency.GetSavingThrowProficienciesForExporter());
 			xmlWriter.WriteEndElement();
 		}
@@ -284,7 +265,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Skills_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Skills");
 			xmlWriter.WriteEndElement();
 		}
@@ -293,7 +274,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			int switchval = classModel.Proficiency.NumberOfSkillsToChoose;
 			xmlWriter.WriteStartElement("text");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(classModel.Proficiency.GetSkillProficienciesForExporter(switchval));
 			xmlWriter.WriteEndElement();
 		}
@@ -315,7 +296,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Features_Level(XmlWriter xmlWriter, ClassFeature classFeature)
 		{
 			xmlWriter.WriteStartElement("level");
-			Common_Type_Number(xmlWriter);
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteString(classFeature.Level.ToString());
 			xmlWriter.WriteEndElement();
 		}
@@ -323,7 +304,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Features_Name(XmlWriter xmlWriter, ClassFeature classFeature)
 		{
 			xmlWriter.WriteStartElement("name");
-			Common_Type_String(xmlWriter);
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(classFeature.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -332,7 +313,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			NPCController npcController = new NPCController();
 			xmlWriter.WriteStartElement("text");
-			Common_Type_FormattedText(xmlWriter);
+			CommonMethods.Type_FormattedText(xmlWriter);
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(classFeature.Description));
 			xmlWriter.WriteEndElement();
 		}
