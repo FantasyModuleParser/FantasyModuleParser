@@ -5,6 +5,7 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -441,91 +442,70 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
+		private static int CharismaBonus(NPCModel npcModel)
+		{
+			return -5 + (npcModel.AttributeCha / 2);
+		}
+
+		private static int ConstitutionBonus(NPCModel npcModel)
+		{
+			return -5 + (npcModel.AttributeCon / 2);
+		}
+
+		private static int DexterityBonus(NPCModel npcModel)
+		{
+			return -5 + (npcModel.AttributeDex / 2);
+		}
+
+		private static int IntelligenceBonus(NPCModel npcModel)
+		{
+			return -5 + (npcModel.AttributeInt / 2);
+		}
+
+		private static int StrengthBonus(NPCModel npcModel)
+		{
+			return -5 + (npcModel.AttributeStr / 2);
+		}
+
+		private static int WisdomhBonus(NPCModel npcModel)
+		{
+			return -5 + (npcModel.AttributeWis / 2);
+		}
+
+		private static string CharismaModifier(NPCModel npcModel)
+		{
+			return npcModel.AttributeCha >= 10 ? "+" : "";
+		}
+
+		private static string ConstitutionModifier(NPCModel npcModel)
+		{
+			return npcModel.AttributeCon >= 10 ? "+" : "";
+		}
+
+		private static string DexterityModifier(NPCModel npcModel)
+		{
+			return npcModel.AttributeDex >= 10 ? "+" : "";
+		}
+
+		private static string IntelligenceModifier(NPCModel npcModel)
+		{
+			return npcModel.AttributeInt >= 10 ? "+" : "";
+		}
+
+		private static string StrengthModifier(NPCModel npcModel)
+		{
+			return npcModel.AttributeStr >= 10 ? "+" : "";
+		}
+
+		private static string WisdomModifier(NPCModel npcModel)
+		{
+			return npcModel.AttributeWis >= 10 ? "+" : "";
+		}
+
 		static public void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			int ChaBonus = -5 + (npcModel.AttributeCha / 2);
-			int ConBonus = -5 + (npcModel.AttributeCon / 2);
-			int DexBonus = -5 + (npcModel.AttributeDex / 2);
-			int IntBonus = -5 + (npcModel.AttributeInt / 2);
-			int StrBonus = -5 + (npcModel.AttributeStr / 2);
-			int WisBonus = -5 + (npcModel.AttributeWis / 2);
-
-			string ChaModifier;
-			string ConModifier;
-			string DexModifier;
-			string IntModifier;
-			string StrModifier;
-			string WisModifier;
-
-			if (npcModel.AttributeCha >= 10)
-			{
-				ChaModifier = "+";
-			}
-			else
-			{
-				ChaModifier = "";
-			}
-
-			if (npcModel.AttributeCon >= 10)
-			{
-				ConModifier = "+";
-			}
-			else
-			{
-				ConModifier = "";
-			}
-
-			if (npcModel.AttributeDex >= 10)
-			{
-				DexModifier = "+";
-			}
-			else
-			{
-				DexModifier = "";
-			}
-
-			if (npcModel.AttributeInt >= 10)
-			{
-				IntModifier = "+";
-			}
-			else
-			{
-				IntModifier = "";
-			}
-
-			if (npcModel.AttributeStr >= 10)
-			{
-				StrModifier = "+";
-			}
-			else
-			{
-				StrModifier = "";
-			}
-
-			if (npcModel.AttributeWis >= 10)
-			{
-				WisModifier = "+";
-			}
-			else
-			{
-				WisModifier = "";
-			}
-
 			xmlWriter.WriteStartElement("abilities"); /* <abilities> */
-			xmlWriter.WriteStartElement("charisma"); /* <abilities> <charisma> */
-			xmlWriter.WriteStartElement("bonus"); /* <abilities> <charisma> <bonus> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(ChaBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <charisma> <bonus> </bonus> */
-			xmlWriter.WriteStartElement("modifier"); /* <abilities> <charisma> <modifier> */
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteValue(ChaModifier + ChaBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <charisma> <modifier> </modifier> */
-			xmlWriter.WriteStartElement("score"); /* <abilities> <charisma> <score> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(npcModel.AttributeCha);
-			xmlWriter.WriteEndElement(); /* <abilities> <charisma> <score> </score> */
-			xmlWriter.WriteEndElement(); /* <abilities> <charisma> </charisma>> */
+			Abilities_Charisma(xmlWriter, npcModel);
 			xmlWriter.WriteStartElement("constitution"); /* <abilities> <constitution> */
 			xmlWriter.WriteStartElement("bonus"); /* <abilities> <constitution> <bonus> */
 			CommonMethods.Type_Number(xmlWriter);
@@ -597,6 +577,39 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement(); // Close </score>
 			xmlWriter.WriteEndElement(); // Close </intelligence>
 			xmlWriter.WriteEndElement(); // Close </abilities>
+		}
+
+		private static void Abilities_Charisma(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("charisma"); /* <abilities> <charisma> */
+			Charisma_Bonus(xmlWriter, npcModel);
+			Charisma_Modifier(xmlWriter, npcModel);
+			Charisma_Score(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement(); /* <abilities> <charisma> </charisma>> */
+		}
+
+		private static void Charisma_Bonus(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("bonus");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(CharismaBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Charisma_Modifier(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("modifier");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteValue(CharismaModifier(npcModel) + CharismaBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Charisma_Score(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("score");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(npcModel.AttributeCha);
+			xmlWriter.WriteEndElement();
 		}
 		
 		static public void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
