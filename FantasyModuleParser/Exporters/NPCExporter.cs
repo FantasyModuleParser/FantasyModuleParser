@@ -5,7 +5,6 @@ using FantasyModuleParser.NPC.Controllers;
 using FantasyModuleParser.NPC.Models.Action;
 using FantasyModuleParser.NPC.Models.Skills;
 using log4net;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -138,6 +137,7 @@ namespace FantasyModuleParser.Exporters
 				CommonMethods.WriteModuleLocked(xmlWriter);
 				WriteAbilities(xmlWriter, npcModel);
 				WriteAC(xmlWriter, npcModel);
+				WriteACText(xmlWriter, npcModel);
 				WriteActions(xmlWriter, npcModel);
 				WriteAlignment(xmlWriter, npcModel);
 				WriteConditionImmunities(xmlWriter, npcModel);
@@ -441,7 +441,7 @@ namespace FantasyModuleParser.Exporters
 			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteEndElement();
 		}
-
+		#region Ability Bonus Methods
 		private static int CharismaBonus(NPCModel npcModel)
 		{
 			return -5 + (npcModel.AttributeCha / 2);
@@ -467,11 +467,12 @@ namespace FantasyModuleParser.Exporters
 			return -5 + (npcModel.AttributeStr / 2);
 		}
 
-		private static int WisdomhBonus(NPCModel npcModel)
+		private static int WisdomBonus(NPCModel npcModel)
 		{
 			return -5 + (npcModel.AttributeWis / 2);
 		}
-
+		#endregion
+		#region Ability Modifier Methods
 		private static string CharismaModifier(NPCModel npcModel)
 		{
 			return npcModel.AttributeCha >= 10 ? "+" : "";
@@ -501,91 +502,15 @@ namespace FantasyModuleParser.Exporters
 		{
 			return npcModel.AttributeWis >= 10 ? "+" : "";
 		}
-
-		static public void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
-		{
-			xmlWriter.WriteStartElement("abilities"); /* <abilities> */
-			Abilities_Charisma(xmlWriter, npcModel);
-			xmlWriter.WriteStartElement("constitution"); /* <abilities> <constitution> */
-			xmlWriter.WriteStartElement("bonus"); /* <abilities> <constitution> <bonus> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(ConBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <constitution> <bonus> </bonus> */
-			xmlWriter.WriteStartElement("modifier"); /* <abilities> <constitution> <modifier> */
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteValue(ConModifier + ConBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <constitution> <modifier> </modifier> */
-			xmlWriter.WriteStartElement("score"); /* <abilities> <constitution> <score> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(npcModel.AttributeCon);
-			xmlWriter.WriteEndElement(); /* <abilities> <constitution> <score> </score>*/
-			xmlWriter.WriteEndElement(); /* <abilities> <constitution> </constitution> */
-			xmlWriter.WriteStartElement("dexterity"); /* <abilities> <dexterity> */
-			xmlWriter.WriteStartElement("bonus"); /* <abilities> <dexterity> <bonus> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(DexBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> <bonus> </bonus> */
-			xmlWriter.WriteStartElement("modifier"); /* <abilities> <dexterity> <modifier> */
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteValue(DexModifier + DexBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> <modifier> </modifier> */
-			xmlWriter.WriteStartElement("score"); /* <abilities> <dexterity> <score> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(npcModel.AttributeDex);
-			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> <score> </score> */
-			xmlWriter.WriteEndElement(); /* <abilities> <dexterity> </dexterity> */
-			xmlWriter.WriteStartElement("intelligence"); /* <abilities> <intelligence> */
-			xmlWriter.WriteStartElement("bonus"); /* <abilities> <intelligence> <bonus> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(IntBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> <bonus> </bonus> */
-			xmlWriter.WriteStartElement("modifier"); /* <abilities> <intelligence> <modifier> */
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteValue(IntModifier + IntBonus);
-			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> <modifier> </modifier> */
-			xmlWriter.WriteStartElement("score"); /* <abilities> <intelligence> <score> */
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(npcModel.AttributeInt);
-			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> <score> </score> */
-			xmlWriter.WriteEndElement(); /* <abilities> <intelligence> </intelligence> */
-			xmlWriter.WriteStartElement("strength");
-			xmlWriter.WriteStartElement("bonus");
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(StrBonus);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("modifier");
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteValue(StrModifier + StrBonus);
-			xmlWriter.WriteEndElement();
-			xmlWriter.WriteStartElement("score");
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(npcModel.AttributeStr); // Add Attibute value
-			xmlWriter.WriteEndElement(); // Close </score>
-			xmlWriter.WriteEndElement(); // Close </strength>
-			xmlWriter.WriteStartElement("wisdom"); // Open <wisdom>
-			xmlWriter.WriteStartElement("bonus"); // Open <bonus>
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(WisBonus); // Add bonus value
-			xmlWriter.WriteEndElement(); // Close </bonus>
-			xmlWriter.WriteStartElement("modifier"); // Open <modifier>
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteValue(WisModifier + WisBonus); // Add bonus value with + or minus
-			xmlWriter.WriteEndElement(); // Close </modifier>
-			xmlWriter.WriteStartElement("score"); // Open <score>
-			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteValue(npcModel.AttributeWis); // Add Attibute value
-			xmlWriter.WriteEndElement(); // Close </score>
-			xmlWriter.WriteEndElement(); // Close </intelligence>
-			xmlWriter.WriteEndElement(); // Close </abilities>
-		}
-
+		#endregion
+		#region Charisma Methods
 		private static void Abilities_Charisma(XmlWriter xmlWriter, NPCModel npcModel)
 		{
-			xmlWriter.WriteStartElement("charisma"); /* <abilities> <charisma> */
+			xmlWriter.WriteStartElement("charisma");
 			Charisma_Bonus(xmlWriter, npcModel);
 			Charisma_Modifier(xmlWriter, npcModel);
 			Charisma_Score(xmlWriter, npcModel);
-			xmlWriter.WriteEndElement(); /* <abilities> <charisma> </charisma>> */
+			xmlWriter.WriteEndElement();
 		}
 
 		private static void Charisma_Bonus(XmlWriter xmlWriter, NPCModel npcModel)
@@ -611,17 +536,198 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteValue(npcModel.AttributeCha);
 			xmlWriter.WriteEndElement();
 		}
+		#endregion
+		#region Constitution Methods
+		private static void Abilities_Constitution(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("constitution");
+			Constitution_Bonus(xmlWriter, npcModel);
+			Constitution_Modifier(xmlWriter, npcModel);
+			Constitution_Score(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement();
+		}
+		private static void Constitution_Bonus(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("bonus");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(ConstitutionBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Constitution_Modifier(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("modifier");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteValue(ConstitutionModifier(npcModel) + ConstitutionBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Constitution_Score(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("score");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(npcModel.AttributeCon);
+			xmlWriter.WriteEndElement();
+		}
+		#endregion
+		#region Dexterity Methods
+		private static void Abilities_Dexterity(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("dexterity");
+			Dexterity_Bonus(xmlWriter, npcModel);
+			Dexterity_Modifier(xmlWriter, npcModel);
+			Dexterity_Score(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement();
+		}
+		private static void Dexterity_Bonus(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("bonus");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(DexterityBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Dexterity_Modifier(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("modifier");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteValue(DexterityModifier(npcModel) + DexterityBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Dexterity_Score(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("score");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(npcModel.AttributeDex);
+			xmlWriter.WriteEndElement();
+		}
+		#endregion
+		#region Intelligence Methods
+		private static void Abilities_Intelligence(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("intelligence");
+			Intelligence_Bonus(xmlWriter, npcModel);
+			Intelligence_Modifier(xmlWriter, npcModel);
+			Intelligence_Score(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement();
+		}
+		private static void Intelligence_Bonus(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("bonus");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(IntelligenceBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Intelligence_Modifier(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("modifier");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteValue(IntelligenceModifier(npcModel) + IntelligenceBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Intelligence_Score(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("score");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(npcModel.AttributeInt);
+			xmlWriter.WriteEndElement();
+		}
+		#endregion
+		#region Strength Methods
+		private static void Abilities_Strength(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("strength");
+			Strength_Bonus(xmlWriter, npcModel);
+			Strength_Modifier(xmlWriter, npcModel);
+			Strength_Score(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement();
+		}
+		private static void Strength_Bonus(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("bonus");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(StrengthBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Strength_Modifier(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("modifier");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteValue(StrengthModifier(npcModel) + StrengthBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Strength_Score(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("score");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(npcModel.AttributeStr);
+			xmlWriter.WriteEndElement();
+		}
+		#endregion
+		#region Wisdom Methods
+		private static void Abilities_Wisdom(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("wisdom");
+			Strength_Bonus(xmlWriter, npcModel);
+			Strength_Modifier(xmlWriter, npcModel);
+			Strength_Score(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement();
+		}
+		private static void Wisdom_Bonus(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("bonus");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(WisdomBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Wisdom_Modifier(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("modifier");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteValue(WisdomModifier(npcModel) + WisdomBonus(npcModel));
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Wisdom_Score(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("score");
+			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteValue(npcModel.AttributeWis);
+			xmlWriter.WriteEndElement();
+		}
+		#endregion
+		static public void WriteAbilities(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			xmlWriter.WriteStartElement("abilities"); /* <abilities> */
+			Abilities_Charisma(xmlWriter, npcModel);
+			Abilities_Constitution(xmlWriter, npcModel);
+			Abilities_Dexterity(xmlWriter, npcModel);
+			Abilities_Intelligence(xmlWriter, npcModel);
+			Abilities_Strength(xmlWriter, npcModel);
+			xmlWriter.WriteEndElement(); // Close </abilities>
+		}
 		
 		static public void WriteAC(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			string[] acArray = npcModel.AC.Split('(');
 			string acValue = acArray[0].Trim();
-			string acDescription = acArray.Length >= 2 ? "(" + acArray[1] : "";
-
 			xmlWriter.WriteStartElement("ac");
 			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(acValue);
 			xmlWriter.WriteEndElement();
+		}
+
+		static public void WriteACText(XmlWriter xmlWriter, NPCModel npcModel)
+		{
+			string[] acArray = npcModel.AC.Split('(');
+			string acDescription = acArray.Length >= 2 ? "(" + acArray[1] : "";
+
 			xmlWriter.WriteStartElement("actext");
 			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteValue(acDescription);
