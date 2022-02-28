@@ -315,7 +315,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("specializationchoice");
 			CommonMethods.Type_Number(xmlWriter);
-			xmlWriter.WriteString(classFeature.IsSpecializationChoice);
+			xmlWriter.WriteValue(classFeature.IsSpecializationChoice);
 			xmlWriter.WriteEndElement();
 		}
 
