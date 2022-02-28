@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="MarkdownTextBox" Text="{Binding Path=DescriptionText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                         Grid.Column="0" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+                         Grid.Column="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
 
             <markdig:MarkdownViewer Markdown="{Binding Path=DescriptionText, UpdateSourceTrigger=PropertyChanged}"
                                          Grid.Column="2"/>

@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:FantasyModuleParser.Classes.Windows.ClassFeature"
         xmlns:classViewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
         mc:Ignorable="d"
-        Title="Class Feature Window" Height="300" Width="600">
+        Title="Class Feature Window" Height="500" Width="600">
     <Window.DataContext>
         <classViewModel:ClassFeatureViewModel></classViewModel:ClassFeatureViewModel>
     </Window.DataContext>
@@ -17,6 +17,7 @@
             <RowDefinition MinHeight="40" Height="1*"/>
             <RowDefinition MinHeight="40" Height="1*"/>
             <RowDefinition MinHeight="40" Height="1*"/>
+            <RowDefinition MinHeight="40" Height="200"/>
             <RowDefinition MinHeight="40" Height="1*"/>
             <RowDefinition MinHeight="40" Height="1*"/>
         </Grid.RowDefinitions>
@@ -57,11 +58,14 @@
         <TextBlock Text="Link to Specialization" TextWrapping="Wrap"  Grid.Row="3" Grid.Column="0"/>
         <ComboBox Grid.Row="3" Grid.Column="1" />
 
-        <TextBlock Text="Is Specialization Choice" TextWrapping="Wrap"  Grid.Row="4" Grid.Column="0"/>
-        <CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"
-                  IsChecked="{Binding SelectedClassFeature.IsSpecializationChoice, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Description" TextWrapping="Wrap"  Grid.Row="4" Grid.Column="0"/>
+        <TextBox Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding SelectedClassFeature.Description, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+        <TextBlock Text="Is Specialization Choice" TextWrapping="Wrap"  Grid.Row="5" Grid.Column="0"/>
+        <CheckBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
+                  IsChecked="{Binding SelectedClassFeature.IsSpecializationChoice, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button Content="Add / Update Feature" Click="Button_CloseWindowAction"
                     Command="{Binding UpdateClassFeatureCommand}"/>
             <Button Content="Cancel" Click="Button_CloseWindowAction"/>
