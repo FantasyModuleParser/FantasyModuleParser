@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:FantasyModuleParser.Classes.Windows.ClassFeature"
         xmlns:classViewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
         mc:Ignorable="d"
-        Title="ClassFeatureWindow" Height="300" Width="600">
+        Title="Class Feature Window" Height="300" Width="600">
     <Window.DataContext>
         <classViewModel:ClassFeatureViewModel></classViewModel:ClassFeatureViewModel>
     </Window.DataContext>
