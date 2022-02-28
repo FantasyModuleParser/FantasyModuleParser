@@ -6,6 +6,8 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Collections.Generic;
+using FantasyModuleParser.Classes.Windows.ClassFeature;
+using FantasyModuleParser.NPC;
 
 namespace FantasyModuleParser.Classes.ViewModels
 {
@@ -34,6 +36,8 @@ namespace FantasyModuleParser.Classes.ViewModels
             }
         }
 
+        private Boolean _isNewClassFeature = false;
+
         private ClassFeature _selectedClassFeature;
         public ClassFeature SelectedClassFeature
         {
@@ -44,12 +48,6 @@ namespace FantasyModuleParser.Classes.ViewModels
                 else
                     Set(ref _selectedClassFeature, new ClassFeature());
 
-                // Re-sort the Class Features based on the Level value (Ascending)
-                if (this.classModel != null && this.classModel.ClassFeatures != null)
-                { 
-                    this.classModel.ClassFeatures = 
-                        new ObservableCollection<ClassFeature>( this.classModel.ClassFeatures.OrderBy(_ => _.Level).ToList());
-                }
                 RaisePropertyChanged(nameof(this.classModel.ClassFeatures));
                 RaisePropertyChanged(nameof(SelectedClassFeatureName));
                 RaisePropertyChanged(nameof(SelectedClassFeatureDescription));
@@ -65,41 +63,75 @@ namespace FantasyModuleParser.Classes.ViewModels
                 return "Add Feature";
             }
         }
-        private ICommand _addClassFeatureCommand;
-        public ICommand AddClassFeatureCommand
+        private ICommand _showCreateClassFeatureWindowCommand;
+        public ICommand ShowCreateClassFeatureWindowCommand
         {
             get
             {
-                if (_addClassFeatureCommand == null)
+                if (_showCreateClassFeatureWindowCommand == null)
                 {
-                    _addClassFeatureCommand = new ActionCommand(param => OnAddClassFeatureAction(),
-                        //param => !String.IsNullOrWhiteSpace(SelectedClassFeature?.Name));
-                        param => OnAddClassFeatureEnableAction(param as String));
+                    _showCreateClassFeatureWindowCommand = new ActionCommand(param => OnShowCreateClassFeatureWindowCommand(null));
                 }
-                return _addClassFeatureCommand;
+                return _showCreateClassFeatureWindowCommand;
             }
         }
-
-        protected virtual void OnAddClassFeatureAction()
+        protected virtual void OnShowCreateClassFeatureWindowCommand(ClassFeature classFeature)
         {
-            if (classModel.ClassFeatures == null)
+            ClassFeatureWindow classFeatureWindow = new ClassFeatureWindow();
+            if (classFeature == null) 
+            {                 
+                this.SelectedClassFeature = new ClassFeature();
+                this._isNewClassFeature = true;
+            }
+            else 
             {
-                classModel.ClassFeatures = new ObservableCollection<ClassFeature>();
+                // Create a shallow copy of the selected CF to edit as to not mess with the existing item!
+                // This is an ass backwards way of handling this without a DB structure, but in order to sync
+                // up the edited ClassFeature, then assign a random ID value to classFeature BEFORE writing a shallow
+                // copy.  Then, at the UpdateCFAction method, sync up to the corresponding ClassFeature with the matching
+                // ID value
+                classFeature.Id = CommonMethod.LongRandom(0, (1024 * 1024 * 1024));
+                this.SelectedClassFeature = classFeature.ShallowCopy();
+                this._isNewClassFeature = false;
             }
-            if (!classModel.ClassFeatures.Contains(SelectedClassFeature))
-            {           
-                classModel.ClassFeatures.Add(SelectedClassFeature.ShallowCopy());
-                //classModel.ClassFeatures = new ObservableCollection<ClassFeature>(classModel.ClassFeatures.OrderBy(_ => _.Level).ToList());
-                RaisePropertyChanged(nameof(classModel));
-                RaisePropertyChanged(nameof(classModel.ClassFeatures));
+            classFeatureWindow.DataContext = this;
+            classFeatureWindow.Show();
+
+        }
+
+
+        private ICommand _updateClassFeatureCommand;
+        public ICommand UpdateClassFeatureCommand
+        {
+            get
+            {
+                if (_updateClassFeatureCommand == null)
+                {
+                    _updateClassFeatureCommand = new ActionCommand(
+                        param => OnUpdateClassFeatureCommand());
+                }
+                return _updateClassFeatureCommand;
             }
         }
 
-        protected virtual bool OnAddClassFeatureEnableAction(string param)
+        protected virtual void OnUpdateClassFeatureCommand()
         {
-            return !String.IsNullOrWhiteSpace(param) && 
-                !(classModel.ClassFeatures != null && classModel.ClassFeatures.Contains(SelectedClassFeature));
+            // If the _isNewClassFeature flag is set to true, then add it to the list of Class Features
+            // Otherwise, do nothing (as MVVM auto-magically updates 
+            if (this._isNewClassFeature)
+            {
+                classModel.ClassFeatures.Add(this.SelectedClassFeature);
+                this._isNewClassFeature = false;
+            } 
+            else
+            {
+                this.classModel.UpdateClassFeature(this.SelectedClassFeature);
+            }
+            RaisePropertyChanged(nameof(classModel));
+            RaisePropertyChanged(nameof(classModel.ClassFeatures));
+
         }
+
 
         private ICommand _removeClassFeatureCommand;
         public ICommand RemoveClassFeatureCommand
@@ -122,24 +154,20 @@ namespace FantasyModuleParser.Classes.ViewModels
             RaisePropertyChanged(nameof(classModel.ClassFeatures));
         }
 
-        private ICommand _clearSelectedFeatureCommand;
-        public ICommand ClearSelectedClassFeatureCommand
+        private ICommand _editClassFeatureCommand;
+        public ICommand EditClassFeatureCommand
         {
             get
             {
-                if (_clearSelectedFeatureCommand == null)
+                if (_editClassFeatureCommand == null)
                 {
-                    _clearSelectedFeatureCommand = new ActionCommand(
-                        param => OnClearSelectedClassFeatureCommand());
+                    _editClassFeatureCommand = new ActionCommand(
+                        param => OnShowCreateClassFeatureWindowCommand(param as ClassFeature));
                 }
-                return _clearSelectedFeatureCommand;
+                return _editClassFeatureCommand;
             }
         }
 
-        protected virtual void OnClearSelectedClassFeatureCommand()
-        {
-            SelectedClassFeature = new ClassFeature();
-        }
 
         private ICommand _assignClassSpecializationCommand;
         public ICommand AssignClassSpecializationCommand

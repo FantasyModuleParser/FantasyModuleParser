@@ -21,9 +21,8 @@
             <TabItem Header="Class Feature" IsEnabled="True" HorizontalAlignment="Left">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120"/>
-                        <RowDefinition Height="5"/>
                         <RowDefinition Height="1*" />
+                        <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
@@ -37,32 +36,6 @@
                             <ColumnDefinition Width="33.333"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Content="Class Feature Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding SelectedClassFeatureName, UpdateSourceTrigger=PropertyChanged}" />
-
-                        <Label Content="Level" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding SelectedClassFeature.Level, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0">
-                            <sys:Int32>1</sys:Int32>
-                            <sys:Int32>2</sys:Int32>
-                            <sys:Int32>3</sys:Int32>
-                            <sys:Int32>4</sys:Int32>
-                            <sys:Int32>5</sys:Int32>
-                            <sys:Int32>6</sys:Int32>
-                            <sys:Int32>7</sys:Int32>
-                            <sys:Int32>8</sys:Int32>
-                            <sys:Int32>9</sys:Int32>
-                            <sys:Int32>10</sys:Int32>
-                            <sys:Int32>11</sys:Int32>
-                            <sys:Int32>12</sys:Int32>
-                            <sys:Int32>13</sys:Int32>
-                            <sys:Int32>14</sys:Int32>
-                            <sys:Int32>15</sys:Int32>
-                            <sys:Int32>16</sys:Int32>
-                            <sys:Int32>17</sys:Int32>
-                            <sys:Int32>18</sys:Int32>
-                            <sys:Int32>19</sys:Int32>
-                            <sys:Int32>20</sys:Int32>
-                        </ComboBox>
 
                         <!-- <TextBlock Text="Subclass Feature (OPTIONAL)" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Grid.ColumnSpan="2"/> -->
                         <!-- <ComboBox Grid.Row="2" Grid.Column="2" IsEnabled="True" -->
@@ -70,14 +43,14 @@
                         <!--           SelectedValue="{Binding Path=SelectedClassSpecialization}" -->
                         <!--           DisplayMemberPath="Name"/> -->
 
-                        <Button Grid.Row="3" Grid.Column="2"  Content="Clear Feature" HorizontalAlignment="Left"
+                        <!--<Button Grid.Row="3" Grid.Column="2"  Content="Clear Feature" HorizontalAlignment="Left"
                                         Command="{Binding ClearSelectedClassFeatureCommand}"/>
                         <Button Grid.Row="3" Grid.Column="2"  Content="{Binding AddUpdateButtonContent}" HorizontalAlignment="Right"
                                         Command="{Binding AddClassFeatureCommand}"
-                                        CommandParameter="{Binding SelectedClassFeature.Name}"/>
+                                        CommandParameter="{Binding SelectedClassFeature.Name}"/>-->
                     </Grid>
                     <Separator Grid.Row="1" />
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="1*"/>
@@ -86,8 +59,7 @@
                         <Label Content="Existing Class Features" Grid.Row="0" FontWeight="Bold" />
                         <ListBox x:Name="ClassFeatureListBox"
                                  Grid.Row="1" ItemsSource="{Binding classModel.ClassFeatures}"
-                                 SelectionMode="Single" HorizontalContentAlignment="Stretch"
-                                         SelectedValue="{Binding SelectedClassFeature}">
+                                 SelectionMode="Single" HorizontalContentAlignment="Stretch">
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type classModel:ClassFeature}">
                                     <Grid>
@@ -95,45 +67,28 @@
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                             <ColumnDefinition Width="80"></ColumnDefinition>
                                             <ColumnDefinition Width="30"></ColumnDefinition>
+                                            <ColumnDefinition Width="60"></ColumnDefinition>
                                             <ColumnDefinition Width="80"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding Name}"  />
                                         <Label Content="Level: " Grid.Column="1" />
                                         <TextBlock Text="{Binding Level}" Grid.Column="2" />
-                                        <Button Content="Remove" Grid.Column="3"
+                                        <Button Content="Edit" Grid.Column="3"
+                                                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}, 
+                                                                    Path=DataContext.EditClassFeatureCommand}"
+                                                        CommandParameter="{Binding}"></Button>
+                                        <Button Content="Remove" Grid.Column="4"
                                                         Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}, 
                                                                     Path=DataContext.RemoveClassFeatureCommand}"
                                                         CommandParameter="{Binding}"></Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
-                            <ListBox.ContextMenu>
-                                <ContextMenu >
-                                    <MenuItem
-                                                Header="{Binding GetClassSpecializationNameForSelectedClassFeature}"
-                                              Command="{Binding UnassignClassSpecializationCommand}"
-                                              CommandParameter="{Binding Path=DataContext.SelectedClassFeature}"
-                                                      Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={StaticResource booleanToVisibilityConverter}}" >
-                                    </MenuItem>
-                                    <MenuItem Header="Assign To Specialization"
-                                              ItemsSource="{Binding classModel.ClassSpecializations, Mode=TwoWay}"
-                                              DisplayMemberPath="Name"
-                                              Command="{Binding AssignClassSpecializationCommand}"
-                                              Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={StaticResource booleanToVisibilityConverter}}">
-                                        <MenuItem.ItemContainerStyle>
-                                            <Style TargetType="{x:Type MenuItem}">
-                                                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}, 
-                                                    Path=PlacementTarget.DataContext.AssignClassSpecializationCommand}"/>
-                                                <Setter Property="CommandParameter"
-                                                        Value="{Binding}" />
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </Style>
-                                        </MenuItem.ItemContainerStyle>
-                                    </MenuItem>
-                                </ContextMenu>
-                            </ListBox.ContextMenu>
                         </ListBox>
                     </Grid>
+
+                    <Button Grid.Row="1" Content="Create New Class Feature" HorizontalAlignment="Right"
+                                        Command="{Binding ShowCreateClassFeatureWindowCommand}"/>
                 </Grid>
 
             </TabItem>

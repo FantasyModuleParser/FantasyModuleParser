@@ -3,9 +3,13 @@ using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.Main.Services;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Data;
+using System.Collections;
+using FantasyModuleParser.Classes.Comparators;
 
 namespace FantasyModuleParser.Classes.Model
 {
@@ -24,6 +28,7 @@ namespace FantasyModuleParser.Classes.Model
         public ProficiencyModel MultiProficiency;
 
         public ObservableCollection<ClassFeature> ClassFeatures { get; set; }
+        private ListCollectionView _listCollectionViewClassFeatures;
 
         public string ClassSpecializationDescription { get; set; }
         public ObservableCollection<ClassSpecialization> ClassSpecializations { get; set; }
@@ -42,6 +47,7 @@ namespace FantasyModuleParser.Classes.Model
             // PrePopulateStartingEquipment();
             Proficiency = new ProficiencyModel();
             MultiProficiency = new ProficiencyModel();
+            IntializeClassFeatures();
         }
 
         public void PrePopulateProficiencyBonusValues()
@@ -67,6 +73,22 @@ namespace FantasyModuleParser.Classes.Model
             this.StartingEquipment = "You start with the following equipment, in addition to the equipment granted by your background:\n\n* Item 1\n\n* Item 2";
         }
 
+        public void UpdateClassFeature(ClassFeature classFeature)
+        {
+            if (classFeature == null)
+                return;
+
+            ClassFeature foundClassFeature = ClassFeatures.Where(x => x.Id == classFeature.Id)
+                .FirstOrDefault();
+
+            if (foundClassFeature != null)
+            {
+                ClassFeatures.Remove(foundClassFeature);
+            }
+
+            ClassFeatures.Add(classFeature);
+        }
+
         public void RemoveClassFeature(ClassFeature classFeature)
         {
             if (classFeature == null)
@@ -74,7 +96,7 @@ namespace FantasyModuleParser.Classes.Model
 
             ClassFeatures.Remove(classFeature);
 
-            if(ClassSpecializations != null)
+            if(ClassSpecializations != null)    
                 foreach (ClassSpecialization classSpecialization in ClassSpecializations)
                 {
                     if(classSpecialization.ClassFeatures != null && classSpecialization.ClassFeatures.Count > 0)
@@ -121,6 +143,18 @@ namespace FantasyModuleParser.Classes.Model
         public ClassModel ShallowCopy()
         {
             return (ClassModel)this.MemberwiseClone();
+        }
+
+        public void IntializeClassFeatures()
+        {
+            ClassFeatures = new ObservableCollection<ClassFeature>();
+            _listCollectionViewClassFeatures = CollectionViewSource.GetDefaultView(ClassFeatures) as ListCollectionView;
+
+            if(_listCollectionViewClassFeatures != null)
+            {
+                _listCollectionViewClassFeatures.IsLiveSorting = true;
+                _listCollectionViewClassFeatures.CustomSort = new ClassFeatureByLevel();
+            }
         }
     }
 }

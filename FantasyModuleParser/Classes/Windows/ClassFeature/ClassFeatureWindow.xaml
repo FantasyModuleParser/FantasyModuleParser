@@ -1,0 +1,70 @@
+﻿<Window x:Class="FantasyModuleParser.Classes.Windows.ClassFeature.ClassFeatureWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:FantasyModuleParser.Classes.Windows.ClassFeature"
+        xmlns:classViewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
+        mc:Ignorable="d"
+        Title="ClassFeatureWindow" Height="300" Width="600">
+    <Window.DataContext>
+        <classViewModel:ClassFeatureViewModel></classViewModel:ClassFeatureViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="40" Height="1*"/>
+            <RowDefinition MinHeight="40" Height="1*"/>
+            <RowDefinition MinHeight="40" Height="1*"/>
+            <RowDefinition MinHeight="40" Height="1*"/>
+            <RowDefinition MinHeight="40" Height="1*"/>
+            <RowDefinition MinHeight="40" Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="80" Width="1*" />
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Class Feature" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Class Feature Name" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedClassFeatureName, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock Text="Level" Grid.Row="2" Grid.Column="0"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" SelectedValue="{Binding SelectedClassFeature.Level, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0">
+            <sys:Int32>1</sys:Int32>
+            <sys:Int32>2</sys:Int32>
+            <sys:Int32>3</sys:Int32>
+            <sys:Int32>4</sys:Int32>
+            <sys:Int32>5</sys:Int32>
+            <sys:Int32>6</sys:Int32>
+            <sys:Int32>7</sys:Int32>
+            <sys:Int32>8</sys:Int32>
+            <sys:Int32>9</sys:Int32>
+            <sys:Int32>10</sys:Int32>
+            <sys:Int32>11</sys:Int32>
+            <sys:Int32>12</sys:Int32>
+            <sys:Int32>13</sys:Int32>
+            <sys:Int32>14</sys:Int32>
+            <sys:Int32>15</sys:Int32>
+            <sys:Int32>16</sys:Int32>
+            <sys:Int32>17</sys:Int32>
+            <sys:Int32>18</sys:Int32>
+            <sys:Int32>19</sys:Int32>
+            <sys:Int32>20</sys:Int32>
+        </ComboBox>
+
+        <TextBlock Text="Link to Specialization" TextWrapping="Wrap"  Grid.Row="3" Grid.Column="0"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" />
+
+        <TextBlock Text="Is Specialization Choice" TextWrapping="Wrap"  Grid.Row="4" Grid.Column="0"/>
+        <CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"
+                  IsChecked="{Binding SelectedClassFeature.IsSpecializationChoice, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button Content="Add / Update Feature" Click="Button_CloseWindowAction"
+                    Command="{Binding UpdateClassFeatureCommand}"/>
+            <Button Content="Cancel" Click="Button_CloseWindowAction"/>
+        </StackPanel>
+    </Grid>
+</Window>

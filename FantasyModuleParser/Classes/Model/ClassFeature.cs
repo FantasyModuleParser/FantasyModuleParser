@@ -2,11 +2,19 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace FantasyModuleParser.Classes.Model
 {
     public class ClassFeature : ViewModelBase
     {
+        private long _id;
+        [JsonIgnore]
+        public long Id
+        {
+            get { return _id; } 
+            set { Set(ref _id, value); }
+        }
         private string _name;
         public string Name { get { return this._name; } set { Set(ref _name, value); } }
         private int _level;
@@ -20,6 +28,12 @@ namespace FantasyModuleParser.Classes.Model
         {
             get { return this._description; }
             set { Set(ref _description, value); }
+        }
+        private Boolean _isSpecializationChoice;
+        public Boolean IsSpecializationChoice
+        {
+            get { return this._isSpecializationChoice; } 
+            set { this._isSpecializationChoice = value; }    
         }
 
         public void AddToClassSpecialization(ClassModel classModel, ClassSpecialization classSpecialization)
