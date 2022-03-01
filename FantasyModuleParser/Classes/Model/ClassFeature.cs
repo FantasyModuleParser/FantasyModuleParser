@@ -1,8 +1,8 @@
 ﻿using FantasyModuleParser.NPC.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.Json.Serialization;
 
 namespace FantasyModuleParser.Classes.Model
 {
@@ -34,6 +34,14 @@ namespace FantasyModuleParser.Classes.Model
         {
             get { return this._isSpecializationChoice; } 
             set { this._isSpecializationChoice = value; }    
+        }
+
+        
+        private ClassSpecialization _classSpecialization;
+        public ClassSpecialization ClassSpecialization
+        {
+            get { return this._classSpecialization; }
+            set { this._classSpecialization = value; }
         }
 
         public void AddToClassSpecialization(ClassModel classModel, ClassSpecialization classSpecialization)

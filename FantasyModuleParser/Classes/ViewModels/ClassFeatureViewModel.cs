@@ -36,6 +36,14 @@ namespace FantasyModuleParser.Classes.ViewModels
             }
         }
 
+        public ObservableCollection<ClassSpecialization> ClassSpecializations
+        {
+            get { return classModel.ClassSpecializations; }
+            set { classModel.ClassSpecializations = value;
+                RaisePropertyChanged(nameof(ClassSpecializations));
+            }
+        }
+
         private Boolean _isNewClassFeature = false;
 
         private ClassFeature _selectedClassFeature;
@@ -49,11 +57,27 @@ namespace FantasyModuleParser.Classes.ViewModels
                     Set(ref _selectedClassFeature, new ClassFeature());
 
                 RaisePropertyChanged(nameof(this.classModel.ClassFeatures));
+                RaisePropertyChanged(nameof(this.classModel.ClassSpecializations));
                 RaisePropertyChanged(nameof(SelectedClassFeatureName));
                 RaisePropertyChanged(nameof(SelectedClassFeatureDescription));
                 RaisePropertyChanged(nameof(GetClassSpecializationNameForSelectedClassFeature));
                 RaisePropertyChanged(nameof(AddUpdateButtonContent));
             }
+        }
+
+        private ClassSpecialization _emptyClassSpecialization;
+        public ClassSpecialization EmptyClassSpecialization
+        {
+            get
+            {
+                if (this._emptyClassSpecialization == null)
+                    this._emptyClassSpecialization = new ClassSpecialization()
+                    {
+                        Name = "---"
+                    };
+                return this._emptyClassSpecialization;
+            }
+            set { this._emptyClassSpecialization = value;}
         }
 
         public string AddUpdateButtonContent
@@ -96,6 +120,7 @@ namespace FantasyModuleParser.Classes.ViewModels
             }
             classFeatureWindow.DataContext = this;
             classFeatureWindow.Show();
+            RaisePropertyChanged(nameof(SelectedClassFeature));
 
         }
 

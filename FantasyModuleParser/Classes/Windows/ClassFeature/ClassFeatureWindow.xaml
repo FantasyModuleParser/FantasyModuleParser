@@ -6,28 +6,42 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FantasyModuleParser.Classes.Windows.ClassFeature"
         xmlns:classViewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
+        xmlns:model="clr-namespace:FantasyModuleParser.Classes.Model"
         mc:Ignorable="d"
-        Title="Class Feature Window" Height="500" Width="620">
+        Title="Class Feature Window" Height="440" Width="620">
     <Window.DataContext>
         <classViewModel:ClassFeatureViewModel></classViewModel:ClassFeatureViewModel>
     </Window.DataContext>
-    <Grid>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0 5" />
+        </Style>
+        <CollectionViewSource x:Key="OptionalClassSpecializations" Source="{Binding classModel.ClassSpecializations}" />
+        <model:ClassSpecialization x:Key="EmptyClassSpecial">
+        </model:ClassSpecialization>
+    </Window.Resources>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="35" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="35" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="35" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="200" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="35" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Content="Class Feature" HorizontalAlignment="Center"/>
+            <Label Content="Class Feature" HorizontalAlignment="Center" FontWeight="Bold"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -35,9 +49,9 @@
                 <ColumnDefinition Width="450"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Class Feature Name" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Padding="5,0,0,0"/>
-            <TextBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Text="{Binding SelectedClassFeatureName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Text="{Binding SelectedClassFeatureName, UpdateSourceTrigger=PropertyChanged}"  />
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="450"/>
@@ -66,15 +80,24 @@
                 <sys:Int32>20</sys:Int32>
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="450"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Link to Specialization" TextWrapping="Wrap" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="0"/>
-            <ComboBox Grid.Column="1" />
+            <ComboBox Grid.Column="1" 
+                      DisplayMemberPath="Name"
+                      SelectedValue="{Binding SelectedClassFeature.ClassSpecialization, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemsSource>
+                    <CompositeCollection>
+                        <model:ClassSpecialization />
+                        <CollectionContainer Collection="{Binding Source={StaticResource OptionalClassSpecializations}}"/>
+                    </CompositeCollection>
+                </ComboBox.ItemsSource>
+            </ComboBox>
         </Grid>
-        <Grid Grid.Row="7">
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="450"/>
@@ -82,7 +105,7 @@
             <TextBlock Text="Description" TextWrapping="Wrap" Padding="5,0,0,0" Grid.Column="0"/>
             <TextBox Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding SelectedClassFeature.Description, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
-        <Grid Grid.Row="9">
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="460"/>
@@ -91,7 +114,7 @@
             <CheckBox Grid.Column="1" VerticalAlignment="Center"
                   IsChecked="{Binding SelectedClassFeature.IsSpecializationChoice, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
-        <Grid Grid.Row="11">
+        <Grid Grid.Row="6">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Add / Update Feature" Width="130" Click="Button_CloseWindowAction"
                     Command="{Binding UpdateClassFeatureCommand}" Margin="0,0,5,0"/>

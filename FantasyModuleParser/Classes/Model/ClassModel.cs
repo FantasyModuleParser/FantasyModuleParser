@@ -87,6 +87,30 @@ namespace FantasyModuleParser.Classes.Model
             }
 
             ClassFeatures.Add(classFeature);
+
+            // Now, update ClassSpecializations to link the ClassFeature accordingly
+            if(classFeature.ClassSpecialization != null)
+            {
+                if(classFeature.ClassSpecialization.Name == null)
+                {
+                    // If the 'empty' row is selected in the Class Feature popup window, we 
+                    // need to go back and clean up any affected ClassSpecialization objects 
+                    // found in the ClassModel object
+
+                    if (ClassSpecializations != null)
+                        foreach (ClassSpecialization classSpecialization in ClassSpecializations)
+                        {
+                            if (classSpecialization.ClassFeatures != null && classSpecialization.ClassFeatures.Count > 0)
+                            {
+                                classSpecialization.ClassFeatures.Remove(classFeature);
+                            }
+                        }
+                }
+                else
+                {
+                    classFeature.AddToClassSpecialization(this, classFeature.ClassSpecialization);
+                }
+            }
         }
 
         public void RemoveClassFeature(ClassFeature classFeature)
@@ -106,9 +130,24 @@ namespace FantasyModuleParser.Classes.Model
                 }
         }
 
-        public void Features(ClassModel classModel)
-		{
-            
+        public void UpdateClassSpecializationNameAndDescription(ClassSpecialization classSpecialization)
+        {
+            if (classSpecialization == null)
+                return;
+
+            if (ClassSpecializations == null)
+                ClassSpecializations = new ObservableCollection<ClassSpecialization>();
+
+            ClassSpecialization foundClassFeature = ClassSpecializations.Where(x => x.Id == classSpecialization.Id)
+                .FirstOrDefault();
+
+            if(foundClassFeature == null)
+                ClassSpecializations.Add(classSpecialization);
+            else { 
+                foundClassFeature.Name = classSpecialization.Name; ;
+                foundClassFeature.Description = classSpecialization.Description;
+            }
+            CollectionViewSource.GetDefaultView(ClassSpecializations).Refresh();
         }
         public void RemoveClassSpecialization(ClassSpecialization classSpecialization)
         {
@@ -131,6 +170,7 @@ namespace FantasyModuleParser.Classes.Model
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
+                serializer.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
                 serializer.Serialize(file, this);
             }
         }

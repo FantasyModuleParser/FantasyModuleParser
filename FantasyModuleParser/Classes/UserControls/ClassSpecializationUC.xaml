@@ -17,36 +17,16 @@
             <TabItem Header="Class Feature" IsEnabled="True" HorizontalAlignment="Left">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="10*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="Class Specialization Name" Grid.Row="0" Grid.Column="0" />
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedClassSpecializationName, UpdateSourceTrigger=PropertyChanged}" />
-
-                        <!--<Button Grid.Row="1" Grid.Column="1"  Content="Clear Feature" HorizontalAlignment="Left" />-->
-
-                        <Button Grid.Row="1" Grid.Column="1"  Content="{Binding AddUpdateButtonContent}" 
-                                HorizontalAlignment="Right" Padding="5,0"
-                                Command="{Binding AddClassSpecializationCommand}"/>
-                    </Grid>
-                    <Separator Grid.Row="1" />
-                    <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="221*"/>
+                            <ColumnDefinition Width="220*"/>
                             <ColumnDefinition Width="2"/>
                             <ColumnDefinition Width="220*"/>
                         </Grid.ColumnDefinitions>
@@ -56,9 +36,7 @@
                          <!--TODO:  For each item in this list box, there should two buttons that are right justified:
                                     1. Rename
                                     2. Remove-->
-                        
-
-                         <ListBox Grid.Row="1"/>
+                       
                         <ListBox Grid.Row="1" x:Name="ClassSpecializationListBox" 
                                  ItemsSource="{Binding ClassModelValue.ClassSpecializations}"
                                  SelectionMode="Single" HorizontalContentAlignment="Stretch"
@@ -69,10 +47,15 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="40"></ColumnDefinition>
+                                            <ColumnDefinition Width="50"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding Name}"  />
-                                        <Button Content="Remove" Grid.Column="3"
+                                        <Button Content="Edit" Grid.Column="1"
+                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}, 
+                                                            Path=DataContext.EditClassSpecializationCommand}"
+                                                CommandParameter="{Binding}"></Button>
+                                        <Button Content="Remove" Grid.Column="2"
                                                 Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}, Mode=FindAncestor}, 
                                                             Path=DataContext.RemoveClassSpecializationCommand}"
                                                 CommandParameter="{Binding}"></Button> 
@@ -105,6 +88,10 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </Grid>
+
+                    <Button Grid.Row="1" Content="{Binding AddUpdateButtonContent}" 
+                                HorizontalAlignment="Right" Padding="5,0"
+                                Command="{Binding ShowCreateClassSpecializationWindowCommand}"/>
                 </Grid>
 
             </TabItem>

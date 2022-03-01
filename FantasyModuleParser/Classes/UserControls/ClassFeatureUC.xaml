@@ -26,32 +26,6 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="86.667" />
-                            <ColumnDefinition Width="33.333"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- <TextBlock Text="Subclass Feature (OPTIONAL)" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Grid.ColumnSpan="2"/> -->
-                        <!-- <ComboBox Grid.Row="2" Grid.Column="2" IsEnabled="True" -->
-                        <!--           ItemsSource="{Binding Path=ClassModelValue.ClassSpecializations}" -->
-                        <!--           SelectedValue="{Binding Path=SelectedClassSpecialization}" -->
-                        <!--           DisplayMemberPath="Name"/> -->
-
-                        <!--<Button Grid.Row="3" Grid.Column="2"  Content="Clear Feature" HorizontalAlignment="Left"
-                                        Command="{Binding ClearSelectedClassFeatureCommand}"/>
-                        <Button Grid.Row="3" Grid.Column="2"  Content="{Binding AddUpdateButtonContent}" HorizontalAlignment="Right"
-                                        Command="{Binding AddClassFeatureCommand}"
-                                        CommandParameter="{Binding SelectedClassFeature.Name}"/>-->
-                    </Grid>
-                    <Separator Grid.Row="1" />
-                    <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
@@ -59,7 +33,8 @@
                         <Label Content="Existing Class Features" Grid.Row="0" FontWeight="Bold" />
                         <ListBox x:Name="ClassFeatureListBox"
                                  Grid.Row="1" ItemsSource="{Binding classModel.ClassFeatures}"
-                                 SelectionMode="Single" HorizontalContentAlignment="Stretch">
+                                 SelectionMode="Single" HorizontalContentAlignment="Stretch"
+                                 SelectedValue="{Binding SelectedClassFeature}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type classModel:ClassFeature}">
                                     <Grid>
@@ -88,7 +63,7 @@
                     </Grid>
 
                     <Button Grid.Row="1" Content="Create New Class Feature" HorizontalAlignment="Right"
-                                        Command="{Binding ShowCreateClassFeatureWindowCommand}"/>
+                                        Command="{Binding ShowCreateClassFeatureWindowCommand}" Margin="5"/>
                 </Grid>
 
             </TabItem>

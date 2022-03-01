@@ -46,6 +46,7 @@ namespace FantasyModuleParser.Main.Services
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
+                serializer.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
                 serializer.Converters.Add(new SelectableActionModelConverter());
                 serializer.Converters.Add(new LanguageModelConverter());
                 serializer.Serialize(file, moduleModel);

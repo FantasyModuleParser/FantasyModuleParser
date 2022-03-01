@@ -74,6 +74,12 @@
     <ApplicationIcon>Resources\FMP-Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Equipment\Views\**" />
+    <EmbeddedResource Remove="Equipment\Views\**" />
+    <None Remove="Equipment\Views\**" />
+    <Page Remove="Equipment\Views\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data.Linq" />
@@ -221,7 +227,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Equipment\Views\" />
     <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Tables\UserControls\" />
   </ItemGroup>
