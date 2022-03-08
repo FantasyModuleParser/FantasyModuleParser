@@ -288,7 +288,10 @@ namespace FantasyModuleParser.Exporters
 				Features_Level(xmlWriter, classFeature);
 				Features_Name(xmlWriter, classFeature);
 				if (classFeature.IsSpecializationChoice)
-					Features_Specialization(xmlWriter, classFeature);
+					Features_SpecializationChoice(xmlWriter, classFeature);
+				if (classFeature.ClassSpecialization != null)
+					if (!string.IsNullOrEmpty(classFeature.ClassSpecialization.Name))
+						Features_Specialization(xmlWriter, classFeature);
 				Features_Text(xmlWriter, classFeature);
 				xmlWriter.WriteEndElement();
 			}
@@ -311,7 +314,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void Features_Specialization(XmlWriter xmlWriter, ClassFeature classFeature)
+		private static void Features_SpecializationChoice(XmlWriter xmlWriter, ClassFeature classFeature)
 		{
 			int SpecializationChoice = 0;
 			xmlWriter.WriteStartElement("specializationchoice");
@@ -319,6 +322,14 @@ namespace FantasyModuleParser.Exporters
 			if (classFeature.IsSpecializationChoice)
 				SpecializationChoice = 1;
 			xmlWriter.WriteValue(SpecializationChoice);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Features_Specialization(XmlWriter xmlWriter, ClassFeature classFeature)
+		{
+			xmlWriter.WriteStartElement("specialization");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString(classFeature.ClassSpecialization.Name);
 			xmlWriter.WriteEndElement();
 		}
 
