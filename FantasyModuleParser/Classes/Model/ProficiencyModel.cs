@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Text;
 using FantasyModuleParser.Classes.Enums;
 using FantasyModuleParser.Equipment.Enums;
-using System.Linq;
 using FantasyModuleParser.Extensions;
 
 namespace FantasyModuleParser.Classes.Model

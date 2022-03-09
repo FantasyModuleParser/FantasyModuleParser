@@ -28,22 +28,22 @@ namespace FantasyModuleParser.Exporters
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", category.Name);
 				CommonMethods.BaseIcon_DecalIcon(xmlWriter);
-				int classID = 0;
 				foreach (ClassModel classModel in FatClassList)
 				{
-					Classes_Category_Class(xmlWriter, classID, classModel);
+					Classes_Category_Class(xmlWriter, classModel);
 				}
 				xmlWriter.WriteEndElement();
 			}
 		}
 
-		private static void Classes_Category_Class(XmlWriter xmlWriter, int classID, ClassModel classModel)
+		private static void Classes_Category_Class(XmlWriter xmlWriter, ClassModel classModel)
 		{
-			xmlWriter.WriteStartElement("id-" + classID.ToString("D4"));
+			xmlWriter.WriteStartElement(ClassNameToXML(classModel));
 			Class_Name(xmlWriter, classModel);
 			Class_Text(xmlWriter, classModel);
 			Class_HP(xmlWriter, classModel);
 			Class_Proficiencies(xmlWriter, classModel);
+			Class_MulticlassProficiencies(xmlWriter, classModel);
 			Class_Abilities(xmlWriter, classModel);
 			Class_Equipment(xmlWriter);
 			Class_Features(xmlWriter, classModel);
@@ -279,6 +279,17 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
+		private static void Class_MulticlassProficiencies(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("multiclassproficiencies");
+			Proficiencies_Armor(xmlWriter, classModel);
+			Proficiencies_Weapons(xmlWriter, classModel);
+			Proficiencies_Tools(xmlWriter, classModel);
+			Proficiencies_SavingThrows(xmlWriter, classModel);
+			Proficiencies_Skills(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
 		private static void Class_Features(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("features");
@@ -342,10 +353,10 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		private static string ClassFeatureToXml(ClassFeature classFeature)
+		private static string ClassFeatureToXml(ClassModel classModel, ClassFeature classFeature)
 		{
 			string feature = classFeature.Name.Replace(" ", "").Replace("'", "").Replace("-", "").ToLower();
-			return "....features." + feature + classFeature.Level;
+			return "class." + ClassNameToXML(classModel) + ".features." + feature + classFeature.Level;
 		}
 
 		private static string ClassFeatureNametoXml(ClassFeature classFeature)
@@ -385,6 +396,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Abilities_Specializations_Level(XmlWriter xmlWriter, ClassSpecialization specialization)
 		{
 			xmlWriter.WriteStartElement("level");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(specialization.Level);
 			xmlWriter.WriteEndElement();
 		}
@@ -392,6 +404,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Abilities_Specializations_Name(XmlWriter xmlWriter, ClassSpecialization specialization)
 		{
 			xmlWriter.WriteStartElement("name");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(specialization.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -400,7 +413,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			NPCController npcController = new NPCController();
 			xmlWriter.WriteStartElement("text");
-			xmlWriter.WriteAttributeString("text", "formattedtext");
+			CommonMethods.Type_FormattedText(xmlWriter);
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(specialization.Description));
 			Text_Features(xmlWriter);
 			Text_Linklist(xmlWriter, classModel);
@@ -421,7 +434,8 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("link");
 				xmlWriter.WriteAttributeString("class", "reference_classfeature");
-				xmlWriter.WriteAttributeString("recordname", ClassFeatureToXml(classFeature));
+				xmlWriter.WriteAttributeString("recordname", ClassFeatureToXml(classModel, classFeature));
+				xmlWriter.WriteString(classFeature.Name);
 				xmlWriter.WriteEndElement();
 			}
 			xmlWriter.WriteEndElement();
@@ -442,14 +456,17 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		
-
 		private static string SpecializationToXML(ClassSpecialization specialization)
 		{
 			string SpecNameToXML = specialization.Name.Replace(" ", "").Replace("'", "").ToLower();
 			return SpecNameToXML;
 		}
 
+		private static string ClassNameToXML(ClassModel classModel)
+		{
+			string NameToXML = classModel.Name.Replace(" ", "").Replace("'", "").ToLower();
+			return NameToXML;
+		}
 		
 	}
 }
