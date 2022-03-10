@@ -95,7 +95,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			int refpagesID = 1;
 			xmlWriter.WriteStartElement("refpages");
-			Equipment_Refpages_RefpagesID(xmlWriter, module, refpagesID);
+			Class_Refpages_RefpagesID(xmlWriter, module, refpagesID);
 			refpagesID = ++refpagesID;
 			List<ClassModel> FatClassList = CommonMethods.GenerateFatClassList(module);
 			FatClassList.Sort((classOne, classTwo) => classOne.Name.CompareTo(classTwo.Name));
@@ -165,10 +165,10 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Class_Link(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("link");
-			xmlWriter.WriteAttributeString("class", "item");
+			xmlWriter.WriteAttributeString("class", "reference_class");
 			xmlWriter.WriteAttributeString("recordname", WriteRecordNameClass(classModel));
 			xmlWriter.WriteRaw("<b>");
-			xmlWriter.WriteString("Item:");
+			xmlWriter.WriteString("Class:");
 			xmlWriter.WriteRaw("</b>");
 			xmlWriter.WriteEndElement();
 		}
@@ -240,14 +240,6 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteAttributeString("class", "item");
 			xmlWriter.WriteAttributeString("recordname", WriteRecordNameClass(classModel));
 			xmlWriter.WriteString(classModel.Name);
-			xmlWriter.WriteEndElement();
-		}
-
-		private static void Xml_Name_Class(XmlWriter xmlWriter)
-		{
-			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteString("Class");
 			xmlWriter.WriteEndElement();
 		}
 
