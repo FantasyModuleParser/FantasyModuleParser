@@ -20,7 +20,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteEndElement();
 		}
 
-		private static void ReferenceManual_Chapters(XmlWriter xmlWriter, ModuleModel module)		
+		private static void ReferenceManual_Chapters(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("chapters");
 			ReferenceManual_Chapters_Chapter_xx(xmlWriter, module);
@@ -59,8 +59,46 @@ namespace FantasyModuleParser.Exporters
 			if (module.IncludesEquipment)
 			{
 				Subchapter_Equipment(xmlWriter, module, subchapterID);
+				subchapterID++;
+			}
+			if (module.IncludeTables)
+			{
+				Subchapter_Tables(xmlWriter, module, subchapterID);
 				// subchapterID++;
 			}
+		}
+
+		private static void Subchapter_Tables(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
+		{
+			xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
+			Xml_Name_Tables(xmlWriter);
+			Tables_Refpages(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Name_Tables(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString("Tables");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Tables_Refpages(XmlWriter xmlWriter, ModuleModel module)
+		{
+			int refpagesID = 1;
+			xmlWriter.WriteStartElement("refpages");
+			Equipment_Refpages_RefpagesID(xmlWriter, module, refpagesID);
+			refpagesID = ++refpagesID;
+			List<EquipmentModel> FatEquipmentList = CommonMethods.GenerateFatEquipmentList(module);
+			FatEquipmentList.Sort((equipOne, equipTwo) => equipOne.Name.CompareTo(equipTwo.Name));
+			foreach (EquipmentModel equipmentModel in FatEquipmentList)
+			{
+				NPCController npcController = new NPCController();
+				IndividualEquipment_Name(xmlWriter, refpagesID, equipmentModel, npcController);
+				refpagesID = ++refpagesID;
+			}
+			xmlWriter.WriteEndElement();
 		}
 
 		private static void Subchapter_Equipment(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
@@ -630,7 +668,7 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("..");
 			xmlWriter.WriteEndElement();
 		}
-		
+
 		private static void Xml_Name_ModuleName(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("name");
@@ -665,17 +703,17 @@ namespace FantasyModuleParser.Exporters
 		{
 			return "npc." + NPCExporter.NPCNameToXMLFormat(npcModel);
 		}
-		
+
 		private static string WriteRecordNameSpell(SpellModel spellModel)
 		{
 			return "spell." + SpellExporter.SpellNameToXMLFormat(spellModel);
 		}
-		
+
 		private static string WriteRecordNameEquipment(EquipmentModel equipmentModel)
 		{
 			return "item." + EquipmentExporter.EquipmentNameToXML(equipmentModel);
 		}
-		
+
 		private static string WriteImageXML(NPCModel npcModel)
 		{
 			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
