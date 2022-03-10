@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Equipment.Models;
+﻿using FantasyModuleParser.Classes.Model;
+using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.Extensions;
 using FantasyModuleParser.Main.Models;
 using FantasyModuleParser.NPC;
@@ -61,13 +62,198 @@ namespace FantasyModuleParser.Exporters
 				Subchapter_Equipment(xmlWriter, module, subchapterID);
 				subchapterID++;
 			}
-			if (module.IncludeTables)
+			// if (module.IncludeTables)
+			// {
+			// 	Subchapter_Tables(xmlWriter, module, subchapterID);
+				// subchapterID++;
+			// }
+			if (module.IncludesClasses)
 			{
-				Subchapter_Tables(xmlWriter, module, subchapterID);
+				Subchapter_Classes(xmlWriter, module, subchapterID);
 				// subchapterID++;
 			}
 		}
 
+		#region Classes
+		private static void Subchapter_Classes(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
+		{
+			xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
+			Xml_Name_Classes(xmlWriter);
+			Classes_Refpages(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Name_Classes(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString("Classes");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Classes_Refpages(XmlWriter xmlWriter, ModuleModel module)
+		{
+			int refpagesID = 1;
+			xmlWriter.WriteStartElement("refpages");
+			Equipment_Refpages_RefpagesID(xmlWriter, module, refpagesID);
+			refpagesID = ++refpagesID;
+			List<ClassModel> FatClassList = CommonMethods.GenerateFatClassList(module);
+			FatClassList.Sort((classOne, classTwo) => classOne.Name.CompareTo(classTwo.Name));
+			foreach (ClassModel classModel in FatClassList)
+			{
+				NPCController npcController = new NPCController();
+				IndividualClass_Name(xmlWriter, refpagesID, classModel, npcController);
+				refpagesID = ++refpagesID;
+			}
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void IndividualClass_Name(XmlWriter xmlWriter, int refpagesID, ClassModel classModel, NPCController npcController)
+		{
+			xmlWriter.WriteStartElement("id-" + refpagesID.ToString("D4"));
+			IndividualClass_Name_Blocks(xmlWriter, classModel, npcController);
+			Xml_WriteListLink(xmlWriter);
+			Xml_Name_ClassName(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Name_ClassName(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("name");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.Name);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void IndividualClass_Name_Blocks(XmlWriter xmlWriter, ClassModel classModel, NPCController npcController)
+		{
+			int blocksID = 1;
+			xmlWriter.WriteStartElement("blocks");
+			IndividualClass_Name_Blocks_BlocksID(xmlWriter, classModel, npcController, blocksID);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void IndividualClass_Name_Blocks_BlocksID(XmlWriter xmlWriter, ClassModel classModel, NPCController npcController, int blocksID)
+		{
+			xmlWriter.WriteStartElement("id-" + blocksID.ToString("D4"));
+			Xml_WriteBlockFormatting(xmlWriter);
+			IndividualClass_Name_Blocks_BlocksID_Text(xmlWriter, classModel, npcController);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void IndividualClass_Name_Blocks_BlocksID_Text(XmlWriter xmlWriter, ClassModel classModel, NPCController npcController)
+		{
+			xmlWriter.WriteStartElement("text");
+			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteRaw("<p><h>"); //
+			xmlWriter.WriteString(classModel.Name);
+			xmlWriter.WriteRaw("</h></p><p><i>");
+			if (string.IsNullOrEmpty(classModel.Description))
+			{
+			}
+			else
+			{
+				xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(classModel.Description));
+			}
+			xmlWriter.WriteRaw("</i></p><p>");
+			Xml_Class_Link(xmlWriter, classModel);
+			xmlWriter.WriteString(classModel.Name);
+			xmlWriter.WriteRaw("</p>");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Class_Link(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("link");
+			xmlWriter.WriteAttributeString("class", "item");
+			xmlWriter.WriteAttributeString("recordname", WriteRecordNameClass(classModel));
+			xmlWriter.WriteRaw("<b>");
+			xmlWriter.WriteString("Item:");
+			xmlWriter.WriteRaw("</b>");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Refpages_RefpagesID(XmlWriter xmlWriter, ModuleModel module, int refpagesID)
+		{
+			xmlWriter.WriteStartElement("id-" + refpagesID.ToString("D4"));
+			int blocksID = 1;
+			Class_Refpages_RefpagesID_Blocks(xmlWriter, module, blocksID);
+			Xml_WriteListLink(xmlWriter);
+			Xml_Name_Module_Class(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Name_Module_Class(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("name");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString(module.Name + " Classes");
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Refpages_RefpagesID_Blocks(XmlWriter xmlWriter, ModuleModel module, int blocksID)
+		{
+			xmlWriter.WriteStartElement("blocks");
+			Class_Refpages_RefpagesID_Blocks_BlocksID(xmlWriter, module, blocksID);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Class_Refpages_RefpagesID_Blocks_BlocksID(XmlWriter xmlWriter, ModuleModel module, int blocksID)
+		{
+			xmlWriter.WriteStartElement("id-" + blocksID.ToString("D4"));
+			Xml_WriteBlockFormatting(xmlWriter);
+			ClassList_Text(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void ClassList_Text(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("text");
+			CommonMethods.Type_FormattedText(xmlWriter);
+			ClassList_Text_P(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void ClassList_Text_P(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("p");
+			xmlWriter.WriteString("The following Classes are able to be found in " + module.Name + ".");
+			ClassList_Text_P_Linklist(xmlWriter, module);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void ClassList_Text_P_Linklist(XmlWriter xmlWriter, ModuleModel module)
+		{
+			xmlWriter.WriteStartElement("linklist");
+			List<ClassModel> FatClassList = CommonMethods.GenerateFatClassList(module);
+			FatClassList.Sort((classOne, classTwo) => classOne.Name.CompareTo(classTwo.Name));
+			foreach (ClassModel classModel in FatClassList)
+			{
+				Link_ClassItem_Class(xmlWriter, classModel);
+			}
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Link_ClassItem_Class(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("link");
+			xmlWriter.WriteAttributeString("class", "item");
+			xmlWriter.WriteAttributeString("recordname", WriteRecordNameClass(classModel));
+			xmlWriter.WriteString(classModel.Name);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void Xml_Name_Class(XmlWriter xmlWriter)
+		{
+			xmlWriter.WriteStartElement("name");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString("Class");
+			xmlWriter.WriteEndElement();
+		}
+
+		#endregion
+
+		#region Tables
 		private static void Subchapter_Tables(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
 		{
 			xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
@@ -100,7 +286,9 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		#endregion
 
+		#region Equipment
 		private static void Subchapter_Equipment(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
 		{
 			xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
@@ -268,7 +456,9 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("Equipment");
 			xmlWriter.WriteEndElement();
 		}
+		#endregion
 
+		#region Spells
 		private static void Subchapter_Spells(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
 		{
 			xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
@@ -462,7 +652,9 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteString("Spells");
 			xmlWriter.WriteEndElement();
 		}
+		#endregion
 
+		#region NPCs
 		private static void Subchapter_NPCs(XmlWriter xmlWriter, ModuleModel module, int subchapterID)
 		{
 			xmlWriter.WriteStartElement("subchapter_" + subchapterID.ToString("D2"));
@@ -645,7 +837,9 @@ namespace FantasyModuleParser.Exporters
 			}
 			xmlWriter.WriteEndElement();
 		}
+		#endregion
 
+		#region Other Methods
 		private static void Xml_WriteListLink(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("listlink");
@@ -714,9 +908,15 @@ namespace FantasyModuleParser.Exporters
 			return "item." + EquipmentExporter.EquipmentNameToXML(equipmentModel);
 		}
 
+		private static string WriteRecordNameClass(ClassModel classModel)
+		{
+			return "class." + ClassExporter.ClassNameToXML(classModel);
+		}
+
 		private static string WriteImageXML(NPCModel npcModel)
 		{
 			return "image." + Path.GetFileNameWithoutExtension(npcModel.NPCImage).Replace(" ", "").Replace("-", "");
 		}
+		#endregion
 	}
 }
