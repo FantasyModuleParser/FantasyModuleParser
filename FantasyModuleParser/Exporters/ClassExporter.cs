@@ -496,11 +496,14 @@ namespace FantasyModuleParser.Exporters
 			xmlWriter.WriteStartElement("linklist");
 			foreach (ClassFeature classFeature in classModel.ClassFeatures)
 			{
-				xmlWriter.WriteStartElement("link");
-				xmlWriter.WriteAttributeString("class", "reference_classfeature");
-				xmlWriter.WriteAttributeString("recordname", ClassFeatureToXml(classModel, classFeature));
-				xmlWriter.WriteString(classFeature.Name);
-				xmlWriter.WriteEndElement();
+				if (classFeature.ClassSpecialization != null)
+				{
+					xmlWriter.WriteStartElement("link");
+					xmlWriter.WriteAttributeString("class", "reference_classfeature");
+					xmlWriter.WriteAttributeString("recordname", ClassFeatureToXml(classModel, classFeature));
+					xmlWriter.WriteString(classFeature.Name);
+					xmlWriter.WriteEndElement();
+				}				
 			}
 			xmlWriter.WriteEndElement();
 		}
