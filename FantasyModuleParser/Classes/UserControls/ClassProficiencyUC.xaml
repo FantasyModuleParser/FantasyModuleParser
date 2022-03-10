@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="FantasyModuleParser.Classes.UserControls.ClassProficiencyUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls"
+             xmlns:converter="clr-namespace:FantasyModuleParser.Converters"
+             xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
+             xmlns:classProfUC="clr-namespace:FantasyModuleParser.Classes.UserControls.ClassProficiency"
+             xmlns:classConverter="clr-namespace:FantasyModuleParser.Classes.Converters"
+             xmlns:vm="clr-namespace:FantasyModuleParser.Classes.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="450">
+    <UserControl.DataContext>
+        <vm:ClassProficiencyViewModel></vm:ClassProficiencyViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style x:Key="TextAlignLeft" TargetType="CheckBox">
+            <Style.Resources>
+                <Style TargetType="Path">
+                    <Setter Property="FlowDirection" Value="LeftToRight" />
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FlowDirection" Value="LeftToRight" />
+                </Style>
+            </Style.Resources>
+
+            <Setter Property="Margin" Value="5,0,40,0"/>
+            <Setter Property="FlowDirection" Value="RightToLeft" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <converter:EnumConverter x:Key="enumConverter"/>
+        <classConverter:ProficiencySavingThrowConverter x:Key="SavingThrowConverter"/>
+    </UserControl.Resources>
+    <Grid x:Name="ProficencyLayout" Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+        <!-- Saving Throws-->
+        <Grid Grid.Row="0" Visibility="{Binding Path=IsMultiProficiencyOptionValue}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0">Saving Throws</Label>
+            <!--<CheckBox Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Strength}}"
+                      IsChecked="{Binding Path=SavingThrowAttributes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource SavingThrowConverter}, 
+                        ConverterParameter={x:Static classEnum:SavingThrowAttributeEnum.Strength}}"
+                      >-->
+            <CheckBox Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Strength}}"
+                      IsChecked="{Binding IsStrengthSavingThrowChecked}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Strength}}" HorizontalAlignment="Left"/>
+            </CheckBox>
+            <CheckBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Dexerity}}"
+                      IsChecked="{Binding IsDexeritySavingThrowChecked}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Dexerity}}" HorizontalAlignment="Left"/>
+            </CheckBox>
+            <CheckBox Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Constitution}}"
+                      IsChecked="{Binding IsConstitutionSavingThrowChecked}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Constitution}}" HorizontalAlignment="Left"/>
+            </CheckBox>
+            <CheckBox Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Intelligence}}"
+                      IsChecked="{Binding IsIntelligenceSavingThrowChecked}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Intelligence}}" HorizontalAlignment="Left"/>
+            </CheckBox>
+            <CheckBox Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Wisdom}}"
+                      IsChecked="{Binding IsWisdomSavingThrowChecked}">
+                <!-- For some reason, the XAML designer does not like the use of Binding Source, and refuses to preview the XAML -->
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Wisdom}}" HorizontalAlignment="Left"/>
+            </CheckBox>
+
+            <CheckBox Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Right" Style="{StaticResource TextAlignLeft}"
+                      Command="{Binding Path=SavingThrowSelectCommand}"
+                      CommandParameter="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Charisma}}"
+                      IsChecked="{Binding IsCharismaSavingThrowChecked}">
+                <TextBlock Text="{Binding Source={x:Static classEnum:SavingThrowAttributeEnum.Charisma}}" HorizontalAlignment="Left"/>
+            </CheckBox>
+
+            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" />
+        </Grid>
+
+
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <classProfUC:StartingArmorOptionUC Grid.Row="0" DataContext="{Binding startingArmorOptionViewModel}"></classProfUC:StartingArmorOptionUC>
+
+            <!--<Label Grid.Row="0" Grid.Column="0" Content="Armor" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1"/>
+            <Button IsEnabled="False" Content="Armor Options" Grid.Row="0" Grid.Column="2" />-->
+
+            <classProfUC:StartingWeaponOptionUC Grid.Row="1" DataContext="{Binding startingWeaponOptionViewModel}"></classProfUC:StartingWeaponOptionUC>
+        </Grid>
+        <!-- Armor -->
+        <!-- Weapon -->
+
+        <!-- Skills and Tools via ListBoxes-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="223*" MinWidth="80"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="222*" MinWidth="80"/>
+            </Grid.ColumnDefinitions>
+
+            <classProfUC:StartingSkillsUC Grid.Column="0" DataContext="{Binding startingSkillsViewModel}"/>
+
+            <Separator Grid.Column="1">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+
+            <classProfUC:StartingToolsUC Grid.Column="2" DataContext="{Binding startingToolsViewModel}" />
+
+        </Grid>
+
+        <!-- Armor -->
+        <Grid Grid.Row="2">
+
+        </Grid>
+        <!-- Weapons -->
+        <Grid Grid.Row="3">
+
+        </Grid>
+    </Grid>
+</UserControl>

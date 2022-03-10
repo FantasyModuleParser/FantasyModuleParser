@@ -69,7 +69,7 @@ namespace FantasyModuleParser.Importer.NPC
 					//continue;
 				}
 
-                // if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase))
+                // if (line.Equals("STR DEX CON INT WIS CHA", StringComparison.OrdinalIgnoreCase)) - entire line matched
                 if (rgxCharacteristics.IsMatch(line))
 				{
 					continueBaseStatsFlag = true;
@@ -79,12 +79,22 @@ namespace FantasyModuleParser.Importer.NPC
 				if (continueBaseStatsFlag)
 				{
 					ParseStatAttributes(parsedNPCModel, line);
-					// Why not simply set continueBaseStatsFlag to false here?
-					resetContinueFlags();
+                    //TODO: Why not simply set continueBaseStatsFlag to false here?
+                    resetContinueFlags();
 					//continue;
 				}
 
-				if (line.StartsWith("Saving Throws", StringComparison.OrdinalIgnoreCase))
+                // because of the two step method above for reading the line with "STR DEX CON INT WIS CHA" and then reading
+                // the next line to get the stats, when all the stats are on one line, it has to be done differently, in a single step
+                // match if the stats are embedded in the line with the characteristics
+                //     STR 15 (+2); DEX 10 (+0); CON 13 (+1); INT 2 (−4); WIS 11 (+0); CHA 4 (−3)
+                if (allCharacteristics.IsMatch(line))
+                {
+                    ParseStatAttributes(parsedNPCModel, line);
+                    continue;
+                }
+
+                if (line.StartsWith("Saving Throws", StringComparison.OrdinalIgnoreCase))
 				{
 					ParseSavingThrows(parsedNPCModel, line);
 					//continue;

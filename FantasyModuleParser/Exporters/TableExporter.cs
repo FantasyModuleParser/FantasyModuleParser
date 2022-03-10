@@ -28,8 +28,6 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", category.Name);
-				xmlWriter.WriteAttributeString("baseicon", "0");
-				xmlWriter.WriteAttributeString("decalicon", "0");
 				Tables_Category_TableName(xmlWriter, FatTableList);
 				xmlWriter.WriteEndElement();
 			}
@@ -41,15 +39,15 @@ namespace FantasyModuleParser.Exporters
 			foreach (TableModel tableModel in FatTableList)
 			{
 				xmlWriter.WriteStartElement("id-" + tableID.ToString("D4"));
-				WriteTableLocked(xmlWriter, tableModel);
-				WriteTableName(xmlWriter, tableModel);
 				WriteTableDescription(xmlWriter, tableModel);
-				WriteTableOutput(xmlWriter, tableModel);
-				WriteTableNotes(xmlWriter, tableModel);
-				WriteTableHideRolls(xmlWriter, tableModel);
-				WriteTableRollModifier(xmlWriter, tableModel);
 				WriteTableRollDice(xmlWriter, tableModel);
+				WriteTableHideRolls(xmlWriter, tableModel);
 				WriteColumnLabels(xmlWriter, tableModel);
+				WriteTableLocked(xmlWriter, tableModel);
+				WriteTableRollModifier(xmlWriter, tableModel);
+				WriteTableName(xmlWriter, tableModel);
+				WriteTableNotes(xmlWriter, tableModel);
+				WriteTableOutput(xmlWriter, tableModel);
 				WriteResultsColumn(xmlWriter, tableModel);
 				WriteTableRows(xmlWriter, tableModel.tableDataTable);
 				xmlWriter.WriteEndElement();
@@ -66,7 +64,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteTableLocked(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("locked");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteString(tableModel.IsLocked ? "1" : "0");
 			xmlWriter.WriteEndElement();
 		}
@@ -74,7 +72,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteTableName(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(tableModel.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -82,7 +80,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteTableDescription(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("description");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(tableModel.Description);
 			xmlWriter.WriteEndElement();
 		}
@@ -90,7 +88,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteTableOutput(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("output");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(tableModel.OutputType.GetDescription().ToLower());
 			xmlWriter.WriteEndElement();
 		}
@@ -98,7 +96,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteTableNotes(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("notes");
-			xmlWriter.WriteAttributeString("type", "formattedtext");
+			CommonMethods.Type_FormattedText(xmlWriter);
 			xmlWriter.WriteString(tableModel.Notes);
 			xmlWriter.WriteEndElement();
 		}
@@ -106,7 +104,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteTableHideRolls(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("hiderollresults");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteString(tableModel.ShowResultsInChat ? "1" : "0");
 			xmlWriter.WriteEndElement();
 		}
@@ -114,7 +112,7 @@ namespace FantasyModuleParser.Exporters
 		static public void WriteTableRollModifier(XmlWriter xmlWriter, TableModel tableModel)
 		{
 			xmlWriter.WriteStartElement("mod");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(tableModel.CustomRangeModifier);
 			xmlWriter.WriteEndElement();
 		}
@@ -143,7 +141,7 @@ namespace FantasyModuleParser.Exporters
 			{
 				string columnHeaderValue = tableModel.ColumnHeaderLabels[columnHeaderIndex];
 				xmlWriter.WriteStartElement(string.Format("labelcol{0}", columnHeaderIndex - 1));
-				xmlWriter.WriteAttributeString("type", "string");
+				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(columnHeaderValue);
 				xmlWriter.WriteEndElement();
 			}
@@ -153,7 +151,7 @@ namespace FantasyModuleParser.Exporters
 		{
 			int resultHeaders = tableModel.ColumnHeaderLabels.Count - 2;
 			xmlWriter.WriteStartElement("resultscols");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(resultHeaders);
 			xmlWriter.WriteEndElement();
 		}
@@ -193,7 +191,7 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteTableRows_RowData_FromRange(XmlWriter xmlWriter, DataRow dataRow)
 		{
 			xmlWriter.WriteStartElement("fromrange");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(dataRow[0].ToString());
 			xmlWriter.WriteEndElement();
 		}
@@ -201,7 +199,7 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteTableRows_RowData_ToRange(XmlWriter xmlWriter, DataRow dataRow)
 		{
 			xmlWriter.WriteStartElement("torange");
-			xmlWriter.WriteAttributeString("type", "number");
+			CommonMethods.Type_Number(xmlWriter);
 			// Null check
 			int toRangeValue = dataRow[1] == null ? 0 : int.Parse(dataRow[1].ToString());
 			xmlWriter.WriteValue(toRangeValue);
@@ -241,7 +239,7 @@ namespace FantasyModuleParser.Exporters
 		static private void WriteTableRows_RowData_CellData_ResultLink(XmlWriter xmlWriter, DataRow dataRow, int cellIdx)
 		{
 			xmlWriter.WriteStartElement("resultlink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			WriteTableRows_RowData_CellData_ResultLink_Class(xmlWriter, dataRow, cellIdx);
 			WriteTableRows_RowData_CellData_ResultLink_RecordName(xmlWriter, dataRow, cellIdx);
 			xmlWriter.WriteEndElement();
