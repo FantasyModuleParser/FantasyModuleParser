@@ -55,7 +55,9 @@ namespace FantasyModuleParser.Classes.Model
             {
                 stringBuilder.Append(tool.GetDescription()).Append(delimiter);
             }
-            return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
+            if (stringBuilder.Length == 0)
+                return "";
+            else return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
         }
 
         public string GetSavingThrowProficienciesForExporter()
@@ -72,12 +74,20 @@ namespace FantasyModuleParser.Classes.Model
 
         public string GetSkillProficienciesForExporter(int switchval)
 		{
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Choose ");
-            stringBuilder.Append(NumberOfSkills(switchval));
-            stringBuilder.Append("from ");
-            stringBuilder.Append(AddAndToListOfSkills());
-            return stringBuilder.ToString();
+            if (switchval == 0)
+            {
+                return "";
+            }
+            else if (switchval > 0)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("Choose ");
+                stringBuilder.Append(NumberOfSkills(switchval));
+                stringBuilder.Append("from ");
+                stringBuilder.Append(AddAndToListOfSkills());
+                return stringBuilder.ToString();
+            }
+            else return "";
 		}
 
         public string NumberOfSkills(int switchval)
@@ -103,7 +113,9 @@ namespace FantasyModuleParser.Classes.Model
             {
                 stringBuilder.Append(skills.GetDescription()).Append(delimiter);
             }
-            return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
+            if (stringBuilder.Length == 0)
+                return "";
+            else return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
         }
 
         public string AddAndToListOfSkills()

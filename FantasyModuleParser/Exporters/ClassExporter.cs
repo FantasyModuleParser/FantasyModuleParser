@@ -282,11 +282,75 @@ namespace FantasyModuleParser.Exporters
 		private static void Class_MulticlassProficiencies(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("multiclassproficiencies");
-			Proficiencies_Armor(xmlWriter, classModel);
-			Proficiencies_Weapons(xmlWriter, classModel);
-			Proficiencies_Tools(xmlWriter, classModel);
-			Proficiencies_SavingThrows(xmlWriter, classModel);
-			Proficiencies_Skills(xmlWriter, classModel);
+			MultiProficiencies_Armor(xmlWriter, classModel);
+			MultiProficiencies_Weapons(xmlWriter, classModel);
+			MultiProficiencies_Tools(xmlWriter, classModel);
+			MultiProficiencies_Skills(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiProficiencies_Armor(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("armor");
+			Armor_Name(xmlWriter);
+			MultiArmor_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiArmor_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.MultiProficiency.GetArmorProficienciesForExporter());
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiProficiencies_Weapons(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("weapons");
+			Weapons_Name(xmlWriter);
+			MultiWeapons_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiWeapons_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.MultiProficiency.WeaponProficiencies);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiProficiencies_Tools(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("tools");
+			Tools_Name(xmlWriter);
+			MultiTools_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiTools_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("text");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.MultiProficiency.GetToolProficienciesForExporter());
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiProficiencies_Skills(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			xmlWriter.WriteStartElement("skills");
+			Skills_Name(xmlWriter);
+			MultiSkills_Text(xmlWriter, classModel);
+			xmlWriter.WriteEndElement();
+		}
+
+		private static void MultiSkills_Text(XmlWriter xmlWriter, ClassModel classModel)
+		{
+			int switchval = classModel.MultiProficiency.NumberOfSkillsToChoose;
+			xmlWriter.WriteStartElement("text");
+			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteString(classModel.MultiProficiency.GetSkillProficienciesForExporter(switchval));
 			xmlWriter.WriteEndElement();
 		}
 
