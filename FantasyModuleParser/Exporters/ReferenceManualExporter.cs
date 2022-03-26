@@ -237,7 +237,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Link_ClassItem_Class(XmlWriter xmlWriter, ClassModel classModel)
 		{
 			xmlWriter.WriteStartElement("link");
-			xmlWriter.WriteAttributeString("class", "item");
+			xmlWriter.WriteAttributeString("class", "reference_class");
 			xmlWriter.WriteAttributeString("recordname", WriteRecordNameClass(classModel));
 			xmlWriter.WriteString(classModel.Name);
 			xmlWriter.WriteEndElement();
