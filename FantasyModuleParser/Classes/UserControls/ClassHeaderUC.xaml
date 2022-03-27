@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="FantasyModuleParser.Classes.UserControls.ClassHeaderUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:my="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
+             xmlns:viewModel="clr-namespace:FantasyModuleParser.Classes.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="620">
+    <UserControl.DataContext>
+        <viewModel:ClassHeaderViewModel></viewModel:ClassHeaderViewModel>
+    </UserControl.DataContext>
+    <Grid x:Name="ClassHeaderLayout">
+        <Grid Background="AliceBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Class Name" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBox Text="{Binding ClassModelName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="1" />
+                <CheckBox Content="Locked" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding ClassModelIsLocked}"/>
+            </Grid>
+            <Grid Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Hit Die per Level" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" />
+                <!-- TODO: Need to map to a Model object attribute  -->
+                <ComboBox ItemsSource="{Binding Source={my:Enumeration {x:Type classEnum:ClassHitDieEnum}}}"
+                  SelectedValue="{Binding HitDiePerLevel}"
+                  SelectedValuePath="Value" DisplayMemberPath="Description" Grid.Column="1" Margin="0,3,0,3" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

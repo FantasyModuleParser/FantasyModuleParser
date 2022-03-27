@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="FantasyModuleParser.Classes.UserControls.ClassProficiency.StartingToolsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FantasyModuleParser.Classes.UserControls.ClassProficiency"
+             xmlns:extension="clr-namespace:FantasyModuleParser.Extensions"
+             xmlns:classEnum="clr-namespace:FantasyModuleParser.Classes.Enums"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200">
+    <UserControl.Resources>
+        <Style TargetType="TextBox" x:Key="positiveNumberTextbox">
+            <Setter Property="FontSize" Value="10px" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+            <EventSetter Event="PreviewTextInput" Handler="PositiveNumberValidationTextBox" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <local:StartingToolsViewModel></local:StartingToolsViewModel>
+    </UserControl.DataContext>
+    <Grid x:Name="StartingToolLayout">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="150*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Tools" Grid.Row="0" />
+
+        <ListBox Name="StartingToolsListBox" Grid.Row="1" Grid.ColumnSpan="2" 
+                         ItemsSource="{Binding StartingToolsList}"
+                         SelectedValuePath="Value" DisplayMemberPath="Description" SelectionMode="Multiple"
+                         SelectionChanged="StartingToolsListBox_OnSelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <!-- Number of Gaming Sets -->
+        <StackPanel Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="Number of Gaming Sets" />
+                <TextBox Width="30" Text="{Binding Path=NumberOfGamingSets}" Style="{StaticResource positiveNumberTextbox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="Number of Musical Instruments" />
+                <TextBox Width="30" Text="{Binding Path=NumberOfMusicalInstruments}" Style="{StaticResource positiveNumberTextbox}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

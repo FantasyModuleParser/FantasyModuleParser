@@ -1,24 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" />
-  <Import Project="..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.props')" />
-  <Import Project="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3F562E61-C80A-4DD4-AD30-EB34EB6855F5}</ProjectGuid>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>FantasyModuleParser</RootNamespace>
     <AssemblyName>FantasyModuleParser</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>ftp://ftp.fantasymoduleparser.tech/</PublishUrl>
     <Install>true</Install>
@@ -44,73 +29,29 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>FantasyModuleParser.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>
@@ -126,765 +67,24 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
-  <PropertyGroup />
   <PropertyGroup>
     <SignManifests>false</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\FMP-Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\EnvDTE.16.10.31320.204\lib\net45\EnvDTE.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Google.Protobuf, Version=3.18.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Protobuf.3.18.1\lib\net45\Google.Protobuf.dll</HintPath>
-    </Reference>
-    <Reference Include="K4os.Compression.LZ4, Version=1.2.13.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Compression.LZ4.1.2.13\lib\net46\K4os.Compression.LZ4.dll</HintPath>
-    </Reference>
-    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.13.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.13\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
-    </Reference>
-    <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Markdig, Version=0.26.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Markdig.0.26.0\lib\net452\Markdig.dll</HintPath>
-    </Reference>
-    <Reference Include="Markdig.Wpf, Version=0.5.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Markdig.Wpf.0.5.0.1\lib\net452\Markdig.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis, Version=3.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.3.11.0\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=3.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.3.11.0\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Data.Edm, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Edm.5.8.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Toolkit, Version=7.1.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Toolkit.7.1.0\lib\netstandard2.0\Microsoft.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Toolkit.Parsers, Version=6.1.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Toolkit.Parsers.6.1.1\lib\netstandard2.0\Microsoft.Toolkit.Parsers.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MSTest.TestFramework.2.2.7\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MSTest.TestFramework.2.2.7\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=8.0.26.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.26\lib\net48\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Renci.SshNet, Version=2020.0.1.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
-      <HintPath>..\packages\SSH.NET.2020.0.1\lib\net40\Renci.SshNet.dll</HintPath>
-    </Reference>
-    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\stdole.16.10.31320.204\lib\net45\stdole.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.5.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
-    </Reference>
+    <Compile Remove="Equipment\Views\**" />
+    <EmbeddedResource Remove="Equipment\Views\**" />
+    <None Remove="Equipment\Views\**" />
+    <Page Remove="Equipment\Views\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.ComponentModel" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection.Metadata, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reflection.Metadata.5.0.0\lib\net461\System.Reflection.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Transactions" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.26\lib\net48\Ubiety.Dns.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.26\lib\net48\Zstandard.Net.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="Equipment\EquipmentOptionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Equipment\UserControls\ArmorDetailsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Equipment\UserControls\CostAndWeightUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Equipment\UserControls\GenericDescriptionUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Equipment\UserControls\EquipmentFooterUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Equipment\UserControls\EquipmentHeaderUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Equipment\UserControls\GenericImageUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Equipment\UserControls\MountUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Equipment\UserControls\WeaponUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\CategoriesUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\CustomCastersUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\ArtifactsSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\EquipmentSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\LogSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\NPCSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\ParcelSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\SpellSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\SuiteSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\Settings\TablesSettingsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\UserControls\UserLanguagesUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\About.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\Changelog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\ProjectManagement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\Settings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\Supporters.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\Description\DescriptionOverviewUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\LairActions\LairActionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\LairActions\OptionsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\DescriptionUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\ImageUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\SkillsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\SpellcastingUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\NPCTabs\TraitsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\Options\NPCOptionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\ViewNPCStatBlockUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\Action\EditAction\Actions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\Action\MultiAttackControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\Action\OtherActionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\UserControls\Action\OverviewControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NPC\UserControls\Action\WeaponAttackControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NPC\Views\DiceFunction.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\FGListOptions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\ImportText.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\MarkdownHelp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\PreviewNPC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\Action\LairAction\ViewLairActions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NPC\Views\Action\LegendaryAction\LegendaryActions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Converters\LanguageModelConverter.cs" />
-    <Compile Include="Converters\SelectableActionModelConverter.cs" />
-    <Compile Include="Equipment\Enums\TackEnum.cs" />
-    <Compile Include="Equipment\Enums\AdventuringGearEnum.cs" />
-    <Compile Include="Equipment\Enums\MeasurementEnum.cs" />
-    <Compile Include="Equipment\Enums\AnimalsEnum.cs" />
-    <Compile Include="Equipment\Enums\ArmorEnum.cs" />
-    <Compile Include="Equipment\Enums\CurrencyEnum.cs" />
-    <Compile Include="Equipment\Enums\PrimaryEquipmentEnum.cs" />
-    <Compile Include="Equipment\Enums\RarityEnum.cs" />
-    <Compile Include="Equipment\Enums\ToolsEnum.cs" />
-    <Compile Include="Equipment\Enums\TreasureEnum.cs" />
-    <Compile Include="Equipment\Enums\VehiclesEnum.cs" />
-    <Compile Include="Equipment\Enums\WeaponEnum.cs" />
-    <Compile Include="Equipment\Enums\Weapon\WeaponMaterialEnum.cs" />
-    <Compile Include="Equipment\Enums\Weapon\WeaponPropertyEnum.cs" />
-    <Compile Include="Equipment\EquipmentOptionControl.xaml.cs">
-      <DependentUpon>EquipmentOptionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\Models\EquipmentModel.cs" />
-    <Compile Include="Equipment\UserControls\ArmorDetailsUC.xaml.cs">
-      <DependentUpon>ArmorDetailsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\CostAndWeightUC.xaml.cs">
-      <DependentUpon>CostAndWeightUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\GenericDescriptionUC.xaml.cs">
-      <DependentUpon>GenericDescriptionUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\EquipmentFooterUC.xaml.cs">
-      <DependentUpon>EquipmentFooterUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\EquipmentHeaderUC.xaml.cs">
-      <DependentUpon>EquipmentHeaderUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\GenericImageUserControl.xaml.cs">
-      <DependentUpon>GenericImageUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\Models\ArmorModel.cs" />
-    <Compile Include="Equipment\UserControls\Models\WeaponModel.cs" />
-    <Compile Include="Equipment\UserControls\MountUC.xaml.cs">
-      <DependentUpon>MountUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\UserControls\ViewModels\EquipmentNavigationUCViewModel.cs" />
-    <Compile Include="Equipment\UserControls\WeaponUC.xaml.cs">
-      <DependentUpon>WeaponUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment\ViewModels\EquipmentOptionControlViewModel.cs" />
-    <Compile Include="Exporters\CommonMethods.cs" />
-    <Compile Include="Exporters\DatabaseExporter.cs" />
-    <Compile Include="Exporters\DefinitionExporter.cs" />
-    <Compile Include="Exporters\EquipmentExporter.cs" />
-    <Compile Include="Exporters\FantasyGroundsCampaign.cs" />
-    <Compile Include="Exporters\ICampaign.cs" />
-    <Compile Include="Exporters\ImageExporter.cs" />
-    <Compile Include="Exporters\LibraryExporter.cs" />
-    <Compile Include="Exporters\ListExporter.cs" />
-    <Compile Include="Exporters\NPCExporter.cs" />
-    <Compile Include="Exporters\ReferenceManualExporter.cs" />
-    <Compile Include="Exporters\SpellExporter.cs" />
-    <Compile Include="Exporters\TableExporter.cs" />
-    <Compile Include="Importer\Enums\ImportSpellState.cs" />
-    <Compile Include="Importer\Spells\FormatSpellDnDBeyondService.cs" />
-    <Compile Include="Importer\Spells\FormatSpellPDFService.cs" />
-    <Compile Include="Importer\Spells\IImportSpell.cs" />
-    <Compile Include="Importer\Spells\ImportSpellBase.cs" />
-    <Compile Include="Importer\Spells\ImportSpellDnDBeyond.cs" />
-    <Compile Include="Importer\Spells\ImportSpellPDF.cs" />
-    <Compile Include="Main\Models\Enums\GUIOption.cs" />
-    <Compile Include="Main\Models\ModelBase.cs" />
-    <Compile Include="Main\UserControls\CustomCastersUC.xaml.cs">
-      <DependentUpon>CustomCastersUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\LogSettingsUC.xaml.cs">
-      <DependentUpon>LogSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\ViewModels\CustomCastersUCViewModel.cs" />
-    <Compile Include="NPC\Commands\ActionCommand.cs" />
-    <Compile Include="Converters\EnumConverter.cs" />
-    <Compile Include="Exporters\FantasyGroundsExporter.cs" />
-    <Compile Include="Exporters\IExporter.cs" />
-    <Compile Include="Extensions\EnumDescription.cs" />
-    <Compile Include="Extensions\EnumerationExtension.cs" />
-    <Compile Include="Importer\NPC\IFormatContentService.cs" />
-    <Compile Include="Importer\NPC\FormatPDFService.cs" />
-    <Compile Include="Importer\NPC\IImportNPC.cs" />
-    <Compile Include="Importer\NPC\ImportDnDBeyondNPC.cs" />
-    <Compile Include="Importer\NPC\ImportESNPCBase.cs" />
-    <Compile Include="Importer\NPC\ImportNPCBase.cs" />
-    <Compile Include="Importer\NPC\ImportPDFNPC.cs" />
-    <Compile Include="Importer\Utils\ImportCommonUtils.cs" />
-    <Compile Include="Main\Models\CategoryModel.cs" />
-    <Compile Include="Main\Models\ChangelogModel.cs" />
-    <Compile Include="Main\Models\FMPConfigurationModel.cs" />
-    <Compile Include="Main\Models\PatronModel.cs" />
-    <Compile Include="Main\Models\SettingsModel.cs" />
-    <Compile Include="Main\Services\FMPConfigurationService.cs" />
-    <Compile Include="Main\Services\ModuleService.cs" />
-    <Compile Include="Main\Services\SettingsService.cs" />
-    <Compile Include="Main\UserControls\CategoriesUC.xaml.cs">
-      <DependentUpon>CategoriesUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\ArtifactsSettingsUC.xaml.cs">
-      <DependentUpon>ArtifactsSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\EquipmentSettingsUC.xaml.cs">
-      <DependentUpon>EquipmentSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\NPCSettingsUC.xaml.cs">
-      <DependentUpon>NPCSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\ParcelSettingsUC.xaml.cs">
-      <DependentUpon>ParcelSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\SpellSettingsUC.xaml.cs">
-      <DependentUpon>SpellSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\SuiteSettingsUC.xaml.cs">
-      <DependentUpon>SuiteSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\Settings\TablesSettingsUC.xaml.cs">
-      <DependentUpon>TablesSettingsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\UserControls\UserLanguagesUC.xaml.cs">
-      <DependentUpon>UserLanguagesUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Importer\NPC\ImportEngineerSuiteNPC.cs" />
-    <Compile Include="Main\ViewModels\CategoriesUCViewModel.cs" />
-    <Compile Include="Main\ViewModels\ChangelogViewModel.cs" />
-    <Compile Include="Main\ViewModels\FMPConfigurationViewModel.cs" />
-    <Compile Include="Main\ViewModels\SettingsViewModel.cs" />
-    <Compile Include="Main\ViewModels\SupportersViewModel.cs" />
-    <Compile Include="Main\ViewModels\UserLanguagesUCViewModel.cs" />
-    <Compile Include="Main\Views\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\Changelog.xaml.cs">
-      <DependentUpon>Changelog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\ProjectManagement.xaml.cs">
-      <DependentUpon>ProjectManagement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\Supporters.xaml.cs">
-      <DependentUpon>Supporters.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Controllers\ActionController.cs" />
-    <Compile Include="NPC\Controllers\LanguageController.cs" />
-    <Compile Include="NPC\Models\Action\ConditionTypeModel.cs" />
-    <Compile Include="NPC\Models\Action\DamageTypeModel.cs" />
-    <Compile Include="NPC\Models\Action\Enums\ConditionType.cs" />
-    <Compile Include="NPC\Models\Action\Enums\DamageResistance.cs" />
-    <Compile Include="NPC\Models\Action\Enums\WeaponImmunity.cs" />
-    <Compile Include="NPC\Models\Action\Enums\WeaponResistance.cs" />
-    <Compile Include="NPC\Models\Action\LairAction.cs" />
-    <Compile Include="NPC\Models\Action\LegendaryActionModel.cs" />
-    <Compile Include="NPC\Models\Action\SelectableActionModel.cs" />
-    <Compile Include="NPC\Models\Action\WeaponImmunityModel.cs" />
-    <Compile Include="NPC\Models\Action\WeaponResistanceModel.cs" />
-    <Compile Include="Main\Models\ModuleModel.cs" />
-    <Compile Include="NPC\Models\Skills\LanguageModel.cs" />
-    <Compile Include="NPC\UserControls\Description\DescriptionOverviewUC.xaml.cs">
-      <DependentUpon>DescriptionOverviewUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionControl.xaml.cs">
-      <DependentUpon>LegendaryActionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOptionControl.xaml.cs">
-      <DependentUpon>LegendaryActionOptionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\LegendaryAction\LegendaryActionOverviewControl.xaml.cs">
-      <DependentUpon>LegendaryActionOverviewControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\ActionOverviewUC.xaml.cs">
-      <DependentUpon>ActionOverviewUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\LairActions\LairActionControl.xaml.cs">
-      <DependentUpon>LairActionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\LairActions\OptionsControl.xaml.cs">
-      <DependentUpon>OptionsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\BaseStatsUC.xaml.cs">
-      <DependentUpon>BaseStatsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\DescriptionUC.xaml.cs">
-      <DependentUpon>DescriptionUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\ImageUC.xaml.cs">
-      <DependentUpon>ImageUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\InnateCastingUC.xaml.cs">
-      <DependentUpon>InnateCastingUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\ResistancesUC.xaml.cs">
-      <DependentUpon>ResistancesUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\SkillsUC.xaml.cs">
-      <DependentUpon>SkillsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\SpellcastingUC.xaml.cs">
-      <DependentUpon>SpellcastingUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\NPCTabs\TraitsUC.xaml.cs">
-      <DependentUpon>TraitsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\Options\NPCOptionControl.xaml.cs">
-      <DependentUpon>NPCOptionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\ViewNPCStatBlockUC.xaml.cs">
-      <DependentUpon>ViewNPCStatBlockUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\ViewModels\ActionOverviewUserControlViewModel.cs" />
-    <Compile Include="NPC\ViewModels\DescriptionUCViewModel.cs" />
-    <Compile Include="NPC\ViewModels\InnateSpellcastingViewModel.cs" />
-    <Compile Include="NPC\ViewModels\NPCOptionControlViewModel.cs" />
-    <Compile Include="NPC\ViewModels\PreviewNPCViewModel.cs" />
-    <Compile Include="NPC\ViewModels\ProjectManagementViewModel.cs" />
-    <Compile Include="NPC\ViewModels\ResistanceUserControlViewModel.cs" />
-    <Compile Include="NPC\Views\DiceFunction.xaml.cs">
-      <DependentUpon>DiceFunction.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Views\MarkdownHelp.xaml.cs">
-      <DependentUpon>MarkdownHelp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Views\PreviewNPC.xaml.cs">
-      <DependentUpon>PreviewNPC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\Views\FMPConfigurationView.xaml.cs">
-      <DependentUpon>FMPConfigurationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Spells\CastByWindow.xaml.cs">
-      <DependentUpon>CastByWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Spells\Enums\CastingType.cs" />
-    <Compile Include="Spells\Enums\DurationType.cs" />
-    <Compile Include="Spells\Enums\DurationUnit.cs" />
-    <Compile Include="Spells\Enums\RangeType.cs" />
-    <Compile Include="Spells\Enums\SelfType.cs" />
-    <Compile Include="Spells\Enums\SpellLevel.cs" />
-    <Compile Include="Spells\Enums\SpellSchool.cs" />
-    <Compile Include="Spells\Enums\UnitType.cs" />
-    <Compile Include="Spells\ImportTextSpellView.xaml.cs">
-      <DependentUpon>ImportTextSpellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Spells\Models\CustomCastersModel.cs" />
-    <Compile Include="Spells\Models\SpellModel.cs" />
-    <Compile Include="Spells\Services\ISpellService.cs" />
-    <Compile Include="Spells\Services\SpellService.cs" />
-    <Compile Include="Spells\SpellOptionControl.xaml.cs">
-      <DependentUpon>SpellOptionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Spells\UserControls\SpellStatBlockUC.xaml.cs">
-      <DependentUpon>SpellStatBlockUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Spells\ViewModels\CastByViewModel.cs" />
-    <Compile Include="Spells\ViewModels\ImportTextSpellViewModel.cs" />
-    <Compile Include="Spells\ViewModels\SpellViewModel.cs" />
-    <Compile Include="Tables\Models\TableModel.cs" />
-    <Compile Include="Tables\Services\ITableService.cs" />
-    <Compile Include="Tables\Services\TableService.cs" />
-    <Compile Include="Tables\TableOptionControl.xaml.cs">
-      <DependentUpon>TableOptionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Tables\ViewModels\Enums\OutputTypeEnum.cs" />
-    <Compile Include="Tables\ViewModels\Enums\RollMethodEnum.cs" />
-    <Compile Include="Tables\ViewModels\TableOptionViewModel.cs" />
-    <Compile Include="Tables\Views\ChangeColumnHeaderView.xaml.cs">
-      <DependentUpon>ChangeColumnHeaderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\CommonMethod.cs" />
-    <Compile Include="NPC\Models\Action\ActionModelBase.cs" />
-    <Compile Include="NPC\Models\Action\Enums\DamageType.cs" />
-    <Compile Include="NPC\Models\Action\Enums\DieType.cs" />
-    <Compile Include="NPC\Views\Action\EditAction\Actions.xaml.cs">
-      <DependentUpon>Actions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Models\Action\Enums\TargetType.cs" />
-    <Compile Include="NPC\Models\Action\Enums\WeaponType.cs" />
-    <Compile Include="NPC\UserControls\Action\MultiAttackControl.xaml.cs">
-      <DependentUpon>MultiAttackControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\Action\OtherActionControl.xaml.cs">
-      <DependentUpon>OtherActionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\Action\OverviewControl.xaml.cs">
-      <DependentUpon>OverviewControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\UserControls\Action\WeaponAttackControl.xaml.cs">
-      <DependentUpon>WeaponAttackControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Controllers\NPCController.cs" />
-    <Compile Include="NPC\Models\Action\DamageProperty.cs" />
-    <Compile Include="NPC\Models\Action\Multiattack.cs" />
-    <Compile Include="NPC\Models\Action\OtherAction.cs" />
-    <Compile Include="NPC\Models\Action\WeaponAttack.cs" />
-    <Compile Include="NPC\Models\NPCModel.cs" />
-    <Compile Include="NPC\Views\FGListOptions.xaml.cs">
-      <DependentUpon>FGListOptions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Views\ImportText.xaml.cs">
-      <DependentUpon>ImportText.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Views\Action\LairAction\ViewLairActions.xaml.cs">
-      <DependentUpon>ViewLairActions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\Views\Action\LegendaryAction\LegendaryActions.xaml.cs">
-      <DependentUpon>LegendaryActions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="NPC\Views\Action\Reaction\Reactions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Main\Views\FMPConfigurationView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Spells\CastByWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Spells\ImportTextSpellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Spells\SpellOptionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Spells\UserControls\SpellStatBlockUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tables\TableOptionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tables\Views\ChangeColumnHeaderView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="NPC\Views\Action\Reaction\Reactions.xaml.cs">
-      <DependentUpon>Reactions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NPC\ViewModels\ActionViewModel.cs" />
-    <Compile Include="NPC\ViewModels\ViewModelBase.cs" />
-    <Compile Include="NPC\ViewModels\NPCViewModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include=".gitignore" />
-    <None Include="CHANGELOG.json" />
-    <None Include="packages.config" />
-    <None Include="Properties\app.manifest" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\artifactengineer_logo.png">
@@ -1027,29 +227,39 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Equipment\Views\" />
     <Folder Include="NPC\UserControls\Action\Reactions\" />
     <Folder Include="Tables\UserControls\" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" />
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.NetAnalyzers.dll" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.261602">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.props'))" />
-    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.36\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.36\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
-  </Target>
-  <Import Project="..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets')" />
-  <Import Project="..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.36\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.36\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
-  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle" Version="1.8.9" />
+    <PackageReference Include="EnvDTE" Version="17.0.32112.339" />
+    <PackageReference Include="log4net" Version="2.0.14" />
+    <PackageReference Include="Markdig" Version="0.27.0" />
+    <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit" Version="7.1.2" />
+    <PackageReference Include="Microsoft.Toolkit.Parsers" Version="6.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK.EmbedInteropTypes" Version="15.0.36" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="SSH.NET" Version="2020.0.1" />
+    <PackageReference Include="System.Text.Json" Version="6.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="NPC\DTO\NPCAction\ActionDataModel.cs" />
+  </ItemGroup>
 </Project>

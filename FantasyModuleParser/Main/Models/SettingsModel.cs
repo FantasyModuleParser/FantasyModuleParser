@@ -12,6 +12,7 @@
         public string ArtifactFolderLocation { get; set; }
         public string TableFolderLocation { get; set; }
         public string ParcelFolderLocation { get; set; }
+        public string ClassFolderLocation { get; set; }
         public bool PersistentWindow { get; set; }
         public string DefaultGUISelection { get; set; }
         public string LogFolderLocation { get; set; }

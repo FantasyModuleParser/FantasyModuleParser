@@ -67,7 +67,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Entry_Equipment_LibraryLink(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("librarylink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			Xml_Class_ReferenceList(xmlWriter);
 			Xml_RecordName_Blank(xmlWriter);
 			xmlWriter.WriteEndElement();
@@ -85,7 +85,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Entry_Images_LibraryLink(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("librarylink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			Xml_Class_ReferenceList(xmlWriter);
 			Xml_RecordName_Blank(xmlWriter);
 			xmlWriter.WriteEndElement();
@@ -106,7 +106,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Entry_NPCs_LibraryLink(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("librarylink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			Xml_Class_ReferenceList(xmlWriter);
 			Xml_RecordName_Blank(xmlWriter);
 			xmlWriter.WriteEndElement();
@@ -127,7 +127,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Entry_Spells_LibraryLink(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("librarylink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			Xml_Class_ReferenceList(xmlWriter);
 			Xml_RecordName_Blank(xmlWriter);
 			xmlWriter.WriteEndElement();
@@ -148,7 +148,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Entry_Tables_LibraryLink(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("librarylink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			Xml_Class_ReferenceList(xmlWriter);
 			Xml_RecordName_Blank(xmlWriter);
 			xmlWriter.WriteEndElement();
@@ -165,7 +165,7 @@ namespace FantasyModuleParser.Exporters
 		private static void ReferenceManual_LibraryLink(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("librarylink");
-			xmlWriter.WriteAttributeString("type", "windowreference");
+			CommonMethods.Type_WindowReference(xmlWriter);
 			Xml_Class_ReferenceManual(xmlWriter);
 			Xml_Recordname_ReferenceManual(xmlWriter, moduleModel);
 			xmlWriter.WriteEndElement();
@@ -174,7 +174,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_CategoryName(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("categoryname");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(moduleModel.Category);
 			xmlWriter.WriteEndElement();
 		}
@@ -210,7 +210,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Library_ModuleReferenceLibrary(XmlWriter xmlWriter, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString(moduleModel.Name + " Reference Library");
 			xmlWriter.WriteEndElement();
 		}
@@ -218,7 +218,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_Equipment(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Items");
 			xmlWriter.WriteEndElement();
 		}
@@ -226,7 +226,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_Images(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Images");
 			xmlWriter.WriteEndElement();
 		}
@@ -234,7 +234,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_NPCs(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("NPCs");
 			xmlWriter.WriteEndElement();
 		}
@@ -242,7 +242,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_Spells(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Spells");
 			xmlWriter.WriteEndElement();
 		}
@@ -250,7 +250,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_Tables(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Tables");
 			xmlWriter.WriteEndElement();
 		}
@@ -258,7 +258,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_ReferenceManual(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("Reference Manual");
 			xmlWriter.WriteEndElement();
 		}
@@ -315,7 +315,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_RecordType_Image(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("recordtype");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("image");
 			xmlWriter.WriteEndElement();
 		}
@@ -323,7 +323,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_RecordType_Item(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("recordtype");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("item");
 			xmlWriter.WriteEndElement();
 		}
@@ -331,7 +331,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_RecordType_Npc(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("recordtype");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("npc");
 			xmlWriter.WriteEndElement();
 		}
@@ -339,7 +339,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_RecordType_Spell(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("recordtype");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("spell");
 			xmlWriter.WriteEndElement();
 		}
@@ -347,7 +347,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_RecordType_Table(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("recordtype");
-			xmlWriter.WriteAttributeString("type", "string");
+			CommonMethods.Type_String(xmlWriter);
 			xmlWriter.WriteString("table");
 			xmlWriter.WriteEndElement();
 		}

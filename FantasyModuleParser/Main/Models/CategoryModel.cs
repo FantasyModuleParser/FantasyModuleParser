@@ -1,4 +1,5 @@
-﻿using FantasyModuleParser.Equipment.Models;
+﻿using FantasyModuleParser.Classes.Model;
+using FantasyModuleParser.Equipment.Models;
 using FantasyModuleParser.NPC;
 using FantasyModuleParser.Spells.Models;
 using FantasyModuleParser.Tables.Models;
@@ -13,6 +14,7 @@ namespace FantasyModuleParser.Main.Models
         public ObservableCollection<SpellModel> SpellModels { get; set; } = new ObservableCollection<SpellModel>();
         public ObservableCollection<TableModel> TableModels { get; set; } = new ObservableCollection<TableModel>();
         public ObservableCollection<EquipmentModel> EquipmentModels { get; set; } = new ObservableCollection<EquipmentModel>();
+        public ObservableCollection<ClassModel> ClassModels { get; set; } = new ObservableCollection<ClassModel>();
 
         public void AddEquipmentModel(EquipmentModel equipmentModel)
         {
