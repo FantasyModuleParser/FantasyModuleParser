@@ -86,16 +86,16 @@ namespace FantasyModuleParser.Tables.ViewModels
             set { this._tableModel.tableDataTable = value; RaisePropertyChanged(nameof(Data)); }
         }
 
-        public int RowCount
-        {
-            get { return _tableModel.RowCount; }
-            set { Set(ref _tableModel.RowCount, value); }
-        }
-        public int ColumnCount
-        {
-            get { return _tableModel.ColumnCount; }
-            set { Set(ref _tableModel.ColumnCount, value); }
-        }
+        //public int RowCount
+        //{
+        //    get { return _tableModel.RowCount; }
+        //    set { Set(ref _tableModel.RowCount, value); }
+        //}
+        //public int ColumnCount
+        //{
+        //    get { return _tableModel.ColumnCount; }
+        //    set { Set(ref _tableModel.ColumnCount, value); }
+        //}
 
         public ObservableCollection<DataGridColumn> DataGridColumns
         {
@@ -214,7 +214,7 @@ namespace FantasyModuleParser.Tables.ViewModels
         private void CreateNewTable()
         {
             TableModel = new TableModel();
-            CreateDefaultDataTable();
+            //CreateDefaultDataTable();
             TableDataView = new DataView(Data);
         }
 
@@ -388,30 +388,26 @@ namespace FantasyModuleParser.Tables.ViewModels
             {
                 if(_removeColumnCommand == null)
                 {
-                    _removeColumnCommand = new ActionCommand(param => RemoveColumnFromDataTable(param as DataGridColumn));
+                    _removeColumnCommand = new ActionCommand(param => RemoveColumnFromDataTable(),
+                        param => PredicateRemoveColumnFromDataTable());
                 }
                 return _removeColumnCommand;
             }
         }
 
-        private bool PredicateRemoveColumnFromDataTable(object dataColumn)
+        private bool PredicateRemoveColumnFromDataTable()
         {
-            log.Info(dataColumn);
-            if(dataColumn == null)
-            {
-                return false;
-            }
-            return (dataColumn as DataGridColumn).DisplayIndex> 1;
+            return Data.Columns.Count > 3;
         }
         private void RemoveColumnFromDataTable(DataGridColumn dataColumn)
         {
-            if(dataColumn == null)
+            if (dataColumn == null)
             {
                 log.Info(string.Format("Cannot delete the column as the param is not a dataColumn type :: {0}", dataColumn));
                 return;
             }
 
-            if(dataColumn.DisplayIndex <= 1)
+            if (dataColumn.DisplayIndex <= 1)
             {
                 log.Info(string.Format("Cannot delete column {0} at the index {1}; Continuing on..", dataColumn.Header, dataColumn.DisplayIndex));
                 return;
@@ -419,12 +415,23 @@ namespace FantasyModuleParser.Tables.ViewModels
             Data.Columns.RemoveAt(dataColumn.DisplayIndex);
         }
 
-
         private void RemoveColumnFromDataTable()
         {
+            if(Data.Columns.Count > 3) {
 
+                Data.Columns.RemoveAt(Data.Columns.Count - 1);
+                TableModel.ColumnHeaderLabels.RemoveAt(Data.Columns.Count - 1);
+
+                TableDataView = new DataView(Data);
+                
+
+                //TableDataView.Dispose();
+
+
+                RaisePropertyChanged(nameof(TableDataView));
+               
+            }
         }
-
 
         ActionCommand _saveCommand;
         public ICommand SaveCommand

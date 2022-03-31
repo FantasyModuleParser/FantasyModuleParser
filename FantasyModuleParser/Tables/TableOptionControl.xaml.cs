@@ -31,7 +31,7 @@ namespace FantasyModuleParser.Tables
             InitializeComponent();
             tableOptionViewModel = DataContext as TableOptionViewModel;
             generateContextMenu();
-            InitializeTableDataGrid();
+            //InitializeTableDataGrid();
             //TableExampleDataGrid.ItemsSource = tableOptionViewModel.Data.DefaultView;
 
         }
@@ -40,7 +40,7 @@ namespace FantasyModuleParser.Tables
         {
             //TableExampleDataGrid.BorderColor = System.Drawing.Color.Black;
             //TableExampleDataGrid.CellPadding = 3;
-            TableExampleDataGrid.AutoGenerateColumns = false;
+            TableExampleDataGrid.AutoGenerateColumns = true;
             TableExampleDataGrid.CanUserSortColumns = false;
             TableExampleDataGrid.CanUserReorderColumns = false;
 
@@ -355,7 +355,7 @@ namespace FantasyModuleParser.Tables
                 tableOptionViewModel.TableModel = tableOptionViewModel.TableModel.Load(openFileDlg.FileName);
                 tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
 
-                InitializeTableDataGrid();
+                //InitializeTableDataGrid();
             }
         }
 
@@ -364,52 +364,7 @@ namespace FantasyModuleParser.Tables
             //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
             int currentColumnCount = TableExampleDataGrid.Columns.Count;
             //TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
-        }
-
-        private void SelectedTableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-            
-            tableOptionViewModel.TableModel = TableComboBox.SelectedValue as TableModel;
-            tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
-        }
-
-        private void NextTableButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Because the Datagrid is not 100% bound to the Table Model, the view
-            // code-behind needs to be updated
-            if (tableOptionViewModel.NextTableCommand.CanExecute(null))
-            {
-                tableOptionViewModel.NextTableCommand.Execute(null);
-
-                // Note:  This is commented out because the TableComboBox **IS** bound 
-                //      to a list of TableModel objects.  This command updates that selection,
-                //      which in turn invokes the SelectionChanged event (see TableComboBox_SelectionChanged)
-                //InitializeTableDataGrid();
-            }
-        }
-
-        private void PreviousTableButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Because the Datagrid is not 100% bound to the Table Model, the view
-            // code-behind needs to be updated
-            if (tableOptionViewModel.PrevTableCommand.CanExecute(null))
-            {
-                tableOptionViewModel.PrevTableCommand.Execute(null);
-
-                // Note:  This is commented out because the TableComboBox **IS** bound 
-                //      to a list of TableModel objects.  This command updates that selection,
-                //      which in turn invokes the SelectionChanged event (see TableComboBox_SelectionChanged)
-                //InitializeTableDataGrid();
-            }
-        }
-
-        private void TableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Because the Datagrid is not 100% bound to the Table Model, the view
-            // code-behind needs to be updated
-            InitializeTableDataGrid();
+            //TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
         }
 
         private void TableExampleDataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
