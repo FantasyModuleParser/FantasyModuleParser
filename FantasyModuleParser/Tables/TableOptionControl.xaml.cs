@@ -6,9 +6,7 @@ using System.Windows.Data;
 using FantasyModuleParser.Tables.ViewModels;
 using FantasyModuleParser.Tables.ViewModels.Enums;
 using System.Data;
-using FantasyModuleParser.Main.Services;
 using System;
-using FantasyModuleParser.Tables.Models;
 using FantasyModuleParser.Tables.Views;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -16,8 +14,6 @@ using System.Windows.Media;
 namespace FantasyModuleParser.Tables
 {
     /// <summary>
-    /// 
-    /// 
     /// Interaction logic for TableUserControl.xaml
     /// </summary>
     public partial class TableUserControl : UserControl
@@ -31,9 +27,6 @@ namespace FantasyModuleParser.Tables
             InitializeComponent();
             tableOptionViewModel = DataContext as TableOptionViewModel;
             generateContextMenu();
-            //InitializeTableDataGrid();
-            //TableExampleDataGrid.ItemsSource = tableOptionViewModel.Data.DefaultView;
-
         }
 
         private void InitializeTableDataGrid()
@@ -63,16 +56,6 @@ namespace FantasyModuleParser.Tables
             {
                 TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{colIdx}", tableOptionViewModel.TableModel.ColumnHeaderLabels[colIdx]));
             }
-
-
-
-
-            //DataView dv = new DataView(tableOptionViewModel.Data);
-
-            //TableExampleDataGrid.ItemsSource = dv;
-
-            // Generate the Context Menu used by the grid
-            //generateContextMenu();
         }
 
         private void generateContextMenu()
@@ -117,13 +100,13 @@ namespace FantasyModuleParser.Tables
 
             MenuItem insertColumnMenuItem = new MenuItem();
             insertColumnMenuItem.Header = "Insert Column";
-            insertColumnMenuItem.Click += InsertColumn_Click;
+            //insertColumnMenuItem.Click += InsertColumn_Click;
             insertColumnMenuItem.Command = tableOptionViewModel.InsertColumnCommand;
             TableExampleDataGrid.ContextMenu.Items.Add(insertColumnMenuItem);
 
             MenuItem deleteColumnMenuItem = new MenuItem();
             deleteColumnMenuItem.Header = "Delete Column";
-            deleteColumnMenuItem.Click += DeleteColumnMenuItem_Click;
+            //deleteColumnMenuItem.Click += DeleteColumnMenuItem_Click;
             deleteColumnMenuItem.Command = tableOptionViewModel.RemoveColumnCommand;
             deleteColumnMenuItem.CommandParameter = TableExampleDataGrid.CurrentColumn;
             TableExampleDataGrid.ContextMenu.Items.Add(deleteColumnMenuItem);
@@ -170,24 +153,9 @@ namespace FantasyModuleParser.Tables
             TableExampleDataGrid.SelectedValue = "";
         }
 
-        private void DeleteColumnMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            TableExampleDataGrid.Columns.Remove(TableExampleDataGrid.CurrentColumn);
-        }
-
-        private void ClearRowMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
-
         private void DeleteRowMenuItem_Click(object sender, RoutedEventArgs e)
         {
             tableOptionViewModel.DeleteRow((TableExampleDataGrid.CurrentItem as DataRowView).Row);
-        }
-
-        private void InsertRow_Click(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         private MenuItem buildLinkWithinThisProject()
@@ -335,44 +303,12 @@ namespace FantasyModuleParser.Tables
             }
         }
 
-        private void LoadTableModule_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsService settingsService = new SettingsService();
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-            
-            openFileDlg.InitialDirectory = settingsService.Load().TableFolderLocation;
-            openFileDlg.Filter = "Table files (*.tbl)|*.tbl|All files (*.*)|*.*";
-            openFileDlg.RestoreDirectory = true;
-
-            // Launch OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name and display in a TextBox.
-            // Load content of file in a TextBlock
-            if (result == true)
-            {
-                TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-                tableOptionViewModel.TableModel = tableOptionViewModel.TableModel.Load(openFileDlg.FileName);
-                tableOptionViewModel.TableDataView = new DataView(tableOptionViewModel.TableModel.tableDataTable);
-
-                //InitializeTableDataGrid();
-            }
-        }
-
-        private void InsertColumn_Click(object sender, RoutedEventArgs e)
-        {
-            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-            int currentColumnCount = TableExampleDataGrid.Columns.Count;
-            //TableExampleDataGrid.Columns.Add(CreateBoundColumn("Col2", tableOptionViewModel.TableModel.ColumnHeaderLabels[2]));
-            //TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{currentColumnCount}", ""));
-        }
-
         private void TableExampleDataGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             DependencyObject DepObject = (DependencyObject)e.OriginalSource;
 
             while ((DepObject != null) && !(DepObject is DataGridColumnHeader)
-&& !(DepObject is DataGridRow))
+                && !(DepObject is DataGridRow))
             {
                 DepObject = VisualTreeHelper.GetParent(DepObject);
             }

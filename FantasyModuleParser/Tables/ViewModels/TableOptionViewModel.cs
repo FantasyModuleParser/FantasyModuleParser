@@ -7,6 +7,7 @@ using FantasyModuleParser.Tables.Models;
 using FantasyModuleParser.Tables.Services;
 using FantasyModuleParser.Tables.ViewModels.Enums;
 using log4net;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -443,6 +444,44 @@ namespace FantasyModuleParser.Tables.ViewModels
                     _saveCommand = new ActionCommand(param => _tableModel.Save());
                 }
                 return _saveCommand;
+            }
+        }
+
+        private ActionCommand _loadTableCommand;
+        public ActionCommand LoadTableCommand
+        {
+            get
+            {
+                if (_loadTableCommand == null)
+                {
+                    _loadTableCommand = new ActionCommand(param => LoadTableAction());
+                }
+                return _loadTableCommand;
+            }
+        }
+        private void LoadTableAction()
+        {
+            //Data.Columns.Add(new DataColumn("Col" + TableModel.ColumnHeaderLabels.Count, typeof(string)));
+            //TableModel.ColumnHeaderLabels.Add("");
+
+            //TableDataView = new DataView(Data);
+
+            SettingsService settingsService = new SettingsService();
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            openFileDlg.InitialDirectory = settingsService.Load().TableFolderLocation;
+            openFileDlg.Filter = "Table files (*.tbl)|*.tbl|All files (*.*)|*.*";
+            openFileDlg.RestoreDirectory = true;
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                TableModel = TableModel.Load(openFileDlg.FileName);
+                TableDataView = new DataView(TableModel.tableDataTable);
             }
         }
     }

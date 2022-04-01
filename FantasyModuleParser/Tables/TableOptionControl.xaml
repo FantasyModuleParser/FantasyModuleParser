@@ -202,7 +202,7 @@
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Name="InsertColumn" Click="InsertColumn_Click" Command="{Binding AddColumnCommand}" Content="Insert Column" Grid.Column="1"/>
+                            <Button Name="InsertColumn" Command="{Binding AddColumnCommand}" Content="Insert Column" Grid.Column="1"/>
                             <Button Name="RemoveLastColumn" Command="{Binding RemoveColumnCommand}"  Content="Remove Last Column" Grid.Column="3"/>
                             <Button Name="AddRow" Command="{Binding InsertRowCommand}" Content="Add Row" Grid.Column="5"/>
                             <Button Name="RemoveLastRow" Command="{Binding DeleteRowCommand}" Content="Delete Last Row" Grid.Column="7"/>
@@ -273,9 +273,9 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <Button Content="New Table" Command="{Binding NewTableCommand}" Grid.Column="0"  Style="{StaticResource standardButton}" />
-                            <Button Content="Load Table" Click="LoadTableModule_Click" Grid.Column="1"  Style="{StaticResource standardButton}" />
+                            <Button Content="Load Table" Command="{Binding LoadTableCommand}" Grid.Column="1"  Style="{StaticResource standardButton}" />
                             <Button Content="Save Table" Command="{Binding SaveCommand}" Grid.Column="2"  Style="{StaticResource standardButton}" />
-                            <Button Content="Add to Project" Grid.Column="3" Command="{Binding AddToProjectCommand}" Style="{StaticResource standardButton}"  />
+                            <Button Content="Add to Project" Command="{Binding AddToProjectCommand}" Grid.Column="3" Style="{StaticResource standardButton}"  />
                         </Grid>
                     </Grid>
                 </Grid>
