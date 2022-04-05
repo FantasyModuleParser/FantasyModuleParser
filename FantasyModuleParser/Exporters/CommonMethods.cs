@@ -66,6 +66,8 @@ namespace FantasyModuleParser.Exporters
 		/// <summary>
 		/// Generates a List of all Equipment across all Categories in one List<EquipmentModel> object.  Used for Reference Manual material.
 		/// </summary>
+		/// 
+
 		public static List<EquipmentModel> GenerateFatEquipmentList(ModuleModel moduleModel)
 		{
 			List<EquipmentModel> FatEquipmentList = new List<EquipmentModel>();
