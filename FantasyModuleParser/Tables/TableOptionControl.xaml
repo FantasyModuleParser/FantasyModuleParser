@@ -202,8 +202,8 @@
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Name="InsertColumn" Click="InsertColumn_Click" Command="{Binding AddColumnCommand}" Content="Insert Column" Grid.Column="1"/>
-                            <Button Name="RemoveLastColumn"  Content="Remove Last Column" Grid.Column="3"/>
+                            <Button Name="InsertColumn" Command="{Binding AddColumnCommand}" Content="Insert Column" Grid.Column="1"/>
+                            <Button Name="RemoveLastColumn" Command="{Binding RemoveColumnCommand}"  Content="Remove Last Column" Grid.Column="3"/>
                             <Button Name="AddRow" Command="{Binding InsertRowCommand}" Content="Add Row" Grid.Column="5"/>
                             <Button Name="RemoveLastRow" Command="{Binding DeleteRowCommand}" Content="Delete Last Row" Grid.Column="7"/>
                         </Grid>
@@ -213,8 +213,8 @@
 
 
                     <Grid Grid.Row="1" Margin="5">
-                        <DataGrid Name="TableExampleDataGrid" HeadersVisibility="Column" 
-                                  ItemsSource="{Binding TableDataView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <DataGrid Name="TableExampleDataGrid" HeadersVisibility="Column"
+                                  ItemsSource="{Binding TableDataView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                   SelectionMode="Single" SelectionUnit="Cell" PreviewMouseRightButtonDown="TableExampleDataGrid_PreviewMouseRightButtonDown"
 >
                         </DataGrid>
@@ -254,16 +254,15 @@
                                 IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding SelectedCategoryModel}"
                                 SelectedIndex="0" Grid.Column="0" Grid.Row="1" Style="{StaticResource standardComboBox}" />
                             <Button x:Name="PrevBtn" Content="Prev Table" Grid.Column="1" Grid.Row="1"
-                                    Click="PreviousTableButton_Click"
+                                    Command="{Binding PrevTableCommand}"
                                     Style="{StaticResource standardButton}" />
                             <Button x:Name="NextBtn" Content="Next Table" Grid.Column="2" Grid.Row="1"
-                                    Click="NextTableButton_Click"
+                                    Command="{Binding NextTableCommand}"
                                     Style="{StaticResource standardButton}" />
                             <ComboBox x:Name="TableComboBox" ItemsSource="{Binding SelectedCategoryModel.TableModels}"
                                       DisplayMemberPath="Name" Grid.Column="3" Grid.Row="1" 
                                       Style="{StaticResource standardComboBox}"
-                                      SelectedValue="{Binding SelectedTableModel}"
-                                      SelectionChanged="TableComboBox_SelectionChanged"/>
+                                      SelectedValue="{Binding SelectedTableModel}"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -274,9 +273,9 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <Button Content="New Table" Command="{Binding NewTableCommand}" Grid.Column="0"  Style="{StaticResource standardButton}" />
-                            <Button Content="Load Table" Click="LoadTableModule_Click" Grid.Column="1"  Style="{StaticResource standardButton}" />
+                            <Button Content="Load Table" Command="{Binding LoadTableCommand}" Grid.Column="1"  Style="{StaticResource standardButton}" />
                             <Button Content="Save Table" Command="{Binding SaveCommand}" Grid.Column="2"  Style="{StaticResource standardButton}" />
-                            <Button Content="Add to Project" Grid.Column="3" Command="{Binding AddToProjectCommand}" Style="{StaticResource standardButton}"  />
+                            <Button Content="Add to Project" Command="{Binding AddToProjectCommand}" Grid.Column="3" Style="{StaticResource standardButton}"  />
                         </Grid>
                     </Grid>
                 </Grid>
