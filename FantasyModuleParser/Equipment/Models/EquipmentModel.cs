@@ -9,8 +9,7 @@ namespace FantasyModuleParser.Equipment.Models
 {
     public class EquipmentModel : ModelBase
     {
-
-        public string Name { get; set; }
+        
         public string NonIdName;
         public string NonIdDescription;
 

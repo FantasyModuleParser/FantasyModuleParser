@@ -121,7 +121,7 @@ namespace FantasyModuleParser.NPC.Models.Action
 				stringBuilder.Append(PrimaryDamageTotal + " (" + PrimaryDamage.NumOfDice + PrimaryDamage.DieType.GetDescription());
 			}
 			else stringBuilder.Append(PrimaryDamageTotal);
-
+			
 			AddPrimaryDamageToStringBuilder(stringBuilder);
 
 			if (WeaponType == WeaponType.MWA || WeaponType == WeaponType.WA)
