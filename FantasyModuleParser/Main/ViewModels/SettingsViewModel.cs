@@ -167,22 +167,6 @@ namespace FantasyModuleParser.Main.ViewModels
             }
         }
 
-        public void ChangeDefaultClassesFolder()
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Select the default Classes Folder";
-
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                string sSelectedPath = folderBrowserDialog.SelectedPath;
-                SettingsModel.ClassFolderLocation = @sSelectedPath;
-
-                // Need to call this on the Model to tell the UserControl using this as a DataContext
-                // to say "Hey, UserControl!  The 'SettingsModel' object has changed, and you should refresh yourself!
-                RaisePropertyChanged("SettingsModel");
-            }
-        }
-
         public void ChangeDefaultLogFolder()
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();

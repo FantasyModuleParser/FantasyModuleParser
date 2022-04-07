@@ -100,7 +100,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_EquipmentName(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -124,7 +124,7 @@ namespace FantasyModuleParser.Exporters
 		private static void IndividualEquipment_Name_Blocks_BlocksID_Text(XmlWriter xmlWriter, EquipmentModel equipmentModel, NPCController npcController)
 		{
 			xmlWriter.WriteStartElement("text");
-			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 			xmlWriter.WriteRaw("<p><h>"); //
 			xmlWriter.WriteString(equipmentModel.Name);
 			xmlWriter.WriteRaw("</h></p><p><i>");
@@ -166,7 +166,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_Module_Equipment(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(module.Name + " Equipment");
 			xmlWriter.WriteEndElement();
 		}
@@ -189,7 +189,7 @@ namespace FantasyModuleParser.Exporters
 		private static void EquipmentList_Text(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("text");
-			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 			EquipmentList_Text_P(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
@@ -225,8 +225,8 @@ namespace FantasyModuleParser.Exporters
 
 		private static void Xml_Name_Equipment(XmlWriter xmlWriter)
 		{
-			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteStartElement("name"); 
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("Equipment");
 			xmlWriter.WriteEndElement();
 		}
@@ -268,7 +268,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_ModuleName_Spells(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(module.Name + " Spells");
 			xmlWriter.WriteEndElement();
 		}
@@ -292,7 +292,7 @@ namespace FantasyModuleParser.Exporters
 		private static void SpellsList_Text(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("text");
-			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 			SpellsList_Text_P(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
@@ -318,7 +318,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_SpellName(XmlWriter xmlWriter, SpellModel spell)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(spell.SpellName);
 			xmlWriter.WriteEndElement();
 		}
@@ -341,7 +341,7 @@ namespace FantasyModuleParser.Exporters
 		private static void IndividualSpell_Text(XmlWriter xmlWriter, SpellModel spell, NPCController npcController)
 		{
 			xmlWriter.WriteStartElement("text");
-			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 			xmlWriter.WriteRaw("<p><h>");
 			xmlWriter.WriteString(spell.SpellName);
 			xmlWriter.WriteRaw("</h></p><p><i>");
@@ -420,7 +420,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_Spells(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("Spells");
 			xmlWriter.WriteEndElement();
 		}
@@ -470,7 +470,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_NPCName(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(npcModel.NPCName);
 			xmlWriter.WriteEndElement();
 		}
@@ -486,7 +486,7 @@ namespace FantasyModuleParser.Exporters
 		private static void IndividualNPCs_Blocks_ID_Text(XmlWriter xmlWriter, NPCModel npcModel, NPCController npcController)
 		{
 			xmlWriter.WriteStartElement("text");
-			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 			IndividualNPCs_Blocks_ID_Text_P(xmlWriter, npcModel, npcController);
 			IndividualNPCs_Blocks_ID_Image(xmlWriter, npcModel);
 			IndividualNPCs_Blocks_ID_Link(xmlWriter, npcModel);
@@ -555,7 +555,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_Module_NPCs(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(module.Name + " NPCs");
 			xmlWriter.WriteEndElement();
 		}
@@ -579,7 +579,7 @@ namespace FantasyModuleParser.Exporters
 		private static void RefPages_NPCList_Blocks_ID_Text(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("text");
-			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 			RefPages_NPCList_Blocks_ID_Text_P(xmlWriter, module);
 			xmlWriter.WriteEndElement();
 		}
@@ -611,7 +611,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_WriteListLink(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("listlink");
-			CommonMethods.Type_WindowReference(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "windowreference");
 			Xml_WriteClass_ReferenceManualTextWide(xmlWriter);
 			Xml_WriteRecordName_DotDot(xmlWriter);
 			xmlWriter.WriteEndElement();
@@ -634,7 +634,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_Name_ModuleName(XmlWriter xmlWriter, ModuleModel module)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(module.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -648,7 +648,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_WriteBlockFormatting_Blocktype(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("blocktype");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("singletext");
 			xmlWriter.WriteEndElement();
 		}
@@ -656,7 +656,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Xml_WriteBlockFormatting_Align(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("align");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("center");
 			xmlWriter.WriteEndElement();
 		}

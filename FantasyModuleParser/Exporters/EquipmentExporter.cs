@@ -34,7 +34,8 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("category");
 				xmlWriter.WriteAttributeString("name", categoryModel.Name);
-				CommonMethods.BaseIcon_DecalIcon(xmlWriter);
+				xmlWriter.WriteAttributeString("baseicon", "0");
+				xmlWriter.WriteAttributeString("decalicon", "0");
 				Item_Category_ItemName(xmlWriter, FatEquipmentList);
 				xmlWriter.WriteEndElement();
 			}
@@ -105,14 +106,14 @@ namespace FantasyModuleParser.Exporters
 			if (equipmentModel.IsLocked == true)
 			{
 				xmlWriter.WriteStartElement("locked"); /* <locked> */
-				CommonMethods.Type_Number(xmlWriter);
+				xmlWriter.WriteAttributeString("type", "number");
 				xmlWriter.WriteString("1");
 				xmlWriter.WriteEndElement(); /* </locked> */
 			}
 			else
 			{
 				xmlWriter.WriteStartElement("locked"); /* <locked> */
-				CommonMethods.Type_Number(xmlWriter);
+				xmlWriter.WriteAttributeString("type", "number");
 				xmlWriter.WriteString("0");
 				xmlWriter.WriteEndElement(); /* </locked> */
 			}
@@ -121,7 +122,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentName(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("name"); /* <name> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.Name);
 			xmlWriter.WriteEndElement(); /* <name> </name> */
 		}
@@ -129,7 +130,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentType(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("type"); /* <type> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(getEquipmentPrimaryHeaderEnum(equipmentModel));
 			xmlWriter.WriteEndElement(); /* <type> </type> */
 		}
@@ -137,7 +138,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentSubtype(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("subtype"); /* <subtype> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.AdventuringGear)
 			{
 				xmlWriter.WriteString(equipmentModel.AdventuringGearEnumType.GetDescription());
@@ -172,7 +173,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentCost(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("cost"); /* <cost> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			if (equipmentModel.CostDenomination != CurrencyEnum.None)
 			{
 				xmlWriter.WriteString(equipmentModel.CostValue + " " + equipmentModel.CostDenomination.GetDescription());
@@ -184,7 +185,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentWeight(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("weight"); /* <weight> */
-			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "number");
 			xmlWriter.WriteValue(equipmentModel.Weight);
 			xmlWriter.WriteEndElement(); /* <weight> </weight> */
 		}
@@ -198,8 +199,8 @@ namespace FantasyModuleParser.Exporters
 			else
 			{
 				xmlWriter.WriteStartElement("ac"); /* <ac> */
-			}
-			CommonMethods.Type_String(xmlWriter);
+			}				
+			xmlWriter.WriteAttributeString("type", "string");
 			if (equipmentModel.PrimaryEquipmentEnumType == PrimaryEquipmentEnum.Armor)
 			{
 				xmlWriter.WriteValue(equipmentModel.Armor.ArmorValue);
@@ -213,16 +214,20 @@ namespace FantasyModuleParser.Exporters
 
 		static public void EquipmentDexBonus(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
-			xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
-			CommonMethods.Type_String(xmlWriter);
-			xmlWriter.WriteString("Yes");
-			xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */		
+			//if (!string.IsNullOrEmpty(equipmentModel.Armor.DexterityBonus.ToString()))
+			//{
+				xmlWriter.WriteStartElement("dexbonus"); /* <dexbonus> */
+				xmlWriter.WriteAttributeString("type", "string");
+				//xmlWriter.WriteString(equipmentModel.Armor.DexterityBonus.ToString());
+				xmlWriter.WriteString("Yes");
+				xmlWriter.WriteEndElement(); /* <dexbonus> </dexbonus> */
+			//}			
 		}
 
 		static public void EquipmentStealth(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("stealth"); /* <stealth> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			if (equipmentModel.Armor.IsStealthDisadvantage)
 			{
 				xmlWriter.WriteString("Disadvantage");
@@ -234,7 +239,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentStrength(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("strength"); /* <strength> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			if (equipmentModel.Armor.StrengthRequirement > 0)
 			{
 				xmlWriter.WriteValue("Str " + equipmentModel.Armor.StrengthRequirement);
@@ -246,7 +251,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentDescription(XmlWriter xmlWriter, EquipmentModel equipmentModel, NPCController npcController)
 		{
 			xmlWriter.WriteStartElement("description"); /* <description> */
-			CommonMethods.Type_FormattedText(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "formattedtext");
 			xmlWriter.WriteRaw(npcController.GenerateFantasyGroundsDescriptionXML(equipmentModel.Description));
 			xmlWriter.WriteEndElement(); /* <description> </description> */
 		}
@@ -254,7 +259,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentIdentified(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("isidentified"); /* <isidentified> */
-			CommonMethods.Type_Number(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "number");
 			if (equipmentModel.IsIdentified)
 			{
 				xmlWriter.WriteValue("1");
@@ -269,7 +274,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentNonIDName(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("nonid_name"); /* <nonid_name> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.NonIdName);
 			xmlWriter.WriteEndElement(); /* <nonid_name> </nonid_name> */
 		}
@@ -277,7 +282,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentNonIDDescription(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("nonidentified"); /* <nonidentified> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.NonIdDescription);
 			xmlWriter.WriteEndElement(); /* <nonidentified> </nonidentified> */
 		}
@@ -285,7 +290,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentDamage(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("damage"); /* <damage> */
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(DamageString(equipmentModel));
 			xmlWriter.WriteEndElement(); /* <damage> </damage> */
 		}
@@ -293,7 +298,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentSpeed(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("speed");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.Speed + " " + equipmentModel.Measurement.GetDescription());
 			xmlWriter.WriteEndElement();
 		}
@@ -301,7 +306,7 @@ namespace FantasyModuleParser.Exporters
 		static public void EquipmentCapacity(XmlWriter xmlWriter, EquipmentModel equipmentModel)
 		{
 			xmlWriter.WriteStartElement("carryingcapacity");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(equipmentModel.Capacity);
 			xmlWriter.WriteEndElement();
 		}
@@ -366,7 +371,7 @@ namespace FantasyModuleParser.Exporters
 			if (equipmentModel.Weapon.WeaponProperties.Count > 0 || equipmentModel.Weapon.MaterialProperties.Count > 0 || equipmentModel.WeaponEnumType == WeaponEnum.MRW || equipmentModel.WeaponEnumType == WeaponEnum.SRW)
 			{
 				xmlWriter.WriteStartElement("properties"); /* <properties> */
-				CommonMethods.Type_String(xmlWriter);
+				xmlWriter.WriteAttributeString("type", "string");
 				xmlWriter.WriteString(WeaponProperty(equipmentModel));
 				xmlWriter.WriteEndElement(); /* <properties> </properties> */
 			}			
@@ -472,7 +477,7 @@ namespace FantasyModuleParser.Exporters
 		public static void ItemLists_Item_Name(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("Items");
 			xmlWriter.WriteEndElement();
 		}
@@ -480,7 +485,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Item_Index_Name(XmlWriter xmlWriter, EquipmentModel primaryEquipmentModel)
 		{
 			xmlWriter.WriteStartElement("name");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(primaryEquipmentModel.PrimaryEquipmentEnumType.GetDescription().ToUpper());
 			xmlWriter.WriteEndElement();
 		}
@@ -488,7 +493,7 @@ namespace FantasyModuleParser.Exporters
 		static private void Item_Index_ListLink(ModuleModel moduleModel, EquipmentModel primaryEquipmentModel, XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("listlink");
-			CommonMethods.Type_WindowReference(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "windowreference");
 			Item_Index_ListLink_Class(primaryEquipmentModel, xmlWriter);
 			Item_Index_ListLink_RecordName(primaryEquipmentModel, moduleModel, xmlWriter);
 			xmlWriter.WriteEndElement();
@@ -592,7 +597,7 @@ namespace FantasyModuleParser.Exporters
 		private static void ItemList_CustomSecondary_Groups_Section_Equipment_Item_Link(XmlWriter xmlWriter, EquipmentModel equip, ModuleModel moduleModel)
 		{
 			xmlWriter.WriteStartElement("link");
-			CommonMethods.Type_WindowReference(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "windowreference");
 			ItemList_CustomSecondary_Groups_Section_Equipment_Item_Class(xmlWriter, equip);
 			ItemList_CustomSecondary_Groups_Section_Equipment_Item_Recordname(xmlWriter, equip, moduleModel);
 			xmlWriter.WriteEndElement();
@@ -727,7 +732,7 @@ namespace FantasyModuleParser.Exporters
 		static private void Description_Tag(XmlWriter xmlWriter, string descriptionValue)
         {
 			xmlWriter.WriteStartElement("description");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(descriptionValue);
 			xmlWriter.WriteEndElement();
 		}

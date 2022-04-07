@@ -1,43 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using FantasyModuleParser.Main.Models;
-using FantasyModuleParser.Main.Services;
 
 namespace FantasyModuleParser.NPC.ViewModel
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
-        private ModuleService _moduleService;
-        protected ViewModelBase()
-        {
-            _moduleService = new ModuleService();
-        }
-
-        #region Tab Footer Common Items
-        private ModuleModel _moduleModel;
-        private CategoryModel _categoryModel;
-        public ObservableCollection<CategoryModel> ModuleCategoriesSource
-        {
-            get { return _moduleModel?.Categories; }
-            private set { _moduleModel.Categories = value; }
-        }
-
-        public CategoryModel SelectedCategoryModel
-        {
-            get { return _categoryModel; }
-            set { Set(ref _categoryModel, value); }
-        }
-        #endregion
-
-        public void Refresh()
-        {
-            _moduleModel = _moduleService.GetModuleModel();
-            SelectedCategoryModel = _moduleModel?.Categories.Count > 0 ? _moduleModel?.Categories[0] : null;
-            RaisePropertyChanged(nameof(ModuleCategoriesSource));
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected bool SetProperty<T>(ref T field, T newValue, string propertyName = null)
@@ -73,6 +41,5 @@ namespace FantasyModuleParser.NPC.ViewModel
             RaisePropertyChanged(propertyname);
             return true;
         }
-        
     }
 }

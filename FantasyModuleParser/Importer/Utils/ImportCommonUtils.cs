@@ -22,12 +22,12 @@ namespace FantasyModuleParser.Importer.Utils
 
             // Remove the term 'damage'
             if (damagePropertyData.Contains("damage"))
-			{
-                if(DamageRegex.IsMatch(damagePropertyData))
+            {
+                if (DamageRegex.IsMatch(damagePropertyData))
                 {
                     damagePropertyData = damagePropertyData.Substring(0, damagePropertyData.IndexOf("damage", StringComparison.Ordinal)).Trim();
                 }
-				else 
+                else
                 {
                     StringBuilder buildDamage = new StringBuilder();
                     string[] splitDamage = damagePropertyData.Split(' ');
@@ -35,7 +35,7 @@ namespace FantasyModuleParser.Importer.Utils
                     damagePropertyData = buildDamage.ToString();
                 }
             }
-                
+
 
             // 2d8 + 2) lightning
 
