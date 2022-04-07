@@ -24,7 +24,6 @@ namespace FantasyModuleParser.Exporters
 		{
 			xmlWriter.WriteStartElement("root");
 			xmlWriter.WriteAttributeString("version", "4.0");
-			ClassExporter.DatabaseXML_Root_Classes(xmlWriter, module);
 			ImageExporter.DatabaseXML_Root_Image(xmlWriter, module);
 			EquipmentExporter.DatabaseXML_Root_Item(xmlWriter, module);
 			ListExporter.DatabaseXML_Root_Lists(xmlWriter, module);

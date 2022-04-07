@@ -12,7 +12,7 @@ namespace FantasyModuleParser.Equipment
     public partial class EquipmentOptionControl : UserControl
     {
         private SettingsService settingsService;
-        private static readonly ILog log = LogManager.GetLogger(typeof(EquipmentOptionControl));
+        private static readonly ILog log = LogManager.GetLogger(typeof(App));
         public EquipmentOptionControl()
         {
             InitializeComponent();

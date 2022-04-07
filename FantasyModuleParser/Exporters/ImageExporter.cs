@@ -23,7 +23,8 @@ namespace FantasyModuleParser.Exporters
 			{
 				xmlWriter.WriteStartElement("category"); /* <root version="4.0"> <image> <category> */
 				xmlWriter.WriteAttributeString("name", category.Name); /* <root version="4.0"> <image> <category> */
-				CommonMethods.BaseIcon_DecalIcon(xmlWriter);
+				xmlWriter.WriteAttributeString("baseicon", "0");
+				xmlWriter.WriteAttributeString("decalicon", "0");
 				Image_Category_ImageName(xmlWriter, category);
 				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> </category> */
 			}
@@ -52,7 +53,7 @@ namespace FantasyModuleParser.Exporters
 			if (!string.IsNullOrEmpty(npcModel.NonID))
 			{
 				xmlWriter.WriteStartElement("isidentified"); /* <root version="4.0"> <image> <category> <image_name> <isidentified> */
-				CommonMethods.Type_Number(xmlWriter);
+				xmlWriter.WriteAttributeString("type", "number");
 				xmlWriter.WriteString("0");
 				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <isidentified> </isidentified> */
 			}
@@ -63,7 +64,7 @@ namespace FantasyModuleParser.Exporters
 			if (!string.IsNullOrEmpty(npcModel.NonID))
 			{
 				xmlWriter.WriteStartElement("nonid_name"); /* <root version="4.0"> <image> <category> <image_name> <nonid_name> */
-				CommonMethods.Type_String(xmlWriter);
+				xmlWriter.WriteAttributeString("type", "string");
 				xmlWriter.WriteString(npcModel.NonID);
 				xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <nonid_name> </nonid_name> */
 			}
@@ -72,7 +73,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Image_Category_ImageName_Image(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("image"); /* <root version="4.0"> <image> <category> <image_name> <image> */
-			CommonMethods.Type_Image(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "image");
 			Image_Color(xmlWriter);
 			Image_Layers(xmlWriter, npcModel);
 			xmlWriter.WriteEndElement(); /* <root version="4.0"> <image> <category> <image_name> <image> </image> */
@@ -134,7 +135,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Layer_Bitmap(XmlWriter xmlWriter, NPCModel npcModel)
 		{
 			xmlWriter.WriteStartElement("bitmap");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("images" + "\\" + Path.GetFileName(npcModel.NPCImage).Replace(" ", "").Replace("-", ""));
 			xmlWriter.WriteEndElement();
 		}
@@ -199,14 +200,14 @@ namespace FantasyModuleParser.Exporters
 		private static void Index_ImageName_Source(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("source");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteEndElement();
 		}
 
 		private static void INdex_ImageName_Link(XmlWriter xmlWriter, NPCModel npc)
 		{
 			xmlWriter.WriteStartElement("link");
-			CommonMethods.Type_WindowReference(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "windowreference");
 			Index_ImageName_Link_Class(xmlWriter);
 			Index_ImageName_Link_Recordname(xmlWriter, npc);
 			Index_ImageName_Link_Description(xmlWriter);
@@ -244,7 +245,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Imagelists_ByCategory_Groups_Category_Description(XmlWriter xmlWriter, CategoryModel category)
 		{
 			xmlWriter.WriteStartElement("description");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString(category.Name);
 			xmlWriter.WriteEndElement();
 		}
@@ -252,7 +253,7 @@ namespace FantasyModuleParser.Exporters
 		private static void Imagelists_ByCategory_Description(XmlWriter xmlWriter)
 		{
 			xmlWriter.WriteStartElement("description");
-			CommonMethods.Type_String(xmlWriter);
+			xmlWriter.WriteAttributeString("type", "string");
 			xmlWriter.WriteString("Images");
 			xmlWriter.WriteEndElement();
 		}

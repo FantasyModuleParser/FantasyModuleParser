@@ -16,7 +16,6 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using FantasyModuleParser.Classes.ViewModels;
 
 namespace FantasyModuleParser
 {
@@ -168,7 +167,6 @@ namespace FantasyModuleParser
             (spellOptionUserControl.DataContext as SpellViewModel).Refresh();
             (tableOptionUserControl.DataContext as TableOptionViewModel).Refresh();
             (equipmentUserControl.DataContext as EquipmentOptionControlViewModel).Refresh();
-            (classesUserControl.DataContext as ClassOptionControllViewModel).Refresh();
         }
 
         private void CreateModule_Click(object sender, RoutedEventArgs e)
@@ -242,11 +240,6 @@ namespace FantasyModuleParser
             HideMainUserControls();
             stackEquipment.Visibility = Visibility.Visible;
         }
-        private void ShowClassesUserControl()
-        {
-            HideMainUserControls();
-            stackClasses.Visibility = Visibility.Visible;
-        }
 
         private void HideMainUserControls()
         {
@@ -255,7 +248,6 @@ namespace FantasyModuleParser
             stackSpells.Visibility = Visibility.Hidden;
             stackTable.Visibility = Visibility.Hidden;
             stackEquipment.Visibility = Visibility.Hidden;
-            stackClasses.Visibility = Visibility.Hidden;
         }
         private void listBoxItem_Selected(object sender, RoutedEventArgs e)
         {
@@ -275,10 +267,6 @@ namespace FantasyModuleParser
             {
                 ShowEquipmentUserControl();
             }
-            if (optionClasses.IsSelected)
-			{
-                ShowClassesUserControl();
-			}
         }
         private void event_EnableViewStatBlockPanel(object sender, EventArgs e)
         {

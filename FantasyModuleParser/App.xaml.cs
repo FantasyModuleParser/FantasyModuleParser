@@ -12,7 +12,6 @@ using log4net.Appender;
 using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Xml;
@@ -32,7 +31,6 @@ namespace FantasyModuleParser
             NPCController npcController = new NPCController();
             NpcModel = npcController.InitializeNPCModel();
             this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
-            SetDropDownMenuToBeRightAligned();
         }
 
         void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -115,22 +113,5 @@ namespace FantasyModuleParser
 
             log4net.Config.XmlConfigurator.Configure(doc.DocumentElement);
         }
-
-        private static void SetDropDownMenuToBeRightAligned()
-        {
-            var menuDropAlignmentField = typeof(SystemParameters).GetField("_menuDropAlignment", BindingFlags.NonPublic | BindingFlags.Static);
-            Action setAlignmentValue = () =>
-            {
-                if (SystemParameters.MenuDropAlignment && menuDropAlignmentField != null) menuDropAlignmentField.SetValue(null, false);
-            };
-
-            setAlignmentValue();
-
-            SystemParameters.StaticPropertyChanged += (sender, e) =>
-            {
-                setAlignmentValue();
-            };
-        }
-
     }
 }

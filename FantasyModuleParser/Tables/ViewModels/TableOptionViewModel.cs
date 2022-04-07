@@ -7,7 +7,6 @@ using FantasyModuleParser.Tables.Models;
 using FantasyModuleParser.Tables.Services;
 using FantasyModuleParser.Tables.ViewModels.Enums;
 using log4net;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -87,16 +86,16 @@ namespace FantasyModuleParser.Tables.ViewModels
             set { this._tableModel.tableDataTable = value; RaisePropertyChanged(nameof(Data)); }
         }
 
-        //public int RowCount
-        //{
-        //    get { return _tableModel.RowCount; }
-        //    set { Set(ref _tableModel.RowCount, value); }
-        //}
-        //public int ColumnCount
-        //{
-        //    get { return _tableModel.ColumnCount; }
-        //    set { Set(ref _tableModel.ColumnCount, value); }
-        //}
+        public int RowCount
+        {
+            get { return _tableModel.RowCount; }
+            set { Set(ref _tableModel.RowCount, value); }
+        }
+        public int ColumnCount
+        {
+            get { return _tableModel.ColumnCount; }
+            set { Set(ref _tableModel.ColumnCount, value); }
+        }
 
         public ObservableCollection<DataGridColumn> DataGridColumns
         {
@@ -215,7 +214,7 @@ namespace FantasyModuleParser.Tables.ViewModels
         private void CreateNewTable()
         {
             TableModel = new TableModel();
-            //CreateDefaultDataTable();
+            CreateDefaultDataTable();
             TableDataView = new DataView(Data);
         }
 
@@ -389,26 +388,30 @@ namespace FantasyModuleParser.Tables.ViewModels
             {
                 if(_removeColumnCommand == null)
                 {
-                    _removeColumnCommand = new ActionCommand(param => RemoveColumnFromDataTable(),
-                        param => PredicateRemoveColumnFromDataTable());
+                    _removeColumnCommand = new ActionCommand(param => RemoveColumnFromDataTable(param as DataGridColumn));
                 }
                 return _removeColumnCommand;
             }
         }
 
-        private bool PredicateRemoveColumnFromDataTable()
+        private bool PredicateRemoveColumnFromDataTable(object dataColumn)
         {
-            return Data.Columns.Count > 3;
+            log.Info(dataColumn);
+            if(dataColumn == null)
+            {
+                return false;
+            }
+            return (dataColumn as DataGridColumn).DisplayIndex> 1;
         }
         private void RemoveColumnFromDataTable(DataGridColumn dataColumn)
         {
-            if (dataColumn == null)
+            if(dataColumn == null)
             {
                 log.Info(string.Format("Cannot delete the column as the param is not a dataColumn type :: {0}", dataColumn));
                 return;
             }
 
-            if (dataColumn.DisplayIndex <= 1)
+            if(dataColumn.DisplayIndex <= 1)
             {
                 log.Info(string.Format("Cannot delete column {0} at the index {1}; Continuing on..", dataColumn.Header, dataColumn.DisplayIndex));
                 return;
@@ -416,23 +419,12 @@ namespace FantasyModuleParser.Tables.ViewModels
             Data.Columns.RemoveAt(dataColumn.DisplayIndex);
         }
 
+
         private void RemoveColumnFromDataTable()
         {
-            if(Data.Columns.Count > 3) {
 
-                Data.Columns.RemoveAt(Data.Columns.Count - 1);
-                TableModel.ColumnHeaderLabels.RemoveAt(Data.Columns.Count - 1);
-
-                TableDataView = new DataView(Data);
-                
-
-                //TableDataView.Dispose();
-
-
-                RaisePropertyChanged(nameof(TableDataView));
-               
-            }
         }
+
 
         ActionCommand _saveCommand;
         public ICommand SaveCommand
@@ -444,44 +436,6 @@ namespace FantasyModuleParser.Tables.ViewModels
                     _saveCommand = new ActionCommand(param => _tableModel.Save());
                 }
                 return _saveCommand;
-            }
-        }
-
-        private ActionCommand _loadTableCommand;
-        public ActionCommand LoadTableCommand
-        {
-            get
-            {
-                if (_loadTableCommand == null)
-                {
-                    _loadTableCommand = new ActionCommand(param => LoadTableAction());
-                }
-                return _loadTableCommand;
-            }
-        }
-        private void LoadTableAction()
-        {
-            //Data.Columns.Add(new DataColumn("Col" + TableModel.ColumnHeaderLabels.Count, typeof(string)));
-            //TableModel.ColumnHeaderLabels.Add("");
-
-            //TableDataView = new DataView(Data);
-
-            SettingsService settingsService = new SettingsService();
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-
-            openFileDlg.InitialDirectory = settingsService.Load().TableFolderLocation;
-            openFileDlg.Filter = "Table files (*.tbl)|*.tbl|All files (*.*)|*.*";
-            openFileDlg.RestoreDirectory = true;
-
-            // Launch OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name and display in a TextBox.
-            // Load content of file in a TextBlock
-            if (result == true)
-            {
-                TableModel = TableModel.Load(openFileDlg.FileName);
-                TableDataView = new DataView(TableModel.tableDataTable);
             }
         }
     }

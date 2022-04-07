@@ -6,7 +6,6 @@ using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using FantasyModuleParser.Classes.ViewModels;
 
 namespace FantasyModuleParser.Equipment.UserControls
 {
@@ -139,12 +138,6 @@ namespace FantasyModuleParser.Equipment.UserControls
             {
                 EquipmentOptionControlViewModel viewModel = this.DataContext as EquipmentOptionControlViewModel;
                 SelectedCategoryItemSource = viewModel.SelectedCategoryModel.EquipmentModels;
-            }
-
-            if (this.DataContext is ClassOptionControllViewModel)
-            {
-                ClassOptionControllViewModel viewModel = this.DataContext as ClassOptionControllViewModel;
-                SelectedCategoryItemSource = viewModel.SelectedCategoryModel.ClassModels;
             }
         }
 

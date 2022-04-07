@@ -27,19 +27,12 @@ namespace FantasyModuleParser.Importer.NPC
         public static readonly char[] commaSeparator = new char[] { ',' };
         public static readonly char[] colonSeparator = new char[] { ':' };
         public static readonly char[] parenthesizeSeparator = new char[] { '(',')' };
-        public static readonly string defaultAlignment = "unaligned";
 
         public static readonly List<string> sizeList = new List<string>() { "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan" };
         // match the entire string, start to finish
         public Regex rgxCharacteristics = new Regex(@"^STR\s+DEX\s+CON\s+INT\s+WIS\s+CHA$", RegexOptions.IgnoreCase);
         // match the beginning of string, i.e. startsWith
         public Regex startCharacteristics = new Regex(@"^STR\s+DEX\s+CON\s+INT\s+WIS\s+CHA", RegexOptions.IgnoreCase);
-
-        // match all stats on a single line
-        public Regex allCharacteristics = new Regex(@"^STR\s+\d+\s*\([-+−]?\d*\)\s*;?\sDEX\s+\d+\s*\([-+−]?\d*\)\s*;?\sCON\s+\d+\s*\([-+−]?\d*\)\s*;?\sINT\s+\d+\s*\([-+−]?\d*\)\s*;?\sWIS\s+\d+\s*\([-+−]?\d*\)\s*;?\sCHA\s+\d+\s*\([-+−]?\d*\)\s*;?\s*$", RegexOptions.IgnoreCase);
-        // good page for testing .net regex  http://regexstorm.net/tester
-        // this page has the metacharacters listed: https://www.freeformatter.com/regex-tester.html
-
 
         /// <summary>
         /// Declares all the 'continue' flags used in Importers
@@ -96,11 +89,11 @@ namespace FantasyModuleParser.Importer.NPC
             // This should divide into two: size type (tag), alignment in all use cases
             int idx = sizeAndAlignment.LastIndexOf(',');
 
-            // Alignment should always be the last substring after the last comma, if there is a comma
-            npcModel.Alignment = idx == -1 ? defaultAlignment : sizeAndAlignment.Substring(idx + 1).Trim(); // sttAndA[1].Trim();
+            // TODO validate the string we are using for Alignment, maybe something static in NPCModel
+            // Alignment should always be the last substring after the last comma
+            npcModel.Alignment = sizeAndAlignment.Substring(idx + 1).Trim(); // sttAndA[1].Trim();
 
-            string sizeOnly = idx == -1 ? sizeAndAlignment : sizeAndAlignment.Substring(0, idx);
-            string[] stt = sizeOnly.Split(parenthesizeSeparator, StringSplitOptions.RemoveEmptyEntries)
+            string[] stt = sizeAndAlignment.Substring(0, idx).Split(parenthesizeSeparator, StringSplitOptions.RemoveEmptyEntries)
                 .Select(p => p.Trim()).Where(p => !string.IsNullOrWhiteSpace(p)).ToArray();
 
             // We found a tag, the 2nd substring, regardless of how many words (typically 1 or 2) is the tag
@@ -179,7 +172,7 @@ namespace FantasyModuleParser.Importer.NPC
                 statAttributes = splitAttributes[1]; // the last string, the attributes
             }
 
-            string pattern = @"(\d+)\s*\([−+-–]*\d+\)\s*";
+            string pattern = @"(\d+)\s*\([+-–]*\d+\)\s*";
             MatchCollection matches = Regex.Matches(statAttributes, pattern);
 
             if (matches.Count != 6) { throw new ApplicationException("Attributes match count not correct, should be 6"); }

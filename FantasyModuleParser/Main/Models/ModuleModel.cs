@@ -17,7 +17,6 @@ namespace FantasyModuleParser.Main.Models
         public bool IsGMOnly { get; set; }
         public bool IsLockedRecords { get; set; }
         public ObservableCollection<CategoryModel> Categories { get; set; }
-        public bool IncludesClasses { get; set; }
         public bool IncludesEquipment { get; set; }
         public bool IncludeImages { get; set; }
         public bool IncludeTokens { get; set; }
