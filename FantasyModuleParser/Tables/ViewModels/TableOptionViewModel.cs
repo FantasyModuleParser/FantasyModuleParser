@@ -160,7 +160,7 @@ namespace FantasyModuleParser.Tables.ViewModels
             Data.Columns.Add(new DataColumn("From", typeof(int)));
             Data.Columns.Add(new DataColumn("To", typeof(int)));
 
-            for(int idx = 2; idx < TableModel.ColumnHeaderLabels.Count; idx++)
+            for(int idx = 2; idx < TableModel.tableDataTable.Columns.Count; idx++)
             {
                 Data.Columns.Add(new DataColumn($"Col{idx}", typeof(string)));
             }
@@ -174,7 +174,7 @@ namespace FantasyModuleParser.Tables.ViewModels
             foreach(List<string> rowData in TableModel.BasicStringGridData)
             {
                 DataRow dr = Data.NewRow();
-                for(int rowIdx = 0; rowIdx < TableModel.ColumnHeaderLabels.Count; rowIdx++)
+                for(int rowIdx = 0; rowIdx < TableModel.tableDataTable.Columns.Count; rowIdx++)
                 {
                     // Safety check that the list of strings in rowData does not throw an ArrayOutOfBoundsException
                     
@@ -214,8 +214,9 @@ namespace FantasyModuleParser.Tables.ViewModels
         }
         private void CreateNewTable()
         {
-            TableModel = new TableModel();
-            //CreateDefaultDataTable();
+            SelectedTableModel = new TableModel();
+            //TableModel = new TableModel();
+            CreateDefaultDataTable();
             TableDataView = new DataView(Data);
         }
 
@@ -376,8 +377,8 @@ namespace FantasyModuleParser.Tables.ViewModels
         }
         private void AddColumnToDataTable()
         {
-            Data.Columns.Add(new DataColumn("Col" + TableModel.ColumnHeaderLabels.Count, typeof(string)));
-            TableModel.ColumnHeaderLabels.Add("");
+            Data.Columns.Add(new DataColumn("Col" + TableModel.tableDataTable.Columns.Count, typeof(string)));
+            //TableModel.tableDataTable.Columns.Add("");
 
             TableDataView = new DataView(Data);
         }
@@ -421,7 +422,7 @@ namespace FantasyModuleParser.Tables.ViewModels
             if(Data.Columns.Count > 3) {
 
                 Data.Columns.RemoveAt(Data.Columns.Count - 1);
-                TableModel.ColumnHeaderLabels.RemoveAt(Data.Columns.Count - 1);
+                //TableModel.tableDataTable.Columns.RemoveAt(Data.Columns.Count - 1);
 
                 TableDataView = new DataView(Data);
                 
@@ -483,6 +484,11 @@ namespace FantasyModuleParser.Tables.ViewModels
                 TableModel = TableModel.Load(openFileDlg.FileName);
                 TableDataView = new DataView(TableModel.tableDataTable);
             }
+        }
+
+        public void UpdateColumnHeader(int columnIndex, String newColumnValue)
+        {
+            TableDataView.Table.Columns[columnIndex].ColumnName = newColumnValue;
         }
     }
 }

@@ -52,8 +52,6 @@ namespace FantasyModuleParser.Tables.Models
             get => _rollMethod;
             set => Set(ref _rollMethod, value);
         }
-        //public int RowCount = 8;
-        //public int ColumnCount = 8;
 
         private bool _isLocked;
         public bool IsLocked
@@ -70,7 +68,7 @@ namespace FantasyModuleParser.Tables.Models
 
         // Property Changed events are already handled within the 
         // TableOptionViewModel
-        public List<string> ColumnHeaderLabels = new List<string>();
+        //public List<string> ColumnHeaderLabels = new List<string>();
         public List<List<string>> BasicStringGridData = new List<List<string>>();
         public DataTable tableDataTable = new DataTable();
 
@@ -139,12 +137,12 @@ namespace FantasyModuleParser.Tables.Models
 
         public TableModel CreateDefaultTableModel()
         {
-            ColumnHeaderLabels.Clear();
+            //ColumnHeaderLabels.Clear();
             BasicStringGridData.Clear();
             
-            ColumnHeaderLabels.Add("From");
-            ColumnHeaderLabels.Add("To");
-            ColumnHeaderLabels.Add("My Column Header");
+            //ColumnHeaderLabels.Add("From");
+            //ColumnHeaderLabels.Add("To");
+            //ColumnHeaderLabels.Add("My Column Header");
 
             return this;
         }

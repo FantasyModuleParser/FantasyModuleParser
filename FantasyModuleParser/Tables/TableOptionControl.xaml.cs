@@ -48,14 +48,14 @@ namespace FantasyModuleParser.Tables
             //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
 
             // Create and add the columns to the collection.
-            TableExampleDataGrid.Columns.Clear();
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn("From", "From"));
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn("To", "To"));
+            //TableExampleDataGrid.Columns.Clear();
+            //TableExampleDataGrid.Columns.Add(CreateBoundColumn("From", "From"));
+            //TableExampleDataGrid.Columns.Add(CreateBoundColumn("To", "To"));
 
-            for(int colIdx = 2; colIdx < tableOptionViewModel.TableModel.ColumnHeaderLabels.Count; colIdx++)
-            {
-                TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{colIdx}", tableOptionViewModel.TableModel.ColumnHeaderLabels[colIdx]));
-            }
+            //for(int colIdx = 2; colIdx < tableOptionViewModel.TableModel.ColumnHeaderLabels.Count; colIdx++)
+            //{
+            //    TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{colIdx}", tableOptionViewModel.TableModel.ColumnHeaderLabels[colIdx]));
+            //}
         }
 
         private void generateContextMenu()
@@ -144,7 +144,8 @@ namespace FantasyModuleParser.Tables
 
             // 4. Because column header is not directly bound due to dynamic nature of List, 
             //      need to manually update the Model data
-            tableOptionViewModel.TableModel.ColumnHeaderLabels[dataGridColumn.DisplayIndex] = changeColumnHeaderView.ColumnHeaderText;
+            //tableOptionViewModel.TableModel.ColumnHeaderLabels[dataGridColumn.DisplayIndex] = changeColumnHeaderView.ColumnHeaderText;
+            tableOptionViewModel.UpdateColumnHeader(dataGridColumn.DisplayIndex, changeColumnHeaderView.ColumnHeaderText);
         }
 
         private void ClearCellMenuItem_Click(object sender, RoutedEventArgs e)

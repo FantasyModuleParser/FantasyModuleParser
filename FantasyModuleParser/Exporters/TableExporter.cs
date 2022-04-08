@@ -137,9 +137,9 @@ namespace FantasyModuleParser.Exporters
 		
 		static public void WriteColumnLabels(XmlWriter xmlWriter, TableModel tableModel)
 		{
-			for (int columnHeaderIndex = 2; columnHeaderIndex < tableModel.ColumnHeaderLabels.Count; columnHeaderIndex++)
+			for (int columnHeaderIndex = 2; columnHeaderIndex < tableModel.tableDataTable.Columns.Count; columnHeaderIndex++)
 			{
-				string columnHeaderValue = tableModel.ColumnHeaderLabels[columnHeaderIndex];
+				string columnHeaderValue = tableModel.tableDataTable.Columns[columnHeaderIndex].ColumnName;
 				xmlWriter.WriteStartElement(string.Format("labelcol{0}", columnHeaderIndex - 1));
 				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(columnHeaderValue);
@@ -149,7 +149,7 @@ namespace FantasyModuleParser.Exporters
 		
 		static public void WriteResultsColumn(XmlWriter xmlWriter, TableModel tableModel)
 		{
-			int resultHeaders = tableModel.ColumnHeaderLabels.Count - 2;
+			int resultHeaders = tableModel.tableDataTable.Columns.Count - 2;
 			xmlWriter.WriteStartElement("resultscols");
 			CommonMethods.Type_Number(xmlWriter);
 			xmlWriter.WriteValue(resultHeaders);

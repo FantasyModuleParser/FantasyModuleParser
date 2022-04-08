@@ -75,9 +75,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Equipment\Views\**" />
+    <Compile Remove="Tables\UserControls\**" />
     <EmbeddedResource Remove="Equipment\Views\**" />
+    <EmbeddedResource Remove="Tables\UserControls\**" />
     <None Remove="Equipment\Views\**" />
+    <None Remove="Tables\UserControls\**" />
     <Page Remove="Equipment\Views\**" />
+    <Page Remove="Tables\UserControls\**" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.ComponentModel" />
@@ -228,7 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NPC\UserControls\Action\Reactions\" />
-    <Folder Include="Tables\UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
