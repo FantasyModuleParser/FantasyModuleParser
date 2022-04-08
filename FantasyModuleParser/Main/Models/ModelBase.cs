@@ -2,6 +2,7 @@
 {
     public class ModelBase
     {
+        public string Name { get; set; }
         // Added VersionNumber for generated files for debugging purposes
         public string VersionNumber
         {
@@ -10,5 +11,7 @@
                 return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
         }
+
+        
     }
 }

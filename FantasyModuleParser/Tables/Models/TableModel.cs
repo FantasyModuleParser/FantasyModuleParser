@@ -52,8 +52,8 @@ namespace FantasyModuleParser.Tables.Models
             get => _rollMethod;
             set => Set(ref _rollMethod, value);
         }
-        public int RowCount = 8;
-        public int ColumnCount = 8;
+        //public int RowCount = 8;
+        //public int ColumnCount = 8;
 
         private bool _isLocked;
         public bool IsLocked

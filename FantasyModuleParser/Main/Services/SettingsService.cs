@@ -47,26 +47,40 @@ namespace FantasyModuleParser.Main.Services
             if (File.Exists(filePath))
             {
                 string jsonData = File.ReadAllText(@filePath);
-               settingsModel = JsonConvert.DeserializeObject<SettingsModel>(jsonData);
+                settingsModel = JsonConvert.DeserializeObject<SettingsModel>(jsonData);
             }
             else
             {
                 settingsModel = new SettingsModel();
-                settingsModel.MainFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
-                settingsModel.ProjectFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Projects");
-                settingsModel.NPCFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "NPCs");
-                settingsModel.SpellFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Spells");
-                settingsModel.EquipmentFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Equipment");
-                settingsModel.ArtifactFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Artifacts");
-                settingsModel.TableFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Tables");
-                settingsModel.ParcelFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Parcels");
-                settingsModel.FGModuleFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "modules");
-                settingsModel.FGCampaignFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "campaigns");
                 settingsModel.PersistentWindow = true;
                 settingsModel.DefaultGUISelection = "None";
                 settingsModel.LoadLastProject = false;
                 settingsModel.LastProject = null;
             }
+
+            if(settingsModel.MainFolderLocation == null)
+                settingsModel.MainFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
+            if(settingsModel.ProjectFolderLocation == null)
+                settingsModel.ProjectFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Projects");
+            if(settingsModel.NPCFolderLocation == null)
+                settingsModel.NPCFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "NPCs");
+            if(settingsModel.SpellFolderLocation == null)
+                settingsModel.SpellFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Spells");
+            if(settingsModel.EquipmentFolderLocation == null)
+                settingsModel.EquipmentFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Equipment");
+            if(settingsModel.ArtifactFolderLocation == null)
+                settingsModel.ArtifactFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Artifacts");
+            if(settingsModel.ClassFolderLocation == null)
+                settingsModel.ClassFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Classes");
+            if(settingsModel.TableFolderLocation == null)
+                settingsModel.TableFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Tables");
+            if(settingsModel.ParcelFolderLocation == null)
+                settingsModel.ParcelFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP", "Parcels");
+            if(settingsModel.FGModuleFolderLocation == null)
+                settingsModel.FGModuleFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "modules");
+            if(settingsModel.FGCampaignFolderLocation == null)
+                settingsModel.FGCampaignFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Fantasy Grounds", "campaigns");
+
 
             _createDirectoryStructure(settingsModel);
 
@@ -79,16 +93,32 @@ namespace FantasyModuleParser.Main.Services
         /// </summary>
         private static void _createDirectoryStructure(SettingsModel settingsModel)
         {
-            Directory.CreateDirectory(settingsModel.MainFolderLocation);
-            Directory.CreateDirectory(settingsModel.ProjectFolderLocation );
-            Directory.CreateDirectory(settingsModel.NPCFolderLocation );
-            Directory.CreateDirectory(settingsModel.SpellFolderLocation );
-            Directory.CreateDirectory(settingsModel.EquipmentFolderLocation );
-            Directory.CreateDirectory(settingsModel.ArtifactFolderLocation );
-            Directory.CreateDirectory(settingsModel.TableFolderLocation );
-            Directory.CreateDirectory(settingsModel.ParcelFolderLocation );
-            Directory.CreateDirectory(settingsModel.FGModuleFolderLocation );
-            Directory.CreateDirectory(settingsModel.FGCampaignFolderLocation);
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.MainFolderLocation, String.Empty));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ProjectFolderLocation, "Projects"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.NPCFolderLocation, "NPCs"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.SpellFolderLocation, "Spells"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.EquipmentFolderLocation, "Equipment"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ArtifactFolderLocation, "Artifacts"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ClassFolderLocation, "Classes"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.TableFolderLocation, "Tables"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.ParcelFolderLocation, "Parcels"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.FGModuleFolderLocation, "modules"));
+            Directory.CreateDirectory(_getDirectoryPath(settingsModel.FGCampaignFolderLocation, "campaigns"));
+        }
+
+        private static string _getDirectoryPath(string directoryPath, string subFolder)
+        {
+            if(settingsModel.MainFolderLocation == null)
+            {
+                settingsModel.MainFolderLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FMP");
+            }
+
+            if(directoryPath == null)
+            {
+                return Path.Combine(settingsModel.MainFolderLocation, subFolder);
+            }
+
+            return directoryPath;
         }
 
         public void ChangeLogLevel()
