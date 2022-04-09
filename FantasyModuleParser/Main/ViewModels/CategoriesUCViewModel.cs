@@ -141,12 +141,24 @@ namespace FantasyModuleParser.Main.ViewModels
             switch (SelectedPopulatedModuleList)
             {
                 case NPC_MODULE:
-                    foreach (ModelBase modelBase in this.SelectedCategoryModel.NPCModels)
+                    foreach (ModelBase modelBase in this.SelectedCategoryModel.NPCModels) {
+                        // Fredska - This code is a workaround to the NPCModel, where the ModelBase was not developed
+                        // at the time.  As such, NPCName is used in that module for the Name input box instead of 'Name'
+                        if (modelBase as NPCModel != null)
+                            modelBase.Name = (modelBase as NPCModel).NPCName;
+                        
                         this.SelectedCategoryModuleRecords.Add(modelBase);
+                    }
                     break;
                 case SPELL_MODULE:
-                    foreach (ModelBase modelBase in this.SelectedCategoryModel.SpellModels)
+                    foreach (ModelBase modelBase in this.SelectedCategoryModel.SpellModels) {
+                        // Fredska - This code is a workaround to the SpellModel, where the ModelBase was not developed
+                        // at the time.  As such, SpellName is used in that module for the Name input box instead of 'Name'
+                        if (modelBase as SpellModel != null)
+                            modelBase.Name = (modelBase as SpellModel).SpellName;
+
                         this.SelectedCategoryModuleRecords.Add(modelBase);
+                    }
                     break;
                 case TABLE_MODULE:
                     foreach (ModelBase modelBase in this.SelectedCategoryModel.TableModels)
