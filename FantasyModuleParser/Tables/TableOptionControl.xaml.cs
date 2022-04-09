@@ -31,31 +31,9 @@ namespace FantasyModuleParser.Tables
 
         private void InitializeTableDataGrid()
         {
-            //TableExampleDataGrid.BorderColor = System.Drawing.Color.Black;
-            //TableExampleDataGrid.CellPadding = 3;
             TableExampleDataGrid.AutoGenerateColumns = true;
             TableExampleDataGrid.CanUserSortColumns = false;
             TableExampleDataGrid.CanUserReorderColumns = false;
-
-            // Set the styles for the DataGrid.
-            //TableExampleDataGrid.HeaderStyle.BackColor =
-            //    System.Drawing.Color.FromArgb(0x0000aaaa);
-
-            // Create the columns for the DataGrid control. The DataGrid
-            // columns are dynamically generated. Therefore, the columns   
-            // must be re-created each time the page is refreshed.
-
-            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-
-            // Create and add the columns to the collection.
-            //TableExampleDataGrid.Columns.Clear();
-            //TableExampleDataGrid.Columns.Add(CreateBoundColumn("From", "From"));
-            //TableExampleDataGrid.Columns.Add(CreateBoundColumn("To", "To"));
-
-            //for(int colIdx = 2; colIdx < tableOptionViewModel.TableModel.ColumnHeaderLabels.Count; colIdx++)
-            //{
-            //    TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{colIdx}", tableOptionViewModel.TableModel.ColumnHeaderLabels[colIdx]));
-            //}
         }
 
         private void generateContextMenu()

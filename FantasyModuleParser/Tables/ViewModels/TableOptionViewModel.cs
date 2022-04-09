@@ -160,10 +160,10 @@ namespace FantasyModuleParser.Tables.ViewModels
             Data.Columns.Add(new DataColumn("From", typeof(int)));
             Data.Columns.Add(new DataColumn("To", typeof(int)));
 
-            for(int idx = 2; idx < TableModel.tableDataTable.Columns.Count; idx++)
-            {
-                Data.Columns.Add(new DataColumn($"Col{idx}", typeof(string)));
-            }
+            //for(int idx = 2; idx < TableModel.tableDataTable.Columns.Count; idx++)
+            //{
+                Data.Columns.Add(new DataColumn($"Right Click to Change", typeof(string)));
+            //}
 
             //3.  With the columns defined, now move the gridData into the DataTable
             // NOTE:  Even if the GridData in TableModel has more columns of data, it will only read upto the 
@@ -171,32 +171,32 @@ namespace FantasyModuleParser.Tables.ViewModels
             //
             // *** This will result in data loss if not careful when removing columns!!! ***
 
-            foreach(List<string> rowData in TableModel.BasicStringGridData)
-            {
-                DataRow dr = Data.NewRow();
-                for(int rowIdx = 0; rowIdx < TableModel.tableDataTable.Columns.Count; rowIdx++)
-                {
-                    // Safety check that the list of strings in rowData does not throw an ArrayOutOfBoundsException
+            //foreach(List<string> rowData in TableModel.BasicStringGridData)
+            //{
+            //    DataRow dr = Data.NewRow();
+            //    for(int rowIdx = 0; rowIdx < TableModel.tableDataTable.Columns.Count; rowIdx++)
+            //    {
+            //        // Safety check that the list of strings in rowData does not throw an ArrayOutOfBoundsException
                     
-                    if (rowIdx < rowData.Count) 
-                    {
-                        switch (rowIdx)
-                        {
-                            case 0:
-                                dr["From"] = rowData[rowIdx];
-                                break;
-                            case 1:
-                                dr["To"] = rowData[rowIdx];
-                                break;
-                            default:
-                                dr[$"Col{rowIdx}"] = rowData[rowIdx];
-                                break;
-                        }
-                    }
-                }
+            //        if (rowIdx < rowData.Count) 
+            //        {
+            //            switch (rowIdx)
+            //            {
+            //                case 0:
+            //                    dr["From"] = rowData[rowIdx];
+            //                    break;
+            //                case 1:
+            //                    dr["To"] = rowData[rowIdx];
+            //                    break;
+            //                default:
+            //                    dr[$"Col{rowIdx}"] = rowData[rowIdx];
+            //                    break;
+            //            }
+            //        }
+            //    }
 
-                Data.Rows.Add(dr);
-            }
+            //    Data.Rows.Add(dr);
+            //}
         }
 
         #region Commands

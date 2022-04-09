@@ -9,18 +9,18 @@
         xmlns:LanguagesUserControl="clr-namespace:FantasyModuleParser.Main.UserControls"
         xmlns:CustomCastersUserControl="clr-namespace:FantasyModuleParser.Main.UserControls"
         mc:Ignorable="d"
-        Title="Fantasy Module Parser Configuration" Height="345" Width="410" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico"
+        Title="Fantasy Module Parser Configuration" Height="345" Width="800" ResizeMode="NoResize" Icon="/Resources/FMP-Logo.ico"
         Loaded="Window_Loaded">
     <Grid Background="#FFE5E5E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="280"/>
             <RowDefinition Height="23"/>
         </Grid.RowDefinitions>
-        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Grid.Row="0">
+        <TabControl  Grid.Row="0">
             <TabItem Header="Categories">
                 <Grid Background="#FFE5E5E5">
-                    <StackPanel Visibility="{Binding Path=ShowCategoryUserControl}">
-                        <CategoriesUserControl:CategoriesUC HorizontalAlignment="Center" />
+                    <StackPanel Visibility="{Binding Path=ShowCategoryUserControl}" VerticalAlignment="Stretch">
+                        <CategoriesUserControl:CategoriesUC/>
                     </StackPanel>
                     <StackPanel Visibility="{Binding Path=ShowNoModuleLoaded}">
                         <TextBlock>Please load a module first!!!</TextBlock>
@@ -35,8 +35,8 @@
             <TabItem Header="Custom Casters">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="133*"/>
-                        <ColumnDefinition Width="261*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="250*"/>
                     </Grid.ColumnDefinitions>
                     <CustomCastersUserControl:CustomCastersUC HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="32,0" />
                 </Grid>

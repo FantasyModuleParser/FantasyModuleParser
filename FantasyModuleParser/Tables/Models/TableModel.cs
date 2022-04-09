@@ -12,59 +12,50 @@ using System.IO;
 
 namespace FantasyModuleParser.Tables.Models
 {
-    public class TableModel : ViewModelBase
+    public class TableModel : ModelBase
     {
-        // Added VersionNumber for generated files for debugging purposes
-        public string VersionNumber
-        {
-            get
-            {
-                return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-        }
-        private string _name;
-        public string Name
-        {
-            get => _name;
-            set => Set(ref _name, value);
-        }
-        private string _description;
-        public string Description
-        {
-            get => _description;
-            set => Set(ref _description, value);
-        }
-        private string _notes;
-        public string Notes
-        {
-            get => _notes;
-            set => Set(ref _notes, value);
-        }
-        private OutputTypeEnum _outputType;
-        public OutputTypeEnum OutputType
-        {
-            get => _outputType;
-            set => Set(ref _outputType, value);
-        }
-        private RollMethodEnum _rollMethod;
-        public RollMethodEnum RollMethod
-        {
-            get => _rollMethod;
-            set => Set(ref _rollMethod, value);
-        }
+        //private string _name;
+        //{
+        //    get => _name;
+        //    set => Set(ref _name, value);
+        //}
+        //private string _description;
+        public string Description { get; set; }
+        //{
+        //    get => _description;
+        //    set => Set(ref _description, value);
+        //}
+        //private string _notes;
+        public string Notes { get; set; }
+        //{
+        //    get => _notes;
+        //    set => Set(ref _notes, value);
+        //}
+        //private OutputTypeEnum _outputType;
+        public OutputTypeEnum OutputType { get; set; }
+        //{
+        //    get => _outputType;
+        //    set => Set(ref _outputType, value);
+        //}
+        //private RollMethodEnum _rollMethod;
+        public RollMethodEnum RollMethod { get; set; }
+        //{
+        //    get => _rollMethod;
+        //    set => Set(ref _rollMethod, value);
+        //}
 
-        private bool _isLocked;
-        public bool IsLocked
-        {
-            get => _isLocked;
-            set => Set(ref _isLocked, value);
-        }
-        private bool _showResultsInChat;
-        public bool ShowResultsInChat
-        {
-            get => _showResultsInChat;
-            set => Set(ref _showResultsInChat, value);
-        }
+        //private bool _isLocked;
+        public bool IsLocked { get; set; }
+        //{
+        //    get => _isLocked;
+        //    set => Set(ref _isLocked, value);
+        //}
+        //private bool _showResultsInChat;
+        public bool ShowResultsInChat { get; set; }
+        //{
+        //    get => _showResultsInChat;
+        //    set => Set(ref _showResultsInChat, value);
+        //}
 
         // Property Changed events are already handled within the 
         // TableOptionViewModel
@@ -73,62 +64,62 @@ namespace FantasyModuleParser.Tables.Models
         public DataTable tableDataTable = new DataTable();
 
         // Preset Range roll modifiers
-        private int _presetRangeMinimum;
-        public int PresetRangeMinimum
-        {
-            get => _presetRangeMinimum;
-            set => Set(ref _presetRangeMinimum, value);
-        }
-        private int _presetRangeMaximum;
-        public int PresetRangeMaximum
-        {
-            get => _presetRangeMaximum;
-            set => Set(ref _presetRangeMaximum, value);
-        }
+        //private int _presetRangeMinimum;
+        public int PresetRangeMinimum { get; set; }
+        //{
+        //    get => _presetRangeMinimum;
+        //    set => Set(ref _presetRangeMinimum, value);
+        //}
+        //private int _presetRangeMaximum;
+        public int PresetRangeMaximum { get; set; }
+        //{
+        //    get => _presetRangeMaximum;
+        //    set => Set(ref _presetRangeMaximum, value);
+        //}
 
         // Custom Range Roll Modifiers
-        private int _customRangeD4;
-        public int CustomRangeD4
-        {
-            get => _customRangeD4;
-            set => Set(ref _customRangeD4, value);
-        }
-        private int _customRangeD6;
-        public int CustomRangeD6
-        {
-            get => _customRangeD6;
-            set => Set(ref _customRangeD6, value);
-        }
-        private int _customRangeD8;
-        public int CustomRangeD8
-        {
-            get => _customRangeD8;
-            set => Set(ref _customRangeD8, value);
-        }
-        private int _customRangeD10;
-        public int CustomRangeD10
-        {
-            get => _customRangeD10;
-            set => Set(ref _customRangeD10, value);
-        }
-        private int _customRangeD12;
-        public int CustomRangeD12
-        {
-            get => _customRangeD12;
-            set => Set(ref _customRangeD12, value);
-        }
-        private int _customRangeD20;
-        public int CustomRangeD20
-        {
-            get => _customRangeD20;
-            set => Set(ref _customRangeD20, value);
-        }
-        private int _customRangeModifier;
-        public int CustomRangeModifier
-        {
-            get => _customRangeModifier;
-            set => Set(ref _customRangeModifier, value);
-        }
+        //private int _customRangeD4;
+        public int CustomRangeD4 { get; set; }
+        //{
+        //    get => _customRangeD4;
+        //    set => Set(ref _customRangeD4, value);
+        //}
+        //private int _customRangeD6;
+        public int CustomRangeD6 { get; set; }
+        //{
+        //    get => _customRangeD6;
+        //    set => Set(ref _customRangeD6, value);
+        //}
+        //private int _customRangeD8;
+        public int CustomRangeD8 { get; set; }
+        //{
+        //    get => _customRangeD8;
+        //    set => Set(ref _customRangeD8, value);
+        //}
+        //private int _customRangeD10;
+        public int CustomRangeD10 { get; set; }
+        //{
+        //    get => _customRangeD10;
+        //    set => Set(ref _customRangeD10, value);
+        //}
+        //private int _customRangeD12;
+        public int CustomRangeD12 { get; set; }
+        //{
+        //    get => _customRangeD12;
+        //    set => Set(ref _customRangeD12, value);
+        //}
+        //private int _customRangeD20;
+        public int CustomRangeD20 { get; set; }
+        //{
+        //    get => _customRangeD20;
+        //    set => Set(ref _customRangeD20, value);
+        //}
+        //private int _customRangeModifier;
+        public int CustomRangeModifier { get; set; }
+        //{
+        //    get => _customRangeModifier;
+        //    set => Set(ref _customRangeModifier, value);
+        //}
 
 
         public TableModel()
