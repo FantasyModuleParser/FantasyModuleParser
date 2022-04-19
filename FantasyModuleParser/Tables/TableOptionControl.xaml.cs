@@ -31,7 +31,7 @@ namespace FantasyModuleParser.Tables
 
         private void InitializeTableDataGrid()
         {
-            TableExampleDataGrid.AutoGenerateColumns = true;
+            TableExampleDataGrid.AutoGenerateColumns = false;
             TableExampleDataGrid.CanUserSortColumns = false;
             TableExampleDataGrid.CanUserReorderColumns = false;
         }
@@ -307,6 +307,29 @@ namespace FantasyModuleParser.Tables
             else
             {
                 TableExampleDataGrid.ContextMenu.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TableExampleDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if(sender is DataGrid)
+            {
+                DataGrid dataGrid = (DataGrid)sender;
+                if(dataGrid.Columns.Count > 1)
+                {
+                    if(tableOptionViewModel.TableModel.ColumnHeaderLabels.Count > dataGrid.Columns.Count) { 
+                        var columnHeaderLabel = tableOptionViewModel.TableModel.ColumnHeaderLabels[dataGrid.Columns.Count];
+                        e.Column.Header = columnHeaderLabel;
+                    }
+                }
+
+                // For Older data endpoints, we need to update the ColumnHeaderLabels object to include those
+                // column IDs as labels so the Exporter can work as intended
+
+                if(tableOptionViewModel.TableModel.ColumnHeaderLabels.Count <= dataGrid.Columns.Count)
+                {
+                    tableOptionViewModel.TableModel.ColumnHeaderLabels.Add(e.Column.Header.ToString());
+                }
             }
         }
     }

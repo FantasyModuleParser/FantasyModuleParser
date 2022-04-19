@@ -59,8 +59,8 @@ namespace FantasyModuleParser.Tables.Models
 
         // Property Changed events are already handled within the 
         // TableOptionViewModel
-        //public List<string> ColumnHeaderLabels = new List<string>();
-        public List<List<string>> BasicStringGridData = new List<List<string>>();
+        public List<string> ColumnHeaderLabels { get; set; }
+        //public List<List<string>> BasicStringGridData = new List<List<string>>();
         public DataTable tableDataTable = new DataTable();
 
         // Preset Range roll modifiers
@@ -124,12 +124,13 @@ namespace FantasyModuleParser.Tables.Models
 
         public TableModel()
         {
+            ColumnHeaderLabels = new List<string>();
         }
 
         public TableModel CreateDefaultTableModel()
         {
             //ColumnHeaderLabels.Clear();
-            BasicStringGridData.Clear();
+            //BasicStringGridData.Clear();
             
             //ColumnHeaderLabels.Add("From");
             //ColumnHeaderLabels.Add("To");
@@ -141,20 +142,7 @@ namespace FantasyModuleParser.Tables.Models
         public TableModel Load()
         {
             // For now, just create the default TableModel object, with the Load process coming later
-            CreateDefaultTableModel();
-            CreateMockData();
             return this;
-        }
-
-        public void CreateMockData()
-        {
-            List<string> mockDataOne = new List<string>();
-
-            mockDataOne.Add("1");
-            mockDataOne.Add("2");
-            mockDataOne.Add("This is a test");
-
-            BasicStringGridData.Add(mockDataOne);
         }
 
         public void Save()
@@ -163,6 +151,19 @@ namespace FantasyModuleParser.Tables.Models
                 throw new Exception("The table is missing a name");
 
             SettingsService settingsService = new SettingsService();
+
+            // Custom work;  Need to Save the captions from the columns in the DataGrid.
+            // This is because changing the DataGridColumn.ColumnName results in the column ID changing,
+            // and in the UI, it 'appears' that the grid data gets lost.
+            //ColumnHeaderLabels.Clear();
+            //foreach(DataColumn dataColumn in tableDataTable.Columns)
+            //{
+            //    if (String.IsNullOrEmpty(dataColumn.Caption))
+            //        ColumnHeaderLabels.Add(dataColumn.ColumnName);
+            //    else
+            //        ColumnHeaderLabels.Add(dataColumn.Caption);
+            //}
+
             string filePath = Path.Combine(settingsService.Load().TableFolderLocation, this.Name + ".tbl");
 
             Save(filePath);
@@ -183,7 +184,17 @@ namespace FantasyModuleParser.Tables.Models
         public TableModel Load(string @filePath)
         {
             string jsonData = File.ReadAllText(@filePath);
-            return JsonConvert.DeserializeObject<TableModel>(jsonData);
+            TableModel loadedTableModel = JsonConvert.DeserializeObject<TableModel>(jsonData);
+
+            //Before passing the table Model back, the Column captions need to be from the ColumnHeaderLabels
+
+            for(int idx = 0; idx < loadedTableModel.ColumnHeaderLabels.Count; idx++)
+            {
+                loadedTableModel.tableDataTable.Columns[idx].Caption = loadedTableModel.ColumnHeaderLabels[idx];
+            }
+
+            return loadedTableModel;
+
         }
 
     }

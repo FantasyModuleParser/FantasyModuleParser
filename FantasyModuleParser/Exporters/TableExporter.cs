@@ -139,7 +139,14 @@ namespace FantasyModuleParser.Exporters
 		{
 			for (int columnHeaderIndex = 2; columnHeaderIndex < tableModel.tableDataTable.Columns.Count; columnHeaderIndex++)
 			{
-				string columnHeaderValue = tableModel.tableDataTable.Columns[columnHeaderIndex].ColumnName;
+				// For Older data endpoints, we need to use the Column ID value instead of relying on the ColumnHeaderLabel
+				// to be populated correctly.  The preference will always bee ColumnHeaderLabels object though
+				string columnHeaderValue = null;
+				if (tableModel.ColumnHeaderLabels.Count > columnHeaderIndex)
+					columnHeaderValue = tableModel.ColumnHeaderLabels[columnHeaderIndex];
+				else
+                    columnHeaderValue = tableModel.tableDataTable.Columns[columnHeaderIndex].ColumnName;
+				
 				xmlWriter.WriteStartElement(string.Format("labelcol{0}", columnHeaderIndex - 1));
 				CommonMethods.Type_String(xmlWriter);
 				xmlWriter.WriteString(columnHeaderValue);
