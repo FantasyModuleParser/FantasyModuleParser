@@ -43,7 +43,11 @@ namespace FantasyModuleParser.Classes.Model
             {
                 stringBuilder.Append(armor.GetDescription()).Append(delimiter);
             }
-            return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length); 
+
+            if(stringBuilder.Length > 0)
+                return stringBuilder.ToString(0, stringBuilder.Length - delimiter.Length);
+
+            return "";
         }
 
         public string GetToolProficienciesForExporter()
