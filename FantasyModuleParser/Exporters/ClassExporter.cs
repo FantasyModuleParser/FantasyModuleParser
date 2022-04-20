@@ -529,7 +529,7 @@ namespace FantasyModuleParser.Exporters
 			return SpecNameToXML;
 		}
 
-		private static string ClassNameToXML(ClassModel classModel)
+		public static string ClassNameToXML(ClassModel classModel)
 		{
 			string NameToXML = classModel.Name.Replace(" ", "").Replace("'", "").ToLower();
 			return NameToXML;

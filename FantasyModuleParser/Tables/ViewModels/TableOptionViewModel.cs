@@ -87,17 +87,6 @@ namespace FantasyModuleParser.Tables.ViewModels
             set { this._tableModel.tableDataTable = value; RaisePropertyChanged(nameof(Data)); }
         }
 
-        //public int RowCount
-        //{
-        //    get { return _tableModel.RowCount; }
-        //    set { Set(ref _tableModel.RowCount, value); }
-        //}
-        //public int ColumnCount
-        //{
-        //    get { return _tableModel.ColumnCount; }
-        //    set { Set(ref _tableModel.ColumnCount, value); }
-        //}
-
         public ObservableCollection<DataGridColumn> DataGridColumns
         {
             get { return _dataGridColumns; }
@@ -132,9 +121,6 @@ namespace FantasyModuleParser.Tables.ViewModels
             ModuleModel = moduleService.GetModuleModel();
 
             CreateNewTable();
-            //_dataGridColumns = new ObservableCollection<DataGridColumn>();
-            //ChangeGridDimesions();
-            //CreateTable();
         }
 
         public void Refresh()
@@ -152,7 +138,7 @@ namespace FantasyModuleParser.Tables.ViewModels
             // | Row1 | -- | -------------------- |
 
             // First, Load the TableModel contents into the TableModel object
-            TableModel.Load();
+            //TableModel.Load();
 
             // 2. Create the DataColumns based on the number of entries into the TableModel.ColumnHeaderLabel list
             // 2a.  There are always two columns;  From & To  (indicating dice roll range)
@@ -160,10 +146,19 @@ namespace FantasyModuleParser.Tables.ViewModels
             Data.Columns.Add(new DataColumn("From", typeof(int)));
             Data.Columns.Add(new DataColumn("To", typeof(int)));
 
-            for(int idx = 2; idx < TableModel.ColumnHeaderLabels.Count; idx++)
-            {
-                Data.Columns.Add(new DataColumn($"Col{idx}", typeof(string)));
-            }
+            //for(int idx = 2; idx < TableModel.tableDataTable.Columns.Count; idx++)
+            //{
+            Data.Columns.Add(new DataColumn("Col01", typeof(string)));
+
+            // The TableModel.ColumnHeaderLabels are used to keep track of the column labels WITHOUT
+            // changing the column ID underneath
+
+            TableModel.ColumnHeaderLabels = new List<string>();
+            TableModel.ColumnHeaderLabels.Add("From");
+            TableModel.ColumnHeaderLabels.Add("To");
+            TableModel.ColumnHeaderLabels.Add("Right Click to Change");
+
+            //}
 
             //3.  With the columns defined, now move the gridData into the DataTable
             // NOTE:  Even if the GridData in TableModel has more columns of data, it will only read upto the 
@@ -171,32 +166,14 @@ namespace FantasyModuleParser.Tables.ViewModels
             //
             // *** This will result in data loss if not careful when removing columns!!! ***
 
-            foreach(List<string> rowData in TableModel.BasicStringGridData)
-            {
-                DataRow dr = Data.NewRow();
-                for(int rowIdx = 0; rowIdx < TableModel.ColumnHeaderLabels.Count; rowIdx++)
-                {
-                    // Safety check that the list of strings in rowData does not throw an ArrayOutOfBoundsException
-                    
-                    if (rowIdx < rowData.Count) 
-                    {
-                        switch (rowIdx)
-                        {
-                            case 0:
-                                dr["From"] = rowData[rowIdx];
-                                break;
-                            case 1:
-                                dr["To"] = rowData[rowIdx];
-                                break;
-                            default:
-                                dr[$"Col{rowIdx}"] = rowData[rowIdx];
-                                break;
-                        }
-                    }
-                }
+            //foreach(List<string> rowData in TableModel.BasicStringGridData)
+            //{
+            DataRow dr = Data.NewRow();
+            dr[0] = 1;
+            dr[1] = 2;
+            dr[2] = "Example Data";
 
-                Data.Rows.Add(dr);
-            }
+            Data.Rows.Add(dr);
         }
 
         #region Commands
@@ -214,9 +191,11 @@ namespace FantasyModuleParser.Tables.ViewModels
         }
         private void CreateNewTable()
         {
-            TableModel = new TableModel();
-            //CreateDefaultDataTable();
+            SelectedTableModel = new TableModel();
+            //TableModel = new TableModel();
+            CreateDefaultDataTable();
             TableDataView = new DataView(Data);
+
         }
 
         // Experimenting with the ActionCommand as a delegate for the button clicks from the View
@@ -375,10 +354,9 @@ namespace FantasyModuleParser.Tables.ViewModels
             }
         }
         private void AddColumnToDataTable()
-        {
-            Data.Columns.Add(new DataColumn("Col" + TableModel.ColumnHeaderLabels.Count, typeof(string)));
-            TableModel.ColumnHeaderLabels.Add("");
-
+        { 
+            Data.Columns.Add(new DataColumn("Col" + TableModel.tableDataTable.Columns.Count, typeof(string)));
+            TableModel.ColumnHeaderLabels.Add("Col Name " + +TableModel.tableDataTable.Columns.Count);
             TableDataView = new DataView(Data);
         }
 
@@ -422,15 +400,8 @@ namespace FantasyModuleParser.Tables.ViewModels
 
                 Data.Columns.RemoveAt(Data.Columns.Count - 1);
                 TableModel.ColumnHeaderLabels.RemoveAt(Data.Columns.Count - 1);
-
                 TableDataView = new DataView(Data);
-                
-
-                //TableDataView.Dispose();
-
-
                 RaisePropertyChanged(nameof(TableDataView));
-               
             }
         }
 
@@ -461,10 +432,6 @@ namespace FantasyModuleParser.Tables.ViewModels
         }
         private void LoadTableAction()
         {
-            //Data.Columns.Add(new DataColumn("Col" + TableModel.ColumnHeaderLabels.Count, typeof(string)));
-            //TableModel.ColumnHeaderLabels.Add("");
-
-            //TableDataView = new DataView(Data);
 
             SettingsService settingsService = new SettingsService();
             // Create OpenFileDialog
@@ -484,5 +451,15 @@ namespace FantasyModuleParser.Tables.ViewModels
                 TableDataView = new DataView(TableModel.tableDataTable);
             }
         }
+
+        public void UpdateColumnHeader(int columnIndex, String newColumnValue)
+        {
+            string oldColumnName = TableDataView.Table.Columns[columnIndex].ColumnName;
+
+            TableModel.ColumnHeaderLabels[columnIndex] = newColumnValue;
+
+            var checkContent = TableDataView.Table.DataSet;
+        }
+
     }
 }
