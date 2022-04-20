@@ -5,18 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:FantasyModuleParser.Main.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="260" d:DesignWidth="400">
+             d:DesignHeight="260" d:DesignWidth="750">
     <UserControl.DataContext>
         <viewModel:CategoriesUCViewModel/>
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="23" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
+        <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="5" />
@@ -28,24 +26,43 @@
             <TextBox x:Name="NewCategoryValue" Padding="0" Grid.Column="2"/>
             <Button Content="Add" Grid.Column="4" Click="AddCategoryButton_Click"/>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="300" />
-                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
-            <ListBox ItemsSource="{Binding Path=ModuleModel.Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1">
+            <ListBox ItemsSource="{Binding ModuleModel.Categories, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     SelectedValue="{Binding SelectedCategoryModel}"
+                     HorizontalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="280">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Path=Name}" Grid.Column="0" />
+                            <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Left" />
                             <Button Command="{Binding DataContext.RemoveCategoryCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                    CommandParameter="{Binding}"
-                                    Grid.Column="1">Remove</Button>
+                                    CommandParameter="{Binding}" HorizontalAlignment="Right"
+                                    >Remove</Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox Grid.Column="1" ItemsSource="{Binding PopulatedModuleList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedValue="{Binding SelectedPopulatedModuleList}"/>
+            <ListBox Grid.Column="2" ItemsSource="{Binding SelectedCategoryModuleRecords, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Left" />
+                            <Button Command="{Binding DataContext.RemoveModelBaseFromSelectedCategoryCommand, 
+                                RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                    CommandParameter="{Binding}" HorizontalAlignment="Right">Remove</Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -144,6 +144,8 @@ namespace FantasyModuleParser.Equipment.UserControls
             if (this.DataContext is ClassOptionControllViewModel)
             {
                 ClassOptionControllViewModel viewModel = this.DataContext as ClassOptionControllViewModel;
+                if (viewModel.SelectedCategoryModel?.ClassModels == null)
+                    viewModel.SelectedCategoryModel.ClassModels = new System.Collections.ObjectModel.ObservableCollection<Classes.Model.ClassModel>();
                 SelectedCategoryItemSource = viewModel.SelectedCategoryModel.ClassModels;
             }
         }

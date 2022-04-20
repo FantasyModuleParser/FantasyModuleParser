@@ -31,31 +31,9 @@ namespace FantasyModuleParser.Tables
 
         private void InitializeTableDataGrid()
         {
-            //TableExampleDataGrid.BorderColor = System.Drawing.Color.Black;
-            //TableExampleDataGrid.CellPadding = 3;
-            TableExampleDataGrid.AutoGenerateColumns = true;
+            TableExampleDataGrid.AutoGenerateColumns = false;
             TableExampleDataGrid.CanUserSortColumns = false;
             TableExampleDataGrid.CanUserReorderColumns = false;
-
-            // Set the styles for the DataGrid.
-            //TableExampleDataGrid.HeaderStyle.BackColor =
-            //    System.Drawing.Color.FromArgb(0x0000aaaa);
-
-            // Create the columns for the DataGrid control. The DataGrid
-            // columns are dynamically generated. Therefore, the columns   
-            // must be re-created each time the page is refreshed.
-
-            //TableOptionViewModel tableOptionViewModel = DataContext as TableOptionViewModel;
-
-            // Create and add the columns to the collection.
-            TableExampleDataGrid.Columns.Clear();
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn("From", "From"));
-            TableExampleDataGrid.Columns.Add(CreateBoundColumn("To", "To"));
-
-            for(int colIdx = 2; colIdx < tableOptionViewModel.TableModel.ColumnHeaderLabels.Count; colIdx++)
-            {
-                TableExampleDataGrid.Columns.Add(CreateBoundColumn($"Col{colIdx}", tableOptionViewModel.TableModel.ColumnHeaderLabels[colIdx]));
-            }
         }
 
         private void generateContextMenu()
@@ -144,7 +122,8 @@ namespace FantasyModuleParser.Tables
 
             // 4. Because column header is not directly bound due to dynamic nature of List, 
             //      need to manually update the Model data
-            tableOptionViewModel.TableModel.ColumnHeaderLabels[dataGridColumn.DisplayIndex] = changeColumnHeaderView.ColumnHeaderText;
+            //tableOptionViewModel.TableModel.ColumnHeaderLabels[dataGridColumn.DisplayIndex] = changeColumnHeaderView.ColumnHeaderText;
+            tableOptionViewModel.UpdateColumnHeader(dataGridColumn.DisplayIndex, changeColumnHeaderView.ColumnHeaderText);
         }
 
         private void ClearCellMenuItem_Click(object sender, RoutedEventArgs e)
@@ -328,6 +307,29 @@ namespace FantasyModuleParser.Tables
             else
             {
                 TableExampleDataGrid.ContextMenu.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TableExampleDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if(sender is DataGrid)
+            {
+                DataGrid dataGrid = (DataGrid)sender;
+                if(dataGrid.Columns.Count > 1)
+                {
+                    if(tableOptionViewModel.TableModel.ColumnHeaderLabels.Count > dataGrid.Columns.Count) { 
+                        var columnHeaderLabel = tableOptionViewModel.TableModel.ColumnHeaderLabels[dataGrid.Columns.Count];
+                        e.Column.Header = columnHeaderLabel;
+                    }
+                }
+
+                // For Older data endpoints, we need to update the ColumnHeaderLabels object to include those
+                // column IDs as labels so the Exporter can work as intended
+
+                if(tableOptionViewModel.TableModel.ColumnHeaderLabels.Count <= dataGrid.Columns.Count)
+                {
+                    tableOptionViewModel.TableModel.ColumnHeaderLabels.Add(e.Column.Header.ToString());
+                }
             }
         }
     }

@@ -215,12 +215,12 @@ namespace FantasyModuleParser.Main.Services
                 throw new InvalidDataException("Category Value is not in the Module Model data object!");
             }
             
-            if (categoryModel.TableModels.FirstOrDefault(x => x.Name.Equals(tableModel.Name, StringComparison.Ordinal)) == null)
+            if (categoryModel.TableModels.FirstOrDefault(x => x.Name != null && x.Name.Equals(tableModel.Name, StringComparison.Ordinal)) == null)
                 categoryModel.TableModels.Add(tableModel);  // The real magic is here
             else
             {
                 // Replace the TableModel object based on the name
-                TableModel oldTableModel = categoryModel.TableModels.FirstOrDefault(x => x.Name.Equals(tableModel.Name, StringComparison.Ordinal));
+                TableModel oldTableModel = categoryModel.TableModels.FirstOrDefault(x => x.Name != null && x.Name.Equals(tableModel.Name, StringComparison.Ordinal));
                 int oldTableModelIndex = categoryModel.TableModels.IndexOf(oldTableModel);
 
                 if(oldTableModelIndex != -1)
